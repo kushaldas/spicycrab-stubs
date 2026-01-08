@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-clap"
+version = "4.5.54"
+description = "spicycrab type stubs for the clap Rust crate (re-exports from clap_builder)"
+requires-python = ">=3.11"
+dependencies = ["spicycrab-clap_builder"]
+
+[project.entry-points."spicycrab.stubs"]
+clap = "spicycrab_clap"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_clap"]
