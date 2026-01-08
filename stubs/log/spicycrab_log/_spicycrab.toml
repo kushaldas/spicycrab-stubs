@@ -1,0 +1,619 @@
+[package]
+name = "log"
+rust_crate = "log"
+rust_version = "0.4.29"
+python_module = "spicycrab_log"
+
+[cargo.dependencies]
+log = "0.4.29"
+
+[[mappings.functions]]
+python = "log.Record.builder"
+rust_code = "log::Record::builder()"
+rust_imports = ["log::Record"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.RecordBuilder.new"
+rust_code = "log::RecordBuilder::new()"
+rust_imports = ["log::RecordBuilder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.RecordBuilder.default"
+rust_code = "log::RecordBuilder::default()"
+rust_imports = ["log::RecordBuilder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.Metadata.builder"
+rust_code = "log::Metadata::builder()"
+rust_imports = ["log::Metadata"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.MetadataBuilder.new"
+rust_code = "log::MetadataBuilder::new()"
+rust_imports = ["log::MetadataBuilder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.MetadataBuilder.default"
+rust_code = "log::MetadataBuilder::default()"
+rust_imports = ["log::MetadataBuilder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.Key.from_str"
+rust_code = "log::Key::from_str({arg0})"
+rust_imports = ["log::Key"]
+needs_result = false
+param_types = ["&'kstr"]
+
+[[mappings.functions]]
+python = "log.Key.from_"
+rust_code = "log::Key::from({arg0})"
+rust_imports = ["log::Key"]
+needs_result = false
+param_types = ["&'kstr"]
+
+[[mappings.functions]]
+python = "log.Value.from_any"
+rust_code = "log::Value::from_any({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.from_debug"
+rust_code = "log::Value::from_debug({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.from_display"
+rust_code = "log::Value::from_display({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.from_serde"
+rust_code = "log::Value::from_serde({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.from_sval"
+rust_code = "log::Value::from_sval({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.from_dyn_debug"
+rust_code = "log::Value::from_dyn_debug({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vdynfmt::Debug"]
+
+[[mappings.functions]]
+python = "log.Value.from_dyn_display"
+rust_code = "log::Value::from_dyn_display({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vdynfmt::Display"]
+
+[[mappings.functions]]
+python = "log.Value.from_dyn_error"
+rust_code = "log::Value::from_dyn_error({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'v(dynstd::error::Error+'static)"]
+
+[[mappings.functions]]
+python = "log.Value.null"
+rust_code = "log::Value::null()"
+rust_imports = ["log::Value"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.Value.from_"
+rust_code = "log::Value::from({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vstr"]
+
+[[mappings.functions]]
+python = "log.Value.from_"
+rust_code = "log::Value::from({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vString"]
+
+[[mappings.functions]]
+python = "log.Value.capture_debug"
+rust_code = "log::Value::capture_debug({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.capture_display"
+rust_code = "log::Value::capture_display({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.capture_error"
+rust_code = "log::Value::capture_error({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.capture_serde"
+rust_code = "log::Value::capture_serde({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Value.capture_sval"
+rust_code = "log::Value::capture_sval({arg0})"
+rust_imports = ["log::Value"]
+needs_result = false
+param_types = ["&'vT"]
+
+[[mappings.functions]]
+python = "log.Error.msg"
+rust_code = "log::Error::msg({arg0})"
+rust_imports = ["log::Error"]
+needs_result = false
+param_types = ["&'staticstr"]
+
+[[mappings.functions]]
+python = "log.Error.from_"
+rust_code = "log::Error::from({arg0})"
+rust_imports = ["log::Error"]
+needs_result = false
+param_types = ["fmt::Error"]
+
+[[mappings.functions]]
+python = "log.Error.boxed"
+rust_code = "log::Error::boxed({arg0})"
+rust_imports = ["log::Error"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "log.Error.from_"
+rust_code = "log::Error::from({arg0})"
+rust_imports = ["log::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.methods]]
+python = "Record.args"
+rust_code = "{self}.args()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.metadata"
+rust_code = "{self}.metadata()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.level"
+rust_code = "{self}.level()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.target"
+rust_code = "{self}.target()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.module_path"
+rust_code = "{self}.module_path()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.module_path_static"
+rust_code = "{self}.module_path_static()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.file"
+rust_code = "{self}.file()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.file_static"
+rust_code = "{self}.file_static()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.line"
+rust_code = "{self}.line()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.key_values"
+rust_code = "{self}.key_values()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Record.to_builder"
+rust_code = "{self}.to_builder()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "RecordBuilder.args"
+rust_code = "{self}.args({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["fmt::Arguments<'a>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.metadata"
+rust_code = "{self}.metadata({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Metadata<'a>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Level"]
+
+[[mappings.methods]]
+python = "RecordBuilder.target"
+rust_code = "{self}.target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "RecordBuilder.module_path"
+rust_code = "{self}.module_path({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Option<&'astr>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.module_path_static"
+rust_code = "{self}.module_path_static({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Option<&'staticstr>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.file"
+rust_code = "{self}.file({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Option<&'astr>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.file_static"
+rust_code = "{self}.file_static({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Option<&'staticstr>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.line"
+rust_code = "{self}.line({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Option<u32>"]
+
+[[mappings.methods]]
+python = "RecordBuilder.key_values"
+rust_code = "{self}.key_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&'adynkv::Source"]
+
+[[mappings.methods]]
+python = "RecordBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Metadata.level"
+rust_code = "{self}.level()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Metadata.target"
+rust_code = "{self}.target()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "MetadataBuilder.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Level"]
+
+[[mappings.methods]]
+python = "MetadataBuilder.target"
+rust_code = "{self}.target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "MetadataBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SetLoggerError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ParseLevelError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Key.to_key"
+rust_code = "{self}.to_key()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Key.as_str"
+rust_code = "{self}.as_str()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Key.to_borrowed_str"
+rust_code = "{self}.to_borrowed_str()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Key.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Key.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Key.borrow"
+rust_code = "{self}.borrow()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Key.stream"
+rust_code = "{self}.stream({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutS"]
+
+[[mappings.methods]]
+python = "Key.stream_ref"
+rust_code = "{self}.stream_ref({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutS"]
+
+[[mappings.methods]]
+python = "Key.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "Value.to_value"
+rust_code = "{self}.to_value()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Value.visit"
+rust_code = "{self}.visit({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implVisitValue<'v>"]
+
+[[mappings.methods]]
+python = "Value.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Value.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Value.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "Value.stream"
+rust_code = "{self}.stream({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutS"]
+
+[[mappings.methods]]
+python = "Value.stream_ref"
+rust_code = "{self}.stream_ref({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutS"]
+
+[[mappings.methods]]
+python = "Value.to_borrowed_error"
+rust_code = "{self}.to_borrowed_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.to_borrowed_str"
+rust_code = "{self}.to_borrowed_str()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.to_cow_str"
+rust_code = "{self}.to_cow_str()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.is_"
+rust_code = "{self}.is()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.downcast_ref"
+rust_code = "{self}.downcast_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "GlobalLogger.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Metadata"]
+
+[[mappings.methods]]
+python = "GlobalLogger.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Record"]
+
+[[mappings.methods]]
+python = "GlobalLogger.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.types]]
+python = "Record"
+rust = "log::Record"
+
+[[mappings.types]]
+python = "RecordBuilder"
+rust = "log::RecordBuilder"
+
+[[mappings.types]]
+python = "Metadata"
+rust = "log::Metadata"
+
+[[mappings.types]]
+python = "MetadataBuilder"
+rust = "log::MetadataBuilder"
+
+[[mappings.types]]
+python = "SetLoggerError"
+rust = "log::SetLoggerError"
+
+[[mappings.types]]
+python = "ParseLevelError"
+rust = "log::ParseLevelError"
+
+[[mappings.types]]
+python = "Key"
+rust = "log::Key"
+
+[[mappings.types]]
+python = "Value"
+rust = "log::Value"
+
+[[mappings.types]]
+python = "Error"
+rust = "log::Error"
+
+[[mappings.types]]
+python = "GlobalLogger"
+rust = "log::GlobalLogger"
+
+[[mappings.types]]
+python = "Level"
+rust = "log::Level"
+
+[[mappings.types]]
+python = "LevelFilter"
+rust = "log::LevelFilter"
+
+[[mappings.types]]
+python = "Inner"
+rust = "log::Inner"
+
+[[mappings.types]]
+python = "Token"
+rust = "log::Token"
