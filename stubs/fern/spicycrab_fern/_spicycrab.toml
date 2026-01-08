@@ -1,0 +1,1008 @@
+[package]
+name = "fern"
+rust_crate = "fern"
+rust_version = "0.7.1"
+python_module = "spicycrab_fern"
+
+[cargo.dependencies]
+fern = "0.7.1"
+
+[[mappings.functions]]
+python = "fern.Dispatch.new"
+rust_code = "fern::Dispatch::new()"
+rust_imports = ["fern::Dispatch"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.Dispatch.default"
+rust_code = "fern::Dispatch::default()"
+rust_imports = ["fern::Dispatch"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Dispatch"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["SharedDispatch"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Box<dynLog>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["&'staticdynLog"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["fs::File"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Box<dynWrite+Send>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["reopen03::Reopen<fs::File>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["reopen1::Reopen<fs::File>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["io::Stdout"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["io::Stderr"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Sender<String>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["syslog3::Logger"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Box<syslog3::Logger>"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog4Rfc3164Logger"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog6Rfc3164Logger"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog7Rfc3164Logger"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Panic"]
+
+[[mappings.functions]]
+python = "fern.Output.file"
+rust_code = "fern::Output::file({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["fs::File", "T"]
+
+[[mappings.functions]]
+python = "fern.Output.writer"
+rust_code = "fern::Output::writer({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Box<dynWrite+Send>", "T"]
+
+[[mappings.functions]]
+python = "fern.Output.reopen"
+rust_code = "fern::Output::reopen({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["reopen03::Reopen<fs::File>", "T"]
+
+[[mappings.functions]]
+python = "fern.Output.reopen1"
+rust_code = "fern::Output::reopen1({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["reopen1::Reopen<fs::File>", "T"]
+
+[[mappings.functions]]
+python = "fern.Output.stdout"
+rust_code = "fern::Output::stdout({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "fern.Output.stderr"
+rust_code = "fern::Output::stderr({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "fern.Output.sender"
+rust_code = "fern::Output::sender({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Sender<String>", "T"]
+
+[[mappings.functions]]
+python = "fern.Output.syslog_5424"
+rust_code = "fern::Output::syslog_5424({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog4Rfc5424Logger", "F"]
+
+[[mappings.functions]]
+python = "fern.Output.syslog6_5424"
+rust_code = "fern::Output::syslog6_5424({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog6Rfc5424Logger", "F"]
+
+[[mappings.functions]]
+python = "fern.Output.syslog7_5424"
+rust_code = "fern::Output::syslog7_5424({arg0}, {arg1})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["Syslog7Rfc5424Logger", "F"]
+
+[[mappings.functions]]
+python = "fern.Output.call"
+rust_code = "fern::Output::call({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "fern.Output.from_"
+rust_code = "fern::Output::from({arg0})"
+rust_imports = ["fern::Output"]
+needs_result = false
+param_types = ["DateBased"]
+
+[[mappings.functions]]
+python = "fern.DateBased.new"
+rust_code = "fern::DateBased::new({arg0}, {arg1})"
+rust_imports = ["fern::DateBased"]
+needs_result = false
+param_types = ["T", "U"]
+
+[[mappings.functions]]
+python = "fern.ColoredLevelConfig.new"
+rust_code = "fern::ColoredLevelConfig::new()"
+rust_imports = ["fern::ColoredLevelConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.ColoredLevelConfig.default"
+rust_code = "fern::ColoredLevelConfig::default()"
+rust_imports = ["fern::ColoredLevelConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.Dispatch.new"
+rust_code = "fern::Dispatch::new()"
+rust_imports = ["fern::Dispatch"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.Dispatch.default"
+rust_code = "fern::Dispatch::default()"
+rust_imports = ["fern::Dispatch"]
+needs_result = false
+
+[[mappings.functions]]
+python = "fern.DateBased.new"
+rust_code = "fern::DateBased::new({arg0}, {arg1})"
+rust_imports = ["fern::DateBased"]
+needs_result = false
+param_types = ["T", "U"]
+
+[[mappings.functions]]
+python = "fern.DateBasedConfig.new"
+rust_code = "fern::DateBasedConfig::new({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["fern::DateBasedConfig"]
+needs_result = false
+param_types = ["Cow<'static,str>", "PathBuf", "Cow<'static,str>", "ConfiguredTimezone"]
+
+[[mappings.functions]]
+python = "fern.DateBasedConfig.open_log_file"
+rust_code = "fern::DateBasedConfig::open_log_file({arg0})"
+rust_imports = ["fern::DateBasedConfig"]
+needs_result = false
+param_types = ["&Path"]
+
+[[mappings.functions]]
+python = "fern.DateBasedState.new"
+rust_code = "fern::DateBasedState::new({arg0}, {arg1})"
+rust_imports = ["fern::DateBasedState"]
+needs_result = false
+param_types = ["String", "Option<fs::File>"]
+
+[[mappings.methods]]
+python = "Dispatch.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Dispatch.chain"
+rust_code = "{self}.chain({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Dispatch.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["log::LevelFilter"]
+
+[[mappings.methods]]
+python = "Dispatch.level_for"
+rust_code = "{self}.level_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T", "log::LevelFilter"]
+
+[[mappings.methods]]
+python = "Dispatch.filter"
+rust_code = "{self}.filter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Dispatch.into_shared"
+rust_code = "{self}.into_shared()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Dispatch.into_log"
+rust_code = "{self}.into_log()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Dispatch.apply"
+rust_code = "{self}.apply()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Dispatch.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Dispatch.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Dispatch.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Dispatch.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Panic.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Panic.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Panic.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Output.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Output.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Output.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Output.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateBased.line_sep"
+rust_code = "{self}.line_sep({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "DateBased.utc_time"
+rust_code = "{self}.utc_time()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateBased.local_time"
+rust_code = "{self}.local_time()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateBased.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "DateBased.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "DateBased.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WithFgColor.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.error"
+rust_code = "{self}.error({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Color"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.warn"
+rust_code = "{self}.warn({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Color"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.info"
+rust_code = "{self}.info({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Color"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.debug"
+rust_code = "{self}.debug({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Color"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.trace"
+rust_code = "{self}.trace({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Color"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.color"
+rust_code = "{self}.color({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Level"]
+
+[[mappings.methods]]
+python = "ColoredLevelConfig.get_color"
+rust_code = "{self}.get_color({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Level"]
+
+[[mappings.methods]]
+python = "Dispatch.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Dispatch.chain"
+rust_code = "{self}.chain({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Dispatch.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["log::LevelFilter"]
+
+[[mappings.methods]]
+python = "Dispatch.level_for"
+rust_code = "{self}.level_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T", "log::LevelFilter"]
+
+[[mappings.methods]]
+python = "Dispatch.filter"
+rust_code = "{self}.filter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Dispatch.into_shared"
+rust_code = "{self}.into_shared()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Dispatch.into_log"
+rust_code = "{self}.into_log()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Dispatch.apply"
+rust_code = "{self}.apply()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Dispatch.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Dispatch.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Dispatch.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Dispatch.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "FormatCallback.finish"
+rust_code = "{self}.finish({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["fmt::Arguments"]
+
+[[mappings.methods]]
+python = "Sender.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Sender.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Sender.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog3.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog3.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog3.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog4Rfc3164.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog4Rfc3164.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog4Rfc3164.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog4Rfc5424.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog4Rfc5424.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog4Rfc5424.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog6Rfc3164.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog6Rfc3164.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog6Rfc3164.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog6Rfc5424.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog6Rfc5424.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog6Rfc5424.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog7Rfc3164.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog7Rfc3164.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog7Rfc3164.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Syslog7Rfc5424.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Syslog7Rfc5424.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Syslog7Rfc5424.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Panic.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Panic.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Panic.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Null.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "Null.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "Null.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateBased.line_sep"
+rust_code = "{self}.line_sep({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "DateBased.utc_time"
+rust_code = "{self}.utc_time()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateBased.local_time"
+rust_code = "{self}.local_time()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateBased.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Metadata"]
+
+[[mappings.methods]]
+python = "DateBased.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&log::Record"]
+
+[[mappings.methods]]
+python = "DateBased.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateBasedConfig.compute_current_suffix"
+rust_code = "{self}.compute_current_suffix()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateBasedConfig.compute_file_path"
+rust_code = "{self}.compute_file_path({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "DateBasedConfig.open_current_log_file"
+rust_code = "{self}.open_current_log_file({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "DateBasedState.replace_file"
+rust_code = "{self}.replace_file({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["String", "Option<fs::File>"]
+
+[[mappings.types]]
+python = "Dispatch"
+rust = "fern::Dispatch"
+
+[[mappings.types]]
+python = "SharedDispatch"
+rust = "fern::SharedDispatch"
+
+[[mappings.types]]
+python = "Panic"
+rust = "fern::Panic"
+
+[[mappings.types]]
+python = "Output"
+rust = "fern::Output"
+
+[[mappings.types]]
+python = "DateBased"
+rust = "fern::DateBased"
+
+[[mappings.types]]
+python = "WithFgColor"
+rust = "fern::WithFgColor"
+
+[[mappings.types]]
+python = "ColoredLevelConfig"
+rust = "fern::ColoredLevelConfig"
+
+[[mappings.types]]
+python = "Dispatch"
+rust = "fern::Dispatch"
+
+[[mappings.types]]
+python = "FormatCallback"
+rust = "fern::FormatCallback"
+
+[[mappings.types]]
+python = "Stdout"
+rust = "fern::Stdout"
+
+[[mappings.types]]
+python = "Stderr"
+rust = "fern::Stderr"
+
+[[mappings.types]]
+python = "File"
+rust = "fern::File"
+
+[[mappings.types]]
+python = "Sender"
+rust = "fern::Sender"
+
+[[mappings.types]]
+python = "Writer"
+rust = "fern::Writer"
+
+[[mappings.types]]
+python = "Reopen"
+rust = "fern::Reopen"
+
+[[mappings.types]]
+python = "Reopen1"
+rust = "fern::Reopen1"
+
+[[mappings.types]]
+python = "Syslog3"
+rust = "fern::Syslog3"
+
+[[mappings.types]]
+python = "Syslog4Rfc3164"
+rust = "fern::Syslog4Rfc3164"
+
+[[mappings.types]]
+python = "Syslog4Rfc5424"
+rust = "fern::Syslog4Rfc5424"
+
+[[mappings.types]]
+python = "Syslog6Rfc3164"
+rust = "fern::Syslog6Rfc3164"
+
+[[mappings.types]]
+python = "Syslog6Rfc5424"
+rust = "fern::Syslog6Rfc5424"
+
+[[mappings.types]]
+python = "Syslog7Rfc3164"
+rust = "fern::Syslog7Rfc3164"
+
+[[mappings.types]]
+python = "Syslog7Rfc5424"
+rust = "fern::Syslog7Rfc5424"
+
+[[mappings.types]]
+python = "Panic"
+rust = "fern::Panic"
+
+[[mappings.types]]
+python = "Null"
+rust = "fern::Null"
+
+[[mappings.types]]
+python = "DateBased"
+rust = "fern::DateBased"
+
+[[mappings.types]]
+python = "DateBasedConfig"
+rust = "fern::DateBasedConfig"
+
+[[mappings.types]]
+python = "DateBasedState"
+rust = "fern::DateBasedState"
+
+[[mappings.types]]
+python = "LevelConfiguration"
+rust = "fern::LevelConfiguration"
+
+[[mappings.types]]
+python = "Output"
+rust = "fern::Output"
+
+[[mappings.types]]
+python = "ConfiguredTimezone"
+rust = "fern::ConfiguredTimezone"
+
+[[mappings.types]]
+python = "InitError"
+rust = "fern::InitError"
