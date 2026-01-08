@@ -1,0 +1,475 @@
+[package]
+name = "anyhow"
+rust_crate = "anyhow"
+rust_version = "1.0.100"
+python_module = "spicycrab_anyhow"
+
+[cargo.dependencies]
+anyhow = "1.0.100"
+
+# Result type alias - Ok constructor
+[[mappings.functions]]
+python = "anyhow.Result.Ok"
+rust_code = "Ok({arg0})"
+rust_imports = []
+needs_result = false
+
+# Result type alias - Err constructor
+[[mappings.functions]]
+python = "anyhow.Result.Err"
+rust_code = "Err({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "anyhow.Error.new"
+rust_code = "anyhow::Error::new({arg0})"
+rust_imports = ["anyhow::Error"]
+needs_result = false
+param_types = ["E"]
+
+# Error.msg - use anyhow! macro for string messages
+[[mappings.functions]]
+python = "anyhow.Error.msg"
+rust_code = "anyhow::anyhow!({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["M"]
+
+[[mappings.functions]]
+python = "anyhow.Error.from_boxed"
+rust_code = "anyhow::Error::from_boxed({arg0})"
+rust_imports = ["anyhow::Error"]
+needs_result = false
+param_types = ["Box<dynStdError+Send+Sync+'static>"]
+
+[[mappings.functions]]
+python = "anyhow.Error.from_"
+rust_code = "anyhow::Error::from({arg0})"
+rust_imports = ["anyhow::Error"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "anyhow.Chain.new"
+rust_code = "anyhow::Chain::new({arg0})"
+rust_imports = ["anyhow::Chain"]
+needs_result = false
+param_types = ["&'a(dynStdError+'static)"]
+
+[[mappings.functions]]
+python = "anyhow.Chain.default"
+rust_code = "anyhow::Chain::default()"
+rust_imports = ["anyhow::Chain"]
+needs_result = false
+
+[[mappings.functions]]
+python = "anyhow.Own.new"
+rust_code = "anyhow::Own::new({arg0})"
+rust_imports = ["anyhow::Own"]
+needs_result = false
+param_types = ["Box<T>"]
+
+[[mappings.functions]]
+python = "anyhow.Ref.new"
+rust_code = "anyhow::Ref::new({arg0})"
+rust_imports = ["anyhow::Ref"]
+needs_result = false
+param_types = ["&'aT"]
+
+[[mappings.functions]]
+python = "anyhow.Ref.from_raw"
+rust_code = "anyhow::Ref::from_raw({arg0})"
+rust_imports = ["anyhow::Ref"]
+needs_result = false
+param_types = ["NonNull<T>"]
+
+[[mappings.functions]]
+python = "anyhow.Mut.new"
+rust_code = "anyhow::Mut::new({arg0})"
+rust_imports = ["anyhow::Mut"]
+needs_result = false
+param_types = ["&'amutT"]
+
+[[mappings.methods]]
+python = "Error.ext_context"
+rust_code = "{self}.ext_context({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["C"]
+
+[[mappings.methods]]
+python = "Error.context"
+rust_code = "{self}.context({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["C"]
+
+[[mappings.methods]]
+python = "Error.backtrace"
+rust_code = "{self}.backtrace()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.chain"
+rust_code = "{self}.chain()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.root_cause"
+rust_code = "{self}.root_cause()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.is_"
+rust_code = "{self}.is()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.downcast"
+rust_code = "{self}.downcast()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.downcast_ref"
+rust_code = "{self}.downcast_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.downcast_mut"
+rust_code = "{self}.downcast_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.into_boxed_dyn_error"
+rust_code = "{self}.into_boxed_dyn_error()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.reallocate_into_boxed_dyn_error_without_backtrace"
+rust_code = "{self}.reallocate_into_boxed_dyn_error_without_backtrace()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.thiserror_provide"
+rust_code = "{self}.thiserror_provide({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutRequest<'a>"]
+
+[[mappings.methods]]
+python = "Error.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Error.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Chain.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Chain.size_hint"
+rust_code = "{self}.size_hint()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Chain.next_back"
+rust_code = "{self}.next_back()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Chain.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "MessageError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MessageError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "DisplayError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "DisplayError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "BoxedError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "BoxedError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "BoxedError.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "BoxedError.provide"
+rust_code = "{self}.provide({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutRequest<'a>"]
+
+[[mappings.methods]]
+python = "Own.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Own.cast"
+rust_code = "{self}.cast()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Own.boxed"
+rust_code = "{self}.boxed()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Own.by_ref"
+rust_code = "{self}.by_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Own.by_mut"
+rust_code = "{self}.by_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Ref.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Ref.cast"
+rust_code = "{self}.cast()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Ref.by_mut"
+rust_code = "{self}.by_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Ref.as_ptr"
+rust_code = "{self}.as_ptr()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Ref.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Mut.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Mut.cast"
+rust_code = "{self}.cast()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Mut.by_ref"
+rust_code = "{self}.by_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Mut.extend"
+rust_code = "{self}.extend()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Mut.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Mut.read"
+rust_code = "{self}.read()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Adhoc.new"
+rust_code = "{self}.new({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["M"]
+
+[[mappings.methods]]
+python = "Trait.new"
+rust_code = "{self}.new({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "Boxed.new"
+rust_code = "{self}.new({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Box<dynStdError+Send+Sync>"]
+
+# Result type alias
+[[mappings.types]]
+python = "Result"
+rust = "anyhow::Result"
+
+[[mappings.types]]
+python = "Error"
+rust = "anyhow::Error"
+
+[[mappings.types]]
+python = "Chain"
+rust = "anyhow::Chain"
+
+[[mappings.types]]
+python = "MessageError"
+rust = "anyhow::MessageError"
+
+[[mappings.types]]
+python = "DisplayError"
+rust = "anyhow::DisplayError"
+
+[[mappings.types]]
+python = "BoxedError"
+rust = "anyhow::BoxedError"
+
+[[mappings.types]]
+python = "Own"
+rust = "anyhow::Own"
+
+[[mappings.types]]
+python = "Ref"
+rust = "anyhow::Ref"
+
+[[mappings.types]]
+python = "Mut"
+rust = "anyhow::Mut"
+
+[[mappings.types]]
+python = "Adhoc"
+rust = "anyhow::Adhoc"
+
+[[mappings.types]]
+python = "Trait"
+rust = "anyhow::Trait"
+
+[[mappings.types]]
+python = "Boxed"
+rust = "anyhow::Boxed"
