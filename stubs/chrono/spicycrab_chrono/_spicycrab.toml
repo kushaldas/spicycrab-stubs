@@ -1,0 +1,4427 @@
+[package]
+name = "chrono"
+rust_crate = "chrono"
+rust_version = "0.4.42"
+python_module = "spicycrab_chrono"
+
+[cargo.dependencies]
+chrono = "0.4.42"
+
+[[mappings.functions]]
+python = "chrono.DateTime.deserialize"
+rust_code = "chrono::DateTime::deserialize({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.deserialize"
+rust_code = "chrono::DateTime::deserialize({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.deserialize"
+rust_code = "chrono::DateTime::deserialize({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_naive_utc_and_offset"
+rust_code = "chrono::DateTime::from_naive_utc_and_offset({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["NaiveDateTime", "Tz::Offset"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_utc"
+rust_code = "chrono::DateTime::from_utc({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["NaiveDateTime", "Tz::Offset"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_local"
+rust_code = "chrono::DateTime::from_local({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["NaiveDateTime", "Tz::Offset"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_timestamp_secs"
+rust_code = "chrono::DateTime::from_timestamp_secs({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_timestamp"
+rust_code = "chrono::DateTime::from_timestamp({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["i64", "u32"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_timestamp_millis"
+rust_code = "chrono::DateTime::from_timestamp_millis({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_timestamp_micros"
+rust_code = "chrono::DateTime::from_timestamp_micros({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_timestamp_nanos"
+rust_code = "chrono::DateTime::from_timestamp_nanos({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.default"
+rust_code = "chrono::DateTime::default()"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.DateTime.default"
+rust_code = "chrono::DateTime::default()"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.DateTime.default"
+rust_code = "chrono::DateTime::default()"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<Utc>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<Utc>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<FixedOffset>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<FixedOffset>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<Local>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["DateTime<Local>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.parse_from_rfc2822"
+rust_code = "chrono::DateTime::parse_from_rfc2822({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.parse_from_rfc3339"
+rust_code = "chrono::DateTime::parse_from_rfc3339({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.parse_from_str"
+rust_code = "chrono::DateTime::parse_from_str({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str", "&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.parse_and_remainder"
+rust_code = "chrono::DateTime::parse_and_remainder({arg0}, {arg1})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&'astr", "&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_str"
+rust_code = "chrono::DateTime::from_str({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_str"
+rust_code = "chrono::DateTime::from_str({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["SystemTime"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["SystemTime"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["js_sys::Date"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_"
+rust_code = "chrono::DateTime::from({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&js_sys::Date"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.arbitrary"
+rust_code = "chrono::DateTime::arbitrary({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured<'a>"]
+
+[[mappings.functions]]
+python = "chrono.DateTime.from_str"
+rust_code = "chrono::DateTime::from_str({arg0})"
+rust_imports = ["chrono::DateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.Months.new"
+rust_code = "chrono::Months::new({arg0})"
+rust_imports = ["chrono::Months"]
+needs_result = false
+param_types = ["u32"]
+
+[[mappings.functions]]
+python = "chrono.StrftimeItems.new"
+rust_code = "chrono::StrftimeItems::new({arg0})"
+rust_imports = ["chrono::StrftimeItems"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "chrono.StrftimeItems.new_lenient"
+rust_code = "chrono::StrftimeItems::new_lenient({arg0})"
+rust_imports = ["chrono::StrftimeItems"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "chrono.StrftimeItems.new_with_locale"
+rust_code = "chrono::StrftimeItems::new_with_locale({arg0}, {arg1})"
+rust_imports = ["chrono::StrftimeItems"]
+needs_result = false
+param_types = ["&'astr", "Locale"]
+
+[[mappings.functions]]
+python = "chrono.DelayedFormat.new"
+rust_code = "chrono::DelayedFormat::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::DelayedFormat"]
+needs_result = false
+param_types = ["Option<NaiveDate>", "Option<NaiveTime>", "I"]
+
+[[mappings.functions]]
+python = "chrono.DelayedFormat.new_with_offset"
+rust_code = "chrono::DelayedFormat::new_with_offset({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::DelayedFormat"]
+needs_result = false
+param_types = ["Option<NaiveDate>", "Option<NaiveTime>", "&Off", "I"]
+
+[[mappings.functions]]
+python = "chrono.DelayedFormat.new_with_locale"
+rust_code = "chrono::DelayedFormat::new_with_locale({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::DelayedFormat"]
+needs_result = false
+param_types = ["Option<NaiveDate>", "Option<NaiveTime>", "I", "Locale"]
+
+[[mappings.functions]]
+python = "chrono.DelayedFormat.new_with_offset_and_locale"
+rust_code = "chrono::DelayedFormat::new_with_offset_and_locale({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["chrono::DelayedFormat"]
+needs_result = false
+param_types = ["Option<NaiveDate>", "Option<NaiveTime>", "&Off", "I", "Locale"]
+
+[[mappings.functions]]
+python = "chrono.Parsed.new"
+rust_code = "chrono::Parsed::new()"
+rust_imports = ["chrono::Parsed"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.east"
+rust_code = "chrono::FixedOffset::east({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.east_opt"
+rust_code = "chrono::FixedOffset::east_opt({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.west"
+rust_code = "chrono::FixedOffset::west({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.west_opt"
+rust_code = "chrono::FixedOffset::west_opt({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.from_str"
+rust_code = "chrono::FixedOffset::from_str({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.from_offset"
+rust_code = "chrono::FixedOffset::from_offset({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["&FixedOffset"]
+
+[[mappings.functions]]
+python = "chrono.FixedOffset.arbitrary"
+rust_code = "chrono::FixedOffset::arbitrary({arg0})"
+rust_imports = ["chrono::FixedOffset"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured"]
+
+[[mappings.functions]]
+python = "chrono.Utc.today"
+rust_code = "chrono::Utc::today()"
+rust_imports = ["chrono::Utc"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Utc.now"
+rust_code = "chrono::Utc::now()"
+rust_imports = ["chrono::Utc"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Utc.now"
+rust_code = "chrono::Utc::now()"
+rust_imports = ["chrono::Utc"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Utc.from_offset"
+rust_code = "chrono::Utc::from_offset({arg0})"
+rust_imports = ["chrono::Utc"]
+needs_result = false
+param_types = ["&Utc"]
+
+[[mappings.functions]]
+python = "chrono.DYNAMIC_TIME_ZONE_INFORMATION.default"
+rust_code = "chrono::DYNAMIC_TIME_ZONE_INFORMATION::default()"
+rust_imports = ["chrono::DYNAMIC_TIME_ZONE_INFORMATION"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.TIME_ZONE_INFORMATION.default"
+rust_code = "chrono::TIME_ZONE_INFORMATION::default()"
+rust_imports = ["chrono::TIME_ZONE_INFORMATION"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Local.today"
+rust_code = "chrono::Local::today()"
+rust_imports = ["chrono::Local"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Local.now"
+rust_code = "chrono::Local::now()"
+rust_imports = ["chrono::Local"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.Local.from_offset"
+rust_code = "chrono::Local::from_offset({arg0})"
+rust_imports = ["chrono::Local"]
+needs_result = false
+param_types = ["&FixedOffset"]
+
+[[mappings.functions]]
+python = "chrono.Date.from_"
+rust_code = "chrono::Date::from({arg0})"
+rust_imports = ["chrono::Date"]
+needs_result = false
+param_types = ["DateTime<Utc>"]
+
+[[mappings.functions]]
+python = "chrono.Date.from_utc"
+rust_code = "chrono::Date::from_utc({arg0}, {arg1})"
+rust_imports = ["chrono::Date"]
+needs_result = false
+param_types = ["NaiveDate", "Tz::Offset"]
+
+[[mappings.functions]]
+python = "chrono.Date.arbitrary"
+rust_code = "chrono::Date::arbitrary({arg0})"
+rust_imports = ["chrono::Date"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured<'a>"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.deserialize"
+rust_code = "chrono::NaiveDateTime::deserialize({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.new"
+rust_code = "chrono::NaiveDateTime::new({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["NaiveDate", "NaiveTime"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_timestamp"
+rust_code = "chrono::NaiveDateTime::from_timestamp({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["i64", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_timestamp_millis"
+rust_code = "chrono::NaiveDateTime::from_timestamp_millis({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_timestamp_micros"
+rust_code = "chrono::NaiveDateTime::from_timestamp_micros({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_timestamp_nanos"
+rust_code = "chrono::NaiveDateTime::from_timestamp_nanos({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_timestamp_opt"
+rust_code = "chrono::NaiveDateTime::from_timestamp_opt({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["i64", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.parse_from_str"
+rust_code = "chrono::NaiveDateTime::parse_from_str({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["&str", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.parse_and_remainder"
+rust_code = "chrono::NaiveDateTime::parse_and_remainder({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["&'astr", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_"
+rust_code = "chrono::NaiveDateTime::from({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["NaiveDate"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.from_str"
+rust_code = "chrono::NaiveDateTime::from_str({arg0})"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDateTime.default"
+rust_code = "chrono::NaiveDateTime::default()"
+rust_imports = ["chrono::NaiveDateTime"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.arbitrary"
+rust_code = "chrono::NaiveDate::arbitrary({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_ymd"
+rust_code = "chrono::NaiveDate::from_ymd({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_ymd_opt"
+rust_code = "chrono::NaiveDate::from_ymd_opt({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_yo"
+rust_code = "chrono::NaiveDate::from_yo({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_yo_opt"
+rust_code = "chrono::NaiveDate::from_yo_opt({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_isoywd"
+rust_code = "chrono::NaiveDate::from_isoywd({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "Weekday"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_isoywd_opt"
+rust_code = "chrono::NaiveDate::from_isoywd_opt({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "Weekday"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_num_days_from_ce"
+rust_code = "chrono::NaiveDate::from_num_days_from_ce({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_num_days_from_ce_opt"
+rust_code = "chrono::NaiveDate::from_num_days_from_ce_opt({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_epoch_days"
+rust_code = "chrono::NaiveDate::from_epoch_days({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_weekday_of_month"
+rust_code = "chrono::NaiveDate::from_weekday_of_month({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "Weekday", "u8"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_weekday_of_month_opt"
+rust_code = "chrono::NaiveDate::from_weekday_of_month_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["i32", "u32", "Weekday", "u8"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.parse_from_str"
+rust_code = "chrono::NaiveDate::parse_from_str({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["&str", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.parse_and_remainder"
+rust_code = "chrono::NaiveDate::parse_and_remainder({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["&'astr", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_"
+rust_code = "chrono::NaiveDate::from({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["NaiveDateTime"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.from_str"
+rust_code = "chrono::NaiveDate::from_str({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.default"
+rust_code = "chrono::NaiveDate::default()"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.NaiveDate.deserialize"
+rust_code = "chrono::NaiveDate::deserialize({arg0})"
+rust_imports = ["chrono::NaiveDate"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.YearFlags.from_year"
+rust_code = "chrono::YearFlags::from_year({arg0})"
+rust_imports = ["chrono::YearFlags"]
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.functions]]
+python = "chrono.Days.new"
+rust_code = "chrono::Days::new({arg0})"
+rust_imports = ["chrono::Days"]
+needs_result = false
+param_types = ["u64"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.deserialize"
+rust_code = "chrono::NaiveTime::deserialize({arg0})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.arbitrary"
+rust_code = "chrono::NaiveTime::arbitrary({arg0})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms"
+rust_code = "chrono::NaiveTime::from_hms({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_opt"
+rust_code = "chrono::NaiveTime::from_hms_opt({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_milli"
+rust_code = "chrono::NaiveTime::from_hms_milli({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_milli_opt"
+rust_code = "chrono::NaiveTime::from_hms_milli_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_micro"
+rust_code = "chrono::NaiveTime::from_hms_micro({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_micro_opt"
+rust_code = "chrono::NaiveTime::from_hms_micro_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_nano"
+rust_code = "chrono::NaiveTime::from_hms_nano({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_hms_nano_opt"
+rust_code = "chrono::NaiveTime::from_hms_nano_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_num_seconds_from_midnight"
+rust_code = "chrono::NaiveTime::from_num_seconds_from_midnight({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_num_seconds_from_midnight_opt"
+rust_code = "chrono::NaiveTime::from_num_seconds_from_midnight_opt({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["u32", "u32"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.parse_from_str"
+rust_code = "chrono::NaiveTime::parse_from_str({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["&str", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.parse_and_remainder"
+rust_code = "chrono::NaiveTime::parse_and_remainder({arg0}, {arg1})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["&'astr", "&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.from_str"
+rust_code = "chrono::NaiveTime::from_str({arg0})"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "chrono.NaiveTime.default"
+rust_code = "chrono::NaiveTime::default()"
+rust_imports = ["chrono::NaiveTime"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.new"
+rust_code = "chrono::TimeDelta::new({arg0}, {arg1})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64", "u32"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.weeks"
+rust_code = "chrono::TimeDelta::weeks({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_weeks"
+rust_code = "chrono::TimeDelta::try_weeks({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.days"
+rust_code = "chrono::TimeDelta::days({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_days"
+rust_code = "chrono::TimeDelta::try_days({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.hours"
+rust_code = "chrono::TimeDelta::hours({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_hours"
+rust_code = "chrono::TimeDelta::try_hours({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.minutes"
+rust_code = "chrono::TimeDelta::minutes({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_minutes"
+rust_code = "chrono::TimeDelta::try_minutes({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.seconds"
+rust_code = "chrono::TimeDelta::seconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_seconds"
+rust_code = "chrono::TimeDelta::try_seconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.milliseconds"
+rust_code = "chrono::TimeDelta::milliseconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.try_milliseconds"
+rust_code = "chrono::TimeDelta::try_milliseconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.microseconds"
+rust_code = "chrono::TimeDelta::microseconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.nanoseconds"
+rust_code = "chrono::TimeDelta::nanoseconds({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.min_value"
+rust_code = "chrono::TimeDelta::min_value()"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.max_value"
+rust_code = "chrono::TimeDelta::max_value()"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.zero"
+rust_code = "chrono::TimeDelta::zero()"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.from_std"
+rust_code = "chrono::TimeDelta::from_std({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.sum"
+rust_code = "chrono::TimeDelta::sum({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["I"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.sum"
+rust_code = "chrono::TimeDelta::sum({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["I"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.arbitrary"
+rust_code = "chrono::TimeDelta::arbitrary({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["&mutarbitrary::Unstructured"]
+
+[[mappings.functions]]
+python = "chrono.TimeDelta.deserialize"
+rust_code = "chrono::TimeDelta::deserialize({arg0})"
+rust_imports = ["chrono::TimeDelta"]
+needs_result = false
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "chrono.WeekdaySet.from_array"
+rust_code = "chrono::WeekdaySet::from_array({arg0})"
+rust_imports = ["chrono::WeekdaySet"]
+needs_result = false
+param_types = ["[Weekday;C]"]
+
+[[mappings.functions]]
+python = "chrono.WeekdaySet.single"
+rust_code = "chrono::WeekdaySet::single({arg0})"
+rust_imports = ["chrono::WeekdaySet"]
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.functions]]
+python = "chrono.WeekdaySet.from_iter"
+rust_code = "chrono::WeekdaySet::from_iter({arg0})"
+rust_imports = ["chrono::WeekdaySet"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "SecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "NanoSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "MicroSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.visit_i64"
+rust_code = "{self}.visit_i64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "MilliSecondsTimestampVisitor.visit_u64"
+rust_code = "{self}.visit_u64({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "DateTime.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "DateTime.date"
+rust_code = "{self}.date()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.date_naive"
+rust_code = "{self}.date_naive()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.time"
+rust_code = "{self}.time()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp"
+rust_code = "{self}.timestamp()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_millis"
+rust_code = "{self}.timestamp_millis()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_micros"
+rust_code = "{self}.timestamp_micros()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_nanos"
+rust_code = "{self}.timestamp_nanos()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_nanos_opt"
+rust_code = "{self}.timestamp_nanos_opt()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_subsec_millis"
+rust_code = "{self}.timestamp_subsec_millis() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_subsec_micros"
+rust_code = "{self}.timestamp_subsec_micros() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timestamp_subsec_nanos"
+rust_code = "{self}.timestamp_subsec_nanos() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.offset"
+rust_code = "{self}.offset()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.timezone"
+rust_code = "{self}.timezone()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.with_timezone"
+rust_code = "{self}.with_timezone({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&Tz2"]
+
+[[mappings.methods]]
+python = "DateTime.fixed_offset"
+rust_code = "{self}.fixed_offset()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateTime.to_utc"
+rust_code = "{self}.to_utc()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateTime.checked_add_signed"
+rust_code = "{self}.checked_add_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.checked_add_months"
+rust_code = "{self}.checked_add_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "DateTime.checked_sub_signed"
+rust_code = "{self}.checked_sub_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.checked_sub_months"
+rust_code = "{self}.checked_sub_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "DateTime.checked_add_days"
+rust_code = "{self}.checked_add_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "DateTime.checked_sub_days"
+rust_code = "{self}.checked_sub_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "DateTime.signed_duration_since"
+rust_code = "{self}.signed_duration_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implBorrow<DateTime<Tz2>>"]
+
+[[mappings.methods]]
+python = "DateTime.naive_utc"
+rust_code = "{self}.naive_utc()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateTime.naive_local"
+rust_code = "{self}.naive_local()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "DateTime.years_since"
+rust_code = "{self}.years_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "DateTime.to_rfc2822"
+rust_code = "{self}.to_rfc2822()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.to_rfc3339"
+rust_code = "{self}.to_rfc3339()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.to_rfc3339_opts"
+rust_code = "{self}.to_rfc3339_opts({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["SecondsFormat", "bool"]
+
+[[mappings.methods]]
+python = "DateTime.with_time"
+rust_code = "{self}.with_time({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["NaiveTime"]
+
+[[mappings.methods]]
+python = "DateTime.format_with_items"
+rust_code = "{self}.format_with_items({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "DateTime.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "DateTime.format_localized_with_items"
+rust_code = "{self}.format_localized_with_items({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["I", "Locale"]
+
+[[mappings.methods]]
+python = "DateTime.format_localized"
+rust_code = "{self}.format_localized({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr", "Locale"]
+
+[[mappings.methods]]
+python = "DateTime.year"
+rust_code = "{self}.year() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.month"
+rust_code = "{self}.month() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.month0"
+rust_code = "{self}.month0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.day"
+rust_code = "{self}.day() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.day0"
+rust_code = "{self}.day0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.ordinal"
+rust_code = "{self}.ordinal() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.ordinal0"
+rust_code = "{self}.ordinal0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.weekday"
+rust_code = "{self}.weekday()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.iso_week"
+rust_code = "{self}.iso_week()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.with_year"
+rust_code = "{self}.with_year({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "DateTime.with_month"
+rust_code = "{self}.with_month({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_month0"
+rust_code = "{self}.with_month0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_day"
+rust_code = "{self}.with_day({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_day0"
+rust_code = "{self}.with_day0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_ordinal"
+rust_code = "{self}.with_ordinal({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_ordinal0"
+rust_code = "{self}.with_ordinal0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.hour"
+rust_code = "{self}.hour() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.minute"
+rust_code = "{self}.minute() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.second"
+rust_code = "{self}.second() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.nanosecond"
+rust_code = "{self}.nanosecond() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "DateTime.with_hour"
+rust_code = "{self}.with_hour({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_minute"
+rust_code = "{self}.with_minute({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_second"
+rust_code = "{self}.with_second({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.with_nanosecond"
+rust_code = "{self}.with_nanosecond({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "DateTime.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&DateTime<Tz2>"]
+
+[[mappings.methods]]
+python = "DateTime.partial_cmp"
+rust_code = "{self}.partial_cmp({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&DateTime<Tz2>"]
+
+[[mappings.methods]]
+python = "DateTime.cmp"
+rust_code = "{self}.cmp({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&DateTime<Tz>"]
+
+[[mappings.methods]]
+python = "DateTime.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "DateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "DateTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "DateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "DateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "DateTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["DateTime<Tz>"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&DateTime<Tz>"]
+
+[[mappings.methods]]
+python = "DateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "DateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "DateTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "DateTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "DateTime.duration_round"
+rust_code = "{self}.duration_round({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.duration_trunc"
+rust_code = "{self}.duration_trunc({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "DateTime.duration_round_up"
+rust_code = "{self}.duration_round_up({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "ParseWeekdayError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ParseWeekdayError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Months.as_u32"
+rust_code = "{self}.as_u32() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ParseMonthError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ParseMonthError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "StrftimeItems.parse"
+rust_code = "{self}.parse()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StrftimeItems.parse_to_owned"
+rust_code = "{self}.parse_to_owned()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StrftimeItems.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DelayedFormat.write_to"
+rust_code = "{self}.write_to({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mut(implWrite+?Sized)"]
+
+[[mappings.methods]]
+python = "DelayedFormat.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "InternalNumeric.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ParseError.kind"
+rust_code = "{self}.kind()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "ParseError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ParseError.description"
+rust_code = "{self}.description()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.set_year"
+rust_code = "{self}.set_year({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_year_div_100"
+rust_code = "{self}.set_year_div_100({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_year_mod_100"
+rust_code = "{self}.set_year_mod_100({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_isoyear"
+rust_code = "{self}.set_isoyear({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_isoyear_div_100"
+rust_code = "{self}.set_isoyear_div_100({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_isoyear_mod_100"
+rust_code = "{self}.set_isoyear_mod_100({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_quarter"
+rust_code = "{self}.set_quarter({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_month"
+rust_code = "{self}.set_month({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_week_from_sun"
+rust_code = "{self}.set_week_from_sun({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_week_from_mon"
+rust_code = "{self}.set_week_from_mon({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_isoweek"
+rust_code = "{self}.set_isoweek({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_weekday"
+rust_code = "{self}.set_weekday({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "Parsed.set_ordinal"
+rust_code = "{self}.set_ordinal({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_day"
+rust_code = "{self}.set_day({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_ampm"
+rust_code = "{self}.set_ampm({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Parsed.set_hour12"
+rust_code = "{self}.set_hour12({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_hour"
+rust_code = "{self}.set_hour({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_minute"
+rust_code = "{self}.set_minute({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_second"
+rust_code = "{self}.set_second({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_nanosecond"
+rust_code = "{self}.set_nanosecond({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_timestamp"
+rust_code = "{self}.set_timestamp({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.set_offset"
+rust_code = "{self}.set_offset({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Parsed.to_naive_date"
+rust_code = "{self}.to_naive_date()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.to_naive_time"
+rust_code = "{self}.to_naive_time()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.to_naive_datetime_with_offset"
+rust_code = "{self}.to_naive_datetime_with_offset({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "Parsed.to_fixed_offset"
+rust_code = "{self}.to_fixed_offset()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.to_datetime"
+rust_code = "{self}.to_datetime()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.to_datetime_with_timezone"
+rust_code = "{self}.to_datetime_with_timezone({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Tz"]
+
+[[mappings.methods]]
+python = "Parsed.year"
+rust_code = "{self}.year()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.year_div_100"
+rust_code = "{self}.year_div_100()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.year_mod_100"
+rust_code = "{self}.year_mod_100()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.isoyear"
+rust_code = "{self}.isoyear()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.isoyear_div_100"
+rust_code = "{self}.isoyear_div_100()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.isoyear_mod_100"
+rust_code = "{self}.isoyear_mod_100()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.quarter"
+rust_code = "{self}.quarter()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.month"
+rust_code = "{self}.month()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.week_from_sun"
+rust_code = "{self}.week_from_sun()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.week_from_mon"
+rust_code = "{self}.week_from_mon()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.isoweek"
+rust_code = "{self}.isoweek()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.weekday"
+rust_code = "{self}.weekday()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.ordinal"
+rust_code = "{self}.ordinal()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.day"
+rust_code = "{self}.day()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.hour_div_12"
+rust_code = "{self}.hour_div_12()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.hour_mod_12"
+rust_code = "{self}.hour_mod_12()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.minute"
+rust_code = "{self}.minute()"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.second"
+rust_code = "{self}.second()"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.nanosecond"
+rust_code = "{self}.nanosecond()"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.timestamp"
+rust_code = "{self}.timestamp()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Parsed.offset"
+rust_code = "{self}.offset()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "OutOfRange.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "OutOfRange.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "FixedOffset.local_minus_utc"
+rust_code = "{self}.local_minus_utc() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "FixedOffset.utc_minus_local"
+rust_code = "{self}.utc_minus_local() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "FixedOffset.offset_from_local_date"
+rust_code = "{self}.offset_from_local_date({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "FixedOffset.offset_from_local_datetime"
+rust_code = "{self}.offset_from_local_datetime({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "FixedOffset.offset_from_utc_date"
+rust_code = "{self}.offset_from_utc_date({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "FixedOffset.offset_from_utc_datetime"
+rust_code = "{self}.offset_from_utc_datetime({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "FixedOffset.fix"
+rust_code = "{self}.fix()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "FixedOffset.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "FixedOffset.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Utc.offset_from_local_date"
+rust_code = "{self}.offset_from_local_date({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "Utc.offset_from_local_datetime"
+rust_code = "{self}.offset_from_local_datetime({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "Utc.offset_from_utc_date"
+rust_code = "{self}.offset_from_utc_date({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "Utc.offset_from_utc_datetime"
+rust_code = "{self}.offset_from_utc_datetime({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "Utc.fix"
+rust_code = "{self}.fix()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Utc.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Utc.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Local.offset_from_local_date"
+rust_code = "{self}.offset_from_local_date({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "Local.offset_from_local_datetime"
+rust_code = "{self}.offset_from_local_datetime({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "Local.offset_from_utc_date"
+rust_code = "{self}.offset_from_utc_date({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&NaiveDate"]
+
+[[mappings.methods]]
+python = "Local.offset_from_utc_datetime"
+rust_code = "{self}.offset_from_utc_datetime({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&NaiveDateTime"]
+
+[[mappings.methods]]
+python = "Date.and_time"
+rust_code = "{self}.and_time({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["NaiveTime"]
+
+[[mappings.methods]]
+python = "Date.and_hms"
+rust_code = "{self}.and_hms({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_opt"
+rust_code = "{self}.and_hms_opt({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_milli"
+rust_code = "{self}.and_hms_milli({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_milli_opt"
+rust_code = "{self}.and_hms_milli_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_micro"
+rust_code = "{self}.and_hms_micro({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_micro_opt"
+rust_code = "{self}.and_hms_micro_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_nano"
+rust_code = "{self}.and_hms_nano({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.and_hms_nano_opt"
+rust_code = "{self}.and_hms_nano_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "Date.succ"
+rust_code = "{self}.succ()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.succ_opt"
+rust_code = "{self}.succ_opt()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.pred"
+rust_code = "{self}.pred()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.pred_opt"
+rust_code = "{self}.pred_opt()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.offset"
+rust_code = "{self}.offset()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.timezone"
+rust_code = "{self}.timezone()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.with_timezone"
+rust_code = "{self}.with_timezone({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&Tz2"]
+
+[[mappings.methods]]
+python = "Date.checked_add_signed"
+rust_code = "{self}.checked_add_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.checked_sub_signed"
+rust_code = "{self}.checked_sub_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.signed_duration_since"
+rust_code = "{self}.signed_duration_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Date<Tz2>"]
+
+[[mappings.methods]]
+python = "Date.naive_utc"
+rust_code = "{self}.naive_utc()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.naive_local"
+rust_code = "{self}.naive_local()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Date.years_since"
+rust_code = "{self}.years_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "Date.format_with_items"
+rust_code = "{self}.format_with_items({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "Date.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "Date.format_localized_with_items"
+rust_code = "{self}.format_localized_with_items({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["I", "Locale"]
+
+[[mappings.methods]]
+python = "Date.format_localized"
+rust_code = "{self}.format_localized({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr", "Locale"]
+
+[[mappings.methods]]
+python = "Date.year"
+rust_code = "{self}.year() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.month"
+rust_code = "{self}.month() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.month0"
+rust_code = "{self}.month0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.day"
+rust_code = "{self}.day() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.day0"
+rust_code = "{self}.day0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.ordinal"
+rust_code = "{self}.ordinal() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.ordinal0"
+rust_code = "{self}.ordinal0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.weekday"
+rust_code = "{self}.weekday()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.iso_week"
+rust_code = "{self}.iso_week()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Date.with_year"
+rust_code = "{self}.with_year({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "Date.with_month"
+rust_code = "{self}.with_month({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.with_month0"
+rust_code = "{self}.with_month0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.with_day"
+rust_code = "{self}.with_day({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.with_day0"
+rust_code = "{self}.with_day0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.with_ordinal"
+rust_code = "{self}.with_ordinal({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.with_ordinal0"
+rust_code = "{self}.with_ordinal0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Date.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Date<Tz2>"]
+
+[[mappings.methods]]
+python = "Date.partial_cmp"
+rust_code = "{self}.partial_cmp({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Date<Tz>"]
+
+[[mappings.methods]]
+python = "Date.cmp"
+rust_code = "{self}.cmp({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Date<Tz>"]
+
+[[mappings.methods]]
+python = "Date.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "Date.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "Date.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Date<Tz>"]
+
+[[mappings.methods]]
+python = "Date.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Date.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.date"
+rust_code = "{self}.date()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.time"
+rust_code = "{self}.time()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp"
+rust_code = "{self}.timestamp()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_millis"
+rust_code = "{self}.timestamp_millis()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_micros"
+rust_code = "{self}.timestamp_micros()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_nanos"
+rust_code = "{self}.timestamp_nanos()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_nanos_opt"
+rust_code = "{self}.timestamp_nanos_opt()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_subsec_millis"
+rust_code = "{self}.timestamp_subsec_millis() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_subsec_micros"
+rust_code = "{self}.timestamp_subsec_micros() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.timestamp_subsec_nanos"
+rust_code = "{self}.timestamp_subsec_nanos() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_add_signed"
+rust_code = "{self}.checked_add_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_add_months"
+rust_code = "{self}.checked_add_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_add_offset"
+rust_code = "{self}.checked_add_offset({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_sub_offset"
+rust_code = "{self}.checked_sub_offset({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_sub_signed"
+rust_code = "{self}.checked_sub_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_sub_months"
+rust_code = "{self}.checked_sub_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_add_days"
+rust_code = "{self}.checked_add_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.checked_sub_days"
+rust_code = "{self}.checked_sub_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.signed_duration_since"
+rust_code = "{self}.signed_duration_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveDateTime"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.format_with_items"
+rust_code = "{self}.format_with_items({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.and_local_timezone"
+rust_code = "{self}.and_local_timezone({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Tz"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.and_utc"
+rust_code = "{self}.and_utc()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.year"
+rust_code = "{self}.year() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.month"
+rust_code = "{self}.month() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.month0"
+rust_code = "{self}.month0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.day"
+rust_code = "{self}.day() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.day0"
+rust_code = "{self}.day0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.ordinal"
+rust_code = "{self}.ordinal() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.ordinal0"
+rust_code = "{self}.ordinal0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.weekday"
+rust_code = "{self}.weekday()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.iso_week"
+rust_code = "{self}.iso_week()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_year"
+rust_code = "{self}.with_year({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_month"
+rust_code = "{self}.with_month({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_month0"
+rust_code = "{self}.with_month0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_day"
+rust_code = "{self}.with_day({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_day0"
+rust_code = "{self}.with_day0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_ordinal"
+rust_code = "{self}.with_ordinal({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_ordinal0"
+rust_code = "{self}.with_ordinal0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.hour"
+rust_code = "{self}.hour() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.minute"
+rust_code = "{self}.minute() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.second"
+rust_code = "{self}.second() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.nanosecond"
+rust_code = "{self}.nanosecond() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_hour"
+rust_code = "{self}.with_hour({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_minute"
+rust_code = "{self}.with_minute({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_second"
+rust_code = "{self}.with_second({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.with_nanosecond"
+rust_code = "{self}.with_nanosecond({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveDateTime"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.duration_round"
+rust_code = "{self}.duration_round({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.duration_trunc"
+rust_code = "{self}.duration_trunc({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDateTime.duration_round_up"
+rust_code = "{self}.duration_round_up({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.checked_add_months"
+rust_code = "{self}.checked_add_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDate.checked_sub_months"
+rust_code = "{self}.checked_sub_months({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDate.checked_add_days"
+rust_code = "{self}.checked_add_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDate.checked_sub_days"
+rust_code = "{self}.checked_sub_days({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_time"
+rust_code = "{self}.and_time({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["NaiveTime"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms"
+rust_code = "{self}.and_hms({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_opt"
+rust_code = "{self}.and_hms_opt({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_milli"
+rust_code = "{self}.and_hms_milli({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_milli_opt"
+rust_code = "{self}.and_hms_milli_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_micro"
+rust_code = "{self}.and_hms_micro({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_micro_opt"
+rust_code = "{self}.and_hms_micro_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_nano"
+rust_code = "{self}.and_hms_nano({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.and_hms_nano_opt"
+rust_code = "{self}.and_hms_nano_opt({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u32", "u32", "u32", "u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.succ"
+rust_code = "{self}.succ()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.succ_opt"
+rust_code = "{self}.succ_opt()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.pred"
+rust_code = "{self}.pred()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.pred_opt"
+rust_code = "{self}.pred_opt()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.checked_add_signed"
+rust_code = "{self}.checked_add_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.checked_sub_signed"
+rust_code = "{self}.checked_sub_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.signed_duration_since"
+rust_code = "{self}.signed_duration_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveDate"]
+
+[[mappings.methods]]
+python = "NaiveDate.years_since"
+rust_code = "{self}.years_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "NaiveDate.format_with_items"
+rust_code = "{self}.format_with_items({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "NaiveDate.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "NaiveDate.format_localized_with_items"
+rust_code = "{self}.format_localized_with_items({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["I", "Locale"]
+
+[[mappings.methods]]
+python = "NaiveDate.format_localized"
+rust_code = "{self}.format_localized({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr", "Locale"]
+
+[[mappings.methods]]
+python = "NaiveDate.iter_days"
+rust_code = "{self}.iter_days()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.iter_weeks"
+rust_code = "{self}.iter_weeks()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDate.week"
+rust_code = "{self}.week({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "NaiveDate.leap_year"
+rust_code = "{self}.leap_year()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.to_epoch_days"
+rust_code = "{self}.to_epoch_days() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.year"
+rust_code = "{self}.year() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.month"
+rust_code = "{self}.month() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.month0"
+rust_code = "{self}.month0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.day"
+rust_code = "{self}.day() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.day0"
+rust_code = "{self}.day0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.ordinal"
+rust_code = "{self}.ordinal() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.ordinal0"
+rust_code = "{self}.ordinal0() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.weekday"
+rust_code = "{self}.weekday()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.iso_week"
+rust_code = "{self}.iso_week()"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDate.with_year"
+rust_code = "{self}.with_year({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_month"
+rust_code = "{self}.with_month({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_month0"
+rust_code = "{self}.with_month0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_day"
+rust_code = "{self}.with_day({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_day0"
+rust_code = "{self}.with_day0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_ordinal"
+rust_code = "{self}.with_ordinal({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.with_ordinal0"
+rust_code = "{self}.with_ordinal0({arg0})"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveDate.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDate.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Months"]
+
+[[mappings.methods]]
+python = "NaiveDate.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDate.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Days"]
+
+[[mappings.methods]]
+python = "NaiveDate.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveDate.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveDate"]
+
+[[mappings.methods]]
+python = "NaiveDate.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveDate.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveDate.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "NaiveDateDaysIterator.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDateDaysIterator.size_hint"
+rust_code = "{self}.size_hint()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateDaysIterator.next_back"
+rust_code = "{self}.next_back()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDateWeeksIterator.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "NaiveDateWeeksIterator.size_hint"
+rust_code = "{self}.size_hint()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveDateWeeksIterator.next_back"
+rust_code = "{self}.next_back()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "YearFlags.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveWeek.first_day"
+rust_code = "{self}.first_day()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.checked_first_day"
+rust_code = "{self}.checked_first_day()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.last_day"
+rust_code = "{self}.last_day()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.checked_last_day"
+rust_code = "{self}.checked_last_day()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.days"
+rust_code = "{self}.days()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.checked_days"
+rust_code = "{self}.checked_days()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveWeek.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "NaiveWeek.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "NaiveTime.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "NaiveTime.overflowing_add_signed"
+rust_code = "{self}.overflowing_add_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.overflowing_sub_signed"
+rust_code = "{self}.overflowing_sub_signed({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.signed_duration_since"
+rust_code = "{self}.signed_duration_since({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveTime"]
+
+[[mappings.methods]]
+python = "NaiveTime.format_with_items"
+rust_code = "{self}.format_with_items({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "NaiveTime.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.methods]]
+python = "NaiveTime.hour"
+rust_code = "{self}.hour() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveTime.minute"
+rust_code = "{self}.minute() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveTime.second"
+rust_code = "{self}.second() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveTime.nanosecond"
+rust_code = "{self}.nanosecond() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveTime.with_hour"
+rust_code = "{self}.with_hour({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveTime.with_minute"
+rust_code = "{self}.with_minute({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveTime.with_second"
+rust_code = "{self}.with_second({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveTime.with_nanosecond"
+rust_code = "{self}.with_nanosecond({arg0})"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+returns_self = true
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "NaiveTime.num_seconds_from_midnight"
+rust_code = "{self}.num_seconds_from_midnight() as i64"
+rust_imports = ["chrono::Timelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "NaiveTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveTime.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveTime.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["FixedOffset"]
+
+[[mappings.methods]]
+python = "NaiveTime.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NaiveTime"]
+
+[[mappings.methods]]
+python = "NaiveTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "NaiveTime.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "IsoWeek.year"
+rust_code = "{self}.year() as i64"
+rust_imports = ["chrono::Datelike"]
+needs_result = false
+
+[[mappings.methods]]
+python = "IsoWeek.week"
+rust_code = "{self}.week() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IsoWeek.week0"
+rust_code = "{self}.week0() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IsoWeek.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TimeDelta.num_weeks"
+rust_code = "{self}.num_weeks()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_days"
+rust_code = "{self}.num_days()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_hours"
+rust_code = "{self}.num_hours()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_minutes"
+rust_code = "{self}.num_minutes()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_seconds"
+rust_code = "{self}.num_seconds()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.as_seconds_f64"
+rust_code = "{self}.as_seconds_f64()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.as_seconds_f32"
+rust_code = "{self}.as_seconds_f32()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_milliseconds"
+rust_code = "{self}.num_milliseconds()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.subsec_millis"
+rust_code = "{self}.subsec_millis() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_microseconds"
+rust_code = "{self}.num_microseconds()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.subsec_micros"
+rust_code = "{self}.subsec_micros() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.num_nanoseconds"
+rust_code = "{self}.num_nanoseconds()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.subsec_nanos"
+rust_code = "{self}.subsec_nanos() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.checked_add"
+rust_code = "{self}.checked_add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.checked_sub"
+rust_code = "{self}.checked_sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.checked_mul"
+rust_code = "{self}.checked_mul({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "TimeDelta.checked_div"
+rust_code = "{self}.checked_div({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "TimeDelta.abs"
+rust_code = "{self}.abs()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "TimeDelta.is_zero"
+rust_code = "{self}.is_zero()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.to_std"
+rust_code = "{self}.to_std()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TimeDelta.neg"
+rust_code = "{self}.neg()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "TimeDelta.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.add_assign"
+rust_code = "{self}.add_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.sub_assign"
+rust_code = "{self}.sub_assign({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["TimeDelta"]
+
+[[mappings.methods]]
+python = "TimeDelta.mul"
+rust_code = "{self}.mul({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "TimeDelta.div"
+rust_code = "{self}.div({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "TimeDelta.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TimeDelta.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "OutOfRangeError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "OutOfRangeError.description"
+rust_code = "{self}.description()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.single_day"
+rust_code = "{self}.single_day()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.insert"
+rust_code = "{self}.insert({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "WeekdaySet.remove"
+rust_code = "{self}.remove({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "WeekdaySet.is_subset"
+rust_code = "{self}.is_subset({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "WeekdaySet.intersection"
+rust_code = "{self}.intersection({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "WeekdaySet.union"
+rust_code = "{self}.union({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "WeekdaySet.symmetric_difference"
+rust_code = "{self}.symmetric_difference({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "WeekdaySet.difference"
+rust_code = "{self}.difference({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Self"]
+
+[[mappings.methods]]
+python = "WeekdaySet.first"
+rust_code = "{self}.first()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.last"
+rust_code = "{self}.last()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.iter"
+rust_code = "{self}.iter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "WeekdaySet.contains"
+rust_code = "{self}.contains({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Weekday"]
+
+[[mappings.methods]]
+python = "WeekdaySet.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.len"
+rust_code = "{self}.len() as i64"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WeekdaySet.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "WeekdaySet.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutcore::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "WeekdaySetIter.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "WeekdaySetIter.next_back"
+rust_code = "{self}.next_back()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "WeekdaySetIter.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+
+[[mappings.types]]
+python = "SecondsTimestampVisitor"
+rust = "chrono::SecondsTimestampVisitor"
+
+[[mappings.types]]
+python = "NanoSecondsTimestampVisitor"
+rust = "chrono::NanoSecondsTimestampVisitor"
+
+[[mappings.types]]
+python = "MicroSecondsTimestampVisitor"
+rust = "chrono::MicroSecondsTimestampVisitor"
+
+[[mappings.types]]
+python = "MilliSecondsTimestampVisitor"
+rust = "chrono::MilliSecondsTimestampVisitor"
+
+[[mappings.types]]
+python = "DateTime"
+rust = "chrono::DateTime"
+
+[[mappings.types]]
+python = "ParseWeekdayError"
+rust = "chrono::ParseWeekdayError"
+
+[[mappings.types]]
+python = "Months"
+rust = "chrono::Months"
+
+[[mappings.types]]
+python = "ParseMonthError"
+rust = "chrono::ParseMonthError"
+
+[[mappings.types]]
+python = "StrftimeItems"
+rust = "chrono::StrftimeItems"
+
+[[mappings.types]]
+python = "DelayedFormat"
+rust = "chrono::DelayedFormat"
+
+[[mappings.types]]
+python = "InternalNumeric"
+rust = "chrono::InternalNumeric"
+
+[[mappings.types]]
+python = "InternalFixed"
+rust = "chrono::InternalFixed"
+
+[[mappings.types]]
+python = "OffsetFormat"
+rust = "chrono::OffsetFormat"
+
+[[mappings.types]]
+python = "ParseError"
+rust = "chrono::ParseError"
+
+[[mappings.types]]
+python = "Parsed"
+rust = "chrono::Parsed"
+
+[[mappings.types]]
+python = "OutOfRange"
+rust = "chrono::OutOfRange"
+
+[[mappings.types]]
+python = "FixedOffset"
+rust = "chrono::FixedOffset"
+
+[[mappings.types]]
+python = "Utc"
+rust = "chrono::Utc"
+
+[[mappings.types]]
+python = "DYNAMIC_TIME_ZONE_INFORMATION"
+rust = "chrono::DYNAMIC_TIME_ZONE_INFORMATION"
+
+[[mappings.types]]
+python = "FILETIME"
+rust = "chrono::FILETIME"
+
+[[mappings.types]]
+python = "SYSTEMTIME"
+rust = "chrono::SYSTEMTIME"
+
+[[mappings.types]]
+python = "TIME_ZONE_INFORMATION"
+rust = "chrono::TIME_ZONE_INFORMATION"
+
+[[mappings.types]]
+python = "Local"
+rust = "chrono::Local"
+
+[[mappings.types]]
+python = "Date"
+rust = "chrono::Date"
+
+[[mappings.types]]
+python = "NaiveDateTime"
+rust = "chrono::NaiveDateTime"
+
+[[mappings.types]]
+python = "NaiveDate"
+rust = "chrono::NaiveDate"
+
+[[mappings.types]]
+python = "NaiveDateDaysIterator"
+rust = "chrono::NaiveDateDaysIterator"
+
+[[mappings.types]]
+python = "NaiveDateWeeksIterator"
+rust = "chrono::NaiveDateWeeksIterator"
+
+[[mappings.types]]
+python = "YearFlags"
+rust = "chrono::YearFlags"
+
+[[mappings.types]]
+python = "NaiveWeek"
+rust = "chrono::NaiveWeek"
+
+[[mappings.types]]
+python = "Days"
+rust = "chrono::Days"
+
+[[mappings.types]]
+python = "NaiveTime"
+rust = "chrono::NaiveTime"
+
+[[mappings.types]]
+python = "IsoWeek"
+rust = "chrono::IsoWeek"
+
+[[mappings.types]]
+python = "TimeDelta"
+rust = "chrono::TimeDelta"
+
+[[mappings.types]]
+python = "OutOfRangeError"
+rust = "chrono::OutOfRangeError"
+
+[[mappings.types]]
+python = "WeekdaySet"
+rust = "chrono::WeekdaySet"
+
+[[mappings.types]]
+python = "WeekdaySetIter"
+rust = "chrono::WeekdaySetIter"
+
+[[mappings.types]]
+python = "Weekday"
+rust = "chrono::Weekday"
+
+[[mappings.types]]
+python = "Month"
+rust = "chrono::Month"
+
+[[mappings.types]]
+python = "SecondsFormat"
+rust = "chrono::SecondsFormat"
+
+[[mappings.types]]
+python = "Pad"
+rust = "chrono::Pad"
+
+[[mappings.types]]
+python = "Numeric"
+rust = "chrono::Numeric"
+
+[[mappings.types]]
+python = "Fixed"
+rust = "chrono::Fixed"
+
+[[mappings.types]]
+python = "OffsetPrecision"
+rust = "chrono::OffsetPrecision"
+
+[[mappings.types]]
+python = "Colons"
+rust = "chrono::Colons"
+
+[[mappings.types]]
+python = "Item"
+rust = "chrono::Item"
+
+[[mappings.types]]
+python = "ParseErrorKind"
+rust = "chrono::ParseErrorKind"
+
+[[mappings.types]]
+python = "LocalResult"
+rust = "chrono::LocalResult"
+
+[[mappings.types]]
+python = "RoundingError"
+rust = "chrono::RoundingError"

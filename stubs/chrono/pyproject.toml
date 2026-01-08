@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-chrono"
+version = "0.4.42"
+description = "spicycrab type stubs for the chrono Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+chrono = "spicycrab_chrono"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_chrono"]
