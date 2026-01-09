@@ -8,6 +8,27 @@ python_module = "spicycrab_fern"
 fern = "0.7.1"
 
 [[mappings.functions]]
+python = "fern.log_file"
+rust_code = "fern::log_file({arg0})"
+rust_imports = ["fern::log_file"]
+needs_result = true
+param_types = ["P"]
+
+[[mappings.functions]]
+python = "fern.log_reopen"
+rust_code = "fern::log_reopen({arg0}, {arg1})"
+rust_imports = ["fern::log_reopen"]
+needs_result = true
+param_types = ["&Path", "Option<libc::c_int>"]
+
+[[mappings.functions]]
+python = "fern.log_reopen1"
+rust_code = "fern::log_reopen1({arg0}, {arg1})"
+rust_imports = ["fern::log_reopen1"]
+needs_result = true
+param_types = ["&Path", "S"]
+
+[[mappings.functions]]
 python = "fern.Dispatch.new"
 rust_code = "fern::Dispatch::new()"
 rust_imports = ["fern::Dispatch"]
@@ -271,7 +292,7 @@ param_types = ["Cow<'static,str>", "PathBuf", "Cow<'static,str>", "ConfiguredTim
 python = "fern.DateBasedConfig.open_log_file"
 rust_code = "fern::DateBasedConfig::open_log_file({arg0})"
 rust_imports = ["fern::DateBasedConfig"]
-needs_result = false
+needs_result = true
 param_types = ["&Path"]
 
 [[mappings.functions]]
@@ -287,6 +308,7 @@ rust_code = "{self}.format({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -295,6 +317,7 @@ rust_code = "{self}.chain({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -303,6 +326,7 @@ rust_code = "{self}.level({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["log::LevelFilter"]
 
 [[mappings.methods]]
@@ -311,6 +335,7 @@ rust_code = "{self}.level_for({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["T", "log::LevelFilter"]
 
 [[mappings.methods]]
@@ -319,6 +344,7 @@ rust_code = "{self}.filter({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -327,24 +353,27 @@ rust_code = "{self}.into_shared()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "SharedDispatch"
 
 [[mappings.methods]]
 python = "Dispatch.into_log"
 rust_code = "{self}.into_log()"
 rust_imports = []
 needs_result = false
+returns = "LevelFilter,Box"
 
 [[mappings.methods]]
 python = "Dispatch.apply"
 rust_code = "{self}.apply()"
 rust_imports = []
-needs_result = false
+needs_result = true
 
 [[mappings.methods]]
 python = "Dispatch.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -391,7 +420,8 @@ needs_result = false
 python = "Output.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -420,6 +450,7 @@ rust_code = "{self}.line_sep({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -428,6 +459,7 @@ rust_code = "{self}.utc_time()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 
 [[mappings.methods]]
 python = "DateBased.local_time"
@@ -435,6 +467,7 @@ rust_code = "{self}.local_time()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 
 [[mappings.methods]]
 python = "DateBased.enabled"
@@ -460,7 +493,8 @@ needs_result = false
 python = "WithFgColor.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -469,6 +503,7 @@ rust_code = "{self}.error({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ColoredLevelConfig"
 param_types = ["Color"]
 
 [[mappings.methods]]
@@ -477,6 +512,7 @@ rust_code = "{self}.warn({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ColoredLevelConfig"
 param_types = ["Color"]
 
 [[mappings.methods]]
@@ -485,6 +521,7 @@ rust_code = "{self}.info({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ColoredLevelConfig"
 param_types = ["Color"]
 
 [[mappings.methods]]
@@ -493,6 +530,7 @@ rust_code = "{self}.debug({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ColoredLevelConfig"
 param_types = ["Color"]
 
 [[mappings.methods]]
@@ -501,6 +539,7 @@ rust_code = "{self}.trace({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ColoredLevelConfig"
 param_types = ["Color"]
 
 [[mappings.methods]]
@@ -508,6 +547,7 @@ python = "ColoredLevelConfig.color"
 rust_code = "{self}.color({arg0})"
 rust_imports = []
 needs_result = false
+returns = "WithFgColor"
 param_types = ["Level"]
 
 [[mappings.methods]]
@@ -515,6 +555,7 @@ python = "ColoredLevelConfig.get_color"
 rust_code = "{self}.get_color({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Color"
 param_types = ["&Level"]
 
 [[mappings.methods]]
@@ -523,6 +564,7 @@ rust_code = "{self}.format({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -531,6 +573,7 @@ rust_code = "{self}.chain({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -539,6 +582,7 @@ rust_code = "{self}.level({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["log::LevelFilter"]
 
 [[mappings.methods]]
@@ -547,6 +591,7 @@ rust_code = "{self}.level_for({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["T", "log::LevelFilter"]
 
 [[mappings.methods]]
@@ -555,6 +600,7 @@ rust_code = "{self}.filter({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Dispatch"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -563,24 +609,27 @@ rust_code = "{self}.into_shared()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "SharedDispatch"
 
 [[mappings.methods]]
 python = "Dispatch.into_log"
 rust_code = "{self}.into_log()"
 rust_imports = []
 needs_result = false
+returns = "LevelFilter,Box"
 
 [[mappings.methods]]
 python = "Dispatch.apply"
 rust_code = "{self}.apply()"
 rust_imports = []
-needs_result = false
+needs_result = true
 
 [[mappings.methods]]
 python = "Dispatch.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -816,6 +865,7 @@ rust_code = "{self}.line_sep({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -824,6 +874,7 @@ rust_code = "{self}.utc_time()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 
 [[mappings.methods]]
 python = "DateBased.local_time"
@@ -831,6 +882,7 @@ rust_code = "{self}.local_time()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "DateBased"
 
 [[mappings.methods]]
 python = "DateBased.enabled"
@@ -863,13 +915,15 @@ python = "DateBasedConfig.compute_file_path"
 rust_code = "{self}.compute_file_path({arg0})"
 rust_imports = []
 needs_result = false
+returns = "PathBuf"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "DateBasedConfig.open_current_log_file"
 rust_code = "{self}.open_current_log_file({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "File"
 param_types = ["&str"]
 
 [[mappings.methods]]

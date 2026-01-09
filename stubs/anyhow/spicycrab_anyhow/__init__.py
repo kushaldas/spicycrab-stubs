@@ -299,4 +299,36 @@ class Boxed:
 
     def new(self, error: object) -> Exception: ...
 
-__all__: list[str] = ["Result", "Error", "Chain", "MessageError", "DisplayError", "BoxedError", "Own", "Ref", "Mut", "Adhoc", "Trait", "Boxed"]
+"""Equivalent to `Ok::<_, anyhow::Error>(value)`.
+
+This simplifies creation of an `anyhow::Result` in places where type
+inference cannot deduce the `E` type of the result &mdash; without needing
+to write`Ok::<_, anyhow::Error>(value)`.
+
+One might think that `anyhow::Result::Ok(value)` would work in such cases
+but it does not.
+
+```console
+error[E0282]: type annotations needed for `std::result::Result<i32, E>`
+--> src/main.rs:11:13
+|
+11 |     let _ = anyhow::Result::Ok(1);
+|         -   ^^^^^^^^^^^^^^^^^^ cannot infer type for type parameter `E` declared on the enum `Result`
+|         |
+|         consider giving this pattern the explicit type `std::result::Result<i32, E>`, where the type parameter `E` is specified
+```"""
+def Ok(value: T) -> T: ...
+
+def format_err(args: Arguments) -> Exception: ...
+
+def must_use(error: Exception) -> Exception: ...
+
+def not_(cond: object) -> bool: ...
+
+def request_ref_backtrace(err: dynError) -> object: ...
+
+def provide_ref_backtrace(request: Request, backtrace: object) -> None: ...
+
+def provide(err: object, request: Request) -> None: ...
+
+__all__: list[str] = ["Ok", "format_err", "must_use", "not_", "request_ref_backtrace", "provide_ref_backtrace", "provide", "Result", "Error", "Chain", "MessageError", "DisplayError", "BoxedError", "Own", "Ref", "Mut", "Adhoc", "Trait", "Boxed"]

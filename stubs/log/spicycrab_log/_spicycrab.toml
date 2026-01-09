@@ -8,6 +8,129 @@ python_module = "spicycrab_log"
 log = "0.4.29"
 
 [[mappings.functions]]
+python = "log.set_max_level"
+rust_code = "log::set_max_level({arg0})"
+rust_imports = ["log::set_max_level"]
+needs_result = false
+param_types = ["LevelFilter"]
+
+[[mappings.functions]]
+python = "log.set_max_level_racy"
+rust_code = "log::set_max_level_racy({arg0})"
+rust_imports = ["log::set_max_level_racy"]
+needs_result = false
+param_types = ["LevelFilter"]
+
+[[mappings.functions]]
+python = "log.max_level"
+rust_code = "log::max_level()"
+rust_imports = ["log::max_level"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.set_boxed_logger"
+rust_code = "log::set_boxed_logger({arg0})"
+rust_imports = ["log::set_boxed_logger"]
+needs_result = true
+param_types = ["Box<dynLog>"]
+
+[[mappings.functions]]
+python = "log.set_logger"
+rust_code = "log::set_logger({arg0})"
+rust_imports = ["log::set_logger"]
+needs_result = true
+param_types = ["&'staticdynLog"]
+
+[[mappings.functions]]
+python = "log.set_logger_racy"
+rust_code = "log::set_logger_racy({arg0})"
+rust_imports = ["log::set_logger_racy"]
+needs_result = true
+param_types = ["&'staticdynLog"]
+
+[[mappings.functions]]
+python = "log.logger"
+rust_code = "log::logger()"
+rust_imports = ["log::logger"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.visit"
+rust_code = "log::visit({arg0}, {arg1})"
+rust_imports = ["log::visit"]
+needs_result = true
+param_types = ["&Inner<'v>", "implVisitValue<'v>"]
+
+[[mappings.functions]]
+python = "log.visit"
+rust_code = "log::visit({arg0}, {arg1})"
+rust_imports = ["log::visit"]
+needs_result = true
+param_types = ["&Inner<'v>", "implVisitValue<'v>"]
+
+[[mappings.functions]]
+python = "log.log"
+rust_code = "log::log({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["log::log"]
+needs_result = false
+param_types = ["L", "Arguments", "Level", "&(&str,&'staticstr,&'staticLocation)", "K"]
+
+[[mappings.functions]]
+python = "log.enabled"
+rust_code = "log::enabled({arg0}, {arg1}, {arg2})"
+rust_imports = ["log::enabled"]
+needs_result = false
+param_types = ["L", "Level", "&str"]
+
+[[mappings.functions]]
+python = "log.loc"
+rust_code = "log::loc()"
+rust_imports = ["log::loc"]
+needs_result = false
+
+[[mappings.functions]]
+python = "log.capture_to_value"
+rust_code = "log::capture_to_value({arg0})"
+rust_imports = ["log::capture_to_value"]
+needs_result = false
+param_types = ["&'a&'aV"]
+
+[[mappings.functions]]
+python = "log.capture_debug"
+rust_code = "log::capture_debug({arg0})"
+rust_imports = ["log::capture_debug"]
+needs_result = false
+param_types = ["&'a&'aV"]
+
+[[mappings.functions]]
+python = "log.capture_display"
+rust_code = "log::capture_display({arg0})"
+rust_imports = ["log::capture_display"]
+needs_result = false
+param_types = ["&'a&'aV"]
+
+[[mappings.functions]]
+python = "log.capture_error"
+rust_code = "log::capture_error({arg0})"
+rust_imports = ["log::capture_error"]
+needs_result = false
+param_types = ["&'a(dynstd::error::Error+'static)"]
+
+[[mappings.functions]]
+python = "log.capture_sval"
+rust_code = "log::capture_sval({arg0})"
+rust_imports = ["log::capture_sval"]
+needs_result = false
+param_types = ["&'a&'aV"]
+
+[[mappings.functions]]
+python = "log.capture_serde"
+rust_code = "log::capture_serde({arg0})"
+rust_imports = ["log::capture_serde"]
+needs_result = false
+param_types = ["&'a&'aV"]
+
+[[mappings.functions]]
 python = "log.Record.builder"
 rust_code = "log::Record::builder()"
 rust_imports = ["log::Record"]
@@ -201,18 +324,21 @@ python = "Record.args"
 rust_code = "{self}.args()"
 rust_imports = []
 needs_result = false
+returns = "Arguments"
 
 [[mappings.methods]]
 python = "Record.metadata"
 rust_code = "{self}.metadata()"
 rust_imports = []
 needs_result = false
+returns = "Metadata"
 
 [[mappings.methods]]
 python = "Record.level"
 rust_code = "{self}.level()"
 rust_imports = []
 needs_result = false
+returns = "Level"
 
 [[mappings.methods]]
 python = "Record.target"
@@ -255,6 +381,7 @@ python = "Record.key_values"
 rust_code = "{self}.key_values()"
 rust_imports = []
 needs_result = false
+returns = "Source"
 
 [[mappings.methods]]
 python = "Record.to_builder"
@@ -262,6 +389,7 @@ rust_code = "{self}.to_builder()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "RecordBuilder"
 
 [[mappings.methods]]
 python = "RecordBuilder.args"
@@ -269,6 +397,7 @@ rust_code = "{self}.args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["fmt::Arguments<'a>"]
 
 [[mappings.methods]]
@@ -277,6 +406,7 @@ rust_code = "{self}.metadata({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Metadata<'a>"]
 
 [[mappings.methods]]
@@ -285,6 +415,7 @@ rust_code = "{self}.level({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Level"]
 
 [[mappings.methods]]
@@ -293,6 +424,7 @@ rust_code = "{self}.target({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["&'astr"]
 
 [[mappings.methods]]
@@ -301,6 +433,7 @@ rust_code = "{self}.module_path({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Option<&'astr>"]
 
 [[mappings.methods]]
@@ -309,6 +442,7 @@ rust_code = "{self}.module_path_static({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Option<&'staticstr>"]
 
 [[mappings.methods]]
@@ -317,6 +451,7 @@ rust_code = "{self}.file({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Option<&'astr>"]
 
 [[mappings.methods]]
@@ -325,6 +460,7 @@ rust_code = "{self}.file_static({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Option<&'staticstr>"]
 
 [[mappings.methods]]
@@ -333,6 +469,7 @@ rust_code = "{self}.line({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["Option<u32>"]
 
 [[mappings.methods]]
@@ -341,6 +478,7 @@ rust_code = "{self}.key_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutRecordBuilder"
 param_types = ["&'adynkv::Source"]
 
 [[mappings.methods]]
@@ -348,12 +486,14 @@ python = "RecordBuilder.build"
 rust_code = "{self}.build()"
 rust_imports = []
 needs_result = false
+returns = "Record"
 
 [[mappings.methods]]
 python = "Metadata.level"
 rust_code = "{self}.level()"
 rust_imports = []
 needs_result = false
+returns = "Level"
 
 [[mappings.methods]]
 python = "Metadata.target"
@@ -367,6 +507,7 @@ rust_code = "{self}.level({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutMetadataBuilder"
 param_types = ["Level"]
 
 [[mappings.methods]]
@@ -375,6 +516,7 @@ rust_code = "{self}.target({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "mutMetadataBuilder"
 param_types = ["&'astr"]
 
 [[mappings.methods]]
@@ -382,19 +524,22 @@ python = "MetadataBuilder.build"
 rust_code = "{self}.build()"
 rust_imports = []
 needs_result = false
+returns = "Metadata"
 
 [[mappings.methods]]
 python = "SetLoggerError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "ParseLevelError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -403,6 +548,7 @@ rust_code = "{self}.to_key()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Key"
 
 [[mappings.methods]]
 python = "Key.as_str"
@@ -420,7 +566,8 @@ needs_result = false
 python = "Key.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -439,21 +586,24 @@ needs_result = false
 python = "Key.stream"
 rust_code = "{self}.stream({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutS"]
 
 [[mappings.methods]]
 python = "Key.stream_ref"
 rust_code = "{self}.stream_ref({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutS"]
 
 [[mappings.methods]]
 python = "Key.serialize"
 rust_code = "{self}.serialize({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Ok"
 param_types = ["S"]
 
 [[mappings.methods]]
@@ -462,47 +612,53 @@ rust_code = "{self}.to_value()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Value"
 
 [[mappings.methods]]
 python = "Value.visit"
 rust_code = "{self}.visit({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["implVisitValue<'v>"]
 
 [[mappings.methods]]
 python = "Value.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "Value.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "Value.serialize"
 rust_code = "{self}.serialize({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Ok"
 param_types = ["S"]
 
 [[mappings.methods]]
 python = "Value.stream"
 rust_code = "{self}.stream({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutS"]
 
 [[mappings.methods]]
 python = "Value.stream_ref"
 rust_code = "{self}.stream_ref({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutS"]
 
 [[mappings.methods]]
@@ -510,6 +666,7 @@ python = "Value.to_borrowed_error"
 rust_code = "{self}.to_borrowed_error()"
 rust_imports = []
 needs_result = false
+returns = "Error+'static)"
 
 [[mappings.methods]]
 python = "Value.to_borrowed_str"
@@ -522,6 +679,7 @@ python = "Value.to_cow_str"
 rust_code = "{self}.to_cow_str()"
 rust_imports = []
 needs_result = false
+returns = "Cow"
 
 [[mappings.methods]]
 python = "Value.is_"
@@ -539,7 +697,8 @@ needs_result = false
 python = "Error.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]

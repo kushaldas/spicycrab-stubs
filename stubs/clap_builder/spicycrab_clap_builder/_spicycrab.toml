@@ -758,6 +758,7 @@ python = "AnyValueId.partial_cmp"
 rust_code = "{self}.partial_cmp({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Ordering"
 param_types = ["&Self"]
 
 [[mappings.methods]]
@@ -772,6 +773,7 @@ python = "AnyValueId.cmp"
 rust_code = "{self}.cmp({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Ordering"
 param_types = ["&Self"]
 
 [[mappings.methods]]
@@ -785,7 +787,7 @@ param_types = ["&mutH"]
 python = "AnyValueId.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -798,14 +800,16 @@ needs_result = false
 python = "Id.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
 python = "Id.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -874,6 +878,7 @@ python = "ArgMatches.get_many"
 rust_code = "{self}.get_many({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ValuesRef"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -881,6 +886,7 @@ python = "ArgMatches.get_occurrences"
 rust_code = "{self}.get_occurrences({arg0})"
 rust_imports = []
 needs_result = false
+returns = "OccurrencesRef"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -888,6 +894,7 @@ python = "ArgMatches.get_raw"
 rust_code = "{self}.get_raw({arg0})"
 rust_imports = []
 needs_result = false
+returns = "RawValues"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -895,6 +902,7 @@ python = "ArgMatches.get_raw_occurrences"
 rust_code = "{self}.get_raw_occurrences({arg0})"
 rust_imports = []
 needs_result = false
+returns = "RawOccurrences"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -902,6 +910,7 @@ python = "ArgMatches.remove_one"
 rust_code = "{self}.remove_one({arg0})"
 rust_imports = []
 needs_result = false
+returns = "T"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -909,6 +918,7 @@ python = "ArgMatches.remove_many"
 rust_code = "{self}.remove_many({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Values"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -916,6 +926,7 @@ python = "ArgMatches.remove_occurrences"
 rust_code = "{self}.remove_occurrences({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Occurrences"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -930,6 +941,7 @@ python = "ArgMatches.ids"
 rust_code = "{self}.ids()"
 rust_imports = []
 needs_result = false
+returns = "IdsRef"
 
 [[mappings.methods]]
 python = "ArgMatches.args_present"
@@ -942,6 +954,7 @@ python = "ArgMatches.value_source"
 rust_code = "{self}.value_source({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ValueSource"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -956,6 +969,7 @@ python = "ArgMatches.indices_of"
 rust_code = "{self}.indices_of({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Indices"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -997,70 +1011,77 @@ param_types = ["&str"]
 python = "ArgMatches.try_get_one"
 rust_code = "{self}.try_get_one({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_get_many"
 rust_code = "{self}.try_get_many({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "ValuesRef"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_get_occurrences"
 rust_code = "{self}.try_get_occurrences({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "OccurrencesRef"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_get_raw"
 rust_code = "{self}.try_get_raw({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "RawValues"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_get_raw_occurrences"
 rust_code = "{self}.try_get_raw_occurrences({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "RawOccurrences"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_remove_one"
 rust_code = "{self}.try_remove_one({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "T"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_remove_many"
 rust_code = "{self}.try_remove_many({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Values"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_remove_occurrences"
 rust_code = "{self}.try_remove_occurrences({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Occurrences"
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_contains_id"
 rust_code = "{self}.try_contains_id({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.try_clear_id"
 rust_code = "{self}.try_clear_id({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -1087,6 +1108,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "Values.size_hint"
@@ -1100,6 +1122,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "ValuesRef.next"
@@ -1107,6 +1130,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "ValuesRef.size_hint"
@@ -1120,6 +1144,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "RawValues.next"
@@ -1145,6 +1170,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "Occurrences.size_hint"
@@ -1158,6 +1184,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrenceValues.next"
@@ -1165,6 +1192,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrenceValues.size_hint"
@@ -1178,6 +1206,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrencesRef.next"
@@ -1185,6 +1214,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrencesRef.size_hint"
@@ -1198,6 +1228,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrenceValuesRef.next"
@@ -1205,6 +1236,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "OccurrenceValuesRef.size_hint"
@@ -1218,6 +1250,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "RawOccurrences.next"
@@ -1225,6 +1258,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "RawOccurrences.size_hint"
@@ -1238,6 +1272,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "RawOccurrenceValues.next"
@@ -1245,6 +1280,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "RawOccurrenceValues.size_hint"
@@ -1258,6 +1294,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "Indices.next"
@@ -1300,25 +1337,29 @@ python = "ValueRange.start_bound"
 rust_code = "{self}.start_bound()"
 rust_imports = []
 needs_result = false
+returns = "Bound"
 
 [[mappings.methods]]
 python = "ValueRange.end_bound"
 rust_code = "{self}.end_bound()"
 rust_imports = []
 needs_result = false
+returns = "Bound"
 
 [[mappings.methods]]
 python = "ValueRange.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
 python = "ValueRange.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -1338,14 +1379,16 @@ needs_result = false
 python = "Str.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
 python = "Str.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -1372,12 +1415,14 @@ rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "Str.as_ref"
 rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
+returns = "Path"
 
 [[mappings.methods]]
 python = "Str.borrow"
@@ -1426,6 +1471,7 @@ rust_code = "{self}.id({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<Id>"]
 
 [[mappings.methods]]
@@ -1434,6 +1480,7 @@ rust_code = "{self}.short({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -1442,6 +1489,7 @@ rust_code = "{self}.long({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1450,6 +1498,7 @@ rust_code = "{self}.alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1458,6 +1507,7 @@ rust_code = "{self}.short_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -1466,6 +1516,7 @@ rust_code = "{self}.aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -1474,6 +1525,7 @@ rust_code = "{self}.short_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=char>"]
 
 [[mappings.methods]]
@@ -1482,6 +1534,7 @@ rust_code = "{self}.visible_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1490,6 +1543,7 @@ rust_code = "{self}.visible_short_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -1498,6 +1552,7 @@ rust_code = "{self}.visible_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -1506,6 +1561,7 @@ rust_code = "{self}.visible_short_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=char>"]
 
 [[mappings.methods]]
@@ -1514,6 +1570,7 @@ rust_code = "{self}.index({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<usize>"]
 
 [[mappings.methods]]
@@ -1522,6 +1579,7 @@ rust_code = "{self}.trailing_var_arg({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1530,6 +1588,7 @@ rust_code = "{self}.last({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1538,6 +1597,7 @@ rust_code = "{self}.required({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1546,6 +1606,7 @@ rust_code = "{self}.requires({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -1554,6 +1615,7 @@ rust_code = "{self}.exclusive({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1562,6 +1624,7 @@ rust_code = "{self}.global({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1570,6 +1633,7 @@ rust_code = "{self}.add({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -1578,6 +1642,7 @@ rust_code = "{self}.action({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<ArgAction>"]
 
 [[mappings.methods]]
@@ -1586,6 +1651,7 @@ rust_code = "{self}.value_parser({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<super::ValueParser>"]
 
 [[mappings.methods]]
@@ -1594,6 +1660,7 @@ rust_code = "{self}.num_args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<ValueRange>"]
 
 [[mappings.methods]]
@@ -1602,6 +1669,7 @@ rust_code = "{self}.number_of_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["usize"]
 
 [[mappings.methods]]
@@ -1610,6 +1678,7 @@ rust_code = "{self}.value_name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1618,6 +1687,7 @@ rust_code = "{self}.value_names({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -1626,6 +1696,7 @@ rust_code = "{self}.value_hint({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<ValueHint>"]
 
 [[mappings.methods]]
@@ -1634,6 +1705,7 @@ rust_code = "{self}.ignore_case({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1642,6 +1714,7 @@ rust_code = "{self}.allow_hyphen_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1650,6 +1723,7 @@ rust_code = "{self}.allow_negative_numbers({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1658,6 +1732,7 @@ rust_code = "{self}.require_equals({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1666,6 +1741,7 @@ rust_code = "{self}.use_value_delimiter({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1674,6 +1750,7 @@ rust_code = "{self}.value_delimiter({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -1682,6 +1759,7 @@ rust_code = "{self}.value_terminator({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1690,6 +1768,7 @@ rust_code = "{self}.raw({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1698,6 +1777,7 @@ rust_code = "{self}.default_value({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<OsStr>"]
 
 [[mappings.methods]]
@@ -1706,6 +1786,7 @@ rust_code = "{self}.default_value_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<OsStr>"]
 
 [[mappings.methods]]
@@ -1714,6 +1795,7 @@ rust_code = "{self}.default_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
 
 [[mappings.methods]]
@@ -1722,6 +1804,7 @@ rust_code = "{self}.default_values_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
 
 [[mappings.methods]]
@@ -1730,6 +1813,7 @@ rust_code = "{self}.default_missing_value({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<OsStr>"]
 
 [[mappings.methods]]
@@ -1738,6 +1822,7 @@ rust_code = "{self}.default_missing_value_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<OsStr>"]
 
 [[mappings.methods]]
@@ -1746,6 +1831,7 @@ rust_code = "{self}.default_missing_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
 
 [[mappings.methods]]
@@ -1754,6 +1840,7 @@ rust_code = "{self}.default_missing_values_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
 
 [[mappings.methods]]
@@ -1762,6 +1849,7 @@ rust_code = "{self}.env({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<OsStr>"]
 
 [[mappings.methods]]
@@ -1770,6 +1858,7 @@ rust_code = "{self}.env_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<OsStr>"]
 
 [[mappings.methods]]
@@ -1778,6 +1867,7 @@ rust_code = "{self}.help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -1786,6 +1876,7 @@ rust_code = "{self}.long_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -1794,6 +1885,7 @@ rust_code = "{self}.display_order({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<usize>"]
 
 [[mappings.methods]]
@@ -1802,6 +1894,7 @@ rust_code = "{self}.help_heading({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -1810,6 +1903,7 @@ rust_code = "{self}.next_line_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1818,6 +1912,7 @@ rust_code = "{self}.hide({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1826,6 +1921,7 @@ rust_code = "{self}.hide_possible_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1834,6 +1930,7 @@ rust_code = "{self}.hide_default_value({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1842,6 +1939,7 @@ rust_code = "{self}.hide_env({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1850,6 +1948,7 @@ rust_code = "{self}.hide_env_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1858,6 +1957,7 @@ rust_code = "{self}.hide_short_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1866,6 +1966,7 @@ rust_code = "{self}.hide_long_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -1874,6 +1975,7 @@ rust_code = "{self}.group({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -1882,6 +1984,7 @@ rust_code = "{self}.groups({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -1890,6 +1993,7 @@ rust_code = "{self}.default_value_if({arg0}, {arg1}, {arg2})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
 
 [[mappings.methods]]
@@ -1898,6 +2002,7 @@ rust_code = "{self}.default_values_if({arg0}, {arg1}, {arg2})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoIterator<Item=implInto<OsStr>>"]
 
 [[mappings.methods]]
@@ -1906,6 +2011,7 @@ rust_code = "{self}.default_value_if_os({arg0}, {arg1}, {arg2})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
 
 [[mappings.methods]]
@@ -1914,6 +2020,7 @@ rust_code = "{self}.default_value_ifs({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
 
 [[mappings.methods]]
@@ -1922,6 +2029,7 @@ rust_code = "{self}.default_values_ifs({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoIterator<Item=implInto<OsStr>>,),>"]
 
 [[mappings.methods]]
@@ -1930,6 +2038,7 @@ rust_code = "{self}.default_value_ifs_os({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
 
 [[mappings.methods]]
@@ -1938,6 +2047,7 @@ rust_code = "{self}.required_unless_present({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -1946,6 +2056,7 @@ rust_code = "{self}.required_unless_present_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -1954,6 +2065,7 @@ rust_code = "{self}.required_unless_present_any({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -1962,6 +2074,7 @@ rust_code = "{self}.required_if_eq({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<Id>", "implInto<OsStr>"]
 
 [[mappings.methods]]
@@ -1970,6 +2083,7 @@ rust_code = "{self}.required_if_eq_any({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
 
 [[mappings.methods]]
@@ -1978,6 +2092,7 @@ rust_code = "{self}.required_if_eq_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
 
 [[mappings.methods]]
@@ -1986,6 +2101,7 @@ rust_code = "{self}.requires_if({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implInto<ArgPredicate>", "implInto<Id>"]
 
 [[mappings.methods]]
@@ -1994,6 +2110,7 @@ rust_code = "{self}.requires_ifs({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=(implInto<ArgPredicate>,implInto<Id>)>"]
 
 [[mappings.methods]]
@@ -2002,6 +2119,7 @@ rust_code = "{self}.requires_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2010,6 +2128,7 @@ rust_code = "{self}.conflicts_with({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -2018,6 +2137,7 @@ rust_code = "{self}.conflicts_with_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2026,6 +2146,7 @@ rust_code = "{self}.overrides_with({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -2034,6 +2155,7 @@ rust_code = "{self}.overrides_with_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2041,6 +2163,7 @@ python = "Arg.get_id"
 rust_code = "{self}.get_id()"
 rust_imports = []
 needs_result = false
+returns = "Id"
 
 [[mappings.methods]]
 python = "Arg.get_help"
@@ -2077,18 +2200,21 @@ python = "Arg.get_visible_short_aliases"
 rust_code = "{self}.get_visible_short_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_all_short_aliases"
 rust_code = "{self}.get_all_short_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_short_and_visible_aliases"
 rust_code = "{self}.get_short_and_visible_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_long"
@@ -2101,30 +2227,35 @@ python = "Arg.get_visible_aliases"
 rust_code = "{self}.get_visible_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_all_aliases"
 rust_code = "{self}.get_all_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_long_and_visible_aliases"
 rust_code = "{self}.get_long_and_visible_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_aliases"
 rust_code = "{self}.get_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_possible_values"
 rust_code = "{self}.get_possible_values()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Arg.get_value_names"
@@ -2137,6 +2268,7 @@ python = "Arg.get_num_args"
 rust_code = "{self}.get_num_args()"
 rust_imports = []
 needs_result = false
+returns = "ValueRange"
 
 [[mappings.methods]]
 python = "Arg.get_value_delimiter"
@@ -2161,12 +2293,14 @@ python = "Arg.get_value_hint"
 rust_code = "{self}.get_value_hint()"
 rust_imports = []
 needs_result = false
+returns = "ValueHint"
 
 [[mappings.methods]]
 python = "Arg.get_env"
 rust_code = "{self}.get_env()"
 rust_imports = []
 needs_result = false
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "Arg.get_default_values"
@@ -2204,12 +2338,14 @@ rust_code = "{self}.get_action()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgAction"
 
 [[mappings.methods]]
 python = "Arg.get_value_parser"
 rust_code = "{self}.get_value_parser()"
 rust_imports = []
 needs_result = false
+returns = "ValueParser"
 
 [[mappings.methods]]
 python = "Arg.is_global_set"
@@ -2306,6 +2442,7 @@ python = "Arg.remove"
 rust_code = "{self}.remove()"
 rust_imports = []
 needs_result = false
+returns = "T"
 
 [[mappings.methods]]
 python = "Arg.eq"
@@ -2319,6 +2456,7 @@ python = "Arg.partial_cmp"
 rust_code = "{self}.partial_cmp({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Ordering"
 param_types = ["&Self"]
 
 [[mappings.methods]]
@@ -2326,20 +2464,22 @@ python = "Arg.cmp"
 rust_code = "{self}.cmp({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Ordering"
 param_types = ["&Arg"]
 
 [[mappings.methods]]
 python = "Arg.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutFormatter<'_>"]
 
 [[mappings.methods]]
 python = "Arg.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&mutFormatter<'_>"]
 
 [[mappings.methods]]
@@ -2348,6 +2488,7 @@ rust_code = "{self}.id({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implInto<Id>"]
 
 [[mappings.methods]]
@@ -2356,6 +2497,7 @@ rust_code = "{self}.arg({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -2364,6 +2506,7 @@ rust_code = "{self}.args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2371,6 +2514,7 @@ python = "ArgGroup.get_args"
 rust_code = "{self}.get_args()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "ArgGroup.multiple"
@@ -2378,6 +2522,7 @@ rust_code = "{self}.multiple({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -2392,6 +2537,7 @@ rust_code = "{self}.required({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -2400,6 +2546,7 @@ rust_code = "{self}.requires({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -2408,6 +2555,7 @@ rust_code = "{self}.requires_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2416,6 +2564,7 @@ rust_code = "{self}.conflicts_with({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoResettable<Id>"]
 
 [[mappings.methods]]
@@ -2424,6 +2573,7 @@ rust_code = "{self}.conflicts_with_all({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ArgGroup"
 param_types = ["implIntoIterator<Item=implInto<Id>>"]
 
 [[mappings.methods]]
@@ -2431,6 +2581,7 @@ python = "ArgGroup.get_id"
 rust_code = "{self}.get_id()"
 rust_imports = []
 needs_result = false
+returns = "Id"
 
 [[mappings.methods]]
 python = "ArgGroup.is_required_set"
@@ -2443,18 +2594,20 @@ python = "ValueParser.type_id"
 rust_code = "{self}.type_id()"
 rust_imports = []
 needs_result = false
+returns = "AnyValueId"
 
 [[mappings.methods]]
 python = "ValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "ValueParser.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -2463,61 +2616,69 @@ rust_code = "{self}.clone()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ValueParser"
 
 [[mappings.methods]]
 python = "StringValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "StringValueParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
 python = "OsStringValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "OsStringValueParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
 python = "PathBufValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "PathBufValueParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
 python = "EnumValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2525,20 +2686,22 @@ python = "EnumValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "PossibleValuesParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "PossibleValuesParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
@@ -2546,6 +2709,7 @@ python = "PossibleValuesParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "RangedI64ValueParser.range"
@@ -2553,14 +2717,16 @@ rust_code = "{self}.range({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "RangedI64ValueParser"
 param_types = ["B"]
 
 [[mappings.methods]]
 python = "RangedI64ValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2569,22 +2735,25 @@ rust_code = "{self}.range({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "RangedU64ValueParser"
 param_types = ["B"]
 
 [[mappings.methods]]
 python = "RangedU64ValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "BoolValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2592,13 +2761,15 @@ python = "BoolValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "FalseyValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2606,13 +2777,15 @@ python = "FalseyValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "BoolishValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2620,29 +2793,33 @@ python = "BoolishValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "NonEmptyStringValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "MapValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "MapValueParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
@@ -2650,13 +2827,15 @@ python = "MapValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "TryMapValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
@@ -2664,6 +2843,7 @@ python = "TryMapValueParser.possible_values"
 rust_code = "{self}.possible_values()"
 rust_imports = []
 needs_result = false
+returns = "dynIterator"
 
 [[mappings.methods]]
 python = "UnknownArgumentValueParser.and_suggest"
@@ -2671,22 +2851,25 @@ rust_code = "{self}.and_suggest({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "UnknownArgumentValueParser"
 param_types = ["implInto<StyledStr>"]
 
 [[mappings.methods]]
 python = "UnknownArgumentValueParser.parse_ref"
 rust_code = "{self}.parse_ref({arg0}, {arg1}, {arg2})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr"]
 
 [[mappings.methods]]
 python = "UnknownArgumentValueParser.parse_ref_"
 rust_code = "{self}.parse_ref_({arg0}, {arg1}, {arg2}, {arg3})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "Value"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "&std::ffi::OsStr", "ValueSource"]
 
 [[mappings.methods]]
@@ -2700,6 +2883,7 @@ python = "StyledStr.ansi"
 rust_code = "{self}.ansi()"
 rust_imports = []
 needs_result = false
+returns = "Display+'_"
 
 [[mappings.methods]]
 python = "StyledStr.push_str"
@@ -2712,21 +2896,22 @@ param_types = ["&str"]
 python = "StyledStr.write_str"
 rust_code = "{self}.write_str({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&str"]
 
 [[mappings.methods]]
 python = "StyledStr.write_char"
 rust_code = "{self}.write_char({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["char"]
 
 [[mappings.methods]]
 python = "StyledStr.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -2735,6 +2920,7 @@ rust_code = "{self}.header({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2743,6 +2929,7 @@ rust_code = "{self}.error({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2751,6 +2938,7 @@ rust_code = "{self}.usage({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2759,6 +2947,7 @@ rust_code = "{self}.literal({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2767,6 +2956,7 @@ rust_code = "{self}.placeholder({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2775,6 +2965,7 @@ rust_code = "{self}.valid({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2783,6 +2974,7 @@ rust_code = "{self}.invalid({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2791,6 +2983,7 @@ rust_code = "{self}.context({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2799,6 +2992,7 @@ rust_code = "{self}.context_value({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Styles"
 param_types = ["Style"]
 
 [[mappings.methods]]
@@ -2806,54 +3000,63 @@ python = "Styles.get_header"
 rust_code = "{self}.get_header()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_error"
 rust_code = "{self}.get_error()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_usage"
 rust_code = "{self}.get_usage()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_literal"
 rust_code = "{self}.get_literal()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_placeholder"
 rust_code = "{self}.get_placeholder()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_valid"
 rust_code = "{self}.get_valid()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_invalid"
 rust_code = "{self}.get_invalid()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_context"
 rust_code = "{self}.get_context()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "Styles.get_context_value"
 rust_code = "{self}.get_context_value()"
 rust_imports = []
 needs_result = false
+returns = "Style"
 
 [[mappings.methods]]
 python = "OsStr.eq"
@@ -2868,6 +3071,7 @@ rust_code = "{self}.as_os_str()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "OsStr.to_os_string"
@@ -2875,12 +3079,14 @@ rust_code = "{self}.to_os_string()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsString"
 
 [[mappings.methods]]
 python = "OsStr.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -2889,6 +3095,7 @@ rust_code = "{self}.deref()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "OsStr.as_ref"
@@ -2896,12 +3103,14 @@ rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "OsStr.as_ref"
 rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
+returns = "Path"
 
 [[mappings.methods]]
 python = "OsStr.borrow"
@@ -2909,6 +3118,7 @@ rust_code = "{self}.borrow()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "OsStr"
 
 [[mappings.methods]]
 python = "OsStr.eq"
@@ -2951,6 +3161,7 @@ rust_code = "{self}.arg({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implInto<Arg>"]
 
 [[mappings.methods]]
@@ -2959,6 +3170,7 @@ rust_code = "{self}.args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Arg>>"]
 
 [[mappings.methods]]
@@ -2967,6 +3179,7 @@ rust_code = "{self}.mut_arg({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implAsRef<str>", "F"]
 
 [[mappings.methods]]
@@ -2975,6 +3188,7 @@ rust_code = "{self}.mut_args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -2983,6 +3197,7 @@ rust_code = "{self}.mut_group({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implAsRef<str>", "F"]
 
 [[mappings.methods]]
@@ -2991,6 +3206,7 @@ rust_code = "{self}.mut_subcommand({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implAsRef<str>", "F"]
 
 [[mappings.methods]]
@@ -2999,6 +3215,7 @@ rust_code = "{self}.mut_subcommands({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["F"]
 
 [[mappings.methods]]
@@ -3007,6 +3224,7 @@ rust_code = "{self}.group({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implInto<ArgGroup>"]
 
 [[mappings.methods]]
@@ -3015,6 +3233,7 @@ rust_code = "{self}.groups({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<ArgGroup>>"]
 
 [[mappings.methods]]
@@ -3023,6 +3242,7 @@ rust_code = "{self}.subcommand({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implInto<Command>"]
 
 [[mappings.methods]]
@@ -3031,6 +3251,7 @@ rust_code = "{self}.subcommands({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Self>>"]
 
 [[mappings.methods]]
@@ -3039,6 +3260,7 @@ rust_code = "{self}.defer({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["fn(Command)->Command"]
 
 [[mappings.methods]]
@@ -3052,6 +3274,7 @@ python = "Command.error"
 rust_code = "{self}.error({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "Error"
 param_types = ["ErrorKind", "implfmt::Display"]
 
 [[mappings.methods]]
@@ -3059,24 +3282,28 @@ python = "Command.get_matches"
 rust_code = "{self}.get_matches()"
 rust_imports = []
 needs_result = false
+returns = "ArgMatches"
 
 [[mappings.methods]]
 python = "Command.get_matches_mut"
 rust_code = "{self}.get_matches_mut()"
 rust_imports = []
 needs_result = false
+returns = "ArgMatches"
 
 [[mappings.methods]]
 python = "Command.try_get_matches"
 rust_code = "{self}.try_get_matches()"
 rust_imports = []
 needs_result = false
+returns = "ClapResult"
 
 [[mappings.methods]]
 python = "Command.get_matches_from"
 rust_code = "{self}.get_matches_from({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ArgMatches"
 param_types = ["I"]
 
 [[mappings.methods]]
@@ -3084,6 +3311,7 @@ python = "Command.try_get_matches_from"
 rust_code = "{self}.try_get_matches_from({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ClapResult"
 param_types = ["I"]
 
 [[mappings.methods]]
@@ -3091,44 +3319,47 @@ python = "Command.try_get_matches_from_mut"
 rust_code = "{self}.try_get_matches_from_mut({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ClapResult"
 param_types = ["I"]
 
 [[mappings.methods]]
 python = "Command.print_help"
 rust_code = "{self}.print_help()"
 rust_imports = []
-needs_result = false
+needs_result = true
 
 [[mappings.methods]]
 python = "Command.print_long_help"
 rust_code = "{self}.print_long_help()"
 rust_imports = []
-needs_result = false
+needs_result = true
 
 [[mappings.methods]]
 python = "Command.render_help"
 rust_code = "{self}.render_help()"
 rust_imports = []
 needs_result = false
+returns = "StyledStr"
 
 [[mappings.methods]]
 python = "Command.render_long_help"
 rust_code = "{self}.render_long_help()"
 rust_imports = []
 needs_result = false
+returns = "StyledStr"
 
 [[mappings.methods]]
 python = "Command.write_help"
 rust_code = "{self}.write_help({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&mutW"]
 
 [[mappings.methods]]
 python = "Command.write_long_help"
 rust_code = "{self}.write_long_help({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 param_types = ["&mutW"]
 
 [[mappings.methods]]
@@ -3148,6 +3379,7 @@ python = "Command.render_usage"
 rust_code = "{self}.render_usage()"
 rust_imports = []
 needs_result = false
+returns = "StyledStr"
 
 [[mappings.methods]]
 python = "Command.add"
@@ -3155,6 +3387,7 @@ rust_code = "{self}.add({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -3163,6 +3396,7 @@ rust_code = "{self}.no_binary_name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3171,6 +3405,7 @@ rust_code = "{self}.ignore_errors({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3179,6 +3414,7 @@ rust_code = "{self}.args_override_self({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3187,6 +3423,7 @@ rust_code = "{self}.dont_delimit_trailing_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3195,6 +3432,7 @@ rust_code = "{self}.color({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["ColorChoice"]
 
 [[mappings.methods]]
@@ -3203,6 +3441,7 @@ rust_code = "{self}.styles({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["Styles"]
 
 [[mappings.methods]]
@@ -3211,6 +3450,7 @@ rust_code = "{self}.term_width({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["usize"]
 
 [[mappings.methods]]
@@ -3219,6 +3459,7 @@ rust_code = "{self}.max_term_width({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["usize"]
 
 [[mappings.methods]]
@@ -3227,6 +3468,7 @@ rust_code = "{self}.disable_version_flag({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3235,6 +3477,7 @@ rust_code = "{self}.propagate_version({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3243,6 +3486,7 @@ rust_code = "{self}.next_line_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3251,6 +3495,7 @@ rust_code = "{self}.disable_help_flag({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3259,6 +3504,7 @@ rust_code = "{self}.disable_help_subcommand({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3267,6 +3513,7 @@ rust_code = "{self}.disable_colored_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3275,6 +3522,7 @@ rust_code = "{self}.help_expected({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3283,6 +3531,7 @@ rust_code = "{self}.dont_collapse_args_in_usage({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3291,6 +3540,7 @@ rust_code = "{self}.hide_possible_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3299,6 +3549,7 @@ rust_code = "{self}.infer_long_args({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3307,6 +3558,7 @@ rust_code = "{self}.infer_subcommands({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3315,6 +3567,7 @@ rust_code = "{self}.name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implInto<Str>"]
 
 [[mappings.methods]]
@@ -3323,6 +3576,7 @@ rust_code = "{self}.bin_name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<String>"]
 
 [[mappings.methods]]
@@ -3331,6 +3585,7 @@ rust_code = "{self}.display_name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<String>"]
 
 [[mappings.methods]]
@@ -3339,6 +3594,7 @@ rust_code = "{self}.author({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3347,6 +3603,7 @@ rust_code = "{self}.about({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3355,6 +3612,7 @@ rust_code = "{self}.long_about({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3363,6 +3621,7 @@ rust_code = "{self}.after_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3371,6 +3630,7 @@ rust_code = "{self}.after_long_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3379,6 +3639,7 @@ rust_code = "{self}.before_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3387,6 +3648,7 @@ rust_code = "{self}.before_long_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3395,6 +3657,7 @@ rust_code = "{self}.version({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3403,6 +3666,7 @@ rust_code = "{self}.long_version({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3411,6 +3675,7 @@ rust_code = "{self}.override_usage({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3419,6 +3684,7 @@ rust_code = "{self}.override_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3427,6 +3693,7 @@ rust_code = "{self}.help_template({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -3435,6 +3702,7 @@ rust_code = "{self}.flatten_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3443,6 +3711,7 @@ rust_code = "{self}.next_help_heading({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3451,6 +3720,7 @@ rust_code = "{self}.next_display_order({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<usize>"]
 
 [[mappings.methods]]
@@ -3459,6 +3729,7 @@ rust_code = "{self}.arg_required_else_help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3467,6 +3738,7 @@ rust_code = "{self}.allow_hyphen_values({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3475,6 +3747,7 @@ rust_code = "{self}.allow_negative_numbers({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3483,6 +3756,7 @@ rust_code = "{self}.trailing_var_arg({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3491,6 +3765,7 @@ rust_code = "{self}.allow_missing_positional({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3499,6 +3774,7 @@ rust_code = "{self}.short_flag({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -3507,6 +3783,7 @@ rust_code = "{self}.long_flag({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implInto<Str>"]
 
 [[mappings.methods]]
@@ -3515,6 +3792,7 @@ rust_code = "{self}.alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3523,6 +3801,7 @@ rust_code = "{self}.short_flag_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -3531,6 +3810,7 @@ rust_code = "{self}.long_flag_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3539,6 +3819,7 @@ rust_code = "{self}.aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -3547,6 +3828,7 @@ rust_code = "{self}.short_flag_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=char>"]
 
 [[mappings.methods]]
@@ -3555,6 +3837,7 @@ rust_code = "{self}.long_flag_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -3563,6 +3846,7 @@ rust_code = "{self}.visible_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3571,6 +3855,7 @@ rust_code = "{self}.visible_short_flag_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<char>"]
 
 [[mappings.methods]]
@@ -3579,6 +3864,7 @@ rust_code = "{self}.visible_long_flag_alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3587,6 +3873,7 @@ rust_code = "{self}.visible_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -3595,6 +3882,7 @@ rust_code = "{self}.visible_short_flag_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=char>"]
 
 [[mappings.methods]]
@@ -3603,6 +3891,7 @@ rust_code = "{self}.visible_long_flag_aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -3611,6 +3900,7 @@ rust_code = "{self}.display_order({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<usize>"]
 
 [[mappings.methods]]
@@ -3619,6 +3909,7 @@ rust_code = "{self}.hide({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3627,6 +3918,7 @@ rust_code = "{self}.subcommand_required({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3635,6 +3927,7 @@ rust_code = "{self}.allow_external_subcommands({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3643,6 +3936,7 @@ rust_code = "{self}.external_subcommand_value_parser({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<super::ValueParser>"]
 
 [[mappings.methods]]
@@ -3651,6 +3945,7 @@ rust_code = "{self}.args_conflicts_with_subcommands({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3659,6 +3954,7 @@ rust_code = "{self}.subcommand_precedence_over_arg({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3667,6 +3963,7 @@ rust_code = "{self}.subcommand_negates_reqs({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3675,6 +3972,7 @@ rust_code = "{self}.multicall({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -3683,6 +3981,7 @@ rust_code = "{self}.subcommand_value_name({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3691,6 +3990,7 @@ rust_code = "{self}.subcommand_help_heading({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Command"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -3723,6 +4023,7 @@ python = "Command.get_name_and_visible_aliases"
 rust_code = "{self}.get_name_and_visible_aliases()"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 
 [[mappings.methods]]
 python = "Command.get_version"
@@ -3789,54 +4090,63 @@ python = "Command.get_visible_aliases"
 rust_code = "{self}.get_visible_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_visible_short_flag_aliases"
 rust_code = "{self}.get_visible_short_flag_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_visible_long_flag_aliases"
 rust_code = "{self}.get_visible_long_flag_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_all_aliases"
 rust_code = "{self}.get_all_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_all_short_flag_aliases"
 rust_code = "{self}.get_all_short_flag_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_all_long_flag_aliases"
 rust_code = "{self}.get_all_long_flag_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_aliases"
 rust_code = "{self}.get_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_color"
 rust_code = "{self}.get_color()"
 rust_imports = []
 needs_result = false
+returns = "ColorChoice"
 
 [[mappings.methods]]
 python = "Command.get_styles"
 rust_code = "{self}.get_styles()"
 rust_imports = []
 needs_result = false
+returns = "Styles"
 
 [[mappings.methods]]
 python = "Command.get_subcommands"
@@ -3844,6 +4154,7 @@ rust_code = "{self}.get_subcommands()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_subcommands_mut"
@@ -3851,6 +4162,7 @@ rust_code = "{self}.get_subcommands_mut()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.has_subcommands"
@@ -3915,30 +4227,35 @@ python = "Command.get_groups"
 rust_code = "{self}.get_groups()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_arguments"
 rust_code = "{self}.get_arguments()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_positionals"
 rust_code = "{self}.get_positionals()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_opts"
 rust_code = "{self}.get_opts()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Command.get_arg_conflicts_with"
 rust_code = "{self}.get_arg_conflicts_with({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Vec"
 param_types = ["&Arg"]
 
 [[mappings.methods]]
@@ -4042,6 +4359,7 @@ python = "Command.get_external_subcommand_value_parser"
 rust_code = "{self}.get_external_subcommand_value_parser()"
 rust_imports = []
 needs_result = false
+returns = "ValueParser"
 
 [[mappings.methods]]
 python = "Command.is_args_conflicts_with_subcommands_set"
@@ -4084,6 +4402,7 @@ python = "Command.remove"
 rust_code = "{self}.remove()"
 rust_imports = []
 needs_result = false
+returns = "T"
 
 [[mappings.methods]]
 python = "Command.build"
@@ -4097,13 +4416,15 @@ rust_code = "{self}.index({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Output"
 param_types = ["&Id"]
 
 [[mappings.methods]]
 python = "Command.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter<'_>"]
 
 [[mappings.methods]]
@@ -4112,6 +4433,7 @@ rust_code = "{self}.help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "PossibleValue"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
@@ -4120,6 +4442,7 @@ rust_code = "{self}.hide({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "PossibleValue"
 param_types = ["bool"]
 
 [[mappings.methods]]
@@ -4128,6 +4451,7 @@ rust_code = "{self}.alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "PossibleValue"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
@@ -4136,6 +4460,7 @@ rust_code = "{self}.aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "PossibleValue"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
@@ -4161,6 +4486,7 @@ python = "PossibleValue.get_name_and_aliases"
 rust_code = "{self}.get_name_and_aliases()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "PossibleValue.matches"
@@ -4175,6 +4501,7 @@ rust_code = "{self}.format({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error"
 param_types = ["&mutCommand"]
 
 [[mappings.methods]]
@@ -4183,6 +4510,7 @@ rust_code = "{self}.with_cmd({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error"
 param_types = ["&Command"]
 
 [[mappings.methods]]
@@ -4191,6 +4519,7 @@ rust_code = "{self}.apply()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error"
 
 [[mappings.methods]]
 python = "Error.kind"
@@ -4198,12 +4527,14 @@ rust_code = "{self}.kind()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "ErrorKind"
 
 [[mappings.methods]]
 python = "Error.context"
 rust_code = "{self}.context()"
 rust_imports = []
 needs_result = false
+returns = "implIterator"
 
 [[mappings.methods]]
 python = "Error.get"
@@ -4217,6 +4548,7 @@ python = "Error.insert"
 rust_code = "{self}.insert({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "ContextValue"
 param_types = ["ContextKind", "ContextValue"]
 
 [[mappings.methods]]
@@ -4224,6 +4556,7 @@ python = "Error.remove"
 rust_code = "{self}.remove({arg0})"
 rust_imports = []
 needs_result = false
+returns = "ContextValue"
 param_types = ["ContextKind"]
 
 [[mappings.methods]]
@@ -4248,19 +4581,20 @@ needs_result = false
 python = "Error.print"
 rust_code = "{self}.print()"
 rust_imports = []
-needs_result = false
+needs_result = true
 
 [[mappings.methods]]
 python = "Error.render"
 rust_code = "{self}.render()"
 rust_imports = []
 needs_result = false
+returns = "StyledStr"
 
 [[mappings.methods]]
 python = "Error.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
 param_types = ["&mutFormatter<'_>"]
 
@@ -4270,12 +4604,14 @@ rust_code = "{self}.source()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error+'static)"
 
 [[mappings.methods]]
 python = "Error.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutFormatter<'_>"]
 
 [[mappings.types]]

@@ -693,4 +693,63 @@ open log files will often need to return both [`io::Error`] and
 
     def cause(self) -> object: ...
 
-__all__: list[str] = ["Dispatch", "SharedDispatch", "Panic", "Output", "DateBased", "WithFgColor", "ColoredLevelConfig", "Dispatch", "FormatCallback", "Stdout", "Stderr", "File", "Sender", "Writer", "Reopen", "Reopen1", "Syslog3", "Syslog4Rfc3164", "Syslog4Rfc5424", "Syslog6Rfc3164", "Syslog6Rfc5424", "Syslog7Rfc3164", "Syslog7Rfc5424", "Panic", "Null", "DateBased", "DateBasedConfig", "DateBasedState", "LevelConfiguration", "Output", "ConfiguredTimezone", "InitError"]
+"""Convenience method for opening a log file with common options.
+
+Equivalent to:
+
+```no_run
+std::fs::OpenOptions::new()
+.write(true)
+.create(true)
+.append(true)
+.open("filename")
+# ;
+```
+
+See [`OpenOptions`] for more information.
+
+[`OpenOptions`]: https://doc.rust-lang.org/std/fs/struct.OpenOptions.html"""
+def log_file(path: P) -> File: ...
+
+"""Convenience method for opening a re-openable log file with common options.
+
+The file opening is equivalent to:
+
+```no_run
+std::fs::OpenOptions::new()
+.write(true)
+.create(true)
+.append(true)
+.open("filename")
+# ;
+```
+
+See [`OpenOptions`] for more information.
+
+[`OpenOptions`]: https://doc.rust-lang.org/std/fs/struct.OpenOptions.html
+
+This function is not available on Windows, and it requires the `reopen-03`
+feature to be enabled."""
+def log_reopen(path: Path, signal: c_int | None) -> object: ...
+
+"""Convenience method for opening a re-openable log file with common options.
+
+The file opening is equivalent to:
+
+```no_run
+std::fs::OpenOptions::new()
+.write(true)
+.create(true)
+.append(true)
+.open("filename")
+# ;
+```
+
+See [`OpenOptions`] for more information.
+
+[`OpenOptions`]: https://doc.rust-lang.org/std/fs/struct.OpenOptions.html
+
+This function requires the `reopen-1` feature to be enabled."""
+def log_reopen1(path: Path, signals: S) -> object: ...
+
+__all__: list[str] = ["log_file", "log_reopen", "log_reopen1", "Dispatch", "SharedDispatch", "Panic", "Output", "DateBased", "WithFgColor", "ColoredLevelConfig", "Dispatch", "FormatCallback", "Stdout", "Stderr", "File", "Sender", "Writer", "Reopen", "Reopen1", "Syslog3", "Syslog4Rfc3164", "Syslog4Rfc5424", "Syslog6Rfc3164", "Syslog6Rfc5424", "Syslog7Rfc3164", "Syslog7Rfc5424", "Panic", "Null", "DateBased", "DateBasedConfig", "DateBasedState", "LevelConfiguration", "Output", "ConfiguredTimezone", "InitError"]

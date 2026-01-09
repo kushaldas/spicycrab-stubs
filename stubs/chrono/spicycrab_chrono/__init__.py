@@ -2217,4 +2217,929 @@ See: [`DurationRound`]"""
 
     def description(self) -> str: ...
 
-__all__: list[str] = ["SecondsTimestampVisitor", "NanoSecondsTimestampVisitor", "MicroSecondsTimestampVisitor", "MilliSecondsTimestampVisitor", "DateTime", "ParseWeekdayError", "Months", "ParseMonthError", "StrftimeItems", "DelayedFormat", "InternalNumeric", "InternalFixed", "OffsetFormat", "ParseError", "Parsed", "OutOfRange", "FixedOffset", "Utc", "DYNAMIC_TIME_ZONE_INFORMATION", "FILETIME", "SYSTEMTIME", "TIME_ZONE_INFORMATION", "Local", "Date", "NaiveDateTime", "NaiveDate", "NaiveDateDaysIterator", "NaiveDateWeeksIterator", "YearFlags", "NaiveWeek", "Days", "NaiveTime", "IsoWeek", "TimeDelta", "OutOfRangeError", "WeekdaySet", "WeekdaySetIter", "Weekday", "Month", "SecondsFormat", "Pad", "Numeric", "Fixed", "OffsetPrecision", "Colons", "Item", "ParseErrorKind", "LocalResult", "RoundingError"]
+"""Serialize a UTC datetime into an integer number of nanoseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Errors
+
+An `i64` with nanosecond precision can span a range of ~584 years. This function returns an
+error on an out of range `DateTime`.
+
+The dates that can be represented as nanoseconds are between 1677-09-21T00:12:44.0 and
+2262-04-11T23:47:16.854775804.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_nanoseconds::serialize as to_nano_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_nano_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_nano_opt(02, 04, 59, 918355733)
+.unwrap()
+.and_utc(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355733}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: object, serializer: S) -> Ok: ...
+
+"""Deserialize a [`DateTime`] from a nanosecond timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_nanoseconds::deserialize as from_nano_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_nano_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355733 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1526522699, 918355733).unwrap() });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(-1, 999_999_999).unwrap() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object: ...
+
+"""Serialize a UTC datetime into an integer number of nanoseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Errors
+
+An `i64` with nanosecond precision can span a range of ~584 years. This function returns an
+error on an out of range `DateTime`.
+
+The dates that can be represented as nanoseconds are between 1677-09-21T00:12:44.0 and
+2262-04-11T23:47:16.854775804.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_nanoseconds_option::serialize as to_nano_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_nano_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_nano_opt(02, 04, 59, 918355733)
+.unwrap()
+.and_utc(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355733}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: object | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a nanosecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_nanoseconds_option::deserialize as from_nano_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_nano_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355733 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1526522699, 918355733).single() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object | None: ...
+
+"""Serialize a UTC datetime into an integer number of microseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_microseconds::serialize as to_micro_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_micro_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_micro_opt(02, 04, 59, 918355)
+.unwrap()
+.and_utc(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: object, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a microsecond timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_microseconds::deserialize as from_micro_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_micro_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1526522699, 918355000).unwrap() });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(-1, 999_999_000).unwrap() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object: ...
+
+"""Serialize a UTC datetime into an integer number of microseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_microseconds_option::serialize as to_micro_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_micro_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_micro_opt(02, 04, 59, 918355)
+.unwrap()
+.and_utc(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: object | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a microsecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_microseconds_option::deserialize as from_micro_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_micro_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1526522699, 918355000).single() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object | None: ...
+
+"""Serialize a UTC datetime into an integer number of milliseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_milliseconds::serialize as to_milli_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_milli_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_milli_opt(02, 04, 59, 918)
+.unwrap()
+.and_utc(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: object, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a millisecond timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_milliseconds::deserialize as from_milli_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_milli_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1526522699, 918000000).unwrap() });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(-1, 999_000_000).unwrap() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object: ...
+
+"""Serialize a UTC datetime into an integer number of milliseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, Utc, NaiveDate};
+# use serde_derive::Serialize;
+use chrono::serde::ts_milliseconds_option::serialize as to_milli_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_milli_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_milli_opt(02, 04, 59, 918)
+.unwrap()
+.and_utc(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: object | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a millisecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{TimeZone, DateTime, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_milliseconds_option::deserialize as from_milli_tsopt;
+
+#[derive(Deserialize, PartialEq, Debug)]
+#[serde(untagged)]
+enum E<T> {
+V(T),
+}
+
+#[derive(Deserialize, PartialEq, Debug)]
+struct S {
+#[serde(default, deserialize_with = "from_milli_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s: E<S> = serde_json::from_str(r#"{ "time": 1526522699918 }"#)?;
+assert_eq!(my_s, E::V(S { time: Some(Utc.timestamp_opt(1526522699, 918000000).unwrap()) }));
+let s: E<S> = serde_json::from_str(r#"{ "time": null }"#)?;
+assert_eq!(s, E::V(S { time: None }));
+let t: E<S> = serde_json::from_str(r#"{}"#)?;
+assert_eq!(t, E::V(S { time: None }));
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object | None: ...
+
+"""Serialize a UTC datetime into an integer number of seconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{TimeZone, DateTime, Utc};
+# use serde_derive::Serialize;
+use chrono::serde::ts_seconds::serialize as to_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s = S { time: Utc.with_ymd_and_hms(2015, 5, 15, 10, 0, 0).unwrap() };
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1431684000}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: object, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a seconds timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_seconds::deserialize as from_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_ts")]
+time: DateTime<Utc>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1431684000 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1431684000, 0).unwrap() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object: ...
+
+"""Serialize a UTC datetime into an integer number of seconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{TimeZone, DateTime, Utc};
+# use serde_derive::Serialize;
+use chrono::serde::ts_seconds_option::serialize as to_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s = S { time: Some(Utc.with_ymd_and_hms(2015, 5, 15, 10, 0, 0).unwrap()) };
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1431684000}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: object | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `DateTime` from a seconds timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, TimeZone, Utc};
+# use serde_derive::Deserialize;
+use chrono::serde::ts_seconds_option::deserialize as from_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_tsopt")]
+time: Option<DateTime<Utc>>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1431684000 }"#)?;
+assert_eq!(my_s, S { time: Utc.timestamp_opt(1431684000, 0).single() });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> object | None: ...
+
+"""Tries to format given arguments with given formatting items.
+Internally used by `DelayedFormat`."""
+def format(w: Formatter, date: object, time: object, off: object, items: I) -> Result: ...
+
+"""Formats single formatting item"""
+def format_item(w: Formatter, date: object, time: object, off: object, item: Item) -> Result: ...
+
+"""Tries to parse given string into `parsed` with given formatting items.
+Returns `Ok` when the entire string has been parsed (otherwise `parsed` should not be used).
+There should be no trailing string after parsing;
+use a stray [`Item::Space`](./enum.Item.html#variant.Space) to trim whitespaces.
+
+This particular date and time parser is:
+
+- Greedy. It will consume the longest possible prefix.
+For example, `April` is always consumed entirely when the long month name is requested;
+it equally accepts `Apr`, but prefers the longer prefix in this case.
+
+- Padding-agnostic (for numeric items).
+The [`Pad`](./enum.Pad.html) field is completely ignored,
+so one can prepend any number of whitespace then any number of zeroes before numbers.
+
+- (Still) obeying the intrinsic parsing width. This allows, for example, parsing `HHMMSS`."""
+def parse(parsed: Parsed, s: str, items: I) -> object: ...
+
+"""Tries to parse given string into `parsed` with given formatting items.
+Returns `Ok` with a slice of the unparsed remainder.
+
+This particular date and time parser is:
+
+- Greedy. It will consume the longest possible prefix.
+For example, `April` is always consumed entirely when the long month name is requested;
+it equally accepts `Apr`, but prefers the longer prefix in this case.
+
+- Padding-agnostic (for numeric items).
+The [`Pad`](./enum.Pad.html) field is completely ignored,
+so one can prepend any number of zeroes before numbers.
+
+- (Still) obeying the intrinsic parsing width. This allows, for example, parsing `HHMMSS`."""
+def parse_and_remainder(parsed: Parsed, s: object, items: I) -> object: ...
+
+"""Serialize a datetime into an integer number of nanoseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Errors
+
+An `i64` with nanosecond precision can span a range of ~584 years. This function returns an
+error on an out of range `DateTime`.
+
+The dates that can be represented as nanoseconds are between 1677-09-21T00:12:44.0 and
+2262-04-11T23:47:16.854775804.
+
+# Example:
+
+```rust
+# use chrono::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_nanoseconds::serialize as to_nano_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_nano_ts")]
+time: NaiveDateTime,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_nano_opt(02, 04, 59, 918355733)
+.unwrap(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355733}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: NaiveDateTime, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a nanoseconds timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_nanoseconds::deserialize as from_nano_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_nano_ts")]
+time: NaiveDateTime,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355733 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918355733).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_999_999).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime: ...
+
+"""Serialize a datetime into an integer number of nanoseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Errors
+
+An `i64` with nanosecond precision can span a range of ~584 years. This function returns an
+error on an out of range `DateTime`.
+
+The dates that can be represented as nanoseconds are between 1677-09-21T00:12:44.0 and
+2262-04-11T23:47:16.854775804.
+
+# Example:
+
+```rust
+# use chrono::naive::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_nanoseconds_option::serialize as to_nano_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_nano_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_nano_opt(02, 04, 59, 918355733)
+.unwrap(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355733}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: NaiveDateTime | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a nanosecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_nanoseconds_option::deserialize as from_nano_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_nano_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355733 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918355733).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_999_999).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime | None: ...
+
+"""Serialize a datetime into an integer number of microseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_microseconds::serialize as to_micro_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_micro_ts")]
+time: NaiveDateTime,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_micro_opt(02, 04, 59, 918355)
+.unwrap(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: NaiveDateTime, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a microseconds timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_microseconds::deserialize as from_micro_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_micro_ts")]
+time: NaiveDateTime,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918355000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_999_000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime: ...
+
+"""Serialize a datetime into an integer number of microseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::naive::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_microseconds_option::serialize as to_micro_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_micro_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_micro_opt(02, 04, 59, 918355)
+.unwrap(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918355}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: NaiveDateTime | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a nanosecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_microseconds_option::deserialize as from_micro_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_micro_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918355 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918355000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_999_000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime | None: ...
+
+"""Serialize a datetime into an integer number of milliseconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_milliseconds::serialize as to_milli_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_milli_ts")]
+time: NaiveDateTime,
+}
+
+let my_s = S {
+time: NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_milli_opt(02, 04, 59, 918)
+.unwrap(),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: NaiveDateTime, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a milliseconds timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_milliseconds::deserialize as from_milli_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_milli_ts")]
+time: NaiveDateTime,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918000000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_000_000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime: ...
+
+"""Serialize a datetime into an integer number of milliseconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::naive::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_milliseconds_option::serialize as to_milli_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_milli_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s = S {
+time: Some(
+NaiveDate::from_ymd_opt(2018, 5, 17)
+.unwrap()
+.and_hms_milli_opt(02, 04, 59, 918)
+.unwrap(),
+),
+};
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699918}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: NaiveDateTime | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a millisecond timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_milliseconds_option::deserialize as from_milli_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_milli_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1526522699918 }"#)?;
+let expected = DateTime::from_timestamp(1526522699, 918000000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+
+let my_s: S = serde_json::from_str(r#"{ "time": -1 }"#)?;
+let expected = DateTime::from_timestamp(-1, 999_000_000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime | None: ...
+
+"""Serialize a datetime into an integer number of seconds since the epoch
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_seconds::serialize as to_ts;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_ts")]
+time: NaiveDateTime,
+}
+
+let my_s =
+S { time: NaiveDate::from_ymd_opt(2015, 5, 15).unwrap().and_hms_opt(10, 0, 0).unwrap() };
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1431684000}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(dt: NaiveDateTime, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a seconds timestamp
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_seconds::deserialize as from_ts;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_ts")]
+time: NaiveDateTime,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1431684000 }"#)?;
+let expected = DateTime::from_timestamp_secs(1431684000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: expected });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime: ...
+
+"""Serialize a datetime into an integer number of seconds since the epoch or none
+
+Intended for use with `serde`s `serialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::naive::{NaiveDate, NaiveDateTime};
+# use serde_derive::Serialize;
+use chrono::naive::serde::ts_seconds_option::serialize as to_tsopt;
+#[derive(Serialize)]
+struct S {
+#[serde(serialize_with = "to_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let expected = NaiveDate::from_ymd_opt(2018, 5, 17).unwrap().and_hms_opt(02, 04, 59).unwrap();
+let my_s = S { time: Some(expected) };
+let as_string = serde_json::to_string(&my_s)?;
+assert_eq!(as_string, r#"{"time":1526522699}"#);
+# Ok::<(), serde_json::Error>(())
+```"""
+def serialize(opt: NaiveDateTime | None, serializer: S) -> Ok: ...
+
+"""Deserialize a `NaiveDateTime` from a second timestamp or none
+
+Intended for use with `serde`s `deserialize_with` attribute.
+
+# Example:
+
+```rust
+# use chrono::{DateTime, NaiveDateTime};
+# use serde_derive::Deserialize;
+use chrono::naive::serde::ts_seconds_option::deserialize as from_tsopt;
+#[derive(Debug, PartialEq, Deserialize)]
+struct S {
+#[serde(deserialize_with = "from_tsopt")]
+time: Option<NaiveDateTime>,
+}
+
+let my_s: S = serde_json::from_str(r#"{ "time": 1431684000 }"#)?;
+let expected = DateTime::from_timestamp_secs(1431684000).unwrap().naive_utc();
+assert_eq!(my_s, S { time: Some(expected) });
+# Ok::<(), serde_json::Error>(())
+```"""
+def deserialize(d: D) -> NaiveDateTime | None: ...
+
+__all__: list[str] = ["serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "format", "format_item", "parse", "parse_and_remainder", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "serialize", "deserialize", "SecondsTimestampVisitor", "NanoSecondsTimestampVisitor", "MicroSecondsTimestampVisitor", "MilliSecondsTimestampVisitor", "DateTime", "ParseWeekdayError", "Months", "ParseMonthError", "StrftimeItems", "DelayedFormat", "InternalNumeric", "InternalFixed", "OffsetFormat", "ParseError", "Parsed", "OutOfRange", "FixedOffset", "Utc", "DYNAMIC_TIME_ZONE_INFORMATION", "FILETIME", "SYSTEMTIME", "TIME_ZONE_INFORMATION", "Local", "Date", "NaiveDateTime", "NaiveDate", "NaiveDateDaysIterator", "NaiveDateWeeksIterator", "YearFlags", "NaiveWeek", "Days", "NaiveTime", "IsoWeek", "TimeDelta", "OutOfRangeError", "WeekdaySet", "WeekdaySetIter", "Weekday", "Month", "SecondsFormat", "Pad", "Numeric", "Fixed", "OffsetPrecision", "Colons", "Item", "ParseErrorKind", "LocalResult", "RoundingError"]

@@ -649,4 +649,165 @@ class Token:
     I64: "Token"
     U64: "Token"
 
-__all__: list[str] = ["Record", "RecordBuilder", "Metadata", "MetadataBuilder", "SetLoggerError", "ParseLevelError", "Key", "Value", "Error", "GlobalLogger", "Level", "LevelFilter", "Inner", "Token"]
+"""Sets the global maximum log level.
+
+Generally, this should only be called by the active logging implementation.
+
+Note that `Trace` is the maximum level, because it provides the maximum amount of detail in the emitted logs."""
+def set_max_level(level: LevelFilter) -> None: ...
+
+"""A thread-unsafe version of [`set_max_level`].
+
+This function is available on all platforms, even those that do not have
+support for atomics that is needed by [`set_max_level`].
+
+In almost all cases, [`set_max_level`] should be preferred.
+
+# Safety
+
+This function is only safe to call when it cannot race with any other
+calls to `set_max_level` or `set_max_level_racy`.
+
+This can be upheld by (for example) making sure that **there are no other
+threads**, and (on embedded) that **interrupts are disabled**.
+
+It is safe to use all other logging functions while this function runs
+(including all logging macros).
+
+[`set_max_level`]: fn.set_max_level.html"""
+def set_max_level_racy(level: LevelFilter) -> None: ...
+
+"""Returns the current maximum log level.
+
+The [`log!`], [`error!`], [`warn!`], [`info!`], [`debug!`], and [`trace!`] macros check
+this value and discard any message logged at a higher level. The maximum
+log level is set by the [`set_max_level`] function.
+
+[`log!`]: macro.log.html
+[`error!`]: macro.error.html
+[`warn!`]: macro.warn.html
+[`info!`]: macro.info.html
+[`debug!`]: macro.debug.html
+[`trace!`]: macro.trace.html
+[`set_max_level`]: fn.set_max_level.html"""
+def max_level() -> LevelFilter: ...
+
+"""Sets the global logger to a `Box<Log>`.
+
+This is a simple convenience wrapper over `set_logger`, which takes a
+`Box<Log>` rather than a `&'static Log`. See the documentation for
+[`set_logger`] for more details.
+
+Requires the `std` feature.
+
+# Errors
+
+An error is returned if a logger has already been set.
+
+[`set_logger`]: fn.set_logger.html"""
+def set_boxed_logger(logger: dynLog) -> None: ...
+
+"""Sets the global logger to a `&'static Log`.
+
+This function may only be called once in the lifetime of a program. Any log
+events that occur before the call to `set_logger` completes will be ignored.
+
+This function does not typically need to be called manually. Logger
+implementations should provide an initialization method that installs the
+logger internally.
+
+# Availability
+
+This method is available even when the `std` feature is disabled. However,
+it is currently unavailable on `thumbv6` targets, which lack support for
+some atomic operations which are used by this function. Even on those
+targets, [`set_logger_racy`] will be available.
+
+# Errors
+
+An error is returned if a logger has already been set.
+
+# Examples
+
+```
+use log::{error, info, warn, Record, Level, Metadata, LevelFilter};
+
+static MY_LOGGER: MyLogger = MyLogger;
+
+struct MyLogger;
+
+impl log::Log for MyLogger {
+fn enabled(&self, metadata: &Metadata) -> bool {
+metadata.level() <= Level::Info
+}
+
+fn log(&self, record: &Record) {
+if self.enabled(record.metadata()) {
+println!("{} - {}", record.level(), record.args());
+}
+}
+fn flush(&self) {}
+}
+
+# fn main(){
+log::set_logger(&MY_LOGGER).unwrap();
+log::set_max_level(LevelFilter::Info);
+
+info!("hello log");
+warn!("warning");
+error!("oops");
+# }
+```
+
+[`set_logger_racy`]: fn.set_logger_racy.html"""
+def set_logger(logger: object) -> None: ...
+
+"""A thread-unsafe version of [`set_logger`].
+
+This function is available on all platforms, even those that do not have
+support for atomics that is needed by [`set_logger`].
+
+In almost all cases, [`set_logger`] should be preferred.
+
+# Safety
+
+This function is only safe to call when it cannot race with any other
+calls to `set_logger` or `set_logger_racy`.
+
+This can be upheld by (for example) making sure that **there are no other
+threads**, and (on embedded) that **interrupts are disabled**.
+
+It is safe to use other logging functions while this function runs
+(including all logging macros).
+
+[`set_logger`]: fn.set_logger.html"""
+def set_logger_racy(logger: object) -> None: ...
+
+"""Returns a reference to the logger.
+
+If a logger has not been set, a no-op implementation is returned."""
+def logger() -> object: ...
+
+def visit(inner: Inner, visitor: object) -> None: ...
+
+def visit(inner: Inner, visitor: object) -> None: ...
+
+def log(logger: L, args: Arguments, level: Level, target_module_path_and_loc: object, kvs: K) -> None: ...
+
+def enabled(logger: L, level: Level, target: str) -> bool: ...
+
+def loc() -> object: ...
+
+def capture_to_value(v: object) -> Value: ...
+
+def capture_debug(v: object) -> Value: ...
+
+def capture_display(v: object) -> Value: ...
+
+def capture_error(v: object) -> Value: ...
+
+def capture_sval(v: object) -> Value: ...
+
+def capture_serde(v: object) -> Value: ...
+
+__all__: list[str] = ["set_max_level", "set_max_level_racy", "max_level", "set_boxed_logger", "set_logger", "set_logger_racy", "logger", "visit", "visit", "log", "enabled", "loc", "capture_to_value", "capture_debug", "capture_display", "capture_error", "capture_sval", "capture_serde", "Record", "RecordBuilder", "Metadata", "MetadataBuilder", "SetLoggerError", "ParseLevelError", "Key", "Value", "Error", "GlobalLogger", "Level", "LevelFilter", "Inner", "Token"]

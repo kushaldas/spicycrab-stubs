@@ -58,6 +58,326 @@ class Instant:
         ...
 
 
+class MpscSender:
+    """Sender half of a bounded mpsc channel.
+
+    Maps to tokio::sync::mpsc::Sender<String> in Rust.
+    Use with mpsc_channel() for type-safe channel creation.
+    """
+
+    async def send(self, value: str) -> None:
+        """Sends a value, waiting until there is capacity."""
+        ...
+
+    def clone(self) -> "MpscSender":
+        """Clones this sender."""
+        ...
+
+    def is_closed(self) -> bool:
+        """Returns True if the receiver has been dropped."""
+        ...
+
+
+class MpscReceiver:
+    """Receiver half of a bounded mpsc channel.
+
+    Maps to tokio::sync::mpsc::Receiver<String> in Rust.
+    Use with mpsc_channel() for type-safe channel creation.
+    """
+
+    async def recv(self) -> str | None:
+        """Receives the next value, or None if the channel is closed."""
+        ...
+
+    def close(self) -> None:
+        """Closes the receiving half without dropping it."""
+        ...
+
+
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+
+class Arc(Generic[T]):
+    """Thread-safe reference-counting pointer.
+
+    Arc stands for Atomically Reference Counted. It provides shared ownership
+    of a value of type T, allocated on the heap. Cloning an Arc produces a new
+    Arc that points to the same allocation, increasing the reference count.
+
+    Maps to std::sync::Arc<T> in Rust.
+
+    Common use cases:
+    - Sharing immutable data between spawned tasks
+    - Combined with Mutex for shared mutable state: Arc[Mutex[T]]
+
+    Example:
+        data: Arc[str] = Arc.new("shared config")
+        cloned: Arc[str] = Arc.clone(data)
+
+        # Share between tasks
+        handle1 = spawn(worker(Arc.clone(data)))
+        handle2 = spawn(worker(Arc.clone(data)))
+    """
+
+    @staticmethod
+    def new(value: T) -> "Arc[T]":
+        """Constructs a new Arc<T>.
+
+        Args:
+            value: The value to wrap in an Arc.
+
+        Returns:
+            A new Arc containing the value.
+        """
+        ...
+
+    @staticmethod
+    def clone(arc: "Arc[T]") -> "Arc[T]":
+        """Creates a new Arc that points to the same allocation.
+
+        This increments the strong reference count.
+
+        Args:
+            arc: The Arc to clone.
+
+        Returns:
+            A new Arc pointing to the same data.
+        """
+        ...
+
+    @staticmethod
+    def strong_count(arc: "Arc[T]") -> int:
+        """Gets the number of strong (Arc) pointers to this allocation.
+
+        Args:
+            arc: The Arc to check.
+
+        Returns:
+            The number of strong references.
+        """
+        ...
+
+    @staticmethod
+    def weak_count(arc: "Arc[T]") -> int:
+        """Gets the number of weak (Weak) pointers to this allocation.
+
+        Args:
+            arc: The Arc to check.
+
+        Returns:
+            The number of weak references.
+        """
+        ...
+
+    @staticmethod
+    def try_unwrap(arc: "Arc[T]") -> T | None:
+        """Returns the inner value if the Arc has exactly one strong reference.
+
+        If there are multiple strong references, returns None.
+
+        Args:
+            arc: The Arc to unwrap.
+
+        Returns:
+            The inner value if ref count is 1, otherwise None.
+        """
+        ...
+
+    @staticmethod
+    def into_inner(arc: "Arc[T]") -> T | None:
+        """Returns the inner value if the Arc has exactly one strong reference.
+
+        This is similar to try_unwrap but available on Rust 1.70+.
+
+        Args:
+            arc: The Arc to unwrap.
+
+        Returns:
+            The inner value if ref count is 1, otherwise None.
+        """
+        ...
+
+
+class Mutex(Generic[T]):
+    """An asynchronous mutual exclusion primitive.
+
+    This is tokio's async-aware Mutex, suitable for use across .await points.
+    Unlike std::sync::Mutex, holding a tokio::sync::Mutex guard across an
+    await point is safe.
+
+    Maps to tokio::sync::Mutex<T> in Rust.
+
+    Common use case - shared mutable state between tasks:
+        counter: Arc[Mutex[int]] = Arc.new(Mutex.new(0))
+
+        async def increment(c: Arc[Mutex[int]]) -> None:
+            guard = await c.lock()
+            # modify the value through the guard
+
+    Example:
+        mutex: Mutex[int] = Mutex.new(0)
+        guard = await mutex.lock()
+    """
+
+    @staticmethod
+    def new(value: T) -> "Mutex[T]":
+        """Creates a new Mutex wrapping the given value.
+
+        Args:
+            value: The value to protect with the mutex.
+
+        Returns:
+            A new Mutex containing the value.
+        """
+        ...
+
+    async def lock(self) -> "MutexGuard[T]":
+        """Locks this mutex, waiting asynchronously if it's already locked.
+
+        Returns:
+            A guard that releases the lock when dropped.
+        """
+        ...
+
+    def try_lock(self) -> "MutexGuard[T] | None":
+        """Attempts to acquire the lock without waiting.
+
+        Returns:
+            A guard if successful, None if the mutex is already locked.
+        """
+        ...
+
+    def is_locked(self) -> bool:
+        """Returns True if the mutex is currently locked.
+
+        Returns:
+            True if locked, False otherwise.
+        """
+        ...
+
+
+class MutexGuard(Generic[T]):
+    """A guard that releases the mutex when dropped.
+
+    This is returned by Mutex.lock() and provides access to the protected data.
+    The lock is automatically released when the guard goes out of scope.
+    """
+    pass
+
+
+class RwLock(Generic[T]):
+    """An asynchronous reader-writer lock.
+
+    This type of lock allows multiple readers or a single writer at any point
+    in time. Useful when you have data that is read frequently but written
+    infrequently.
+
+    Maps to tokio::sync::RwLock<T> in Rust.
+
+    Example:
+        data: RwLock[list[str]] = RwLock.new(["initial"])
+
+        # Multiple readers allowed
+        read_guard = await data.read()
+
+        # Single writer, blocks readers
+        write_guard = await data.write()
+    """
+
+    @staticmethod
+    def new(value: T) -> "RwLock[T]":
+        """Creates a new RwLock wrapping the given value.
+
+        Args:
+            value: The value to protect with the lock.
+
+        Returns:
+            A new RwLock containing the value.
+        """
+        ...
+
+    async def read(self) -> "RwLockReadGuard[T]":
+        """Locks this RwLock for reading, waiting if a writer holds the lock.
+
+        Multiple readers can hold the lock simultaneously.
+
+        Returns:
+            A read guard that releases the lock when dropped.
+        """
+        ...
+
+    async def write(self) -> "RwLockWriteGuard[T]":
+        """Locks this RwLock for writing, waiting if any readers or writers hold the lock.
+
+        Returns:
+            A write guard that releases the lock when dropped.
+        """
+        ...
+
+    def try_read(self) -> "RwLockReadGuard[T] | None":
+        """Attempts to acquire the read lock without waiting.
+
+        Returns:
+            A read guard if successful, None if the lock is held by a writer.
+        """
+        ...
+
+    def try_write(self) -> "RwLockWriteGuard[T] | None":
+        """Attempts to acquire the write lock without waiting.
+
+        Returns:
+            A write guard if successful, None if the lock is held.
+        """
+        ...
+
+
+class RwLockReadGuard(Generic[T]):
+    """A guard that releases the read lock when dropped."""
+    pass
+
+
+class RwLockWriteGuard(Generic[T]):
+    """A guard that releases the write lock when dropped."""
+    pass
+
+
+async def spawn(future: F) -> JoinHandle:
+    """Spawns a new asynchronous task.
+
+    The spawned task may execute on the current thread or another thread.
+    Maps to tokio::spawn in Rust.
+    """
+    ...
+
+
+async def spawn_blocking(f: F) -> JoinHandle:
+    """Runs a blocking function on a dedicated thread pool.
+
+    Maps to tokio::task::spawn_blocking in Rust.
+    """
+    ...
+
+
+def mpsc_channel(buffer: int) -> tuple:
+    """Creates a bounded mpsc channel for communication between tasks.
+
+    Returns a tuple of (Sender, Receiver).
+    Maps to tokio::sync::mpsc::channel in Rust.
+    """
+    ...
+
+
+def mpsc_unbounded_channel() -> tuple:
+    """Creates an unbounded mpsc channel for communication between tasks.
+
+    Returns a tuple of (UnboundedSender, UnboundedReceiver).
+    Maps to tokio::sync::mpsc::unbounded_channel in Rust.
+    """
+    ...
+
+
 class AsyncFd:
     """Associates an IO object backed by a Unix file descriptor with the tokio
 reactor, allowing for readiness to be polled. The file descriptor must be of
@@ -8647,4 +8967,4 @@ sum
 ```"""
 async def consume_budget() -> None: ...
 
-__all__: list[str] = ["duplex", "simplex", "copy_bidirectional", "copy_bidirectional_with_sizes", "join", "fuzz_linked_list", "channel", "channel", "channel", "unbounded_channel", "channel", "pipe", "maybe_done", "signal", "ctrl_c", "ctrl_c", "ctrl_break", "ctrl_close", "ctrl_shutdown", "ctrl_logoff", "id", "try_id", "symlink_dir", "symlink_metadata", "metadata", "read_dir", "canonicalize", "remove_dir", "read_to_string", "symlink", "create_dir", "remove_file", "write", "rename", "read", "copy", "read_link", "create_dir_all", "set_permissions", "symlink_file", "try_exists", "hard_link", "remove_dir_all", "interval", "interval_at", "timeout", "timeout_at", "sleep_until", "sleep", "yield_now", "unconstrained", "has_budget_remaining", "consume_budget", "Duration", "Instant", "AsyncFd", "AsyncFdReadyGuard", "AsyncFdReadyMutGuard", "TryIoError", "AsyncFdTryNewError", "DuplexStream", "SimplexStream", "ReadBuf", "Aio", "AioEvent", "Interest", "Ready", "RngSeed", "SetOnce", "SetOnceError", "OwnedRwLockReadGuard", "RwLockWriteGuard", "RwLockMappedWriteGuard", "RwLockReadGuard", "OwnedRwLockWriteGuard", "OwnedRwLockMappedWriteGuard", "Sender", "Receiver", "RecvError", "RwLock", "Notify", "Notified", "OwnedNotified", "Receiver", "Sender", "Ref", "SendError", "RecvError", "Barrier", "BarrierWaitResult", "Sender", "WeakSender", "Permit", "PermitIterator", "OwnedPermit", "Receiver", "UnboundedSender", "WeakUnboundedSender", "UnboundedReceiver", "SendError", "RecvError", "Mutex", "MutexGuard", "OwnedMutexGuard", "MappedMutexGuard", "OwnedMappedMutexGuard", "TryLockError", "Semaphore", "SemaphorePermit", "OwnedSemaphorePermit", "Sender", "WeakSender", "Receiver", "SendError", "AcquireError", "OnceCell", "NamedPipeServer", "NamedPipeClient", "ServerOptions", "ClientOptions", "PipeInfo", "SocketAddr", "ReadHalf", "WriteHalf", "UCred", "OwnedReadHalf", "OwnedWriteHalf", "ReuniteError", "OpenOptions", "Sender", "Receiver", "ReadHalf", "WriteHalf", "OwnedReadHalf", "OwnedWriteHalf", "ReuniteError", "Internal", "Command", "Child", "ChildStdin", "ChildStdout", "ChildStderr", "SelectNormal", "SelectBiased", "Rotator", "BiasedRotator", "SignalKind", "Signal", "CtrlC", "CtrlBreak", "CtrlClose", "CtrlShutdown", "CtrlLogoff", "Handle", "EnterGuard", "TryCurrentError", "Runtime", "LocalOptions", "LocalRuntime", "Dump", "Tasks", "Task", "BacktraceSymbol", "BacktraceFrame", "Backtrace", "Trace", "RuntimeMetrics", "LogHistogram", "LogHistogramBuilder", "Builder", "Id", "AbortHandle", "Id", "TaskMeta", "ReadDir", "DirEntry", "OpenOptions", "File", "DirBuilder", "Instant", "Interval", "Error", "Elapsed", "LocalEnterGuard", "Builder", "JoinSet", "Builder", "LocalKey", "AccessError", "TryRecvError", "TrySendError", "TryRecvError", "RecvError", "TryRecvError", "TryAcquireError", "SetError", "NotDefinedHere", "PipeMode", "PipeEnd", "RuntimeFlavor", "InvalidHistogramConfiguration", "MissedTickBehavior"]
+__all__: list[str] = ["duplex", "simplex", "copy_bidirectional", "copy_bidirectional_with_sizes", "join", "fuzz_linked_list", "channel", "channel", "channel", "unbounded_channel", "channel", "pipe", "maybe_done", "signal", "ctrl_c", "ctrl_c", "ctrl_break", "ctrl_close", "ctrl_shutdown", "ctrl_logoff", "id", "try_id", "symlink_dir", "symlink_metadata", "metadata", "read_dir", "canonicalize", "remove_dir", "read_to_string", "symlink", "create_dir", "remove_file", "write", "rename", "read", "copy", "read_link", "create_dir_all", "set_permissions", "symlink_file", "try_exists", "hard_link", "remove_dir_all", "interval", "interval_at", "timeout", "timeout_at", "sleep_until", "sleep", "yield_now", "unconstrained", "has_budget_remaining", "consume_budget", "spawn", "spawn_blocking", "mpsc_channel", "mpsc_unbounded_channel", "Duration", "Instant", "MpscSender", "MpscReceiver", "Arc", "Mutex", "RwLock", "AsyncFd", "AsyncFdReadyGuard", "AsyncFdReadyMutGuard", "TryIoError", "AsyncFdTryNewError", "DuplexStream", "SimplexStream", "ReadBuf", "Aio", "AioEvent", "Interest", "Ready", "RngSeed", "SetOnce", "SetOnceError", "OwnedRwLockReadGuard", "RwLockWriteGuard", "RwLockMappedWriteGuard", "RwLockReadGuard", "OwnedRwLockWriteGuard", "OwnedRwLockMappedWriteGuard", "Sender", "Receiver", "RecvError", "RwLock", "Notify", "Notified", "OwnedNotified", "Receiver", "Sender", "Ref", "SendError", "RecvError", "Barrier", "BarrierWaitResult", "Sender", "WeakSender", "Permit", "PermitIterator", "OwnedPermit", "Receiver", "UnboundedSender", "WeakUnboundedSender", "UnboundedReceiver", "SendError", "RecvError", "Mutex", "MutexGuard", "OwnedMutexGuard", "MappedMutexGuard", "OwnedMappedMutexGuard", "TryLockError", "Semaphore", "SemaphorePermit", "OwnedSemaphorePermit", "Sender", "WeakSender", "Receiver", "SendError", "AcquireError", "OnceCell", "NamedPipeServer", "NamedPipeClient", "ServerOptions", "ClientOptions", "PipeInfo", "SocketAddr", "ReadHalf", "WriteHalf", "UCred", "OwnedReadHalf", "OwnedWriteHalf", "ReuniteError", "OpenOptions", "Sender", "Receiver", "ReadHalf", "WriteHalf", "OwnedReadHalf", "OwnedWriteHalf", "ReuniteError", "Internal", "Command", "Child", "ChildStdin", "ChildStdout", "ChildStderr", "SelectNormal", "SelectBiased", "Rotator", "BiasedRotator", "SignalKind", "Signal", "CtrlC", "CtrlBreak", "CtrlClose", "CtrlShutdown", "CtrlLogoff", "Handle", "EnterGuard", "TryCurrentError", "Runtime", "LocalOptions", "LocalRuntime", "Dump", "Tasks", "Task", "BacktraceSymbol", "BacktraceFrame", "Backtrace", "Trace", "RuntimeMetrics", "LogHistogram", "LogHistogramBuilder", "Builder", "Id", "AbortHandle", "Id", "TaskMeta", "ReadDir", "DirEntry", "OpenOptions", "File", "DirBuilder", "Instant", "Interval", "Error", "Elapsed", "LocalEnterGuard", "Builder", "JoinSet", "Builder", "LocalKey", "AccessError", "TryRecvError", "TrySendError", "TryRecvError", "RecvError", "TryRecvError", "TryAcquireError", "SetError", "NotDefinedHere", "PipeMode", "PipeEnd", "RuntimeFlavor", "InvalidHistogramConfiguration", "MissedTickBehavior"]

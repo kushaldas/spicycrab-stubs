@@ -22,6 +22,55 @@ rust_imports = []
 needs_result = false
 
 [[mappings.functions]]
+python = "anyhow.Ok"
+rust_code = "anyhow::Ok({arg0})"
+rust_imports = ["anyhow::Ok"]
+needs_result = true
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "anyhow.format_err"
+rust_code = "anyhow::format_err({arg0})"
+rust_imports = ["anyhow::format_err"]
+needs_result = false
+param_types = ["Arguments"]
+
+[[mappings.functions]]
+python = "anyhow.must_use"
+rust_code = "anyhow::must_use({arg0})"
+rust_imports = ["anyhow::must_use"]
+needs_result = false
+param_types = ["Error"]
+
+[[mappings.functions]]
+python = "anyhow.not_"
+rust_code = "anyhow::not({arg0})"
+rust_imports = ["anyhow::not"]
+needs_result = false
+param_types = ["implBool"]
+
+[[mappings.functions]]
+python = "anyhow.request_ref_backtrace"
+rust_code = "anyhow::request_ref_backtrace({arg0})"
+rust_imports = ["anyhow::request_ref_backtrace"]
+needs_result = false
+param_types = ["&dynError"]
+
+[[mappings.functions]]
+python = "anyhow.provide_ref_backtrace"
+rust_code = "anyhow::provide_ref_backtrace({arg0}, {arg1})"
+rust_imports = ["anyhow::provide_ref_backtrace"]
+needs_result = false
+param_types = ["&mutRequest<'a>", "&'aBacktrace"]
+
+[[mappings.functions]]
+python = "anyhow.provide"
+rust_code = "anyhow::provide({arg0}, {arg1})"
+rust_imports = ["anyhow::provide"]
+needs_result = false
+param_types = ["&'a(implError+?Sized)", "&mutRequest<'a>"]
+
+[[mappings.functions]]
 python = "anyhow.Error.new"
 rust_code = "anyhow::Error::new({arg0})"
 rust_imports = ["anyhow::Error"]
@@ -97,6 +146,7 @@ rust_code = "{self}.ext_context({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error"
 param_types = ["C"]
 
 [[mappings.methods]]
@@ -105,6 +155,7 @@ rust_code = "{self}.context({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Error"
 param_types = ["C"]
 
 [[mappings.methods]]
@@ -112,12 +163,14 @@ python = "Error.backtrace"
 rust_code = "{self}.backtrace()"
 rust_imports = []
 needs_result = false
+returns = "impl_backtrace!()"
 
 [[mappings.methods]]
 python = "Error.chain"
 rust_code = "{self}.chain()"
 rust_imports = []
 needs_result = false
+returns = "Chain"
 
 [[mappings.methods]]
 python = "Error.root_cause"
@@ -136,8 +189,9 @@ needs_result = false
 python = "Error.downcast"
 rust_code = "{self}.downcast()"
 rust_imports = []
-needs_result = false
+needs_result = true
 returns_self = true
+returns = "E"
 
 [[mappings.methods]]
 python = "Error.downcast_ref"
@@ -157,6 +211,7 @@ rust_code = "{self}.into_boxed_dyn_error()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "dynStdError+Send+Sync+'static"
 
 [[mappings.methods]]
 python = "Error.reallocate_into_boxed_dyn_error_without_backtrace"
@@ -164,6 +219,7 @@ rust_code = "{self}.reallocate_into_boxed_dyn_error_without_backtrace()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "dynStdError+Send+Sync+'static"
 
 [[mappings.methods]]
 python = "Error.thiserror_provide"
@@ -178,6 +234,7 @@ rust_code = "{self}.deref()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Target"
 
 [[mappings.methods]]
 python = "Error.deref_mut"
@@ -185,19 +242,22 @@ rust_code = "{self}.deref_mut()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Target"
 
 [[mappings.methods]]
 python = "Error.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "Error.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -226,6 +286,7 @@ rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "Chain.size_hint"
@@ -239,6 +300,7 @@ rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Item"
 
 [[mappings.methods]]
 python = "Chain.len"
@@ -250,42 +312,48 @@ needs_result = false
 python = "MessageError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "MessageError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "DisplayError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "DisplayError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "BoxedError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "BoxedError.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
-needs_result = false
+needs_result = true
+returns = "Result"
 param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
@@ -307,6 +375,7 @@ rust_code = "{self}.clone()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Own"
 
 [[mappings.methods]]
 python = "Own.cast"
@@ -314,24 +383,28 @@ rust_code = "{self}.cast()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Own"
 
 [[mappings.methods]]
 python = "Own.boxed"
 rust_code = "{self}.boxed()"
 rust_imports = []
 needs_result = false
+returns = "T"
 
 [[mappings.methods]]
 python = "Own.by_ref"
 rust_code = "{self}.by_ref()"
 rust_imports = []
 needs_result = false
+returns = "Ref"
 
 [[mappings.methods]]
 python = "Own.by_mut"
 rust_code = "{self}.by_mut()"
 rust_imports = []
 needs_result = false
+returns = "Mut"
 
 [[mappings.methods]]
 python = "Ref.clone"
@@ -339,6 +412,7 @@ rust_code = "{self}.clone()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Ref"
 
 [[mappings.methods]]
 python = "Ref.cast"
@@ -346,12 +420,14 @@ rust_code = "{self}.cast()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Ref"
 
 [[mappings.methods]]
 python = "Ref.by_mut"
 rust_code = "{self}.by_mut()"
 rust_imports = []
 needs_result = false
+returns = "Mut"
 
 [[mappings.methods]]
 python = "Ref.as_ptr"
@@ -371,6 +447,7 @@ rust_code = "{self}.clone()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Mut"
 
 [[mappings.methods]]
 python = "Mut.cast"
@@ -378,12 +455,14 @@ rust_code = "{self}.cast()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Mut"
 
 [[mappings.methods]]
 python = "Mut.by_ref"
 rust_code = "{self}.by_ref()"
 rust_imports = []
 needs_result = false
+returns = "Ref"
 
 [[mappings.methods]]
 python = "Mut.extend"
@@ -391,6 +470,7 @@ rust_code = "{self}.extend()"
 rust_imports = []
 needs_result = false
 returns_self = true
+returns = "Mut"
 
 [[mappings.methods]]
 python = "Mut.deref_mut"
@@ -403,12 +483,14 @@ python = "Mut.read"
 rust_code = "{self}.read()"
 rust_imports = []
 needs_result = false
+returns = "T"
 
 [[mappings.methods]]
 python = "Adhoc.new"
 rust_code = "{self}.new({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Error"
 param_types = ["M"]
 
 [[mappings.methods]]
@@ -416,6 +498,7 @@ python = "Trait.new"
 rust_code = "{self}.new({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Error"
 param_types = ["E"]
 
 [[mappings.methods]]
@@ -423,6 +506,7 @@ python = "Boxed.new"
 rust_code = "{self}.new({arg0})"
 rust_imports = []
 needs_result = false
+returns = "Error"
 param_types = ["Box<dynStdError+Send+Sync>"]
 
 # Result type alias
