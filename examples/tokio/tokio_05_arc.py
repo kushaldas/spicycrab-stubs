@@ -14,7 +14,7 @@ Usage:
 """
 
 from spicycrab_tokio import spawn, sleep, Duration, Arc
-from spicycrab.types import Result
+from spicycrab.types import Result, usize
 
 
 async def print_config(config: Arc[str], task_id: int) -> None:
@@ -23,7 +23,7 @@ async def print_config(config: Arc[str], task_id: int) -> None:
     await sleep(Duration.from_millis(50))
     # In Rust, Arc<T> auto-derefs to T, so we can use the value directly
     # For this example, we just show that we have access to the Arc
-    count: int = Arc.strong_count(config)
+    count: usize = Arc.strong_count(config)
     print(f"Task {task_id}: Done. Strong count = {count}")
 
 

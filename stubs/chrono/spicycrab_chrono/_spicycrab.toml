@@ -1449,19 +1449,19 @@ needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.timestamp_subsec_millis"
-rust_code = "{self}.timestamp_subsec_millis() as i64"
+rust_code = "{self}.timestamp_subsec_millis()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.timestamp_subsec_micros"
-rust_code = "{self}.timestamp_subsec_micros() as i64"
+rust_code = "{self}.timestamp_subsec_micros()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.timestamp_subsec_nanos"
-rust_code = "{self}.timestamp_subsec_nanos() as i64"
+rust_code = "{self}.timestamp_subsec_nanos()"
 rust_imports = []
 needs_result = false
 
@@ -1651,43 +1651,43 @@ param_types = ["&'astr", "Locale"]
 
 [[mappings.methods]]
 python = "DateTime.year"
-rust_code = "{self}.year() as i64"
+rust_code = "{self}.year()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.month"
-rust_code = "{self}.month() as i64"
+rust_code = "{self}.month()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.month0"
-rust_code = "{self}.month0() as i64"
+rust_code = "{self}.month0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.day"
-rust_code = "{self}.day() as i64"
+rust_code = "{self}.day()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.day0"
-rust_code = "{self}.day0() as i64"
+rust_code = "{self}.day0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.ordinal"
-rust_code = "{self}.ordinal() as i64"
+rust_code = "{self}.ordinal()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.ordinal0"
-rust_code = "{self}.ordinal0() as i64"
+rust_code = "{self}.ordinal0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
@@ -1770,25 +1770,25 @@ param_types = ["u32"]
 
 [[mappings.methods]]
 python = "DateTime.hour"
-rust_code = "{self}.hour() as i64"
+rust_code = "{self}.hour()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.minute"
-rust_code = "{self}.minute() as i64"
+rust_code = "{self}.minute()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.second"
-rust_code = "{self}.second() as i64"
+rust_code = "{self}.second()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "DateTime.nanosecond"
-rust_code = "{self}.nanosecond() as i64"
+rust_code = "{self}.nanosecond()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
@@ -2053,7 +2053,7 @@ param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "Months.as_u32"
-rust_code = "{self}.as_u32() as i64"
+rust_code = "{self}.as_u32()"
 rust_imports = []
 needs_result = false
 
@@ -2505,13 +2505,13 @@ param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "FixedOffset.local_minus_utc"
-rust_code = "{self}.local_minus_utc() as i64"
+rust_code = "{self}.local_minus_utc()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "FixedOffset.utc_minus_local"
-rust_code = "{self}.utc_minus_local() as i64"
+rust_code = "{self}.utc_minus_local()"
 rust_imports = []
 needs_result = false
 
@@ -2887,43 +2887,43 @@ param_types = ["&'astr", "Locale"]
 
 [[mappings.methods]]
 python = "Date.year"
-rust_code = "{self}.year() as i64"
+rust_code = "{self}.year()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.month"
-rust_code = "{self}.month() as i64"
+rust_code = "{self}.month()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.month0"
-rust_code = "{self}.month0() as i64"
+rust_code = "{self}.month0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.day"
-rust_code = "{self}.day() as i64"
+rust_code = "{self}.day()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.day0"
-rust_code = "{self}.day0() as i64"
+rust_code = "{self}.day0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.ordinal"
-rust_code = "{self}.ordinal() as i64"
+rust_code = "{self}.ordinal()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "Date.ordinal0"
-rust_code = "{self}.ordinal0() as i64"
+rust_code = "{self}.ordinal0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
@@ -3144,19 +3144,19 @@ needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.timestamp_subsec_millis"
-rust_code = "{self}.timestamp_subsec_millis() as i64"
+rust_code = "{self}.timestamp_subsec_millis()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.timestamp_subsec_micros"
-rust_code = "{self}.timestamp_subsec_micros() as i64"
+rust_code = "{self}.timestamp_subsec_micros()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.timestamp_subsec_nanos"
-rust_code = "{self}.timestamp_subsec_nanos() as i64"
+rust_code = "{self}.timestamp_subsec_nanos()"
 rust_imports = []
 needs_result = false
 
@@ -3273,43 +3273,43 @@ returns = "DateTime"
 
 [[mappings.methods]]
 python = "NaiveDateTime.year"
-rust_code = "{self}.year() as i64"
+rust_code = "{self}.year()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.month"
-rust_code = "{self}.month() as i64"
+rust_code = "{self}.month()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.month0"
-rust_code = "{self}.month0() as i64"
+rust_code = "{self}.month0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.day"
-rust_code = "{self}.day() as i64"
+rust_code = "{self}.day()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.day0"
-rust_code = "{self}.day0() as i64"
+rust_code = "{self}.day0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.ordinal"
-rust_code = "{self}.ordinal() as i64"
+rust_code = "{self}.ordinal()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.ordinal0"
-rust_code = "{self}.ordinal0() as i64"
+rust_code = "{self}.ordinal0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
@@ -3392,25 +3392,25 @@ param_types = ["u32"]
 
 [[mappings.methods]]
 python = "NaiveDateTime.hour"
-rust_code = "{self}.hour() as i64"
+rust_code = "{self}.hour()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.minute"
-rust_code = "{self}.minute() as i64"
+rust_code = "{self}.minute()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.second"
-rust_code = "{self}.second() as i64"
+rust_code = "{self}.second()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDateTime.nanosecond"
-rust_code = "{self}.nanosecond() as i64"
+rust_code = "{self}.nanosecond()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
@@ -3865,49 +3865,49 @@ needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.to_epoch_days"
-rust_code = "{self}.to_epoch_days() as i64"
+rust_code = "{self}.to_epoch_days()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.year"
-rust_code = "{self}.year() as i64"
+rust_code = "{self}.year()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.month"
-rust_code = "{self}.month() as i64"
+rust_code = "{self}.month()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.month0"
-rust_code = "{self}.month0() as i64"
+rust_code = "{self}.month0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.day"
-rust_code = "{self}.day() as i64"
+rust_code = "{self}.day()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.day0"
-rust_code = "{self}.day0() as i64"
+rust_code = "{self}.day0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.ordinal"
-rust_code = "{self}.ordinal() as i64"
+rust_code = "{self}.ordinal()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveDate.ordinal0"
-rust_code = "{self}.ordinal0() as i64"
+rust_code = "{self}.ordinal0()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
@@ -4246,25 +4246,25 @@ param_types = ["&'astr"]
 
 [[mappings.methods]]
 python = "NaiveTime.hour"
-rust_code = "{self}.hour() as i64"
+rust_code = "{self}.hour()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveTime.minute"
-rust_code = "{self}.minute() as i64"
+rust_code = "{self}.minute()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveTime.second"
-rust_code = "{self}.second() as i64"
+rust_code = "{self}.second()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "NaiveTime.nanosecond"
-rust_code = "{self}.nanosecond() as i64"
+rust_code = "{self}.nanosecond()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
@@ -4306,7 +4306,7 @@ param_types = ["u32"]
 
 [[mappings.methods]]
 python = "NaiveTime.num_seconds_from_midnight"
-rust_code = "{self}.num_seconds_from_midnight() as i64"
+rust_code = "{self}.num_seconds_from_midnight()"
 rust_imports = ["chrono::Timelike"]
 needs_result = false
 
@@ -4418,19 +4418,19 @@ param_types = ["&mutfmt::Formatter"]
 
 [[mappings.methods]]
 python = "IsoWeek.year"
-rust_code = "{self}.year() as i64"
+rust_code = "{self}.year()"
 rust_imports = ["chrono::Datelike"]
 needs_result = false
 
 [[mappings.methods]]
 python = "IsoWeek.week"
-rust_code = "{self}.week() as i64"
+rust_code = "{self}.week()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "IsoWeek.week0"
-rust_code = "{self}.week0() as i64"
+rust_code = "{self}.week0()"
 rust_imports = []
 needs_result = false
 
@@ -4492,7 +4492,7 @@ needs_result = false
 
 [[mappings.methods]]
 python = "TimeDelta.subsec_millis"
-rust_code = "{self}.subsec_millis() as i64"
+rust_code = "{self}.subsec_millis()"
 rust_imports = []
 needs_result = false
 
@@ -4504,7 +4504,7 @@ needs_result = false
 
 [[mappings.methods]]
 python = "TimeDelta.subsec_micros"
-rust_code = "{self}.subsec_micros() as i64"
+rust_code = "{self}.subsec_micros()"
 rust_imports = []
 needs_result = false
 
@@ -4516,7 +4516,7 @@ needs_result = false
 
 [[mappings.methods]]
 python = "TimeDelta.subsec_nanos"
-rust_code = "{self}.subsec_nanos() as i64"
+rust_code = "{self}.subsec_nanos()"
 rust_imports = []
 needs_result = false
 
@@ -4767,7 +4767,7 @@ needs_result = false
 
 [[mappings.methods]]
 python = "WeekdaySet.len"
-rust_code = "{self}.len() as i64"
+rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
 

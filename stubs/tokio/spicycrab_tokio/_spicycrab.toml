@@ -59,14 +59,14 @@ needs_result = false
 # Arc constructor from std
 [[mappings.functions]]
 python = "tokio.Arc.strong_count"
-rust_code = "std::sync::Arc::strong_count(&{arg0}) as i64"
+rust_code = "std::sync::Arc::strong_count(&{arg0})"
 rust_imports = []
 needs_result = false
 
 # Arc constructor from std
 [[mappings.functions]]
 python = "tokio.Arc.weak_count"
-rust_code = "std::sync::Arc::weak_count(&{arg0}) as i64"
+rust_code = "std::sync::Arc::weak_count(&{arg0})"
 rust_imports = []
 needs_result = false
 
@@ -10799,13 +10799,13 @@ returns = "Stdio"
 
 [[mappings.methods]]
 python = "Rotator.num_skip"
-rust_code = "{self}.num_skip() as i64"
+rust_code = "{self}.num_skip()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
 python = "BiasedRotator.num_skip"
-rust_code = "{self}.num_skip() as i64"
+rust_code = "{self}.num_skip()"
 rust_imports = []
 needs_result = false
 

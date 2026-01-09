@@ -991,7 +991,7 @@ param_types = ["&str"]
 
 [[mappings.methods]]
 python = "ArgMatches.get_count"
-rust_code = "{self}.get_count({arg0}) as i64"
+rust_code = "{self}.get_count({arg0})"
 rust_imports = []
 needs_result = false
 param_types = ["&str"]
@@ -5175,7 +5175,7 @@ needs_result = false
 
 [[mappings.methods]]
 python = "Error.exit_code"
-rust_code = "{self}.exit_code() as i64"
+rust_code = "{self}.exit_code()"
 rust_imports = []
 needs_result = false
 
