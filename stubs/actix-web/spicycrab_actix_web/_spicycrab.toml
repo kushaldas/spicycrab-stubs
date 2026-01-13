@@ -1,0 +1,3621 @@
+[package]
+name = "actix-web"
+rust_crate = "actix-web"
+rust_version = "4.12.1"
+python_module = "spicycrab_actix_web"
+
+[cargo.dependencies]
+actix-web = "4.12.1"
+
+[cargo.features]
+available = ["__compress", "__tls", "compat", "compat-routing-macros-force-pub", "compress-brotli", "compress-gzip", "compress-zstd", "cookies", "default", "experimental-io-uring", "http2", "macros", "openssl", "rustls", "rustls-0_20", "rustls-0_21", "rustls-0_22", "rustls-0_23", "secure-cookies", "unicode", "ws"]
+default = ["compat", "compress-brotli", "compress-gzip", "compress-zstd", "cookies", "http2", "macros", "unicode", "ws"]
+
+# Result type alias - Ok constructor
+[[mappings.functions]]
+python = "actix-web.Result.Ok"
+rust_code = "Ok({arg0})"
+rust_imports = []
+needs_result = false
+
+# Result type alias - Err constructor
+[[mappings.functions]]
+python = "actix-web.Result.Err"
+rust_code = "Err({arg0})"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.Ok"
+rust_code = "actix_web::HttpResponse::Ok()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.Created"
+rust_code = "actix_web::HttpResponse::Created()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.Accepted"
+rust_code = "actix_web::HttpResponse::Accepted()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.NoContent"
+rust_code = "actix_web::HttpResponse::NoContent()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.BadRequest"
+rust_code = "actix_web::HttpResponse::BadRequest()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.Unauthorized"
+rust_code = "actix_web::HttpResponse::Unauthorized()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.Forbidden"
+rust_code = "actix_web::HttpResponse::Forbidden()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.NotFound"
+rust_code = "actix_web::HttpResponse::NotFound()"
+rust_imports = []
+needs_result = false
+
+# HttpResponse constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpResponse.InternalServerError"
+rust_code = "actix_web::HttpResponse::InternalServerError()"
+rust_imports = []
+needs_result = false
+
+# App constructor from std
+[[mappings.functions]]
+python = "actix-web.App.new"
+rust_code = "actix_web::App::new()"
+rust_imports = []
+needs_result = false
+
+# HttpServer constructor from std
+[[mappings.functions]]
+python = "actix-web.HttpServer.new"
+rust_code = "actix_web::HttpServer::new(move || {arg0})"
+rust_imports = []
+needs_result = false
+
+# Data constructor from std
+[[mappings.functions]]
+python = "actix-web.Data.new"
+rust_code = "actix_web::web::Data::new({arg0})"
+rust_imports = []
+needs_result = false
+
+# ErrorBadRequest standalone function
+[[mappings.functions]]
+python = "actix-web.ErrorBadRequest"
+rust_code = "actix_web::error::ErrorBadRequest({arg0})"
+rust_imports = ["actix_web::error"]
+needs_result = false
+
+# ErrorUnauthorized standalone function
+[[mappings.functions]]
+python = "actix-web.ErrorUnauthorized"
+rust_code = "actix_web::error::ErrorUnauthorized({arg0})"
+rust_imports = ["actix_web::error"]
+needs_result = false
+
+# ErrorForbidden standalone function
+[[mappings.functions]]
+python = "actix-web.ErrorForbidden"
+rust_code = "actix_web::error::ErrorForbidden({arg0})"
+rust_imports = ["actix_web::error"]
+needs_result = false
+
+# ErrorNotFound standalone function
+[[mappings.functions]]
+python = "actix-web.ErrorNotFound"
+rust_code = "actix_web::error::ErrorNotFound({arg0})"
+rust_imports = ["actix_web::error"]
+needs_result = false
+
+# ErrorInternalServerError standalone function
+[[mappings.functions]]
+python = "actix-web.ErrorInternalServerError"
+rust_code = "actix_web::error::ErrorInternalServerError({arg0})"
+rust_imports = ["actix_web::error"]
+needs_result = false
+
+# get standalone function
+[[mappings.functions]]
+python = "actix-web.get"
+rust_code = "actix_web::web::get()"
+rust_imports = []
+needs_result = false
+
+# post standalone function
+[[mappings.functions]]
+python = "actix-web.post"
+rust_code = "actix_web::web::post()"
+rust_imports = []
+needs_result = false
+
+# put standalone function
+[[mappings.functions]]
+python = "actix-web.put"
+rust_code = "actix_web::web::put()"
+rust_imports = []
+needs_result = false
+
+# delete standalone function
+[[mappings.functions]]
+python = "actix-web.delete"
+rust_code = "actix_web::web::delete()"
+rust_imports = []
+needs_result = false
+
+# patch standalone function
+[[mappings.functions]]
+python = "actix-web.patch"
+rust_code = "actix_web::web::patch()"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.init_service"
+rust_code = "actix-web::test::test_utils::init_service({arg0})"
+rust_imports = ["actix-web::test::test_utils::init_service"]
+needs_result = false
+is_async = true
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "actix-web.call_service"
+rust_code = "actix-web::test::test_utils::call_service({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::call_service"]
+needs_result = false
+is_async = true
+param_types = ["&S", "R"]
+
+[[mappings.functions]]
+python = "actix-web.try_call_service"
+rust_code = "actix-web::test::test_utils::try_call_service({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::try_call_service"]
+needs_result = true
+is_async = true
+param_types = ["&S", "R"]
+
+[[mappings.functions]]
+python = "actix-web.call_and_read_body"
+rust_code = "actix-web::test::test_utils::call_and_read_body({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::call_and_read_body"]
+needs_result = false
+is_async = true
+param_types = ["&S", "Request"]
+
+[[mappings.functions]]
+python = "actix-web.read_response"
+rust_code = "actix-web::test::test_utils::read_response({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::read_response"]
+needs_result = false
+is_async = true
+param_types = ["&S", "Request"]
+
+[[mappings.functions]]
+python = "actix-web.read_body"
+rust_code = "actix-web::test::test_utils::read_body({arg0})"
+rust_imports = ["actix-web::test::test_utils::read_body"]
+needs_result = false
+is_async = true
+param_types = ["ServiceResponse<B>"]
+
+[[mappings.functions]]
+python = "actix-web.try_read_body"
+rust_code = "actix-web::test::test_utils::try_read_body({arg0})"
+rust_imports = ["actix-web::test::test_utils::try_read_body"]
+needs_result = true
+is_async = true
+param_types = ["ServiceResponse<B>"]
+
+[[mappings.functions]]
+python = "actix-web.read_body_json"
+rust_code = "actix-web::test::test_utils::read_body_json({arg0})"
+rust_imports = ["actix-web::test::test_utils::read_body_json"]
+needs_result = false
+is_async = true
+param_types = ["ServiceResponse<B>"]
+
+[[mappings.functions]]
+python = "actix-web.try_read_body_json"
+rust_code = "actix-web::test::test_utils::try_read_body_json({arg0})"
+rust_imports = ["actix-web::test::test_utils::try_read_body_json"]
+needs_result = true
+is_async = true
+param_types = ["ServiceResponse<B>"]
+
+[[mappings.functions]]
+python = "actix-web.call_and_read_body_json"
+rust_code = "actix-web::test::test_utils::call_and_read_body_json({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::call_and_read_body_json"]
+needs_result = false
+is_async = true
+param_types = ["&S", "Request"]
+
+[[mappings.functions]]
+python = "actix-web.try_call_and_read_body_json"
+rust_code = "actix-web::test::test_utils::try_call_and_read_body_json({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::try_call_and_read_body_json"]
+needs_result = true
+is_async = true
+param_types = ["&S", "Request"]
+
+[[mappings.functions]]
+python = "actix-web.read_response_json"
+rust_code = "actix-web::test::test_utils::read_response_json({arg0}, {arg1})"
+rust_imports = ["actix-web::test::test_utils::read_response_json"]
+needs_result = false
+is_async = true
+param_types = ["&S", "Request"]
+
+[[mappings.functions]]
+python = "actix-web.ok_service"
+rust_code = "actix-web::test::test_services::ok_service()"
+rust_imports = ["actix-web::test::test_services::ok_service"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.status_service"
+rust_code = "actix-web::test::test_services::status_service({arg0})"
+rust_imports = ["actix-web::test::test_services::status_service"]
+needs_result = false
+param_types = ["StatusCode"]
+
+[[mappings.functions]]
+python = "actix-web.simple_service"
+rust_code = "actix-web::test::test_services::simple_service({arg0})"
+rust_imports = ["actix-web::test::test_services::simple_service"]
+needs_result = false
+param_types = ["StatusCode"]
+
+[[mappings.functions]]
+python = "actix-web.default_service"
+rust_code = "actix-web::test::test_services::default_service({arg0})"
+rust_imports = ["actix-web::test::test_services::default_service"]
+needs_result = false
+param_types = ["StatusCode"]
+
+[[mappings.functions]]
+python = "actix-web.Host"
+rust_code = "actix-web::guard::Host({arg0})"
+rust_imports = ["actix-web::guard::Host"]
+needs_result = false
+param_types = ["implAsRef<str>"]
+
+[[mappings.functions]]
+python = "actix-web.fn_guard"
+rust_code = "actix-web::fn_guard({arg0})"
+rust_imports = ["actix-web::fn_guard"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.Any"
+rust_code = "actix-web::guard::Any({arg0})"
+rust_imports = ["actix-web::guard::Any"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.All"
+rust_code = "actix-web::guard::All({arg0})"
+rust_imports = ["actix-web::guard::All"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.Method"
+rust_code = "actix-web::guard::Method({arg0})"
+rust_imports = ["actix-web::guard::Method"]
+needs_result = false
+param_types = ["HttpMethod"]
+
+[[mappings.functions]]
+python = "actix-web.Header"
+rust_code = "actix-web::guard::Header({arg0}, {arg1})"
+rust_imports = ["actix-web::guard::Header"]
+needs_result = false
+param_types = ["&'staticstr", "&'staticstr"]
+
+[[mappings.functions]]
+python = "actix-web.my_app"
+rust_code = "actix-web::my_app()"
+rust_imports = ["actix-web::my_app"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.gzip_decode"
+rust_code = "actix-web::middleware::compress::gzip_decode({arg0})"
+rust_imports = ["actix-web::middleware::compress::gzip_decode"]
+needs_result = false
+param_types = ["implAsRef<[u8]>"]
+
+[[mappings.functions]]
+python = "actix-web.from_fn"
+rust_code = "actix-web::middleware::from_fn({arg0})"
+rust_imports = ["actix-web::middleware::from_fn"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.resource"
+rust_code = "actix-web::web::resource({arg0})"
+rust_imports = ["actix-web::web::resource"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.scope"
+rust_code = "actix-web::web::scope({arg0})"
+rust_imports = ["actix-web::web::scope"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.route"
+rust_code = "actix-web::web::route()"
+rust_imports = ["actix-web::web::route"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.method"
+rust_code = "actix-web::web::method({arg0})"
+rust_imports = ["actix-web::web::method"]
+needs_result = false
+param_types = ["Method"]
+
+[[mappings.functions]]
+python = "actix-web.to"
+rust_code = "actix-web::web::to({arg0})"
+rust_imports = ["actix-web::web::to"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.service"
+rust_code = "actix-web::web::service({arg0})"
+rust_imports = ["actix-web::web::service"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.redirect"
+rust_code = "actix-web::web::redirect({arg0}, {arg1})"
+rust_imports = ["actix-web::web::redirect"]
+needs_result = false
+param_types = ["implInto<Cow<'static,str>>", "implInto<Cow<'static,str>>"]
+
+[[mappings.functions]]
+python = "actix-web.block"
+rust_code = "actix-web::web::block({arg0})"
+rust_imports = ["actix-web::web::block"]
+needs_result = false
+param_types = ["F"]
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.default"
+rust_code = "actix-web::TestRequest::default()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.with_uri"
+rust_code = "actix-web::TestRequest::with_uri({arg0})"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.get"
+rust_code = "actix-web::TestRequest::get()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.post"
+rust_code = "actix-web::TestRequest::post()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.put"
+rust_code = "actix-web::TestRequest::put()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.patch"
+rust_code = "actix-web::TestRequest::patch()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.TestRequest.delete"
+rust_code = "actix-web::TestRequest::delete()"
+rust_imports = ["actix-web::TestRequest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.ThinData.from_request"
+rust_code = "actix-web::ThinData::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::ThinData"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.ReqData.from_request"
+rust_code = "actix-web::request_data::ReqData::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::request_data::ReqData"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.Resource.new"
+rust_code = "actix-web::Resource::new({arg0})"
+rust_imports = ["actix-web::Resource"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.AppConfig.__priv_test_new"
+rust_code = "actix-web::AppConfig::__priv_test_new({arg0}, {arg1}, {arg2})"
+rust_imports = ["actix-web::AppConfig"]
+needs_result = false
+param_types = ["bool", "String", "SocketAddr"]
+
+[[mappings.functions]]
+python = "actix-web.AppConfig.default"
+rust_code = "actix-web::AppConfig::default()"
+rust_imports = ["actix-web::AppConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.Acceptable.new"
+rust_code = "actix-web::guard::Acceptable::new({arg0})"
+rust_imports = ["actix-web::guard::Acceptable"]
+needs_result = false
+param_types = ["mime::Mime"]
+
+[[mappings.functions]]
+python = "actix-web.AppEntry.new"
+rust_code = "actix-web::app_service::AppEntry::new({arg0})"
+rust_imports = ["actix-web::app_service::AppEntry"]
+needs_result = false
+param_types = ["Rc<RefCell<Option<AppRoutingFactory>>>"]
+
+[[mappings.functions]]
+python = "actix-web.ConnectionInfo.from_request"
+rust_code = "actix-web::ConnectionInfo::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::ConnectionInfo"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.PeerAddr.from_request"
+rust_code = "actix-web::info::PeerAddr::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::info::PeerAddr"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.Redirect.new"
+rust_code = "actix-web::Redirect::new({arg0}, {arg1})"
+rust_imports = ["actix-web::Redirect"]
+needs_result = false
+param_types = ["implInto<Cow<'static,str>>", "implInto<Cow<'static,str>>"]
+
+[[mappings.functions]]
+python = "actix-web.Redirect.to"
+rust_code = "actix-web::Redirect::to({arg0})"
+rust_imports = ["actix-web::Redirect"]
+needs_result = false
+param_types = ["implInto<Cow<'static,str>>"]
+
+[[mappings.functions]]
+python = "actix-web.ResourceMap.new"
+rust_code = "actix-web::rmap::ResourceMap::new({arg0})"
+rust_imports = ["actix-web::rmap::ResourceMap"]
+needs_result = false
+param_types = ["ResourceDef"]
+
+[[mappings.functions]]
+python = "actix-web.Scope.new"
+rust_code = "actix-web::Scope::new({arg0})"
+rust_imports = ["actix-web::Scope"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.ContentDisposition.attachment"
+rust_code = "actix-web::http::header::ContentDisposition::attachment({arg0})"
+rust_imports = ["actix-web::http::header::ContentDisposition"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "actix-web.ContentDisposition.from_raw"
+rust_code = "actix-web::http::header::ContentDisposition::from_raw({arg0})"
+rust_imports = ["actix-web::http::header::ContentDisposition"]
+needs_result = true
+param_types = ["&header::HeaderValue"]
+
+[[mappings.functions]]
+python = "actix-web.ContentDisposition.name"
+rust_code = "actix-web::http::header::ContentDisposition::name()"
+rust_imports = ["actix-web::http::header::ContentDisposition"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.ContentDisposition.parse"
+rust_code = "actix-web::http::header::ContentDisposition::parse({arg0})"
+rust_imports = ["actix-web::http::header::ContentDisposition"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "actix-web.ContentLength.from_str"
+rust_code = "actix-web::http::header::ContentLength::from_str({arg0})"
+rust_imports = ["actix-web::http::header::ContentLength"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.ContentLength.name"
+rust_code = "actix-web::http::header::ContentLength::name()"
+rust_imports = ["actix-web::http::header::ContentLength"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.ContentLength.parse"
+rust_code = "actix-web::http::header::ContentLength::parse({arg0})"
+rust_imports = ["actix-web::http::header::ContentLength"]
+needs_result = true
+param_types = ["&M"]
+
+[[mappings.functions]]
+python = "actix-web.ContentLength.from_"
+rust_code = "actix-web::http::header::ContentLength::from({arg0})"
+rust_imports = ["actix-web::http::header::ContentLength"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.new"
+rust_code = "actix-web::http::header::EntityTag::new({arg0}, {arg1})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = false
+param_types = ["bool", "String"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.new_weak"
+rust_code = "actix-web::http::header::EntityTag::new_weak({arg0})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.weak"
+rust_code = "actix-web::http::header::EntityTag::weak({arg0})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.new_strong"
+rust_code = "actix-web::http::header::EntityTag::new_strong({arg0})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.strong"
+rust_code = "actix-web::http::header::EntityTag::strong({arg0})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "actix-web.EntityTag.from_str"
+rust_code = "actix-web::http::header::EntityTag::from_str({arg0})"
+rust_imports = ["actix-web::http::header::EntityTag"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.InternalError.new"
+rust_code = "actix-web::InternalError::new({arg0}, {arg1})"
+rust_imports = ["actix-web::InternalError"]
+needs_result = false
+param_types = ["T", "StatusCode"]
+
+[[mappings.functions]]
+python = "actix-web.InternalError.from_response"
+rust_code = "actix-web::InternalError::from_response({arg0}, {arg1})"
+rust_imports = ["actix-web::InternalError"]
+needs_result = false
+param_types = ["T", "HttpResponse"]
+
+[[mappings.functions]]
+python = "actix-web.Error.from_"
+rust_code = "actix-web::Error::from({arg0})"
+rust_imports = ["actix-web::Error"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.Error.from_"
+rust_code = "actix-web::Error::from({arg0})"
+rust_imports = ["actix-web::Error"]
+needs_result = false
+param_types = ["Box<dynResponseError>"]
+
+[[mappings.functions]]
+python = "actix-web.Error.from_"
+rust_code = "actix-web::Error::from({arg0})"
+rust_imports = ["actix-web::Error"]
+needs_result = false
+param_types = ["EitherExtractError<L,R>"]
+
+[[mappings.functions]]
+python = "actix-web.ErrorHandlers.default"
+rust_code = "actix-web::middleware::err_handlers::ErrorHandlers::default()"
+rust_imports = ["actix-web::middleware::err_handlers::ErrorHandlers"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.ErrorHandlers.new"
+rust_code = "actix-web::middleware::err_handlers::ErrorHandlers::new()"
+rust_imports = ["actix-web::middleware::err_handlers::ErrorHandlers"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.Compat.new"
+rust_code = "actix-web::middleware::Compat::new({arg0})"
+rust_imports = ["actix-web::middleware::Compat"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.Logger.new"
+rust_code = "actix-web::middleware::Logger::new({arg0})"
+rust_imports = ["actix-web::middleware::Logger"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "actix-web.Logger.default"
+rust_code = "actix-web::middleware::Logger::default()"
+rust_imports = ["actix-web::middleware::Logger"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.NormalizePath.default"
+rust_code = "actix-web::middleware::NormalizePath::default()"
+rust_imports = ["actix-web::middleware::NormalizePath"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.NormalizePath.new"
+rust_code = "actix-web::middleware::NormalizePath::new({arg0})"
+rust_imports = ["actix-web::middleware::NormalizePath"]
+needs_result = false
+param_types = ["TrailingSlash"]
+
+[[mappings.functions]]
+python = "actix-web.NormalizePath.trim"
+rust_code = "actix-web::middleware::NormalizePath::trim()"
+rust_imports = ["actix-web::middleware::NormalizePath"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.Condition.new"
+rust_code = "actix-web::middleware::Condition::new({arg0}, {arg1})"
+rust_imports = ["actix-web::middleware::Condition"]
+needs_result = false
+param_types = ["bool", "T"]
+
+[[mappings.functions]]
+python = "actix-web.DefaultHeaders.new"
+rust_code = "actix-web::middleware::DefaultHeaders::new()"
+rust_imports = ["actix-web::middleware::DefaultHeaders"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.HttpResponseBuilder.new"
+rust_code = "actix-web::HttpResponseBuilder::new({arg0})"
+rust_imports = ["actix-web::HttpResponseBuilder"]
+needs_result = false
+param_types = ["StatusCode"]
+
+[[mappings.functions]]
+python = "actix-web.ServiceRequest.from_parts"
+rust_code = "actix-web::ServiceRequest::from_parts({arg0}, {arg1})"
+rust_imports = ["actix-web::ServiceRequest"]
+needs_result = false
+param_types = ["HttpRequest", "Payload"]
+
+[[mappings.functions]]
+python = "actix-web.ServiceRequest.from_request"
+rust_code = "actix-web::ServiceRequest::from_request({arg0})"
+rust_imports = ["actix-web::ServiceRequest"]
+needs_result = false
+param_types = ["HttpRequest"]
+
+[[mappings.functions]]
+python = "actix-web.ServiceResponse.from_err"
+rust_code = "actix-web::ServiceResponse::from_err({arg0}, {arg1})"
+rust_imports = ["actix-web::ServiceResponse"]
+needs_result = false
+param_types = ["E", "HttpRequest"]
+
+[[mappings.functions]]
+python = "actix-web.ServiceResponse.new"
+rust_code = "actix-web::ServiceResponse::new({arg0}, {arg1})"
+rust_imports = ["actix-web::ServiceResponse"]
+needs_result = false
+param_types = ["HttpRequest", "HttpResponse<B>"]
+
+[[mappings.functions]]
+python = "actix-web.WebService.new"
+rust_code = "actix-web::WebService::new({arg0})"
+rust_imports = ["actix-web::WebService"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "actix-web.JsonConfig.default"
+rust_code = "actix-web::JsonConfig::default()"
+rust_imports = ["actix-web::JsonConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.Html.new"
+rust_code = "actix-web::Html::new({arg0})"
+rust_imports = ["actix-web::Html"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "actix-web.FormConfig.default"
+rust_code = "actix-web::FormConfig::default()"
+rust_imports = ["actix-web::FormConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.UrlEncoded.new"
+rust_code = "actix-web::types::form::UrlEncoded::new({arg0}, {arg1})"
+rust_imports = ["actix-web::types::form::UrlEncoded"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.Payload.from_request"
+rust_code = "actix-web::Payload::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::Payload"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutdev::Payload"]
+
+[[mappings.functions]]
+python = "actix-web.PayloadConfig.new"
+rust_code = "actix-web::PayloadConfig::new({arg0})"
+rust_imports = ["actix-web::PayloadConfig"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "actix-web.PayloadConfig.default"
+rust_code = "actix-web::PayloadConfig::default()"
+rust_imports = ["actix-web::PayloadConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "actix-web.HttpMessageBody.new"
+rust_code = "actix-web::types::payload::HttpMessageBody::new({arg0}, {arg1})"
+rust_imports = ["actix-web::types::payload::HttpMessageBody"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutdev::Payload"]
+
+[[mappings.functions]]
+python = "actix-web.Header.from_request"
+rust_code = "actix-web::Header::from_request({arg0}, {arg1})"
+rust_imports = ["actix-web::Header"]
+needs_result = false
+param_types = ["&HttpRequest", "&mutPayload"]
+
+[[mappings.functions]]
+python = "actix-web.Readlines.new"
+rust_code = "actix-web::Readlines::new({arg0})"
+rust_imports = ["actix-web::Readlines"]
+needs_result = false
+param_types = ["&mutT"]
+
+[[mappings.methods]]
+python = "TestRequest.version"
+rust_code = "{self}.version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["Version"]
+
+[[mappings.methods]]
+python = "TestRequest.method"
+rust_code = "{self}.method({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["Method"]
+
+[[mappings.methods]]
+python = "TestRequest.uri"
+rust_code = "{self}.uri({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "TestRequest.insert_header"
+rust_code = "{self}.insert_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "TestRequest.append_header"
+rust_code = "{self}.append_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "TestRequest.cookie"
+rust_code = "{self}.cookie({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["Cookie<'_>"]
+
+[[mappings.methods]]
+python = "TestRequest.param"
+rust_code = "{self}.param({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implInto<Cow<'static,str>>", "implInto<Cow<'static,str>>"]
+
+[[mappings.methods]]
+python = "TestRequest.peer_addr"
+rust_code = "{self}.peer_addr({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["SocketAddr"]
+
+[[mappings.methods]]
+python = "TestRequest.set_payload"
+rust_code = "{self}.set_payload({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implInto<Bytes>"]
+
+[[mappings.methods]]
+python = "TestRequest.set_form"
+rust_code = "{self}.set_form({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implSerialize"]
+
+[[mappings.methods]]
+python = "TestRequest.set_json"
+rust_code = "{self}.set_json({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["implSerialize"]
+
+[[mappings.methods]]
+python = "TestRequest.app_data"
+rust_code = "{self}.app_data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "TestRequest.data"
+rust_code = "{self}.data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TestRequest"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "TestRequest.to_request"
+rust_code = "{self}.to_request()"
+rust_imports = []
+needs_result = false
+returns = "Request"
+
+[[mappings.methods]]
+python = "TestRequest.to_srv_request"
+rust_code = "{self}.to_srv_request()"
+rust_imports = []
+needs_result = false
+returns = "ServiceRequest"
+
+[[mappings.methods]]
+python = "TestRequest.to_srv_response"
+rust_code = "{self}.to_srv_response({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ServiceResponse"
+param_types = ["HttpResponse<B>"]
+
+[[mappings.methods]]
+python = "TestRequest.to_http_request"
+rust_code = "{self}.to_http_request()"
+rust_imports = []
+needs_result = false
+returns = "HttpRequest"
+
+[[mappings.methods]]
+python = "TestRequest.to_http_parts"
+rust_code = "{self}.to_http_parts()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TestRequest.send_request"
+rust_code = "{self}.send_request({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Response"
+param_types = ["&S"]
+
+[[mappings.methods]]
+python = "TestRequest.set_server_hostname"
+rust_code = "{self}.set_server_hostname({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ReqData.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "ReqData.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "Resource.name"
+rust_code = "{self}.name({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Resource.guard"
+rust_code = "{self}.guard({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["G"]
+
+[[mappings.methods]]
+python = "Resource.route"
+rust_code = "{self}.route({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["Route"]
+
+[[mappings.methods]]
+python = "Resource.app_data"
+rust_code = "{self}.app_data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "Resource.data"
+rust_code = "{self}.data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "Resource.to"
+rust_code = "{self}.to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Resource.wrap"
+rust_code = "{self}.wrap({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["M"]
+
+[[mappings.methods]]
+python = "Resource.wrap_fn"
+rust_code = "{self}.wrap_fn({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Resource.default_service"
+rust_code = "{self}.default_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resource"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Resource.register"
+rust_code = "{self}.register({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutAppService"]
+
+[[mappings.methods]]
+python = "ResourceFactory.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "ResourceService.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "ResourceEndpoint.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "AppService.is_root"
+rust_code = "{self}.is_root()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AppService.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "AppConfig"
+
+[[mappings.methods]]
+python = "AppService.default_service"
+rust_code = "{self}.default_service()"
+rust_imports = []
+needs_result = false
+returns = "Rc"
+
+[[mappings.methods]]
+python = "AppService.register_service"
+rust_code = "{self}.register_service({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+param_types = ["ResourceDef", "Option<Vec<Box<dynGuard>>>", "F", "Option<Rc<ResourceMap>>"]
+
+[[mappings.methods]]
+python = "AppConfig.host"
+rust_code = "{self}.host()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "AppConfig.secure"
+rust_code = "{self}.secure()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AppConfig.local_addr"
+rust_code = "{self}.local_addr()"
+rust_imports = []
+needs_result = false
+returns = "SocketAddr"
+
+[[mappings.methods]]
+python = "ServiceConfig.data"
+rust_code = "{self}.data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "ServiceConfig.app_data"
+rust_code = "{self}.app_data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "ServiceConfig.default_service"
+rust_code = "{self}.default_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ServiceConfig.configure"
+rust_code = "{self}.configure({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ServiceConfig.route"
+rust_code = "{self}.route({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&str", "Route"]
+
+[[mappings.methods]]
+python = "ServiceConfig.service"
+rust_code = "{self}.service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ServiceConfig.external_resource"
+rust_code = "{self}.external_resource({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["N", "U"]
+
+[[mappings.methods]]
+python = "HostGuard.scheme"
+rust_code = "{self}.scheme({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HostGuard"
+param_types = ["H"]
+
+[[mappings.methods]]
+python = "HostGuard.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&GuardContext<'_>"]
+
+[[mappings.methods]]
+python = "Acceptable.match_star_star"
+rust_code = "{self}.match_star_star()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Acceptable"
+
+[[mappings.methods]]
+python = "Acceptable.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&GuardContext<'_>"]
+
+[[mappings.methods]]
+python = "GuardContext.head"
+rust_code = "{self}.head()"
+rust_imports = []
+needs_result = false
+returns = "RequestHead"
+
+[[mappings.methods]]
+python = "GuardContext.req_data"
+rust_code = "{self}.req_data()"
+rust_imports = []
+needs_result = false
+returns = "Ref"
+
+[[mappings.methods]]
+python = "GuardContext.req_data_mut"
+rust_code = "{self}.req_data_mut()"
+rust_imports = []
+needs_result = false
+returns = "RefMut"
+
+[[mappings.methods]]
+python = "GuardContext.header"
+rust_code = "{self}.header()"
+rust_imports = []
+needs_result = false
+returns = "H"
+
+[[mappings.methods]]
+python = "GuardContext.app_data"
+rust_code = "{self}.app_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AnyGuard.or_"
+rust_code = "{self}.or({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AnyGuard"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "AnyGuard.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&GuardContext<'_>"]
+
+[[mappings.methods]]
+python = "AllGuard.and_"
+rust_code = "{self}.and({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AllGuard"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "AllGuard.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&GuardContext<'_>"]
+
+[[mappings.methods]]
+python = "Not.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&GuardContext<'_>"]
+
+[[mappings.methods]]
+python = "AppInit.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["AppConfig"]
+
+[[mappings.methods]]
+python = "AppInitService.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["Request"]
+
+[[mappings.methods]]
+python = "AppInitService.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AppRoutingFactory.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "AppRouting.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "AppEntry.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "ConnectionInfo.realip_remote_addr"
+rust_code = "{self}.realip_remote_addr()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ConnectionInfo.peer_addr"
+rust_code = "{self}.peer_addr()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ConnectionInfo.host"
+rust_code = "{self}.host()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "ConnectionInfo.scheme"
+rust_code = "{self}.scheme()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "ConnectionInfo.remote_addr"
+rust_code = "{self}.remote_addr()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PeerAddr.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "SocketAddr"
+
+[[mappings.methods]]
+python = "RouteService.check"
+rust_code = "{self}.check({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutServiceRequest"]
+
+[[mappings.methods]]
+python = "RouteService.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Redirect.permanent"
+rust_code = "{self}.permanent()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Redirect"
+
+[[mappings.methods]]
+python = "Redirect.temporary"
+rust_code = "{self}.temporary()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Redirect"
+
+[[mappings.methods]]
+python = "Redirect.see_other"
+rust_code = "{self}.see_other()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Redirect"
+
+[[mappings.methods]]
+python = "Redirect.using_status_code"
+rust_code = "{self}.using_status_code({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Redirect"
+param_types = ["StatusCode"]
+
+[[mappings.methods]]
+python = "Redirect.register"
+rust_code = "{self}.register({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutAppService"]
+
+[[mappings.methods]]
+python = "Redirect.respond_to"
+rust_code = "{self}.respond_to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponse"
+param_types = ["&HttpRequest"]
+
+[[mappings.methods]]
+python = "ResourceMap.add"
+rust_code = "{self}.add({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutResourceDef", "Option<Rc<ResourceMap>>"]
+
+[[mappings.methods]]
+python = "ResourceMap.url_for"
+rust_code = "{self}.url_for({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "Url"
+param_types = ["&HttpRequest", "&str", "U"]
+
+[[mappings.methods]]
+python = "ResourceMap.has_resource"
+rust_code = "{self}.has_resource({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ResourceMap.match_name"
+rust_code = "{self}.match_name({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ResourceMap.match_pattern"
+rust_code = "{self}.match_pattern({arg0})"
+rust_imports = []
+needs_result = false
+returns = "String"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Scope.guard"
+rust_code = "{self}.guard({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["G"]
+
+[[mappings.methods]]
+python = "Scope.app_data"
+rust_code = "{self}.app_data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "Scope.data"
+rust_code = "{self}.data({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["U"]
+
+[[mappings.methods]]
+python = "Scope.configure"
+rust_code = "{self}.configure({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Scope.service"
+rust_code = "{self}.service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Scope.route"
+rust_code = "{self}.route({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["&str", "Route"]
+
+[[mappings.methods]]
+python = "Scope.default_service"
+rust_code = "{self}.default_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Scope.wrap"
+rust_code = "{self}.wrap({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["M"]
+
+[[mappings.methods]]
+python = "Scope.wrap_fn"
+rust_code = "{self}.wrap_fn({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Scope"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Scope.register"
+rust_code = "{self}.register({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutAppService"]
+
+[[mappings.methods]]
+python = "ScopeFactory.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "ScopeService.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "ScopeEndpoint.new_service"
+rust_code = "{self}.new_service({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["()"]
+
+[[mappings.methods]]
+python = "ContentDisposition.is_inline"
+rust_code = "{self}.is_inline()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.is_attachment"
+rust_code = "{self}.is_attachment()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.is_form_data"
+rust_code = "{self}.is_form_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.is_ext"
+rust_code = "{self}.is_ext({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "ContentDisposition.get_name"
+rust_code = "{self}.get_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.get_filename"
+rust_code = "{self}.get_filename()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.get_filename_ext"
+rust_code = "{self}.get_filename_ext()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ContentDisposition.get_unknown"
+rust_code = "{self}.get_unknown({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "ContentDisposition.get_unknown_ext"
+rust_code = "{self}.get_unknown_ext({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "ContentDisposition.try_into_value"
+rust_code = "{self}.try_into_value()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "HeaderValue"
+
+[[mappings.methods]]
+python = "ContentDisposition.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ContentLength.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "ContentLength.try_into_value"
+rust_code = "{self}.try_into_value()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "HeaderValue"
+
+[[mappings.methods]]
+python = "ContentLength.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&usize"]
+
+[[mappings.methods]]
+python = "ContentLength.partial_cmp"
+rust_code = "{self}.partial_cmp({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Ordering"
+param_types = ["&usize"]
+
+[[mappings.methods]]
+python = "EntityTag.tag"
+rust_code = "{self}.tag()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "EntityTag.set_tag"
+rust_code = "{self}.set_tag({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "EntityTag.strong_eq"
+rust_code = "{self}.strong_eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&EntityTag"]
+
+[[mappings.methods]]
+python = "EntityTag.weak_eq"
+rust_code = "{self}.weak_eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&EntityTag"]
+
+[[mappings.methods]]
+python = "EntityTag.strong_ne"
+rust_code = "{self}.strong_ne({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&EntityTag"]
+
+[[mappings.methods]]
+python = "EntityTag.weak_ne"
+rust_code = "{self}.weak_ne({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&EntityTag"]
+
+[[mappings.methods]]
+python = "EntityTag.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "EntityTag.try_into_value"
+rust_code = "{self}.try_into_value()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "HeaderValue"
+
+[[mappings.methods]]
+python = "InternalError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "InternalError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "InternalError.status_code"
+rust_code = "{self}.status_code()"
+rust_imports = []
+needs_result = false
+returns = "StatusCode"
+
+[[mappings.methods]]
+python = "InternalError.error_response"
+rust_code = "{self}.error_response()"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+
+[[mappings.methods]]
+python = "InternalError.respond_to"
+rust_code = "{self}.respond_to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponse"
+param_types = ["&HttpRequest"]
+
+[[mappings.methods]]
+python = "Error.status_code"
+rust_code = "{self}.status_code()"
+rust_imports = []
+needs_result = false
+returns = "StatusCode"
+
+[[mappings.methods]]
+python = "Error.status_code"
+rust_code = "{self}.status_code()"
+rust_imports = []
+needs_result = false
+returns = "StatusCode"
+
+[[mappings.methods]]
+python = "Error.status_code"
+rust_code = "{self}.status_code()"
+rust_imports = []
+needs_result = false
+returns = "StatusCode"
+
+[[mappings.methods]]
+python = "Error.error_response"
+rust_code = "{self}.error_response()"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+
+[[mappings.methods]]
+python = "Error.as_response_error"
+rust_code = "{self}.as_response_error()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "dynResponseError"
+
+[[mappings.methods]]
+python = "Error.as_error"
+rust_code = "{self}.as_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.error_response"
+rust_code = "{self}.error_response()"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Identity.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "IdentityMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["Req"]
+
+[[mappings.methods]]
+python = "ErrorHandlers.handler"
+rust_code = "{self}.handler({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorHandlers"
+param_types = ["StatusCode", "F"]
+
+[[mappings.methods]]
+python = "ErrorHandlers.default_handler"
+rust_code = "{self}.default_handler({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorHandlers"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ErrorHandlers.default_handler_client"
+rust_code = "{self}.default_handler_client({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorHandlers"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ErrorHandlers.default_handler_server"
+rust_code = "{self}.default_handler_server({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorHandlers"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ErrorHandlers.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "ErrorHandlersMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Compat.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "CompatMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["Req"]
+
+[[mappings.methods]]
+python = "Logger.exclude"
+rust_code = "{self}.exclude({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Logger.exclude_regex"
+rust_code = "{self}.exclude_regex({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Logger.log_target"
+rust_code = "{self}.log_target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["implInto<Cow<'static,str>>"]
+
+[[mappings.methods]]
+python = "Logger.log_level"
+rust_code = "{self}.log_level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["log::Level"]
+
+[[mappings.methods]]
+python = "Logger.custom_request_replace"
+rust_code = "{self}.custom_request_replace({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["&str", "implFn(&ServiceRequest)->String+'static"]
+
+[[mappings.methods]]
+python = "Logger.custom_response_replace"
+rust_code = "{self}.custom_response_replace({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Logger"
+param_types = ["&str", "implFn(&ServiceResponse)->String+'static"]
+
+[[mappings.methods]]
+python = "Logger.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "LoggerMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "NormalizePath.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "NormalizePathNormalization.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Condition.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "DefaultHeaders.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DefaultHeaders"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "DefaultHeaders.header"
+rust_code = "{self}.header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DefaultHeaders"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "DefaultHeaders.add_content_type"
+rust_code = "{self}.add_content_type()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DefaultHeaders"
+
+[[mappings.methods]]
+python = "DefaultHeaders.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "DefaultHeadersMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Compress.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "CompressMiddleware.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "MiddlewareFn.new_transform"
+rust_code = "{self}.new_transform({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "MiddlewareFnService.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Next.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "Next.call"
+rust_code = "{self}.call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Future"
+param_types = ["ServiceRequest"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.with_status"
+rust_code = "{self}.with_status({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CustomizeResponder"
+param_types = ["StatusCode"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.insert_header"
+rust_code = "{self}.insert_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CustomizeResponder"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.append_header"
+rust_code = "{self}.append_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CustomizeResponder"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.with_header"
+rust_code = "{self}.with_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CustomizeResponder"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.add_cookie"
+rust_code = "{self}.add_cookie({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CustomizeResponder"
+param_types = ["&crate::cookie::Cookie<'_>"]
+
+[[mappings.methods]]
+python = "CustomizeResponder.respond_to"
+rust_code = "{self}.respond_to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponse"
+param_types = ["&HttpRequest"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.status"
+rust_code = "{self}.status({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["StatusCode"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.insert_header"
+rust_code = "{self}.insert_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.append_header"
+rust_code = "{self}.append_header({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["implTryIntoHeaderPair"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.set_header"
+rust_code = "{self}.set_header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.header"
+rust_code = "{self}.header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.reason"
+rust_code = "{self}.reason({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.keep_alive"
+rust_code = "{self}.keep_alive()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.upgrade"
+rust_code = "{self}.upgrade({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.force_close"
+rust_code = "{self}.force_close()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.no_chunking"
+rust_code = "{self}.no_chunking({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.content_type"
+rust_code = "{self}.content_type({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.cookie"
+rust_code = "{self}.cookie({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["cookie::Cookie<'_>"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.extensions"
+rust_code = "{self}.extensions()"
+rust_imports = []
+needs_result = false
+returns = "Ref"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.extensions_mut"
+rust_code = "{self}.extensions_mut()"
+rust_imports = []
+needs_result = false
+returns = "RefMut"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.body"
+rust_code = "{self}.body({arg0})"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+param_types = ["B"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.message_body"
+rust_code = "{self}.message_body({arg0})"
+rust_imports = []
+needs_result = true
+returns = "HttpResponse"
+param_types = ["B"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.streaming"
+rust_code = "{self}.streaming({arg0})"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.json"
+rust_code = "{self}.json({arg0})"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+param_types = ["implSerialize"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.finish"
+rust_code = "{self}.finish()"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.take"
+rust_code = "{self}.take()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponseBuilder"
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "HttpResponseBuilder.respond_to"
+rust_code = "{self}.respond_to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponse"
+param_types = ["&HttpRequest"]
+
+[[mappings.methods]]
+python = "CookieIter.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns = "Cookie"
+
+[[mappings.methods]]
+python = "ServiceRequest.into_parts"
+rust_code = "{self}.into_parts()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.parts_mut"
+rust_code = "{self}.parts_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.parts"
+rust_code = "{self}.parts()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.request"
+rust_code = "{self}.request()"
+rust_imports = []
+needs_result = false
+returns = "HttpRequest"
+
+[[mappings.methods]]
+python = "ServiceRequest.extract"
+rust_code = "{self}.extract()"
+rust_imports = []
+needs_result = false
+returns = "Future"
+
+[[mappings.methods]]
+python = "ServiceRequest.into_response"
+rust_code = "{self}.into_response({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ServiceResponse"
+param_types = ["R"]
+
+[[mappings.methods]]
+python = "ServiceRequest.error_response"
+rust_code = "{self}.error_response({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ServiceResponse"
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "ServiceRequest.head"
+rust_code = "{self}.head()"
+rust_imports = []
+needs_result = false
+returns = "RequestHead"
+
+[[mappings.methods]]
+python = "ServiceRequest.head_mut"
+rust_code = "{self}.head_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutRequestHead"
+
+[[mappings.methods]]
+python = "ServiceRequest.uri"
+rust_code = "{self}.uri()"
+rust_imports = []
+needs_result = false
+returns = "Uri"
+
+[[mappings.methods]]
+python = "ServiceRequest.method"
+rust_code = "{self}.method()"
+rust_imports = []
+needs_result = false
+returns = "Method"
+
+[[mappings.methods]]
+python = "ServiceRequest.version"
+rust_code = "{self}.version()"
+rust_imports = []
+needs_result = false
+returns = "Version"
+
+[[mappings.methods]]
+python = "ServiceRequest.headers"
+rust_code = "{self}.headers()"
+rust_imports = []
+needs_result = false
+returns = "HeaderMap"
+
+[[mappings.methods]]
+python = "ServiceRequest.headers_mut"
+rust_code = "{self}.headers_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutHeaderMap"
+
+[[mappings.methods]]
+python = "ServiceRequest.path"
+rust_code = "{self}.path()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "ServiceRequest.query_string"
+rust_code = "{self}.query_string()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "ServiceRequest.peer_addr"
+rust_code = "{self}.peer_addr()"
+rust_imports = []
+needs_result = false
+returns = "SocketAddr"
+
+[[mappings.methods]]
+python = "ServiceRequest.connection_info"
+rust_code = "{self}.connection_info()"
+rust_imports = []
+needs_result = false
+returns = "Ref"
+
+[[mappings.methods]]
+python = "ServiceRequest.match_info"
+rust_code = "{self}.match_info()"
+rust_imports = []
+needs_result = false
+returns = "Path"
+
+[[mappings.methods]]
+python = "ServiceRequest.match_info_mut"
+rust_code = "{self}.match_info_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutPath"
+
+[[mappings.methods]]
+python = "ServiceRequest.match_name"
+rust_code = "{self}.match_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.match_pattern"
+rust_code = "{self}.match_pattern()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "ServiceRequest.resource_map"
+rust_code = "{self}.resource_map()"
+rust_imports = []
+needs_result = false
+returns = "ResourceMap"
+
+[[mappings.methods]]
+python = "ServiceRequest.app_config"
+rust_code = "{self}.app_config()"
+rust_imports = []
+needs_result = false
+returns = "AppConfig"
+
+[[mappings.methods]]
+python = "ServiceRequest.app_data"
+rust_code = "{self}.app_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.conn_data"
+rust_code = "{self}.conn_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceRequest.cookies"
+rust_code = "{self}.cookies()"
+rust_imports = []
+needs_result = true
+returns = "Ref"
+
+[[mappings.methods]]
+python = "ServiceRequest.cookie"
+rust_code = "{self}.cookie({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Cookie"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ServiceRequest.set_payload"
+rust_code = "{self}.set_payload({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Payload"]
+
+[[mappings.methods]]
+python = "ServiceRequest.add_data_container"
+rust_code = "{self}.add_data_container({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Rc<Extensions>"]
+
+[[mappings.methods]]
+python = "ServiceRequest.guard_ctx"
+rust_code = "{self}.guard_ctx()"
+rust_imports = []
+needs_result = false
+returns = "GuardContext"
+
+[[mappings.methods]]
+python = "ServiceRequest.resource_path"
+rust_code = "{self}.resource_path()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutPath"
+
+[[mappings.methods]]
+python = "ServiceRequest.headers"
+rust_code = "{self}.headers()"
+rust_imports = []
+needs_result = false
+returns = "HeaderMap"
+
+[[mappings.methods]]
+python = "ServiceRequest.extensions"
+rust_code = "{self}.extensions()"
+rust_imports = []
+needs_result = false
+returns = "Ref"
+
+[[mappings.methods]]
+python = "ServiceRequest.extensions_mut"
+rust_code = "{self}.extensions_mut()"
+rust_imports = []
+needs_result = false
+returns = "RefMut"
+
+[[mappings.methods]]
+python = "ServiceRequest.take_payload"
+rust_code = "{self}.take_payload()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Payload"
+
+[[mappings.methods]]
+python = "ServiceRequest.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ServiceResponse.map_body"
+rust_code = "{self}.map_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.error_response"
+rust_code = "{self}.error_response({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "ServiceResponse.into_response"
+rust_code = "{self}.into_response({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+param_types = ["HttpResponse<B1>"]
+
+[[mappings.methods]]
+python = "ServiceResponse.request"
+rust_code = "{self}.request()"
+rust_imports = []
+needs_result = false
+returns = "HttpRequest"
+
+[[mappings.methods]]
+python = "ServiceResponse.response"
+rust_code = "{self}.response()"
+rust_imports = []
+needs_result = false
+returns = "HttpResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.response_mut"
+rust_code = "{self}.response_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutHttpResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.status"
+rust_code = "{self}.status()"
+rust_imports = []
+needs_result = false
+returns = "StatusCode"
+
+[[mappings.methods]]
+python = "ServiceResponse.headers"
+rust_code = "{self}.headers()"
+rust_imports = []
+needs_result = false
+returns = "HeaderMap"
+
+[[mappings.methods]]
+python = "ServiceResponse.headers_mut"
+rust_code = "{self}.headers_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutHeaderMap"
+
+[[mappings.methods]]
+python = "ServiceResponse.into_parts"
+rust_code = "{self}.into_parts()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServiceResponse.map_body"
+rust_code = "{self}.map_body({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ServiceResponse.map_into_left_body"
+rust_code = "{self}.map_into_left_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.map_into_right_body"
+rust_code = "{self}.map_into_right_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.map_into_boxed_body"
+rust_code = "{self}.map_into_boxed_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServiceResponse"
+
+[[mappings.methods]]
+python = "ServiceResponse.into_body"
+rust_code = "{self}.into_body()"
+rust_imports = []
+needs_result = false
+returns = "B"
+
+[[mappings.methods]]
+python = "ServiceResponse.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "WebService.name"
+rust_code = "{self}.name({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "WebService"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "WebService.guard"
+rust_code = "{self}.guard({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "WebService"
+param_types = ["G"]
+
+[[mappings.methods]]
+python = "WebService.finish"
+rust_code = "{self}.finish({arg0})"
+rust_imports = []
+needs_result = false
+returns = "implHttpServiceFactory"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "JsonExtractFut.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "JsonConfig.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "JsonConfig"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "JsonConfig.error_handler"
+rust_code = "{self}.error_handler({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "JsonConfig"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "JsonConfig.content_type"
+rust_code = "{self}.content_type({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "JsonConfig"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "JsonConfig.content_type_required"
+rust_code = "{self}.content_type_required({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "JsonConfig"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "PathConfig.error_handler"
+rust_code = "{self}.error_handler({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PathConfig"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Html.respond_to"
+rust_code = "{self}.respond_to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpResponse"
+param_types = ["&HttpRequest"]
+
+[[mappings.methods]]
+python = "FormExtractFut.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "FormConfig.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "FormConfig"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "FormConfig.error_handler"
+rust_code = "{self}.error_handler({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "FormConfig"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "UrlEncoded.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "UrlEncoded"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "UrlEncoded.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "Payload.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Payload"
+
+[[mappings.methods]]
+python = "Payload.to_bytes_limited"
+rust_code = "{self}.to_bytes_limited({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Payload.to_bytes"
+rust_code = "{self}.to_bytes()"
+rust_imports = []
+needs_result = true
+returns = "Bytes"
+
+[[mappings.methods]]
+python = "Payload.poll_next"
+rust_code = "{self}.poll_next({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "BytesExtractFut.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "StringExtractFut.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "PayloadConfig.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PayloadConfig"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "PayloadConfig.mimetype"
+rust_code = "{self}.mimetype({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PayloadConfig"
+param_types = ["Mime"]
+
+[[mappings.methods]]
+python = "HttpMessageBody.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HttpMessageBody"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "HttpMessageBody.poll"
+rust_code = "{self}.poll({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "Header.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "Header.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "Header.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutT"
+
+[[mappings.methods]]
+python = "Header.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Readlines.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Readlines"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Readlines.poll_next"
+rust_code = "{self}.poll_next({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "QueryConfig.error_handler"
+rust_code = "{self}.error_handler({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "QueryConfig"
+param_types = ["F"]
+
+# HttpServer.bind hardcoded method
+[[mappings.methods]]
+python = "HttpServer.bind"
+rust_code = "{self}.bind({arg0}).unwrap()"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&str"]
+
+# HttpServer.run hardcoded method
+[[mappings.methods]]
+python = "HttpServer.run"
+rust_code = "{self}.run().await"
+rust_imports = []
+needs_result = false
+
+# App.route hardcoded method
+[[mappings.methods]]
+python = "App.route"
+rust_code = "{self}.route({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&str"]
+
+# Route.to hardcoded method
+[[mappings.methods]]
+python = "Route.to"
+rust_code = "{self}.to({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+# Result type alias
+[[mappings.types]]
+python = "Result"
+rust = "actix-web::Result"
+
+# HttpResponse from std
+[[mappings.types]]
+python = "HttpResponse"
+rust = "actix_web::HttpResponse"
+
+# App from std
+[[mappings.types]]
+python = "App"
+rust = "actix_web::App"
+
+# HttpServer from std
+[[mappings.types]]
+python = "HttpServer"
+rust = "actix_web::HttpServer"
+
+# Data from std
+[[mappings.types]]
+python = "Data"
+rust = "actix_web::web::Data"
+
+# Query from std
+[[mappings.types]]
+python = "Query"
+rust = "actix_web::web::Query"
+
+# Json from std
+[[mappings.types]]
+python = "Json"
+rust = "actix_web::web::Json"
+
+# Form from std
+[[mappings.types]]
+python = "Form"
+rust = "actix_web::web::Form"
+
+# Path from std
+[[mappings.types]]
+python = "Path"
+rust = "actix_web::web::Path"
+
+# HttpRequest from std
+[[mappings.types]]
+python = "HttpRequest"
+rust = "actix_web::HttpRequest"
+
+# Route from std
+[[mappings.types]]
+python = "Route"
+rust = "actix_web::web::Route"
+
+[[mappings.types]]
+python = "Person"
+rust = "actix-web::test::test_utils::Person"
+
+[[mappings.types]]
+python = "TestRequest"
+rust = "actix-web::TestRequest"
+
+[[mappings.types]]
+python = "ThinData"
+rust = "actix-web::ThinData"
+
+[[mappings.types]]
+python = "ReqData"
+rust = "actix-web::request_data::ReqData"
+
+[[mappings.types]]
+python = "Resource"
+rust = "actix-web::Resource"
+
+[[mappings.types]]
+python = "ResourceFactory"
+rust = "actix-web::ResourceFactory"
+
+[[mappings.types]]
+python = "ResourceService"
+rust = "actix-web::ResourceService"
+
+[[mappings.types]]
+python = "ResourceEndpoint"
+rust = "actix-web::ResourceEndpoint"
+
+[[mappings.types]]
+python = "AppService"
+rust = "actix-web::config::AppService"
+
+[[mappings.types]]
+python = "AppConfig"
+rust = "actix-web::AppConfig"
+
+[[mappings.types]]
+python = "ServiceConfig"
+rust = "actix-web::ServiceConfig"
+
+[[mappings.types]]
+python = "HostGuard"
+rust = "actix-web::HostGuard"
+
+[[mappings.types]]
+python = "Acceptable"
+rust = "actix-web::guard::Acceptable"
+
+[[mappings.types]]
+python = "GuardContext"
+rust = "actix-web::GuardContext"
+
+[[mappings.types]]
+python = "AnyGuard"
+rust = "actix-web::AnyGuard"
+
+[[mappings.types]]
+python = "AllGuard"
+rust = "actix-web::AllGuard"
+
+[[mappings.types]]
+python = "Not"
+rust = "actix-web::guard::Not"
+
+[[mappings.types]]
+python = "AppInit"
+rust = "actix-web::app_service::AppInit"
+
+[[mappings.types]]
+python = "AppInitService"
+rust = "actix-web::app_service::AppInitService"
+
+[[mappings.types]]
+python = "AppRoutingFactory"
+rust = "actix-web::app_service::AppRoutingFactory"
+
+[[mappings.types]]
+python = "AppRouting"
+rust = "actix-web::app_service::AppRouting"
+
+[[mappings.types]]
+python = "AppEntry"
+rust = "actix-web::app_service::AppEntry"
+
+[[mappings.types]]
+python = "ConnectionInfo"
+rust = "actix-web::ConnectionInfo"
+
+[[mappings.types]]
+python = "PeerAddr"
+rust = "actix-web::info::PeerAddr"
+
+[[mappings.types]]
+python = "MissingPeerAddr"
+rust = "actix-web::info::MissingPeerAddr"
+
+[[mappings.types]]
+python = "RouteService"
+rust = "actix-web::RouteService"
+
+[[mappings.types]]
+python = "Redirect"
+rust = "actix-web::Redirect"
+
+[[mappings.types]]
+python = "ResourceMap"
+rust = "actix-web::rmap::ResourceMap"
+
+[[mappings.types]]
+python = "Scope"
+rust = "actix-web::Scope"
+
+[[mappings.types]]
+python = "ScopeFactory"
+rust = "actix-web::ScopeFactory"
+
+[[mappings.types]]
+python = "ScopeService"
+rust = "actix-web::ScopeService"
+
+[[mappings.types]]
+python = "ScopeEndpoint"
+rust = "actix-web::ScopeEndpoint"
+
+[[mappings.types]]
+python = "ContentDisposition"
+rust = "actix-web::http::header::ContentDisposition"
+
+[[mappings.types]]
+python = "ContentLength"
+rust = "actix-web::http::header::ContentLength"
+
+[[mappings.types]]
+python = "EntityTag"
+rust = "actix-web::http::header::EntityTag"
+
+[[mappings.types]]
+python = "InternalError"
+rust = "actix-web::InternalError"
+
+[[mappings.types]]
+python = "BlockingError"
+rust = "actix-web::BlockingError"
+
+[[mappings.types]]
+python = "Error"
+rust = "actix-web::Error"
+
+[[mappings.types]]
+python = "Identity"
+rust = "actix-web::middleware::Identity"
+
+[[mappings.types]]
+python = "IdentityMiddleware"
+rust = "actix-web::IdentityMiddleware"
+
+[[mappings.types]]
+python = "ErrorHandlers"
+rust = "actix-web::middleware::err_handlers::ErrorHandlers"
+
+[[mappings.types]]
+python = "ErrorHandlersMiddleware"
+rust = "actix-web::middleware::err_handlers::ErrorHandlersMiddleware"
+
+[[mappings.types]]
+python = "Compat"
+rust = "actix-web::middleware::Compat"
+
+[[mappings.types]]
+python = "CompatMiddleware"
+rust = "actix-web::CompatMiddleware"
+
+[[mappings.types]]
+python = "Logger"
+rust = "actix-web::middleware::Logger"
+
+[[mappings.types]]
+python = "LoggerMiddleware"
+rust = "actix-web::LoggerMiddleware"
+
+[[mappings.types]]
+python = "NormalizePath"
+rust = "actix-web::middleware::NormalizePath"
+
+[[mappings.types]]
+python = "NormalizePathNormalization"
+rust = "actix-web::middleware::NormalizePathNormalization"
+
+[[mappings.types]]
+python = "Condition"
+rust = "actix-web::middleware::Condition"
+
+[[mappings.types]]
+python = "DefaultHeaders"
+rust = "actix-web::middleware::DefaultHeaders"
+
+[[mappings.types]]
+python = "DefaultHeadersMiddleware"
+rust = "actix-web::DefaultHeadersMiddleware"
+
+[[mappings.types]]
+python = "Compress"
+rust = "actix-web::middleware::Compress"
+
+[[mappings.types]]
+python = "CompressMiddleware"
+rust = "actix-web::CompressMiddleware"
+
+[[mappings.types]]
+python = "MiddlewareFn"
+rust = "actix-web::middleware::from_fn::MiddlewareFn"
+
+[[mappings.types]]
+python = "MiddlewareFnService"
+rust = "actix-web::middleware::from_fn::MiddlewareFnService"
+
+[[mappings.types]]
+python = "Next"
+rust = "actix-web::middleware::from_fn::Next"
+
+[[mappings.types]]
+python = "CustomizeResponder"
+rust = "actix-web::response::CustomizeResponder"
+
+[[mappings.types]]
+python = "HttpResponseBuilder"
+rust = "actix-web::HttpResponseBuilder"
+
+[[mappings.types]]
+python = "CookieIter"
+rust = "actix-web::response::response::CookieIter"
+
+[[mappings.types]]
+python = "ServiceRequest"
+rust = "actix-web::ServiceRequest"
+
+[[mappings.types]]
+python = "ServiceResponse"
+rust = "actix-web::ServiceResponse"
+
+[[mappings.types]]
+python = "WebService"
+rust = "actix-web::WebService"
+
+[[mappings.types]]
+python = "JsonExtractFut"
+rust = "actix-web::JsonExtractFut"
+
+[[mappings.types]]
+python = "JsonConfig"
+rust = "actix-web::JsonConfig"
+
+[[mappings.types]]
+python = "PathConfig"
+rust = "actix-web::PathConfig"
+
+[[mappings.types]]
+python = "Html"
+rust = "actix-web::Html"
+
+[[mappings.types]]
+python = "FormExtractFut"
+rust = "actix-web::FormExtractFut"
+
+[[mappings.types]]
+python = "FormConfig"
+rust = "actix-web::FormConfig"
+
+[[mappings.types]]
+python = "UrlEncoded"
+rust = "actix-web::types::form::UrlEncoded"
+
+[[mappings.types]]
+python = "Payload"
+rust = "actix-web::Payload"
+
+[[mappings.types]]
+python = "BytesExtractFut"
+rust = "actix-web::types::payload::BytesExtractFut"
+
+[[mappings.types]]
+python = "StringExtractFut"
+rust = "actix-web::types::payload::StringExtractFut"
+
+[[mappings.types]]
+python = "PayloadConfig"
+rust = "actix-web::PayloadConfig"
+
+[[mappings.types]]
+python = "HttpMessageBody"
+rust = "actix-web::types::payload::HttpMessageBody"
+
+[[mappings.types]]
+python = "Header"
+rust = "actix-web::Header"
+
+[[mappings.types]]
+python = "Readlines"
+rust = "actix-web::Readlines"
+
+[[mappings.types]]
+python = "QueryConfig"
+rust = "actix-web::QueryConfig"
+
+[[mappings.types]]
+python = "ContentRangeSpec"
+rust = "actix-web::http::header::ContentRangeSpec"
+
+[[mappings.types]]
+python = "Range"
+rust = "actix-web::http::header::Range"
+
+[[mappings.types]]
+python = "ByteRangeSpec"
+rust = "actix-web::http::header::ByteRangeSpec"
+
+[[mappings.types]]
+python = "AnyOrSome"
+rust = "actix-web::http::header::AnyOrSome"
+
+[[mappings.types]]
+python = "Preference"
+rust = "actix-web::http::header::Preference"
+
+[[mappings.types]]
+python = "Encoding"
+rust = "actix-web::http::header::Encoding"
+
+[[mappings.types]]
+python = "IfRange"
+rust = "actix-web::http::header::IfRange"
+
+[[mappings.types]]
+python = "CacheDirective"
+rust = "actix-web::http::header::cache_control::CacheDirective"
+
+[[mappings.types]]
+python = "DispositionType"
+rust = "actix-web::http::header::content_disposition::DispositionType"
+
+[[mappings.types]]
+python = "DispositionParam"
+rust = "actix-web::http::header::content_disposition::DispositionParam"
+
+[[mappings.types]]
+python = "UrlGenerationError"
+rust = "actix-web::UrlGenerationError"
+
+[[mappings.types]]
+python = "UrlencodedError"
+rust = "actix-web::UrlencodedError"
+
+[[mappings.types]]
+python = "JsonPayloadError"
+rust = "actix-web::JsonPayloadError"
+
+[[mappings.types]]
+python = "PathError"
+rust = "actix-web::PathError"
+
+[[mappings.types]]
+python = "QueryPayloadError"
+rust = "actix-web::QueryPayloadError"
+
+[[mappings.types]]
+python = "ReadlinesError"
+rust = "actix-web::ReadlinesError"
+
+[[mappings.types]]
+python = "ErrorHandlerResponse"
+rust = "actix-web::middleware::err_handlers::ErrorHandlerResponse"
+
+[[mappings.types]]
+python = "TrailingSlash"
+rust = "actix-web::middleware::normalize::TrailingSlash"
+
+[[mappings.types]]
+python = "ConditionMiddleware"
+rust = "actix-web::ConditionMiddleware"
+
+[[mappings.types]]
+python = "JsonBody"
+rust = "actix-web::JsonBody"
+
+[[mappings.types]]
+python = "Either"
+rust = "actix-web::Either"
+
+[[mappings.types]]
+python = "EitherExtractError"
+rust = "actix-web::EitherExtractError"

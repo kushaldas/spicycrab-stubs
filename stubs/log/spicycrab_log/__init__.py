@@ -7,6 +7,31 @@ from __future__ import annotations
 
 from typing import Self
 
+def trace(message: str) -> None:
+    """Logs a message at the trace level."""
+    ...
+
+
+def debug(message: str) -> None:
+    """Logs a message at the debug level."""
+    ...
+
+
+def info(message: str) -> None:
+    """Logs a message at the info level."""
+    ...
+
+
+def warn(message: str) -> None:
+    """Logs a message at the warn level."""
+    ...
+
+
+def error(message: str) -> None:
+    """Logs a message at the error level."""
+    ...
+
+
 class Record:
     """The "payload" of a log message.
 

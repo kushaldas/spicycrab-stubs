@@ -1,0 +1,2557 @@
+[package]
+name = "serde_json"
+rust_crate = "serde_json"
+rust_version = "1.0.149"
+python_module = "spicycrab_serde_json"
+
+[cargo.dependencies]
+serde_json = "1.0.149"
+
+[cargo.features]
+available = ["alloc", "arbitrary_precision", "default", "float_roundtrip", "preserve_order", "raw_value", "std", "unbounded_depth"]
+default = ["std"]
+
+[[mappings.functions]]
+python = "serde_json.from_reader"
+rust_code = "serde_json::from_reader({arg0})"
+rust_imports = ["serde_json::from_reader"]
+needs_result = true
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "serde_json.from_slice"
+rust_code = "serde_json::from_slice({arg0})"
+rust_imports = ["serde_json::from_slice"]
+needs_result = true
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "serde_json.from_str"
+rust_code = "serde_json::from_str({arg0})"
+rust_imports = ["serde_json::from_str"]
+needs_result = true
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "serde_json.to_writer"
+rust_code = "serde_json::to_writer({arg0}, {arg1})"
+rust_imports = ["serde_json::to_writer"]
+needs_result = true
+param_types = ["W", "&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_writer_pretty"
+rust_code = "serde_json::to_writer_pretty({arg0}, {arg1})"
+rust_imports = ["serde_json::to_writer_pretty"]
+needs_result = true
+param_types = ["W", "&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_vec"
+rust_code = "serde_json::to_vec({arg0})"
+rust_imports = ["serde_json::to_vec"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_vec_pretty"
+rust_code = "serde_json::to_vec_pretty({arg0})"
+rust_imports = ["serde_json::to_vec_pretty"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_string"
+rust_code = "serde_json::to_string({arg0})"
+rust_imports = ["serde_json::to_string"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_string_pretty"
+rust_code = "serde_json::to_string_pretty({arg0})"
+rust_imports = ["serde_json::to_string_pretty"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "serde_json.to_value"
+rust_code = "serde_json::to_value({arg0})"
+rust_imports = ["serde_json::to_value"]
+needs_result = true
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.from_value"
+rust_code = "serde_json::from_value({arg0})"
+rust_imports = ["serde_json::from_value"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "serde_json.nonzero"
+rust_code = "serde_json::lexical::math::nonzero({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::nonzero"]
+needs_result = false
+param_types = ["&[T]", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.add"
+rust_code = "serde_json::lexical::math::add({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::add"]
+needs_result = false
+param_types = ["Limb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.iadd"
+rust_code = "serde_json::lexical::math::iadd({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::iadd"]
+needs_result = false
+param_types = ["&mutLimb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.sub"
+rust_code = "serde_json::lexical::math::sub({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::sub"]
+needs_result = false
+param_types = ["Limb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.isub"
+rust_code = "serde_json::lexical::math::isub({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::isub"]
+needs_result = false
+param_types = ["&mutLimb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.mul"
+rust_code = "serde_json::lexical::math::mul({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::math::mul"]
+needs_result = false
+param_types = ["Limb", "Limb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.imul"
+rust_code = "serde_json::lexical::math::imul({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::math::imul"]
+needs_result = false
+param_types = ["&mutLimb", "Limb", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.iadd_impl"
+rust_code = "serde_json::lexical::math::iadd_impl({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::math::iadd_impl"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "Limb", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.iadd"
+rust_code = "serde_json::lexical::math::iadd({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::iadd"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.isub_impl"
+rust_code = "serde_json::lexical::math::isub_impl({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::math::isub_impl"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "Limb", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.imul"
+rust_code = "serde_json::lexical::math::imul({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::imul"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.mul"
+rust_code = "serde_json::lexical::math::mul({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::mul"]
+needs_result = false
+param_types = ["&[Limb]", "Limb"]
+
+[[mappings.functions]]
+python = "serde_json.imul_pow5"
+rust_code = "serde_json::lexical::math::imul_pow5({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::imul_pow5"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "u32"]
+
+[[mappings.functions]]
+python = "serde_json.leading_zeros"
+rust_code = "serde_json::lexical::math::leading_zeros({arg0})"
+rust_imports = ["serde_json::lexical::math::leading_zeros"]
+needs_result = false
+param_types = ["&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.bit_length"
+rust_code = "serde_json::lexical::math::bit_length({arg0})"
+rust_imports = ["serde_json::lexical::math::bit_length"]
+needs_result = false
+param_types = ["&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.ishl_bits"
+rust_code = "serde_json::lexical::math::ishl_bits({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::ishl_bits"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.ishl_limbs"
+rust_code = "serde_json::lexical::math::ishl_limbs({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::ishl_limbs"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.ishl"
+rust_code = "serde_json::lexical::math::ishl({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::ishl"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.normalize"
+rust_code = "serde_json::lexical::math::normalize({arg0})"
+rust_imports = ["serde_json::lexical::math::normalize"]
+needs_result = false
+param_types = ["&mutVec<Limb>"]
+
+[[mappings.functions]]
+python = "serde_json.compare"
+rust_code = "serde_json::lexical::math::compare({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::compare"]
+needs_result = false
+param_types = ["&[Limb]", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.less"
+rust_code = "serde_json::lexical::math::less({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::less"]
+needs_result = false
+param_types = ["&[Limb]", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.greater_equal"
+rust_code = "serde_json::lexical::math::greater_equal({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::greater_equal"]
+needs_result = false
+param_types = ["&[Limb]", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.iadd_impl"
+rust_code = "serde_json::lexical::math::iadd_impl({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::math::iadd_impl"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "&[Limb]", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.iadd"
+rust_code = "serde_json::lexical::math::iadd({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::iadd"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.add"
+rust_code = "serde_json::lexical::math::add({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::add"]
+needs_result = false
+param_types = ["&[Limb]", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.isub"
+rust_code = "serde_json::lexical::math::isub({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::isub"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.karatsuba_split"
+rust_code = "serde_json::lexical::math::karatsuba_split({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::karatsuba_split"]
+needs_result = false
+param_types = ["&[Limb]", "usize"]
+
+[[mappings.functions]]
+python = "serde_json.imul"
+rust_code = "serde_json::lexical::math::imul({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::math::imul"]
+needs_result = false
+param_types = ["&mutVec<Limb>", "&[Limb]"]
+
+[[mappings.functions]]
+python = "serde_json.parse_concise_float"
+rust_code = "serde_json::lexical::parse_concise_float({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::parse_concise_float"]
+needs_result = false
+param_types = ["u64", "i32"]
+
+[[mappings.functions]]
+python = "serde_json.parse_truncated_float"
+rust_code = "serde_json::lexical::parse_truncated_float({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::parse_truncated_float"]
+needs_result = false
+param_types = ["&[u8]", "&[u8]", "i32"]
+
+[[mappings.functions]]
+python = "serde_json.to_raw_value"
+rust_code = "serde_json::to_raw_value({arg0})"
+rust_imports = ["serde_json::to_raw_value"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "serde_json.Map.new"
+rust_code = "serde_json::Map::new()"
+rust_imports = ["serde_json::Map"]
+needs_result = false
+
+[[mappings.functions]]
+python = "serde_json.Map.with_capacity"
+rust_code = "serde_json::Map::with_capacity({arg0})"
+rust_imports = ["serde_json::Map"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "serde_json.Map.default"
+rust_code = "serde_json::Map::default()"
+rust_imports = ["serde_json::Map"]
+needs_result = false
+
+[[mappings.functions]]
+python = "serde_json.Map.deserialize"
+rust_code = "serde_json::Map::deserialize({arg0})"
+rust_imports = ["serde_json::Map"]
+needs_result = true
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "serde_json.Map.from_iter"
+rust_code = "serde_json::Map::from_iter({arg0})"
+rust_imports = ["serde_json::Map"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.Map.from_str"
+rust_code = "serde_json::Map::from_str({arg0})"
+rust_imports = ["serde_json::Map"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "serde_json.LineColIterator.new"
+rust_code = "serde_json::LineColIterator::new({arg0})"
+rust_imports = ["serde_json::LineColIterator"]
+needs_result = false
+param_types = ["I"]
+
+[[mappings.functions]]
+python = "serde_json.Error.from_"
+rust_code = "serde_json::Error::from({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["Error"]
+
+[[mappings.functions]]
+python = "serde_json.Error.io"
+rust_code = "serde_json::Error::io({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "serde_json.Error.custom"
+rust_code = "serde_json::Error::custom({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.Error.invalid_type"
+rust_code = "serde_json::Error::invalid_type({arg0}, {arg1})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["de::Unexpected", "&dynde::Expected"]
+
+[[mappings.functions]]
+python = "serde_json.Error.invalid_value"
+rust_code = "serde_json::Error::invalid_value({arg0}, {arg1})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["de::Unexpected", "&dynde::Expected"]
+
+[[mappings.functions]]
+python = "serde_json.Error.custom"
+rust_code = "serde_json::Error::custom({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.Deserializer.new"
+rust_code = "serde_json::Deserializer::new({arg0})"
+rust_imports = ["serde_json::Deserializer"]
+needs_result = false
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "serde_json.Deserializer.from_reader"
+rust_code = "serde_json::Deserializer::from_reader({arg0})"
+rust_imports = ["serde_json::Deserializer"]
+needs_result = false
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "serde_json.Deserializer.from_slice"
+rust_code = "serde_json::Deserializer::from_slice({arg0})"
+rust_imports = ["serde_json::Deserializer"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "serde_json.Deserializer.from_str"
+rust_code = "serde_json::Deserializer::from_str({arg0})"
+rust_imports = ["serde_json::Deserializer"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "serde_json.StreamDeserializer.new"
+rust_code = "serde_json::StreamDeserializer::new({arg0})"
+rust_imports = ["serde_json::StreamDeserializer"]
+needs_result = false
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_str"
+rust_code = "serde_json::Number::from_str({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_f64"
+rust_code = "serde_json::Number::from_f64({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = false
+param_types = ["f64"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_i128"
+rust_code = "serde_json::Number::from_i128({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = false
+param_types = ["i128"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_u128"
+rust_code = "serde_json::Number::from_u128({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = false
+param_types = ["u128"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_string_unchecked"
+rust_code = "serde_json::Number::from_string_unchecked({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "serde_json.Number.deserialize"
+rust_code = "serde_json::Number::deserialize({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = true
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "serde_json.Number.from_"
+rust_code = "serde_json::Number::from({arg0})"
+rust_imports = ["serde_json::Number"]
+needs_result = false
+param_types = ["ParserNumber"]
+
+[[mappings.functions]]
+python = "serde_json.NumberFromString.deserialize"
+rust_code = "serde_json::NumberFromString::deserialize({arg0})"
+rust_imports = ["serde_json::NumberFromString"]
+needs_result = true
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "serde_json.IoRead.new"
+rust_code = "serde_json::IoRead::new({arg0})"
+rust_imports = ["serde_json::IoRead"]
+needs_result = false
+param_types = ["R"]
+
+[[mappings.functions]]
+python = "serde_json.SliceRead.new"
+rust_code = "serde_json::SliceRead::new({arg0})"
+rust_imports = ["serde_json::SliceRead"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "serde_json.StrRead.new"
+rust_code = "serde_json::StrRead::new({arg0})"
+rust_imports = ["serde_json::StrRead"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "serde_json.Serializer.new"
+rust_code = "serde_json::Serializer::new({arg0})"
+rust_imports = ["serde_json::Serializer"]
+needs_result = false
+param_types = ["W"]
+
+[[mappings.functions]]
+python = "serde_json.Serializer.pretty"
+rust_code = "serde_json::Serializer::pretty({arg0})"
+rust_imports = ["serde_json::Serializer"]
+needs_result = false
+param_types = ["W"]
+
+[[mappings.functions]]
+python = "serde_json.Serializer.with_formatter"
+rust_code = "serde_json::Serializer::with_formatter({arg0}, {arg1})"
+rust_imports = ["serde_json::Serializer"]
+needs_result = false
+param_types = ["W", "F"]
+
+[[mappings.functions]]
+python = "serde_json.PrettyFormatter.new"
+rust_code = "serde_json::PrettyFormatter::new()"
+rust_imports = ["serde_json::PrettyFormatter"]
+needs_result = false
+
+[[mappings.functions]]
+python = "serde_json.PrettyFormatter.with_indent"
+rust_code = "serde_json::PrettyFormatter::with_indent({arg0})"
+rust_imports = ["serde_json::PrettyFormatter"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "serde_json.PrettyFormatter.default"
+rust_code = "serde_json::PrettyFormatter::default()"
+rust_imports = ["serde_json::PrettyFormatter"]
+needs_result = false
+
+[[mappings.functions]]
+python = "serde_json.Serializer.new"
+rust_code = "serde_json::value::Serializer::new({arg0})"
+rust_imports = ["serde_json::value::Serializer"]
+needs_result = false
+param_types = ["W"]
+
+[[mappings.functions]]
+python = "serde_json.Serializer.pretty"
+rust_code = "serde_json::value::Serializer::pretty({arg0})"
+rust_imports = ["serde_json::value::Serializer"]
+needs_result = false
+param_types = ["W"]
+
+[[mappings.functions]]
+python = "serde_json.Serializer.with_formatter"
+rust_code = "serde_json::value::Serializer::with_formatter({arg0}, {arg1})"
+rust_imports = ["serde_json::value::Serializer"]
+needs_result = false
+param_types = ["W", "F"]
+
+[[mappings.functions]]
+python = "serde_json.Error.from_"
+rust_code = "serde_json::Error::from({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["Error"]
+
+[[mappings.functions]]
+python = "serde_json.Error.io"
+rust_code = "serde_json::Error::io({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "serde_json.Error.custom"
+rust_code = "serde_json::Error::custom({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.Error.invalid_type"
+rust_code = "serde_json::Error::invalid_type({arg0}, {arg1})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["de::Unexpected", "&dynde::Expected"]
+
+[[mappings.functions]]
+python = "serde_json.Error.invalid_value"
+rust_code = "serde_json::Error::invalid_value({arg0}, {arg1})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["de::Unexpected", "&dynde::Expected"]
+
+[[mappings.functions]]
+python = "serde_json.Error.custom"
+rust_code = "serde_json::Error::custom({arg0})"
+rust_imports = ["serde_json::Error"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "serde_json.RawValue.from_string"
+rust_code = "serde_json::RawValue::from_string({arg0})"
+rust_imports = ["serde_json::RawValue"]
+needs_result = true
+param_types = ["String"]
+
+[[mappings.methods]]
+python = "Map.clear"
+rust_code = "{self}.clear()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Map.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.contains_key"
+rust_code = "{self}.contains_key({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.get_mut"
+rust_code = "{self}.get_mut({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.get_key_value"
+rust_code = "{self}.get_key_value({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.insert"
+rust_code = "{self}.insert({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["String", "Value"]
+
+[[mappings.methods]]
+python = "Map.shift_insert"
+rust_code = "{self}.shift_insert({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["usize", "String", "Value"]
+
+[[mappings.methods]]
+python = "Map.remove"
+rust_code = "{self}.remove({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.remove_entry"
+rust_code = "{self}.remove_entry({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.swap_remove"
+rust_code = "{self}.swap_remove({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.swap_remove_entry"
+rust_code = "{self}.swap_remove_entry({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.shift_remove"
+rust_code = "{self}.shift_remove({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.shift_remove_entry"
+rust_code = "{self}.shift_remove_entry({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.append"
+rust_code = "{self}.append({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutSelf"]
+
+[[mappings.methods]]
+python = "Map.entry"
+rust_code = "{self}.entry({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Entry"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "Map.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Map.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Map.iter"
+rust_code = "{self}.iter()"
+rust_imports = []
+needs_result = false
+returns = "Iter"
+
+[[mappings.methods]]
+python = "Map.iter_mut"
+rust_code = "{self}.iter_mut()"
+rust_imports = []
+needs_result = false
+returns = "IterMut"
+
+[[mappings.methods]]
+python = "Map.keys"
+rust_code = "{self}.keys()"
+rust_imports = []
+needs_result = false
+returns = "Keys"
+
+[[mappings.methods]]
+python = "Map.values"
+rust_code = "{self}.values()"
+rust_imports = []
+needs_result = false
+returns = "Values"
+
+[[mappings.methods]]
+python = "Map.values_mut"
+rust_code = "{self}.values_mut()"
+rust_imports = []
+needs_result = false
+returns = "ValuesMut"
+
+[[mappings.methods]]
+python = "Map.into_values"
+rust_code = "{self}.into_values()"
+rust_imports = []
+needs_result = false
+returns = "IntoValues"
+
+[[mappings.methods]]
+python = "Map.retain"
+rust_code = "{self}.retain({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Map.sort_keys"
+rust_code = "{self}.sort_keys()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Map.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "Map.clone_from"
+rust_code = "{self}.clone_from({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "Map.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "Map.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "Map.index"
+rust_code = "{self}.index({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.index_mut"
+rust_code = "{self}.index_mut({arg0})"
+rust_imports = []
+needs_result = false
+returns = "mutValue"
+param_types = ["&Q"]
+
+[[mappings.methods]]
+python = "Map.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Map.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Ok"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "Map.extend"
+rust_code = "{self}.extend({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Map.into_deserializer"
+rust_code = "{self}.into_deserializer()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Deserializer"
+
+[[mappings.methods]]
+python = "Map.into_iter"
+rust_code = "{self}.into_iter()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "IntoIter"
+
+[[mappings.methods]]
+python = "Map.deserialize_any"
+rust_code = "{self}.deserialize_any({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Map.deserialize_enum"
+rust_code = "{self}.deserialize_enum({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["&'staticstr", "&'static[&'staticstr]", "V"]
+
+[[mappings.methods]]
+python = "Map.deserialize_ignored_any"
+rust_code = "{self}.deserialize_ignored_any({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "VacantEntry.key"
+rust_code = "{self}.key()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "VacantEntry.insert"
+rust_code = "{self}.insert({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Value"]
+
+[[mappings.methods]]
+python = "OccupiedEntry.key"
+rust_code = "{self}.key()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "OccupiedEntry.get"
+rust_code = "{self}.get()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "OccupiedEntry.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutValue"
+
+[[mappings.methods]]
+python = "OccupiedEntry.into_mut"
+rust_code = "{self}.into_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "OccupiedEntry.insert"
+rust_code = "{self}.insert({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["Value"]
+
+[[mappings.methods]]
+python = "OccupiedEntry.remove"
+rust_code = "{self}.remove()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "OccupiedEntry.swap_remove"
+rust_code = "{self}.swap_remove()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "OccupiedEntry.shift_remove"
+rust_code = "{self}.shift_remove()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "OccupiedEntry.remove_entry"
+rust_code = "{self}.remove_entry()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "OccupiedEntry.swap_remove_entry"
+rust_code = "{self}.swap_remove_entry()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "OccupiedEntry.shift_remove_entry"
+rust_code = "{self}.shift_remove_entry()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "LineColIterator.line"
+rust_code = "{self}.line()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "LineColIterator.col"
+rust_code = "{self}.col()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "LineColIterator.byte_offset"
+rust_code = "{self}.byte_offset()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "LineColIterator.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = true
+returns = "Result"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.line"
+rust_code = "{self}.line()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Error.column"
+rust_code = "{self}.column()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Error.classify"
+rust_code = "{self}.classify()"
+rust_imports = []
+needs_result = false
+returns = "Category"
+
+[[mappings.methods]]
+python = "Error.is_io"
+rust_code = "{self}.is_io()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_syntax"
+rust_code = "{self}.is_syntax()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_data"
+rust_code = "{self}.is_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_eof"
+rust_code = "{self}.is_eof()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.io_error_kind"
+rust_code = "{self}.io_error_kind()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorKind"
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Deserializer.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Deserializer.into_iter"
+rust_code = "{self}.into_iter()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamDeserializer"
+
+[[mappings.methods]]
+python = "Deserializer.disable_recursion_limit"
+rust_code = "{self}.disable_recursion_limit()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StreamDeserializer.byte_offset"
+rust_code = "{self}.byte_offset()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "StreamDeserializer.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns = "Result"
+
+[[mappings.methods]]
+python = "Number.is_i64"
+rust_code = "{self}.is_i64()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Number.is_u64"
+rust_code = "{self}.is_u64()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Number.is_f64"
+rust_code = "{self}.is_f64()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Number.as_i64"
+rust_code = "{self}.as_i64()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "Number.as_u64"
+rust_code = "{self}.as_u64()"
+rust_imports = []
+needs_result = false
+returns = "u64"
+
+[[mappings.methods]]
+python = "Number.as_f64"
+rust_code = "{self}.as_f64()"
+rust_imports = []
+needs_result = false
+returns = "f64"
+
+[[mappings.methods]]
+python = "Number.as_i128"
+rust_code = "{self}.as_i128()"
+rust_imports = []
+needs_result = false
+returns = "i128"
+
+[[mappings.methods]]
+python = "Number.as_u128"
+rust_code = "{self}.as_u128()"
+rust_imports = []
+needs_result = false
+returns = "u128"
+
+[[mappings.methods]]
+python = "Number.as_str"
+rust_code = "{self}.as_str()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Number.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Number.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Number.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Number.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Ok"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "Number.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Ok"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "IoRead.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "IoRead.peek"
+rust_code = "{self}.peek()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "IoRead.discard"
+rust_code = "{self}.discard()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IoRead.discard"
+rust_code = "{self}.discard()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IoRead.position"
+rust_code = "{self}.position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "IoRead.peek_position"
+rust_code = "{self}.peek_position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "IoRead.byte_offset"
+rust_code = "{self}.byte_offset()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "IoRead.parse_str"
+rust_code = "{self}.parse_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "IoRead.parse_str_raw"
+rust_code = "{self}.parse_str_raw({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "IoRead.ignore_str"
+rust_code = "{self}.ignore_str()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "IoRead.decode_hex_escape"
+rust_code = "{self}.decode_hex_escape()"
+rust_imports = []
+needs_result = true
+returns = "u16"
+
+[[mappings.methods]]
+python = "IoRead.begin_raw_buffering"
+rust_code = "{self}.begin_raw_buffering()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IoRead.end_raw_buffering"
+rust_code = "{self}.end_raw_buffering({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "IoRead.set_failed"
+rust_code = "{self}.set_failed({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutbool"]
+
+[[mappings.methods]]
+python = "SliceRead.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "SliceRead.peek"
+rust_code = "{self}.peek()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "SliceRead.discard"
+rust_code = "{self}.discard()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SliceRead.position"
+rust_code = "{self}.position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "SliceRead.peek_position"
+rust_code = "{self}.peek_position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "SliceRead.byte_offset"
+rust_code = "{self}.byte_offset()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "SliceRead.parse_str"
+rust_code = "{self}.parse_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "SliceRead.parse_str_raw"
+rust_code = "{self}.parse_str_raw({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "SliceRead.ignore_str"
+rust_code = "{self}.ignore_str()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "SliceRead.decode_hex_escape"
+rust_code = "{self}.decode_hex_escape()"
+rust_imports = []
+needs_result = true
+returns = "u16"
+
+[[mappings.methods]]
+python = "SliceRead.begin_raw_buffering"
+rust_code = "{self}.begin_raw_buffering()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SliceRead.end_raw_buffering"
+rust_code = "{self}.end_raw_buffering({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "SliceRead.set_failed"
+rust_code = "{self}.set_failed({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutbool"]
+
+[[mappings.methods]]
+python = "StrRead.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "StrRead.peek"
+rust_code = "{self}.peek()"
+rust_imports = []
+needs_result = true
+returns = "u8"
+
+[[mappings.methods]]
+python = "StrRead.discard"
+rust_code = "{self}.discard()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StrRead.position"
+rust_code = "{self}.position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "StrRead.peek_position"
+rust_code = "{self}.peek_position()"
+rust_imports = []
+needs_result = false
+returns = "Position"
+
+[[mappings.methods]]
+python = "StrRead.byte_offset"
+rust_code = "{self}.byte_offset()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "StrRead.parse_str"
+rust_code = "{self}.parse_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "StrRead.parse_str_raw"
+rust_code = "{self}.parse_str_raw({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Reference"
+param_types = ["&'smutVec<u8>"]
+
+[[mappings.methods]]
+python = "StrRead.ignore_str"
+rust_code = "{self}.ignore_str()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "StrRead.decode_hex_escape"
+rust_code = "{self}.decode_hex_escape()"
+rust_imports = []
+needs_result = true
+returns = "u16"
+
+[[mappings.methods]]
+python = "StrRead.begin_raw_buffering"
+rust_code = "{self}.begin_raw_buffering()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StrRead.end_raw_buffering"
+rust_code = "{self}.end_raw_buffering({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "StrRead.set_failed"
+rust_code = "{self}.set_failed({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutbool"]
+
+[[mappings.methods]]
+python = "Serializer.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "W"
+
+[[mappings.methods]]
+python = "Serializer.serialize_bool"
+rust_code = "{self}.serialize_bool({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i8"
+rust_code = "{self}.serialize_i8({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i8"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i16"
+rust_code = "{self}.serialize_i16({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i16"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i32"
+rust_code = "{self}.serialize_i32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i64"
+rust_code = "{self}.serialize_i64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i128"
+rust_code = "{self}.serialize_i128({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i128"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u8"
+rust_code = "{self}.serialize_u8({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u8"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u16"
+rust_code = "{self}.serialize_u16({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u16"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u32"
+rust_code = "{self}.serialize_u32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u64"
+rust_code = "{self}.serialize_u64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u128"
+rust_code = "{self}.serialize_u128({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u128"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_f32"
+rust_code = "{self}.serialize_f32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["f32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_f64"
+rust_code = "{self}.serialize_f64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["f64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_char"
+rust_code = "{self}.serialize_char({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["char"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_str"
+rust_code = "{self}.serialize_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_bytes"
+rust_code = "{self}.serialize_bytes({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit"
+rust_code = "{self}.serialize_unit()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit_struct"
+rust_code = "{self}.serialize_unit_struct({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit_variant"
+rust_code = "{self}.serialize_unit_variant({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "u32", "&'staticstr"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_newtype_struct"
+rust_code = "{self}.serialize_newtype_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_newtype_variant"
+rust_code = "{self}.serialize_newtype_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "u32", "&'staticstr", "&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_none"
+rust_code = "{self}.serialize_none()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "Serializer.serialize_some"
+rust_code = "{self}.serialize_some({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_seq"
+rust_code = "{self}.serialize_seq({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeSeq"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple"
+rust_code = "{self}.serialize_tuple({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTuple"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple_struct"
+rust_code = "{self}.serialize_tuple_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTupleStruct"
+param_types = ["&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple_variant"
+rust_code = "{self}.serialize_tuple_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTupleVariant"
+param_types = ["&'staticstr", "u32", "&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_map"
+rust_code = "{self}.serialize_map({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeMap"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_struct"
+rust_code = "{self}.serialize_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeStruct"
+param_types = ["&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_struct_variant"
+rust_code = "{self}.serialize_struct_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeStructVariant"
+param_types = ["&'staticstr", "u32", "&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.collect_str"
+rust_code = "{self}.collect_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.begin_array"
+rust_code = "{self}.begin_array({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.end_array"
+rust_code = "{self}.end_array({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.begin_array_value"
+rust_code = "{self}.begin_array_value({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW", "bool"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.end_array_value"
+rust_code = "{self}.end_array_value({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.begin_object"
+rust_code = "{self}.begin_object({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.end_object"
+rust_code = "{self}.end_object({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.begin_object_key"
+rust_code = "{self}.begin_object_key({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW", "bool"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.begin_object_value"
+rust_code = "{self}.begin_object_value({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "PrettyFormatter.end_object_value"
+rust_code = "{self}.end_object_value({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "Serializer.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "W"
+
+[[mappings.methods]]
+python = "Serializer.serialize_bool"
+rust_code = "{self}.serialize_bool({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i8"
+rust_code = "{self}.serialize_i8({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i8"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i16"
+rust_code = "{self}.serialize_i16({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i16"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i32"
+rust_code = "{self}.serialize_i32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i64"
+rust_code = "{self}.serialize_i64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_i128"
+rust_code = "{self}.serialize_i128({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["i128"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u8"
+rust_code = "{self}.serialize_u8({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u8"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u16"
+rust_code = "{self}.serialize_u16({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u16"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u32"
+rust_code = "{self}.serialize_u32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u64"
+rust_code = "{self}.serialize_u64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_u128"
+rust_code = "{self}.serialize_u128({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["u128"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_f32"
+rust_code = "{self}.serialize_f32({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["f32"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_f64"
+rust_code = "{self}.serialize_f64({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["f64"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_char"
+rust_code = "{self}.serialize_char({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["char"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_str"
+rust_code = "{self}.serialize_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_bytes"
+rust_code = "{self}.serialize_bytes({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit"
+rust_code = "{self}.serialize_unit()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit_struct"
+rust_code = "{self}.serialize_unit_struct({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_unit_variant"
+rust_code = "{self}.serialize_unit_variant({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "u32", "&'staticstr"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_newtype_struct"
+rust_code = "{self}.serialize_newtype_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_newtype_variant"
+rust_code = "{self}.serialize_newtype_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&'staticstr", "u32", "&'staticstr", "&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_none"
+rust_code = "{self}.serialize_none()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "Serializer.serialize_some"
+rust_code = "{self}.serialize_some({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_seq"
+rust_code = "{self}.serialize_seq({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeSeq"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple"
+rust_code = "{self}.serialize_tuple({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTuple"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple_struct"
+rust_code = "{self}.serialize_tuple_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTupleStruct"
+param_types = ["&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_tuple_variant"
+rust_code = "{self}.serialize_tuple_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeTupleVariant"
+param_types = ["&'staticstr", "u32", "&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_map"
+rust_code = "{self}.serialize_map({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeMap"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_struct"
+rust_code = "{self}.serialize_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeStruct"
+param_types = ["&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.serialize_struct_variant"
+rust_code = "{self}.serialize_struct_variant({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "SerializeStructVariant"
+param_types = ["&'staticstr", "u32", "&'staticstr", "usize"]
+
+[[mappings.methods]]
+python = "Serializer.collect_str"
+rust_code = "{self}.collect_str({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "SerializeVec.serialize_element"
+rust_code = "{self}.serialize_element({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "SerializeVec.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "SerializeVec.serialize_element"
+rust_code = "{self}.serialize_element({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "SerializeVec.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "SerializeVec.serialize_field"
+rust_code = "{self}.serialize_field({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "SerializeVec.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "SerializeTupleVariant.serialize_field"
+rust_code = "{self}.serialize_field({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "SerializeTupleVariant.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "SerializeStructVariant.serialize_field"
+rust_code = "{self}.serialize_field({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&'staticstr", "&T"]
+
+[[mappings.methods]]
+python = "SerializeStructVariant.end"
+rust_code = "{self}.end()"
+rust_imports = []
+needs_result = true
+returns = "Value"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.line"
+rust_code = "{self}.line()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Error.column"
+rust_code = "{self}.column()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Error.classify"
+rust_code = "{self}.classify()"
+rust_imports = []
+needs_result = false
+returns = "Category"
+
+[[mappings.methods]]
+python = "Error.is_io"
+rust_code = "{self}.is_io()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_syntax"
+rust_code = "{self}.is_syntax()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_data"
+rust_code = "{self}.is_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.is_eof"
+rust_code = "{self}.is_eof()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.io_error_kind"
+rust_code = "{self}.io_error_kind()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorKind"
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "RawValue.to_owned"
+rust_code = "{self}.to_owned()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Owned"
+
+[[mappings.methods]]
+python = "RawValue.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "RawValue.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "RawValue.get"
+rust_code = "{self}.get()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "RawValue.serialize"
+rust_code = "{self}.serialize({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Ok"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "ReferenceFromString.deserialize"
+rust_code = "{self}.deserialize({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["D"]
+
+[[mappings.methods]]
+python = "ReferenceFromString.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "ReferenceFromString.visit_borrowed_str"
+rust_code = "{self}.visit_borrowed_str({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["&'destr"]
+
+[[mappings.methods]]
+python = "BoxedFromString.deserialize"
+rust_code = "{self}.deserialize({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["D"]
+
+[[mappings.methods]]
+python = "BoxedFromString.expecting"
+rust_code = "{self}.expecting({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "BoxedFromString.visit_str"
+rust_code = "{self}.visit_str({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "BoxedFromString.visit_string"
+rust_code = "{self}.visit_string({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["String"]
+
+[[mappings.methods]]
+python = "OwnedRawDeserializer.next_key_seed"
+rust_code = "{self}.next_key_seed({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["K"]
+
+[[mappings.methods]]
+python = "OwnedRawDeserializer.next_value_seed"
+rust_code = "{self}.next_value_seed({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "BorrowedRawDeserializer.next_key_seed"
+rust_code = "{self}.next_key_seed({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["K"]
+
+[[mappings.methods]]
+python = "BorrowedRawDeserializer.next_value_seed"
+rust_code = "{self}.next_value_seed({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.types]]
+python = "Map"
+rust = "serde_json::Map"
+
+[[mappings.types]]
+python = "VacantEntry"
+rust = "serde_json::map::VacantEntry"
+
+[[mappings.types]]
+python = "OccupiedEntry"
+rust = "serde_json::map::OccupiedEntry"
+
+[[mappings.types]]
+python = "Iter"
+rust = "serde_json::map::Iter"
+
+[[mappings.types]]
+python = "IterMut"
+rust = "serde_json::map::IterMut"
+
+[[mappings.types]]
+python = "IntoIter"
+rust = "serde_json::map::IntoIter"
+
+[[mappings.types]]
+python = "Keys"
+rust = "serde_json::map::Keys"
+
+[[mappings.types]]
+python = "Values"
+rust = "serde_json::map::Values"
+
+[[mappings.types]]
+python = "ValuesMut"
+rust = "serde_json::map::ValuesMut"
+
+[[mappings.types]]
+python = "IntoValues"
+rust = "serde_json::map::IntoValues"
+
+[[mappings.types]]
+python = "LineColIterator"
+rust = "serde_json::LineColIterator"
+
+[[mappings.types]]
+python = "Error"
+rust = "serde_json::Error"
+
+[[mappings.types]]
+python = "Deserializer"
+rust = "serde_json::Deserializer"
+
+[[mappings.types]]
+python = "StreamDeserializer"
+rust = "serde_json::StreamDeserializer"
+
+[[mappings.types]]
+python = "Number"
+rust = "serde_json::Number"
+
+[[mappings.types]]
+python = "NumberFromString"
+rust = "serde_json::NumberFromString"
+
+[[mappings.types]]
+python = "Position"
+rust = "serde_json::read::Position"
+
+[[mappings.types]]
+python = "IoRead"
+rust = "serde_json::IoRead"
+
+[[mappings.types]]
+python = "SliceRead"
+rust = "serde_json::SliceRead"
+
+[[mappings.types]]
+python = "StrRead"
+rust = "serde_json::StrRead"
+
+[[mappings.types]]
+python = "Serializer"
+rust = "serde_json::Serializer"
+
+[[mappings.types]]
+python = "CompactFormatter"
+rust = "serde_json::CompactFormatter"
+
+[[mappings.types]]
+python = "PrettyFormatter"
+rust = "serde_json::PrettyFormatter"
+
+[[mappings.types]]
+python = "Serializer"
+rust = "serde_json::value::Serializer"
+
+[[mappings.types]]
+python = "SerializeVec"
+rust = "serde_json::value::SerializeVec"
+
+[[mappings.types]]
+python = "SerializeTupleVariant"
+rust = "serde_json::value::SerializeTupleVariant"
+
+[[mappings.types]]
+python = "SerializeStructVariant"
+rust = "serde_json::value::SerializeStructVariant"
+
+[[mappings.types]]
+python = "Error"
+rust = "serde_json::Error"
+
+[[mappings.types]]
+python = "RawValue"
+rust = "serde_json::RawValue"
+
+[[mappings.types]]
+python = "ReferenceFromString"
+rust = "serde_json::raw::ReferenceFromString"
+
+[[mappings.types]]
+python = "BoxedFromString"
+rust = "serde_json::raw::BoxedFromString"
+
+[[mappings.types]]
+python = "OwnedRawDeserializer"
+rust = "serde_json::OwnedRawDeserializer"
+
+[[mappings.types]]
+python = "BorrowedRawDeserializer"
+rust = "serde_json::BorrowedRawDeserializer"
+
+[[mappings.types]]
+python = "Entry"
+rust = "serde_json::map::Entry"
+
+[[mappings.types]]
+python = "ErrorKind"
+rust = "serde_json::ErrorKind"
+
+[[mappings.types]]
+python = "Reference"
+rust = "serde_json::read::Reference"
+
+[[mappings.types]]
+python = "State"
+rust = "serde_json::State"
+
+[[mappings.types]]
+python = "Compound"
+rust = "serde_json::Compound"
+
+[[mappings.types]]
+python = "CharEscape"
+rust = "serde_json::CharEscape"
+
+[[mappings.types]]
+python = "SerializeMap"
+rust = "serde_json::value::SerializeMap"
+
+[[mappings.types]]
+python = "Value"
+rust = "serde_json::Value"
+
+[[mappings.types]]
+python = "Category"
+rust = "serde_json::Category"

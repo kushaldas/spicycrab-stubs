@@ -1,0 +1,2476 @@
+[package]
+name = "ureq"
+rust_crate = "ureq"
+rust_version = "3.1.4"
+python_module = "spicycrab_ureq"
+
+[cargo.dependencies]
+ureq = "3.1.4"
+
+[cargo.features]
+available = ["_doc", "_ring", "_rustls", "_test", "_tls", "_url", "brotli", "charset", "cookies", "default", "gzip", "json", "multipart", "native-tls", "platform-verifier", "rustls", "rustls-no-provider", "socks-proxy", "vendored"]
+default = ["gzip", "rustls"]
+
+[[mappings.functions]]
+python = "ureq.set_handler"
+rust_code = "ureq::unversioned::transport::test::set_handler({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["ureq::unversioned::transport::test::set_handler"]
+needs_result = false
+param_types = ["&'staticstr", "u16", "&[(&str,&str)]", "&[u8]"]
+
+[[mappings.functions]]
+python = "ureq.parse_pem"
+rust_code = "ureq::tls::cert::parse_pem({arg0})"
+rust_imports = ["ureq::tls::cert::parse_pem"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "ureq.run"
+rust_code = "ureq::run({arg0})"
+rust_imports = ["ureq::run"]
+needs_result = true
+param_types = ["Request<implAsSendBody>"]
+
+[[mappings.functions]]
+python = "ureq.agent"
+rust_code = "ureq::agent()"
+rust_imports = ["ureq::agent"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.get"
+rust_code = "ureq::get({arg0})"
+rust_imports = ["ureq::get"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.post"
+rust_code = "ureq::post({arg0})"
+rust_imports = ["ureq::post"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.put"
+rust_code = "ureq::put({arg0})"
+rust_imports = ["ureq::put"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.delete"
+rust_code = "ureq::delete({arg0})"
+rust_imports = ["ureq::delete"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.head"
+rust_code = "ureq::head({arg0})"
+rust_imports = ["ureq::head"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.options"
+rust_code = "ureq::options({arg0})"
+rust_imports = ["ureq::options"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.connect"
+rust_code = "ureq::connect({arg0})"
+rust_imports = ["ureq::connect"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.patch"
+rust_code = "ureq::patch({arg0})"
+rust_imports = ["ureq::patch"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.trace"
+rust_code = "ureq::trace({arg0})"
+rust_imports = ["ureq::trace"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.init_test_log"
+rust_code = "ureq::init_test_log()"
+rust_imports = ["ureq::init_test_log"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.url_enc"
+rust_code = "ureq::query::url_enc({arg0})"
+rust_imports = ["ureq::query::url_enc"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "ureq.form_url_enc"
+rust_code = "ureq::query::form_url_enc({arg0})"
+rust_imports = ["ureq::query::form_url_enc"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "ureq.LazyBuffers.new"
+rust_code = "ureq::unversioned::transport::LazyBuffers::new({arg0}, {arg1})"
+rust_imports = ["ureq::unversioned::transport::LazyBuffers"]
+needs_result = false
+param_types = ["usize", "usize"]
+
+[[mappings.functions]]
+python = "ureq.DefaultConnector.new"
+rust_code = "ureq::unversioned::transport::DefaultConnector::new()"
+rust_imports = ["ureq::unversioned::transport::DefaultConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.DefaultConnector.default"
+rust_code = "ureq::unversioned::transport::DefaultConnector::default()"
+rust_imports = ["ureq::unversioned::transport::DefaultConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.TransportAdapter.new"
+rust_code = "ureq::unversioned::TransportAdapter::new({arg0})"
+rust_imports = ["ureq::unversioned::TransportAdapter"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "ureq.TcpTransport.new"
+rust_code = "ureq::unversioned::TcpTransport::new({arg0}, {arg1})"
+rust_imports = ["ureq::unversioned::TcpTransport"]
+needs_result = false
+param_types = ["TcpStream", "LazyBuffers"]
+
+[[mappings.functions]]
+python = "ureq.DefaultResolver.host_and_port"
+rust_code = "ureq::unversioned::DefaultResolver::host_and_port({arg0}, {arg1})"
+rust_imports = ["ureq::unversioned::DefaultResolver"]
+needs_result = false
+param_types = ["&Scheme", "&Authority"]
+
+[[mappings.functions]]
+python = "ureq.Body.builder"
+rust_code = "ureq::Body::builder()"
+rust_imports = ["ureq::Body"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Certificate.from_der"
+rust_code = "ureq::tls::Certificate::from_der({arg0})"
+rust_imports = ["ureq::tls::Certificate"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "ureq.Certificate.from_pem"
+rust_code = "ureq::tls::Certificate::from_pem({arg0})"
+rust_imports = ["ureq::tls::Certificate"]
+needs_result = true
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "ureq.PrivateKey.from_der"
+rust_code = "ureq::tls::cert::PrivateKey::from_der({arg0}, {arg1})"
+rust_imports = ["ureq::tls::cert::PrivateKey"]
+needs_result = false
+param_types = ["KeyKind", "&'a[u8]"]
+
+[[mappings.functions]]
+python = "ureq.PrivateKey.from_pem"
+rust_code = "ureq::tls::cert::PrivateKey::from_pem({arg0})"
+rust_imports = ["ureq::tls::cert::PrivateKey"]
+needs_result = true
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "ureq.TlsConfig.builder"
+rust_code = "ureq::TlsConfig::builder()"
+rust_imports = ["ureq::TlsConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.TlsConfig.default"
+rust_code = "ureq::TlsConfig::default()"
+rust_imports = ["ureq::TlsConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.ClientCert.new_with_certs"
+rust_code = "ureq::tls::ClientCert::new_with_certs({arg0}, {arg1})"
+rust_imports = ["ureq::tls::ClientCert"]
+needs_result = false
+param_types = ["&[Certificate<'static>]", "PrivateKey<'static>"]
+
+[[mappings.functions]]
+python = "ureq.Cookie.parse"
+rust_code = "ureq::Cookie::parse({arg0}, {arg1})"
+rust_imports = ["ureq::Cookie"]
+needs_result = true
+param_types = ["S", "&Uri"]
+
+[[mappings.functions]]
+python = "ureq.Proxy.new"
+rust_code = "ureq::Proxy::new({arg0})"
+rust_imports = ["ureq::Proxy"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "ureq.Proxy.builder"
+rust_code = "ureq::Proxy::builder({arg0})"
+rust_imports = ["ureq::Proxy"]
+needs_result = false
+param_types = ["ProxyProtocol"]
+
+[[mappings.functions]]
+python = "ureq.Proxy.try_from_env"
+rust_code = "ureq::Proxy::try_from_env()"
+rust_imports = ["ureq::Proxy"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Config.builder"
+rust_code = "ureq::Config::builder()"
+rust_imports = ["ureq::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Config.default"
+rust_code = "ureq::Config::default()"
+rust_imports = ["ureq::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Timeouts.default"
+rust_code = "ureq::config::Timeouts::default()"
+rust_imports = ["ureq::config::Timeouts"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.SendBody.none"
+rust_code = "ureq::SendBody::none()"
+rust_imports = ["ureq::SendBody"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.SendBody.from_reader"
+rust_code = "ureq::SendBody::from_reader({arg0})"
+rust_imports = ["ureq::SendBody"]
+needs_result = false
+param_types = ["&'amutdynRead"]
+
+[[mappings.functions]]
+python = "ureq.SendBody.from_owned_reader"
+rust_code = "ureq::SendBody::from_owned_reader({arg0})"
+rust_imports = ["ureq::SendBody"]
+needs_result = false
+param_types = ["implRead+'static"]
+
+[[mappings.functions]]
+python = "ureq.SendBody.from_json"
+rust_code = "ureq::SendBody::from_json({arg0})"
+rust_imports = ["ureq::SendBody"]
+needs_result = true
+param_types = ["&implserde::ser::Serialize"]
+
+[[mappings.functions]]
+python = "ureq.SendBody.from_"
+rust_code = "ureq::SendBody::from({arg0})"
+rust_imports = ["ureq::SendBody"]
+needs_result = false
+param_types = ["(Option<u64>,BodyInner<'a>)"]
+
+[[mappings.functions]]
+python = "ureq.Agent.new_with_defaults"
+rust_code = "ureq::Agent::new_with_defaults()"
+rust_imports = ["ureq::Agent"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Agent.new_with_config"
+rust_code = "ureq::Agent::new_with_config({arg0})"
+rust_imports = ["ureq::Agent"]
+needs_result = false
+param_types = ["Config"]
+
+[[mappings.functions]]
+python = "ureq.Agent.config_builder"
+rust_code = "ureq::Agent::config_builder()"
+rust_imports = ["ureq::Agent"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Agent.with_parts"
+rust_code = "ureq::Agent::with_parts({arg0}, {arg1}, {arg2})"
+rust_imports = ["ureq::Agent"]
+needs_result = false
+param_types = ["Config", "implConnector", "implResolver"]
+
+[[mappings.functions]]
+python = "ureq.Agent.from_"
+rust_code = "ureq::Agent::from({arg0})"
+rust_imports = ["ureq::Agent"]
+needs_result = false
+param_types = ["Config"]
+
+[[mappings.functions]]
+python = "ureq.Form.default"
+rust_code = "ureq::multipart::Form::default()"
+rust_imports = ["ureq::multipart::Form"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Form.new"
+rust_code = "ureq::multipart::Form::new()"
+rust_imports = ["ureq::multipart::Form"]
+needs_result = false
+
+[[mappings.functions]]
+python = "ureq.Part.text"
+rust_code = "ureq::Part::text({arg0})"
+rust_imports = ["ureq::Part"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "ureq.Part.bytes"
+rust_code = "ureq::Part::bytes({arg0})"
+rust_imports = ["ureq::Part"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "ureq.Part.reader"
+rust_code = "ureq::Part::reader({arg0})"
+rust_imports = ["ureq::Part"]
+needs_result = false
+param_types = ["&'amutdynRead"]
+
+[[mappings.functions]]
+python = "ureq.Part.owned_reader"
+rust_code = "ureq::Part::owned_reader({arg0})"
+rust_imports = ["ureq::Part"]
+needs_result = false
+param_types = ["implRead+'static"]
+
+[[mappings.functions]]
+python = "ureq.Part.file"
+rust_code = "ureq::Part::file({arg0})"
+rust_imports = ["ureq::Part"]
+needs_result = true
+param_types = ["P"]
+
+[[mappings.methods]]
+python = "ConnectProxyConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "ConnectProxyConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "LazyBuffers.output"
+rust_code = "{self}.output()"
+rust_imports = []
+needs_result = false
+returns = "mut[u8]"
+
+[[mappings.methods]]
+python = "LazyBuffers.input"
+rust_code = "{self}.input()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "LazyBuffers.input_append_buf"
+rust_code = "{self}.input_append_buf()"
+rust_imports = []
+needs_result = false
+returns = "mut[u8]"
+
+[[mappings.methods]]
+python = "LazyBuffers.tmp_and_output"
+rust_code = "{self}.tmp_and_output()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "LazyBuffers.input_appended"
+rust_code = "{self}.input_appended({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "LazyBuffers.input_consume"
+rust_code = "{self}.input_consume({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "LazyBuffers.can_use_input"
+rust_code = "{self}.can_use_input()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ChainedConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&super::ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "ChainedConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ChainedConnector.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ChainedConnector"
+
+[[mappings.methods]]
+python = "ConnectionDetails.needs_tls"
+rust_code = "{self}.needs_tls()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DefaultConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<()>"]
+
+[[mappings.methods]]
+python = "TransportAdapter.set_timeout"
+rust_code = "{self}.set_timeout({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["NextTimeout"]
+
+[[mappings.methods]]
+python = "TransportAdapter.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "dynTransport"
+
+[[mappings.methods]]
+python = "TransportAdapter.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutdynTransport"
+
+[[mappings.methods]]
+python = "TransportAdapter.inner"
+rust_code = "{self}.inner()"
+rust_imports = []
+needs_result = false
+returns = "dynTransport"
+
+[[mappings.methods]]
+python = "TransportAdapter.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "TransportAdapter.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TransportAdapter.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TransportAdapter.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "SocksConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "SocksConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "TcpConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "TcpConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "TcpTransport.buffers"
+rust_code = "{self}.buffers()"
+rust_imports = []
+needs_result = false
+returns = "mutdynBuffers"
+
+[[mappings.methods]]
+python = "TcpTransport.transmit_output"
+rust_code = "{self}.transmit_output({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["usize", "NextTimeout"]
+
+[[mappings.methods]]
+python = "TcpTransport.await_input"
+rust_code = "{self}.await_input({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["NextTimeout"]
+
+[[mappings.methods]]
+python = "TcpTransport.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TcpTransport.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "DefaultResolver.resolve"
+rust_code = "{self}.resolve({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "ResolvedSocketAddrs"
+param_types = ["&Uri", "&Config", "NextTimeout"]
+
+[[mappings.methods]]
+python = "DefaultResolver.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Body.mime_type"
+rust_code = "{self}.mime_type()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Body.charset"
+rust_code = "{self}.charset()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Body.content_length"
+rust_code = "{self}.content_length()"
+rust_imports = []
+needs_result = false
+returns = "u64"
+
+[[mappings.methods]]
+python = "Body.as_reader"
+rust_code = "{self}.as_reader()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyReader"
+
+[[mappings.methods]]
+python = "Body.into_reader"
+rust_code = "{self}.into_reader()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyReader"
+
+[[mappings.methods]]
+python = "Body.read_to_string"
+rust_code = "{self}.read_to_string()"
+rust_imports = []
+needs_result = true
+returns = "String"
+
+[[mappings.methods]]
+python = "Body.read_to_vec"
+rust_code = "{self}.read_to_vec()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Body.read_json"
+rust_code = "{self}.read_json()"
+rust_imports = []
+needs_result = true
+returns = "T"
+
+[[mappings.methods]]
+python = "Body.with_config"
+rust_code = "{self}.with_config()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyWithConfig"
+
+[[mappings.methods]]
+python = "Body.into_with_config"
+rust_code = "{self}.into_with_config()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyWithConfig"
+
+[[mappings.methods]]
+python = "Body.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Body.as_body"
+rust_code = "{self}.as_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SendBody"
+
+[[mappings.methods]]
+python = "BodyWithConfig.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyWithConfig"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "BodyWithConfig.lossy_utf8"
+rust_code = "{self}.lossy_utf8({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyWithConfig"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "BodyWithConfig.reader"
+rust_code = "{self}.reader()"
+rust_imports = []
+needs_result = false
+returns = "BodyReader"
+
+[[mappings.methods]]
+python = "BodyWithConfig.read_to_string"
+rust_code = "{self}.read_to_string()"
+rust_imports = []
+needs_result = true
+returns = "String"
+
+[[mappings.methods]]
+python = "BodyWithConfig.read_to_vec"
+rust_code = "{self}.read_to_vec()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "BodyWithConfig.read_json"
+rust_code = "{self}.read_json()"
+rust_imports = []
+needs_result = true
+returns = "T"
+
+[[mappings.methods]]
+python = "BodyReader.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "LossyUtf8Reader.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "BodyBuilder.mime_type"
+rust_code = "{self}.mime_type({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyBuilder"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "BodyBuilder.charset"
+rust_code = "{self}.charset({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyBuilder"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "BodyBuilder.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "BodyBuilder"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "BodyBuilder.data"
+rust_code = "{self}.data({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Body"
+param_types = ["implInto<Vec<u8>>"]
+
+[[mappings.methods]]
+python = "BodyBuilder.reader"
+rust_code = "{self}.reader({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Body"
+param_types = ["implio::Read+Send+Sync+'static"]
+
+[[mappings.methods]]
+python = "NativeTlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "NativeTlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "NativeTlsTransport.buffers"
+rust_code = "{self}.buffers()"
+rust_imports = []
+needs_result = false
+returns = "mutdynBuffers"
+
+[[mappings.methods]]
+python = "NativeTlsTransport.transmit_output"
+rust_code = "{self}.transmit_output({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["usize", "NextTimeout"]
+
+[[mappings.methods]]
+python = "NativeTlsTransport.await_input"
+rust_code = "{self}.await_input({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["NextTimeout"]
+
+[[mappings.methods]]
+python = "NativeTlsTransport.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NativeTlsTransport.is_tls"
+rust_code = "{self}.is_tls()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NativeTlsTransport.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Certificate.der"
+rust_code = "{self}.der()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Certificate.to_owned"
+rust_code = "{self}.to_owned()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "Certificate.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "PrivateKey.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PrivateKey.kind"
+rust_code = "{self}.kind()"
+rust_imports = []
+needs_result = false
+returns = "KeyKind"
+
+[[mappings.methods]]
+python = "PrivateKey.der"
+rust_code = "{self}.der()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PrivateKey.to_owned"
+rust_code = "{self}.to_owned()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PrivateKey"
+
+[[mappings.methods]]
+python = "PrivateKey.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RustlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Out"
+param_types = ["&ConnectionDetails", "Option<In>"]
+
+[[mappings.methods]]
+python = "RustlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RustlsTransport.buffers"
+rust_code = "{self}.buffers()"
+rust_imports = []
+needs_result = false
+returns = "mutdynBuffers"
+
+[[mappings.methods]]
+python = "RustlsTransport.transmit_output"
+rust_code = "{self}.transmit_output({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["usize", "NextTimeout"]
+
+[[mappings.methods]]
+python = "RustlsTransport.await_input"
+rust_code = "{self}.await_input({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["NextTimeout"]
+
+[[mappings.methods]]
+python = "RustlsTransport.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RustlsTransport.is_tls"
+rust_code = "{self}.is_tls()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RustlsTransport.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "TlsConfig.provider"
+rust_code = "{self}.provider()"
+rust_imports = []
+needs_result = false
+returns = "TlsProvider"
+
+[[mappings.methods]]
+python = "TlsConfig.client_cert"
+rust_code = "{self}.client_cert()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TlsConfig.root_certs"
+rust_code = "{self}.root_certs()"
+rust_imports = []
+needs_result = false
+returns = "RootCerts"
+
+[[mappings.methods]]
+python = "TlsConfig.use_sni"
+rust_code = "{self}.use_sni()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TlsConfig.disable_verification"
+rust_code = "{self}.disable_verification()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TlsConfig.unversioned_rustls_crypto_provider"
+rust_code = "{self}.unversioned_rustls_crypto_provider()"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+
+[[mappings.methods]]
+python = "TlsConfig.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "TlsConfig.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.provider"
+rust_code = "{self}.provider({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["TlsProvider"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.client_cert"
+rust_code = "{self}.client_cert({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["Option<ClientCert>"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.root_certs"
+rust_code = "{self}.root_certs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["RootCerts"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.use_sni"
+rust_code = "{self}.use_sni({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.disable_verification"
+rust_code = "{self}.disable_verification({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.unversioned_rustls_crypto_provider"
+rust_code = "{self}.unversioned_rustls_crypto_provider({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfigBuilder"
+param_types = ["Arc<::rustls::crypto::CryptoProvider>"]
+
+[[mappings.methods]]
+python = "TlsConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "TlsConfig"
+
+[[mappings.methods]]
+python = "ClientCert.certs"
+rust_code = "{self}.certs()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientCert.private_key"
+rust_code = "{self}.private_key()"
+rust_imports = []
+needs_result = false
+returns = "PrivateKey"
+
+[[mappings.methods]]
+python = "CookieJar.get"
+rust_code = "{self}.get({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "Cookie"
+param_types = ["&str", "&str", "&str"]
+
+[[mappings.methods]]
+python = "CookieJar.remove"
+rust_code = "{self}.remove({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "Cookie"
+param_types = ["&str", "&str", "&str"]
+
+[[mappings.methods]]
+python = "CookieJar.insert"
+rust_code = "{self}.insert({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["Cookie<'static>", "&Uri"]
+
+[[mappings.methods]]
+python = "CookieJar.clear"
+rust_code = "{self}.clear()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CookieJar.iter"
+rust_code = "{self}.iter()"
+rust_imports = []
+needs_result = false
+returns = "implIterator"
+
+[[mappings.methods]]
+python = "CookieJar.save_json"
+rust_code = "{self}.save_json({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "CookieJar.load_json"
+rust_code = "{self}.load_json({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["R"]
+
+[[mappings.methods]]
+python = "CookieJar.release"
+rust_code = "{self}.release()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Cookie.name"
+rust_code = "{self}.name()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Cookie.value"
+rust_code = "{self}.value()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Cookie.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Proxy.protocol"
+rust_code = "{self}.protocol()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyProtocol"
+
+[[mappings.methods]]
+python = "Proxy.uri"
+rust_code = "{self}.uri()"
+rust_imports = []
+needs_result = false
+returns = "Uri"
+
+[[mappings.methods]]
+python = "Proxy.host"
+rust_code = "{self}.host()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Proxy.port"
+rust_code = "{self}.port()"
+rust_imports = []
+needs_result = false
+returns = "u16"
+
+[[mappings.methods]]
+python = "Proxy.username"
+rust_code = "{self}.username()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Proxy.password"
+rust_code = "{self}.password()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Proxy.is_from_env"
+rust_code = "{self}.is_from_env()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Proxy.resolve_target"
+rust_code = "{self}.resolve_target()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Proxy.is_no_proxy"
+rust_code = "{self}.is_no_proxy({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Uri"]
+
+[[mappings.methods]]
+python = "Proxy.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.host"
+rust_code = "{self}.host({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.port"
+rust_code = "{self}.port({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["u16"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.username"
+rust_code = "{self}.username({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.password"
+rust_code = "{self}.password({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.resolve_target"
+rust_code = "{self}.resolve_target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.no_proxy"
+rust_code = "{self}.no_proxy({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ProxyBuilder"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "ProxyBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "Proxy"
+
+[[mappings.methods]]
+python = "AgentScope.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "mutConfig"
+
+[[mappings.methods]]
+python = "RequestScope.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "mutConfig"
+
+[[mappings.methods]]
+python = "HttpCrateScope.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "mutConfig"
+
+[[mappings.methods]]
+python = "RequestExtScope.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "mutConfig"
+
+[[mappings.methods]]
+python = "Config.new_agent"
+rust_code = "{self}.new_agent()"
+rust_imports = []
+needs_result = false
+returns = "Agent"
+
+[[mappings.methods]]
+python = "Config.http_status_as_error"
+rust_code = "{self}.http_status_as_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.https_only"
+rust_code = "{self}.https_only()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.ip_family"
+rust_code = "{self}.ip_family()"
+rust_imports = []
+needs_result = false
+returns = "IpFamily"
+
+[[mappings.methods]]
+python = "Config.tls_config"
+rust_code = "{self}.tls_config()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TlsConfig"
+
+[[mappings.methods]]
+python = "Config.proxy"
+rust_code = "{self}.proxy()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.no_delay"
+rust_code = "{self}.no_delay()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.max_redirects"
+rust_code = "{self}.max_redirects()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "Config.max_redirects_will_error"
+rust_code = "{self}.max_redirects_will_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.redirect_auth_headers"
+rust_code = "{self}.redirect_auth_headers()"
+rust_imports = []
+needs_result = false
+returns = "RedirectAuthHeaders"
+
+[[mappings.methods]]
+python = "Config.save_redirect_history"
+rust_code = "{self}.save_redirect_history()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.user_agent"
+rust_code = "{self}.user_agent()"
+rust_imports = []
+needs_result = false
+returns = "AutoHeaderValue"
+
+[[mappings.methods]]
+python = "Config.accept"
+rust_code = "{self}.accept()"
+rust_imports = []
+needs_result = false
+returns = "AutoHeaderValue"
+
+[[mappings.methods]]
+python = "Config.accept_encoding"
+rust_code = "{self}.accept_encoding()"
+rust_imports = []
+needs_result = false
+returns = "AutoHeaderValue"
+
+[[mappings.methods]]
+python = "Config.timeouts"
+rust_code = "{self}.timeouts()"
+rust_imports = []
+needs_result = false
+returns = "Timeouts"
+
+[[mappings.methods]]
+python = "Config.max_response_header_size"
+rust_code = "{self}.max_response_header_size()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Config.input_buffer_size"
+rust_code = "{self}.input_buffer_size()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Config.output_buffer_size"
+rust_code = "{self}.output_buffer_size()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Config.max_idle_connections"
+rust_code = "{self}.max_idle_connections()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Config.max_idle_connections_per_host"
+rust_code = "{self}.max_idle_connections_per_host()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Config.max_idle_age"
+rust_code = "{self}.max_idle_age()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "Config.allow_non_standard_methods"
+rust_code = "{self}.allow_non_standard_methods()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Config.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.http_status_as_error"
+rust_code = "{self}.http_status_as_error({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.https_only"
+rust_code = "{self}.https_only({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.ip_family"
+rust_code = "{self}.ip_family({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["IpFamily"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.tls_config"
+rust_code = "{self}.tls_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["TlsConfig"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.proxy"
+rust_code = "{self}.proxy({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Proxy>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.no_delay"
+rust_code = "{self}.no_delay({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_redirects"
+rust_code = "{self}.max_redirects({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_redirects_will_error"
+rust_code = "{self}.max_redirects_will_error({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.redirect_auth_headers"
+rust_code = "{self}.redirect_auth_headers({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["RedirectAuthHeaders"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.save_redirect_history"
+rust_code = "{self}.save_redirect_history({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.user_agent"
+rust_code = "{self}.user_agent({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["implInto<AutoHeaderValue>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["implInto<AutoHeaderValue>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.accept_encoding"
+rust_code = "{self}.accept_encoding({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["implInto<AutoHeaderValue>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_response_header_size"
+rust_code = "{self}.max_response_header_size({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.input_buffer_size"
+rust_code = "{self}.input_buffer_size({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.output_buffer_size"
+rust_code = "{self}.output_buffer_size({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_idle_connections"
+rust_code = "{self}.max_idle_connections({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_idle_connections_per_host"
+rust_code = "{self}.max_idle_connections_per_host({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.max_idle_age"
+rust_code = "{self}.max_idle_age({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.allow_non_standard_methods"
+rust_code = "{self}.allow_non_standard_methods({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.middleware"
+rust_code = "{self}.middleware({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["implMiddleware"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_global"
+rust_code = "{self}.timeout_global({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_per_call"
+rust_code = "{self}.timeout_per_call({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_resolve"
+rust_code = "{self}.timeout_resolve({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_connect"
+rust_code = "{self}.timeout_connect({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_send_request"
+rust_code = "{self}.timeout_send_request({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_await_100"
+rust_code = "{self}.timeout_await_100({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_send_body"
+rust_code = "{self}.timeout_send_body({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_recv_response"
+rust_code = "{self}.timeout_recv_response({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.timeout_recv_body"
+rust_code = "{self}.timeout_recv_body({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "Config"
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "Request"
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "WithAgent"
+
+[[mappings.methods]]
+python = "ConfigBuilder.run"
+rust_code = "{self}.run()"
+rust_imports = []
+needs_result = true
+returns = "Response"
+
+[[mappings.methods]]
+python = "Timeouts.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "WithAgent.configure"
+rust_code = "{self}.configure()"
+rust_imports = []
+needs_result = false
+returns = "ConfigBuilder"
+
+[[mappings.methods]]
+python = "WithAgent.run"
+rust_code = "{self}.run()"
+rust_imports = []
+needs_result = true
+returns = "Response"
+
+[[mappings.methods]]
+python = "SendBody.into_reader"
+rust_code = "{self}.into_reader()"
+rust_imports = []
+needs_result = false
+returns = "Read+'a"
+
+[[mappings.methods]]
+python = "SendBody.as_body"
+rust_code = "{self}.as_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SendBody"
+
+[[mappings.methods]]
+python = "MiddlewareNext.handle"
+rust_code = "{self}.handle({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["http::Request<SendBody>"]
+
+[[mappings.methods]]
+python = "RequestBuilder.method_ref"
+rust_code = "{self}.method_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.header"
+rust_code = "{self}.header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "RequestBuilder.headers_ref"
+rust_code = "{self}.headers_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.headers_mut"
+rust_code = "{self}.headers_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.query"
+rust_code = "{self}.query({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "RequestBuilder.query_raw"
+rust_code = "{self}.query_raw({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["K", "V"]
+
+[[mappings.methods]]
+python = "RequestBuilder.query_pairs"
+rust_code = "{self}.query_pairs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "RequestBuilder.query_pairs_raw"
+rust_code = "{self}.query_pairs_raw({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "RequestBuilder.uri"
+rust_code = "{self}.uri({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "RequestBuilder.uri_ref"
+rust_code = "{self}.uri_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.version"
+rust_code = "{self}.version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["Version"]
+
+[[mappings.methods]]
+python = "RequestBuilder.version_ref"
+rust_code = "{self}.version_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "ConfigBuilder"
+
+[[mappings.methods]]
+python = "RequestBuilder.extension"
+rust_code = "{self}.extension({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "RequestBuilder.extensions_ref"
+rust_code = "{self}.extensions_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.extensions_mut"
+rust_code = "{self}.extensions_mut()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RequestBuilder.call"
+rust_code = "{self}.call()"
+rust_imports = []
+needs_result = true
+returns = "Response"
+
+[[mappings.methods]]
+python = "RequestBuilder.force_send_body"
+rust_code = "{self}.force_send_body()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+
+[[mappings.methods]]
+python = "RequestBuilder.content_type"
+rust_code = "{self}.content_type({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RequestBuilder"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "RequestBuilder.send"
+rust_code = "{self}.send({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["implAsSendBody"]
+
+[[mappings.methods]]
+python = "RequestBuilder.send_empty"
+rust_code = "{self}.send_empty()"
+rust_imports = []
+needs_result = true
+returns = "Response"
+
+[[mappings.methods]]
+python = "RequestBuilder.send_form"
+rust_code = "{self}.send_form({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["I"]
+
+[[mappings.methods]]
+python = "RequestBuilder.send_json"
+rust_code = "{self}.send_json({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["implserde::ser::Serialize"]
+
+[[mappings.methods]]
+python = "RequestBuilder.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RequestBuilder.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Agent.cookie_jar_lock"
+rust_code = "{self}.cookie_jar_lock()"
+rust_imports = []
+needs_result = false
+returns = "CookieJar"
+
+[[mappings.methods]]
+python = "Agent.run"
+rust_code = "{self}.run({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["Request<implAsSendBody>"]
+
+[[mappings.methods]]
+python = "Agent.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns = "Config"
+
+[[mappings.methods]]
+python = "Agent.configure_request"
+rust_code = "{self}.configure_request({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ConfigBuilder"
+param_types = ["Request<S>"]
+
+[[mappings.methods]]
+python = "Agent.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.post"
+rust_code = "{self}.post({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.put"
+rust_code = "{self}.put({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.delete"
+rust_code = "{self}.delete({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.head"
+rust_code = "{self}.head({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.options"
+rust_code = "{self}.options({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.connect"
+rust_code = "{self}.connect({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.patch"
+rust_code = "{self}.patch({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.trace"
+rust_code = "{self}.trace({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RequestBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Agent.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Agent.pool_count"
+rust_code = "{self}.pool_count()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "NextTimeout.not_zero"
+rust_code = "{self}.not_zero()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "Form.boundary"
+rust_code = "{self}.boundary()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Form.text"
+rust_code = "{self}.text({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Form"
+param_types = ["&'astr", "&'astr"]
+
+[[mappings.methods]]
+python = "Form.file"
+rust_code = "{self}.file({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["&'astr", "P"]
+
+[[mappings.methods]]
+python = "Form.part"
+rust_code = "{self}.part({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Form"
+param_types = ["&'astr", "Part<'a>"]
+
+[[mappings.methods]]
+python = "Form.as_body"
+rust_code = "{self}.as_body()"
+rust_imports = []
+needs_result = false
+returns = "SendBody"
+
+[[mappings.methods]]
+python = "Form.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "Part.file_name"
+rust_code = "{self}.file_name({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Part"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Part.mime_str"
+rust_code = "{self}.mime_str({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Part.headers"
+rust_code = "{self}.headers()"
+rust_imports = []
+needs_result = false
+returns = "HeaderMap"
+
+[[mappings.types]]
+python = "ConnectProxyConnector"
+rust = "ureq::unversioned::transport::ConnectProxyConnector"
+
+[[mappings.types]]
+python = "LazyBuffers"
+rust = "ureq::unversioned::transport::LazyBuffers"
+
+[[mappings.types]]
+python = "ChainedConnector"
+rust = "ureq::unversioned::transport::ChainedConnector"
+
+[[mappings.types]]
+python = "ConnectionDetails"
+rust = "ureq::unversioned::transport::ConnectionDetails"
+
+[[mappings.types]]
+python = "DefaultConnector"
+rust = "ureq::unversioned::transport::DefaultConnector"
+
+[[mappings.types]]
+python = "TransportAdapter"
+rust = "ureq::unversioned::TransportAdapter"
+
+[[mappings.types]]
+python = "SocksConnector"
+rust = "ureq::unversioned::transport::SocksConnector"
+
+[[mappings.types]]
+python = "TcpConnector"
+rust = "ureq::unversioned::transport::TcpConnector"
+
+[[mappings.types]]
+python = "TcpTransport"
+rust = "ureq::unversioned::TcpTransport"
+
+[[mappings.types]]
+python = "DefaultResolver"
+rust = "ureq::unversioned::DefaultResolver"
+
+[[mappings.types]]
+python = "Body"
+rust = "ureq::Body"
+
+[[mappings.types]]
+python = "BodyWithConfig"
+rust = "ureq::BodyWithConfig"
+
+[[mappings.types]]
+python = "BodyReader"
+rust = "ureq::BodyReader"
+
+[[mappings.types]]
+python = "LossyUtf8Reader"
+rust = "ureq::body::LossyUtf8Reader"
+
+[[mappings.types]]
+python = "BodyBuilder"
+rust = "ureq::BodyBuilder"
+
+[[mappings.types]]
+python = "NativeTlsConnector"
+rust = "ureq::NativeTlsConnector"
+
+[[mappings.types]]
+python = "NativeTlsTransport"
+rust = "ureq::NativeTlsTransport"
+
+[[mappings.types]]
+python = "Certificate"
+rust = "ureq::tls::Certificate"
+
+[[mappings.types]]
+python = "PrivateKey"
+rust = "ureq::tls::cert::PrivateKey"
+
+[[mappings.types]]
+python = "RustlsConnector"
+rust = "ureq::RustlsConnector"
+
+[[mappings.types]]
+python = "RustlsTransport"
+rust = "ureq::RustlsTransport"
+
+[[mappings.types]]
+python = "TlsConfig"
+rust = "ureq::TlsConfig"
+
+[[mappings.types]]
+python = "TlsConfigBuilder"
+rust = "ureq::TlsConfigBuilder"
+
+[[mappings.types]]
+python = "ClientCert"
+rust = "ureq::tls::ClientCert"
+
+[[mappings.types]]
+python = "CookieJar"
+rust = "ureq::cookies::CookieJar"
+
+[[mappings.types]]
+python = "Cookie"
+rust = "ureq::Cookie"
+
+[[mappings.types]]
+python = "Proxy"
+rust = "ureq::Proxy"
+
+[[mappings.types]]
+python = "ProxyBuilder"
+rust = "ureq::ProxyBuilder"
+
+[[mappings.types]]
+python = "AgentScope"
+rust = "ureq::config::AgentScope"
+
+[[mappings.types]]
+python = "RequestScope"
+rust = "ureq::config::RequestScope"
+
+[[mappings.types]]
+python = "HttpCrateScope"
+rust = "ureq::config::HttpCrateScope"
+
+[[mappings.types]]
+python = "RequestExtScope"
+rust = "ureq::config::RequestExtScope"
+
+[[mappings.types]]
+python = "Config"
+rust = "ureq::Config"
+
+[[mappings.types]]
+python = "ConfigBuilder"
+rust = "ureq::ConfigBuilder"
+
+[[mappings.types]]
+python = "Timeouts"
+rust = "ureq::config::Timeouts"
+
+[[mappings.types]]
+python = "WithAgent"
+rust = "ureq::request_ext::WithAgent"
+
+[[mappings.types]]
+python = "SendBody"
+rust = "ureq::SendBody"
+
+[[mappings.types]]
+python = "MiddlewareNext"
+rust = "ureq::MiddlewareNext"
+
+[[mappings.types]]
+python = "RequestBuilder"
+rust = "ureq::RequestBuilder"
+
+[[mappings.types]]
+python = "WithoutBody"
+rust = "ureq::request::WithoutBody"
+
+[[mappings.types]]
+python = "WithBody"
+rust = "ureq::request::WithBody"
+
+[[mappings.types]]
+python = "Agent"
+rust = "ureq::Agent"
+
+[[mappings.types]]
+python = "NextTimeout"
+rust = "ureq::timings::NextTimeout"
+
+[[mappings.types]]
+python = "Form"
+rust = "ureq::multipart::Form"
+
+[[mappings.types]]
+python = "Part"
+rust = "ureq::Part"
+
+[[mappings.types]]
+python = "Instant"
+rust = "ureq::unversioned::transport::time::Instant"
+
+[[mappings.types]]
+python = "Duration"
+rust = "ureq::unversioned::transport::time::Duration"
+
+[[mappings.types]]
+python = "Either"
+rust = "ureq::unversioned::transport::chain::Either"
+
+[[mappings.types]]
+python = "KeyKind"
+rust = "ureq::tls::cert::KeyKind"
+
+[[mappings.types]]
+python = "PemItem"
+rust = "ureq::tls::cert::PemItem"
+
+[[mappings.types]]
+python = "TlsProvider"
+rust = "ureq::TlsProvider"
+
+[[mappings.types]]
+python = "RootCerts"
+rust = "ureq::tls::RootCerts"
+
+[[mappings.types]]
+python = "ProxyProtocol"
+rust = "ureq::ProxyProtocol"
+
+[[mappings.types]]
+python = "AutoHeaderValue"
+rust = "ureq::config::AutoHeaderValue"
+
+[[mappings.types]]
+python = "IpFamily"
+rust = "ureq::config::IpFamily"
+
+[[mappings.types]]
+python = "AgentRef"
+rust = "ureq::request_ext::AgentRef"
+
+[[mappings.types]]
+python = "Timeout"
+rust = "ureq::timings::Timeout"
+
+[[mappings.types]]
+python = "Error"
+rust = "ureq::Error"

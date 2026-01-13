@@ -4279,7 +4279,7 @@ So a correctly implemented server looks like this:
 use std::io;
 use tokio::net::windows::named_pipe::ServerOptions;
 
-const PIPE_NAME: &str = r"\\.\pipe\named-pipe-idiomatic-server";
+const PIPE_NAME: &str = r"\\\\.\\pipe\\named-pipe-idiomatic-server";
 
 # #[tokio::main] async fn main() -> std::io::Result<()> {
 // The first server needs to be constructed early so that clients can
@@ -4387,7 +4387,7 @@ use tokio::net::windows::named_pipe::ClientOptions;
 use tokio::time;
 use windows_sys::Win32::Foundation::ERROR_PIPE_BUSY;
 
-const PIPE_NAME: &str = r"\\.\pipe\named-pipe-idiomatic-client";
+const PIPE_NAME: &str = r"\\\\.\\pipe\\named-pipe-idiomatic-client";
 
 # #[tokio::main] async fn main() -> std::io::Result<()> {
 let client = loop {
@@ -6051,23 +6051,23 @@ error.
 
 There are several ways to establish shared access to a Tokio runtime:
 
-* Using an <code>[Arc]\<Runtime></code>.
+* Using an <code>[Arc]\\<Runtime></code>.
 * Using a [`Handle`].
 * Entering the runtime context.
 
-Using an <code>[Arc]\<Runtime></code> or [`Handle`] allows you to do various
+Using an <code>[Arc]\\<Runtime></code> or [`Handle`] allows you to do various
 things with the runtime such as spawning new tasks or entering the runtime
 context. Both types can be cloned to create a new handle that allows access
 to the same runtime. By passing clones into different tasks or threads, you
 will be able to access the runtime from those tasks or threads.
 
-The difference between <code>[Arc]\<Runtime></code> and [`Handle`] is that
-an <code>[Arc]\<Runtime></code> will prevent the runtime from shutting down,
+The difference between <code>[Arc]\\<Runtime></code> and [`Handle`] is that
+an <code>[Arc]\\<Runtime></code> will prevent the runtime from shutting down,
 whereas a [`Handle`] does not prevent that. This is because shutdown of the
 runtime happens when the destructor of the `Runtime` object runs.
 
 Calls to [`shutdown_background`] and [`shutdown_timeout`] require exclusive
-ownership of the `Runtime` type. When using an <code>[Arc]\<Runtime></code>,
+ownership of the `Runtime` type. When using an <code>[Arc]\\<Runtime></code>,
 this can be achieved via [`Arc::try_unwrap`] when only one strong count
 reference is left over.
 
@@ -7872,7 +7872,7 @@ let status = Command::new("echo")
 rx.read_to_string(&mut buffer).await?;
 
 assert!(status.await?.success());
-assert_eq!(buffer, "Hello, world!\n");
+assert_eq!(buffer, "Hello, world!\\n");
 # Ok(())
 # }
 ```

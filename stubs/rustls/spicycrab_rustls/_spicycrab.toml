@@ -1,0 +1,4842 @@
+[package]
+name = "rustls"
+rust_crate = "rustls"
+rust_version = "0.23.36"
+python_module = "spicycrab_rustls"
+
+[cargo.dependencies]
+rustls = "0.23.36"
+
+[cargo.features]
+available = ["aws-lc-rs", "aws_lc_rs", "brotli", "custom-provider", "default", "fips", "logging", "prefer-post-quantum", "read_buf", "ring", "std", "tls12", "zlib"]
+default = ["aws_lc_rs", "logging", "prefer-post-quantum", "std", "tls12"]
+
+[[mappings.functions]]
+python = "rustls.verify_server_cert_signed_by_trust_anchor"
+rust_code = "rustls::verify_server_cert_signed_by_trust_anchor({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["rustls::verify_server_cert_signed_by_trust_anchor"]
+needs_result = true
+param_types = ["&ParsedCertificate<'_>", "&RootCertStore", "&[CertificateDer<'_>]", "UnixTime", "&[&dynSignatureVerificationAlgorithm]"]
+
+[[mappings.functions]]
+python = "rustls.verify_server_name"
+rust_code = "rustls::verify_server_name({arg0}, {arg1})"
+rust_imports = ["rustls::verify_server_name"]
+needs_result = true
+param_types = ["&ParsedCertificate<'_>", "&ServerName<'_>"]
+
+[[mappings.functions]]
+python = "rustls.verify_tls12_signature"
+rust_code = "rustls::verify_tls12_signature({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::verify_tls12_signature"]
+needs_result = true
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct", "&WebPkiSupportedAlgorithms"]
+
+[[mappings.functions]]
+python = "rustls.verify_tls13_signature"
+rust_code = "rustls::verify_tls13_signature({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::verify_tls13_signature"]
+needs_result = true
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct", "&WebPkiSupportedAlgorithms"]
+
+[[mappings.functions]]
+python = "rustls.verify_tls13_signature_with_raw_key"
+rust_code = "rustls::verify_tls13_signature_with_raw_key({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::verify_tls13_signature_with_raw_key"]
+needs_result = true
+param_types = ["&[u8]", "&SubjectPublicKeyInfoDer<'_>", "&DigitallySignedStruct", "&WebPkiSupportedAlgorithms"]
+
+[[mappings.functions]]
+python = "rustls.derive_traffic_key"
+rust_code = "rustls::tls13::key_schedule::derive_traffic_key({arg0}, {arg1})"
+rust_imports = ["rustls::tls13::key_schedule::derive_traffic_key"]
+needs_result = false
+param_types = ["&dynHkdfExpander", "&dynTls13AeadAlgorithm"]
+
+[[mappings.functions]]
+python = "rustls.derive_traffic_iv"
+rust_code = "rustls::tls13::key_schedule::derive_traffic_iv({arg0})"
+rust_imports = ["rustls::tls13::key_schedule::derive_traffic_iv"]
+needs_result = false
+param_types = ["&dynHkdfExpander"]
+
+[[mappings.functions]]
+python = "rustls.fuzz_deframer"
+rust_code = "rustls::msgs::fuzz_deframer({arg0})"
+rust_imports = ["rustls::msgs::fuzz_deframer"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.public_key_to_spki"
+rust_code = "rustls::crypto::signer::public_key_to_spki({arg0}, {arg1})"
+rust_imports = ["rustls::crypto::signer::public_key_to_spki"]
+needs_result = false
+param_types = ["&AlgorithmIdentifier", "&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.any_supported_type"
+rust_code = "rustls::crypto::aws_lc_rs::sign::any_supported_type({arg0})"
+rust_imports = ["rustls::crypto::aws_lc_rs::sign::any_supported_type"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.any_ecdsa_type"
+rust_code = "rustls::crypto::aws_lc_rs::sign::any_ecdsa_type({arg0})"
+rust_imports = ["rustls::crypto::aws_lc_rs::sign::any_ecdsa_type"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.any_eddsa_type"
+rust_code = "rustls::crypto::aws_lc_rs::sign::any_eddsa_type({arg0})"
+rust_imports = ["rustls::crypto::aws_lc_rs::sign::any_eddsa_type"]
+needs_result = true
+param_types = ["&PrivatePkcs8KeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.default_provider"
+rust_code = "rustls::crypto::aws_lc_rs::default_provider()"
+rust_imports = ["rustls::crypto::aws_lc_rs::default_provider"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.any_supported_type"
+rust_code = "rustls::crypto::ring::sign::any_supported_type({arg0})"
+rust_imports = ["rustls::crypto::ring::sign::any_supported_type"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.any_ecdsa_type"
+rust_code = "rustls::crypto::ring::sign::any_ecdsa_type({arg0})"
+rust_imports = ["rustls::crypto::ring::sign::any_ecdsa_type"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.any_eddsa_type"
+rust_code = "rustls::crypto::ring::sign::any_eddsa_type({arg0})"
+rust_imports = ["rustls::crypto::ring::sign::any_eddsa_type"]
+needs_result = true
+param_types = ["&PrivatePkcs8KeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.default_provider"
+rust_code = "rustls::crypto::ring::default_provider()"
+rust_imports = ["rustls::crypto::ring::default_provider"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.default_fips_provider"
+rust_code = "rustls::crypto::default_fips_provider()"
+rust_imports = ["rustls::crypto::default_fips_provider"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.expand"
+rust_code = "rustls::crypto::expand({arg0}, {arg1})"
+rust_imports = ["rustls::crypto::expand"]
+needs_result = false
+param_types = ["&dynHkdfExpander", "&[&[u8]]"]
+
+[[mappings.functions]]
+python = "rustls.make_tls13_aad"
+rust_code = "rustls::crypto::cipher::make_tls13_aad({arg0})"
+rust_imports = ["rustls::crypto::cipher::make_tls13_aad"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.make_tls12_aad"
+rust_code = "rustls::crypto::cipher::make_tls12_aad({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::crypto::cipher::make_tls12_aad"]
+needs_result = false
+param_types = ["u64", "ContentType", "ProtocolVersion", "usize"]
+
+[[mappings.functions]]
+python = "rustls.default_cert_decompressors"
+rust_code = "rustls::compress::default_cert_decompressors()"
+rust_imports = ["rustls::compress::default_cert_decompressors"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.default_cert_compressors"
+rust_code = "rustls::compress::default_cert_compressors()"
+rust_imports = ["rustls::compress::default_cert_compressors"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.RootCertStore.empty"
+rust_code = "rustls::RootCertStore::empty()"
+rust_imports = ["rustls::RootCertStore"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.RootCertStore.from_iter"
+rust_code = "rustls::RootCertStore::from_iter({arg0})"
+rust_imports = ["rustls::RootCertStore"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "rustls.WebPkiClientVerifier.builder"
+rust_code = "rustls::WebPkiClientVerifier::builder({arg0})"
+rust_imports = ["rustls::WebPkiClientVerifier"]
+needs_result = false
+param_types = ["Arc<RootCertStore>"]
+
+[[mappings.functions]]
+python = "rustls.WebPkiClientVerifier.builder_with_provider"
+rust_code = "rustls::WebPkiClientVerifier::builder_with_provider({arg0}, {arg1})"
+rust_imports = ["rustls::WebPkiClientVerifier"]
+needs_result = false
+param_types = ["Arc<RootCertStore>", "Arc<CryptoProvider>"]
+
+[[mappings.functions]]
+python = "rustls.WebPkiClientVerifier.no_client_auth"
+rust_code = "rustls::WebPkiClientVerifier::no_client_auth()"
+rust_imports = ["rustls::WebPkiClientVerifier"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ParsedCertificate.try_from"
+rust_code = "rustls::ParsedCertificate::try_from({arg0})"
+rust_imports = ["rustls::ParsedCertificate"]
+needs_result = true
+param_types = ["&'aCertificateDer<'a>"]
+
+[[mappings.functions]]
+python = "rustls.WebPkiServerVerifier.builder"
+rust_code = "rustls::WebPkiServerVerifier::builder({arg0})"
+rust_imports = ["rustls::WebPkiServerVerifier"]
+needs_result = false
+param_types = ["Arc<RootCertStore>"]
+
+[[mappings.functions]]
+python = "rustls.WebPkiServerVerifier.builder_with_provider"
+rust_code = "rustls::WebPkiServerVerifier::builder_with_provider({arg0}, {arg1})"
+rust_imports = ["rustls::WebPkiServerVerifier"]
+needs_result = false
+param_types = ["Arc<RootCertStore>", "Arc<CryptoProvider>"]
+
+[[mappings.functions]]
+python = "rustls.KeyLogFile.new"
+rust_code = "rustls::KeyLogFile::new()"
+rust_imports = ["rustls::KeyLogFile"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.Mutex.new"
+rust_code = "rustls::lock::Mutex::new({arg0})"
+rust_imports = ["rustls::lock::Mutex"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "rustls.Mutex.new"
+rust_code = "rustls::lock::Mutex::new({arg0})"
+rust_imports = ["rustls::lock::Mutex"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "rustls.Mutex.new"
+rust_code = "rustls::lock::Mutex::new({arg0})"
+rust_imports = ["rustls::lock::Mutex"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "rustls.Mutex.new"
+rust_code = "rustls::lock::Mutex::new({arg0})"
+rust_imports = ["rustls::lock::Mutex"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "rustls.Reader.init"
+rust_code = "rustls::Reader::init({arg0})"
+rust_imports = ["rustls::Reader"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "rustls.ConnectionCommon.from_"
+rust_code = "rustls::ConnectionCommon::from({arg0})"
+rust_imports = ["rustls::ConnectionCommon"]
+needs_result = false
+param_types = ["ConnectionCore<Data>"]
+
+[[mappings.functions]]
+python = "rustls.ConnectionCommon.from_"
+rust_code = "rustls::ConnectionCommon::from({arg0})"
+rust_imports = ["rustls::ConnectionCommon"]
+needs_result = false
+param_types = ["ConnectionCore<Data>"]
+
+[[mappings.functions]]
+python = "rustls.UnbufferedConnectionCommon.from_"
+rust_code = "rustls::UnbufferedConnectionCommon::from({arg0})"
+rust_imports = ["rustls::UnbufferedConnectionCommon"]
+needs_result = false
+param_types = ["ConnectionCore<Data>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new"
+rust_code = "rustls::quic::ClientConnection::new({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::quic::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "Version", "ServerName<'static>", "Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new_with_alpn"
+rust_code = "rustls::quic::ClientConnection::new_with_alpn({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["rustls::quic::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "Version", "ServerName<'static>", "Vec<u8>", "Vec<Vec<u8>>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new"
+rust_code = "rustls::quic::ClientConnection::new({arg0}, {arg1})"
+rust_imports = ["rustls::quic::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new_with_alpn"
+rust_code = "rustls::quic::ClientConnection::new_with_alpn({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::quic::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>", "Vec<Vec<u8>>"]
+
+[[mappings.functions]]
+python = "rustls.ServerConnection.new"
+rust_code = "rustls::quic::ServerConnection::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::quic::ServerConnection"]
+needs_result = true
+param_types = ["Arc<ServerConfig>", "Version", "Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.ServerConnection.new"
+rust_code = "rustls::quic::ServerConnection::new({arg0})"
+rust_imports = ["rustls::quic::ServerConnection"]
+needs_result = true
+param_types = ["Arc<ServerConfig>"]
+
+[[mappings.functions]]
+python = "rustls.ConnectionCommon.from_"
+rust_code = "rustls::quic::ConnectionCommon::from({arg0})"
+rust_imports = ["rustls::quic::ConnectionCommon"]
+needs_result = false
+param_types = ["ConnectionCore<Data>"]
+
+[[mappings.functions]]
+python = "rustls.ConnectionCommon.from_"
+rust_code = "rustls::quic::ConnectionCommon::from({arg0})"
+rust_imports = ["rustls::quic::ConnectionCommon"]
+needs_result = false
+param_types = ["ConnectionCore<Data>"]
+
+[[mappings.functions]]
+python = "rustls.Tag.from_"
+rust_code = "rustls::quic::Tag::from({arg0})"
+rust_imports = ["rustls::quic::Tag"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.Tag.new"
+rust_code = "rustls::quic::Tag::new({arg0})"
+rust_imports = ["rustls::quic::Tag"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.Keys.initial"
+rust_code = "rustls::quic::Keys::initial({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["rustls::quic::Keys"]
+needs_result = false
+param_types = ["Version", "&'staticTls13CipherSuite", "&'staticdynAlgorithm", "&[u8]", "Side"]
+
+[[mappings.functions]]
+python = "rustls.ServerConfig.builder"
+rust_code = "rustls::server::ServerConfig::builder()"
+rust_imports = ["rustls::server::ServerConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ServerConfig.builder_with_protocol_versions"
+rust_code = "rustls::server::ServerConfig::builder_with_protocol_versions({arg0})"
+rust_imports = ["rustls::server::ServerConfig"]
+needs_result = false
+param_types = ["&[&'staticversions::SupportedProtocolVersion]"]
+
+[[mappings.functions]]
+python = "rustls.ServerConfig.builder_with_provider"
+rust_code = "rustls::server::ServerConfig::builder_with_provider({arg0})"
+rust_imports = ["rustls::server::ServerConfig"]
+needs_result = false
+param_types = ["Arc<CryptoProvider>"]
+
+[[mappings.functions]]
+python = "rustls.ServerConfig.builder_with_details"
+rust_code = "rustls::server::ServerConfig::builder_with_details({arg0}, {arg1})"
+rust_imports = ["rustls::server::ServerConfig"]
+needs_result = false
+param_types = ["Arc<CryptoProvider>", "Arc<dynTimeProvider>"]
+
+[[mappings.functions]]
+python = "rustls.ServerConnection.new"
+rust_code = "rustls::server::ServerConnection::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::server::ServerConnection"]
+needs_result = true
+param_types = ["Arc<ServerConfig>", "Version", "Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.ServerConnection.new"
+rust_code = "rustls::server::ServerConnection::new({arg0})"
+rust_imports = ["rustls::server::ServerConnection"]
+needs_result = true
+param_types = ["Arc<ServerConfig>"]
+
+[[mappings.functions]]
+python = "rustls.Acceptor.default"
+rust_code = "rustls::server::Acceptor::default()"
+rust_imports = ["rustls::server::Acceptor"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.AcceptedAlert.from_"
+rust_code = "rustls::server::AcceptedAlert::from({arg0})"
+rust_imports = ["rustls::server::AcceptedAlert"]
+needs_result = false
+param_types = ["ConnectionCommon<ServerConnectionData>"]
+
+[[mappings.functions]]
+python = "rustls.UnbufferedServerConnection.new"
+rust_code = "rustls::server::UnbufferedServerConnection::new({arg0})"
+rust_imports = ["rustls::server::UnbufferedServerConnection"]
+needs_result = true
+param_types = ["Arc<ServerConfig>"]
+
+[[mappings.functions]]
+python = "rustls.ServerSessionMemoryCache.new"
+rust_code = "rustls::server::handy::ServerSessionMemoryCache::new({arg0})"
+rust_imports = ["rustls::server::handy::ServerSessionMemoryCache"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.ServerSessionMemoryCache.new"
+rust_code = "rustls::server::handy::ServerSessionMemoryCache::new({arg0})"
+rust_imports = ["rustls::server::handy::ServerSessionMemoryCache"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.AlwaysResolvesServerRawPublicKeys.new"
+rust_code = "rustls::server::handy::AlwaysResolvesServerRawPublicKeys::new({arg0})"
+rust_imports = ["rustls::server::handy::AlwaysResolvesServerRawPublicKeys"]
+needs_result = false
+param_types = ["Arc<sign::CertifiedKey>"]
+
+[[mappings.functions]]
+python = "rustls.ResolvesServerCertUsingSni.new"
+rust_code = "rustls::server::handy::ResolvesServerCertUsingSni::new()"
+rust_imports = ["rustls::server::handy::ResolvesServerCertUsingSni"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.MessageFragmenter.default"
+rust_code = "rustls::msgs::MessageFragmenter::default()"
+rust_imports = ["rustls::msgs::MessageFragmenter"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.InboundOpaqueMessage.new"
+rust_code = "rustls::msgs::message::inbound::InboundOpaqueMessage::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::msgs::message::inbound::InboundOpaqueMessage"]
+needs_result = false
+param_types = ["ContentType", "ProtocolVersion", "&'amut[u8]"]
+
+[[mappings.functions]]
+python = "rustls.OutboundOpaqueMessage.new"
+rust_code = "rustls::msgs::message::outbound::OutboundOpaqueMessage::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::msgs::message::outbound::OutboundOpaqueMessage"]
+needs_result = false
+param_types = ["ContentType", "ProtocolVersion", "PrefixedPayload"]
+
+[[mappings.functions]]
+python = "rustls.OutboundOpaqueMessage.read"
+rust_code = "rustls::msgs::message::outbound::OutboundOpaqueMessage::read({arg0})"
+rust_imports = ["rustls::msgs::message::outbound::OutboundOpaqueMessage"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.PrefixedPayload.with_capacity"
+rust_code = "rustls::msgs::message::outbound::PrefixedPayload::with_capacity({arg0})"
+rust_imports = ["rustls::msgs::message::outbound::PrefixedPayload"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.PrefixedPayload.from_"
+rust_code = "rustls::msgs::message::outbound::PrefixedPayload::from({arg0})"
+rust_imports = ["rustls::msgs::message::outbound::PrefixedPayload"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.PrefixedPayload.from_"
+rust_code = "rustls::msgs::message::outbound::PrefixedPayload::from({arg0})"
+rust_imports = ["rustls::msgs::message::outbound::PrefixedPayload"]
+needs_result = false
+param_types = ["&[u8;N]"]
+
+[[mappings.functions]]
+python = "rustls.PlainMessage.from_"
+rust_code = "rustls::msgs::PlainMessage::from({arg0})"
+rust_imports = ["rustls::msgs::PlainMessage"]
+needs_result = false
+param_types = ["Message<'_>"]
+
+[[mappings.functions]]
+python = "rustls.Message.build_alert"
+rust_code = "rustls::msgs::Message::build_alert({arg0}, {arg1})"
+rust_imports = ["rustls::msgs::Message"]
+needs_result = false
+param_types = ["AlertLevel", "AlertDescription"]
+
+[[mappings.functions]]
+python = "rustls.Message.build_key_update_notify"
+rust_code = "rustls::msgs::Message::build_key_update_notify()"
+rust_imports = ["rustls::msgs::Message"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.Message.build_key_update_request"
+rust_code = "rustls::msgs::Message::build_key_update_request()"
+rust_imports = ["rustls::msgs::Message"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.Message.try_from"
+rust_code = "rustls::msgs::Message::try_from({arg0})"
+rust_imports = ["rustls::msgs::Message"]
+needs_result = true
+param_types = ["PlainMessage"]
+
+[[mappings.functions]]
+python = "rustls.Message.try_from"
+rust_code = "rustls::msgs::Message::try_from({arg0})"
+rust_imports = ["rustls::msgs::Message"]
+needs_result = true
+param_types = ["InboundPlainMessage<'a>"]
+
+[[mappings.functions]]
+python = "rustls.ServerSessionValue.read"
+rust_code = "rustls::msgs::persist::ServerSessionValue::read({arg0})"
+rust_imports = ["rustls::msgs::persist::ServerSessionValue"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.PayloadU16.new"
+rust_code = "rustls::msgs::base::PayloadU16::new({arg0})"
+rust_imports = ["rustls::msgs::base::PayloadU16"]
+needs_result = false
+param_types = ["Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.PayloadU16.read"
+rust_code = "rustls::msgs::base::PayloadU16::read({arg0})"
+rust_imports = ["rustls::msgs::base::PayloadU16"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.ChangeCipherSpecPayload.read"
+rust_code = "rustls::msgs::ccs::ChangeCipherSpecPayload::read({arg0})"
+rust_imports = ["rustls::msgs::ccs::ChangeCipherSpecPayload"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.Reader.init"
+rust_code = "rustls::msgs::codec::Reader::init({arg0})"
+rust_imports = ["rustls::msgs::codec::Reader"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.functions]]
+python = "rustls.u24.read"
+rust_code = "rustls::msgs::codec::u24::read({arg0})"
+rust_imports = ["rustls::msgs::codec::u24"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.FfdheGroup.from_named_group"
+rust_code = "rustls::msgs::ffdhe_groups::FfdheGroup::from_named_group({arg0})"
+rust_imports = ["rustls::msgs::ffdhe_groups::FfdheGroup"]
+needs_result = false
+param_types = ["NamedGroup"]
+
+[[mappings.functions]]
+python = "rustls.FfdheGroup.from_params_trimming_leading_zeros"
+rust_code = "rustls::msgs::ffdhe_groups::FfdheGroup::from_params_trimming_leading_zeros({arg0}, {arg1})"
+rust_imports = ["rustls::msgs::ffdhe_groups::FfdheGroup"]
+needs_result = false
+param_types = ["&'a[u8]", "&'a[u8]"]
+
+[[mappings.functions]]
+python = "rustls.HandshakeMessagePayload.read"
+rust_code = "rustls::msgs::handshake::HandshakeMessagePayload::read({arg0})"
+rust_imports = ["rustls::msgs::handshake::HandshakeMessagePayload"]
+needs_result = true
+param_types = ["&mutReader<'a>"]
+
+[[mappings.functions]]
+python = "rustls.HpkeSymmetricCipherSuite.read"
+rust_code = "rustls::msgs::handshake::HpkeSymmetricCipherSuite::read({arg0})"
+rust_imports = ["rustls::msgs::handshake::HpkeSymmetricCipherSuite"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.HpkeKeyConfig.read"
+rust_code = "rustls::msgs::handshake::HpkeKeyConfig::read({arg0})"
+rust_imports = ["rustls::msgs::handshake::HpkeKeyConfig"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.EchConfigContents.read"
+rust_code = "rustls::msgs::handshake::EchConfigContents::read({arg0})"
+rust_imports = ["rustls::msgs::handshake::EchConfigContents"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.AlertMessagePayload.read"
+rust_code = "rustls::msgs::alert::AlertMessagePayload::read({arg0})"
+rust_imports = ["rustls::msgs::alert::AlertMessagePayload"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.functions]]
+python = "rustls.SingleCertAndKey.from_"
+rust_code = "rustls::crypto::signer::SingleCertAndKey::from({arg0})"
+rust_imports = ["rustls::crypto::signer::SingleCertAndKey"]
+needs_result = false
+param_types = ["CertifiedKey"]
+
+[[mappings.functions]]
+python = "rustls.SingleCertAndKey.from_"
+rust_code = "rustls::crypto::signer::SingleCertAndKey::from({arg0})"
+rust_imports = ["rustls::crypto::signer::SingleCertAndKey"]
+needs_result = false
+param_types = ["Arc<CertifiedKey>"]
+
+[[mappings.functions]]
+python = "rustls.CertifiedKey.from_der"
+rust_code = "rustls::crypto::signer::CertifiedKey::from_der({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::crypto::signer::CertifiedKey"]
+needs_result = true
+param_types = ["Vec<CertificateDer<'static>>", "PrivateKeyDer<'static>", "&CryptoProvider"]
+
+[[mappings.functions]]
+python = "rustls.CertifiedKey.new"
+rust_code = "rustls::crypto::signer::CertifiedKey::new({arg0}, {arg1})"
+rust_imports = ["rustls::crypto::signer::CertifiedKey"]
+needs_result = false
+param_types = ["Vec<CertificateDer<'static>>", "Arc<dynSigningKey>"]
+
+[[mappings.functions]]
+python = "rustls.RsaSigningKey.new"
+rust_code = "rustls::crypto::aws_lc_rs::sign::RsaSigningKey::new({arg0})"
+rust_imports = ["rustls::crypto::aws_lc_rs::sign::RsaSigningKey"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.RsaSigningKey.new"
+rust_code = "rustls::crypto::aws_lc_rs::sign::RsaSigningKey::new({arg0})"
+rust_imports = ["rustls::crypto::aws_lc_rs::sign::RsaSigningKey"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.Ticketer.new"
+rust_code = "rustls::crypto::aws_lc_rs::Ticketer::new()"
+rust_imports = ["rustls::crypto::aws_lc_rs::Ticketer"]
+needs_result = true
+
+[[mappings.functions]]
+python = "rustls.Ticketer.new"
+rust_code = "rustls::crypto::aws_lc_rs::Ticketer::new()"
+rust_imports = ["rustls::crypto::aws_lc_rs::Ticketer"]
+needs_result = true
+
+[[mappings.functions]]
+python = "rustls.Output.new"
+rust_code = "rustls::crypto::hash::Output::new({arg0})"
+rust_imports = ["rustls::crypto::hash::Output"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.RsaSigningKey.new"
+rust_code = "rustls::crypto::ring::sign::RsaSigningKey::new({arg0})"
+rust_imports = ["rustls::crypto::ring::sign::RsaSigningKey"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.RsaSigningKey.new"
+rust_code = "rustls::crypto::ring::sign::RsaSigningKey::new({arg0})"
+rust_imports = ["rustls::crypto::ring::sign::RsaSigningKey"]
+needs_result = true
+param_types = ["&PrivateKeyDer<'_>"]
+
+[[mappings.functions]]
+python = "rustls.Ticketer.new"
+rust_code = "rustls::crypto::ring::Ticketer::new()"
+rust_imports = ["rustls::crypto::ring::Ticketer"]
+needs_result = true
+
+[[mappings.functions]]
+python = "rustls.Ticketer.new"
+rust_code = "rustls::crypto::ring::Ticketer::new()"
+rust_imports = ["rustls::crypto::ring::Ticketer"]
+needs_result = true
+
+[[mappings.functions]]
+python = "rustls.CryptoProvider.get_default"
+rust_code = "rustls::crypto::CryptoProvider::get_default()"
+rust_imports = ["rustls::crypto::CryptoProvider"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.SharedSecret.from_"
+rust_code = "rustls::crypto::SharedSecret::from({arg0})"
+rust_imports = ["rustls::crypto::SharedSecret"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.SharedSecret.from_"
+rust_code = "rustls::crypto::SharedSecret::from({arg0})"
+rust_imports = ["rustls::crypto::SharedSecret"]
+needs_result = false
+param_types = ["Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.OkmBlock.new"
+rust_code = "rustls::crypto::OkmBlock::new({arg0})"
+rust_imports = ["rustls::crypto::OkmBlock"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.Iv.new"
+rust_code = "rustls::crypto::cipher::Iv::new({arg0})"
+rust_imports = ["rustls::crypto::cipher::Iv"]
+needs_result = false
+param_types = ["[u8;NONCE_LEN]"]
+
+[[mappings.functions]]
+python = "rustls.Iv.copy"
+rust_code = "rustls::crypto::cipher::Iv::copy({arg0})"
+rust_imports = ["rustls::crypto::cipher::Iv"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.Iv.from_"
+rust_code = "rustls::crypto::cipher::Iv::from({arg0})"
+rust_imports = ["rustls::crypto::cipher::Iv"]
+needs_result = false
+param_types = ["[u8;NONCE_LEN]"]
+
+[[mappings.functions]]
+python = "rustls.Nonce.new"
+rust_code = "rustls::crypto::cipher::Nonce::new({arg0}, {arg1})"
+rust_imports = ["rustls::crypto::cipher::Nonce"]
+needs_result = false
+param_types = ["&Iv", "u64"]
+
+[[mappings.functions]]
+python = "rustls.Nonce.for_path"
+rust_code = "rustls::crypto::cipher::Nonce::for_path({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::crypto::cipher::Nonce"]
+needs_result = false
+param_types = ["u32", "&Iv", "u64"]
+
+[[mappings.functions]]
+python = "rustls.AeadKey.from_"
+rust_code = "rustls::crypto::cipher::AeadKey::from({arg0})"
+rust_imports = ["rustls::crypto::cipher::AeadKey"]
+needs_result = false
+param_types = ["[u8;Self::MAX_LEN]"]
+
+[[mappings.functions]]
+python = "rustls.Tag.from_"
+rust_code = "rustls::crypto::hmac::Tag::from({arg0})"
+rust_imports = ["rustls::crypto::hmac::Tag"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.Tag.new"
+rust_code = "rustls::crypto::hmac::Tag::new({arg0})"
+rust_imports = ["rustls::crypto::hmac::Tag"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls.HpkePrivateKey.from_"
+rust_code = "rustls::crypto::hpke::HpkePrivateKey::from({arg0})"
+rust_imports = ["rustls::crypto::hpke::HpkePrivateKey"]
+needs_result = false
+param_types = ["Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.TicketSwitcher.new"
+rust_code = "rustls::ticketer::TicketSwitcher::new({arg0}, {arg1})"
+rust_imports = ["rustls::ticketer::TicketSwitcher"]
+needs_result = true
+param_types = ["u32", "fn()->Result<Box<dynProducesTickets>,rand::GetRandomFailed>"]
+
+[[mappings.functions]]
+python = "rustls.TicketSwitcher.new"
+rust_code = "rustls::ticketer::TicketSwitcher::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::ticketer::TicketSwitcher"]
+needs_result = true
+param_types = ["u32", "fn()->Result<Box<dynProducesTickets>,rand::GetRandomFailed>", "&'staticdynTimeProvider"]
+
+[[mappings.functions]]
+python = "rustls.TicketRotator.new"
+rust_code = "rustls::ticketer::TicketRotator::new({arg0}, {arg1})"
+rust_imports = ["rustls::ticketer::TicketRotator"]
+needs_result = true
+param_types = ["u32", "fn()->Result<Box<dynProducesTickets>,rand::GetRandomFailed>"]
+
+[[mappings.functions]]
+python = "rustls.EchConfig.new"
+rust_code = "rustls::client::ech::EchConfig::new({arg0}, {arg1})"
+rust_imports = ["rustls::client::ech::EchConfig"]
+needs_result = true
+param_types = ["EchConfigListBytes<'_>", "&[&'staticdynHpke]"]
+
+[[mappings.functions]]
+python = "rustls.EchGreaseConfig.new"
+rust_code = "rustls::client::ech::EchGreaseConfig::new({arg0}, {arg1})"
+rust_imports = ["rustls::client::ech::EchGreaseConfig"]
+needs_result = false
+param_types = ["&'staticdynHpke", "HpkePublicKey"]
+
+[[mappings.functions]]
+python = "rustls.ClientConfig.builder"
+rust_code = "rustls::client::ClientConfig::builder()"
+rust_imports = ["rustls::client::ClientConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ClientConfig.builder_with_protocol_versions"
+rust_code = "rustls::client::ClientConfig::builder_with_protocol_versions({arg0})"
+rust_imports = ["rustls::client::ClientConfig"]
+needs_result = false
+param_types = ["&[&'staticversions::SupportedProtocolVersion]"]
+
+[[mappings.functions]]
+python = "rustls.ClientConfig.builder_with_provider"
+rust_code = "rustls::client::ClientConfig::builder_with_provider({arg0})"
+rust_imports = ["rustls::client::ClientConfig"]
+needs_result = false
+param_types = ["Arc<CryptoProvider>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConfig.builder_with_details"
+rust_code = "rustls::client::ClientConfig::builder_with_details({arg0}, {arg1})"
+rust_imports = ["rustls::client::ClientConfig"]
+needs_result = false
+param_types = ["Arc<CryptoProvider>", "Arc<dynTimeProvider>"]
+
+[[mappings.functions]]
+python = "rustls.Resumption.in_memory_sessions"
+rust_code = "rustls::client::Resumption::in_memory_sessions({arg0})"
+rust_imports = ["rustls::client::Resumption"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.Resumption.store"
+rust_code = "rustls::client::Resumption::store({arg0})"
+rust_imports = ["rustls::client::Resumption"]
+needs_result = false
+param_types = ["Arc<dynClientSessionStore>"]
+
+[[mappings.functions]]
+python = "rustls.Resumption.disabled"
+rust_code = "rustls::client::Resumption::disabled()"
+rust_imports = ["rustls::client::Resumption"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.Resumption.default"
+rust_code = "rustls::client::Resumption::default()"
+rust_imports = ["rustls::client::Resumption"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new"
+rust_code = "rustls::client::ClientConnection::new({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["rustls::client::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "Version", "ServerName<'static>", "Vec<u8>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new_with_alpn"
+rust_code = "rustls::client::ClientConnection::new_with_alpn({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["rustls::client::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "Version", "ServerName<'static>", "Vec<u8>", "Vec<Vec<u8>>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new"
+rust_code = "rustls::client::ClientConnection::new({arg0}, {arg1})"
+rust_imports = ["rustls::client::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>"]
+
+[[mappings.functions]]
+python = "rustls.ClientConnection.new_with_alpn"
+rust_code = "rustls::client::ClientConnection::new_with_alpn({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::client::ClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>", "Vec<Vec<u8>>"]
+
+[[mappings.functions]]
+python = "rustls.UnbufferedClientConnection.new"
+rust_code = "rustls::client::UnbufferedClientConnection::new({arg0}, {arg1})"
+rust_imports = ["rustls::client::UnbufferedClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>"]
+
+[[mappings.functions]]
+python = "rustls.UnbufferedClientConnection.new_with_alpn"
+rust_code = "rustls::client::UnbufferedClientConnection::new_with_alpn({arg0}, {arg1}, {arg2})"
+rust_imports = ["rustls::client::UnbufferedClientConnection"]
+needs_result = true
+param_types = ["Arc<ClientConfig>", "ServerName<'static>", "Vec<Vec<u8>>"]
+
+[[mappings.functions]]
+python = "rustls.ClientSessionMemoryCache.new"
+rust_code = "rustls::client::handy::ClientSessionMemoryCache::new({arg0})"
+rust_imports = ["rustls::client::handy::ClientSessionMemoryCache"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.ClientSessionMemoryCache.new"
+rust_code = "rustls::client::handy::ClientSessionMemoryCache::new({arg0})"
+rust_imports = ["rustls::client::handy::ClientSessionMemoryCache"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "rustls.AlwaysResolvesClientRawPublicKeys.new"
+rust_code = "rustls::client::handy::AlwaysResolvesClientRawPublicKeys::new({arg0})"
+rust_imports = ["rustls::client::handy::AlwaysResolvesClientRawPublicKeys"]
+needs_result = false
+param_types = ["Arc<sign::CertifiedKey>"]
+
+[[mappings.functions]]
+python = "rustls.Stream.new"
+rust_code = "rustls::Stream::new({arg0}, {arg1})"
+rust_imports = ["rustls::Stream"]
+needs_result = false
+param_types = ["&'amutC", "&'amutT"]
+
+[[mappings.functions]]
+python = "rustls.StreamOwned.new"
+rust_code = "rustls::stream::StreamOwned::new({arg0}, {arg1})"
+rust_imports = ["rustls::stream::StreamOwned"]
+needs_result = false
+param_types = ["C", "T"]
+
+[[mappings.functions]]
+python = "rustls.HandshakeSignatureValid.assertion"
+rust_code = "rustls::HandshakeSignatureValid::assertion()"
+rust_imports = ["rustls::HandshakeSignatureValid"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ServerCertVerified.assertion"
+rust_code = "rustls::ServerCertVerified::assertion()"
+rust_imports = ["rustls::ServerCertVerified"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.ClientCertVerified.assertion"
+rust_code = "rustls::ClientCertVerified::assertion()"
+rust_imports = ["rustls::ClientCertVerified"]
+needs_result = false
+
+[[mappings.functions]]
+python = "rustls.DigitallySignedStruct.read"
+rust_code = "rustls::DigitallySignedStruct::read({arg0})"
+rust_imports = ["rustls::DigitallySignedStruct"]
+needs_result = true
+param_types = ["&mutReader<'_>"]
+
+[[mappings.methods]]
+python = "RootCertStore.add_parsable_certificates"
+rust_code = "{self}.add_parsable_certificates({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implIntoIterator<Item=CertificateDer<'a>>"]
+
+[[mappings.methods]]
+python = "RootCertStore.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["CertificateDer<'_>"]
+
+[[mappings.methods]]
+python = "RootCertStore.subjects"
+rust_code = "{self}.subjects()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "RootCertStore.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RootCertStore.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "RootCertStore.extend"
+rust_code = "{self}.extend({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "RootCertStore.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.clear_root_hint_subjects"
+rust_code = "{self}.clear_root_hint_subjects()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.add_root_hint_subjects"
+rust_code = "{self}.add_root_hint_subjects({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+param_types = ["implIntoIterator<Item=DistinguishedName>"]
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.with_crls"
+rust_code = "{self}.with_crls({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+param_types = ["implIntoIterator<Item=CertificateRevocationListDer<'static>>"]
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.only_check_end_entity_revocation"
+rust_code = "{self}.only_check_end_entity_revocation()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.allow_unauthenticated"
+rust_code = "{self}.allow_unauthenticated()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.allow_unknown_revocation_status"
+rust_code = "{self}.allow_unknown_revocation_status()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.enforce_revocation_expiration"
+rust_code = "{self}.enforce_revocation_expiration()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ClientCertVerifierBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "Arc"
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.offer_client_auth"
+rust_code = "{self}.offer_client_auth()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.client_auth_mandatory"
+rust_code = "{self}.client_auth_mandatory()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.root_hint_subjects"
+rust_code = "{self}.root_hint_subjects()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.verify_client_cert"
+rust_code = "{self}.verify_client_cert({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "ClientCertVerified"
+param_types = ["&CertificateDer<'_>", "&[CertificateDer<'_>]", "UnixTime"]
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.verify_tls12_signature"
+rust_code = "{self}.verify_tls12_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.verify_tls13_signature"
+rust_code = "{self}.verify_tls13_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "WebPkiClientVerifier.supported_verify_schemes"
+rust_code = "{self}.supported_verify_schemes()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "WebPkiSupportedAlgorithms.supported_schemes"
+rust_code = "{self}.supported_schemes()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "WebPkiSupportedAlgorithms.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "WebPkiSupportedAlgorithms.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ParsedCertificate.subject_public_key_info"
+rust_code = "{self}.subject_public_key_info()"
+rust_imports = []
+needs_result = false
+returns = "SubjectPublicKeyInfoDer"
+
+[[mappings.methods]]
+python = "ServerCertVerifierBuilder.with_crls"
+rust_code = "{self}.with_crls({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServerCertVerifierBuilder"
+param_types = ["implIntoIterator<Item=CertificateRevocationListDer<'static>>"]
+
+[[mappings.methods]]
+python = "ServerCertVerifierBuilder.only_check_end_entity_revocation"
+rust_code = "{self}.only_check_end_entity_revocation()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServerCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ServerCertVerifierBuilder.allow_unknown_revocation_status"
+rust_code = "{self}.allow_unknown_revocation_status()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServerCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ServerCertVerifierBuilder.enforce_revocation_expiration"
+rust_code = "{self}.enforce_revocation_expiration()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServerCertVerifierBuilder"
+
+[[mappings.methods]]
+python = "ServerCertVerifierBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "Arc"
+
+[[mappings.methods]]
+python = "WebPkiServerVerifier.verify_server_cert"
+rust_code = "{self}.verify_server_cert({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = []
+needs_result = true
+returns = "ServerCertVerified"
+param_types = ["&CertificateDer<'_>", "&[CertificateDer<'_>]", "&ServerName<'_>", "&[u8]", "UnixTime"]
+
+[[mappings.methods]]
+python = "WebPkiServerVerifier.verify_tls12_signature"
+rust_code = "{self}.verify_tls12_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "WebPkiServerVerifier.verify_tls13_signature"
+rust_code = "{self}.verify_tls13_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "WebPkiServerVerifier.supported_verify_schemes"
+rust_code = "{self}.supported_verify_schemes()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "KeyLogFile.log"
+rust_code = "{self}.log({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&[u8]", "&[u8]"]
+
+[[mappings.methods]]
+python = "KeyLogFile.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "Mutex.lock"
+rust_code = "{self}.lock()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MutexGuard"
+
+[[mappings.methods]]
+python = "Mutex.lock"
+rust_code = "{self}.lock()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MutexGuard"
+
+[[mappings.methods]]
+python = "Mutex.lock"
+rust_code = "{self}.lock()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MutexGuard"
+
+[[mappings.methods]]
+python = "Mutex.lock"
+rust_code = "{self}.lock()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MutexGuard"
+
+[[mappings.methods]]
+python = "Tls13CipherSuite.can_resume_from"
+rust_code = "{self}.can_resume_from({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["&'staticSelf"]
+
+[[mappings.methods]]
+python = "Tls13CipherSuite.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tls13CipherSuite.quic_suite"
+rust_code = "{self}.quic_suite()"
+rust_imports = []
+needs_result = false
+returns = "Suite"
+
+[[mappings.methods]]
+python = "Tls13CipherSuite.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "Tls13CipherSuite.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Reader.into_first_chunk"
+rust_code = "{self}.into_first_chunk()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Reader.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "Reader.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "Reader.fill_buf"
+rust_code = "{self}.fill_buf()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Reader.consume"
+rust_code = "{self}.consume({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.rest"
+rust_code = "{self}.rest()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Reader.take"
+rust_code = "{self}.take({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.any_left"
+rust_code = "{self}.any_left()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Reader.expect_empty"
+rust_code = "{self}.expect_empty({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "Reader.used"
+rust_code = "{self}.used()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Reader.left"
+rust_code = "{self}.left()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Writer.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Writer.write_vectored"
+rust_code = "{self}.write_vectored({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[io::IoSlice<'_>]"]
+
+[[mappings.methods]]
+python = "Writer.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ConnectionCommon.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_vectored"
+rust_code = "{self}.write_vectored({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[io::IoSlice<'_>]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ConnectionCommon.process_new_packets"
+rust_code = "{self}.process_new_packets()"
+rust_imports = []
+needs_result = true
+returns = "IoState"
+
+[[mappings.methods]]
+python = "ConnectionCommon.export_keying_material"
+rust_code = "{self}.export_keying_material({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "T"
+param_types = ["T", "&[u8]", "Option<&[u8]>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ConnectionCommon.set_buffer_limit"
+rust_code = "{self}.set_buffer_limit({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.refresh_traffic_keys"
+rust_code = "{self}.refresh_traffic_keys()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ConnectionCommon.reader"
+rust_code = "{self}.reader()"
+rust_imports = []
+needs_result = false
+returns = "Reader"
+
+[[mappings.methods]]
+python = "ConnectionCommon.writer"
+rust_code = "{self}.writer()"
+rust_imports = []
+needs_result = false
+returns = "Writer"
+
+[[mappings.methods]]
+python = "ConnectionCommon.complete_io"
+rust_code = "{self}.complete_io({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutT"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.read_tls"
+rust_code = "{self}.read_tls({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Read"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_tls"
+rust_code = "{self}.write_tls({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Write"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.quic_transport_parameters"
+rust_code = "{self}.quic_transport_parameters()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ConnectionCommon.zero_rtt_keys"
+rust_code = "{self}.zero_rtt_keys()"
+rust_imports = []
+needs_result = false
+returns = "DirectionalKeys"
+
+[[mappings.methods]]
+python = "ConnectionCommon.read_hs"
+rust_code = "{self}.read_hs({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_hs"
+rust_code = "{self}.write_hs({arg0})"
+rust_imports = []
+needs_result = false
+returns = "KeyChange"
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.alert"
+rust_code = "{self}.alert()"
+rust_imports = []
+needs_result = false
+returns = "AlertDescription"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "UnbufferedConnectionCommon.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "UnbufferedConnectionCommon.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "UnbufferedConnectionCommon.process_tls_records"
+rust_code = "{self}.process_tls_records({arg0})"
+rust_imports = []
+needs_result = false
+returns = "UnbufferedStatus"
+param_types = ["&'imut[u8]"]
+
+[[mappings.methods]]
+python = "UnbufferedConnectionCommon.process_tls_records"
+rust_code = "{self}.process_tls_records({arg0})"
+rust_imports = []
+needs_result = false
+returns = "UnbufferedStatus"
+param_types = ["&'imut[u8]"]
+
+[[mappings.methods]]
+python = "KernelConnection.negotiated_cipher_suite"
+rust_code = "{self}.negotiated_cipher_suite()"
+rust_imports = []
+needs_result = false
+returns = "SupportedCipherSuite"
+
+[[mappings.methods]]
+python = "KernelConnection.protocol_version"
+rust_code = "{self}.protocol_version()"
+rust_imports = []
+needs_result = false
+returns = "ProtocolVersion"
+
+[[mappings.methods]]
+python = "KernelConnection.update_tx_secret"
+rust_code = "{self}.update_tx_secret()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "KernelConnection.update_rx_secret"
+rust_code = "{self}.update_rx_secret()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "KernelConnection.handle_new_session_ticket"
+rust_code = "{self}.handle_new_session_ticket({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ReadTraffic.next_record"
+rust_code = "{self}.next_record()"
+rust_imports = []
+needs_result = false
+returns = "Result"
+
+[[mappings.methods]]
+python = "ReadTraffic.peek_len"
+rust_code = "{self}.peek_len()"
+rust_imports = []
+needs_result = false
+returns = "NonZeroUsize"
+
+[[mappings.methods]]
+python = "ReadEarlyData.next_record"
+rust_code = "{self}.next_record()"
+rust_imports = []
+needs_result = false
+returns = "Result"
+
+[[mappings.methods]]
+python = "ReadEarlyData.peek_len"
+rust_code = "{self}.peek_len()"
+rust_imports = []
+needs_result = false
+returns = "NonZeroUsize"
+
+[[mappings.methods]]
+python = "ReadEarlyData.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "ReadEarlyData.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "WriteTraffic.encrypt"
+rust_code = "{self}.encrypt({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]", "&mut[u8]"]
+
+[[mappings.methods]]
+python = "WriteTraffic.queue_close_notify"
+rust_code = "{self}.queue_close_notify({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "WriteTraffic.refresh_traffic_keys"
+rust_code = "{self}.refresh_traffic_keys()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "EncodeTlsData.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TransmitTlsData.done"
+rust_code = "{self}.done()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TransmitTlsData.may_encrypt_app_data"
+rust_code = "{self}.may_encrypt_app_data()"
+rust_imports = []
+needs_result = false
+returns = "WriteTraffic"
+
+[[mappings.methods]]
+python = "TransmitTlsData.may_encrypt_early_data"
+rust_code = "{self}.may_encrypt_early_data()"
+rust_imports = []
+needs_result = false
+returns = "MayEncryptEarlyData"
+
+[[mappings.methods]]
+python = "NoKeyLog.log"
+rust_code = "{self}.log({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&[u8]", "&[u8]"]
+
+[[mappings.methods]]
+python = "NoKeyLog.will_log"
+rust_code = "{self}.will_log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "DefaultTimeProvider.current_time"
+rust_code = "{self}.current_time()"
+rust_imports = []
+needs_result = false
+returns = "UnixTime"
+
+[[mappings.methods]]
+python = "ClientConnection.is_early_data_accepted"
+rust_code = "{self}.is_early_data_accepted()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.tls13_tickets_received"
+rust_code = "{self}.tls13_tickets_received()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "ClientConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientConnection.early_data"
+rust_code = "{self}.early_data()"
+rust_imports = []
+needs_result = false
+returns = "WriteEarlyData"
+
+[[mappings.methods]]
+python = "ClientConnection.is_early_data_accepted"
+rust_code = "{self}.is_early_data_accepted()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ClientConnection.ech_status"
+rust_code = "{self}.ech_status()"
+rust_imports = []
+needs_result = false
+returns = "EchStatus"
+
+[[mappings.methods]]
+python = "ClientConnection.tls13_tickets_received"
+rust_code = "{self}.tls13_tickets_received()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "ClientConnection.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.reject_early_data"
+rust_code = "{self}.reject_early_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.server_name"
+rust_code = "{self}.server_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ServerConnection.server_name"
+rust_code = "{self}.server_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.received_resumption_data"
+rust_code = "{self}.received_resumption_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.set_resumption_data"
+rust_code = "{self}.set_resumption_data({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ServerConnection.reject_early_data"
+rust_code = "{self}.reject_early_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.early_data"
+rust_code = "{self}.early_data()"
+rust_imports = []
+needs_result = false
+returns = "ReadEarlyData"
+
+[[mappings.methods]]
+python = "ServerConnection.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ServerConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "ServerConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_vectored"
+rust_code = "{self}.write_vectored({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[io::IoSlice<'_>]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ConnectionCommon.process_new_packets"
+rust_code = "{self}.process_new_packets()"
+rust_imports = []
+needs_result = true
+returns = "IoState"
+
+[[mappings.methods]]
+python = "ConnectionCommon.export_keying_material"
+rust_code = "{self}.export_keying_material({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "T"
+param_types = ["T", "&[u8]", "Option<&[u8]>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ConnectionCommon.set_buffer_limit"
+rust_code = "{self}.set_buffer_limit({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.refresh_traffic_keys"
+rust_code = "{self}.refresh_traffic_keys()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ConnectionCommon.reader"
+rust_code = "{self}.reader()"
+rust_imports = []
+needs_result = false
+returns = "Reader"
+
+[[mappings.methods]]
+python = "ConnectionCommon.writer"
+rust_code = "{self}.writer()"
+rust_imports = []
+needs_result = false
+returns = "Writer"
+
+[[mappings.methods]]
+python = "ConnectionCommon.complete_io"
+rust_code = "{self}.complete_io({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutT"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.read_tls"
+rust_code = "{self}.read_tls({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Read"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_tls"
+rust_code = "{self}.write_tls({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Write"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.quic_transport_parameters"
+rust_code = "{self}.quic_transport_parameters()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ConnectionCommon.zero_rtt_keys"
+rust_code = "{self}.zero_rtt_keys()"
+rust_imports = []
+needs_result = false
+returns = "DirectionalKeys"
+
+[[mappings.methods]]
+python = "ConnectionCommon.read_hs"
+rust_code = "{self}.read_hs({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.write_hs"
+rust_code = "{self}.write_hs({arg0})"
+rust_imports = []
+needs_result = false
+returns = "KeyChange"
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "ConnectionCommon.alert"
+rust_code = "{self}.alert()"
+rust_imports = []
+needs_result = false
+returns = "AlertDescription"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ConnectionCommon.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "Secrets.next_packet_keys"
+rust_code = "{self}.next_packet_keys()"
+rust_imports = []
+needs_result = false
+returns = "PacketKeySet"
+
+[[mappings.methods]]
+python = "Tag.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tag.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tag.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Suite.keys"
+rust_code = "{self}.keys({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "Keys"
+param_types = ["&[u8]", "Side", "Version"]
+
+[[mappings.methods]]
+python = "ClientHello.server_name"
+rust_code = "{self}.server_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.signature_schemes"
+rust_code = "{self}.signature_schemes()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.alpn"
+rust_code = "{self}.alpn()"
+rust_imports = []
+needs_result = false
+returns = "implIterator"
+
+[[mappings.methods]]
+python = "ClientHello.cipher_suites"
+rust_code = "{self}.cipher_suites()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.server_cert_types"
+rust_code = "{self}.server_cert_types()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.client_cert_types"
+rust_code = "{self}.client_cert_types()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.certificate_authorities"
+rust_code = "{self}.certificate_authorities()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientHello.named_groups"
+rust_code = "{self}.named_groups()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConfig.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConfig.crypto_provider"
+rust_code = "{self}.crypto_provider()"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+
+[[mappings.methods]]
+python = "ReadEarlyData.next_record"
+rust_code = "{self}.next_record()"
+rust_imports = []
+needs_result = false
+returns = "Result"
+
+[[mappings.methods]]
+python = "ReadEarlyData.peek_len"
+rust_code = "{self}.peek_len()"
+rust_imports = []
+needs_result = false
+returns = "NonZeroUsize"
+
+[[mappings.methods]]
+python = "ReadEarlyData.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "ReadEarlyData.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "ServerConnection.reject_early_data"
+rust_code = "{self}.reject_early_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.server_name"
+rust_code = "{self}.server_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ServerConnection.server_name"
+rust_code = "{self}.server_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.received_resumption_data"
+rust_code = "{self}.received_resumption_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.set_resumption_data"
+rust_code = "{self}.set_resumption_data({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ServerConnection.reject_early_data"
+rust_code = "{self}.reject_early_data()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.early_data"
+rust_code = "{self}.early_data()"
+rust_imports = []
+needs_result = false
+returns = "ReadEarlyData"
+
+[[mappings.methods]]
+python = "ServerConnection.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ServerConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "ServerConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "Acceptor.read_tls"
+rust_code = "{self}.read_tls({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Read"]
+
+[[mappings.methods]]
+python = "Acceptor.accept"
+rust_code = "{self}.accept()"
+rust_imports = []
+needs_result = true
+returns = "Accepted"
+
+[[mappings.methods]]
+python = "AcceptedAlert.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mutdynio::Write"]
+
+[[mappings.methods]]
+python = "AcceptedAlert.write_all"
+rust_code = "{self}.write_all({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutdynio::Write"]
+
+[[mappings.methods]]
+python = "AcceptedAlert.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "UnbufferedServerConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "UnbufferedServerConnection.dangerous_into_kernel_connection"
+rust_code = "{self}.dangerous_into_kernel_connection()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "UnbufferedServerConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "UnbufferedServerConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "Accepted.client_hello"
+rust_code = "{self}.client_hello()"
+rust_imports = []
+needs_result = false
+returns = "ClientHello"
+
+[[mappings.methods]]
+python = "Accepted.into_connection"
+rust_code = "{self}.into_connection({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "ServerConnection"
+param_types = ["Arc<ServerConfig>"]
+
+[[mappings.methods]]
+python = "Accepted.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "NoServerSessionStorage.put"
+rust_code = "{self}.put({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["Vec<u8>", "Vec<u8>"]
+
+[[mappings.methods]]
+python = "NoServerSessionStorage.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "NoServerSessionStorage.take"
+rust_code = "{self}.take({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "NoServerSessionStorage.can_cache"
+rust_code = "{self}.can_cache()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerSessionMemoryCache.put"
+rust_code = "{self}.put({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["Vec<u8>", "Vec<u8>"]
+
+[[mappings.methods]]
+python = "ServerSessionMemoryCache.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ServerSessionMemoryCache.take"
+rust_code = "{self}.take({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ServerSessionMemoryCache.can_cache"
+rust_code = "{self}.can_cache()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerSessionMemoryCache.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "AlwaysResolvesServerRawPublicKeys.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+param_types = ["ClientHello<'_>"]
+
+[[mappings.methods]]
+python = "AlwaysResolvesServerRawPublicKeys.only_raw_public_keys"
+rust_code = "{self}.only_raw_public_keys()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ResolvesServerCertUsingSni.add"
+rust_code = "{self}.add({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "sign::CertifiedKey"]
+
+[[mappings.methods]]
+python = "ResolvesServerCertUsingSni.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+param_types = ["ClientHello<'_>"]
+
+[[mappings.methods]]
+python = "CipherSuiteCommon.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SupportedProtocolVersion.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Tls12CipherSuite.resolve_sig_schemes"
+rust_code = "{self}.resolve_sig_schemes({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "Tls12CipherSuite.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tls12CipherSuite.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "Tls12CipherSuite.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_client_cert_verifier"
+rust_code = "{self}.with_client_cert_verifier({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Arc<dynClientCertVerifier>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_no_client_auth"
+rust_code = "{self}.with_no_client_auth()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_single_cert"
+rust_code = "{self}.with_single_cert({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "ServerConfig"
+param_types = ["Vec<CertificateDer<'static>>", "PrivateKeyDer<'static>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_single_cert_with_ocsp"
+rust_code = "{self}.with_single_cert_with_ocsp({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "ServerConfig"
+param_types = ["Vec<CertificateDer<'static>>", "PrivateKeyDer<'static>", "Vec<u8>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_cert_resolver"
+rust_code = "{self}.with_cert_resolver({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ServerConfig"
+param_types = ["Arc<dynResolvesServerCert>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.crypto_provider"
+rust_code = "{self}.crypto_provider()"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+
+[[mappings.methods]]
+python = "ConfigBuilder.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_safe_default_protocol_versions"
+rust_code = "{self}.with_safe_default_protocol_versions()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "ConfigBuilder"
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_protocol_versions"
+rust_code = "{self}.with_protocol_versions({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["&[&'staticversions::SupportedProtocolVersion]"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_ech"
+rust_code = "{self}.with_ech({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["EchMode"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_root_certificates"
+rust_code = "{self}.with_root_certificates({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["implInto<Arc<webpki::RootCertStore>>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_webpki_verifier"
+rust_code = "{self}.with_webpki_verifier({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["Arc<WebPkiServerVerifier>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.dangerous"
+rust_code = "{self}.dangerous()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DangerousClientConfigBuilder"
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_client_auth_cert"
+rust_code = "{self}.with_client_auth_cert({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "ClientConfig"
+param_types = ["Vec<CertificateDer<'static>>", "PrivateKeyDer<'static>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_no_client_auth"
+rust_code = "{self}.with_no_client_auth()"
+rust_imports = []
+needs_result = false
+returns = "ClientConfig"
+
+[[mappings.methods]]
+python = "ConfigBuilder.with_client_cert_resolver"
+rust_code = "{self}.with_client_cert_resolver({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ClientConfig"
+param_types = ["Arc<dynResolvesClientCert>"]
+
+[[mappings.methods]]
+python = "MessageFragmenter.fragment_message"
+rust_code = "{self}.fragment_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "implIterator"
+param_types = ["&'aPlainMessage"]
+
+[[mappings.methods]]
+python = "MessageFragmenter.set_max_fragment_size"
+rust_code = "{self}.set_max_fragment_size({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "InboundOpaqueMessage.into_plain_message"
+rust_code = "{self}.into_plain_message()"
+rust_imports = []
+needs_result = false
+returns = "InboundPlainMessage"
+
+[[mappings.methods]]
+python = "InboundOpaqueMessage.into_plain_message_range"
+rust_code = "{self}.into_plain_message_range({arg0})"
+rust_imports = []
+needs_result = false
+returns = "InboundPlainMessage"
+param_types = ["Range<usize>"]
+
+[[mappings.methods]]
+python = "InboundOpaqueMessage.into_tls13_unpadded_message"
+rust_code = "{self}.into_tls13_unpadded_message()"
+rust_imports = []
+needs_result = true
+returns = "InboundPlainMessage"
+
+[[mappings.methods]]
+python = "BorrowedPayload.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "BorrowedPayload.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "BorrowedPayload.truncate"
+rust_code = "{self}.truncate({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "OutboundOpaqueMessage.encode"
+rust_code = "{self}.encode()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "OutboundOpaqueMessage.into_plain_message"
+rust_code = "{self}.into_plain_message()"
+rust_imports = []
+needs_result = false
+returns = "PlainMessage"
+
+[[mappings.methods]]
+python = "PrefixedPayload.extend_from_slice"
+rust_code = "{self}.extend_from_slice({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "PrefixedPayload.extend_from_chunks"
+rust_code = "{self}.extend_from_chunks({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&OutboundChunks<'_>"]
+
+[[mappings.methods]]
+python = "PrefixedPayload.truncate"
+rust_code = "{self}.truncate({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "PrefixedPayload.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PrefixedPayload.as_mut"
+rust_code = "{self}.as_mut()"
+rust_imports = []
+needs_result = false
+returns = "mut[u8]"
+
+[[mappings.methods]]
+python = "PrefixedPayload.extend"
+rust_code = "{self}.extend({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PlainMessage.into_unencrypted_opaque"
+rust_code = "{self}.into_unencrypted_opaque()"
+rust_imports = []
+needs_result = false
+returns = "OutboundOpaqueMessage"
+
+[[mappings.methods]]
+python = "PlainMessage.borrow_inbound"
+rust_code = "{self}.borrow_inbound()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "InboundPlainMessage"
+
+[[mappings.methods]]
+python = "PlainMessage.borrow_outbound"
+rust_code = "{self}.borrow_outbound()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "OutboundPlainMessage"
+
+[[mappings.methods]]
+python = "Message.is_handshake_type"
+rust_code = "{self}.is_handshake_type({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["HandshakeType"]
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.max_early_data_size"
+rust_code = "{self}.max_early_data_size()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.suite"
+rust_code = "{self}.suite()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.rewind_epoch"
+rust_code = "{self}.rewind_epoch({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue._private_set_max_early_data_size"
+rust_code = "{self}._private_set_max_early_data_size({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.set_quic_params"
+rust_code = "{self}.set_quic_params({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.quic_params"
+rust_code = "{self}.quic_params()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Tls13ClientSessionValue.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "Tls12ClientSessionValue.rewind_epoch"
+rust_code = "{self}.rewind_epoch({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "Tls12ClientSessionValue.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ServerSessionValue.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "PayloadU16.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "PayloadU16.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ChangeCipherSpecPayload.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "Reader.into_first_chunk"
+rust_code = "{self}.into_first_chunk()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Reader.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "Reader.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "Reader.fill_buf"
+rust_code = "{self}.fill_buf()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Reader.consume"
+rust_code = "{self}.consume({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.sub"
+rust_code = "{self}.sub({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.rest"
+rust_code = "{self}.rest()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Reader.take"
+rust_code = "{self}.take({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Reader.any_left"
+rust_code = "{self}.any_left()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Reader.expect_empty"
+rust_code = "{self}.expect_empty({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "Reader.used"
+rust_code = "{self}.used()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Reader.left"
+rust_code = "{self}.left()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "u24.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "FfdheGroup.named_group"
+rust_code = "{self}.named_group()"
+rust_imports = []
+needs_result = false
+returns = "NamedGroup"
+
+[[mappings.methods]]
+python = "HandshakeMessagePayload.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "HpkeSymmetricCipherSuite.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "HpkeKeyConfig.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "EchConfigContents.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "AlertMessagePayload.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "PrfUsingHmac.for_key_exchange"
+rust_code = "{self}.for_key_exchange({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = []
+needs_result = true
+param_types = ["&mut[u8;48]", "Box<dynActiveKeyExchange>", "&[u8]", "&[u8]", "&[u8]"]
+
+[[mappings.methods]]
+python = "PrfUsingHmac.for_secret"
+rust_code = "{self}.for_secret({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+param_types = ["&mut[u8]", "&[u8]", "&[u8]", "&[u8]"]
+
+[[mappings.methods]]
+python = "SingleCertAndKey.resolve"
+rust_code = "{self}.resolve({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+param_types = ["&[&[u8]]", "&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "SingleCertAndKey.has_certs"
+rust_code = "{self}.has_certs()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SingleCertAndKey.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+param_types = ["ClientHello<'_>"]
+
+[[mappings.methods]]
+python = "CertifiedKey.keys_match"
+rust_code = "{self}.keys_match()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "CertifiedKey.end_entity_cert"
+rust_code = "{self}.end_entity_cert()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "RsaSigningKey.choose_scheme"
+rust_code = "{self}.choose_scheme({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynSigner"
+param_types = ["&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.public_key"
+rust_code = "{self}.public_key()"
+rust_imports = []
+needs_result = false
+returns = "SubjectPublicKeyInfoDer"
+
+[[mappings.methods]]
+python = "RsaSigningKey.algorithm"
+rust_code = "{self}.algorithm()"
+rust_imports = []
+needs_result = false
+returns = "SignatureAlgorithm"
+
+[[mappings.methods]]
+python = "RsaSigningKey.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.choose_scheme"
+rust_code = "{self}.choose_scheme({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynSigner"
+param_types = ["&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.public_key"
+rust_code = "{self}.public_key()"
+rust_imports = []
+needs_result = false
+returns = "SubjectPublicKeyInfoDer"
+
+[[mappings.methods]]
+python = "RsaSigningKey.algorithm"
+rust_code = "{self}.algorithm()"
+rust_imports = []
+needs_result = false
+returns = "SignatureAlgorithm"
+
+[[mappings.methods]]
+python = "RsaSigningKey.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.seal"
+rust_code = "{self}.seal({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]", "&[u8]", "&[u8]", "&HpkePublicKey"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.setup_sealer"
+rust_code = "{self}.setup_sealer({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]", "&HpkePublicKey"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.open"
+rust_code = "{self}.open({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+param_types = ["&EncapsulatedSecret", "&[u8]", "&[u8]", "&[u8]", "&HpkePrivateKey"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.setup_opener"
+rust_code = "{self}.setup_opener({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "dynHpkeOpener+'static"
+param_types = ["&EncapsulatedSecret", "&[u8]", "&HpkePrivateKey"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.generate_key_pair"
+rust_code = "{self}.generate_key_pair()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.suite"
+rust_code = "{self}.suite()"
+rust_imports = []
+needs_result = false
+returns = "HpkeSuite"
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "HpkeAwsLcRs.setup_test_sealer"
+rust_code = "{self}.setup_test_sealer({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]", "&HpkePublicKey", "&[u8]"]
+
+[[mappings.methods]]
+python = "Output.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RsaSigningKey.choose_scheme"
+rust_code = "{self}.choose_scheme({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynSigner"
+param_types = ["&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.public_key"
+rust_code = "{self}.public_key()"
+rust_imports = []
+needs_result = false
+returns = "SubjectPublicKeyInfoDer"
+
+[[mappings.methods]]
+python = "RsaSigningKey.algorithm"
+rust_code = "{self}.algorithm()"
+rust_imports = []
+needs_result = false
+returns = "SignatureAlgorithm"
+
+[[mappings.methods]]
+python = "RsaSigningKey.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.choose_scheme"
+rust_code = "{self}.choose_scheme({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynSigner"
+param_types = ["&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "RsaSigningKey.public_key"
+rust_code = "{self}.public_key()"
+rust_imports = []
+needs_result = false
+returns = "SubjectPublicKeyInfoDer"
+
+[[mappings.methods]]
+python = "RsaSigningKey.algorithm"
+rust_code = "{self}.algorithm()"
+rust_imports = []
+needs_result = false
+returns = "SignatureAlgorithm"
+
+[[mappings.methods]]
+python = "RsaSigningKey.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "CryptoProvider.install_default"
+rust_code = "{self}.install_default()"
+rust_imports = []
+needs_result = true
+returns_self = true
+
+[[mappings.methods]]
+python = "CryptoProvider.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SharedSecret.secret_bytes"
+rust_code = "{self}.secret_bytes()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SharedSecret.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "HkdfExpanderUsingHmac.expand_slice"
+rust_code = "{self}.expand_slice({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&[&[u8]]", "&mut[u8]"]
+
+[[mappings.methods]]
+python = "HkdfExpanderUsingHmac.expand_block"
+rust_code = "{self}.expand_block({arg0})"
+rust_imports = []
+needs_result = false
+returns = "OkmBlock"
+param_types = ["&[&[u8]]"]
+
+[[mappings.methods]]
+python = "HkdfExpanderUsingHmac.hash_len"
+rust_code = "{self}.hash_len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "HkdfUsingHmac.extract_from_zero_ikm"
+rust_code = "{self}.extract_from_zero_ikm({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynHkdfExpander"
+param_types = ["Option<&[u8]>"]
+
+[[mappings.methods]]
+python = "HkdfUsingHmac.extract_from_secret"
+rust_code = "{self}.extract_from_secret({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "dynHkdfExpander"
+param_types = ["Option<&[u8]>", "&[u8]"]
+
+[[mappings.methods]]
+python = "HkdfUsingHmac.expander_for_okm"
+rust_code = "{self}.expander_for_okm({arg0})"
+rust_imports = []
+needs_result = false
+returns = "dynHkdfExpander"
+param_types = ["&OkmBlock"]
+
+[[mappings.methods]]
+python = "HkdfUsingHmac.hmac_sign"
+rust_code = "{self}.hmac_sign({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Tag"
+param_types = ["&OkmBlock", "&[u8]"]
+
+[[mappings.methods]]
+python = "HkdfUsingHmac.extract_prk_from_secret"
+rust_code = "{self}.extract_prk_from_secret({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["Option<&[u8]>", "&[u8]"]
+
+[[mappings.methods]]
+python = "OkmBlock.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "OkmBlock.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "UnsupportedOperationError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Iv.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AeadKey.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AeadKey.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AeadKey.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tag.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tag.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Tag.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "HpkePrivateKey.secret_bytes"
+rust_code = "{self}.secret_bytes()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "HpkePrivateKey.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TicketSwitcher.lifetime"
+rust_code = "{self}.lifetime()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "TicketSwitcher.enabled"
+rust_code = "{self}.enabled()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TicketSwitcher.encrypt"
+rust_code = "{self}.encrypt({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TicketSwitcher.decrypt"
+rust_code = "{self}.decrypt({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TicketSwitcher.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutcore::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "TicketRotator.lifetime"
+rust_code = "{self}.lifetime()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "TicketRotator.enabled"
+rust_code = "{self}.enabled()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TicketRotator.encrypt"
+rust_code = "{self}.encrypt({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TicketRotator.decrypt"
+rust_code = "{self}.decrypt({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TicketRotator.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutcore::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientConfig.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConfig.crypto_provider"
+rust_code = "{self}.crypto_provider()"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+
+[[mappings.methods]]
+python = "ClientConfig.dangerous"
+rust_code = "{self}.dangerous()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DangerousClientConfig"
+
+[[mappings.methods]]
+python = "Resumption.tls12_resumption"
+rust_code = "{self}.tls12_resumption({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Resumption"
+param_types = ["Tls12Resumption"]
+
+[[mappings.methods]]
+python = "DangerousClientConfig.set_certificate_verifier"
+rust_code = "{self}.set_certificate_verifier({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Arc<dynServerCertVerifier>"]
+
+[[mappings.methods]]
+python = "WriteEarlyData.bytes_left"
+rust_code = "{self}.bytes_left()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "WriteEarlyData.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "WriteEarlyData.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "ClientConnection.is_early_data_accepted"
+rust_code = "{self}.is_early_data_accepted()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.tls13_tickets_received"
+rust_code = "{self}.tls13_tickets_received()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "ClientConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientConnection.early_data"
+rust_code = "{self}.early_data()"
+rust_imports = []
+needs_result = false
+returns = "WriteEarlyData"
+
+[[mappings.methods]]
+python = "ClientConnection.is_early_data_accepted"
+rust_code = "{self}.is_early_data_accepted()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "ClientConnection.ech_status"
+rust_code = "{self}.ech_status()"
+rust_imports = []
+needs_result = false
+returns = "EchStatus"
+
+[[mappings.methods]]
+python = "ClientConnection.tls13_tickets_received"
+rust_code = "{self}.tls13_tickets_received()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "ClientConnection.fips"
+rust_code = "{self}.fips()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClientConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "ClientConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "UnbufferedClientConnection.dangerous_extract_secrets"
+rust_code = "{self}.dangerous_extract_secrets()"
+rust_imports = []
+needs_result = true
+returns = "ExtractedSecrets"
+
+[[mappings.methods]]
+python = "UnbufferedClientConnection.dangerous_into_kernel_connection"
+rust_code = "{self}.dangerous_into_kernel_connection()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "UnbufferedClientConnection.tls13_tickets_received"
+rust_code = "{self}.tls13_tickets_received()"
+rust_imports = []
+needs_result = false
+returns = "u32"
+
+[[mappings.methods]]
+python = "UnbufferedClientConnection.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "UnbufferedClientConnection.deref_mut"
+rust_code = "{self}.deref_mut()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "MayEncryptEarlyData.encrypt"
+rust_code = "{self}.encrypt({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]", "&mut[u8]"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.set_kx_hint"
+rust_code = "{self}.set_kx_hint({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["ServerName<'static>", "NamedGroup"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.kx_hint"
+rust_code = "{self}.kx_hint({arg0})"
+rust_imports = []
+needs_result = false
+returns = "NamedGroup"
+param_types = ["&ServerName<'_>"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.set_tls12_session"
+rust_code = "{self}.set_tls12_session({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["ServerName<'static>", "persist::Tls12ClientSessionValue"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.tls12_session"
+rust_code = "{self}.tls12_session({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Tls12ClientSessionValue"
+param_types = ["&ServerName<'_>"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.remove_tls12_session"
+rust_code = "{self}.remove_tls12_session({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&ServerName<'static>"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.insert_tls13_ticket"
+rust_code = "{self}.insert_tls13_ticket({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["ServerName<'static>", "persist::Tls13ClientSessionValue"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.take_tls13_ticket"
+rust_code = "{self}.take_tls13_ticket({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Tls13ClientSessionValue"
+param_types = ["&ServerName<'static>"]
+
+[[mappings.methods]]
+python = "ClientSessionMemoryCache.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "AlwaysResolvesClientRawPublicKeys.resolve"
+rust_code = "{self}.resolve({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+param_types = ["&[&[u8]]", "&[SignatureScheme]"]
+
+[[mappings.methods]]
+python = "AlwaysResolvesClientRawPublicKeys.only_raw_public_keys"
+rust_code = "{self}.only_raw_public_keys()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AlwaysResolvesClientRawPublicKeys.has_certs"
+rust_code = "{self}.has_certs()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DangerousClientConfigBuilder.with_custom_certificate_verifier"
+rust_code = "{self}.with_custom_certificate_verifier({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ConfigBuilder"
+param_types = ["Arc<dynverify::ServerCertVerifier>"]
+
+[[mappings.methods]]
+python = "CommonState.wants_write"
+rust_code = "{self}.wants_write()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.is_handshaking"
+rust_code = "{self}.is_handshaking()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.peer_certificates"
+rust_code = "{self}.peer_certificates()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.alpn_protocol"
+rust_code = "{self}.alpn_protocol()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.negotiated_cipher_suite"
+rust_code = "{self}.negotiated_cipher_suite()"
+rust_imports = []
+needs_result = false
+returns = "SupportedCipherSuite"
+
+[[mappings.methods]]
+python = "CommonState.negotiated_key_exchange_group"
+rust_code = "{self}.negotiated_key_exchange_group()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.protocol_version"
+rust_code = "{self}.protocol_version()"
+rust_imports = []
+needs_result = false
+returns = "ProtocolVersion"
+
+[[mappings.methods]]
+python = "CommonState.handshake_kind"
+rust_code = "{self}.handshake_kind()"
+rust_imports = []
+needs_result = false
+returns = "HandshakeKind"
+
+[[mappings.methods]]
+python = "CommonState.send_close_notify"
+rust_code = "{self}.send_close_notify()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "CommonState.wants_read"
+rust_code = "{self}.wants_read()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "IoState.tls_bytes_to_write"
+rust_code = "{self}.tls_bytes_to_write()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "IoState.plaintext_bytes_to_read"
+rust_code = "{self}.plaintext_bytes_to_read()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "IoState.peer_has_closed"
+rust_code = "{self}.peer_has_closed()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Stream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "Stream.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "Stream.fill_buf"
+rust_code = "{self}.fill_buf()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Stream.consume"
+rust_code = "{self}.consume({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Stream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Stream.write_vectored"
+rust_code = "{self}.write_vectored({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[IoSlice<'_>]"]
+
+[[mappings.methods]]
+python = "Stream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "StreamOwned.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "StreamOwned.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutT"
+
+[[mappings.methods]]
+python = "StreamOwned.into_parts"
+rust_code = "{self}.into_parts()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StreamOwned.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "StreamOwned.read_buf"
+rust_code = "{self}.read_buf({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["core::io::BorrowedCursor<'_>"]
+
+[[mappings.methods]]
+python = "StreamOwned.fill_buf"
+rust_code = "{self}.fill_buf()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "StreamOwned.consume"
+rust_code = "{self}.consume({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamOwned.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "StreamOwned.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "OtherError.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "OtherError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "OtherError.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NoClientAuth.offer_client_auth"
+rust_code = "{self}.offer_client_auth()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NoClientAuth.root_hint_subjects"
+rust_code = "{self}.root_hint_subjects()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "NoClientAuth.verify_client_cert"
+rust_code = "{self}.verify_client_cert({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "ClientCertVerified"
+param_types = ["&CertificateDer<'_>", "&[CertificateDer<'_>]", "UnixTime"]
+
+[[mappings.methods]]
+python = "NoClientAuth.verify_tls12_signature"
+rust_code = "{self}.verify_tls12_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "NoClientAuth.verify_tls13_signature"
+rust_code = "{self}.verify_tls13_signature({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "HandshakeSignatureValid"
+param_types = ["&[u8]", "&CertificateDer<'_>", "&DigitallySignedStruct"]
+
+[[mappings.methods]]
+python = "NoClientAuth.supported_verify_schemes"
+rust_code = "{self}.supported_verify_schemes()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "DigitallySignedStruct.signature"
+rust_code = "{self}.signature()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DigitallySignedStruct.encode"
+rust_code = "{self}.encode({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.types]]
+python = "RootCertStore"
+rust = "rustls::RootCertStore"
+
+[[mappings.types]]
+python = "ClientCertVerifierBuilder"
+rust = "rustls::webpki::client_verifier::ClientCertVerifierBuilder"
+
+[[mappings.types]]
+python = "WebPkiClientVerifier"
+rust = "rustls::WebPkiClientVerifier"
+
+[[mappings.types]]
+python = "WebPkiSupportedAlgorithms"
+rust = "rustls::WebPkiSupportedAlgorithms"
+
+[[mappings.types]]
+python = "ParsedCertificate"
+rust = "rustls::ParsedCertificate"
+
+[[mappings.types]]
+python = "ServerCertVerifierBuilder"
+rust = "rustls::webpki::server_verifier::ServerCertVerifierBuilder"
+
+[[mappings.types]]
+python = "WebPkiServerVerifier"
+rust = "rustls::WebPkiServerVerifier"
+
+[[mappings.types]]
+python = "KeyLogFile"
+rust = "rustls::KeyLogFile"
+
+[[mappings.types]]
+python = "Mutex"
+rust = "rustls::lock::Mutex"
+
+[[mappings.types]]
+python = "Mutex"
+rust = "rustls::lock::Mutex"
+
+[[mappings.types]]
+python = "Poisoned"
+rust = "rustls::lock::Poisoned"
+
+[[mappings.types]]
+python = "Tls13CipherSuite"
+rust = "rustls::Tls13CipherSuite"
+
+[[mappings.types]]
+python = "Reader"
+rust = "rustls::Reader"
+
+[[mappings.types]]
+python = "Writer"
+rust = "rustls::Writer"
+
+[[mappings.types]]
+python = "ConnectionCommon"
+rust = "rustls::ConnectionCommon"
+
+[[mappings.types]]
+python = "UnbufferedConnectionCommon"
+rust = "rustls::UnbufferedConnectionCommon"
+
+[[mappings.types]]
+python = "KernelConnection"
+rust = "rustls::conn::kernel::KernelConnection"
+
+[[mappings.types]]
+python = "UnbufferedStatus"
+rust = "rustls::conn::unbuffered::UnbufferedStatus"
+
+[[mappings.types]]
+python = "ReadTraffic"
+rust = "rustls::conn::unbuffered::ReadTraffic"
+
+[[mappings.types]]
+python = "ReadEarlyData"
+rust = "rustls::conn::unbuffered::ReadEarlyData"
+
+[[mappings.types]]
+python = "AppDataRecord"
+rust = "rustls::conn::unbuffered::AppDataRecord"
+
+[[mappings.types]]
+python = "WriteTraffic"
+rust = "rustls::conn::unbuffered::WriteTraffic"
+
+[[mappings.types]]
+python = "EncodeTlsData"
+rust = "rustls::conn::unbuffered::EncodeTlsData"
+
+[[mappings.types]]
+python = "TransmitTlsData"
+rust = "rustls::conn::unbuffered::TransmitTlsData"
+
+[[mappings.types]]
+python = "InsufficientSizeError"
+rust = "rustls::conn::unbuffered::InsufficientSizeError"
+
+[[mappings.types]]
+python = "NoKeyLog"
+rust = "rustls::NoKeyLog"
+
+[[mappings.types]]
+python = "DefaultTimeProvider"
+rust = "rustls::DefaultTimeProvider"
+
+[[mappings.types]]
+python = "ClientConnection"
+rust = "rustls::quic::ClientConnection"
+
+[[mappings.types]]
+python = "ServerConnection"
+rust = "rustls::quic::ServerConnection"
+
+[[mappings.types]]
+python = "ConnectionCommon"
+rust = "rustls::quic::ConnectionCommon"
+
+[[mappings.types]]
+python = "Secrets"
+rust = "rustls::quic::Secrets"
+
+[[mappings.types]]
+python = "DirectionalKeys"
+rust = "rustls::quic::DirectionalKeys"
+
+[[mappings.types]]
+python = "Tag"
+rust = "rustls::quic::Tag"
+
+[[mappings.types]]
+python = "PacketKeySet"
+rust = "rustls::quic::PacketKeySet"
+
+[[mappings.types]]
+python = "Suite"
+rust = "rustls::quic::Suite"
+
+[[mappings.types]]
+python = "Keys"
+rust = "rustls::quic::Keys"
+
+[[mappings.types]]
+python = "ClientHello"
+rust = "rustls::server::ClientHello"
+
+[[mappings.types]]
+python = "ServerConfig"
+rust = "rustls::server::ServerConfig"
+
+[[mappings.types]]
+python = "ReadEarlyData"
+rust = "rustls::server::ReadEarlyData"
+
+[[mappings.types]]
+python = "ServerConnection"
+rust = "rustls::server::ServerConnection"
+
+[[mappings.types]]
+python = "Acceptor"
+rust = "rustls::server::Acceptor"
+
+[[mappings.types]]
+python = "AcceptedAlert"
+rust = "rustls::server::AcceptedAlert"
+
+[[mappings.types]]
+python = "UnbufferedServerConnection"
+rust = "rustls::server::UnbufferedServerConnection"
+
+[[mappings.types]]
+python = "Accepted"
+rust = "rustls::server::Accepted"
+
+[[mappings.types]]
+python = "ServerConnectionData"
+rust = "rustls::server::ServerConnectionData"
+
+[[mappings.types]]
+python = "NoServerSessionStorage"
+rust = "rustls::server::handy::NoServerSessionStorage"
+
+[[mappings.types]]
+python = "ServerSessionMemoryCache"
+rust = "rustls::server::handy::ServerSessionMemoryCache"
+
+[[mappings.types]]
+python = "AlwaysResolvesServerRawPublicKeys"
+rust = "rustls::server::handy::AlwaysResolvesServerRawPublicKeys"
+
+[[mappings.types]]
+python = "ResolvesServerCertUsingSni"
+rust = "rustls::server::handy::ResolvesServerCertUsingSni"
+
+[[mappings.types]]
+python = "WantsServerCert"
+rust = "rustls::server::WantsServerCert"
+
+[[mappings.types]]
+python = "CipherSuiteCommon"
+rust = "rustls::CipherSuiteCommon"
+
+[[mappings.types]]
+python = "ExtractedSecrets"
+rust = "rustls::ExtractedSecrets"
+
+[[mappings.types]]
+python = "SupportedProtocolVersion"
+rust = "rustls::versions::SupportedProtocolVersion"
+
+[[mappings.types]]
+python = "Tls12CipherSuite"
+rust = "rustls::Tls12CipherSuite"
+
+[[mappings.types]]
+python = "ConfigBuilder"
+rust = "rustls::ConfigBuilder"
+
+[[mappings.types]]
+python = "WantsVersions"
+rust = "rustls::WantsVersions"
+
+[[mappings.types]]
+python = "WantsVerifier"
+rust = "rustls::WantsVerifier"
+
+[[mappings.types]]
+python = "MessageFragmenter"
+rust = "rustls::msgs::MessageFragmenter"
+
+[[mappings.types]]
+python = "InboundOpaqueMessage"
+rust = "rustls::msgs::message::inbound::InboundOpaqueMessage"
+
+[[mappings.types]]
+python = "BorrowedPayload"
+rust = "rustls::msgs::message::inbound::BorrowedPayload"
+
+[[mappings.types]]
+python = "InboundPlainMessage"
+rust = "rustls::msgs::message::inbound::InboundPlainMessage"
+
+[[mappings.types]]
+python = "OutboundPlainMessage"
+rust = "rustls::msgs::message::outbound::OutboundPlainMessage"
+
+[[mappings.types]]
+python = "OutboundOpaqueMessage"
+rust = "rustls::msgs::message::outbound::OutboundOpaqueMessage"
+
+[[mappings.types]]
+python = "PrefixedPayload"
+rust = "rustls::msgs::message::outbound::PrefixedPayload"
+
+[[mappings.types]]
+python = "PlainMessage"
+rust = "rustls::msgs::PlainMessage"
+
+[[mappings.types]]
+python = "Message"
+rust = "rustls::msgs::Message"
+
+[[mappings.types]]
+python = "Tls13ClientSessionValue"
+rust = "rustls::msgs::persist::Tls13ClientSessionValue"
+
+[[mappings.types]]
+python = "Tls12ClientSessionValue"
+rust = "rustls::msgs::persist::Tls12ClientSessionValue"
+
+[[mappings.types]]
+python = "ClientSessionCommon"
+rust = "rustls::msgs::persist::ClientSessionCommon"
+
+[[mappings.types]]
+python = "ServerSessionValue"
+rust = "rustls::msgs::persist::ServerSessionValue"
+
+[[mappings.types]]
+python = "PayloadU16"
+rust = "rustls::msgs::base::PayloadU16"
+
+[[mappings.types]]
+python = "MaybeEmpty"
+rust = "rustls::msgs::base::MaybeEmpty"
+
+[[mappings.types]]
+python = "NonEmpty"
+rust = "rustls::msgs::base::NonEmpty"
+
+[[mappings.types]]
+python = "ChangeCipherSpecPayload"
+rust = "rustls::msgs::ccs::ChangeCipherSpecPayload"
+
+[[mappings.types]]
+python = "Reader"
+rust = "rustls::msgs::codec::Reader"
+
+[[mappings.types]]
+python = "u24"
+rust = "rustls::msgs::codec::u24"
+
+[[mappings.types]]
+python = "FfdheGroup"
+rust = "rustls::msgs::ffdhe_groups::FfdheGroup"
+
+[[mappings.types]]
+python = "UnknownExtension"
+rust = "rustls::msgs::handshake::UnknownExtension"
+
+[[mappings.types]]
+python = "HandshakeMessagePayload"
+rust = "rustls::msgs::handshake::HandshakeMessagePayload"
+
+[[mappings.types]]
+python = "HpkeSymmetricCipherSuite"
+rust = "rustls::msgs::handshake::HpkeSymmetricCipherSuite"
+
+[[mappings.types]]
+python = "HpkeKeyConfig"
+rust = "rustls::msgs::handshake::HpkeKeyConfig"
+
+[[mappings.types]]
+python = "EchConfigContents"
+rust = "rustls::msgs::handshake::EchConfigContents"
+
+[[mappings.types]]
+python = "AlertMessagePayload"
+rust = "rustls::msgs::alert::AlertMessagePayload"
+
+[[mappings.types]]
+python = "GetRandomFailed"
+rust = "rustls::rand::GetRandomFailed"
+
+[[mappings.types]]
+python = "PrfUsingHmac"
+rust = "rustls::crypto::PrfUsingHmac"
+
+[[mappings.types]]
+python = "SingleCertAndKey"
+rust = "rustls::crypto::signer::SingleCertAndKey"
+
+[[mappings.types]]
+python = "CertifiedKey"
+rust = "rustls::crypto::signer::CertifiedKey"
+
+[[mappings.types]]
+python = "RsaSigningKey"
+rust = "rustls::crypto::aws_lc_rs::sign::RsaSigningKey"
+
+[[mappings.types]]
+python = "Ticketer"
+rust = "rustls::crypto::aws_lc_rs::Ticketer"
+
+[[mappings.types]]
+python = "HpkeAwsLcRs"
+rust = "rustls::crypto::aws_lc_rs::hpke::HpkeAwsLcRs"
+
+[[mappings.types]]
+python = "Output"
+rust = "rustls::crypto::hash::Output"
+
+[[mappings.types]]
+python = "RsaSigningKey"
+rust = "rustls::crypto::ring::sign::RsaSigningKey"
+
+[[mappings.types]]
+python = "Ticketer"
+rust = "rustls::crypto::ring::Ticketer"
+
+[[mappings.types]]
+python = "CryptoProvider"
+rust = "rustls::crypto::CryptoProvider"
+
+[[mappings.types]]
+python = "CompletedKeyExchange"
+rust = "rustls::crypto::CompletedKeyExchange"
+
+[[mappings.types]]
+python = "SharedSecret"
+rust = "rustls::crypto::SharedSecret"
+
+[[mappings.types]]
+python = "HkdfExpanderUsingHmac"
+rust = "rustls::crypto::HkdfExpanderUsingHmac"
+
+[[mappings.types]]
+python = "HkdfUsingHmac"
+rust = "rustls::crypto::HkdfUsingHmac"
+
+[[mappings.types]]
+python = "OkmBlock"
+rust = "rustls::crypto::OkmBlock"
+
+[[mappings.types]]
+python = "OutputLengthError"
+rust = "rustls::crypto::OutputLengthError"
+
+[[mappings.types]]
+python = "UnsupportedOperationError"
+rust = "rustls::crypto::cipher::UnsupportedOperationError"
+
+[[mappings.types]]
+python = "KeyBlockShape"
+rust = "rustls::crypto::cipher::KeyBlockShape"
+
+[[mappings.types]]
+python = "Iv"
+rust = "rustls::crypto::cipher::Iv"
+
+[[mappings.types]]
+python = "Nonce"
+rust = "rustls::crypto::cipher::Nonce"
+
+[[mappings.types]]
+python = "AeadKey"
+rust = "rustls::crypto::cipher::AeadKey"
+
+[[mappings.types]]
+python = "Tag"
+rust = "rustls::crypto::hmac::Tag"
+
+[[mappings.types]]
+python = "HpkeSuite"
+rust = "rustls::crypto::hpke::HpkeSuite"
+
+[[mappings.types]]
+python = "HpkePublicKey"
+rust = "rustls::crypto::hpke::HpkePublicKey"
+
+[[mappings.types]]
+python = "HpkePrivateKey"
+rust = "rustls::crypto::hpke::HpkePrivateKey"
+
+[[mappings.types]]
+python = "HpkeKeyPair"
+rust = "rustls::crypto::hpke::HpkeKeyPair"
+
+[[mappings.types]]
+python = "EncapsulatedSecret"
+rust = "rustls::crypto::hpke::EncapsulatedSecret"
+
+[[mappings.types]]
+python = "TicketSwitcher"
+rust = "rustls::ticketer::TicketSwitcher"
+
+[[mappings.types]]
+python = "TicketRotator"
+rust = "rustls::ticketer::TicketRotator"
+
+[[mappings.types]]
+python = "EchConfig"
+rust = "rustls::client::ech::EchConfig"
+
+[[mappings.types]]
+python = "EchGreaseConfig"
+rust = "rustls::client::ech::EchGreaseConfig"
+
+[[mappings.types]]
+python = "ClientConfig"
+rust = "rustls::client::ClientConfig"
+
+[[mappings.types]]
+python = "Resumption"
+rust = "rustls::client::Resumption"
+
+[[mappings.types]]
+python = "DangerousClientConfig"
+rust = "rustls::client::DangerousClientConfig"
+
+[[mappings.types]]
+python = "WriteEarlyData"
+rust = "rustls::client::WriteEarlyData"
+
+[[mappings.types]]
+python = "ClientConnection"
+rust = "rustls::client::ClientConnection"
+
+[[mappings.types]]
+python = "UnbufferedClientConnection"
+rust = "rustls::client::UnbufferedClientConnection"
+
+[[mappings.types]]
+python = "MayEncryptEarlyData"
+rust = "rustls::client::MayEncryptEarlyData"
+
+[[mappings.types]]
+python = "ClientConnectionData"
+rust = "rustls::client::ClientConnectionData"
+
+[[mappings.types]]
+python = "ClientSessionMemoryCache"
+rust = "rustls::client::handy::ClientSessionMemoryCache"
+
+[[mappings.types]]
+python = "AlwaysResolvesClientRawPublicKeys"
+rust = "rustls::client::handy::AlwaysResolvesClientRawPublicKeys"
+
+[[mappings.types]]
+python = "DangerousClientConfigBuilder"
+rust = "rustls::client::DangerousClientConfigBuilder"
+
+[[mappings.types]]
+python = "WantsClientCert"
+rust = "rustls::client::WantsClientCert"
+
+[[mappings.types]]
+python = "CommonState"
+rust = "rustls::CommonState"
+
+[[mappings.types]]
+python = "IoState"
+rust = "rustls::common_state::IoState"
+
+[[mappings.types]]
+python = "DecompressionFailed"
+rust = "rustls::compress::DecompressionFailed"
+
+[[mappings.types]]
+python = "CompressionFailed"
+rust = "rustls::compress::CompressionFailed"
+
+[[mappings.types]]
+python = "CompressionCacheInner"
+rust = "rustls::compress::CompressionCacheInner"
+
+[[mappings.types]]
+python = "Stream"
+rust = "rustls::Stream"
+
+[[mappings.types]]
+python = "StreamOwned"
+rust = "rustls::stream::StreamOwned"
+
+[[mappings.types]]
+python = "OtherError"
+rust = "rustls::OtherError"
+
+[[mappings.types]]
+python = "HandshakeSignatureValid"
+rust = "rustls::HandshakeSignatureValid"
+
+[[mappings.types]]
+python = "ServerCertVerified"
+rust = "rustls::ServerCertVerified"
+
+[[mappings.types]]
+python = "ClientCertVerified"
+rust = "rustls::ClientCertVerified"
+
+[[mappings.types]]
+python = "NoClientAuth"
+rust = "rustls::NoClientAuth"
+
+[[mappings.types]]
+python = "DigitallySignedStruct"
+rust = "rustls::DigitallySignedStruct"
+
+[[mappings.types]]
+python = "VerifierBuilderError"
+rust = "rustls::VerifierBuilderError"
+
+[[mappings.types]]
+python = "Connection"
+rust = "rustls::Connection"
+
+[[mappings.types]]
+python = "ConnectionState"
+rust = "rustls::conn::unbuffered::ConnectionState"
+
+[[mappings.types]]
+python = "EncodeError"
+rust = "rustls::conn::unbuffered::EncodeError"
+
+[[mappings.types]]
+python = "EncryptError"
+rust = "rustls::conn::unbuffered::EncryptError"
+
+[[mappings.types]]
+python = "Connection"
+rust = "rustls::quic::Connection"
+
+[[mappings.types]]
+python = "KeyChange"
+rust = "rustls::quic::KeyChange"
+
+[[mappings.types]]
+python = "Version"
+rust = "rustls::quic::Version"
+
+[[mappings.types]]
+python = "SupportedCipherSuite"
+rust = "rustls::SupportedCipherSuite"
+
+[[mappings.types]]
+python = "ConnectionTrafficSecrets"
+rust = "rustls::ConnectionTrafficSecrets"
+
+[[mappings.types]]
+python = "OutboundChunks"
+rust = "rustls::msgs::message::outbound::OutboundChunks"
+
+[[mappings.types]]
+python = "MessagePayload"
+rust = "rustls::msgs::message::MessagePayload"
+
+[[mappings.types]]
+python = "MessageError"
+rust = "rustls::msgs::message::MessageError"
+
+[[mappings.types]]
+python = "Payload"
+rust = "rustls::msgs::base::Payload"
+
+[[mappings.types]]
+python = "KeyExchangeAlgorithm"
+rust = "rustls::msgs::handshake::KeyExchangeAlgorithm"
+
+[[mappings.types]]
+python = "EchConfigPayload"
+rust = "rustls::msgs::handshake::EchConfigPayload"
+
+[[mappings.types]]
+python = "EchConfigExtension"
+rust = "rustls::msgs::handshake::EchConfigExtension"
+
+[[mappings.types]]
+python = "EchMode"
+rust = "rustls::client::ech::EchMode"
+
+[[mappings.types]]
+python = "EchStatus"
+rust = "rustls::client::ech::EchStatus"
+
+[[mappings.types]]
+python = "Tls12Resumption"
+rust = "rustls::client::Tls12Resumption"
+
+[[mappings.types]]
+python = "EarlyDataError"
+rust = "rustls::client::EarlyDataError"
+
+[[mappings.types]]
+python = "HandshakeKind"
+rust = "rustls::common_state::HandshakeKind"
+
+[[mappings.types]]
+python = "Side"
+rust = "rustls::common_state::Side"
+
+[[mappings.types]]
+python = "CompressionLevel"
+rust = "rustls::compress::CompressionLevel"
+
+[[mappings.types]]
+python = "CompressionCache"
+rust = "rustls::compress::CompressionCache"
+
+[[mappings.types]]
+python = "Error"
+rust = "rustls::Error"
+
+[[mappings.types]]
+python = "InconsistentKeys"
+rust = "rustls::InconsistentKeys"
+
+[[mappings.types]]
+python = "InvalidMessage"
+rust = "rustls::InvalidMessage"
+
+[[mappings.types]]
+python = "PeerMisbehaved"
+rust = "rustls::PeerMisbehaved"
+
+[[mappings.types]]
+python = "PeerIncompatible"
+rust = "rustls::PeerIncompatible"
+
+[[mappings.types]]
+python = "CertificateError"
+rust = "rustls::CertificateError"
+
+[[mappings.types]]
+python = "ExtendedKeyPurpose"
+rust = "rustls::ExtendedKeyPurpose"
+
+[[mappings.types]]
+python = "CertRevocationListError"
+rust = "rustls::CertRevocationListError"
+
+[[mappings.types]]
+python = "EncryptedClientHelloError"
+rust = "rustls::EncryptedClientHelloError"

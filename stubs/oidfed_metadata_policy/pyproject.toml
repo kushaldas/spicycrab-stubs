@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-oidfed_metadata_policy"
+version = "0.7.0"
+description = "spicycrab type stubs for the oidfed_metadata_policy Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+oidfed_metadata_policy = "spicycrab_oidfed_metadata_policy"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_oidfed_metadata_policy"]

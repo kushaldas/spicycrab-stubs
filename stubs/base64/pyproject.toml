@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-base64"
+version = "0.22.1"
+description = "spicycrab type stubs for the base64 Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+base64 = "spicycrab_base64"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_base64"]

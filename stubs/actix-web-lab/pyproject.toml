@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-actix-web-lab"
+version = "0.24.3"
+description = "spicycrab type stubs for the actix-web-lab Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+actix-web-lab = "spicycrab_actix_web_lab"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_actix_web_lab"]

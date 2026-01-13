@@ -1,0 +1,3505 @@
+[package]
+name = "native-tls"
+rust_crate = "native_tls"
+rust_version = "0.2.14"
+python_module = "spicycrab_native_tls"
+
+[cargo.dependencies]
+native-tls = "0.2.14"
+
+[cargo.features]
+available = ["alpn", "vendored"]
+default = []
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["imp::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["base::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["ErrorStack"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.builder"
+rust_code = "native_tls::TlsConnector::builder()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.builder"
+rust_code = "native_tls::TlsAcceptor::builder({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = false
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["imp::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["base::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["ErrorStack"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.builder"
+rust_code = "native_tls::TlsConnector::builder()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.builder"
+rust_code = "native_tls::TlsAcceptor::builder({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = false
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.builder"
+rust_code = "native_tls::TlsConnector::builder()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.builder"
+rust_code = "native_tls::TlsAcceptor::builder({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = false
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["imp::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["base::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["ErrorStack"]
+
+[[mappings.functions]]
+python = "native-tls.Error.from_"
+rust_code = "native_tls::Error::from({arg0})"
+rust_imports = ["native_tls::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs12"
+rust_code = "native_tls::Identity::from_pkcs12({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&str"]
+
+[[mappings.functions]]
+python = "native-tls.Identity.from_pkcs8"
+rust_code = "native_tls::Identity::from_pkcs8({arg0}, {arg1})"
+rust_imports = ["native_tls::Identity"]
+needs_result = true
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_der"
+rust_code = "native_tls::Certificate::from_der({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.Certificate.from_pem"
+rust_code = "native_tls::Certificate::from_pem({arg0})"
+rust_imports = ["native_tls::Certificate"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.builder"
+rust_code = "native_tls::TlsConnector::builder()"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = false
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsConnector.new"
+rust_code = "native_tls::TlsConnector::new({arg0})"
+rust_imports = ["native_tls::TlsConnector"]
+needs_result = true
+param_types = ["&TlsConnectorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.builder"
+rust_code = "native_tls::TlsAcceptor::builder({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = false
+param_types = ["Identity"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.TlsAcceptor.new"
+rust_code = "native_tls::TlsAcceptor::new({arg0})"
+rust_imports = ["native_tls::TlsAcceptor"]
+needs_result = true
+param_types = ["&TlsAcceptorBuilder"]
+
+[[mappings.functions]]
+python = "native-tls.PemBlock.new"
+rust_code = "native_tls::PemBlock::new({arg0})"
+rust_imports = ["native_tls::PemBlock"]
+needs_result = false
+param_types = ["&'a[u8]"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.identity"
+rust_code = "{self}.identity({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["Identity"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.min_protocol_version"
+rust_code = "{self}.min_protocol_version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["Option<Protocol>"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.max_protocol_version"
+rust_code = "{self}.max_protocol_version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["Option<Protocol>"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.add_root_certificate"
+rust_code = "{self}.add_root_certificate({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["Certificate"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.disable_built_in_roots"
+rust_code = "{self}.disable_built_in_roots({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.request_alpns"
+rust_code = "{self}.request_alpns({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["&[&str]"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.danger_accept_invalid_certs"
+rust_code = "{self}.danger_accept_invalid_certs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.use_sni"
+rust_code = "{self}.use_sni({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.danger_accept_invalid_hostnames"
+rust_code = "{self}.danger_accept_invalid_hostnames({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsConnectorBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TlsConnectorBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "TlsConnector"
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsAcceptorBuilder.min_protocol_version"
+rust_code = "{self}.min_protocol_version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsAcceptorBuilder"
+param_types = ["Option<Protocol>"]
+
+[[mappings.methods]]
+python = "TlsAcceptorBuilder.max_protocol_version"
+rust_code = "{self}.max_protocol_version({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutTlsAcceptorBuilder"
+param_types = ["Option<Protocol>"]
+
+[[mappings.methods]]
+python = "TlsAcceptorBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "TlsAcceptor"
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Certificate.to_der"
+rust_code = "{self}.to_der()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "MidHandshakeTlsStream.handshake"
+rust_code = "{self}.handshake()"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsConnector.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsConnector.connect"
+rust_code = "{self}.connect({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["&str", "S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsAcceptor.accept"
+rust_code = "{self}.accept({arg0})"
+rust_imports = []
+needs_result = true
+returns = "TlsStream"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "TlsStream.get_ref"
+rust_code = "{self}.get_ref()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "TlsStream.get_mut"
+rust_code = "{self}.get_mut()"
+rust_imports = []
+needs_result = false
+returns = "mutS"
+
+[[mappings.methods]]
+python = "TlsStream.buffered_read_size"
+rust_code = "{self}.buffered_read_size()"
+rust_imports = []
+needs_result = true
+returns = "usize"
+
+[[mappings.methods]]
+python = "TlsStream.peer_certificate"
+rust_code = "{self}.peer_certificate()"
+rust_imports = []
+needs_result = true
+returns = "Certificate"
+
+[[mappings.methods]]
+python = "TlsStream.negotiated_alpn"
+rust_code = "{self}.negotiated_alpn()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.tls_server_end_point"
+rust_code = "{self}.tls_server_end_point()"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TlsStream.shutdown"
+rust_code = "{self}.shutdown()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "TlsStream.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "TlsStream.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "PemBlock.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Item"
+
+[[mappings.types]]
+python = "Error"
+rust = "native_tls::Error"
+
+[[mappings.types]]
+python = "Identity"
+rust = "native_tls::Identity"
+
+[[mappings.types]]
+python = "Certificate"
+rust = "native_tls::Certificate"
+
+[[mappings.types]]
+python = "MidHandshakeTlsStream"
+rust = "native_tls::MidHandshakeTlsStream"
+
+[[mappings.types]]
+python = "TlsConnectorBuilder"
+rust = "native_tls::TlsConnectorBuilder"
+
+[[mappings.types]]
+python = "TlsConnector"
+rust = "native_tls::TlsConnector"
+
+[[mappings.types]]
+python = "TlsAcceptorBuilder"
+rust = "native_tls::TlsAcceptorBuilder"
+
+[[mappings.types]]
+python = "TlsAcceptor"
+rust = "native_tls::TlsAcceptor"
+
+[[mappings.types]]
+python = "TlsStream"
+rust = "native_tls::TlsStream"
+
+[[mappings.types]]
+python = "Error"
+rust = "native_tls::Error"
+
+[[mappings.types]]
+python = "Identity"
+rust = "native_tls::Identity"
+
+[[mappings.types]]
+python = "Certificate"
+rust = "native_tls::Certificate"
+
+[[mappings.types]]
+python = "TlsConnector"
+rust = "native_tls::TlsConnector"
+
+[[mappings.types]]
+python = "TlsAcceptor"
+rust = "native_tls::TlsAcceptor"
+
+[[mappings.types]]
+python = "TlsStream"
+rust = "native_tls::TlsStream"
+
+[[mappings.types]]
+python = "Identity"
+rust = "native_tls::Identity"
+
+[[mappings.types]]
+python = "Certificate"
+rust = "native_tls::Certificate"
+
+[[mappings.types]]
+python = "MidHandshakeTlsStream"
+rust = "native_tls::MidHandshakeTlsStream"
+
+[[mappings.types]]
+python = "TlsConnector"
+rust = "native_tls::TlsConnector"
+
+[[mappings.types]]
+python = "TlsAcceptor"
+rust = "native_tls::TlsAcceptor"
+
+[[mappings.types]]
+python = "TlsStream"
+rust = "native_tls::TlsStream"
+
+[[mappings.types]]
+python = "Error"
+rust = "native_tls::Error"
+
+[[mappings.types]]
+python = "Identity"
+rust = "native_tls::Identity"
+
+[[mappings.types]]
+python = "Certificate"
+rust = "native_tls::Certificate"
+
+[[mappings.types]]
+python = "MidHandshakeTlsStream"
+rust = "native_tls::MidHandshakeTlsStream"
+
+[[mappings.types]]
+python = "TlsConnector"
+rust = "native_tls::TlsConnector"
+
+[[mappings.types]]
+python = "TlsAcceptor"
+rust = "native_tls::TlsAcceptor"
+
+[[mappings.types]]
+python = "TlsStream"
+rust = "native_tls::TlsStream"
+
+[[mappings.types]]
+python = "PemBlock"
+rust = "native_tls::PemBlock"
+
+[[mappings.types]]
+python = "HandshakeError"
+rust = "native_tls::HandshakeError"
+
+[[mappings.types]]
+python = "Protocol"
+rust = "native_tls::Protocol"
+
+[[mappings.types]]
+python = "HandshakeError"
+rust = "native_tls::HandshakeError"
+
+[[mappings.types]]
+python = "MidHandshakeTlsStream"
+rust = "native_tls::MidHandshakeTlsStream"
+
+[[mappings.types]]
+python = "Error"
+rust = "native_tls::Error"
+
+[[mappings.types]]
+python = "HandshakeError"
+rust = "native_tls::HandshakeError"
+
+[[mappings.types]]
+python = "HandshakeError"
+rust = "native_tls::HandshakeError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "HandshakeError.Failure"
+rust = "native_tls::HandshakeError::Failure"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.WouldBlock"
+rust = "native_tls::HandshakeError::WouldBlock"
+
+[[mappings.enum_variants]]
+python = "Protocol.Sslv3"
+rust = "native_tls::Protocol::Sslv3"
+
+[[mappings.enum_variants]]
+python = "Protocol.Tlsv10"
+rust = "native_tls::Protocol::Tlsv10"
+
+[[mappings.enum_variants]]
+python = "Protocol.Tlsv11"
+rust = "native_tls::Protocol::Tlsv11"
+
+[[mappings.enum_variants]]
+python = "Protocol.Tlsv12"
+rust = "native_tls::Protocol::Tlsv12"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.WouldBlock"
+rust = "native_tls::HandshakeError::WouldBlock"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.Failure"
+rust = "native_tls::HandshakeError::Failure"
+
+[[mappings.enum_variants]]
+python = "MidHandshakeTlsStream.Server"
+rust = "native_tls::MidHandshakeTlsStream::Server"
+
+[[mappings.enum_variants]]
+python = "MidHandshakeTlsStream.Client"
+rust = "native_tls::MidHandshakeTlsStream::Client"
+
+[[mappings.enum_variants]]
+python = "Error.Normal"
+rust = "native_tls::Error::Normal"
+
+[[mappings.enum_variants]]
+python = "Error.Ssl"
+rust = "native_tls::Error::Ssl"
+
+[[mappings.enum_variants]]
+python = "Error.EmptyChain"
+rust = "native_tls::Error::EmptyChain"
+
+[[mappings.enum_variants]]
+python = "Error.NotPkcs8"
+rust = "native_tls::Error::NotPkcs8"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.Failure"
+rust = "native_tls::HandshakeError::Failure"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.WouldBlock"
+rust = "native_tls::HandshakeError::WouldBlock"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.Failure"
+rust = "native_tls::HandshakeError::Failure"
+
+[[mappings.enum_variants]]
+python = "HandshakeError.WouldBlock"
+rust = "native_tls::HandshakeError::WouldBlock"

@@ -1,0 +1,753 @@
+[package]
+name = "config"
+rust_crate = "config"
+rust_version = "0.15.19"
+python_module = "spicycrab_config"
+
+[cargo.dependencies]
+config = "0.15.19"
+
+[cargo.features]
+available = ["async", "convert-case", "corn", "default", "ini", "json", "json5", "preserve_order", "toml", "yaml"]
+default = ["async", "convert-case", "ini", "json", "json5", "ron", "toml", "yaml"]
+
+[[mappings.functions]]
+python = "config.Config.default"
+rust_code = "config::Config::default()"
+rust_imports = ["config::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "config.Config.builder"
+rust_code = "config::Config::builder()"
+rust_imports = ["config::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "config.Config.try_from"
+rust_code = "config::Config::try_from({arg0})"
+rust_imports = ["config::Config"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "config.FileSourceString.from_"
+rust_code = "config::file::source::string::FileSourceString::from({arg0})"
+rust_imports = ["config::file::source::string::FileSourceString"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "config.FileSourceFile.new"
+rust_code = "config::file::source::file::FileSourceFile::new({arg0})"
+rust_imports = ["config::file::source::file::FileSourceFile"]
+needs_result = false
+param_types = ["PathBuf"]
+
+[[mappings.functions]]
+python = "config.File.from_str"
+rust_code = "config::File::from_str({arg0}, {arg1})"
+rust_imports = ["config::File"]
+needs_result = false
+param_types = ["&str", "F"]
+
+[[mappings.functions]]
+python = "config.File.new"
+rust_code = "config::File::new({arg0}, {arg1})"
+rust_imports = ["config::File"]
+needs_result = false
+param_types = ["&str", "F"]
+
+[[mappings.functions]]
+python = "config.File.with_name"
+rust_code = "config::File::with_name({arg0})"
+rust_imports = ["config::File"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "config.File.from_"
+rust_code = "config::File::from({arg0})"
+rust_imports = ["config::File"]
+needs_result = false
+param_types = ["&'aPath"]
+
+[[mappings.functions]]
+python = "config.File.from_"
+rust_code = "config::File::from({arg0})"
+rust_imports = ["config::File"]
+needs_result = false
+param_types = ["PathBuf"]
+
+[[mappings.functions]]
+python = "config.Value.new"
+rust_code = "config::Value::new({arg0}, {arg1})"
+rust_imports = ["config::Value"]
+needs_result = false
+param_types = ["Option<&String>", "V"]
+
+[[mappings.functions]]
+python = "config.Value.deserialize"
+rust_code = "config::Value::deserialize({arg0})"
+rust_imports = ["config::Value"]
+needs_result = true
+param_types = ["D"]
+
+[[mappings.functions]]
+python = "config.Value.from_"
+rust_code = "config::Value::from({arg0})"
+rust_imports = ["config::Value"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "config.Environment.with_prefix"
+rust_code = "config::env::Environment::with_prefix({arg0})"
+rust_imports = ["config::env::Environment"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "config.Environment.with_convert_case"
+rust_code = "config::env::Environment::with_convert_case({arg0})"
+rust_imports = ["config::env::Environment"]
+needs_result = false
+param_types = ["Case"]
+
+[[mappings.methods]]
+python = "Config.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = true
+returns = "T"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_string"
+rust_code = "{self}.get_string({arg0})"
+rust_imports = []
+needs_result = true
+returns = "String"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_int"
+rust_code = "{self}.get_int({arg0})"
+rust_imports = []
+needs_result = true
+returns = "i64"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_float"
+rust_code = "{self}.get_float({arg0})"
+rust_imports = []
+needs_result = true
+returns = "f64"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_bool"
+rust_code = "{self}.get_bool({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_table"
+rust_code = "{self}.get_table({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Map"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.get_array"
+rust_code = "{self}.get_array({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Vec"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Config.try_deserialize"
+rust_code = "{self}.try_deserialize()"
+rust_imports = []
+needs_result = true
+returns = "T"
+
+[[mappings.methods]]
+python = "Config.clone_into_box"
+rust_code = "{self}.clone_into_box()"
+rust_imports = []
+needs_result = false
+returns = "dynSource+Send+Sync"
+
+[[mappings.methods]]
+python = "Config.collect"
+rust_code = "{self}.collect()"
+rust_imports = []
+needs_result = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "FileSourceString.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = true
+returns = "FileSourceResult"
+param_types = ["Option<F>"]
+
+[[mappings.methods]]
+python = "FileSourceResult.uri"
+rust_code = "{self}.uri()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "FileSourceResult.content"
+rust_code = "{self}.content()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "FileSourceResult.format"
+rust_code = "{self}.format()"
+rust_imports = []
+needs_result = false
+returns = "dynFormat"
+
+[[mappings.methods]]
+python = "FileSourceFile.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = true
+returns = "FileSourceResult"
+param_types = ["Option<F>"]
+
+[[mappings.methods]]
+python = "File.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "File"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "File.required"
+rust_code = "{self}.required({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "File"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "File.clone_into_box"
+rust_code = "{self}.clone_into_box()"
+rust_imports = []
+needs_result = false
+returns = "dynSource+Send+Sync"
+
+[[mappings.methods]]
+python = "File.collect"
+rust_code = "{self}.collect()"
+rust_imports = []
+needs_result = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "ConfigBuilder.set_default"
+rust_code = "{self}.set_default({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["S", "T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.set_override"
+rust_code = "{self}.set_override({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["S", "T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.set_override_option"
+rust_code = "{self}.set_override_option({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Self"
+param_types = ["S", "Option<T>"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.add_source"
+rust_code = "{self}.add_source({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.add_async_source"
+rust_code = "{self}.add_async_source({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "ConfigBuilder.build_cloned"
+rust_code = "{self}.build_cloned()"
+rust_imports = []
+needs_result = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "ConfigBuilder.add_source"
+rust_code = "{self}.add_source({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.add_async_source"
+rust_code = "{self}.add_async_source({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConfigBuilder"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ConfigBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "ConfigBuilder.build_cloned"
+rust_code = "{self}.build_cloned()"
+rust_imports = []
+needs_result = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "Value.deserialize_any"
+rust_code = "{self}.deserialize_any({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_bool"
+rust_code = "{self}.deserialize_bool({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_i8"
+rust_code = "{self}.deserialize_i8({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_i16"
+rust_code = "{self}.deserialize_i16({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_i32"
+rust_code = "{self}.deserialize_i32({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_i64"
+rust_code = "{self}.deserialize_i64({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_u8"
+rust_code = "{self}.deserialize_u8({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_u16"
+rust_code = "{self}.deserialize_u16({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_u32"
+rust_code = "{self}.deserialize_u32({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_u64"
+rust_code = "{self}.deserialize_u64({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_f32"
+rust_code = "{self}.deserialize_f32({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_f64"
+rust_code = "{self}.deserialize_f64({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_str"
+rust_code = "{self}.deserialize_str({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_string"
+rust_code = "{self}.deserialize_string({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_option"
+rust_code = "{self}.deserialize_option({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_newtype_struct"
+rust_code = "{self}.deserialize_newtype_struct({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["&'staticstr", "V"]
+
+[[mappings.methods]]
+python = "Value.deserialize_enum"
+rust_code = "{self}.deserialize_enum({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Value"
+param_types = ["&'staticstr", "&'static[&'staticstr]", "V"]
+
+[[mappings.methods]]
+python = "Value.origin"
+rust_code = "{self}.origin()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.try_deserialize"
+rust_code = "{self}.try_deserialize()"
+rust_imports = []
+needs_result = true
+returns = "T"
+
+[[mappings.methods]]
+python = "Value.into_bool"
+rust_code = "{self}.into_bool()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Value.into_int"
+rust_code = "{self}.into_int()"
+rust_imports = []
+needs_result = true
+returns = "i64"
+
+[[mappings.methods]]
+python = "Value.into_int128"
+rust_code = "{self}.into_int128()"
+rust_imports = []
+needs_result = true
+returns = "i128"
+
+[[mappings.methods]]
+python = "Value.into_uint"
+rust_code = "{self}.into_uint()"
+rust_imports = []
+needs_result = true
+returns = "u64"
+
+[[mappings.methods]]
+python = "Value.into_uint128"
+rust_code = "{self}.into_uint128()"
+rust_imports = []
+needs_result = true
+returns = "u128"
+
+[[mappings.methods]]
+python = "Value.into_float"
+rust_code = "{self}.into_float()"
+rust_imports = []
+needs_result = true
+returns = "f64"
+
+[[mappings.methods]]
+python = "Value.into_string"
+rust_code = "{self}.into_string()"
+rust_imports = []
+needs_result = true
+returns = "String"
+
+[[mappings.methods]]
+python = "Value.into_array"
+rust_code = "{self}.into_array()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Value.into_table"
+rust_code = "{self}.into_table()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "Value.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Environment.prefix"
+rust_code = "{self}.prefix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Environment.convert_case"
+rust_code = "{self}.convert_case({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["Case"]
+
+[[mappings.methods]]
+python = "Environment.prefix_separator"
+rust_code = "{self}.prefix_separator({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Environment.separator"
+rust_code = "{self}.separator({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Environment.list_separator"
+rust_code = "{self}.list_separator({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Environment.with_list_parse_key"
+rust_code = "{self}.with_list_parse_key({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Environment.ignore_empty"
+rust_code = "{self}.ignore_empty({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Environment.try_parsing"
+rust_code = "{self}.try_parsing({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Environment.keep_prefix"
+rust_code = "{self}.keep_prefix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Environment.source"
+rust_code = "{self}.source({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Environment"
+param_types = ["Option<Map<String,String>>"]
+
+[[mappings.methods]]
+python = "Environment.clone_into_box"
+rust_code = "{self}.clone_into_box()"
+rust_imports = []
+needs_result = false
+returns = "dynSource+Send+Sync"
+
+[[mappings.methods]]
+python = "Environment.collect"
+rust_code = "{self}.collect()"
+rust_imports = []
+needs_result = true
+returns = "Map"
+
+[[mappings.types]]
+python = "Config"
+rust = "config::Config"
+
+[[mappings.types]]
+python = "FileSourceString"
+rust = "config::file::source::string::FileSourceString"
+
+[[mappings.types]]
+python = "FileSourceResult"
+rust = "config::file::source::FileSourceResult"
+
+[[mappings.types]]
+python = "FileSourceFile"
+rust = "config::file::source::file::FileSourceFile"
+
+[[mappings.types]]
+python = "File"
+rust = "config::File"
+
+[[mappings.types]]
+python = "ReadmeDoctests"
+rust = "config::ReadmeDoctests"
+
+[[mappings.types]]
+python = "ConfigBuilder"
+rust = "config::ConfigBuilder"
+
+[[mappings.types]]
+python = "DefaultState"
+rust = "config::DefaultState"
+
+[[mappings.types]]
+python = "AsyncState"
+rust = "config::AsyncState"
+
+[[mappings.types]]
+python = "Value"
+rust = "config::Value"
+
+[[mappings.types]]
+python = "Environment"
+rust = "config::env::Environment"
+
+[[mappings.types]]
+python = "FileFormat"
+rust = "config::file::FileFormat"
+
+[[mappings.types]]
+python = "ValueKind"
+rust = "config::value::ValueKind"
+
+[[mappings.types]]
+python = "Unexpected"
+rust = "config::Unexpected"
+
+[[mappings.types]]
+python = "ConfigError"
+rust = "config::ConfigError"

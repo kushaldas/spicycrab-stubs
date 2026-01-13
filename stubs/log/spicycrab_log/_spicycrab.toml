@@ -7,6 +7,46 @@ python_module = "spicycrab_log"
 [cargo.dependencies]
 log = "0.4.29"
 
+[cargo.features]
+available = ["kv", "kv_serde", "kv_std", "kv_sval", "kv_unstable", "kv_unstable_serde", "kv_unstable_std", "kv_unstable_sval", "max_level_debug", "max_level_error", "max_level_info", "max_level_off", "max_level_trace", "max_level_warn", "release_max_level_debug", "release_max_level_error", "release_max_level_info", "release_max_level_off", "release_max_level_trace", "release_max_level_warn", "serde", "std"]
+default = []
+
+# Macro mappings (hardcoded - macros can't be auto-detected)
+[[mappings.functions]]
+python = "log.trace"
+rust_code = "log::trace!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "log.debug"
+rust_code = "log::debug!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "log.info"
+rust_code = "log::info!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "log.warn"
+rust_code = "log::warn!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "log.error"
+rust_code = "log::error!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
 [[mappings.functions]]
 python = "log.set_max_level"
 rust_code = "log::set_max_level({arg0})"
@@ -56,77 +96,77 @@ needs_result = false
 
 [[mappings.functions]]
 python = "log.visit"
-rust_code = "log::visit({arg0}, {arg1})"
-rust_imports = ["log::visit"]
+rust_code = "log::kv::value::visit({arg0}, {arg1})"
+rust_imports = ["log::kv::value::visit"]
 needs_result = true
 param_types = ["&Inner<'v>", "implVisitValue<'v>"]
 
 [[mappings.functions]]
 python = "log.visit"
-rust_code = "log::visit({arg0}, {arg1})"
-rust_imports = ["log::visit"]
+rust_code = "log::kv::value::visit({arg0}, {arg1})"
+rust_imports = ["log::kv::value::visit"]
 needs_result = true
 param_types = ["&Inner<'v>", "implVisitValue<'v>"]
 
 [[mappings.functions]]
 python = "log.log"
-rust_code = "log::log({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
-rust_imports = ["log::log"]
+rust_code = "log::__private_api::log({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["log::__private_api::log"]
 needs_result = false
 param_types = ["L", "Arguments", "Level", "&(&str,&'staticstr,&'staticLocation)", "K"]
 
 [[mappings.functions]]
 python = "log.enabled"
-rust_code = "log::enabled({arg0}, {arg1}, {arg2})"
-rust_imports = ["log::enabled"]
+rust_code = "log::__private_api::enabled({arg0}, {arg1}, {arg2})"
+rust_imports = ["log::__private_api::enabled"]
 needs_result = false
 param_types = ["L", "Level", "&str"]
 
 [[mappings.functions]]
 python = "log.loc"
-rust_code = "log::loc()"
-rust_imports = ["log::loc"]
+rust_code = "log::__private_api::loc()"
+rust_imports = ["log::__private_api::loc"]
 needs_result = false
 
 [[mappings.functions]]
 python = "log.capture_to_value"
-rust_code = "log::capture_to_value({arg0})"
-rust_imports = ["log::capture_to_value"]
+rust_code = "log::__private_api::capture_to_value({arg0})"
+rust_imports = ["log::__private_api::capture_to_value"]
 needs_result = false
 param_types = ["&'a&'aV"]
 
 [[mappings.functions]]
 python = "log.capture_debug"
-rust_code = "log::capture_debug({arg0})"
-rust_imports = ["log::capture_debug"]
+rust_code = "log::__private_api::capture_debug({arg0})"
+rust_imports = ["log::__private_api::capture_debug"]
 needs_result = false
 param_types = ["&'a&'aV"]
 
 [[mappings.functions]]
 python = "log.capture_display"
-rust_code = "log::capture_display({arg0})"
-rust_imports = ["log::capture_display"]
+rust_code = "log::__private_api::capture_display({arg0})"
+rust_imports = ["log::__private_api::capture_display"]
 needs_result = false
 param_types = ["&'a&'aV"]
 
 [[mappings.functions]]
 python = "log.capture_error"
-rust_code = "log::capture_error({arg0})"
-rust_imports = ["log::capture_error"]
+rust_code = "log::__private_api::capture_error({arg0})"
+rust_imports = ["log::__private_api::capture_error"]
 needs_result = false
 param_types = ["&'a(dynstd::error::Error+'static)"]
 
 [[mappings.functions]]
 python = "log.capture_sval"
-rust_code = "log::capture_sval({arg0})"
-rust_imports = ["log::capture_sval"]
+rust_code = "log::__private_api::capture_sval({arg0})"
+rust_imports = ["log::__private_api::capture_sval"]
 needs_result = false
 param_types = ["&'a&'aV"]
 
 [[mappings.functions]]
 python = "log.capture_serde"
-rust_code = "log::capture_serde({arg0})"
-rust_imports = ["log::capture_serde"]
+rust_code = "log::__private_api::capture_serde({arg0})"
+rust_imports = ["log::__private_api::capture_serde"]
 needs_result = false
 param_types = ["&'a&'aV"]
 
@@ -168,154 +208,154 @@ needs_result = false
 
 [[mappings.functions]]
 python = "log.Key.from_str"
-rust_code = "log::Key::from_str({arg0})"
-rust_imports = ["log::Key"]
+rust_code = "log::kv::Key::from_str({arg0})"
+rust_imports = ["log::kv::Key"]
 needs_result = false
 param_types = ["&'kstr"]
 
 [[mappings.functions]]
 python = "log.Key.from_"
-rust_code = "log::Key::from({arg0})"
-rust_imports = ["log::Key"]
+rust_code = "log::kv::Key::from({arg0})"
+rust_imports = ["log::kv::Key"]
 needs_result = false
 param_types = ["&'kstr"]
 
 [[mappings.functions]]
 python = "log.Value.from_any"
-rust_code = "log::Value::from_any({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_any({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.from_debug"
-rust_code = "log::Value::from_debug({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_debug({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.from_display"
-rust_code = "log::Value::from_display({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_display({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.from_serde"
-rust_code = "log::Value::from_serde({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_serde({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.from_sval"
-rust_code = "log::Value::from_sval({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_sval({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.from_dyn_debug"
-rust_code = "log::Value::from_dyn_debug({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_dyn_debug({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vdynfmt::Debug"]
 
 [[mappings.functions]]
 python = "log.Value.from_dyn_display"
-rust_code = "log::Value::from_dyn_display({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_dyn_display({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vdynfmt::Display"]
 
 [[mappings.functions]]
 python = "log.Value.from_dyn_error"
-rust_code = "log::Value::from_dyn_error({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from_dyn_error({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'v(dynstd::error::Error+'static)"]
 
 [[mappings.functions]]
 python = "log.Value.null"
-rust_code = "log::Value::null()"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::null()"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 
 [[mappings.functions]]
 python = "log.Value.from_"
-rust_code = "log::Value::from({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vstr"]
 
 [[mappings.functions]]
 python = "log.Value.from_"
-rust_code = "log::Value::from({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::from({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vString"]
 
 [[mappings.functions]]
 python = "log.Value.capture_debug"
-rust_code = "log::Value::capture_debug({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::capture_debug({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.capture_display"
-rust_code = "log::Value::capture_display({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::capture_display({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.capture_error"
-rust_code = "log::Value::capture_error({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::capture_error({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.capture_serde"
-rust_code = "log::Value::capture_serde({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::capture_serde({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Value.capture_sval"
-rust_code = "log::Value::capture_sval({arg0})"
-rust_imports = ["log::Value"]
+rust_code = "log::kv::Value::capture_sval({arg0})"
+rust_imports = ["log::kv::Value"]
 needs_result = false
 param_types = ["&'vT"]
 
 [[mappings.functions]]
 python = "log.Error.msg"
-rust_code = "log::Error::msg({arg0})"
-rust_imports = ["log::Error"]
+rust_code = "log::kv::Error::msg({arg0})"
+rust_imports = ["log::kv::Error"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "log.Error.from_"
-rust_code = "log::Error::from({arg0})"
-rust_imports = ["log::Error"]
+rust_code = "log::kv::Error::from({arg0})"
+rust_imports = ["log::kv::Error"]
 needs_result = false
 param_types = ["fmt::Error"]
 
 [[mappings.functions]]
 python = "log.Error.boxed"
-rust_code = "log::Error::boxed({arg0})"
-rust_imports = ["log::Error"]
+rust_code = "log::kv::Error::boxed({arg0})"
+rust_imports = ["log::kv::Error"]
 needs_result = false
 param_types = ["E"]
 
 [[mappings.functions]]
 python = "log.Error.from_"
-rust_code = "log::Error::from({arg0})"
-rust_imports = ["log::Error"]
+rust_code = "log::kv::Error::from({arg0})"
+rust_imports = ["log::kv::Error"]
 needs_result = false
 param_types = ["io::Error"]
 
@@ -375,6 +415,7 @@ python = "Record.line"
 rust_code = "{self}.line()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "Record.key_values"
@@ -555,6 +596,7 @@ python = "Key.as_str"
 rust_code = "{self}.as_str()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Key.to_borrowed_str"
@@ -575,12 +617,14 @@ python = "Key.as_ref"
 rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Key.borrow"
 rust_code = "{self}.borrow()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Key.stream"
@@ -747,19 +791,19 @@ rust = "log::ParseLevelError"
 
 [[mappings.types]]
 python = "Key"
-rust = "log::Key"
+rust = "log::kv::Key"
 
 [[mappings.types]]
 python = "Value"
-rust = "log::Value"
+rust = "log::kv::Value"
 
 [[mappings.types]]
 python = "Error"
-rust = "log::Error"
+rust = "log::kv::Error"
 
 [[mappings.types]]
 python = "GlobalLogger"
-rust = "log::GlobalLogger"
+rust = "log::__private_api::GlobalLogger"
 
 [[mappings.types]]
 python = "Level"
@@ -771,8 +815,8 @@ rust = "log::LevelFilter"
 
 [[mappings.types]]
 python = "Inner"
-rust = "log::Inner"
+rust = "log::kv::value::Inner"
 
 [[mappings.types]]
 python = "Token"
-rust = "log::Token"
+rust = "log::kv::value::Token"

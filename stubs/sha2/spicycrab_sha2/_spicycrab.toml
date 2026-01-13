@@ -1,0 +1,186 @@
+[package]
+name = "sha2"
+rust_crate = "sha2"
+rust_version = "0.11.0-rc.3"
+python_module = "spicycrab_sha2"
+
+[cargo.dependencies]
+sha2 = "0.11.0-rc.3"
+
+[cargo.features]
+available = ["alloc", "default", "oid", "zeroize"]
+default = ["alloc", "oid"]
+
+# Hardcoded type function
+[[mappings.functions]]
+python = "sha2.Sha256.digest"
+rust_code = "sha2::Sha256::digest({arg0})"
+rust_imports = ["sha2::Sha256", "sha2::Digest"]
+needs_result = false
+param_types = ["&[u8]"]
+
+# Hardcoded type function
+[[mappings.functions]]
+python = "sha2.Sha256.new"
+rust_code = "sha2::Sha256::new()"
+rust_imports = ["sha2::Sha256", "sha2::Digest"]
+needs_result = false
+
+# Hardcoded type function
+[[mappings.functions]]
+python = "sha2.Sha512.digest"
+rust_code = "sha2::Sha512::digest({arg0})"
+rust_imports = ["sha2::Sha512", "sha2::Digest"]
+needs_result = false
+param_types = ["&[u8]"]
+
+# Hardcoded type function
+[[mappings.functions]]
+python = "sha2.Sha512.new"
+rust_code = "sha2::Sha512::new()"
+rust_imports = ["sha2::Sha512", "sha2::Digest"]
+needs_result = false
+
+[[mappings.functions]]
+python = "sha2.compress256"
+rust_code = "sha2::sha256::compress256({arg0}, {arg1})"
+rust_imports = ["sha2::sha256::compress256"]
+needs_result = false
+param_types = ["&mut[u32;8]", "&[[u8;64]]"]
+
+[[mappings.functions]]
+python = "sha2.compress512"
+rust_code = "sha2::sha512::compress512({arg0}, {arg1})"
+rust_imports = ["sha2::sha512::compress512"]
+needs_result = false
+param_types = ["&mut[u64;8]", "&[[u8;128]]"]
+
+[[mappings.functions]]
+python = "sha2.Sha256VarCore.new"
+rust_code = "sha2::Sha256VarCore::new({arg0})"
+rust_imports = ["sha2::Sha256VarCore"]
+needs_result = true
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "sha2.Sha256VarCore.write_alg_name"
+rust_code = "sha2::Sha256VarCore::write_alg_name({arg0})"
+rust_imports = ["sha2::Sha256VarCore"]
+needs_result = true
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.functions]]
+python = "sha2.Sha256VarCore.deserialize"
+rust_code = "sha2::Sha256VarCore::deserialize({arg0})"
+rust_imports = ["sha2::Sha256VarCore"]
+needs_result = true
+param_types = ["&SerializedState<Self>"]
+
+[[mappings.functions]]
+python = "sha2.Sha512VarCore.new"
+rust_code = "sha2::Sha512VarCore::new({arg0})"
+rust_imports = ["sha2::Sha512VarCore"]
+needs_result = true
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "sha2.Sha512VarCore.write_alg_name"
+rust_code = "sha2::Sha512VarCore::write_alg_name({arg0})"
+rust_imports = ["sha2::Sha512VarCore"]
+needs_result = true
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.functions]]
+python = "sha2.Sha512VarCore.deserialize"
+rust_code = "sha2::Sha512VarCore::deserialize({arg0})"
+rust_imports = ["sha2::Sha512VarCore"]
+needs_result = true
+param_types = ["&SerializedState<Self>"]
+
+[[mappings.methods]]
+python = "Sha256VarCore.update_blocks"
+rust_code = "{self}.update_blocks({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[Block<Self>]"]
+
+[[mappings.methods]]
+python = "Sha256VarCore.finalize_variable_core"
+rust_code = "{self}.finalize_variable_core({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutBuffer<Self>", "&mutOutput<Self>"]
+
+[[mappings.methods]]
+python = "Sha256VarCore.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Sha256VarCore.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Sha256VarCore.serialize"
+rust_code = "{self}.serialize()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SerializedState"
+
+[[mappings.methods]]
+python = "Sha512VarCore.update_blocks"
+rust_code = "{self}.update_blocks({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[Block<Self>]"]
+
+[[mappings.methods]]
+python = "Sha512VarCore.finalize_variable_core"
+rust_code = "{self}.finalize_variable_core({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutBuffer<Self>", "&mutOutput<Self>"]
+
+[[mappings.methods]]
+python = "Sha512VarCore.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Sha512VarCore.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Sha512VarCore.serialize"
+rust_code = "{self}.serialize()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SerializedState"
+
+[[mappings.types]]
+python = "Sha256"
+rust = "sha2::Sha256"
+
+[[mappings.types]]
+python = "Sha512"
+rust = "sha2::Sha512"
+
+[[mappings.types]]
+python = "Sha256VarCore"
+rust = "sha2::Sha256VarCore"
+
+[[mappings.types]]
+python = "Sha512VarCore"
+rust = "sha2::Sha512VarCore"

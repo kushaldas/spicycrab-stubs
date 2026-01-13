@@ -7,6 +7,10 @@ python_module = "spicycrab_anyhow"
 [cargo.dependencies]
 anyhow = "1.0.100"
 
+[cargo.features]
+available = ["default", "std"]
+default = ["std"]
+
 # Result type alias - Ok constructor
 [[mappings.functions]]
 python = "anyhow.Result.Ok"
@@ -51,22 +55,22 @@ param_types = ["implBool"]
 
 [[mappings.functions]]
 python = "anyhow.request_ref_backtrace"
-rust_code = "anyhow::request_ref_backtrace({arg0})"
-rust_imports = ["anyhow::request_ref_backtrace"]
+rust_code = "anyhow::nightly::request_ref_backtrace({arg0})"
+rust_imports = ["anyhow::nightly::request_ref_backtrace"]
 needs_result = false
 param_types = ["&dynError"]
 
 [[mappings.functions]]
 python = "anyhow.provide_ref_backtrace"
-rust_code = "anyhow::provide_ref_backtrace({arg0}, {arg1})"
-rust_imports = ["anyhow::provide_ref_backtrace"]
+rust_code = "anyhow::nightly::provide_ref_backtrace({arg0}, {arg1})"
+rust_imports = ["anyhow::nightly::provide_ref_backtrace"]
 needs_result = false
 param_types = ["&mutRequest<'a>", "&'aBacktrace"]
 
 [[mappings.functions]]
 python = "anyhow.provide"
-rust_code = "anyhow::provide({arg0}, {arg1})"
-rust_imports = ["anyhow::provide"]
+rust_code = "anyhow::nightly::provide({arg0}, {arg1})"
+rust_imports = ["anyhow::nightly::provide"]
 needs_result = false
 param_types = ["&'a(implError+?Sized)", "&mutRequest<'a>"]
 
@@ -114,29 +118,29 @@ needs_result = false
 
 [[mappings.functions]]
 python = "anyhow.Own.new"
-rust_code = "anyhow::Own::new({arg0})"
-rust_imports = ["anyhow::Own"]
+rust_code = "anyhow::ptr::Own::new({arg0})"
+rust_imports = ["anyhow::ptr::Own"]
 needs_result = false
 param_types = ["Box<T>"]
 
 [[mappings.functions]]
 python = "anyhow.Ref.new"
-rust_code = "anyhow::Ref::new({arg0})"
-rust_imports = ["anyhow::Ref"]
+rust_code = "anyhow::ptr::Ref::new({arg0})"
+rust_imports = ["anyhow::ptr::Ref"]
 needs_result = false
 param_types = ["&'aT"]
 
 [[mappings.functions]]
 python = "anyhow.Ref.from_raw"
-rust_code = "anyhow::Ref::from_raw({arg0})"
-rust_imports = ["anyhow::Ref"]
+rust_code = "anyhow::ptr::Ref::from_raw({arg0})"
+rust_imports = ["anyhow::ptr::Ref"]
 needs_result = false
 param_types = ["NonNull<T>"]
 
 [[mappings.functions]]
 python = "anyhow.Mut.new"
-rust_code = "anyhow::Mut::new({arg0})"
-rust_imports = ["anyhow::Mut"]
+rust_code = "anyhow::ptr::Mut::new({arg0})"
+rust_imports = ["anyhow::ptr::Mut"]
 needs_result = false
 param_types = ["&'amutT"]
 
@@ -307,6 +311,7 @@ python = "Chain.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "MessageError.fmt"
@@ -524,36 +529,36 @@ rust = "anyhow::Chain"
 
 [[mappings.types]]
 python = "MessageError"
-rust = "anyhow::MessageError"
+rust = "anyhow::wrapper::MessageError"
 
 [[mappings.types]]
 python = "DisplayError"
-rust = "anyhow::DisplayError"
+rust = "anyhow::wrapper::DisplayError"
 
 [[mappings.types]]
 python = "BoxedError"
-rust = "anyhow::BoxedError"
+rust = "anyhow::wrapper::BoxedError"
 
 [[mappings.types]]
 python = "Own"
-rust = "anyhow::Own"
+rust = "anyhow::ptr::Own"
 
 [[mappings.types]]
 python = "Ref"
-rust = "anyhow::Ref"
+rust = "anyhow::ptr::Ref"
 
 [[mappings.types]]
 python = "Mut"
-rust = "anyhow::Mut"
+rust = "anyhow::ptr::Mut"
 
 [[mappings.types]]
 python = "Adhoc"
-rust = "anyhow::Adhoc"
+rust = "anyhow::kind::Adhoc"
 
 [[mappings.types]]
 python = "Trait"
-rust = "anyhow::Trait"
+rust = "anyhow::kind::Trait"
 
 [[mappings.types]]
 python = "Boxed"
-rust = "anyhow::Boxed"
+rust = "anyhow::kind::Boxed"

@@ -7,6 +7,10 @@ python_module = "spicycrab_tokio"
 [cargo.dependencies]
 tokio = "1.49.0"
 
+[cargo.features]
+available = ["default", "fs", "full", "io-std", "io-uring", "io-util", "macros", "net", "process", "rt", "rt-multi-thread", "signal", "sync", "taskdump", "test-util", "time"]
+default = []
+
 # Duration constructor from std
 [[mappings.functions]]
 python = "tokio.Duration.from_secs"
@@ -130,15 +134,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "tokio.duplex"
-rust_code = "tokio::duplex({arg0})"
-rust_imports = ["tokio::duplex"]
+rust_code = "tokio::io::util::mem::duplex({arg0})"
+rust_imports = ["tokio::io::util::mem::duplex"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.simplex"
-rust_code = "tokio::simplex({arg0})"
-rust_imports = ["tokio::simplex"]
+rust_code = "tokio::io::util::mem::simplex({arg0})"
+rust_imports = ["tokio::io::util::mem::simplex"]
 needs_result = false
 param_types = ["usize"]
 
@@ -174,285 +178,285 @@ param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "tokio.channel"
-rust_code = "tokio::channel()"
-rust_imports = ["tokio::channel"]
+rust_code = "tokio::sync::oneshot::channel()"
+rust_imports = ["tokio::sync::oneshot::channel"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.channel"
-rust_code = "tokio::channel({arg0})"
-rust_imports = ["tokio::channel"]
+rust_code = "tokio::sync::watch::channel({arg0})"
+rust_imports = ["tokio::sync::watch::channel"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.channel"
-rust_code = "tokio::channel({arg0})"
-rust_imports = ["tokio::channel"]
+rust_code = "tokio::sync::mpsc::bounded::channel({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::channel"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.unbounded_channel"
-rust_code = "tokio::unbounded_channel()"
-rust_imports = ["tokio::unbounded_channel"]
+rust_code = "tokio::sync::mpsc::unbounded_channel()"
+rust_imports = ["tokio::sync::mpsc::unbounded_channel"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.channel"
-rust_code = "tokio::channel({arg0})"
-rust_imports = ["tokio::channel"]
+rust_code = "tokio::sync::broadcast::channel({arg0})"
+rust_imports = ["tokio::sync::broadcast::channel"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.pipe"
-rust_code = "tokio::pipe()"
-rust_imports = ["tokio::pipe"]
+rust_code = "tokio::net::unix::pipe()"
+rust_imports = ["tokio::net::unix::pipe"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.maybe_done"
-rust_code = "tokio::maybe_done({arg0})"
-rust_imports = ["tokio::maybe_done"]
+rust_code = "tokio::future::maybe_done({arg0})"
+rust_imports = ["tokio::future::maybe_done"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "tokio.signal"
-rust_code = "tokio::signal({arg0})"
-rust_imports = ["tokio::signal"]
+rust_code = "tokio::signal::unix::signal({arg0})"
+rust_imports = ["tokio::signal::unix::signal"]
 needs_result = true
 param_types = ["SignalKind"]
 
 [[mappings.functions]]
 python = "tokio.ctrl_c"
-rust_code = "tokio::ctrl_c()"
-rust_imports = ["tokio::ctrl_c"]
+rust_code = "tokio::signal::ctrl_c()"
+rust_imports = ["tokio::signal::ctrl_c"]
 needs_result = true
 is_async = true
 
 [[mappings.functions]]
 python = "tokio.ctrl_c"
-rust_code = "tokio::ctrl_c()"
-rust_imports = ["tokio::ctrl_c"]
+rust_code = "tokio::signal::windows::ctrl_c()"
+rust_imports = ["tokio::signal::windows::ctrl_c"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.ctrl_break"
-rust_code = "tokio::ctrl_break()"
-rust_imports = ["tokio::ctrl_break"]
+rust_code = "tokio::signal::windows::ctrl_break()"
+rust_imports = ["tokio::signal::windows::ctrl_break"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.ctrl_close"
-rust_code = "tokio::ctrl_close()"
-rust_imports = ["tokio::ctrl_close"]
+rust_code = "tokio::signal::windows::ctrl_close()"
+rust_imports = ["tokio::signal::windows::ctrl_close"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.ctrl_shutdown"
-rust_code = "tokio::ctrl_shutdown()"
-rust_imports = ["tokio::ctrl_shutdown"]
+rust_code = "tokio::signal::windows::ctrl_shutdown()"
+rust_imports = ["tokio::signal::windows::ctrl_shutdown"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.ctrl_logoff"
-rust_code = "tokio::ctrl_logoff()"
-rust_imports = ["tokio::ctrl_logoff"]
+rust_code = "tokio::signal::windows::ctrl_logoff()"
+rust_imports = ["tokio::signal::windows::ctrl_logoff"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.id"
-rust_code = "tokio::id()"
-rust_imports = ["tokio::id"]
+rust_code = "tokio::runtime::task::id()"
+rust_imports = ["tokio::runtime::task::id"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.try_id"
-rust_code = "tokio::try_id()"
-rust_imports = ["tokio::try_id"]
+rust_code = "tokio::runtime::task::id::try_id()"
+rust_imports = ["tokio::runtime::task::id::try_id"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.symlink_dir"
-rust_code = "tokio::symlink_dir({arg0}, {arg1})"
-rust_imports = ["tokio::symlink_dir"]
+rust_code = "tokio::fs::symlink_dir({arg0}, {arg1})"
+rust_imports = ["tokio::fs::symlink_dir"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.symlink_metadata"
-rust_code = "tokio::symlink_metadata({arg0})"
-rust_imports = ["tokio::symlink_metadata"]
+rust_code = "tokio::fs::symlink_metadata({arg0})"
+rust_imports = ["tokio::fs::symlink_metadata"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.metadata"
-rust_code = "tokio::metadata({arg0})"
-rust_imports = ["tokio::metadata"]
+rust_code = "tokio::fs::metadata({arg0})"
+rust_imports = ["tokio::fs::metadata"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.read_dir"
-rust_code = "tokio::read_dir({arg0})"
-rust_imports = ["tokio::read_dir"]
+rust_code = "tokio::fs::read_dir({arg0})"
+rust_imports = ["tokio::fs::read_dir"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.canonicalize"
-rust_code = "tokio::canonicalize({arg0})"
-rust_imports = ["tokio::canonicalize"]
+rust_code = "tokio::fs::canonicalize({arg0})"
+rust_imports = ["tokio::fs::canonicalize"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.remove_dir"
-rust_code = "tokio::remove_dir({arg0})"
-rust_imports = ["tokio::remove_dir"]
+rust_code = "tokio::fs::remove_dir({arg0})"
+rust_imports = ["tokio::fs::remove_dir"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.read_to_string"
-rust_code = "tokio::read_to_string({arg0})"
-rust_imports = ["tokio::read_to_string"]
+rust_code = "tokio::fs::read_to_string({arg0})"
+rust_imports = ["tokio::fs::read_to_string"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.symlink"
-rust_code = "tokio::symlink({arg0}, {arg1})"
-rust_imports = ["tokio::symlink"]
+rust_code = "tokio::fs::symlink({arg0}, {arg1})"
+rust_imports = ["tokio::fs::symlink"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.create_dir"
-rust_code = "tokio::create_dir({arg0})"
-rust_imports = ["tokio::create_dir"]
+rust_code = "tokio::fs::create_dir({arg0})"
+rust_imports = ["tokio::fs::create_dir"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.remove_file"
-rust_code = "tokio::remove_file({arg0})"
-rust_imports = ["tokio::remove_file"]
+rust_code = "tokio::fs::remove_file({arg0})"
+rust_imports = ["tokio::fs::remove_file"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.write"
-rust_code = "tokio::write({arg0}, {arg1})"
-rust_imports = ["tokio::write"]
+rust_code = "tokio::fs::write({arg0}, {arg1})"
+rust_imports = ["tokio::fs::write"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<[u8]>"]
 
 [[mappings.functions]]
 python = "tokio.rename"
-rust_code = "tokio::rename({arg0}, {arg1})"
-rust_imports = ["tokio::rename"]
+rust_code = "tokio::fs::rename({arg0}, {arg1})"
+rust_imports = ["tokio::fs::rename"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.read"
-rust_code = "tokio::read({arg0})"
-rust_imports = ["tokio::read"]
+rust_code = "tokio::fs::read({arg0})"
+rust_imports = ["tokio::fs::read"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.copy"
-rust_code = "tokio::copy({arg0}, {arg1})"
-rust_imports = ["tokio::copy"]
+rust_code = "tokio::fs::copy({arg0}, {arg1})"
+rust_imports = ["tokio::fs::copy"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.read_link"
-rust_code = "tokio::read_link({arg0})"
-rust_imports = ["tokio::read_link"]
+rust_code = "tokio::fs::read_link({arg0})"
+rust_imports = ["tokio::fs::read_link"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.create_dir_all"
-rust_code = "tokio::create_dir_all({arg0})"
-rust_imports = ["tokio::create_dir_all"]
+rust_code = "tokio::fs::create_dir_all({arg0})"
+rust_imports = ["tokio::fs::create_dir_all"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.set_permissions"
-rust_code = "tokio::set_permissions({arg0}, {arg1})"
-rust_imports = ["tokio::set_permissions"]
+rust_code = "tokio::fs::set_permissions({arg0}, {arg1})"
+rust_imports = ["tokio::fs::set_permissions"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "Permissions"]
 
 [[mappings.functions]]
 python = "tokio.symlink_file"
-rust_code = "tokio::symlink_file({arg0}, {arg1})"
-rust_imports = ["tokio::symlink_file"]
+rust_code = "tokio::fs::symlink_file({arg0}, {arg1})"
+rust_imports = ["tokio::fs::symlink_file"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.try_exists"
-rust_code = "tokio::try_exists({arg0})"
-rust_imports = ["tokio::try_exists"]
+rust_code = "tokio::fs::try_exists({arg0})"
+rust_imports = ["tokio::fs::try_exists"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.hard_link"
-rust_code = "tokio::hard_link({arg0}, {arg1})"
-rust_imports = ["tokio::hard_link"]
+rust_code = "tokio::fs::hard_link({arg0}, {arg1})"
+rust_imports = ["tokio::fs::hard_link"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>", "implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.remove_dir_all"
-rust_code = "tokio::remove_dir_all({arg0})"
-rust_imports = ["tokio::remove_dir_all"]
+rust_code = "tokio::fs::remove_dir_all({arg0})"
+rust_imports = ["tokio::fs::remove_dir_all"]
 needs_result = true
 is_async = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.interval"
-rust_code = "tokio::interval({arg0})"
-rust_imports = ["tokio::interval"]
+rust_code = "tokio::time::interval({arg0})"
+rust_imports = ["tokio::time::interval"]
 needs_result = false
 param_types = ["Duration"]
 
 [[mappings.functions]]
 python = "tokio.interval_at"
-rust_code = "tokio::interval_at({arg0}, {arg1})"
-rust_imports = ["tokio::interval_at"]
+rust_code = "tokio::time::interval_at({arg0}, {arg1})"
+rust_imports = ["tokio::time::interval_at"]
 needs_result = false
 param_types = ["Instant", "Duration"]
 
@@ -486,28 +490,28 @@ param_types = ["Duration"]
 
 [[mappings.functions]]
 python = "tokio.yield_now"
-rust_code = "tokio::yield_now()"
-rust_imports = ["tokio::yield_now"]
+rust_code = "tokio::task::yield_now()"
+rust_imports = ["tokio::task::yield_now"]
 needs_result = false
 is_async = true
 
 [[mappings.functions]]
 python = "tokio.unconstrained"
-rust_code = "tokio::unconstrained({arg0})"
-rust_imports = ["tokio::unconstrained"]
+rust_code = "tokio::task::coop::unconstrained({arg0})"
+rust_imports = ["tokio::task::coop::unconstrained"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "tokio.has_budget_remaining"
-rust_code = "tokio::has_budget_remaining()"
-rust_imports = ["tokio::has_budget_remaining"]
+rust_code = "tokio::task::coop::has_budget_remaining()"
+rust_imports = ["tokio::task::coop::has_budget_remaining"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.consume_budget"
-rust_code = "tokio::consume_budget()"
-rust_imports = ["tokio::consume_budget"]
+rust_code = "tokio::task::coop::consume_budget()"
+rust_imports = ["tokio::task::coop::consume_budget"]
 needs_result = false
 is_async = true
 
@@ -541,8 +545,8 @@ param_types = ["T", "Interest"]
 
 [[mappings.functions]]
 python = "tokio.SimplexStream.new_unsplit"
-rust_code = "tokio::SimplexStream::new_unsplit({arg0})"
-rust_imports = ["tokio::SimplexStream"]
+rust_code = "tokio::io::util::mem::SimplexStream::new_unsplit({arg0})"
+rust_imports = ["tokio::io::util::mem::SimplexStream"]
 needs_result = false
 param_types = ["usize"]
 
@@ -562,22 +566,22 @@ param_types = ["&'amut[MaybeUninit<u8>]"]
 
 [[mappings.functions]]
 python = "tokio.Aio.new_for_aio"
-rust_code = "tokio::Aio::new_for_aio({arg0})"
-rust_imports = ["tokio::Aio"]
+rust_code = "tokio::io::bsd::Aio::new_for_aio({arg0})"
+rust_imports = ["tokio::io::bsd::Aio"]
 needs_result = true
 param_types = ["E"]
 
 [[mappings.functions]]
 python = "tokio.Aio.new_for_lio"
-rust_code = "tokio::Aio::new_for_lio({arg0})"
-rust_imports = ["tokio::Aio"]
+rust_code = "tokio::io::bsd::Aio::new_for_lio({arg0})"
+rust_imports = ["tokio::io::bsd::Aio"]
 needs_result = true
 param_types = ["E"]
 
 [[mappings.functions]]
 python = "tokio.RngSeed.from_bytes"
-rust_code = "tokio::RngSeed::from_bytes({arg0})"
-rust_imports = ["tokio::RngSeed"]
+rust_code = "tokio::util::rand::RngSeed::from_bytes({arg0})"
+rust_imports = ["tokio::util::rand::RngSeed"]
 needs_result = false
 param_types = ["&[u8]"]
 
@@ -622,224 +626,224 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockReadGuard.map"
-rust_code = "tokio::OwnedRwLockReadGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockReadGuard"]
+rust_code = "tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockReadGuard.try_map"
-rust_code = "tokio::OwnedRwLockReadGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockReadGuard"]
+rust_code = "tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockReadGuard.rwlock"
-rust_code = "tokio::OwnedRwLockReadGuard::rwlock({arg0})"
-rust_imports = ["tokio::OwnedRwLockReadGuard"]
+rust_code = "tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard::rwlock({arg0})"
+rust_imports = ["tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard"]
 needs_result = false
 param_types = ["&Self"]
 
 [[mappings.functions]]
 python = "tokio.RwLockWriteGuard.map"
-rust_code = "tokio::RwLockWriteGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::RwLockWriteGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockWriteGuard.downgrade_map"
-rust_code = "tokio::RwLockWriteGuard::downgrade_map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::RwLockWriteGuard::downgrade_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockWriteGuard.try_map"
-rust_code = "tokio::RwLockWriteGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::RwLockWriteGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockWriteGuard.try_downgrade_map"
-rust_code = "tokio::RwLockWriteGuard::try_downgrade_map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::RwLockWriteGuard::try_downgrade_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockWriteGuard.into_mapped"
-rust_code = "tokio::RwLockWriteGuard::into_mapped({arg0})"
-rust_imports = ["tokio::RwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::RwLockWriteGuard::into_mapped({arg0})"
+rust_imports = ["tokio::sync::rwlock::RwLockWriteGuard"]
 needs_result = false
 param_types = ["Self"]
 
 [[mappings.functions]]
 python = "tokio.RwLockMappedWriteGuard.map"
-rust_code = "tokio::RwLockMappedWriteGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockMappedWriteGuard"]
+rust_code = "tokio::sync::rwlock::write_guard_mapped::RwLockMappedWriteGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::write_guard_mapped::RwLockMappedWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockMappedWriteGuard.try_map"
-rust_code = "tokio::RwLockMappedWriteGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockMappedWriteGuard"]
+rust_code = "tokio::sync::rwlock::write_guard_mapped::RwLockMappedWriteGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::write_guard_mapped::RwLockMappedWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockReadGuard.map"
-rust_code = "tokio::RwLockReadGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockReadGuard"]
+rust_code = "tokio::sync::rwlock::RwLockReadGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockReadGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.RwLockReadGuard.try_map"
-rust_code = "tokio::RwLockReadGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::RwLockReadGuard"]
+rust_code = "tokio::sync::rwlock::RwLockReadGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::RwLockReadGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.map"
-rust_code = "tokio::OwnedRwLockWriteGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.downgrade_map"
-rust_code = "tokio::OwnedRwLockWriteGuard::downgrade_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::downgrade_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.try_map"
-rust_code = "tokio::OwnedRwLockWriteGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.try_downgrade_map"
-rust_code = "tokio::OwnedRwLockWriteGuard::try_downgrade_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::try_downgrade_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.into_mapped"
-rust_code = "tokio::OwnedRwLockWriteGuard::into_mapped({arg0})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::into_mapped({arg0})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = false
 param_types = ["Self"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockWriteGuard.rwlock"
-rust_code = "tokio::OwnedRwLockWriteGuard::rwlock({arg0})"
-rust_imports = ["tokio::OwnedRwLockWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard::rwlock({arg0})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"]
 needs_result = false
 param_types = ["&Self"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockMappedWriteGuard.map"
-rust_code = "tokio::OwnedRwLockMappedWriteGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockMappedWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockMappedWriteGuard.try_map"
-rust_code = "tokio::OwnedRwLockMappedWriteGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedRwLockMappedWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedRwLockMappedWriteGuard.rwlock"
-rust_code = "tokio::OwnedRwLockMappedWriteGuard::rwlock({arg0})"
-rust_imports = ["tokio::OwnedRwLockMappedWriteGuard"]
+rust_code = "tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard::rwlock({arg0})"
+rust_imports = ["tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard"]
 needs_result = false
 param_types = ["&Self"]
 
 [[mappings.functions]]
 python = "tokio.Sender.default"
-rust_code = "tokio::Sender::default()"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::default()"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::new({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::new({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file"
-rust_code = "tokio::Sender::from_file({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::from_file({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd"
-rust_code = "tokio::Sender::from_owned_fd({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file_unchecked"
-rust_code = "tokio::Sender::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd_unchecked"
-rust_code = "tokio::Sender::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::oneshot::Sender::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::oneshot::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file"
-rust_code = "tokio::Receiver::from_file({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::oneshot::Receiver::from_file({arg0})"
+rust_imports = ["tokio::sync::oneshot::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd"
-rust_code = "tokio::Receiver::from_owned_fd({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::oneshot::Receiver::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::oneshot::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file_unchecked"
-rust_code = "tokio::Receiver::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::oneshot::Receiver::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::oneshot::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd_unchecked"
-rust_code = "tokio::Receiver::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::oneshot::Receiver::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::oneshot::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
@@ -863,77 +867,77 @@ needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file"
-rust_code = "tokio::Receiver::from_file({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::watch::Receiver::from_file({arg0})"
+rust_imports = ["tokio::sync::watch::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd"
-rust_code = "tokio::Receiver::from_owned_fd({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::watch::Receiver::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::watch::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file_unchecked"
-rust_code = "tokio::Receiver::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::watch::Receiver::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::watch::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd_unchecked"
-rust_code = "tokio::Receiver::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::watch::Receiver::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::watch::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.default"
-rust_code = "tokio::Sender::default()"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::default()"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::new({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::new({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file"
-rust_code = "tokio::Sender::from_file({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::from_file({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd"
-rust_code = "tokio::Sender::from_owned_fd({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file_unchecked"
-rust_code = "tokio::Sender::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd_unchecked"
-rust_code = "tokio::Sender::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::watch::Sender::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::watch::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
@@ -946,77 +950,77 @@ param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.default"
-rust_code = "tokio::Sender::default()"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::default()"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::new({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::new({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file"
-rust_code = "tokio::Sender::from_file({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::from_file({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd"
-rust_code = "tokio::Sender::from_owned_fd({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file_unchecked"
-rust_code = "tokio::Sender::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd_unchecked"
-rust_code = "tokio::Sender::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::mpsc::bounded::Sender::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file"
-rust_code = "tokio::Receiver::from_file({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::mpsc::bounded::Receiver::from_file({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd"
-rust_code = "tokio::Receiver::from_owned_fd({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::mpsc::bounded::Receiver::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file_unchecked"
-rust_code = "tokio::Receiver::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::mpsc::bounded::Receiver::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd_unchecked"
-rust_code = "tokio::Receiver::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::mpsc::bounded::Receiver::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::mpsc::bounded::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
@@ -1106,77 +1110,77 @@ param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.default"
-rust_code = "tokio::Sender::default()"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::default()"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::new({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::new({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file"
-rust_code = "tokio::Sender::from_file({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::from_file({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd"
-rust_code = "tokio::Sender::from_owned_fd({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file_unchecked"
-rust_code = "tokio::Sender::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd_unchecked"
-rust_code = "tokio::Sender::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::sync::broadcast::Sender::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::broadcast::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file"
-rust_code = "tokio::Receiver::from_file({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::broadcast::Receiver::from_file({arg0})"
+rust_imports = ["tokio::sync::broadcast::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd"
-rust_code = "tokio::Receiver::from_owned_fd({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::broadcast::Receiver::from_owned_fd({arg0})"
+rust_imports = ["tokio::sync::broadcast::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file_unchecked"
-rust_code = "tokio::Receiver::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::broadcast::Receiver::from_file_unchecked({arg0})"
+rust_imports = ["tokio::sync::broadcast::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd_unchecked"
-rust_code = "tokio::Receiver::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::sync::broadcast::Receiver::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::sync::broadcast::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
@@ -1221,275 +1225,275 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.NamedPipeServer.from_raw_handle"
-rust_code = "tokio::NamedPipeServer::from_raw_handle({arg0})"
-rust_imports = ["tokio::NamedPipeServer"]
+rust_code = "tokio::net::windows::NamedPipeServer::from_raw_handle({arg0})"
+rust_imports = ["tokio::net::windows::NamedPipeServer"]
 needs_result = true
 param_types = ["RawHandle"]
 
 [[mappings.functions]]
 python = "tokio.NamedPipeClient.from_raw_handle"
-rust_code = "tokio::NamedPipeClient::from_raw_handle({arg0})"
-rust_imports = ["tokio::NamedPipeClient"]
+rust_code = "tokio::net::windows::NamedPipeClient::from_raw_handle({arg0})"
+rust_imports = ["tokio::net::windows::NamedPipeClient"]
 needs_result = true
 param_types = ["RawHandle"]
 
 [[mappings.functions]]
 python = "tokio.ServerOptions.new"
-rust_code = "tokio::ServerOptions::new()"
-rust_imports = ["tokio::ServerOptions"]
+rust_code = "tokio::net::windows::named_pipe::ServerOptions::new()"
+rust_imports = ["tokio::net::windows::named_pipe::ServerOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.ClientOptions.new"
-rust_code = "tokio::ClientOptions::new()"
-rust_imports = ["tokio::ClientOptions"]
+rust_code = "tokio::net::windows::named_pipe::ClientOptions::new()"
+rust_imports = ["tokio::net::windows::named_pipe::ClientOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SocketAddr.from_"
-rust_code = "tokio::SocketAddr::from({arg0})"
-rust_imports = ["tokio::SocketAddr"]
+rust_code = "tokio::net::unix::socketaddr::SocketAddr::from({arg0})"
+rust_imports = ["tokio::net::unix::socketaddr::SocketAddr"]
 needs_result = false
 param_types = ["std::os::unix::net::SocketAddr"]
 
 [[mappings.functions]]
 python = "tokio.SocketAddr.from_"
-rust_code = "tokio::SocketAddr::from({arg0})"
-rust_imports = ["tokio::SocketAddr"]
+rust_code = "tokio::net::unix::socketaddr::SocketAddr::from({arg0})"
+rust_imports = ["tokio::net::unix::socketaddr::SocketAddr"]
 needs_result = false
 param_types = ["SocketAddr"]
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.new"
-rust_code = "tokio::OpenOptions::new()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::net::unix::pipe::OpenOptions::new()"
+rust_imports = ["tokio::net::unix::pipe::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.default"
-rust_code = "tokio::OpenOptions::default()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::net::unix::pipe::OpenOptions::default()"
+rust_imports = ["tokio::net::unix::pipe::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.new"
-rust_code = "tokio::OpenOptions::new()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::net::unix::pipe::OpenOptions::new()"
+rust_imports = ["tokio::net::unix::pipe::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.from_"
-rust_code = "tokio::OpenOptions::from({arg0})"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::net::unix::pipe::OpenOptions::from({arg0})"
+rust_imports = ["tokio::net::unix::pipe::OpenOptions"]
 needs_result = false
 param_types = ["StdOpenOptions"]
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.default"
-rust_code = "tokio::OpenOptions::default()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::net::unix::pipe::OpenOptions::default()"
+rust_imports = ["tokio::net::unix::pipe::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.default"
-rust_code = "tokio::Sender::default()"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::default()"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::new({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.Sender.new"
-rust_code = "tokio::Sender::new({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::new({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file"
-rust_code = "tokio::Sender::from_file({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::from_file({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd"
-rust_code = "tokio::Sender::from_owned_fd({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::from_owned_fd({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_file_unchecked"
-rust_code = "tokio::Sender::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::from_file_unchecked({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Sender.from_owned_fd_unchecked"
-rust_code = "tokio::Sender::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Sender"]
+rust_code = "tokio::net::unix::pipe::Sender::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Sender"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file"
-rust_code = "tokio::Receiver::from_file({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::net::unix::pipe::Receiver::from_file({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd"
-rust_code = "tokio::Receiver::from_owned_fd({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::net::unix::pipe::Receiver::from_owned_fd({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_file_unchecked"
-rust_code = "tokio::Receiver::from_file_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::net::unix::pipe::Receiver::from_file_unchecked({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Receiver"]
 needs_result = true
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "tokio.Receiver.from_owned_fd_unchecked"
-rust_code = "tokio::Receiver::from_owned_fd_unchecked({arg0})"
-rust_imports = ["tokio::Receiver"]
+rust_code = "tokio::net::unix::pipe::Receiver::from_owned_fd_unchecked({arg0})"
+rust_imports = ["tokio::net::unix::pipe::Receiver"]
 needs_result = true
 param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Command.new"
-rust_code = "tokio::Command::new({arg0})"
-rust_imports = ["tokio::Command"]
+rust_code = "tokio::process::Command::new({arg0})"
+rust_imports = ["tokio::process::Command"]
 needs_result = false
 param_types = ["S"]
 
 [[mappings.functions]]
 python = "tokio.Command.from_"
-rust_code = "tokio::Command::from({arg0})"
-rust_imports = ["tokio::Command"]
+rust_code = "tokio::process::Command::from({arg0})"
+rust_imports = ["tokio::process::Command"]
 needs_result = false
 param_types = ["StdCommand"]
 
 [[mappings.functions]]
 python = "tokio.ChildStdin.from_std"
-rust_code = "tokio::ChildStdin::from_std({arg0})"
-rust_imports = ["tokio::ChildStdin"]
+rust_code = "tokio::process::ChildStdin::from_std({arg0})"
+rust_imports = ["tokio::process::ChildStdin"]
 needs_result = true
 param_types = ["std::process::ChildStdin"]
 
 [[mappings.functions]]
 python = "tokio.ChildStdout.from_std"
-rust_code = "tokio::ChildStdout::from_std({arg0})"
-rust_imports = ["tokio::ChildStdout"]
+rust_code = "tokio::process::ChildStdout::from_std({arg0})"
+rust_imports = ["tokio::process::ChildStdout"]
 needs_result = true
 param_types = ["std::process::ChildStdout"]
 
 [[mappings.functions]]
 python = "tokio.ChildStderr.from_std"
-rust_code = "tokio::ChildStderr::from_std({arg0})"
-rust_imports = ["tokio::ChildStderr"]
+rust_code = "tokio::process::ChildStderr::from_std({arg0})"
+rust_imports = ["tokio::process::ChildStderr"]
 needs_result = true
 param_types = ["std::process::ChildStderr"]
 
 [[mappings.functions]]
 python = "tokio.SignalKind.from_raw"
-rust_code = "tokio::SignalKind::from_raw({arg0})"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::from_raw({arg0})"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 param_types = ["std::os::raw::c_int"]
 
 [[mappings.functions]]
 python = "tokio.SignalKind.alarm"
-rust_code = "tokio::SignalKind::alarm()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::alarm()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.child"
-rust_code = "tokio::SignalKind::child()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::child()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.hangup"
-rust_code = "tokio::SignalKind::hangup()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::hangup()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.info"
-rust_code = "tokio::SignalKind::info()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::info()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.interrupt"
-rust_code = "tokio::SignalKind::interrupt()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::interrupt()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.io"
-rust_code = "tokio::SignalKind::io()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::io()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.io"
-rust_code = "tokio::SignalKind::io()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::io()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.pipe"
-rust_code = "tokio::SignalKind::pipe()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::pipe()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.quit"
-rust_code = "tokio::SignalKind::quit()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::quit()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.terminate"
-rust_code = "tokio::SignalKind::terminate()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::terminate()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.user_defined1"
-rust_code = "tokio::SignalKind::user_defined1()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::user_defined1()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.user_defined2"
-rust_code = "tokio::SignalKind::user_defined2()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::user_defined2()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.window_change"
-rust_code = "tokio::SignalKind::window_change()"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::window_change()"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.SignalKind.from_"
-rust_code = "tokio::SignalKind::from({arg0})"
-rust_imports = ["tokio::SignalKind"]
+rust_code = "tokio::signal::unix::SignalKind::from({arg0})"
+rust_imports = ["tokio::signal::unix::SignalKind"]
 needs_result = false
 param_types = ["std::os::raw::c_int"]
 
@@ -1533,62 +1537,62 @@ needs_result = true
 
 [[mappings.functions]]
 python = "tokio.Task.as_raw"
-rust_code = "tokio::Task::as_raw({arg0})"
-rust_imports = ["tokio::Task"]
+rust_code = "tokio::runtime::dump::Task::as_raw({arg0})"
+rust_imports = ["tokio::runtime::dump::Task"]
 needs_result = false
 param_types = ["&Task<S>"]
 
 [[mappings.functions]]
 python = "tokio.Task.from_raw"
-rust_code = "tokio::Task::from_raw({arg0})"
-rust_imports = ["tokio::Task"]
+rust_code = "tokio::runtime::dump::Task::from_raw({arg0})"
+rust_imports = ["tokio::runtime::dump::Task"]
 needs_result = false
 param_types = ["NonNull<Header>"]
 
 [[mappings.functions]]
 python = "tokio.Task.pointers"
-rust_code = "tokio::Task::pointers({arg0})"
-rust_imports = ["tokio::Task"]
+rust_code = "tokio::runtime::dump::Task::pointers({arg0})"
+rust_imports = ["tokio::runtime::dump::Task"]
 needs_result = false
 param_types = ["NonNull<Header>"]
 
 [[mappings.functions]]
 python = "tokio.Task.get_shard_id"
-rust_code = "tokio::Task::get_shard_id({arg0})"
-rust_imports = ["tokio::Task"]
+rust_code = "tokio::runtime::dump::Task::get_shard_id({arg0})"
+rust_imports = ["tokio::runtime::dump::Task"]
 needs_result = false
 param_types = ["NonNull<Self::Target>"]
 
 [[mappings.functions]]
 python = "tokio.Trace.capture"
-rust_code = "tokio::Trace::capture({arg0})"
-rust_imports = ["tokio::Trace"]
+rust_code = "tokio::runtime::dump::Trace::capture({arg0})"
+rust_imports = ["tokio::runtime::dump::Trace"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "tokio.Trace.root"
-rust_code = "tokio::Trace::root({arg0})"
-rust_imports = ["tokio::Trace"]
+rust_code = "tokio::runtime::dump::Trace::root({arg0})"
+rust_imports = ["tokio::runtime::dump::Trace"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "tokio.LogHistogram.default"
-rust_code = "tokio::LogHistogram::default()"
-rust_imports = ["tokio::LogHistogram"]
+rust_code = "tokio::runtime::metrics::histogram::h2_histogram::LogHistogram::default()"
+rust_imports = ["tokio::runtime::metrics::histogram::h2_histogram::LogHistogram"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.LogHistogram.builder"
-rust_code = "tokio::LogHistogram::builder()"
-rust_imports = ["tokio::LogHistogram"]
+rust_code = "tokio::runtime::metrics::histogram::h2_histogram::LogHistogram::builder()"
+rust_imports = ["tokio::runtime::metrics::histogram::h2_histogram::LogHistogram"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.LogHistogram.from_"
-rust_code = "tokio::LogHistogram::from({arg0})"
-rust_imports = ["tokio::LogHistogram"]
+rust_code = "tokio::runtime::metrics::histogram::h2_histogram::LogHistogram::from({arg0})"
+rust_imports = ["tokio::runtime::metrics::histogram::h2_histogram::LogHistogram"]
 needs_result = false
 param_types = ["LogHistogramBuilder"]
 
@@ -1612,195 +1616,195 @@ needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.new"
-rust_code = "tokio::OpenOptions::new()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::fs::OpenOptions::new()"
+rust_imports = ["tokio::fs::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.default"
-rust_code = "tokio::OpenOptions::default()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::fs::OpenOptions::default()"
+rust_imports = ["tokio::fs::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.new"
-rust_code = "tokio::OpenOptions::new()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::fs::OpenOptions::new()"
+rust_imports = ["tokio::fs::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.from_"
-rust_code = "tokio::OpenOptions::from({arg0})"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::fs::OpenOptions::from({arg0})"
+rust_imports = ["tokio::fs::OpenOptions"]
 needs_result = false
 param_types = ["StdOpenOptions"]
 
 [[mappings.functions]]
 python = "tokio.OpenOptions.default"
-rust_code = "tokio::OpenOptions::default()"
-rust_imports = ["tokio::OpenOptions"]
+rust_code = "tokio::fs::OpenOptions::default()"
+rust_imports = ["tokio::fs::OpenOptions"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.File.open"
-rust_code = "tokio::File::open({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::open({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.File.create"
-rust_code = "tokio::File::create({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::create({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = true
 param_types = ["implAsRef<Path>"]
 
 [[mappings.functions]]
 python = "tokio.File.create_new"
-rust_code = "tokio::File::create_new({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::create_new({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = true
 param_types = ["P"]
 
 [[mappings.functions]]
 python = "tokio.File.options"
-rust_code = "tokio::File::options()"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::options()"
+rust_imports = ["tokio::fs::File"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.File.from_std"
-rust_code = "tokio::File::from_std({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::from_std({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = false
 param_types = ["StdFile"]
 
 [[mappings.functions]]
 python = "tokio.File.from_"
-rust_code = "tokio::File::from({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::from({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = false
 param_types = ["StdFile"]
 
 [[mappings.functions]]
 python = "tokio.File.from_raw_fd"
-rust_code = "tokio::File::from_raw_fd({arg0})"
-rust_imports = ["tokio::File"]
+rust_code = "tokio::fs::File::from_raw_fd({arg0})"
+rust_imports = ["tokio::fs::File"]
 needs_result = false
 param_types = ["std::os::unix::io::RawFd"]
 
 [[mappings.functions]]
 python = "tokio.DirBuilder.new"
-rust_code = "tokio::DirBuilder::new()"
-rust_imports = ["tokio::DirBuilder"]
+rust_code = "tokio::fs::DirBuilder::new()"
+rust_imports = ["tokio::fs::DirBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::Error::from({arg0})"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::from({arg0})"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 param_types = ["AsyncFdTryNewError<T>"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::Error::from({arg0})"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::from({arg0})"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 param_types = ["JoinError"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::Error::from({arg0})"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::from({arg0})"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 param_types = ["SpawnError"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::Error::from({arg0})"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::from({arg0})"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 param_types = ["Kind"]
 
 [[mappings.functions]]
 python = "tokio.Error.shutdown"
-rust_code = "tokio::Error::shutdown()"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::shutdown()"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.at_capacity"
-rust_code = "tokio::Error::at_capacity()"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::at_capacity()"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.invalid"
-rust_code = "tokio::Error::invalid()"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::invalid()"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::Error::from({arg0})"
-rust_imports = ["tokio::Error"]
+rust_code = "tokio::time::Error::from({arg0})"
+rust_imports = ["tokio::time::Error"]
 needs_result = false
 param_types = ["Elapsed"]
 
 [[mappings.functions]]
 python = "tokio.Builder.new_current_thread"
-rust_code = "tokio::Builder::new_current_thread()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::Builder::new_current_thread()"
+rust_imports = ["tokio::task::Builder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Builder.new_multi_thread"
-rust_code = "tokio::Builder::new_multi_thread()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::Builder::new_multi_thread()"
+rust_imports = ["tokio::task::Builder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Builder.new"
-rust_code = "tokio::Builder::new()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::Builder::new()"
+rust_imports = ["tokio::task::Builder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.JoinSet.new"
-rust_code = "tokio::JoinSet::new()"
-rust_imports = ["tokio::JoinSet"]
+rust_code = "tokio::task::JoinSet::new()"
+rust_imports = ["tokio::task::JoinSet"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.JoinSet.default"
-rust_code = "tokio::JoinSet::default()"
-rust_imports = ["tokio::JoinSet"]
+rust_code = "tokio::task::JoinSet::default()"
+rust_imports = ["tokio::task::JoinSet"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.JoinSet.from_iter"
-rust_code = "tokio::JoinSet::from_iter({arg0})"
-rust_imports = ["tokio::JoinSet"]
+rust_code = "tokio::task::JoinSet::from_iter({arg0})"
+rust_imports = ["tokio::task::JoinSet"]
 needs_result = false
 param_types = ["I"]
 
 [[mappings.functions]]
 python = "tokio.Builder.new_current_thread"
-rust_code = "tokio::Builder::new_current_thread()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::join_set::Builder::new_current_thread()"
+rust_imports = ["tokio::task::join_set::Builder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Builder.new_multi_thread"
-rust_code = "tokio::Builder::new_multi_thread()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::join_set::Builder::new_multi_thread()"
+rust_imports = ["tokio::task::join_set::Builder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Builder.new"
-rust_code = "tokio::Builder::new()"
-rust_imports = ["tokio::Builder"]
+rust_code = "tokio::task::join_set::Builder::new()"
+rust_imports = ["tokio::task::join_set::Builder"]
 needs_result = false
 
 [[mappings.methods]]
@@ -2210,6 +2214,7 @@ python = "ReadBuf.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ReadBuf.filled"
@@ -2280,6 +2285,7 @@ python = "ReadBuf.remaining"
 rust_code = "{self}.remaining()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ReadBuf.clear"
@@ -2320,6 +2326,7 @@ python = "ReadBuf.remaining_mut"
 rust_code = "{self}.remaining_mut()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ReadBuf.advance_mut"
@@ -2963,12 +2970,14 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.sender_count"
 rust_code = "{self}.sender_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -3080,6 +3089,7 @@ python = "Sender.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.downgrade"
@@ -3094,18 +3104,21 @@ python = "Sender.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -3128,6 +3141,7 @@ python = "Sender.send"
 rust_code = "{self}.send({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -3150,6 +3164,7 @@ python = "Sender.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.is_empty"
@@ -3162,6 +3177,7 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -3181,12 +3197,14 @@ python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -3237,6 +3255,7 @@ python = "Sender.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -3244,6 +3263,7 @@ python = "Sender.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -3438,6 +3458,7 @@ python = "Receiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -3459,6 +3480,7 @@ python = "Receiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -3484,18 +3506,21 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.poll_recv"
@@ -3518,12 +3543,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.fmt"
@@ -3538,6 +3565,7 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_empty"
@@ -3557,12 +3585,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_closed"
@@ -3640,6 +3670,7 @@ python = "Receiver.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -3647,6 +3678,7 @@ python = "Receiver.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -3923,6 +3955,7 @@ python = "Receiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -3944,6 +3977,7 @@ python = "Receiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -3969,18 +4003,21 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.poll_recv"
@@ -4003,12 +4040,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.fmt"
@@ -4023,6 +4062,7 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_empty"
@@ -4042,12 +4082,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_closed"
@@ -4125,6 +4167,7 @@ python = "Receiver.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -4132,6 +4175,7 @@ python = "Receiver.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -4271,12 +4315,14 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.sender_count"
 rust_code = "{self}.sender_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -4388,6 +4434,7 @@ python = "Sender.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.downgrade"
@@ -4402,18 +4449,21 @@ python = "Sender.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -4436,6 +4486,7 @@ python = "Sender.send"
 rust_code = "{self}.send({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -4458,6 +4509,7 @@ python = "Sender.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.is_empty"
@@ -4470,6 +4522,7 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -4489,12 +4542,14 @@ python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -4545,6 +4600,7 @@ python = "Sender.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -4552,6 +4608,7 @@ python = "Sender.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -4836,12 +4893,14 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.sender_count"
 rust_code = "{self}.sender_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -4953,6 +5012,7 @@ python = "Sender.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.downgrade"
@@ -4967,18 +5027,21 @@ python = "Sender.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -5001,6 +5064,7 @@ python = "Sender.send"
 rust_code = "{self}.send({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -5023,6 +5087,7 @@ python = "Sender.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.is_empty"
@@ -5035,6 +5100,7 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -5054,12 +5120,14 @@ python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -5110,6 +5178,7 @@ python = "Sender.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -5117,6 +5186,7 @@ python = "Sender.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -5211,12 +5281,14 @@ python = "WeakSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.fmt"
@@ -5238,12 +5310,14 @@ python = "WeakSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.clone"
@@ -5485,6 +5559,7 @@ python = "Receiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -5506,6 +5581,7 @@ python = "Receiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -5531,18 +5607,21 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.poll_recv"
@@ -5565,12 +5644,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.fmt"
@@ -5585,6 +5666,7 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_empty"
@@ -5604,12 +5686,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_closed"
@@ -5687,6 +5771,7 @@ python = "Receiver.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -5694,6 +5779,7 @@ python = "Receiver.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -5787,12 +5873,14 @@ python = "UnboundedSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "UnboundedSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakUnboundedSender.clone"
@@ -5820,12 +5908,14 @@ python = "WeakUnboundedSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakUnboundedSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakUnboundedSender.fmt"
@@ -5855,6 +5945,7 @@ python = "UnboundedReceiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -5876,6 +5967,7 @@ python = "UnboundedReceiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -5901,6 +5993,7 @@ python = "UnboundedReceiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "UnboundedReceiver.poll_recv"
@@ -5923,12 +6016,14 @@ python = "UnboundedReceiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "UnboundedReceiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "SendError.fmt"
@@ -6251,6 +6346,7 @@ python = "Semaphore.available_permits"
 rust_code = "{self}.available_permits()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Semaphore.add_permits"
@@ -6264,6 +6360,7 @@ python = "Semaphore.forget_permits"
 rust_code = "{self}.forget_permits({arg0})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["usize"]
 
 [[mappings.methods]]
@@ -6381,6 +6478,7 @@ python = "SemaphorePermit.num_permits"
 rust_code = "{self}.num_permits()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "SemaphorePermit.drop"
@@ -6422,6 +6520,7 @@ python = "OwnedSemaphorePermit.num_permits"
 rust_code = "{self}.num_permits()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "OwnedSemaphorePermit.drop"
@@ -6530,12 +6629,14 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.sender_count"
 rust_code = "{self}.sender_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -6647,6 +6748,7 @@ python = "Sender.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.downgrade"
@@ -6661,18 +6763,21 @@ python = "Sender.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -6695,6 +6800,7 @@ python = "Sender.send"
 rust_code = "{self}.send({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -6717,6 +6823,7 @@ python = "Sender.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.is_empty"
@@ -6729,6 +6836,7 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -6748,12 +6856,14 @@ python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -6804,6 +6914,7 @@ python = "Sender.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -6811,6 +6922,7 @@ python = "Sender.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -6905,12 +7017,14 @@ python = "WeakSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.fmt"
@@ -6932,12 +7046,14 @@ python = "WeakSender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "WeakSender.clone"
@@ -7087,6 +7203,7 @@ python = "Receiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -7108,6 +7225,7 @@ python = "Receiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -7133,18 +7251,21 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.poll_recv"
@@ -7167,12 +7288,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.fmt"
@@ -7187,6 +7310,7 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_empty"
@@ -7206,12 +7330,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_closed"
@@ -7289,6 +7415,7 @@ python = "Receiver.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -7296,6 +7423,7 @@ python = "Receiver.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -7511,6 +7639,7 @@ python = "NamedPipeServer.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -7518,6 +7647,7 @@ python = "NamedPipeServer.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -7539,6 +7669,7 @@ python = "NamedPipeServer.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -7546,6 +7677,7 @@ python = "NamedPipeServer.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -7652,6 +7784,7 @@ python = "NamedPipeClient.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -7659,6 +7792,7 @@ python = "NamedPipeClient.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -7680,6 +7814,7 @@ python = "NamedPipeClient.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -7687,6 +7822,7 @@ python = "NamedPipeClient.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -8011,6 +8147,7 @@ python = "ReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8018,6 +8155,7 @@ python = "ReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -8062,6 +8200,7 @@ python = "ReadHalf.peek"
 rust_code = "{self}.peek({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8083,6 +8222,7 @@ python = "ReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8090,6 +8230,7 @@ python = "ReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -8193,6 +8334,7 @@ python = "WriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -8200,6 +8342,7 @@ python = "WriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -8280,6 +8423,7 @@ python = "WriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -8287,6 +8431,7 @@ python = "WriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -8396,6 +8541,7 @@ python = "OwnedReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8403,6 +8549,7 @@ python = "OwnedReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -8455,6 +8602,7 @@ python = "OwnedReadHalf.peek"
 rust_code = "{self}.peek({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8476,6 +8624,7 @@ python = "OwnedReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -8483,6 +8632,7 @@ python = "OwnedReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -8547,6 +8697,7 @@ python = "OwnedWriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -8554,6 +8705,7 @@ python = "OwnedWriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -8654,6 +8806,7 @@ python = "OwnedWriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -8661,6 +8814,7 @@ python = "OwnedWriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -8941,12 +9095,14 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.sender_count"
 rust_code = "{self}.sender_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -9058,6 +9214,7 @@ python = "Sender.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.downgrade"
@@ -9072,18 +9229,21 @@ python = "Sender.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -9106,6 +9266,7 @@ python = "Sender.send"
 rust_code = "{self}.send({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["T"]
 
 [[mappings.methods]]
@@ -9128,6 +9289,7 @@ python = "Sender.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.is_empty"
@@ -9140,6 +9302,7 @@ python = "Sender.receiver_count"
 rust_code = "{self}.receiver_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.same_channel"
@@ -9159,12 +9322,14 @@ python = "Sender.strong_count"
 rust_code = "{self}.strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.weak_count"
 rust_code = "{self}.weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Sender.clone"
@@ -9215,6 +9380,7 @@ python = "Sender.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -9222,6 +9388,7 @@ python = "Sender.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -9416,6 +9583,7 @@ python = "Receiver.recv_many"
 rust_code = "{self}.recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -9437,6 +9605,7 @@ python = "Receiver.blocking_recv_many"
 rust_code = "{self}.blocking_recv_many({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&mutVec<T>", "usize"]
 
 [[mappings.methods]]
@@ -9462,18 +9631,21 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.capacity"
 rust_code = "{self}.capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.max_capacity"
 rust_code = "{self}.max_capacity()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.poll_recv"
@@ -9496,12 +9668,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.fmt"
@@ -9516,6 +9690,7 @@ python = "Receiver.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_empty"
@@ -9535,12 +9710,14 @@ python = "Receiver.sender_strong_count"
 rust_code = "{self}.sender_strong_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.sender_weak_count"
 rust_code = "{self}.sender_weak_count()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Receiver.is_closed"
@@ -9618,6 +9795,7 @@ python = "Receiver.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -9625,6 +9803,7 @@ python = "Receiver.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -9713,6 +9892,7 @@ python = "ReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -9720,6 +9900,7 @@ python = "ReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -9764,6 +9945,7 @@ python = "ReadHalf.peek"
 rust_code = "{self}.peek({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -9785,6 +9967,7 @@ python = "ReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -9792,6 +9975,7 @@ python = "ReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -9895,6 +10079,7 @@ python = "WriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -9902,6 +10087,7 @@ python = "WriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -9982,6 +10168,7 @@ python = "WriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -9989,6 +10176,7 @@ python = "WriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -10077,6 +10265,7 @@ python = "OwnedReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -10084,6 +10273,7 @@ python = "OwnedReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -10136,6 +10326,7 @@ python = "OwnedReadHalf.peek"
 rust_code = "{self}.peek({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -10157,6 +10348,7 @@ python = "OwnedReadHalf.try_read"
 rust_code = "{self}.try_read({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[u8]"]
 
 [[mappings.methods]]
@@ -10164,6 +10356,7 @@ python = "OwnedReadHalf.try_read_vectored"
 rust_code = "{self}.try_read_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&mut[io::IoSliceMut<'_>]"]
 
 [[mappings.methods]]
@@ -10228,6 +10421,7 @@ python = "OwnedWriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -10235,6 +10429,7 @@ python = "OwnedWriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -10335,6 +10530,7 @@ python = "OwnedWriteHalf.try_write"
 rust_code = "{self}.try_write({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[u8]"]
 
 [[mappings.methods]]
@@ -10342,6 +10538,7 @@ python = "OwnedWriteHalf.try_write_vectored"
 rust_code = "{self}.try_write_vectored({arg0})"
 rust_imports = []
 needs_result = true
+returns = "usize"
 param_types = ["&[io::IoSlice<'_>]"]
 
 [[mappings.methods]]
@@ -10685,6 +10882,7 @@ python = "Child.id"
 rust_code = "{self}.id()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "Child.start_kill"
@@ -10802,12 +11000,14 @@ python = "Rotator.num_skip"
 rust_code = "{self}.num_skip()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "BiasedRotator.num_skip"
 rust_code = "{self}.num_skip()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "SignalKind.as_raw_value"
@@ -11252,12 +11452,14 @@ python = "BacktraceSymbol.lineno"
 rust_code = "{self}.lineno()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "BacktraceSymbol.colno"
 rust_code = "{self}.colno()"
 rust_imports = []
 needs_result = false
+returns = "u32"
 
 [[mappings.methods]]
 python = "BacktraceFrame.ip"
@@ -11324,24 +11526,28 @@ python = "RuntimeMetrics.num_workers"
 rust_code = "{self}.num_workers()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "RuntimeMetrics.num_alive_tasks"
 rust_code = "{self}.num_alive_tasks()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "RuntimeMetrics.global_queue_depth"
 rust_code = "{self}.global_queue_depth()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "LogHistogram.max_value"
 rust_code = "{self}.max_value()"
 rust_imports = []
 needs_result = false
+returns = "u64"
 
 [[mappings.methods]]
 python = "LogHistogramBuilder.max_error"
@@ -11994,6 +12200,7 @@ python = "File.max_buf_size"
 rust_code = "{self}.max_buf_size()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "File.poll_read"
@@ -12514,6 +12721,7 @@ python = "JoinSet.len"
 rust_code = "{self}.len()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "JoinSet.is_empty"
@@ -13090,7 +13298,7 @@ rust = "tokio::AsyncFdReadyMutGuard"
 
 [[mappings.types]]
 python = "TryIoError"
-rust = "tokio::TryIoError"
+rust = "tokio::io::async_fd::TryIoError"
 
 [[mappings.types]]
 python = "AsyncFdTryNewError"
@@ -13098,11 +13306,11 @@ rust = "tokio::AsyncFdTryNewError"
 
 [[mappings.types]]
 python = "DuplexStream"
-rust = "tokio::DuplexStream"
+rust = "tokio::io::util::mem::DuplexStream"
 
 [[mappings.types]]
 python = "SimplexStream"
-rust = "tokio::SimplexStream"
+rust = "tokio::io::util::mem::SimplexStream"
 
 [[mappings.types]]
 python = "ReadBuf"
@@ -13110,11 +13318,11 @@ rust = "tokio::ReadBuf"
 
 [[mappings.types]]
 python = "Aio"
-rust = "tokio::Aio"
+rust = "tokio::io::bsd::Aio"
 
 [[mappings.types]]
 python = "AioEvent"
-rust = "tokio::AioEvent"
+rust = "tokio::io::bsd::poll_aio::AioEvent"
 
 [[mappings.types]]
 python = "Interest"
@@ -13126,7 +13334,7 @@ rust = "tokio::Ready"
 
 [[mappings.types]]
 python = "RngSeed"
-rust = "tokio::RngSeed"
+rust = "tokio::util::rand::RngSeed"
 
 [[mappings.types]]
 python = "SetOnce"
@@ -13138,39 +13346,39 @@ rust = "tokio::SetOnceError"
 
 [[mappings.types]]
 python = "OwnedRwLockReadGuard"
-rust = "tokio::OwnedRwLockReadGuard"
+rust = "tokio::sync::rwlock::owned_read_guard::OwnedRwLockReadGuard"
 
 [[mappings.types]]
 python = "RwLockWriteGuard"
-rust = "tokio::RwLockWriteGuard"
+rust = "tokio::sync::rwlock::RwLockWriteGuard"
 
 [[mappings.types]]
 python = "RwLockMappedWriteGuard"
-rust = "tokio::RwLockMappedWriteGuard"
+rust = "tokio::sync::rwlock::write_guard_mapped::RwLockMappedWriteGuard"
 
 [[mappings.types]]
 python = "RwLockReadGuard"
-rust = "tokio::RwLockReadGuard"
+rust = "tokio::sync::rwlock::RwLockReadGuard"
 
 [[mappings.types]]
 python = "OwnedRwLockWriteGuard"
-rust = "tokio::OwnedRwLockWriteGuard"
+rust = "tokio::sync::rwlock::owned_write_guard::OwnedRwLockWriteGuard"
 
 [[mappings.types]]
 python = "OwnedRwLockMappedWriteGuard"
-rust = "tokio::OwnedRwLockMappedWriteGuard"
+rust = "tokio::sync::rwlock::owned_write_guard_mapped::OwnedRwLockMappedWriteGuard"
 
 [[mappings.types]]
 python = "Sender"
-rust = "tokio::Sender"
+rust = "tokio::sync::oneshot::Sender"
 
 [[mappings.types]]
 python = "Receiver"
-rust = "tokio::Receiver"
+rust = "tokio::sync::oneshot::Receiver"
 
 [[mappings.types]]
 python = "RecvError"
-rust = "tokio::RecvError"
+rust = "tokio::sync::oneshot::RecvError"
 
 [[mappings.types]]
 python = "Notify"
@@ -13178,31 +13386,31 @@ rust = "tokio::Notify"
 
 [[mappings.types]]
 python = "Notified"
-rust = "tokio::Notified"
+rust = "tokio::sync::notify::Notified"
 
 [[mappings.types]]
 python = "OwnedNotified"
-rust = "tokio::OwnedNotified"
+rust = "tokio::sync::notify::OwnedNotified"
 
 [[mappings.types]]
 python = "Receiver"
-rust = "tokio::Receiver"
+rust = "tokio::sync::watch::Receiver"
 
 [[mappings.types]]
 python = "Sender"
-rust = "tokio::Sender"
+rust = "tokio::sync::watch::Sender"
 
 [[mappings.types]]
 python = "Ref"
-rust = "tokio::Ref"
+rust = "tokio::sync::watch::Ref"
 
 [[mappings.types]]
 python = "SendError"
-rust = "tokio::SendError"
+rust = "tokio::sync::watch::SendError"
 
 [[mappings.types]]
 python = "RecvError"
-rust = "tokio::RecvError"
+rust = "tokio::sync::watch::RecvError"
 
 [[mappings.types]]
 python = "Barrier"
@@ -13214,47 +13422,47 @@ rust = "tokio::BarrierWaitResult"
 
 [[mappings.types]]
 python = "Sender"
-rust = "tokio::Sender"
+rust = "tokio::sync::mpsc::bounded::Sender"
 
 [[mappings.types]]
 python = "WeakSender"
-rust = "tokio::WeakSender"
+rust = "tokio::sync::mpsc::bounded::WeakSender"
 
 [[mappings.types]]
 python = "Permit"
-rust = "tokio::Permit"
+rust = "tokio::sync::mpsc::bounded::Permit"
 
 [[mappings.types]]
 python = "PermitIterator"
-rust = "tokio::PermitIterator"
+rust = "tokio::sync::mpsc::bounded::PermitIterator"
 
 [[mappings.types]]
 python = "OwnedPermit"
-rust = "tokio::OwnedPermit"
+rust = "tokio::sync::mpsc::bounded::OwnedPermit"
 
 [[mappings.types]]
 python = "Receiver"
-rust = "tokio::Receiver"
+rust = "tokio::sync::mpsc::bounded::Receiver"
 
 [[mappings.types]]
 python = "UnboundedSender"
-rust = "tokio::UnboundedSender"
+rust = "tokio::sync::mpsc::UnboundedSender"
 
 [[mappings.types]]
 python = "WeakUnboundedSender"
-rust = "tokio::WeakUnboundedSender"
+rust = "tokio::sync::mpsc::WeakUnboundedSender"
 
 [[mappings.types]]
 python = "UnboundedReceiver"
-rust = "tokio::UnboundedReceiver"
+rust = "tokio::sync::mpsc::UnboundedReceiver"
 
 [[mappings.types]]
 python = "SendError"
-rust = "tokio::SendError"
+rust = "tokio::sync::mpsc::SendError"
 
 [[mappings.types]]
 python = "RecvError"
-rust = "tokio::RecvError"
+rust = "tokio::sync::mpsc::RecvError"
 
 [[mappings.types]]
 python = "MutexGuard"
@@ -13274,7 +13482,7 @@ rust = "tokio::OwnedMappedMutexGuard"
 
 [[mappings.types]]
 python = "TryLockError"
-rust = "tokio::TryLockError"
+rust = "tokio::sync::mutex::TryLockError"
 
 [[mappings.types]]
 python = "Semaphore"
@@ -13290,23 +13498,23 @@ rust = "tokio::OwnedSemaphorePermit"
 
 [[mappings.types]]
 python = "Sender"
-rust = "tokio::Sender"
+rust = "tokio::sync::broadcast::Sender"
 
 [[mappings.types]]
 python = "WeakSender"
-rust = "tokio::WeakSender"
+rust = "tokio::sync::broadcast::WeakSender"
 
 [[mappings.types]]
 python = "Receiver"
-rust = "tokio::Receiver"
+rust = "tokio::sync::broadcast::Receiver"
 
 [[mappings.types]]
 python = "SendError"
-rust = "tokio::SendError"
+rust = "tokio::sync::broadcast::SendError"
 
 [[mappings.types]]
 python = "AcquireError"
-rust = "tokio::AcquireError"
+rust = "tokio::sync::batch_semaphore::AcquireError"
 
 [[mappings.types]]
 python = "OnceCell"
@@ -13314,151 +13522,151 @@ rust = "tokio::OnceCell"
 
 [[mappings.types]]
 python = "NamedPipeServer"
-rust = "tokio::NamedPipeServer"
+rust = "tokio::net::windows::NamedPipeServer"
 
 [[mappings.types]]
 python = "NamedPipeClient"
-rust = "tokio::NamedPipeClient"
+rust = "tokio::net::windows::NamedPipeClient"
 
 [[mappings.types]]
 python = "ServerOptions"
-rust = "tokio::ServerOptions"
+rust = "tokio::net::windows::named_pipe::ServerOptions"
 
 [[mappings.types]]
 python = "ClientOptions"
-rust = "tokio::ClientOptions"
+rust = "tokio::net::windows::named_pipe::ClientOptions"
 
 [[mappings.types]]
 python = "PipeInfo"
-rust = "tokio::PipeInfo"
+rust = "tokio::net::windows::named_pipe::PipeInfo"
 
 [[mappings.types]]
 python = "SocketAddr"
-rust = "tokio::SocketAddr"
+rust = "tokio::net::unix::socketaddr::SocketAddr"
 
 [[mappings.types]]
 python = "ReadHalf"
-rust = "tokio::ReadHalf"
+rust = "tokio::net::unix::split::ReadHalf"
 
 [[mappings.types]]
 python = "WriteHalf"
-rust = "tokio::WriteHalf"
+rust = "tokio::net::unix::split::WriteHalf"
 
 [[mappings.types]]
 python = "UCred"
-rust = "tokio::UCred"
+rust = "tokio::net::unix::ucred::UCred"
 
 [[mappings.types]]
 python = "OwnedReadHalf"
-rust = "tokio::OwnedReadHalf"
+rust = "tokio::net::unix::split_owned::OwnedReadHalf"
 
 [[mappings.types]]
 python = "OwnedWriteHalf"
-rust = "tokio::OwnedWriteHalf"
+rust = "tokio::net::unix::split_owned::OwnedWriteHalf"
 
 [[mappings.types]]
 python = "ReuniteError"
-rust = "tokio::ReuniteError"
+rust = "tokio::net::unix::split_owned::ReuniteError"
 
 [[mappings.types]]
 python = "OpenOptions"
-rust = "tokio::OpenOptions"
+rust = "tokio::net::unix::pipe::OpenOptions"
 
 [[mappings.types]]
 python = "Sender"
-rust = "tokio::Sender"
+rust = "tokio::net::unix::pipe::Sender"
 
 [[mappings.types]]
 python = "Receiver"
-rust = "tokio::Receiver"
+rust = "tokio::net::unix::pipe::Receiver"
 
 [[mappings.types]]
 python = "ReadHalf"
-rust = "tokio::ReadHalf"
+rust = "tokio::net::tcp::split::ReadHalf"
 
 [[mappings.types]]
 python = "WriteHalf"
-rust = "tokio::WriteHalf"
+rust = "tokio::net::tcp::split::WriteHalf"
 
 [[mappings.types]]
 python = "OwnedReadHalf"
-rust = "tokio::OwnedReadHalf"
+rust = "tokio::net::tcp::split_owned::OwnedReadHalf"
 
 [[mappings.types]]
 python = "OwnedWriteHalf"
-rust = "tokio::OwnedWriteHalf"
+rust = "tokio::net::tcp::split_owned::OwnedWriteHalf"
 
 [[mappings.types]]
 python = "ReuniteError"
-rust = "tokio::ReuniteError"
+rust = "tokio::net::tcp::split_owned::ReuniteError"
 
 [[mappings.types]]
 python = "Internal"
-rust = "tokio::Internal"
+rust = "tokio::net::addr::Internal"
 
 [[mappings.types]]
 python = "Command"
-rust = "tokio::Command"
+rust = "tokio::process::Command"
 
 [[mappings.types]]
 python = "Child"
-rust = "tokio::Child"
+rust = "tokio::process::Child"
 
 [[mappings.types]]
 python = "ChildStdin"
-rust = "tokio::ChildStdin"
+rust = "tokio::process::ChildStdin"
 
 [[mappings.types]]
 python = "ChildStdout"
-rust = "tokio::ChildStdout"
+rust = "tokio::process::ChildStdout"
 
 [[mappings.types]]
 python = "ChildStderr"
-rust = "tokio::ChildStderr"
+rust = "tokio::process::ChildStderr"
 
 [[mappings.types]]
 python = "SelectNormal"
-rust = "tokio::SelectNormal"
+rust = "tokio::macros::join::SelectNormal"
 
 [[mappings.types]]
 python = "SelectBiased"
-rust = "tokio::SelectBiased"
+rust = "tokio::macros::join::SelectBiased"
 
 [[mappings.types]]
 python = "Rotator"
-rust = "tokio::Rotator"
+rust = "tokio::macros::join::Rotator"
 
 [[mappings.types]]
 python = "BiasedRotator"
-rust = "tokio::BiasedRotator"
+rust = "tokio::macros::join::BiasedRotator"
 
 [[mappings.types]]
 python = "SignalKind"
-rust = "tokio::SignalKind"
+rust = "tokio::signal::unix::SignalKind"
 
 [[mappings.types]]
 python = "Signal"
-rust = "tokio::Signal"
+rust = "tokio::signal::unix::Signal"
 
 [[mappings.types]]
 python = "CtrlC"
-rust = "tokio::CtrlC"
+rust = "tokio::signal::windows::CtrlC"
 
 [[mappings.types]]
 python = "CtrlBreak"
-rust = "tokio::CtrlBreak"
+rust = "tokio::signal::windows::CtrlBreak"
 
 [[mappings.types]]
 python = "CtrlClose"
-rust = "tokio::CtrlClose"
+rust = "tokio::signal::windows::CtrlClose"
 
 [[mappings.types]]
 python = "CtrlShutdown"
-rust = "tokio::CtrlShutdown"
+rust = "tokio::signal::windows::CtrlShutdown"
 
 [[mappings.types]]
 python = "CtrlLogoff"
-rust = "tokio::CtrlLogoff"
+rust = "tokio::signal::windows::CtrlLogoff"
 
 [[mappings.types]]
 python = "Handle"
@@ -13466,11 +13674,11 @@ rust = "tokio::Handle"
 
 [[mappings.types]]
 python = "EnterGuard"
-rust = "tokio::EnterGuard"
+rust = "tokio::runtime::handle::EnterGuard"
 
 [[mappings.types]]
 python = "TryCurrentError"
-rust = "tokio::TryCurrentError"
+rust = "tokio::runtime::handle::TryCurrentError"
 
 [[mappings.types]]
 python = "Runtime"
@@ -13478,7 +13686,7 @@ rust = "tokio::Runtime"
 
 [[mappings.types]]
 python = "LocalOptions"
-rust = "tokio::LocalOptions"
+rust = "tokio::runtime::local_runtime::LocalOptions"
 
 [[mappings.types]]
 python = "LocalRuntime"
@@ -13490,27 +13698,27 @@ rust = "tokio::Dump"
 
 [[mappings.types]]
 python = "Tasks"
-rust = "tokio::Tasks"
+rust = "tokio::runtime::dump::Tasks"
 
 [[mappings.types]]
 python = "Task"
-rust = "tokio::Task"
+rust = "tokio::runtime::dump::Task"
 
 [[mappings.types]]
 python = "BacktraceSymbol"
-rust = "tokio::BacktraceSymbol"
+rust = "tokio::runtime::dump::BacktraceSymbol"
 
 [[mappings.types]]
 python = "BacktraceFrame"
-rust = "tokio::BacktraceFrame"
+rust = "tokio::runtime::dump::BacktraceFrame"
 
 [[mappings.types]]
 python = "Backtrace"
-rust = "tokio::Backtrace"
+rust = "tokio::runtime::dump::Backtrace"
 
 [[mappings.types]]
 python = "Trace"
-rust = "tokio::Trace"
+rust = "tokio::runtime::dump::Trace"
 
 [[mappings.types]]
 python = "RuntimeMetrics"
@@ -13518,11 +13726,11 @@ rust = "tokio::RuntimeMetrics"
 
 [[mappings.types]]
 python = "LogHistogram"
-rust = "tokio::LogHistogram"
+rust = "tokio::runtime::metrics::histogram::h2_histogram::LogHistogram"
 
 [[mappings.types]]
 python = "LogHistogramBuilder"
-rust = "tokio::LogHistogramBuilder"
+rust = "tokio::runtime::metrics::histogram::h2_histogram::LogHistogramBuilder"
 
 [[mappings.types]]
 python = "Builder"
@@ -13534,111 +13742,111 @@ rust = "tokio::Id"
 
 [[mappings.types]]
 python = "AbortHandle"
-rust = "tokio::AbortHandle"
+rust = "tokio::runtime::task::AbortHandle"
 
 [[mappings.types]]
 python = "Id"
-rust = "tokio::Id"
+rust = "tokio::runtime::task::Id"
 
 [[mappings.types]]
 python = "TaskMeta"
-rust = "tokio::TaskMeta"
+rust = "tokio::runtime::task_hooks::TaskMeta"
 
 [[mappings.types]]
 python = "ReadDir"
-rust = "tokio::ReadDir"
+rust = "tokio::fs::ReadDir"
 
 [[mappings.types]]
 python = "DirEntry"
-rust = "tokio::DirEntry"
+rust = "tokio::fs::read_dir::DirEntry"
 
 [[mappings.types]]
 python = "OpenOptions"
-rust = "tokio::OpenOptions"
+rust = "tokio::fs::OpenOptions"
 
 [[mappings.types]]
 python = "File"
-rust = "tokio::File"
+rust = "tokio::fs::File"
 
 [[mappings.types]]
 python = "DirBuilder"
-rust = "tokio::DirBuilder"
+rust = "tokio::fs::DirBuilder"
 
 [[mappings.types]]
 python = "Interval"
-rust = "tokio::Interval"
+rust = "tokio::time::Interval"
 
 [[mappings.types]]
 python = "Error"
-rust = "tokio::Error"
+rust = "tokio::time::Error"
 
 [[mappings.types]]
 python = "Elapsed"
-rust = "tokio::Elapsed"
+rust = "tokio::time::Elapsed"
 
 [[mappings.types]]
 python = "LocalEnterGuard"
-rust = "tokio::LocalEnterGuard"
+rust = "tokio::task::LocalEnterGuard"
 
 [[mappings.types]]
 python = "Builder"
-rust = "tokio::Builder"
+rust = "tokio::task::Builder"
 
 [[mappings.types]]
 python = "JoinSet"
-rust = "tokio::JoinSet"
+rust = "tokio::task::JoinSet"
 
 [[mappings.types]]
 python = "Builder"
-rust = "tokio::Builder"
+rust = "tokio::task::join_set::Builder"
 
 [[mappings.types]]
 python = "LocalKey"
-rust = "tokio::LocalKey"
+rust = "tokio::task::task_local::LocalKey"
 
 [[mappings.types]]
 python = "AccessError"
-rust = "tokio::AccessError"
+rust = "tokio::task::task_local::AccessError"
 
 [[mappings.types]]
 python = "TryRecvError"
-rust = "tokio::TryRecvError"
+rust = "tokio::sync::oneshot::TryRecvError"
 
 [[mappings.types]]
 python = "TrySendError"
-rust = "tokio::TrySendError"
+rust = "tokio::sync::mpsc::TrySendError"
 
 [[mappings.types]]
 python = "TryRecvError"
-rust = "tokio::TryRecvError"
+rust = "tokio::sync::mpsc::TryRecvError"
 
 [[mappings.types]]
 python = "RecvError"
-rust = "tokio::RecvError"
+rust = "tokio::sync::broadcast::RecvError"
 
 [[mappings.types]]
 python = "TryRecvError"
-rust = "tokio::TryRecvError"
+rust = "tokio::sync::broadcast::TryRecvError"
 
 [[mappings.types]]
 python = "TryAcquireError"
-rust = "tokio::TryAcquireError"
+rust = "tokio::sync::batch_semaphore::TryAcquireError"
 
 [[mappings.types]]
 python = "SetError"
-rust = "tokio::SetError"
+rust = "tokio::sync::once_cell::SetError"
 
 [[mappings.types]]
 python = "NotDefinedHere"
-rust = "tokio::NotDefinedHere"
+rust = "tokio::doc::NotDefinedHere"
 
 [[mappings.types]]
 python = "PipeMode"
-rust = "tokio::PipeMode"
+rust = "tokio::net::windows::named_pipe::PipeMode"
 
 [[mappings.types]]
 python = "PipeEnd"
-rust = "tokio::PipeEnd"
+rust = "tokio::net::windows::named_pipe::PipeEnd"
 
 [[mappings.types]]
 python = "RuntimeFlavor"
@@ -13646,8 +13854,8 @@ rust = "tokio::RuntimeFlavor"
 
 [[mappings.types]]
 python = "InvalidHistogramConfiguration"
-rust = "tokio::InvalidHistogramConfiguration"
+rust = "tokio::runtime::metrics::histogram::h2_histogram::InvalidHistogramConfiguration"
 
 [[mappings.types]]
 python = "MissedTickBehavior"
-rust = "tokio::MissedTickBehavior"
+rust = "tokio::time::interval::MissedTickBehavior"

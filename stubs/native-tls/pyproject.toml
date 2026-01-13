@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-native-tls"
+version = "0.2.14"
+description = "spicycrab type stubs for the native-tls Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+native-tls = "spicycrab_native_tls"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_native_tls"]

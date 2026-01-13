@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-serde_json"
+version = "1.0.149"
+description = "spicycrab type stubs for the serde_json Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+serde_json = "spicycrab_serde_json"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_serde_json"]

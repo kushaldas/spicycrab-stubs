@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-rustls-pemfile"
+version = "2.2.0"
+description = "spicycrab type stubs for the rustls-pemfile Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+rustls-pemfile = "spicycrab_rustls_pemfile"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_rustls_pemfile"]

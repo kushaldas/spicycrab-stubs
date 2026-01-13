@@ -1,0 +1,59 @@
+[package]
+name = "lazy_static"
+rust_crate = "lazy_static"
+rust_version = "1.5.0"
+python_module = "spicycrab_lazy_static"
+
+[cargo.dependencies]
+lazy_static = "1.5.0"
+
+[cargo.features]
+available = ["spin_no_std"]
+default = []
+
+[[mappings.functions]]
+python = "lazy_static.initialize"
+rust_code = "lazy_static::initialize({arg0})"
+rust_imports = ["lazy_static::initialize"]
+needs_result = false
+param_types = ["&T"]
+
+[[mappings.methods]]
+python = "Lazy.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Lazy.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Lazy.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Lazy.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["F"]
+
+[[mappings.types]]
+python = "Lazy"
+rust = "lazy_static::Lazy"
+
+[[mappings.types]]
+python = "Lazy"
+rust = "lazy_static::Lazy"

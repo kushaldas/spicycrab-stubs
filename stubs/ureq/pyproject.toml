@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-ureq"
+version = "3.1.4"
+description = "spicycrab type stubs for the ureq Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+ureq = "spicycrab_ureq"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_ureq"]

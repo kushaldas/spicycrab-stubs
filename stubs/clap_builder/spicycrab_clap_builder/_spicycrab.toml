@@ -7,10 +7,154 @@ python_module = "spicycrab_clap_builder"
 [cargo.dependencies]
 clap_builder = "4.5.54"
 
+[cargo.features]
+available = ["cargo", "color", "debug", "default", "deprecated", "env", "error-context", "help", "std", "string", "suggestions", "unicode", "unstable-doc", "unstable-ext", "unstable-styles", "unstable-v5", "usage", "wrap_help"]
+default = ["color", "error-context", "help", "std", "suggestions", "usage"]
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.SetTrue"
+rust_code = "clap_builder::ArgAction::SetTrue"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.SetFalse"
+rust_code = "clap_builder::ArgAction::SetFalse"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.Set"
+rust_code = "clap_builder::ArgAction::Set"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.Append"
+rust_code = "clap_builder::ArgAction::Append"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.Count"
+rust_code = "clap_builder::ArgAction::Count"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.Help"
+rust_code = "clap_builder::ArgAction::Help"
+rust_imports = []
+needs_result = false
+
+# ArgAction constructor from std
+[[mappings.functions]]
+python = "clap_builder.ArgAction.Version"
+rust_code = "clap_builder::ArgAction::Version"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.Unknown"
+rust_code = "clap_builder::ValueHint::Unknown"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.Other"
+rust_code = "clap_builder::ValueHint::Other"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.AnyPath"
+rust_code = "clap_builder::ValueHint::AnyPath"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.FilePath"
+rust_code = "clap_builder::ValueHint::FilePath"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.DirPath"
+rust_code = "clap_builder::ValueHint::DirPath"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.ExecutablePath"
+rust_code = "clap_builder::ValueHint::ExecutablePath"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.CommandName"
+rust_code = "clap_builder::ValueHint::CommandName"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.CommandString"
+rust_code = "clap_builder::ValueHint::CommandString"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.CommandWithArguments"
+rust_code = "clap_builder::ValueHint::CommandWithArguments"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.Username"
+rust_code = "clap_builder::ValueHint::Username"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.Hostname"
+rust_code = "clap_builder::ValueHint::Hostname"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.Url"
+rust_code = "clap_builder::ValueHint::Url"
+rust_imports = []
+needs_result = false
+
+# ValueHint constructor from std
+[[mappings.functions]]
+python = "clap_builder.ValueHint.EmailAddress"
+rust_code = "clap_builder::ValueHint::EmailAddress"
+rust_imports = []
+needs_result = false
+
 [[mappings.functions]]
 python = "clap_builder.AnyValueId.from_"
-rust_code = "clap_builder::AnyValueId::from({arg0})"
-rust_imports = ["clap_builder::AnyValueId"]
+rust_code = "clap_builder::util::any_value::AnyValueId::from({arg0})"
+rust_imports = ["clap_builder::util::any_value::AnyValueId"]
 needs_result = false
 param_types = ["&'aA"]
 
@@ -72,105 +216,105 @@ param_types = ["Cow<'static,str>"]
 
 [[mappings.functions]]
 python = "clap_builder.Values.default"
-rust_code = "clap_builder::Values::default()"
-rust_imports = ["clap_builder::Values"]
+rust_code = "clap_builder::parser::matches::arg_matches::Values::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::Values"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.ValuesRef.default"
-rust_code = "clap_builder::ValuesRef::default()"
-rust_imports = ["clap_builder::ValuesRef"]
+rust_code = "clap_builder::parser::matches::arg_matches::ValuesRef::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::ValuesRef"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.RawValues.default"
-rust_code = "clap_builder::RawValues::default()"
-rust_imports = ["clap_builder::RawValues"]
+rust_code = "clap_builder::parser::matches::arg_matches::RawValues::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::RawValues"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.Occurrences.default"
-rust_code = "clap_builder::Occurrences::default()"
-rust_imports = ["clap_builder::Occurrences"]
+rust_code = "clap_builder::parser::matches::arg_matches::Occurrences::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::Occurrences"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.OccurrencesRef.default"
-rust_code = "clap_builder::OccurrencesRef::default()"
-rust_imports = ["clap_builder::OccurrencesRef"]
+rust_code = "clap_builder::parser::matches::arg_matches::OccurrencesRef::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::OccurrencesRef"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.RawOccurrences.default"
-rust_code = "clap_builder::RawOccurrences::default()"
-rust_imports = ["clap_builder::RawOccurrences"]
+rust_code = "clap_builder::parser::matches::arg_matches::RawOccurrences::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::RawOccurrences"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.Indices.default"
-rust_code = "clap_builder::Indices::default()"
-rust_imports = ["clap_builder::Indices"]
+rust_code = "clap_builder::parser::matches::arg_matches::Indices::default()"
+rust_imports = ["clap_builder::parser::matches::arg_matches::Indices"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.new"
-rust_code = "clap_builder::ValueRange::new({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::new({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["implInto<Self>"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.default"
-rust_code = "clap_builder::ValueRange::default()"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::default()"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::Range<usize>"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::RangeFull"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::RangeFrom<usize>"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::RangeTo<usize>"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::RangeInclusive<usize>"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueRange.from_"
-rust_code = "clap_builder::ValueRange::from({arg0})"
-rust_imports = ["clap_builder::ValueRange"]
+rust_code = "clap_builder::builder::range::ValueRange::from({arg0})"
+rust_imports = ["clap_builder::builder::range::ValueRange"]
 needs_result = false
 param_types = ["std::ops::RangeToInclusive<usize>"]
 
@@ -402,15 +546,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.PossibleValuesParser.new"
-rust_code = "clap_builder::PossibleValuesParser::new({arg0})"
-rust_imports = ["clap_builder::PossibleValuesParser"]
+rust_code = "clap_builder::builder::value_parser::PossibleValuesParser::new({arg0})"
+rust_imports = ["clap_builder::builder::value_parser::PossibleValuesParser"]
 needs_result = false
 param_types = ["implInto<PossibleValuesParser>"]
 
 [[mappings.functions]]
 python = "clap_builder.PossibleValuesParser.from_"
-rust_code = "clap_builder::PossibleValuesParser::from({arg0})"
-rust_imports = ["clap_builder::PossibleValuesParser"]
+rust_code = "clap_builder::builder::value_parser::PossibleValuesParser::from({arg0})"
+rust_imports = ["clap_builder::builder::value_parser::PossibleValuesParser"]
 needs_result = false
 param_types = ["I"]
 
@@ -490,34 +634,34 @@ needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.NonEmptyStringValueParser.new"
-rust_code = "clap_builder::NonEmptyStringValueParser::new()"
-rust_imports = ["clap_builder::NonEmptyStringValueParser"]
+rust_code = "clap_builder::builder::value_parser::NonEmptyStringValueParser::new()"
+rust_imports = ["clap_builder::builder::value_parser::NonEmptyStringValueParser"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.NonEmptyStringValueParser.default"
-rust_code = "clap_builder::NonEmptyStringValueParser::default()"
-rust_imports = ["clap_builder::NonEmptyStringValueParser"]
+rust_code = "clap_builder::builder::value_parser::NonEmptyStringValueParser::default()"
+rust_imports = ["clap_builder::builder::value_parser::NonEmptyStringValueParser"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.UnknownArgumentValueParser.suggest_arg"
-rust_code = "clap_builder::UnknownArgumentValueParser::suggest_arg({arg0})"
-rust_imports = ["clap_builder::UnknownArgumentValueParser"]
+rust_code = "clap_builder::builder::value_parser::UnknownArgumentValueParser::suggest_arg({arg0})"
+rust_imports = ["clap_builder::builder::value_parser::UnknownArgumentValueParser"]
 needs_result = false
 param_types = ["implInto<Str>"]
 
 [[mappings.functions]]
 python = "clap_builder.UnknownArgumentValueParser.suggest"
-rust_code = "clap_builder::UnknownArgumentValueParser::suggest({arg0})"
-rust_imports = ["clap_builder::UnknownArgumentValueParser"]
+rust_code = "clap_builder::builder::value_parser::UnknownArgumentValueParser::suggest({arg0})"
+rust_imports = ["clap_builder::builder::value_parser::UnknownArgumentValueParser"]
 needs_result = false
 param_types = ["implInto<StyledStr>"]
 
 [[mappings.functions]]
 python = "clap_builder._infer_ValueParser_for.new"
-rust_code = "clap_builder::_infer_ValueParser_for::new()"
-rust_imports = ["clap_builder::_infer_ValueParser_for"]
+rust_code = "clap_builder::builder::value_parser::_infer_ValueParser_for::new()"
+rust_imports = ["clap_builder::builder::value_parser::_infer_ValueParser_for"]
 needs_result = false
 
 [[mappings.functions]]
@@ -563,20 +707,20 @@ param_types = ["Cow<'static,str>"]
 
 [[mappings.functions]]
 python = "clap_builder.Styles.plain"
-rust_code = "clap_builder::Styles::plain()"
-rust_imports = ["clap_builder::Styles"]
+rust_code = "clap_builder::builder::styling::Styles::plain()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.Styles.styled"
-rust_code = "clap_builder::Styles::styled()"
-rust_imports = ["clap_builder::Styles"]
+rust_code = "clap_builder::builder::styling::Styles::styled()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
 
 [[mappings.functions]]
 python = "clap_builder.Styles.default"
-rust_code = "clap_builder::Styles::default()"
-rust_imports = ["clap_builder::Styles"]
+rust_code = "clap_builder::builder::styling::Styles::default()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
 
 [[mappings.functions]]
@@ -795,6 +939,7 @@ python = "Id.as_str"
 rust_code = "{self}.as_str()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Id.fmt"
@@ -817,12 +962,14 @@ python = "Id.as_ref"
 rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Id.borrow"
 rust_code = "{self}.borrow()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Id.eq"
@@ -864,6 +1011,7 @@ python = "ArgMatches.get_count"
 rust_code = "{self}.get_count({arg0})"
 rust_imports = []
 needs_result = false
+returns = "u8"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -962,6 +1110,7 @@ python = "ArgMatches.index_of"
 rust_code = "{self}.index_of({arg0})"
 rust_imports = []
 needs_result = false
+returns = "usize"
 param_types = ["&str"]
 
 [[mappings.methods]]
@@ -1301,6 +1450,7 @@ python = "Indices.next"
 rust_code = "{self}.next()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Indices.size_hint"
@@ -1313,18 +1463,21 @@ python = "Indices.next_back"
 rust_code = "{self}.next_back()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ValueRange.min_values"
 rust_code = "{self}.min_values()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ValueRange.max_values"
 rust_code = "{self}.max_values()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "ValueRange.takes_values"
@@ -1374,6 +1527,7 @@ python = "Str.as_str"
 rust_code = "{self}.as_str()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Str.fmt"
@@ -1396,12 +1550,14 @@ python = "Str.deref"
 rust_code = "{self}.deref()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Str.as_ref"
 rust_code = "{self}.as_ref()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Str.as_ref"
@@ -1429,6 +1585,7 @@ python = "Str.borrow"
 rust_code = "{self}.borrow()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Str.eq"
@@ -2182,6 +2339,7 @@ python = "Arg.get_display_order"
 rust_code = "{self}.get_display_order()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Arg.get_help_heading"
@@ -2194,6 +2352,7 @@ python = "Arg.get_short"
 rust_code = "{self}.get_short()"
 rust_imports = []
 needs_result = false
+returns = "char"
 
 [[mappings.methods]]
 python = "Arg.get_visible_short_aliases"
@@ -2275,6 +2434,7 @@ python = "Arg.get_value_delimiter"
 rust_code = "{self}.get_value_delimiter()"
 rust_imports = []
 needs_result = false
+returns = "char"
 
 [[mappings.methods]]
 python = "Arg.get_value_terminator"
@@ -2287,6 +2447,7 @@ python = "Arg.get_index"
 rust_code = "{self}.get_index()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Arg.get_value_hint"
@@ -2702,6 +2863,7 @@ python = "PossibleValuesParser.parse"
 rust_code = "{self}.parse({arg0}, {arg1}, {arg2})"
 rust_imports = []
 needs_result = true
+returns = "String"
 param_types = ["&crate::Command", "Option<&crate::Arg>", "std::ffi::OsString"]
 
 [[mappings.methods]]
@@ -3367,12 +3529,14 @@ python = "Command.render_version"
 rust_code = "{self}.render_version()"
 rust_imports = []
 needs_result = false
+returns = "String"
 
 [[mappings.methods]]
 python = "Command.render_long_version"
 rust_code = "{self}.render_long_version()"
 rust_imports = []
 needs_result = false
+returns = "String"
 
 [[mappings.methods]]
 python = "Command.render_usage"
@@ -4017,6 +4181,7 @@ python = "Command.get_name"
 rust_code = "{self}.get_name()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "Command.get_name_and_visible_aliases"
@@ -4042,6 +4207,7 @@ python = "Command.get_display_order"
 rust_code = "{self}.get_display_order()"
 rust_imports = []
 needs_result = false
+returns = "usize"
 
 [[mappings.methods]]
 python = "Command.get_author"
@@ -4054,6 +4220,7 @@ python = "Command.get_short_flag"
 rust_code = "{self}.get_short_flag()"
 rust_imports = []
 needs_result = false
+returns = "char"
 
 [[mappings.methods]]
 python = "Command.get_long_flag"
@@ -4468,6 +4635,7 @@ python = "PossibleValue.get_name"
 rust_code = "{self}.get_name()"
 rust_imports = []
 needs_result = false
+returns = "str"
 
 [[mappings.methods]]
 python = "PossibleValue.get_help"
@@ -4570,6 +4738,7 @@ python = "Error.exit_code"
 rust_code = "{self}.exit_code()"
 rust_imports = []
 needs_result = false
+returns = "i32"
 
 [[mappings.methods]]
 python = "Error.exit"
@@ -4614,9 +4783,19 @@ needs_result = true
 returns = "Result"
 param_types = ["&mutFormatter<'_>"]
 
+# ArgAction from std
+[[mappings.types]]
+python = "ArgAction"
+rust = "clap_builder::ArgAction"
+
+# ValueHint from std
+[[mappings.types]]
+python = "ValueHint"
+rust = "clap_builder::ValueHint"
+
 [[mappings.types]]
 python = "AnyValueId"
-rust = "clap_builder::AnyValueId"
+rust = "clap_builder::util::any_value::AnyValueId"
 
 [[mappings.types]]
 python = "Id"
@@ -4632,51 +4811,51 @@ rust = "clap_builder::ArgMatches"
 
 [[mappings.types]]
 python = "IdsRef"
-rust = "clap_builder::IdsRef"
+rust = "clap_builder::parser::matches::arg_matches::IdsRef"
 
 [[mappings.types]]
 python = "Values"
-rust = "clap_builder::Values"
+rust = "clap_builder::parser::matches::arg_matches::Values"
 
 [[mappings.types]]
 python = "ValuesRef"
-rust = "clap_builder::ValuesRef"
+rust = "clap_builder::parser::matches::arg_matches::ValuesRef"
 
 [[mappings.types]]
 python = "RawValues"
-rust = "clap_builder::RawValues"
+rust = "clap_builder::parser::matches::arg_matches::RawValues"
 
 [[mappings.types]]
 python = "Occurrences"
-rust = "clap_builder::Occurrences"
+rust = "clap_builder::parser::matches::arg_matches::Occurrences"
 
 [[mappings.types]]
 python = "OccurrenceValues"
-rust = "clap_builder::OccurrenceValues"
+rust = "clap_builder::parser::matches::arg_matches::OccurrenceValues"
 
 [[mappings.types]]
 python = "OccurrencesRef"
-rust = "clap_builder::OccurrencesRef"
+rust = "clap_builder::parser::matches::arg_matches::OccurrencesRef"
 
 [[mappings.types]]
 python = "OccurrenceValuesRef"
-rust = "clap_builder::OccurrenceValuesRef"
+rust = "clap_builder::parser::matches::arg_matches::OccurrenceValuesRef"
 
 [[mappings.types]]
 python = "RawOccurrences"
-rust = "clap_builder::RawOccurrences"
+rust = "clap_builder::parser::matches::arg_matches::RawOccurrences"
 
 [[mappings.types]]
 python = "RawOccurrenceValues"
-rust = "clap_builder::RawOccurrenceValues"
+rust = "clap_builder::parser::matches::arg_matches::RawOccurrenceValues"
 
 [[mappings.types]]
 python = "Indices"
-rust = "clap_builder::Indices"
+rust = "clap_builder::parser::matches::arg_matches::Indices"
 
 [[mappings.types]]
 python = "ValueRange"
-rust = "clap_builder::ValueRange"
+rust = "clap_builder::builder::range::ValueRange"
 
 [[mappings.types]]
 python = "Str"
@@ -4712,7 +4891,7 @@ rust = "clap_builder::EnumValueParser"
 
 [[mappings.types]]
 python = "PossibleValuesParser"
-rust = "clap_builder::PossibleValuesParser"
+rust = "clap_builder::builder::value_parser::PossibleValuesParser"
 
 [[mappings.types]]
 python = "RangedI64ValueParser"
@@ -4736,7 +4915,7 @@ rust = "clap_builder::BoolishValueParser"
 
 [[mappings.types]]
 python = "NonEmptyStringValueParser"
-rust = "clap_builder::NonEmptyStringValueParser"
+rust = "clap_builder::builder::value_parser::NonEmptyStringValueParser"
 
 [[mappings.types]]
 python = "MapValueParser"
@@ -4748,11 +4927,11 @@ rust = "clap_builder::TryMapValueParser"
 
 [[mappings.types]]
 python = "UnknownArgumentValueParser"
-rust = "clap_builder::UnknownArgumentValueParser"
+rust = "clap_builder::builder::value_parser::UnknownArgumentValueParser"
 
 [[mappings.types]]
 python = "_infer_ValueParser_for"
-rust = "clap_builder::_infer_ValueParser_for"
+rust = "clap_builder::builder::value_parser::_infer_ValueParser_for"
 
 [[mappings.types]]
 python = "_AnonymousValueParser"
@@ -4764,7 +4943,7 @@ rust = "clap_builder::StyledStr"
 
 [[mappings.types]]
 python = "Styles"
-rust = "clap_builder::Styles"
+rust = "clap_builder::builder::styling::Styles"
 
 [[mappings.types]]
 python = "OsStr"
@@ -4792,7 +4971,7 @@ rust = "clap_builder::Error"
 
 [[mappings.types]]
 python = "ColorChoice"
-rust = "clap_builder::ColorChoice"
+rust = "clap_builder::util::color::ColorChoice"
 
 [[mappings.types]]
 python = "MatchesError"
@@ -4807,25 +4986,17 @@ python = "Resettable"
 rust = "clap_builder::Resettable"
 
 [[mappings.types]]
-python = "ArgAction"
-rust = "clap_builder::ArgAction"
-
-[[mappings.types]]
 python = "ArgPredicate"
 rust = "clap_builder::ArgPredicate"
 
 [[mappings.types]]
-python = "ValueHint"
-rust = "clap_builder::ValueHint"
-
-[[mappings.types]]
 python = "ContextKind"
-rust = "clap_builder::ContextKind"
+rust = "clap_builder::error::context::ContextKind"
 
 [[mappings.types]]
 python = "ContextValue"
-rust = "clap_builder::ContextValue"
+rust = "clap_builder::error::context::ContextValue"
 
 [[mappings.types]]
 python = "ErrorKind"
-rust = "clap_builder::ErrorKind"
+rust = "clap_builder::error::kind::ErrorKind"

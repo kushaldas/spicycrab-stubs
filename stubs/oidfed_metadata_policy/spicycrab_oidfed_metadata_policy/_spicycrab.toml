@@ -1,0 +1,94 @@
+[package]
+name = "oidfed_metadata_policy"
+rust_crate = "oidfed_metadata_policy"
+rust_version = "0.7.0"
+python_module = "spicycrab_oidfed_metadata_policy"
+
+[cargo.dependencies]
+oidfed_metadata_policy = "0.7.0"
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.merge_policies"
+rust_code = "oidfed_metadata_policy::merge_policies({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::merge_policies"]
+needs_result = true
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.merge_one_type_policy"
+rust_code = "oidfed_metadata_policy::merge_one_type_policy({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::merge_one_type_policy"]
+needs_result = true
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.get_ordered_array"
+rust_code = "oidfed_metadata_policy::get_ordered_array({arg0}, {arg1}, {arg2})"
+rust_imports = ["oidfed_metadata_policy::get_ordered_array"]
+needs_result = false
+param_types = ["&[Value]", "&[Value]", "&HashSet<&Value>"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.get_hashset_from_values"
+rust_code = "oidfed_metadata_policy::get_hashset_from_values({arg0})"
+rust_imports = ["oidfed_metadata_policy::get_hashset_from_values"]
+needs_result = false
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.is_subset_of"
+rust_code = "oidfed_metadata_policy::is_subset_of({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::is_subset_of"]
+needs_result = false
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.is_superset_of"
+rust_code = "oidfed_metadata_policy::is_superset_of({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::is_superset_of"]
+needs_result = false
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.intersection_of"
+rust_code = "oidfed_metadata_policy::intersection_of({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::intersection_of"]
+needs_result = false
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.get_hashset_from_only_names"
+rust_code = "oidfed_metadata_policy::get_hashset_from_only_names({arg0})"
+rust_imports = ["oidfed_metadata_policy::get_hashset_from_only_names"]
+needs_result = false
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.resolve_metadata_policy"
+rust_code = "oidfed_metadata_policy::resolve_metadata_policy({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::resolve_metadata_policy"]
+needs_result = true
+param_types = ["&Map<String,Value>", "&Map<String,Value>"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.check_equal"
+rust_code = "oidfed_metadata_policy::check_equal({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::check_equal"]
+needs_result = false
+param_types = ["&Value", "&Value"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.apply_policy_document_on_metadata"
+rust_code = "oidfed_metadata_policy::apply_policy_document_on_metadata({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::apply_policy_document_on_metadata"]
+needs_result = true
+param_types = ["&Map<String,Value>", "&Map<String,Value>"]
+
+[[mappings.functions]]
+python = "oidfed_metadata_policy.apply_policy_on_metadata"
+rust_code = "oidfed_metadata_policy::apply_policy_on_metadata({arg0}, {arg1})"
+rust_imports = ["oidfed_metadata_policy::apply_policy_on_metadata"]
+needs_result = true
+param_types = ["Map<String,Value>", "&Map<String,Value>"]
+
+# Enum variant access mappings

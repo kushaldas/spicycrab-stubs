@@ -7,6 +7,10 @@ python_module = "spicycrab_fern"
 [cargo.dependencies]
 fern = "0.7.1"
 
+[cargo.features]
+available = ["date-based", "meta-logging-in-format", "reopen-03", "reopen-1", "syslog-3", "syslog-4", "syslog-6", "syslog-7"]
+default = []
+
 [[mappings.functions]]
 python = "fern.log_file"
 rust_code = "fern::log_file({arg0})"
@@ -252,14 +256,14 @@ param_types = ["T", "U"]
 
 [[mappings.functions]]
 python = "fern.ColoredLevelConfig.new"
-rust_code = "fern::ColoredLevelConfig::new()"
-rust_imports = ["fern::ColoredLevelConfig"]
+rust_code = "fern::colors::ColoredLevelConfig::new()"
+rust_imports = ["fern::colors::ColoredLevelConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "fern.ColoredLevelConfig.default"
-rust_code = "fern::ColoredLevelConfig::default()"
-rust_imports = ["fern::ColoredLevelConfig"]
+rust_code = "fern::colors::ColoredLevelConfig::default()"
+rust_imports = ["fern::colors::ColoredLevelConfig"]
 needs_result = false
 
 [[mappings.functions]]
@@ -909,6 +913,7 @@ python = "DateBasedConfig.compute_current_suffix"
 rust_code = "{self}.compute_current_suffix()"
 rust_imports = []
 needs_result = false
+returns = "String"
 
 [[mappings.methods]]
 python = "DateBasedConfig.compute_file_path"
@@ -955,11 +960,11 @@ rust = "fern::DateBased"
 
 [[mappings.types]]
 python = "WithFgColor"
-rust = "fern::WithFgColor"
+rust = "fern::colors::WithFgColor"
 
 [[mappings.types]]
 python = "ColoredLevelConfig"
-rust = "fern::ColoredLevelConfig"
+rust = "fern::colors::ColoredLevelConfig"
 
 [[mappings.types]]
 python = "Dispatch"

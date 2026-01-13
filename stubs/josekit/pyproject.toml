@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-josekit"
+version = "0.10.3"
+description = "spicycrab type stubs for the josekit Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+josekit = "spicycrab_josekit"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_josekit"]

@@ -1,0 +1,691 @@
+[package]
+name = "env_logger"
+rust_crate = "env_logger"
+rust_version = "0.11.8"
+python_module = "spicycrab_env_logger"
+
+[cargo.dependencies]
+env_logger = "0.11.8"
+
+[cargo.features]
+available = ["auto-color", "color", "default", "humantime", "kv", "regex", "unstable-kv"]
+default = ["auto-color", "humantime", "regex"]
+
+[[mappings.functions]]
+python = "env_logger.hidden_kv_format"
+rust_code = "env_logger::fmt::kv::hidden_kv_format({arg0}, {arg1})"
+rust_imports = ["env_logger::fmt::kv::hidden_kv_format"]
+needs_result = true
+param_types = ["&mutFormatter", "&dynSource"]
+
+[[mappings.functions]]
+python = "env_logger.default_kv_format"
+rust_code = "env_logger::fmt::kv::default_kv_format({arg0}, {arg1})"
+rust_imports = ["env_logger::fmt::kv::default_kv_format"]
+needs_result = true
+param_types = ["&mutFormatter", "&dynSource"]
+
+[[mappings.functions]]
+python = "env_logger.try_init"
+rust_code = "env_logger::try_init()"
+rust_imports = ["env_logger::try_init"]
+needs_result = true
+
+[[mappings.functions]]
+python = "env_logger.init"
+rust_code = "env_logger::init()"
+rust_imports = ["env_logger::init"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.try_init_from_env"
+rust_code = "env_logger::try_init_from_env({arg0})"
+rust_imports = ["env_logger::try_init_from_env"]
+needs_result = true
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "env_logger.init_from_env"
+rust_code = "env_logger::init_from_env({arg0})"
+rust_imports = ["env_logger::init_from_env"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "env_logger.builder"
+rust_code = "env_logger::builder()"
+rust_imports = ["env_logger::builder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.from_env"
+rust_code = "env_logger::from_env({arg0})"
+rust_imports = ["env_logger::from_env"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "env_logger.ConfigurableFormat.default"
+rust_code = "env_logger::ConfigurableFormat::default()"
+rust_imports = ["env_logger::ConfigurableFormat"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Builder.default"
+rust_code = "env_logger::Builder::default()"
+rust_imports = ["env_logger::Builder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Builder.new"
+rust_code = "env_logger::Builder::new()"
+rust_imports = ["env_logger::Builder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Builder.from_env"
+rust_code = "env_logger::Builder::from_env({arg0})"
+rust_imports = ["env_logger::Builder"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "env_logger.Builder.from_default_env"
+rust_code = "env_logger::Builder::from_default_env()"
+rust_imports = ["env_logger::Builder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Logger.from_env"
+rust_code = "env_logger::Logger::from_env({arg0})"
+rust_imports = ["env_logger::Logger"]
+needs_result = false
+param_types = ["E"]
+
+[[mappings.functions]]
+python = "env_logger.Logger.from_default_env"
+rust_code = "env_logger::Logger::from_default_env()"
+rust_imports = ["env_logger::Logger"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Env.new"
+rust_code = "env_logger::Env::new()"
+rust_imports = ["env_logger::Env"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Env.from_"
+rust_code = "env_logger::Env::from({arg0})"
+rust_imports = ["env_logger::Env"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "env_logger.Env.default"
+rust_code = "env_logger::Env::default()"
+rust_imports = ["env_logger::Env"]
+needs_result = false
+
+[[mappings.methods]]
+python = "Timestamp.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Timestamp.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Formatter.timestamp"
+rust_code = "{self}.timestamp()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_seconds"
+rust_code = "{self}.timestamp_seconds()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_millis"
+rust_code = "{self}.timestamp_millis()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_micros"
+rust_code = "{self}.timestamp_micros()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_nanos"
+rust_code = "{self}.timestamp_nanos()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.default_level_style"
+rust_code = "{self}.default_level_style({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Style"
+param_types = ["Level"]
+
+[[mappings.methods]]
+python = "Formatter.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Formatter.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Formatter.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.format"
+rust_code = "{self}.format({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter", "&Record<'_>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.file"
+rust_code = "{self}.file({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.line_number"
+rust_code = "{self}.line_number({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.module_path"
+rust_code = "{self}.module_path({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.target"
+rust_code = "{self}.target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.indent"
+rust_code = "{self}.indent({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.timestamp"
+rust_code = "{self}.timestamp({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<TimestampPrecision>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.suffix"
+rust_code = "{self}.suffix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.key_values"
+rust_code = "{self}.key_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.format"
+rust_code = "{self}.format({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter", "&Record<'_>"]
+
+[[mappings.methods]]
+python = "Builder.parse_env"
+rust_code = "{self}.parse_env({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "Builder.parse_default_env"
+rust_code = "{self}.parse_default_env()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Builder.default_format"
+rust_code = "{self}.default_format()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format_level"
+rust_code = "{self}.format_level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_file"
+rust_code = "{self}.format_file({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_line_number"
+rust_code = "{self}.format_line_number({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_source_path"
+rust_code = "{self}.format_source_path({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_module_path"
+rust_code = "{self}.format_module_path({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_target"
+rust_code = "{self}.format_target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.format_indent"
+rust_code = "{self}.format_indent({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "Builder.format_timestamp"
+rust_code = "{self}.format_timestamp({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<fmt::TimestampPrecision>"]
+
+[[mappings.methods]]
+python = "Builder.format_timestamp_secs"
+rust_code = "{self}.format_timestamp_secs()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format_timestamp_millis"
+rust_code = "{self}.format_timestamp_millis()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format_timestamp_micros"
+rust_code = "{self}.format_timestamp_micros()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format_timestamp_nanos"
+rust_code = "{self}.format_timestamp_nanos()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+
+[[mappings.methods]]
+python = "Builder.format_suffix"
+rust_code = "{self}.format_suffix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "Builder.format_key_values"
+rust_code = "{self}.format_key_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "Builder.filter_module"
+rust_code = "{self}.filter_module({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&str", "LevelFilter"]
+
+[[mappings.methods]]
+python = "Builder.filter_level"
+rust_code = "{self}.filter_level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["LevelFilter"]
+
+[[mappings.methods]]
+python = "Builder.filter"
+rust_code = "{self}.filter({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<&str>", "LevelFilter"]
+
+[[mappings.methods]]
+python = "Builder.parse_filters"
+rust_code = "{self}.parse_filters({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Builder.target"
+rust_code = "{self}.target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["fmt::Target"]
+
+[[mappings.methods]]
+python = "Builder.write_style"
+rust_code = "{self}.write_style({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["fmt::WriteStyle"]
+
+[[mappings.methods]]
+python = "Builder.parse_write_style"
+rust_code = "{self}.parse_write_style({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Builder.is_test"
+rust_code = "{self}.is_test({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Builder.try_init"
+rust_code = "{self}.try_init()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Builder.init"
+rust_code = "{self}.init()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Builder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "Logger"
+
+[[mappings.methods]]
+python = "Builder.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Logger.filter"
+rust_code = "{self}.filter()"
+rust_imports = []
+needs_result = false
+returns = "LevelFilter"
+
+[[mappings.methods]]
+python = "Logger.matches"
+rust_code = "{self}.matches({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Record<'_>"]
+
+[[mappings.methods]]
+python = "Logger.enabled"
+rust_code = "{self}.enabled({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Metadata<'_>"]
+
+[[mappings.methods]]
+python = "Logger.log"
+rust_code = "{self}.log({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Record<'_>"]
+
+[[mappings.methods]]
+python = "Logger.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Logger.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Env.filter"
+rust_code = "{self}.filter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "Env.filter_or"
+rust_code = "{self}.filter_or({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["E", "V"]
+
+[[mappings.methods]]
+python = "Env.default_filter_or"
+rust_code = "{self}.default_filter_or({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["V"]
+
+[[mappings.methods]]
+python = "Env.write_style"
+rust_code = "{self}.write_style({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["E"]
+
+[[mappings.methods]]
+python = "Env.write_style_or"
+rust_code = "{self}.write_style_or({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["E", "V"]
+
+[[mappings.methods]]
+python = "Env.default_write_style_or"
+rust_code = "{self}.default_write_style_or({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Env"
+param_types = ["V"]
+
+[[mappings.types]]
+python = "Timestamp"
+rust = "env_logger::fmt::humantime::Timestamp"
+
+[[mappings.types]]
+python = "Formatter"
+rust = "env_logger::Formatter"
+
+[[mappings.types]]
+python = "ConfigurableFormat"
+rust = "env_logger::ConfigurableFormat"
+
+[[mappings.types]]
+python = "Builder"
+rust = "env_logger::Builder"
+
+[[mappings.types]]
+python = "Logger"
+rust = "env_logger::Logger"
+
+[[mappings.types]]
+python = "Env"
+rust = "env_logger::Env"
+
+[[mappings.types]]
+python = "Target"
+rust = "env_logger::fmt::writer::Target"
+
+[[mappings.types]]
+python = "WriteStyle"
+rust = "env_logger::fmt::writer::WriteStyle"
+
+[[mappings.types]]
+python = "TimestampPrecision"
+rust = "env_logger::TimestampPrecision"

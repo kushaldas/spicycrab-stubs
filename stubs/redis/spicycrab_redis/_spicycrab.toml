@@ -1,0 +1,4720 @@
+[package]
+name = "redis"
+rust_crate = "redis"
+rust_version = "1.0.2"
+python_module = "spicycrab_redis"
+
+[cargo.dependencies]
+redis = "1.0.2"
+
+[cargo.features]
+available = ["acl", "aio", "bb8", "cache-aio", "cluster", "cluster-async", "connection-manager", "default", "geospatial", "json", "num-bigint", "r2d2", "script", "sentinel", "smol-comp", "smol-native-tls-comp", "smol-rustls-comp", "streams", "tls-native-tls", "tls-rustls", "tls-rustls-insecure", "tls-rustls-webpki-roots", "tokio-comp", "tokio-native-tls-comp", "tokio-rustls-comp", "vector-sets"]
+default = ["acl", "geospatial", "num-bigint", "script", "streams"]
+
+[[mappings.functions]]
+python = "redis.resp3_hello"
+rust_code = "redis::commands::resp3_hello({arg0})"
+rust_imports = ["redis::commands::resp3_hello"]
+needs_result = false
+param_types = ["&RedisConnectionInfo"]
+
+[[mappings.functions]]
+python = "redis.from_redis_value_ref"
+rust_code = "redis::from_redis_value_ref({arg0})"
+rust_imports = ["redis::from_redis_value_ref"]
+needs_result = true
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "redis.from_redis_value"
+rust_code = "redis::from_redis_value({arg0})"
+rust_imports = ["redis::from_redis_value"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.calculate_value_digest"
+rust_code = "redis::calculate_value_digest({arg0})"
+rust_imports = ["redis::calculate_value_digest"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "redis.is_valid_16_bytes_hex_digest"
+rust_code = "redis::is_valid_16_bytes_hex_digest({arg0})"
+rust_imports = ["redis::is_valid_16_bytes_hex_digest"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.cluster_pipe"
+rust_code = "redis::cluster_handling::sync_connection::pipeline::cluster_pipe()"
+rust_imports = ["redis::cluster_handling::sync_connection::pipeline::cluster_pipe"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.get_push_kind"
+rust_code = "redis::get_push_kind({arg0})"
+rust_imports = ["redis::get_push_kind"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "redis.parse_redis_value_async"
+rust_code = "redis::parse_redis_value_async({arg0}, {arg1})"
+rust_imports = ["redis::parse_redis_value_async"]
+needs_result = false
+is_async = true
+param_types = ["&mutcombine::stream::Decoder<AnySendSyncPartialState,PointerOffset<[u8]>>", "&mutR"]
+
+[[mappings.functions]]
+python = "redis.parse_redis_value"
+rust_code = "redis::parse_redis_value({arg0})"
+rust_imports = ["redis::parse_redis_value"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "redis.parse_redis_url"
+rust_code = "redis::connection::parse_redis_url({arg0})"
+rust_imports = ["redis::connection::parse_redis_url"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.connect"
+rust_code = "redis::connect({arg0}, {arg1})"
+rust_imports = ["redis::connect"]
+needs_result = false
+param_types = ["&ConnectionInfo", "Option<Duration>"]
+
+[[mappings.functions]]
+python = "redis.transaction"
+rust_code = "redis::connection::transaction({arg0}, {arg1}, {arg2})"
+rust_imports = ["redis::connection::transaction"]
+needs_result = false
+param_types = ["&mutC", "&[K]", "F"]
+
+[[mappings.functions]]
+python = "redis.resp2_is_pub_sub_state_cleared"
+rust_code = "redis::connection::resp2_is_pub_sub_state_cleared({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::connection::resp2_is_pub_sub_state_cleared"]
+needs_result = false
+param_types = ["&mutbool", "&mutbool", "&[u8]", "isize"]
+
+[[mappings.functions]]
+python = "redis.resp3_is_pub_sub_state_cleared"
+rust_code = "redis::connection::resp3_is_pub_sub_state_cleared({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::connection::resp3_is_pub_sub_state_cleared"]
+needs_result = false
+param_types = ["&mutbool", "&mutbool", "&PushKind", "isize"]
+
+[[mappings.functions]]
+python = "redis.no_sub_err_is_pub_sub_state_cleared"
+rust_code = "redis::connection::no_sub_err_is_pub_sub_state_cleared({arg0}, {arg1}, {arg2})"
+rust_imports = ["redis::connection::no_sub_err_is_pub_sub_state_cleared"]
+needs_result = false
+param_types = ["&mutbool", "&mutbool", "&ServerError"]
+
+[[mappings.functions]]
+python = "redis.get_resp3_hello_command_error"
+rust_code = "redis::connection::get_resp3_hello_command_error({arg0})"
+rust_imports = ["redis::connection::get_resp3_hello_command_error"]
+needs_result = false
+param_types = ["RedisError"]
+
+[[mappings.functions]]
+python = "redis.cmd"
+rust_code = "redis::cmd({arg0})"
+rust_imports = ["redis::cmd"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.pack_command"
+rust_code = "redis::cmd::pack_command({arg0})"
+rust_imports = ["redis::cmd::pack_command"]
+needs_result = false
+param_types = ["&[Vec<u8>]"]
+
+[[mappings.functions]]
+python = "redis.pipe"
+rust_code = "redis::cmd::pipe()"
+rust_imports = ["redis::cmd::pipe"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.make_extension_error"
+rust_code = "redis::errors::redis_error::make_extension_error({arg0}, {arg1})"
+rust_imports = ["redis::errors::redis_error::make_extension_error"]
+needs_result = false
+param_types = ["String", "Option<String>"]
+
+[[mappings.functions]]
+python = "redis.prefer_smol"
+rust_code = "redis::aio::prefer_smol()"
+rust_imports = ["redis::aio::prefer_smol"]
+needs_result = true
+
+[[mappings.functions]]
+python = "redis.prefer_tokio"
+rust_code = "redis::aio::prefer_tokio()"
+rust_imports = ["redis::aio::prefer_tokio"]
+needs_result = true
+
+[[mappings.functions]]
+python = "redis.StreamTrimOptions.maxlen"
+rust_code = "redis::commands::streams::StreamTrimOptions::maxlen({arg0}, {arg1})"
+rust_imports = ["redis::commands::streams::StreamTrimOptions"]
+needs_result = false
+param_types = ["StreamTrimmingMode", "usize"]
+
+[[mappings.functions]]
+python = "redis.StreamTrimOptions.minid"
+rust_code = "redis::commands::streams::StreamTrimOptions::minid({arg0}, {arg1})"
+rust_imports = ["redis::commands::streams::StreamTrimOptions"]
+needs_result = false
+param_types = ["StreamTrimmingMode", "implInto<String>"]
+
+[[mappings.functions]]
+python = "redis.StreamAutoClaimReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamAutoClaimReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamAutoClaimReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamReadReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamReadReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamReadReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamRangeReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamRangeReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamRangeReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamClaimReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamClaimReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamClaimReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamPendingCountReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamPendingCountReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamPendingCountReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamInfoStreamReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamInfoStreamReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamInfoStreamReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamInfoConsumersReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamInfoConsumersReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamInfoConsumersReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.StreamInfoGroupsReply.from_redis_value"
+rust_code = "redis::commands::streams::StreamInfoGroupsReply::from_redis_value({arg0})"
+rust_imports = ["redis::commands::streams::StreamInfoGroupsReply"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.AclInfo.from_redis_value"
+rust_code = "redis::commands::AclInfo::from_redis_value({arg0})"
+rust_imports = ["redis::commands::AclInfo"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.CopyOptions.default"
+rust_code = "redis::commands::CopyOptions::default()"
+rust_imports = ["redis::commands::CopyOptions"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.SortedSetAddOptions.add_only"
+rust_code = "redis::commands::SortedSetAddOptions::add_only()"
+rust_imports = ["redis::commands::SortedSetAddOptions"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.SortedSetAddOptions.update_only"
+rust_code = "redis::commands::SortedSetAddOptions::update_only({arg0})"
+rust_imports = ["redis::commands::SortedSetAddOptions"]
+needs_result = false
+param_types = ["Option<UpdateCheck>"]
+
+[[mappings.functions]]
+python = "redis.SortedSetAddOptions.add_or_update"
+rust_code = "redis::commands::SortedSetAddOptions::add_or_update({arg0})"
+rust_imports = ["redis::commands::SortedSetAddOptions"]
+needs_result = false
+param_types = ["Option<UpdateCheck>"]
+
+[[mappings.functions]]
+python = "redis.Coord.lon_lat"
+rust_code = "redis::commands::geo::Coord::lon_lat({arg0}, {arg1})"
+rust_imports = ["redis::commands::geo::Coord"]
+needs_result = false
+param_types = ["T", "T"]
+
+[[mappings.functions]]
+python = "redis.Coord.from_redis_value_ref"
+rust_code = "redis::commands::geo::Coord::from_redis_value_ref({arg0})"
+rust_imports = ["redis::commands::geo::Coord"]
+needs_result = true
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "redis.Coord.from_redis_value"
+rust_code = "redis::commands::geo::Coord::from_redis_value({arg0})"
+rust_imports = ["redis::commands::geo::Coord"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.RadiusSearchResult.from_redis_value"
+rust_code = "redis::commands::geo::RadiusSearchResult::from_redis_value({arg0})"
+rust_imports = ["redis::commands::geo::RadiusSearchResult"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.CacheConfig.new"
+rust_code = "redis::caching::CacheConfig::new()"
+rust_imports = ["redis::caching::CacheConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.CacheConfig.default"
+rust_code = "redis::caching::CacheConfig::default()"
+rust_imports = ["redis::caching::CacheConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.CacheStatistics.from_"
+rust_code = "redis::caching::CacheStatistics::from({arg0})"
+rust_imports = ["redis::caching::CacheStatistics"]
+needs_result = false
+param_types = ["Arc<Statistics>"]
+
+[[mappings.functions]]
+python = "redis.InfoDict.new"
+rust_code = "redis::InfoDict::new({arg0})"
+rust_imports = ["redis::InfoDict"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.InfoDict.from_redis_value_ref"
+rust_code = "redis::InfoDict::from_redis_value_ref({arg0})"
+rust_imports = ["redis::InfoDict"]
+needs_result = true
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "redis.InfoDict.from_redis_value"
+rust_code = "redis::InfoDict::from_redis_value({arg0})"
+rust_imports = ["redis::InfoDict"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.ReplicaInfo.from_redis_value_ref"
+rust_code = "redis::ReplicaInfo::from_redis_value_ref({arg0})"
+rust_imports = ["redis::ReplicaInfo"]
+needs_result = true
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "redis.ReplicaInfo.from_redis_value"
+rust_code = "redis::ReplicaInfo::from_redis_value({arg0})"
+rust_imports = ["redis::ReplicaInfo"]
+needs_result = true
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.TcpSettings.default"
+rust_code = "redis::TcpSettings::default()"
+rust_imports = ["redis::TcpSettings"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Client.open"
+rust_code = "redis::Client::open({arg0})"
+rust_imports = ["redis::Client"]
+needs_result = false
+param_types = ["T"]
+
+[[mappings.functions]]
+python = "redis.Client.build_with_tls"
+rust_code = "redis::Client::build_with_tls({arg0}, {arg1})"
+rust_imports = ["redis::Client"]
+needs_result = false
+param_types = ["C", "TlsCertificates"]
+
+[[mappings.functions]]
+python = "redis.AsyncConnectionConfig.default"
+rust_code = "redis::client::AsyncConnectionConfig::default()"
+rust_imports = ["redis::client::AsyncConnectionConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.AsyncConnectionConfig.new"
+rust_code = "redis::client::AsyncConnectionConfig::new()"
+rust_imports = ["redis::client::AsyncConnectionConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ClusterPipeline.new"
+rust_code = "redis::cluster_handling::sync_connection::ClusterPipeline::new()"
+rust_imports = ["redis::cluster_handling::sync_connection::ClusterPipeline"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ClusterPipeline.with_capacity"
+rust_code = "redis::cluster_handling::sync_connection::ClusterPipeline::with_capacity({arg0})"
+rust_imports = ["redis::cluster_handling::sync_connection::ClusterPipeline"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "redis.ClusterConfig.new"
+rust_code = "redis::cluster_handling::sync_connection::ClusterConfig::new()"
+rust_imports = ["redis::cluster_handling::sync_connection::ClusterConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ClusterClientBuilder.new"
+rust_code = "redis::cluster_handling::ClusterClientBuilder::new({arg0})"
+rust_imports = ["redis::cluster_handling::ClusterClientBuilder"]
+needs_result = false
+param_types = ["implIntoIterator<Item=T>"]
+
+[[mappings.functions]]
+python = "redis.ClusterClient.new"
+rust_code = "redis::cluster_handling::ClusterClient::new({arg0})"
+rust_imports = ["redis::cluster_handling::ClusterClient"]
+needs_result = false
+param_types = ["implIntoIterator<Item=T>"]
+
+[[mappings.functions]]
+python = "redis.ClusterClient.builder"
+rust_code = "redis::cluster_handling::ClusterClient::builder({arg0})"
+rust_imports = ["redis::cluster_handling::ClusterClient"]
+needs_result = false
+param_types = ["implIntoIterator<Item=T>"]
+
+[[mappings.functions]]
+python = "redis.Route.new"
+rust_code = "redis::cluster_handling::routing::Route::new({arg0}, {arg1})"
+rust_imports = ["redis::cluster_handling::routing::Route"]
+needs_result = false
+param_types = ["u16", "SlotAddr"]
+
+[[mappings.functions]]
+python = "redis.Parser.default"
+rust_code = "redis::Parser::default()"
+rust_imports = ["redis::Parser"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Parser.new"
+rust_code = "redis::Parser::new()"
+rust_imports = ["redis::Parser"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ConnectionInfo.from_str"
+rust_code = "redis::ConnectionInfo::from_str({arg0})"
+rust_imports = ["redis::ConnectionInfo"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.Connection.connect"
+rust_code = "redis::Connection::connect({arg0}, {arg1})"
+rust_imports = ["redis::Connection"]
+needs_result = false
+param_types = ["T", "Option<Duration>"]
+
+[[mappings.functions]]
+python = "redis.PubSub.new"
+rust_code = "redis::connection::PubSub::new({arg0}, {arg1})"
+rust_imports = ["redis::connection::PubSub"]
+needs_result = false
+param_types = ["&RedisConnectionInfo", "C"]
+
+[[mappings.functions]]
+python = "redis.Msg.from_value"
+rust_code = "redis::connection::Msg::from_value({arg0})"
+rust_imports = ["redis::connection::Msg"]
+needs_result = false
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "redis.Msg.from_owned_value"
+rust_code = "redis::connection::Msg::from_owned_value({arg0})"
+rust_imports = ["redis::connection::Msg"]
+needs_result = false
+param_types = ["Value"]
+
+[[mappings.functions]]
+python = "redis.Msg.from_push_info"
+rust_code = "redis::connection::Msg::from_push_info({arg0})"
+rust_imports = ["redis::connection::Msg"]
+needs_result = false
+param_types = ["PushInfo"]
+
+[[mappings.functions]]
+python = "redis.CommandCacheConfig.new"
+rust_code = "redis::cmd::CommandCacheConfig::new()"
+rust_imports = ["redis::cmd::CommandCacheConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.CommandCacheConfig.default"
+rust_code = "redis::cmd::CommandCacheConfig::default()"
+rust_imports = ["redis::cmd::CommandCacheConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Cmd.default"
+rust_code = "redis::Cmd::default()"
+rust_imports = ["redis::Cmd"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Cmd.new"
+rust_code = "redis::Cmd::new()"
+rust_imports = ["redis::Cmd"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Cmd.with_capacity"
+rust_code = "redis::Cmd::with_capacity({arg0}, {arg1})"
+rust_imports = ["redis::Cmd"]
+needs_result = false
+param_types = ["usize", "usize"]
+
+[[mappings.functions]]
+python = "redis.Pipeline.new"
+rust_code = "redis::Pipeline::new()"
+rust_imports = ["redis::Pipeline"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.Pipeline.with_capacity"
+rust_code = "redis::Pipeline::with_capacity({arg0})"
+rust_imports = ["redis::Pipeline"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["NulError"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["Utf8Error"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["uuid::Error"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["FromUtf8Error"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "redis.ParsingError.from_"
+rust_code = "redis::ParsingError::from({arg0})"
+rust_imports = ["redis::ParsingError"]
+needs_result = false
+param_types = ["ArcStr"]
+
+[[mappings.functions]]
+python = "redis.ServerError.try_from"
+rust_code = "redis::ServerError::try_from({arg0})"
+rust_imports = ["redis::ServerError"]
+needs_result = true
+param_types = ["RedisError"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["serde_json::Error"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["rustls::pki_types::InvalidDnsNameError"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["rustls_native_certs::Error"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["(ErrorKind,&'staticstr)"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["(ErrorKind,&'staticstr,String)"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["native_tls::Error"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["rustls::Error"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["ServerError"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["ParsingError"]
+
+[[mappings.functions]]
+python = "redis.RedisError.from_"
+rust_code = "redis::RedisError::from({arg0})"
+rust_imports = ["redis::RedisError"]
+needs_result = false
+param_types = ["Elapsed"]
+
+[[mappings.functions]]
+python = "redis.PubSub.new"
+rust_code = "redis::aio::pubsub::PubSub::new({arg0}, {arg1})"
+rust_imports = ["redis::aio::pubsub::PubSub"]
+needs_result = false
+param_types = ["&RedisConnectionInfo", "C"]
+
+[[mappings.functions]]
+python = "redis.MultiplexedConnection.connect_with_config"
+rust_code = "redis::aio::MultiplexedConnection::connect_with_config({arg0}, {arg1})"
+rust_imports = ["redis::aio::MultiplexedConnection"]
+needs_result = false
+param_types = ["T", "AsyncConnectionConfig"]
+
+[[mappings.functions]]
+python = "redis.MultiplexedConnection.new"
+rust_code = "redis::aio::MultiplexedConnection::new({arg0}, {arg1})"
+rust_imports = ["redis::aio::MultiplexedConnection"]
+needs_result = false
+param_types = ["&RedisConnectionInfo", "C"]
+
+[[mappings.functions]]
+python = "redis.MultiplexedConnection.new_with_config"
+rust_code = "redis::aio::MultiplexedConnection::new_with_config({arg0}, {arg1}, {arg2})"
+rust_imports = ["redis::aio::MultiplexedConnection"]
+needs_result = false
+param_types = ["&RedisConnectionInfo", "C", "AsyncConnectionConfig"]
+
+[[mappings.functions]]
+python = "redis.ConnectionManagerConfig.new"
+rust_code = "redis::aio::ConnectionManagerConfig::new()"
+rust_imports = ["redis::aio::ConnectionManagerConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ConnectionManagerConfig.default"
+rust_code = "redis::aio::ConnectionManagerConfig::default()"
+rust_imports = ["redis::aio::ConnectionManagerConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "redis.ConnectionManager.new"
+rust_code = "redis::aio::ConnectionManager::new({arg0})"
+rust_imports = ["redis::aio::ConnectionManager"]
+needs_result = false
+param_types = ["Client"]
+
+[[mappings.functions]]
+python = "redis.ConnectionManager.new_with_config"
+rust_code = "redis::aio::ConnectionManager::new_with_config({arg0}, {arg1})"
+rust_imports = ["redis::aio::ConnectionManager"]
+needs_result = false
+param_types = ["Client", "ConnectionManagerConfig"]
+
+[[mappings.functions]]
+python = "redis.Script.new"
+rust_code = "redis::Script::new({arg0})"
+rust_imports = ["redis::Script"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "redis.Sentinel.build"
+rust_code = "redis::Sentinel::build({arg0})"
+rust_imports = ["redis::Sentinel"]
+needs_result = false
+param_types = ["Vec<T>"]
+
+[[mappings.functions]]
+python = "redis.Sentinel.build"
+rust_code = "redis::Sentinel::build({arg0})"
+rust_imports = ["redis::Sentinel"]
+needs_result = false
+param_types = ["Vec<T>"]
+
+[[mappings.functions]]
+python = "redis.LockedSentinelClient.new"
+rust_code = "redis::LockedSentinelClient::new({arg0})"
+rust_imports = ["redis::LockedSentinelClient"]
+needs_result = false
+param_types = ["SentinelClient"]
+
+[[mappings.functions]]
+python = "redis.SentinelClient.build"
+rust_code = "redis::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::SentinelClient"]
+needs_result = false
+param_types = ["Vec<T>", "String", "Option<SentinelNodeConnectionInfo>", "SentinelServerType"]
+
+[[mappings.functions]]
+python = "redis.SentinelClient.build"
+rust_code = "redis::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::SentinelClient"]
+needs_result = false
+param_types = ["Vec<T>", "implAsRef<str>", "Option<SentinelNodeConnectionInfo>", "SentinelServerType"]
+
+[[mappings.functions]]
+python = "redis.SentinelClientBuilder.new"
+rust_code = "redis::SentinelClientBuilder::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["redis::SentinelClientBuilder"]
+needs_result = false
+param_types = ["T", "implAsRef<str>", "SentinelServerType"]
+
+[[mappings.methods]]
+python = "StreamTrimOptions.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamTrimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamTrimOptions.set_deletion_policy"
+rust_code = "{self}.set_deletion_policy({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamTrimOptions"
+param_types = ["StreamDeletionPolicy"]
+
+[[mappings.methods]]
+python = "StreamTrimOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "StreamAddOptions.nomkstream"
+rust_code = "{self}.nomkstream()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamAddOptions"
+
+[[mappings.methods]]
+python = "StreamAddOptions.trim"
+rust_code = "{self}.trim({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamAddOptions"
+param_types = ["StreamTrimStrategy"]
+
+[[mappings.methods]]
+python = "StreamAddOptions.set_deletion_policy"
+rust_code = "{self}.set_deletion_policy({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamAddOptions"
+param_types = ["StreamDeletionPolicy"]
+
+[[mappings.methods]]
+python = "StreamAddOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "StreamAutoClaimOptions.count"
+rust_code = "{self}.count({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamAutoClaimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamAutoClaimOptions.with_justid"
+rust_code = "{self}.with_justid()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamAutoClaimOptions"
+
+[[mappings.methods]]
+python = "StreamAutoClaimOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "StreamClaimOptions.idle"
+rust_code = "{self}.idle({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamClaimOptions.time"
+rust_code = "{self}.time({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamClaimOptions.retry"
+rust_code = "{self}.retry({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamClaimOptions.with_force"
+rust_code = "{self}.with_force()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+
+[[mappings.methods]]
+python = "StreamClaimOptions.with_justid"
+rust_code = "{self}.with_justid()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+
+[[mappings.methods]]
+python = "StreamClaimOptions.with_lastid"
+rust_code = "{self}.with_lastid({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamClaimOptions"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "StreamClaimOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "StreamReadOptions.read_only"
+rust_code = "{self}.read_only()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "StreamReadOptions.noack"
+rust_code = "{self}.noack()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamReadOptions"
+
+[[mappings.methods]]
+python = "StreamReadOptions.block"
+rust_code = "{self}.block({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamReadOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamReadOptions.count"
+rust_code = "{self}.count({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamReadOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamReadOptions.group"
+rust_code = "{self}.group({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamReadOptions"
+param_types = ["GN", "CN"]
+
+[[mappings.methods]]
+python = "StreamReadOptions.claim"
+rust_code = "{self}.claim({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "StreamReadOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "StreamReadOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "StreamId.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "StreamId.contains_key"
+rust_code = "{self}.contains_key({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "StreamId.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "StreamId.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "VSimOptions.set_with_scores"
+rust_code = "{self}.set_with_scores({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_count"
+rust_code = "{self}.set_count({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_search_exploration_factor"
+rust_code = "{self}.set_search_exploration_factor({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_filter_expression"
+rust_code = "{self}.set_filter_expression({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["S"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_max_filtering_effort"
+rust_code = "{self}.set_max_filtering_effort({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_truth"
+rust_code = "{self}.set_truth({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "VSimOptions.set_no_thread"
+rust_code = "{self}.set_no_thread({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VSimOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "VSimOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_reduction_dimension"
+rust_code = "{self}.set_reduction_dimension({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_check_and_set_style"
+rust_code = "{self}.set_check_and_set_style({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_quantization"
+rust_code = "{self}.set_quantization({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["VectorQuantization"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_build_exploration_factor"
+rust_code = "{self}.set_build_exploration_factor({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_attributes"
+rust_code = "{self}.set_attributes({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["serde_json::Value"]
+
+[[mappings.methods]]
+python = "VAddOptions.set_max_number_of_links"
+rust_code = "{self}.set_max_number_of_links({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VAddOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "VAddOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "VEmbOptions.set_raw_representation"
+rust_code = "{self}.set_raw_representation({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "VEmbOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "VEmbOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "ScanOptions.with_count"
+rust_code = "{self}.with_count({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScanOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ScanOptions.with_pattern"
+rust_code = "{self}.with_pattern({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScanOptions"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "ScanOptions.with_type"
+rust_code = "{self}.with_type({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScanOptions"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "ScanOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "ScanOptions.num_of_args"
+rust_code = "{self}.num_of_args()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "LposOptions.count"
+rust_code = "{self}.count({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "LposOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "LposOptions.rank"
+rust_code = "{self}.rank({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "LposOptions"
+param_types = ["isize"]
+
+[[mappings.methods]]
+python = "LposOptions.maxlen"
+rust_code = "{self}.maxlen({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "LposOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "LposOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "LposOptions.num_of_args"
+rust_code = "{self}.num_of_args()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "CopyOptions.db"
+rust_code = "{self}.db({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CopyOptions"
+param_types = ["Db2"]
+
+[[mappings.methods]]
+python = "CopyOptions.replace"
+rust_code = "{self}.replace({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CopyOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "CopyOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "SetOptions.conditional_set"
+rust_code = "{self}.conditional_set({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SetOptions"
+param_types = ["ExistenceCheck"]
+
+[[mappings.methods]]
+python = "SetOptions.value_comparison"
+rust_code = "{self}.value_comparison({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SetOptions"
+param_types = ["ValueComparison"]
+
+[[mappings.methods]]
+python = "SetOptions.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SetOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "SetOptions.with_expiration"
+rust_code = "{self}.with_expiration({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SetOptions"
+param_types = ["SetExpiry"]
+
+[[mappings.methods]]
+python = "SetOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "MSetOptions.conditional_set"
+rust_code = "{self}.conditional_set({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MSetOptions"
+param_types = ["ExistenceCheck"]
+
+[[mappings.methods]]
+python = "MSetOptions.with_expiration"
+rust_code = "{self}.with_expiration({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "MSetOptions"
+param_types = ["SetExpiry"]
+
+[[mappings.methods]]
+python = "MSetOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "FlushAllOptions.blocking"
+rust_code = "{self}.blocking({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "FlushAllOptions"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "FlushAllOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "HashFieldExpirationOptions.set_existence_check"
+rust_code = "{self}.set_existence_check({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HashFieldExpirationOptions"
+param_types = ["FieldExistenceCheck"]
+
+[[mappings.methods]]
+python = "HashFieldExpirationOptions.set_expiration"
+rust_code = "{self}.set_expiration({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "HashFieldExpirationOptions"
+param_types = ["SetExpiry"]
+
+[[mappings.methods]]
+python = "HashFieldExpirationOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "SortedSetAddOptions.include_changed_count"
+rust_code = "{self}.include_changed_count()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SortedSetAddOptions"
+
+[[mappings.methods]]
+python = "SortedSetAddOptions.increment_score"
+rust_code = "{self}.increment_score()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SortedSetAddOptions"
+
+[[mappings.methods]]
+python = "SortedSetAddOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "Coord.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "Coord.num_of_args"
+rust_code = "{self}.num_of_args()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "RadiusOptions.limit"
+rust_code = "{self}.limit({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "RadiusOptions.with_dist"
+rust_code = "{self}.with_dist()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+
+[[mappings.methods]]
+python = "RadiusOptions.with_coord"
+rust_code = "{self}.with_coord()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+
+[[mappings.methods]]
+python = "RadiusOptions.order"
+rust_code = "{self}.order({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+param_types = ["RadiusOrder"]
+
+[[mappings.methods]]
+python = "RadiusOptions.store"
+rust_code = "{self}.store({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+param_types = ["K"]
+
+[[mappings.methods]]
+python = "RadiusOptions.store_dist"
+rust_code = "{self}.store_dist({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RadiusOptions"
+param_types = ["K"]
+
+[[mappings.methods]]
+python = "RadiusOptions.write_redis_args"
+rust_code = "{self}.write_redis_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutW"]
+
+[[mappings.methods]]
+python = "RadiusOptions.num_of_args"
+rust_code = "{self}.num_of_args()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "CacheConfig.set_mode"
+rust_code = "{self}.set_mode({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CacheConfig"
+param_types = ["CacheMode"]
+
+[[mappings.methods]]
+python = "CacheConfig.set_size"
+rust_code = "{self}.set_size({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CacheConfig"
+param_types = ["NonZeroUsize"]
+
+[[mappings.methods]]
+python = "CacheConfig.set_default_client_ttl"
+rust_code = "{self}.set_default_client_ttl({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CacheConfig"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "InfoDict.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "T"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "InfoDict.find"
+rust_code = "{self}.find({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&&str"]
+
+[[mappings.methods]]
+python = "InfoDict.contains_key"
+rust_code = "{self}.contains_key({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&&str"]
+
+[[mappings.methods]]
+python = "InfoDict.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "InfoDict.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "InfoDict.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Target"
+
+[[mappings.methods]]
+python = "TcpSettings.nodelay"
+rust_code = "{self}.nodelay()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "TcpSettings.keepalive"
+rust_code = "{self}.keepalive()"
+rust_imports = []
+needs_result = false
+returns = "TcpKeepalive"
+
+[[mappings.methods]]
+python = "TcpSettings.user_timeout"
+rust_code = "{self}.user_timeout()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "TcpSettings.set_nodelay"
+rust_code = "{self}.set_nodelay({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TcpSettings"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "TcpSettings.set_keepalive"
+rust_code = "{self}.set_keepalive({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TcpSettings"
+param_types = ["socket2::TcpKeepalive"]
+
+[[mappings.methods]]
+python = "TcpSettings.set_user_timeout"
+rust_code = "{self}.set_user_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TcpSettings"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "Client.get_connection"
+rust_code = "{self}.get_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Client.get_connection_with_timeout"
+rust_code = "{self}.get_connection_with_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "Client.get_connection_info"
+rust_code = "{self}.get_connection_info()"
+rust_imports = []
+needs_result = false
+returns = "ConnectionInfo"
+
+[[mappings.methods]]
+python = "Client.get_multiplexed_async_connection"
+rust_code = "{self}.get_multiplexed_async_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Client.get_multiplexed_async_connection_with_config"
+rust_code = "{self}.get_multiplexed_async_connection_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&AsyncConnectionConfig"]
+
+[[mappings.methods]]
+python = "Client.get_connection_manager"
+rust_code = "{self}.get_connection_manager()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Client.get_connection_manager_with_config"
+rust_code = "{self}.get_connection_manager_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["crate::aio::ConnectionManagerConfig"]
+
+[[mappings.methods]]
+python = "Client.get_async_pubsub"
+rust_code = "{self}.get_async_pubsub()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Client.get_async_monitor"
+rust_code = "{self}.get_async_monitor()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Client.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Client.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]", "usize", "usize"]
+
+[[mappings.methods]]
+python = "Client.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "Client.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Client.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "AsyncConnectionConfig.set_connection_timeout"
+rust_code = "{self}.set_connection_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AsyncConnectionConfig"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "AsyncConnectionConfig.set_response_timeout"
+rust_code = "{self}.set_response_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AsyncConnectionConfig"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "AsyncConnectionConfig.set_push_sender"
+rust_code = "{self}.set_push_sender({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AsyncConnectionConfig"
+param_types = ["implAsyncPushSender"]
+
+[[mappings.methods]]
+python = "AsyncConnectionConfig.set_cache_config"
+rust_code = "{self}.set_cache_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AsyncConnectionConfig"
+param_types = ["CacheConfig"]
+
+[[mappings.methods]]
+python = "AsyncConnectionConfig.set_dns_resolver"
+rust_code = "{self}.set_dns_resolver({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "AsyncConnectionConfig"
+param_types = ["implAsyncDNSResolver"]
+
+[[mappings.methods]]
+python = "ClusterPipeline.query"
+rust_code = "{self}.query({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutClusterConnection"]
+
+[[mappings.methods]]
+python = "ClusterPipeline.exec"
+rust_code = "{self}.exec({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutClusterConnection"]
+
+[[mappings.methods]]
+python = "ClusterConfig.set_connection_timeout"
+rust_code = "{self}.set_connection_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterConfig"
+param_types = ["std::time::Duration"]
+
+[[mappings.methods]]
+python = "ClusterConfig.set_response_timeout"
+rust_code = "{self}.set_response_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterConfig"
+param_types = ["std::time::Duration"]
+
+[[mappings.methods]]
+python = "ClusterConfig.set_push_sender"
+rust_code = "{self}.set_push_sender({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterConfig"
+param_types = ["implcrate::aio::AsyncPushSender"]
+
+[[mappings.methods]]
+python = "ClusterConfig.set_dns_resolver"
+rust_code = "{self}.set_dns_resolver({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterConfig"
+param_types = ["implcrate::io::AsyncDNSResolver"]
+
+[[mappings.methods]]
+python = "ClusterConnection.set_auto_reconnect"
+rust_code = "{self}.set_auto_reconnect({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ClusterConnection.set_write_timeout"
+rust_code = "{self}.set_write_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ClusterConnection.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ClusterConnection.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.route_command"
+rust_code = "{self}.route_command({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd", "RoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.supports_pipelining"
+rust_code = "{self}.supports_pipelining()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.req_command"
+rust_code = "{self}.req_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "ClusterConnection.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.route_command"
+rust_code = "{self}.route_command({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Cmd", "RoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.route_pipeline"
+rust_code = "{self}.route_pipeline({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["crate::Pipeline", "usize", "usize", "SingleNodeRoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.ssubscribe"
+rust_code = "{self}.ssubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.sunsubscribe"
+rust_code = "{self}.sunsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_cache_statistics"
+rust_code = "{self}.get_cache_statistics()"
+rust_imports = []
+needs_result = false
+returns = "CacheStatistics"
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'aCmd"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'acrate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.password"
+rust_code = "{self}.password({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.username"
+rust_code = "{self}.username({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.retries"
+rust_code = "{self}.retries({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["u32"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.max_retry_wait"
+rust_code = "{self}.max_retry_wait({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.min_retry_wait"
+rust_code = "{self}.min_retry_wait({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.retry_wait_formula"
+rust_code = "{self}.retry_wait_formula({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["u64", "u64"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.tls"
+rust_code = "{self}.tls({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["TlsMode"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.danger_accept_invalid_hostnames"
+rust_code = "{self}.danger_accept_invalid_hostnames({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.certs"
+rust_code = "{self}.certs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["TlsCertificates"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.read_from_replicas"
+rust_code = "{self}.read_from_replicas()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.connection_timeout"
+rust_code = "{self}.connection_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.response_timeout"
+rust_code = "{self}.response_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.use_protocol"
+rust_code = "{self}.use_protocol({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["ProtocolVersion"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.push_sender"
+rust_code = "{self}.push_sender({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["implAsyncPushSender"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.tcp_settings"
+rust_code = "{self}.tcp_settings({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["TcpSettings"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.async_dns_resolver"
+rust_code = "{self}.async_dns_resolver({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["implAsyncDNSResolver"]
+
+[[mappings.methods]]
+python = "ClusterClientBuilder.cache_config"
+rust_code = "{self}.cache_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClusterClientBuilder"
+param_types = ["CacheConfig"]
+
+[[mappings.methods]]
+python = "ClusterClient.get_connection"
+rust_code = "{self}.get_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "ClusterClient.get_connection_with_config"
+rust_code = "{self}.get_connection_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["cluster::ClusterConfig"]
+
+[[mappings.methods]]
+python = "ClusterClient.get_async_connection"
+rust_code = "{self}.get_async_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "ClusterClient.get_async_connection_with_config"
+rust_code = "{self}.get_async_connection_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["cluster::ClusterConfig"]
+
+[[mappings.methods]]
+python = "ClusterClient.get_pending_async_connection_with_config"
+rust_code = "{self}.get_pending_async_connection_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ClusterConnection"
+param_types = ["cluster::ClusterConfig"]
+
+[[mappings.methods]]
+python = "ClusterClient.get_generic_connection"
+rust_code = "{self}.get_generic_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "ClusterClient.get_async_generic_connection"
+rust_code = "{self}.get_async_generic_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "ClusterConnection.set_auto_reconnect"
+rust_code = "{self}.set_auto_reconnect({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ClusterConnection.set_write_timeout"
+rust_code = "{self}.set_write_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ClusterConnection.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ClusterConnection.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.route_command"
+rust_code = "{self}.route_command({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd", "RoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.supports_pipelining"
+rust_code = "{self}.supports_pipelining()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.req_command"
+rust_code = "{self}.req_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "ClusterConnection.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ClusterConnection.route_command"
+rust_code = "{self}.route_command({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Cmd", "RoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.route_pipeline"
+rust_code = "{self}.route_pipeline({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["crate::Pipeline", "usize", "usize", "SingleNodeRoutingInfo"]
+
+[[mappings.methods]]
+python = "ClusterConnection.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.ssubscribe"
+rust_code = "{self}.ssubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.sunsubscribe"
+rust_code = "{self}.sunsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_cache_statistics"
+rust_code = "{self}.get_cache_statistics()"
+rust_imports = []
+needs_result = false
+returns = "CacheStatistics"
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'aCmd"]
+
+[[mappings.methods]]
+python = "ClusterConnection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'acrate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ClusterConnection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "ValueCodec.encode"
+rust_code = "{self}.encode({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns_self = true
+param_types = ["Vec<u8>", "&mutBytesMut"]
+
+[[mappings.methods]]
+python = "ValueCodec.decode"
+rust_code = "{self}.decode({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Item"
+param_types = ["&mutBytesMut"]
+
+[[mappings.methods]]
+python = "ValueCodec.decode_eof"
+rust_code = "{self}.decode_eof({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Item"
+param_types = ["&mutBytesMut"]
+
+[[mappings.methods]]
+python = "Parser.parse_value"
+rust_code = "{self}.parse_value({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ConnectionInfo.addr"
+rust_code = "{self}.addr()"
+rust_imports = []
+needs_result = false
+returns = "ConnectionAddr"
+
+[[mappings.methods]]
+python = "ConnectionInfo.tcp_settings"
+rust_code = "{self}.tcp_settings()"
+rust_imports = []
+needs_result = false
+returns = "TcpSettings"
+
+[[mappings.methods]]
+python = "ConnectionInfo.redis_settings"
+rust_code = "{self}.redis_settings()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+
+[[mappings.methods]]
+python = "ConnectionInfo.set_addr"
+rust_code = "{self}.set_addr({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionInfo"
+param_types = ["ConnectionAddr"]
+
+[[mappings.methods]]
+python = "ConnectionInfo.set_tcp_settings"
+rust_code = "{self}.set_tcp_settings({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionInfo"
+param_types = ["TcpSettings"]
+
+[[mappings.methods]]
+python = "ConnectionInfo.set_redis_settings"
+rust_code = "{self}.set_redis_settings({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionInfo"
+param_types = ["RedisConnectionInfo"]
+
+[[mappings.methods]]
+python = "ConnectionInfo.into_connection_info"
+rust_code = "{self}.into_connection_info()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.username"
+rust_code = "{self}.username()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.password"
+rust_code = "{self}.password()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.protocol"
+rust_code = "{self}.protocol()"
+rust_imports = []
+needs_result = false
+returns = "ProtocolVersion"
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.skip_set_lib_name"
+rust_code = "{self}.skip_set_lib_name()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.db"
+rust_code = "{self}.db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.set_username"
+rust_code = "{self}.set_username({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.set_password"
+rust_code = "{self}.set_password({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.set_protocol"
+rust_code = "{self}.set_protocol({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+param_types = ["ProtocolVersion"]
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.set_skip_set_lib_name"
+rust_code = "{self}.set_skip_set_lib_name()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+
+[[mappings.methods]]
+python = "RedisConnectionInfo.set_db"
+rust_code = "{self}.set_db({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisConnectionInfo"
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "Connection.subscribe"
+rust_code = "{self}.subscribe({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["C", "F"]
+
+[[mappings.methods]]
+python = "Connection.psubscribe"
+rust_code = "{self}.psubscribe({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["P", "F"]
+
+[[mappings.methods]]
+python = "Connection.send_packed_command"
+rust_code = "{self}.send_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Connection.set_write_timeout"
+rust_code = "{self}.set_write_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "Connection.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "Connection.recv_response"
+rust_code = "{self}.recv_response()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Connection.send_packed_command"
+rust_code = "{self}.send_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Connection.recv_response"
+rust_code = "{self}.recv_response()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Connection.set_write_timeout"
+rust_code = "{self}.set_write_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "Connection.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "Connection.as_pubsub"
+rust_code = "{self}.as_pubsub()"
+rust_imports = []
+needs_result = false
+returns = "PubSub"
+
+[[mappings.methods]]
+python = "Connection.set_push_sender"
+rust_code = "{self}.set_push_sender({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["SyncPushSender"]
+
+[[mappings.methods]]
+python = "Connection.subscribe_resp3"
+rust_code = "{self}.subscribe_resp3({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Connection.psubscribe_resp3"
+rust_code = "{self}.psubscribe_resp3({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Connection.unsubscribe_resp3"
+rust_code = "{self}.unsubscribe_resp3({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Connection.punsubscribe_resp3"
+rust_code = "{self}.punsubscribe_resp3({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Connection.req_command"
+rust_code = "{self}.req_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd"]
+
+[[mappings.methods]]
+python = "Connection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Connection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&[u8]", "usize", "usize"]
+
+[[mappings.methods]]
+python = "Connection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "Connection.check_connection"
+rust_code = "{self}.check_connection()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Connection.is_open"
+rust_code = "{self}.is_open()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PubSub.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.ping_message"
+rust_code = "{self}.ping_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.ping"
+rust_code = "{self}.ping()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.get_message"
+rust_code = "{self}.get_message()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "PubSub.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PubSub.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.ping"
+rust_code = "{self}.ping()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.ping_message"
+rust_code = "{self}.ping_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.on_message"
+rust_code = "{self}.on_message()"
+rust_imports = []
+needs_result = false
+returns = "implStream"
+
+[[mappings.methods]]
+python = "PubSub.into_on_message"
+rust_code = "{self}.into_on_message()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PubSubStream"
+
+[[mappings.methods]]
+python = "PubSub.split"
+rust_code = "{self}.split()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "Msg.get_channel"
+rust_code = "{self}.get_channel()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Msg.get_channel_name"
+rust_code = "{self}.get_channel_name()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Msg.get_payload"
+rust_code = "{self}.get_payload()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "Msg.get_payload_bytes"
+rust_code = "{self}.get_payload_bytes()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Msg.from_pattern"
+rust_code = "{self}.from_pattern()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Msg.get_pattern"
+rust_code = "{self}.get_pattern()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "CommandCacheConfig.set_enable_cache"
+rust_code = "{self}.set_enable_cache({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CommandCacheConfig"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "CommandCacheConfig.set_client_side_ttl"
+rust_code = "{self}.set_client_side_ttl({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "CommandCacheConfig"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "Cmd.arg_idx"
+rust_code = "{self}.arg_idx({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Cmd.position"
+rust_code = "{self}.position({arg0})"
+rust_imports = []
+needs_result = false
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Cmd.write_arg"
+rust_code = "{self}.write_arg({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "Cmd.write_arg_fmt"
+rust_code = "{self}.write_arg_fmt({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implfmt::Display"]
+
+[[mappings.methods]]
+python = "Cmd.writer_for_next_arg"
+rust_code = "{self}.writer_for_next_arg()"
+rust_imports = []
+needs_result = false
+returns = "implWrite+'_"
+
+[[mappings.methods]]
+python = "Cmd.reserve_space_for_args"
+rust_code = "{self}.reserve_space_for_args({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["implIntoIterator<Item=usize>"]
+
+[[mappings.methods]]
+python = "Cmd.bufmut_for_next_arg"
+rust_code = "{self}.bufmut_for_next_arg({arg0})"
+rust_imports = []
+needs_result = false
+returns = "BufMut+'_"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Cmd.clear"
+rust_code = "{self}.clear()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Cmd.arg"
+rust_code = "{self}.arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutCmd"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Cmd.take"
+rust_code = "{self}.take()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Cmd"
+
+[[mappings.methods]]
+python = "Cmd.cursor_arg"
+rust_code = "{self}.cursor_arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutCmd"
+param_types = ["u64"]
+
+[[mappings.methods]]
+python = "Cmd.get_packed_command"
+rust_code = "{self}.get_packed_command()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Cmd.write_packed_command"
+rust_code = "{self}.write_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutVec<u8>"]
+
+[[mappings.methods]]
+python = "Cmd.in_scan_mode"
+rust_code = "{self}.in_scan_mode()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Cmd.query"
+rust_code = "{self}.query({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Cmd.query_async"
+rust_code = "{self}.query_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutimplcrate::aio::ConnectionLike"]
+
+[[mappings.methods]]
+python = "Cmd.iter"
+rust_code = "{self}.iter({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Cmd.iter_async"
+rust_code = "{self}.iter_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&'amut(dynAsyncConnection+Send)"]
+
+[[mappings.methods]]
+python = "Cmd.exec"
+rust_code = "{self}.exec({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Cmd.exec_async"
+rust_code = "{self}.exec_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutimplcrate::aio::ConnectionLike"]
+
+[[mappings.methods]]
+python = "Cmd.args_iter"
+rust_code = "{self}.args_iter()"
+rust_imports = []
+needs_result = false
+returns = "implClone+ExactSizeIterator"
+
+[[mappings.methods]]
+python = "Cmd.set_no_response"
+rust_code = "{self}.set_no_response({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutCmd"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Cmd.is_no_response"
+rust_code = "{self}.is_no_response()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Cmd.set_cache_config"
+rust_code = "{self}.set_cache_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutCmd"
+param_types = ["CommandCacheConfig"]
+
+[[mappings.methods]]
+python = "Iter.next"
+rust_code = "{self}.next()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "AsyncIter.next_item"
+rust_code = "{self}.next_item()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "AsyncIter.poll_next"
+rust_code = "{self}.poll_next({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Poll"
+param_types = ["&mutContext<'_>"]
+
+[[mappings.methods]]
+python = "Pipeline.atomic"
+rust_code = "{self}.atomic()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutPipeline"
+
+[[mappings.methods]]
+python = "Pipeline.ignore_errors"
+rust_code = "{self}.ignore_errors()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutPipeline"
+
+[[mappings.methods]]
+python = "Pipeline.is_transaction"
+rust_code = "{self}.is_transaction()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Pipeline.get_packed_pipeline"
+rust_code = "{self}.get_packed_pipeline()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Pipeline.len"
+rust_code = "{self}.len()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Pipeline.is_empty"
+rust_code = "{self}.is_empty()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Pipeline.query"
+rust_code = "{self}.query({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Pipeline.query_async"
+rust_code = "{self}.query_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutimplcrate::aio::ConnectionLike"]
+
+[[mappings.methods]]
+python = "Pipeline.exec"
+rust_code = "{self}.exec({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Pipeline.exec_async"
+rust_code = "{self}.exec_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutimplcrate::aio::ConnectionLike"]
+
+[[mappings.methods]]
+python = "Pipeline.set_cache_config"
+rust_code = "{self}.set_cache_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["CommandCacheConfig"]
+
+[[mappings.methods]]
+python = "Pipeline.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ClientTlsParams.clone"
+rust_code = "{self}.clone()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ClientTlsParams"
+
+[[mappings.methods]]
+python = "ParsingError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ServerError.kind"
+rust_code = "{self}.kind()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ServerErrorKind"
+
+[[mappings.methods]]
+python = "ServerError.code"
+rust_code = "{self}.code()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "ServerError.details"
+rust_code = "{self}.details()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ServerError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RedisError.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&RedisError"]
+
+[[mappings.methods]]
+python = "RedisError.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "RedisError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RedisError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "RedisError.kind"
+rust_code = "{self}.kind()"
+rust_imports = []
+needs_result = false
+returns = "ErrorKind"
+
+[[mappings.methods]]
+python = "RedisError.detail"
+rust_code = "{self}.detail()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.code"
+rust_code = "{self}.code()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.category"
+rust_code = "{self}.category()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "RedisError.is_io_error"
+rust_code = "{self}.is_io_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.is_cluster_error"
+rust_code = "{self}.is_cluster_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.is_connection_refusal"
+rust_code = "{self}.is_connection_refusal()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.is_timeout"
+rust_code = "{self}.is_timeout()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.is_connection_dropped"
+rust_code = "{self}.is_connection_dropped()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.is_unrecoverable_error"
+rust_code = "{self}.is_unrecoverable_error()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.redirect_node"
+rust_code = "{self}.redirect_node()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "RedisError.retry_method"
+rust_code = "{self}.retry_method()"
+rust_imports = []
+needs_result = false
+returns = "RetryMethod"
+
+[[mappings.methods]]
+python = "RedisError.into_server_errors"
+rust_code = "{self}.into_server_errors()"
+rust_imports = []
+needs_result = false
+returns = "Arc"
+
+[[mappings.methods]]
+python = "Monitor.on_message"
+rust_code = "{self}.on_message()"
+rust_imports = []
+needs_result = false
+returns = "implStream"
+
+[[mappings.methods]]
+python = "Monitor.into_on_message"
+rust_code = "{self}.into_on_message()"
+rust_imports = []
+needs_result = false
+returns = "implStream"
+
+[[mappings.methods]]
+python = "PubSubSink.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSubSink.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSubSink.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSubSink.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSubSink.ping_message"
+rust_code = "{self}.ping_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSubSink.ping"
+rust_code = "{self}.ping()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "PubSub.ping_message"
+rust_code = "{self}.ping_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.ping"
+rust_code = "{self}.ping()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.get_message"
+rust_code = "{self}.get_message()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.set_read_timeout"
+rust_code = "{self}.set_read_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "PubSub.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "PubSub.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.ping"
+rust_code = "{self}.ping()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "PubSub.ping_message"
+rust_code = "{self}.ping_message({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "PubSub.on_message"
+rust_code = "{self}.on_message()"
+rust_imports = []
+needs_result = false
+returns = "implStream"
+
+[[mappings.methods]]
+python = "PubSub.into_on_message"
+rust_code = "{self}.into_on_message()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "PubSubStream"
+
+[[mappings.methods]]
+python = "PubSub.split"
+rust_code = "{self}.split()"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+[[mappings.methods]]
+python = "MultiplexedConnection.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.set_response_timeout"
+rust_code = "{self}.set_response_timeout({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["std::time::Duration"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.send_packed_command"
+rust_code = "{self}.send_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.send_packed_commands"
+rust_code = "{self}.send_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&crate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.get_cache_statistics"
+rust_code = "{self}.get_cache_statistics()"
+rust_imports = []
+needs_result = false
+returns = "CacheStatistics"
+
+[[mappings.methods]]
+python = "MultiplexedConnection.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'aCmd"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'acrate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "MultiplexedConnection.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "MultiplexedConnection.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.min_delay"
+rust_code = "{self}.min_delay()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.max_delay"
+rust_code = "{self}.max_delay()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.exponent_base"
+rust_code = "{self}.exponent_base()"
+rust_imports = []
+needs_result = false
+returns = "f32"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.number_of_retries"
+rust_code = "{self}.number_of_retries()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.response_timeout"
+rust_code = "{self}.response_timeout()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.connection_timeout"
+rust_code = "{self}.connection_timeout()"
+rust_imports = []
+needs_result = false
+returns = "Duration"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.automatic_resubscription"
+rust_code = "{self}.automatic_resubscription()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.cache_config"
+rust_code = "{self}.cache_config()"
+rust_imports = []
+needs_result = false
+returns = "CacheConfig"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_min_delay"
+rust_code = "{self}.set_min_delay({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_max_delay"
+rust_code = "{self}.set_max_delay({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["Duration"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_exponent_base"
+rust_code = "{self}.set_exponent_base({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["f32"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_number_of_retries"
+rust_code = "{self}.set_number_of_retries({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_response_timeout"
+rust_code = "{self}.set_response_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_connection_timeout"
+rust_code = "{self}.set_connection_timeout({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["Option<Duration>"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_push_sender"
+rust_code = "{self}.set_push_sender({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["implAsyncPushSender"]
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_automatic_resubscription"
+rust_code = "{self}.set_automatic_resubscription()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+
+[[mappings.methods]]
+python = "ConnectionManagerConfig.set_cache_config"
+rust_code = "{self}.set_cache_config({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ConnectionManagerConfig"
+param_types = ["crate::caching::CacheConfig"]
+
+[[mappings.methods]]
+python = "ConnectionManager.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "ConnectionManager.send_packed_command"
+rust_code = "{self}.send_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&Cmd"]
+
+[[mappings.methods]]
+python = "ConnectionManager.send_packed_commands"
+rust_code = "{self}.send_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&crate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ConnectionManager.subscribe"
+rust_code = "{self}.subscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ConnectionManager.unsubscribe"
+rust_code = "{self}.unsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ConnectionManager.psubscribe"
+rust_code = "{self}.psubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ConnectionManager.punsubscribe"
+rust_code = "{self}.punsubscribe({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["implToRedisArgs"]
+
+[[mappings.methods]]
+python = "ConnectionManager.get_cache_statistics"
+rust_code = "{self}.get_cache_statistics()"
+rust_imports = []
+needs_result = false
+returns = "CacheStatistics"
+
+[[mappings.methods]]
+python = "ConnectionManager.req_packed_command"
+rust_code = "{self}.req_packed_command({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'aCmd"]
+
+[[mappings.methods]]
+python = "ConnectionManager.req_packed_commands"
+rust_code = "{self}.req_packed_commands({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns = "RedisFuture"
+param_types = ["&'acrate::Pipeline", "usize", "usize"]
+
+[[mappings.methods]]
+python = "ConnectionManager.get_db"
+rust_code = "{self}.get_db()"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "Script.get_hash"
+rust_code = "{self}.get_hash()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Script.load"
+rust_code = "{self}.load({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Script.load_async"
+rust_code = "{self}.load_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutC"]
+
+[[mappings.methods]]
+python = "Script.key"
+rust_code = "{self}.key({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScriptInvocation"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Script.arg"
+rust_code = "{self}.arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScriptInvocation"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Script.prepare_invoke"
+rust_code = "{self}.prepare_invoke()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ScriptInvocation"
+
+[[mappings.methods]]
+python = "Script.invoke"
+rust_code = "{self}.invoke({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "Script.invoke_async"
+rust_code = "{self}.invoke_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutC"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.arg"
+rust_code = "{self}.arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.key"
+rust_code = "{self}.key({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.invoke"
+rust_code = "{self}.invoke({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.invoke_async"
+rust_code = "{self}.invoke_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutimplcrate::aio::ConnectionLike"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.load"
+rust_code = "{self}.load({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutdynConnectionLike"]
+
+[[mappings.methods]]
+python = "ScriptInvocation.load_async"
+rust_code = "{self}.load_async({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&mutC"]
+
+[[mappings.methods]]
+python = "Sentinel.master_for"
+rust_code = "{self}.master_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.get_replica_clients"
+rust_code = "{self}.get_replica_clients({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.replica_for"
+rust_code = "{self}.replica_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.replica_rotate_for"
+rust_code = "{self}.replica_rotate_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.async_master_for"
+rust_code = "{self}.async_master_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.async_get_replica_clients"
+rust_code = "{self}.async_get_replica_clients({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.async_replica_for"
+rust_code = "{self}.async_replica_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "Sentinel.async_replica_rotate_for"
+rust_code = "{self}.async_replica_rotate_for({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&str", "Option<&SentinelNodeConnectionInfo>"]
+
+[[mappings.methods]]
+python = "SentinelNodeConnectionInfo.set_tls_mode"
+rust_code = "{self}.set_tls_mode({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelNodeConnectionInfo"
+param_types = ["TlsMode"]
+
+[[mappings.methods]]
+python = "SentinelNodeConnectionInfo.set_redis_connection_info"
+rust_code = "{self}.set_redis_connection_info({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelNodeConnectionInfo"
+param_types = ["RedisConnectionInfo"]
+
+[[mappings.methods]]
+python = "LockedSentinelClient.get_connection"
+rust_code = "{self}.get_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.get_client"
+rust_code = "{self}.get_client()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.get_sentinel_client"
+rust_code = "{self}.get_sentinel_client()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.get_connection"
+rust_code = "{self}.get_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.async_get_client"
+rust_code = "{self}.async_get_client()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.async_get_sentinel_client"
+rust_code = "{self}.async_get_sentinel_client()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.get_async_connection"
+rust_code = "{self}.get_async_connection()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClient.get_async_connection_with_config"
+rust_code = "{self}.get_async_connection_with_config({arg0})"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+param_types = ["&AsyncConnectionConfig"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.build"
+rust_code = "{self}.build()"
+rust_imports = []
+needs_result = false
+returns = "RedisResult"
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_tls_mode"
+rust_code = "{self}.set_client_to_redis_tls_mode({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["TlsMode"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_db"
+rust_code = "{self}.set_client_to_redis_db({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["i64"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_username"
+rust_code = "{self}.set_client_to_redis_username({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_password"
+rust_code = "{self}.set_client_to_redis_password({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_protocol"
+rust_code = "{self}.set_client_to_redis_protocol({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["ProtocolVersion"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_redis_certificates"
+rust_code = "{self}.set_client_to_redis_certificates({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["TlsCertificates"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_sentinel_tls_mode"
+rust_code = "{self}.set_client_to_sentinel_tls_mode({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["TlsMode"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_sentinel_username"
+rust_code = "{self}.set_client_to_sentinel_username({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_sentinel_password"
+rust_code = "{self}.set_client_to_sentinel_password({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["implAsRef<str>"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_sentinel_protocol"
+rust_code = "{self}.set_client_to_sentinel_protocol({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["ProtocolVersion"]
+
+[[mappings.methods]]
+python = "SentinelClientBuilder.set_client_to_sentinel_certificates"
+rust_code = "{self}.set_client_to_sentinel_certificates({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "SentinelClientBuilder"
+param_types = ["TlsCertificates"]
+
+[[mappings.types]]
+python = "StreamTrimOptions"
+rust = "redis::commands::streams::StreamTrimOptions"
+
+[[mappings.types]]
+python = "StreamAddOptions"
+rust = "redis::commands::streams::StreamAddOptions"
+
+[[mappings.types]]
+python = "StreamAutoClaimOptions"
+rust = "redis::commands::streams::StreamAutoClaimOptions"
+
+[[mappings.types]]
+python = "StreamClaimOptions"
+rust = "redis::commands::streams::StreamClaimOptions"
+
+[[mappings.types]]
+python = "StreamReadOptions"
+rust = "redis::commands::streams::StreamReadOptions"
+
+[[mappings.types]]
+python = "StreamAutoClaimReply"
+rust = "redis::commands::streams::StreamAutoClaimReply"
+
+[[mappings.types]]
+python = "StreamReadReply"
+rust = "redis::commands::streams::StreamReadReply"
+
+[[mappings.types]]
+python = "StreamRangeReply"
+rust = "redis::commands::streams::StreamRangeReply"
+
+[[mappings.types]]
+python = "StreamClaimReply"
+rust = "redis::commands::streams::StreamClaimReply"
+
+[[mappings.types]]
+python = "StreamPendingData"
+rust = "redis::commands::streams::StreamPendingData"
+
+[[mappings.types]]
+python = "StreamPendingCountReply"
+rust = "redis::commands::streams::StreamPendingCountReply"
+
+[[mappings.types]]
+python = "StreamInfoStreamReply"
+rust = "redis::commands::streams::StreamInfoStreamReply"
+
+[[mappings.types]]
+python = "StreamInfoConsumersReply"
+rust = "redis::commands::streams::StreamInfoConsumersReply"
+
+[[mappings.types]]
+python = "StreamInfoGroupsReply"
+rust = "redis::commands::streams::StreamInfoGroupsReply"
+
+[[mappings.types]]
+python = "StreamInfoConsumer"
+rust = "redis::commands::streams::StreamInfoConsumer"
+
+[[mappings.types]]
+python = "StreamInfoGroup"
+rust = "redis::commands::streams::StreamInfoGroup"
+
+[[mappings.types]]
+python = "StreamPendingId"
+rust = "redis::commands::streams::StreamPendingId"
+
+[[mappings.types]]
+python = "StreamKey"
+rust = "redis::commands::streams::StreamKey"
+
+[[mappings.types]]
+python = "StreamId"
+rust = "redis::commands::streams::StreamId"
+
+[[mappings.types]]
+python = "AclInfo"
+rust = "redis::commands::AclInfo"
+
+[[mappings.types]]
+python = "VSimOptions"
+rust = "redis::commands::vector_sets::VSimOptions"
+
+[[mappings.types]]
+python = "VAddOptions"
+rust = "redis::commands::vector_sets::VAddOptions"
+
+[[mappings.types]]
+python = "VEmbOptions"
+rust = "redis::commands::vector_sets::VEmbOptions"
+
+[[mappings.types]]
+python = "ScanOptions"
+rust = "redis::commands::ScanOptions"
+
+[[mappings.types]]
+python = "LposOptions"
+rust = "redis::commands::LposOptions"
+
+[[mappings.types]]
+python = "CopyOptions"
+rust = "redis::commands::CopyOptions"
+
+[[mappings.types]]
+python = "SetOptions"
+rust = "redis::commands::SetOptions"
+
+[[mappings.types]]
+python = "MSetOptions"
+rust = "redis::commands::MSetOptions"
+
+[[mappings.types]]
+python = "FlushAllOptions"
+rust = "redis::commands::FlushAllOptions"
+
+[[mappings.types]]
+python = "HashFieldExpirationOptions"
+rust = "redis::commands::HashFieldExpirationOptions"
+
+[[mappings.types]]
+python = "SortedSetAddOptions"
+rust = "redis::commands::SortedSetAddOptions"
+
+[[mappings.types]]
+python = "Coord"
+rust = "redis::commands::geo::Coord"
+
+[[mappings.types]]
+python = "RadiusOptions"
+rust = "redis::commands::geo::RadiusOptions"
+
+[[mappings.types]]
+python = "RadiusSearchResult"
+rust = "redis::commands::geo::RadiusSearchResult"
+
+[[mappings.types]]
+python = "CacheConfig"
+rust = "redis::caching::CacheConfig"
+
+[[mappings.types]]
+python = "CacheStatistics"
+rust = "redis::caching::CacheStatistics"
+
+[[mappings.types]]
+python = "InfoDict"
+rust = "redis::InfoDict"
+
+[[mappings.types]]
+python = "ReplicaInfo"
+rust = "redis::ReplicaInfo"
+
+[[mappings.types]]
+python = "PushInfo"
+rust = "redis::PushInfo"
+
+[[mappings.types]]
+python = "TcpSettings"
+rust = "redis::TcpSettings"
+
+[[mappings.types]]
+python = "Client"
+rust = "redis::Client"
+
+[[mappings.types]]
+python = "AsyncConnectionConfig"
+rust = "redis::client::AsyncConnectionConfig"
+
+[[mappings.types]]
+python = "ClusterPipeline"
+rust = "redis::cluster_handling::sync_connection::ClusterPipeline"
+
+[[mappings.types]]
+python = "ClusterConfig"
+rust = "redis::cluster_handling::sync_connection::ClusterConfig"
+
+[[mappings.types]]
+python = "ClusterConnection"
+rust = "redis::cluster_handling::sync_connection::ClusterConnection"
+
+[[mappings.types]]
+python = "ClusterClientBuilder"
+rust = "redis::cluster_handling::ClusterClientBuilder"
+
+[[mappings.types]]
+python = "ClusterClient"
+rust = "redis::cluster_handling::ClusterClient"
+
+[[mappings.types]]
+python = "ClusterConnection"
+rust = "redis::cluster_handling::async_connection::ClusterConnection"
+
+[[mappings.types]]
+python = "Route"
+rust = "redis::cluster_handling::routing::Route"
+
+[[mappings.types]]
+python = "ValueCodec"
+rust = "redis::ValueCodec"
+
+[[mappings.types]]
+python = "Parser"
+rust = "redis::Parser"
+
+[[mappings.types]]
+python = "TlsConnParams"
+rust = "redis::connection::TlsConnParams"
+
+[[mappings.types]]
+python = "ConnectionInfo"
+rust = "redis::ConnectionInfo"
+
+[[mappings.types]]
+python = "RedisConnectionInfo"
+rust = "redis::RedisConnectionInfo"
+
+[[mappings.types]]
+python = "Connection"
+rust = "redis::Connection"
+
+[[mappings.types]]
+python = "PubSub"
+rust = "redis::connection::PubSub"
+
+[[mappings.types]]
+python = "Msg"
+rust = "redis::connection::Msg"
+
+[[mappings.types]]
+python = "CommandCacheConfig"
+rust = "redis::cmd::CommandCacheConfig"
+
+[[mappings.types]]
+python = "Cmd"
+rust = "redis::Cmd"
+
+[[mappings.types]]
+python = "Iter"
+rust = "redis::cmd::Iter"
+
+[[mappings.types]]
+python = "AsyncIter"
+rust = "redis::cmd::AsyncIter"
+
+[[mappings.types]]
+python = "Pipeline"
+rust = "redis::Pipeline"
+
+[[mappings.types]]
+python = "ClientTlsConfig"
+rust = "redis::ClientTlsConfig"
+
+[[mappings.types]]
+python = "TlsCertificates"
+rust = "redis::TlsCertificates"
+
+[[mappings.types]]
+python = "ClientTlsParams"
+rust = "redis::ClientTlsParams"
+
+[[mappings.types]]
+python = "ParsingError"
+rust = "redis::ParsingError"
+
+[[mappings.types]]
+python = "ServerError"
+rust = "redis::ServerError"
+
+[[mappings.types]]
+python = "RedisError"
+rust = "redis::RedisError"
+
+[[mappings.types]]
+python = "Monitor"
+rust = "redis::aio::Monitor"
+
+[[mappings.types]]
+python = "PubSubSink"
+rust = "redis::aio::pubsub::PubSubSink"
+
+[[mappings.types]]
+python = "PubSub"
+rust = "redis::aio::pubsub::PubSub"
+
+[[mappings.types]]
+python = "MultiplexedConnection"
+rust = "redis::aio::MultiplexedConnection"
+
+[[mappings.types]]
+python = "SendError"
+rust = "redis::aio::SendError"
+
+[[mappings.types]]
+python = "ConnectionManagerConfig"
+rust = "redis::aio::ConnectionManagerConfig"
+
+[[mappings.types]]
+python = "ConnectionManager"
+rust = "redis::aio::ConnectionManager"
+
+[[mappings.types]]
+python = "Script"
+rust = "redis::Script"
+
+[[mappings.types]]
+python = "ScriptInvocation"
+rust = "redis::ScriptInvocation"
+
+[[mappings.types]]
+python = "Sentinel"
+rust = "redis::Sentinel"
+
+[[mappings.types]]
+python = "SentinelNodeConnectionInfo"
+rust = "redis::SentinelNodeConnectionInfo"
+
+[[mappings.types]]
+python = "LockedSentinelClient"
+rust = "redis::LockedSentinelClient"
+
+[[mappings.types]]
+python = "SentinelClient"
+rust = "redis::SentinelClient"
+
+[[mappings.types]]
+python = "SentinelClientBuilder"
+rust = "redis::SentinelClientBuilder"
+
+[[mappings.types]]
+python = "StreamMaxlen"
+rust = "redis::commands::streams::StreamMaxlen"
+
+[[mappings.types]]
+python = "StreamTrimmingMode"
+rust = "redis::commands::streams::StreamTrimmingMode"
+
+[[mappings.types]]
+python = "StreamTrimStrategy"
+rust = "redis::commands::streams::StreamTrimStrategy"
+
+[[mappings.types]]
+python = "StreamPendingReply"
+rust = "redis::commands::streams::StreamPendingReply"
+
+[[mappings.types]]
+python = "StreamDeletionPolicy"
+rust = "redis::commands::streams::StreamDeletionPolicy"
+
+[[mappings.types]]
+python = "XDelExStatusCode"
+rust = "redis::commands::streams::XDelExStatusCode"
+
+[[mappings.types]]
+python = "XAckDelStatusCode"
+rust = "redis::commands::streams::XAckDelStatusCode"
+
+[[mappings.types]]
+python = "Rule"
+rust = "redis::commands::acl::Rule"
+
+[[mappings.types]]
+python = "EmbeddingInput"
+rust = "redis::commands::vector_sets::EmbeddingInput"
+
+[[mappings.types]]
+python = "VectorAddInput"
+rust = "redis::commands::vector_sets::VectorAddInput"
+
+[[mappings.types]]
+python = "VectorQuantization"
+rust = "redis::commands::vector_sets::VectorQuantization"
+
+[[mappings.types]]
+python = "VectorSimilaritySearchInput"
+rust = "redis::commands::vector_sets::VectorSimilaritySearchInput"
+
+[[mappings.types]]
+python = "ControlFlow"
+rust = "redis::commands::ControlFlow"
+
+[[mappings.types]]
+python = "Direction"
+rust = "redis::commands::Direction"
+
+[[mappings.types]]
+python = "UpdateCheck"
+rust = "redis::commands::UpdateCheck"
+
+[[mappings.types]]
+python = "Unit"
+rust = "redis::commands::geo::Unit"
+
+[[mappings.types]]
+python = "RadiusOrder"
+rust = "redis::commands::geo::RadiusOrder"
+
+[[mappings.types]]
+python = "CacheMode"
+rust = "redis::caching::config::CacheMode"
+
+[[mappings.types]]
+python = "Expiry"
+rust = "redis::Expiry"
+
+[[mappings.types]]
+python = "SetExpiry"
+rust = "redis::SetExpiry"
+
+[[mappings.types]]
+python = "ExistenceCheck"
+rust = "redis::ExistenceCheck"
+
+[[mappings.types]]
+python = "FieldExistenceCheck"
+rust = "redis::FieldExistenceCheck"
+
+[[mappings.types]]
+python = "NumericBehavior"
+rust = "redis::NumericBehavior"
+
+[[mappings.types]]
+python = "Value"
+rust = "redis::Value"
+
+[[mappings.types]]
+python = "ValueComparison"
+rust = "redis::ValueComparison"
+
+[[mappings.types]]
+python = "VerbatimFormat"
+rust = "redis::VerbatimFormat"
+
+[[mappings.types]]
+python = "PushKind"
+rust = "redis::PushKind"
+
+[[mappings.types]]
+python = "MapIter"
+rust = "redis::MapIter"
+
+[[mappings.types]]
+python = "OwnedMapIter"
+rust = "redis::OwnedMapIter"
+
+[[mappings.types]]
+python = "Role"
+rust = "redis::Role"
+
+[[mappings.types]]
+python = "ProtocolVersion"
+rust = "redis::ProtocolVersion"
+
+[[mappings.types]]
+python = "ExpireOption"
+rust = "redis::ExpireOption"
+
+[[mappings.types]]
+python = "ValueType"
+rust = "redis::ValueType"
+
+[[mappings.types]]
+python = "IntegerReplyOrNoOp"
+rust = "redis::IntegerReplyOrNoOp"
+
+[[mappings.types]]
+python = "LogicalAggregateOp"
+rust = "redis::cluster_handling::routing::LogicalAggregateOp"
+
+[[mappings.types]]
+python = "AggregateOp"
+rust = "redis::cluster_handling::routing::AggregateOp"
+
+[[mappings.types]]
+python = "ResponsePolicy"
+rust = "redis::cluster_handling::routing::ResponsePolicy"
+
+[[mappings.types]]
+python = "RoutingInfo"
+rust = "redis::cluster_handling::RoutingInfo"
+
+[[mappings.types]]
+python = "SingleNodeRoutingInfo"
+rust = "redis::cluster_handling::SingleNodeRoutingInfo"
+
+[[mappings.types]]
+python = "MultipleNodeRoutingInfo"
+rust = "redis::cluster_handling::MultipleNodeRoutingInfo"
+
+[[mappings.types]]
+python = "MultiSlotArgPattern"
+rust = "redis::cluster_handling::routing::MultiSlotArgPattern"
+
+[[mappings.types]]
+python = "SlotAddr"
+rust = "redis::cluster_handling::routing::SlotAddr"
+
+[[mappings.types]]
+python = "TlsMode"
+rust = "redis::connection::TlsMode"
+
+[[mappings.types]]
+python = "ConnectionAddr"
+rust = "redis::ConnectionAddr"
+
+[[mappings.types]]
+python = "Arg"
+rust = "redis::cmd::Arg"
+
+[[mappings.types]]
+python = "ServerErrorKind"
+rust = "redis::ServerErrorKind"
+
+[[mappings.types]]
+python = "ErrorKind"
+rust = "redis::errors::redis_error::ErrorKind"
+
+[[mappings.types]]
+python = "RetryMethod"
+rust = "redis::errors::redis_error::RetryMethod"
+
+[[mappings.types]]
+python = "SentinelServerType"
+rust = "redis::SentinelServerType"

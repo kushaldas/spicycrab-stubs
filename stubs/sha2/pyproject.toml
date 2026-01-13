@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-sha2"
+version = "0.11.0-rc.3"
+description = "spicycrab type stubs for the sha2 Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+sha2 = "spicycrab_sha2"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_sha2"]

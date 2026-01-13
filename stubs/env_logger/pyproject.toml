@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-env_logger"
+version = "0.11.8"
+description = "spicycrab type stubs for the env_logger Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+env_logger = "spicycrab_env_logger"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_env_logger"]

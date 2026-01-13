@@ -1,0 +1,97 @@
+[package]
+name = "rustls-pemfile"
+rust_crate = "rustls-pemfile"
+rust_version = "2.2.0"
+python_module = "spicycrab_rustls_pemfile"
+
+[cargo.dependencies]
+rustls-pemfile = "2.2.0"
+
+[cargo.features]
+available = ["default", "std"]
+default = ["std"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.read_one_from_slice"
+rust_code = "rustls-pemfile::pemfile::read_one_from_slice({arg0})"
+rust_imports = ["rustls-pemfile::pemfile::read_one_from_slice"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.read_one"
+rust_code = "rustls-pemfile::pemfile::read_one({arg0})"
+rust_imports = ["rustls-pemfile::pemfile::read_one"]
+needs_result = true
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.read_all"
+rust_code = "rustls-pemfile::pemfile::read_all({arg0})"
+rust_imports = ["rustls-pemfile::pemfile::read_all"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.certs"
+rust_code = "rustls-pemfile::certs({arg0})"
+rust_imports = ["rustls-pemfile::certs"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.private_key"
+rust_code = "rustls-pemfile::private_key({arg0})"
+rust_imports = ["rustls-pemfile::private_key"]
+needs_result = true
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.csr"
+rust_code = "rustls-pemfile::csr({arg0})"
+rust_imports = ["rustls-pemfile::csr"]
+needs_result = true
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.crls"
+rust_code = "rustls-pemfile::crls({arg0})"
+rust_imports = ["rustls-pemfile::crls"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.rsa_private_keys"
+rust_code = "rustls-pemfile::rsa_private_keys({arg0})"
+rust_imports = ["rustls-pemfile::rsa_private_keys"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.pkcs8_private_keys"
+rust_code = "rustls-pemfile::pkcs8_private_keys({arg0})"
+rust_imports = ["rustls-pemfile::pkcs8_private_keys"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.ec_private_keys"
+rust_code = "rustls-pemfile::ec_private_keys({arg0})"
+rust_imports = ["rustls-pemfile::ec_private_keys"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.functions]]
+python = "rustls-pemfile.public_keys"
+rust_code = "rustls-pemfile::public_keys({arg0})"
+rust_imports = ["rustls-pemfile::public_keys"]
+needs_result = false
+param_types = ["&mutdynio::BufRead"]
+
+[[mappings.types]]
+python = "Item"
+rust = "rustls-pemfile::pemfile::Item"
+
+[[mappings.types]]
+python = "Error"
+rust = "rustls-pemfile::pemfile::Error"

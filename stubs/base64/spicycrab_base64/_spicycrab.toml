@@ -1,0 +1,497 @@
+[package]
+name = "base64"
+rust_crate = "base64"
+rust_version = "0.22.1"
+python_module = "spicycrab_base64"
+
+[cargo.dependencies]
+base64 = "0.22.1"
+
+[cargo.features]
+available = ["alloc", "default", "std"]
+default = ["std"]
+
+[[mappings.functions]]
+python = "base64.encode"
+rust_code = "base64::encode({arg0})"
+rust_imports = ["base64::encode"]
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "base64.encode_engine"
+rust_code = "base64::encode::encode_engine({arg0}, {arg1})"
+rust_imports = ["base64::encode::encode_engine"]
+needs_result = false
+param_types = ["&[u8]", "&E"]
+
+[[mappings.functions]]
+python = "base64.encode_engine_string"
+rust_code = "base64::encode::encode_engine_string({arg0}, {arg1}, {arg2})"
+rust_imports = ["base64::encode::encode_engine_string"]
+needs_result = false
+param_types = ["T", "&mutString", "&E"]
+
+[[mappings.functions]]
+python = "base64.encode_engine_slice"
+rust_code = "base64::encode::encode_engine_slice({arg0}, {arg1}, {arg2})"
+rust_imports = ["base64::encode::encode_engine_slice"]
+needs_result = true
+param_types = ["T", "&mut[u8]", "&E"]
+
+[[mappings.functions]]
+python = "base64.encoded_len"
+rust_code = "base64::encode::encoded_len({arg0}, {arg1})"
+rust_imports = ["base64::encode::encoded_len"]
+needs_result = false
+param_types = ["usize", "bool"]
+
+[[mappings.functions]]
+python = "base64.chunked_encode_matches_normal_encode_random"
+rust_code = "base64::chunked_encoder::chunked_encode_matches_normal_encode_random({arg0})"
+rust_imports = ["base64::chunked_encoder::chunked_encode_matches_normal_encode_random"]
+needs_result = false
+param_types = ["&S"]
+
+[[mappings.functions]]
+python = "base64.assert_encode_sanity"
+rust_code = "base64::tests::assert_encode_sanity({arg0}, {arg1}, {arg2})"
+rust_imports = ["base64::tests::assert_encode_sanity"]
+needs_result = false
+param_types = ["&str", "bool", "usize"]
+
+[[mappings.functions]]
+python = "base64.random_config"
+rust_code = "base64::tests::random_config({arg0})"
+rust_imports = ["base64::tests::random_config"]
+needs_result = false
+param_types = ["&mutR"]
+
+[[mappings.functions]]
+python = "base64.random_alphabet"
+rust_code = "base64::tests::random_alphabet({arg0})"
+rust_imports = ["base64::tests::random_alphabet"]
+needs_result = false
+param_types = ["&mutR"]
+
+[[mappings.functions]]
+python = "base64.random_engine"
+rust_code = "base64::tests::random_engine({arg0})"
+rust_imports = ["base64::tests::random_engine"]
+needs_result = false
+param_types = ["&mutR"]
+
+[[mappings.functions]]
+python = "base64.decode"
+rust_code = "base64::decode({arg0})"
+rust_imports = ["base64::decode"]
+needs_result = true
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "base64.decode_engine"
+rust_code = "base64::decode::decode_engine({arg0}, {arg1})"
+rust_imports = ["base64::decode::decode_engine"]
+needs_result = true
+param_types = ["&[u8]", "&E"]
+
+[[mappings.functions]]
+python = "base64.decode_engine_vec"
+rust_code = "base64::decode::decode_engine_vec({arg0}, {arg1}, {arg2})"
+rust_imports = ["base64::decode::decode_engine_vec"]
+needs_result = true
+param_types = ["&[u8]", "&mut Vec<u8>", "&E"]
+
+[[mappings.functions]]
+python = "base64.decode_engine_slice"
+rust_code = "base64::decode::decode_engine_slice({arg0}, {arg1}, {arg2})"
+rust_imports = ["base64::decode::decode_engine_slice"]
+needs_result = true
+param_types = ["&[u8]", "&mut [u8]", "&E"]
+
+[[mappings.functions]]
+python = "base64.decoded_len_estimate"
+rust_code = "base64::decode::decoded_len_estimate({arg0})"
+rust_imports = ["base64::decode::decoded_len_estimate"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
+python = "base64.Naive.new"
+rust_code = "base64::engine::Naive::new({arg0}, {arg1})"
+rust_imports = ["base64::engine::Naive"]
+needs_result = false
+param_types = ["&Alphabet", "NaiveConfig"]
+
+[[mappings.functions]]
+python = "base64.GeneralPurpose.new"
+rust_code = "base64::engine::GeneralPurpose::new({arg0}, {arg1})"
+rust_imports = ["base64::engine::GeneralPurpose"]
+needs_result = false
+param_types = ["&Alphabet", "GeneralPurposeConfig"]
+
+[[mappings.functions]]
+python = "base64.GeneralPurposeConfig.new"
+rust_code = "base64::engine::general_purpose::GeneralPurposeConfig::new()"
+rust_imports = ["base64::engine::general_purpose::GeneralPurposeConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "base64.GeneralPurposeConfig.default"
+rust_code = "base64::engine::general_purpose::GeneralPurposeConfig::default()"
+rust_imports = ["base64::engine::general_purpose::GeneralPurposeConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "base64.Alphabet.new"
+rust_code = "base64::Alphabet::new({arg0})"
+rust_imports = ["base64::Alphabet"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "base64.Alphabet.try_from"
+rust_code = "base64::Alphabet::try_from({arg0})"
+rust_imports = ["base64::Alphabet"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "base64.EncoderStringWriter.from_consumer"
+rust_code = "base64::write::EncoderStringWriter::from_consumer({arg0}, {arg1})"
+rust_imports = ["base64::write::EncoderStringWriter"]
+needs_result = false
+param_types = ["S", "&'eE"]
+
+[[mappings.functions]]
+python = "base64.EncoderStringWriter.new"
+rust_code = "base64::write::EncoderStringWriter::new({arg0})"
+rust_imports = ["base64::write::EncoderStringWriter"]
+needs_result = false
+param_types = ["&'eE"]
+
+[[mappings.functions]]
+python = "base64.EncoderWriter.new"
+rust_code = "base64::write::encoder::EncoderWriter::new({arg0}, {arg1})"
+rust_imports = ["base64::write::encoder::EncoderWriter"]
+needs_result = false
+param_types = ["W", "&'eE"]
+
+[[mappings.functions]]
+python = "base64.DecoderReader.new"
+rust_code = "base64::read::decoder::DecoderReader::new({arg0}, {arg1})"
+rust_imports = ["base64::read::decoder::DecoderReader"]
+needs_result = false
+param_types = ["R", "&'eE"]
+
+[[mappings.functions]]
+python = "base64.ChunkedEncoder.new"
+rust_code = "base64::ChunkedEncoder::new({arg0})"
+rust_imports = ["base64::ChunkedEncoder"]
+needs_result = false
+param_types = ["&'eE"]
+
+[[mappings.functions]]
+python = "base64.Base64Display.new"
+rust_code = "base64::Base64Display::new({arg0}, {arg1})"
+rust_imports = ["base64::Base64Display"]
+needs_result = false
+param_types = ["&'a[u8]", "&'eE"]
+
+[[mappings.methods]]
+python = "Naive.internal_encode"
+rust_code = "{self}.internal_encode({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "usize"
+param_types = ["&[u8]", "&mut[u8]"]
+
+[[mappings.methods]]
+python = "Naive.internal_decoded_len_estimate"
+rust_code = "{self}.internal_decoded_len_estimate({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DecodeEstimate"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Naive.internal_decode"
+rust_code = "{self}.internal_decode({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "DecodeMetadata"
+param_types = ["&[u8]", "&mut[u8]", "Self::DecodeEstimate"]
+
+[[mappings.methods]]
+python = "Naive.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "NaiveEstimate.decoded_len_estimate"
+rust_code = "{self}.decoded_len_estimate()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "NaiveConfig.encode_padding"
+rust_code = "{self}.encode_padding()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "GeneralPurpose.internal_encode"
+rust_code = "{self}.internal_encode({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "usize"
+param_types = ["&[u8]", "&mut[u8]"]
+
+[[mappings.methods]]
+python = "GeneralPurpose.internal_decoded_len_estimate"
+rust_code = "{self}.internal_decoded_len_estimate({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "DecodeEstimate"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "GeneralPurpose.internal_decode"
+rust_code = "{self}.internal_decode({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "DecodeMetadata"
+param_types = ["&[u8]", "&mut[u8]", "Self::DecodeEstimate"]
+
+[[mappings.methods]]
+python = "GeneralPurpose.config"
+rust_code = "{self}.config()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Config"
+
+[[mappings.methods]]
+python = "GeneralPurposeConfig.with_encode_padding"
+rust_code = "{self}.with_encode_padding({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "GeneralPurposeConfig"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "GeneralPurposeConfig.with_decode_allow_trailing_bits"
+rust_code = "{self}.with_decode_allow_trailing_bits({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "GeneralPurposeConfig"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "GeneralPurposeConfig.with_decode_padding_mode"
+rust_code = "{self}.with_decode_padding_mode({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "GeneralPurposeConfig"
+param_types = ["DecodePaddingMode"]
+
+[[mappings.methods]]
+python = "GeneralPurposeConfig.encode_padding"
+rust_code = "{self}.encode_padding()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "GeneralPurposeEstimate.decoded_len_estimate"
+rust_code = "{self}.decoded_len_estimate()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Alphabet.as_str"
+rust_code = "{self}.as_str()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "EncoderStringWriter.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "S"
+
+[[mappings.methods]]
+python = "EncoderStringWriter.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "EncoderStringWriter.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "EncoderWriter.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "EncoderWriter.finish"
+rust_code = "{self}.finish()"
+rust_imports = []
+needs_result = true
+returns = "W"
+
+[[mappings.methods]]
+python = "EncoderWriter.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "W"
+
+[[mappings.methods]]
+python = "EncoderWriter.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
+
+[[mappings.methods]]
+python = "EncoderWriter.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "EncoderWriter.drop"
+rust_code = "{self}.drop()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "DecoderReader.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter"]
+
+[[mappings.methods]]
+python = "DecoderReader.into_inner"
+rust_code = "{self}.into_inner()"
+rust_imports = []
+needs_result = false
+returns = "R"
+
+[[mappings.methods]]
+python = "DecoderReader.read"
+rust_code = "{self}.read({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&mut[u8]"]
+
+[[mappings.methods]]
+python = "ChunkedEncoder.encode"
+rust_code = "{self}.encode({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]", "&mutS"]
+
+[[mappings.methods]]
+python = "Base64Display.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter"]
+
+[[mappings.types]]
+python = "Naive"
+rust = "base64::engine::Naive"
+
+[[mappings.types]]
+python = "NaiveEstimate"
+rust = "base64::engine::NaiveEstimate"
+
+[[mappings.types]]
+python = "NaiveConfig"
+rust = "base64::engine::NaiveConfig"
+
+[[mappings.types]]
+python = "GeneralPurpose"
+rust = "base64::engine::GeneralPurpose"
+
+[[mappings.types]]
+python = "GeneralPurposeConfig"
+rust = "base64::engine::general_purpose::GeneralPurposeConfig"
+
+[[mappings.types]]
+python = "GeneralPurposeEstimate"
+rust = "base64::engine::general_purpose::decode::GeneralPurposeEstimate"
+
+[[mappings.types]]
+python = "DecodeMetadata"
+rust = "base64::engine::DecodeMetadata"
+
+[[mappings.types]]
+python = "Alphabet"
+rust = "base64::Alphabet"
+
+[[mappings.types]]
+python = "EncoderStringWriter"
+rust = "base64::write::EncoderStringWriter"
+
+[[mappings.types]]
+python = "EncoderWriter"
+rust = "base64::write::encoder::EncoderWriter"
+
+[[mappings.types]]
+python = "DecoderReader"
+rust = "base64::read::decoder::DecoderReader"
+
+[[mappings.types]]
+python = "ChunkedEncoder"
+rust = "base64::ChunkedEncoder"
+
+[[mappings.types]]
+python = "Base64Display"
+rust = "base64::Base64Display"
+
+[[mappings.types]]
+python = "DecodePaddingMode"
+rust = "base64::engine::DecodePaddingMode"
+
+[[mappings.types]]
+python = "EncodeSliceError"
+rust = "base64::encode::EncodeSliceError"
+
+[[mappings.types]]
+python = "ParseAlphabetError"
+rust = "base64::alphabet::ParseAlphabetError"
+
+[[mappings.types]]
+python = "DecodeError"
+rust = "base64::decode::DecodeError"
+
+[[mappings.types]]
+python = "DecodeSliceError"
+rust = "base64::decode::DecodeSliceError"

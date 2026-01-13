@@ -7,6 +7,133 @@ from __future__ import annotations
 
 from typing import Self
 
+class ArgAction:
+    """Behavior of arguments when they are encountered while parsing.
+
+    Maps to clap::builder::ArgAction in Rust.
+
+    Common variants:
+    - SetTrue: Flag that sets to true when present
+    - SetFalse: Flag that sets to false when present
+    - Set: Store a single value (default)
+    - Append: Collect multiple values
+    - Count: Count occurrences
+
+    Example:
+        cmd.arg(Arg.new("verbose").short("v").action(ArgAction.SetTrue()))
+    """
+
+    @staticmethod
+    def SetTrue() -> "ArgAction":
+        """Flag that sets to true when present."""
+        ...
+
+    @staticmethod
+    def SetFalse() -> "ArgAction":
+        """Flag that sets to false when present."""
+        ...
+
+    @staticmethod
+    def Set() -> "ArgAction":
+        """Store a single value (default behavior)."""
+        ...
+
+    @staticmethod
+    def Append() -> "ArgAction":
+        """Collect multiple occurrences into a Vec."""
+        ...
+
+    @staticmethod
+    def Count() -> "ArgAction":
+        """Count the number of occurrences."""
+        ...
+
+    @staticmethod
+    def Help() -> "ArgAction":
+        """Print help and exit."""
+        ...
+
+    @staticmethod
+    def Version() -> "ArgAction":
+        """Print version and exit."""
+        ...
+
+
+class ValueHint:
+    """Provide shell completion hints for argument values.
+
+    Maps to clap::builder::ValueHint in Rust.
+
+    Example:
+        cmd.arg(Arg.new("file").value_hint(ValueHint.FilePath()))
+    """
+
+    @staticmethod
+    def Unknown() -> "ValueHint":
+        """Unknown hint (default)."""
+        ...
+
+    @staticmethod
+    def Other() -> "ValueHint":
+        """Other type."""
+        ...
+
+    @staticmethod
+    def AnyPath() -> "ValueHint":
+        """Any path (file or directory)."""
+        ...
+
+    @staticmethod
+    def FilePath() -> "ValueHint":
+        """Path to a file."""
+        ...
+
+    @staticmethod
+    def DirPath() -> "ValueHint":
+        """Path to a directory."""
+        ...
+
+    @staticmethod
+    def ExecutablePath() -> "ValueHint":
+        """Path to an executable."""
+        ...
+
+    @staticmethod
+    def CommandName() -> "ValueHint":
+        """Command name."""
+        ...
+
+    @staticmethod
+    def CommandString() -> "ValueHint":
+        """Command string."""
+        ...
+
+    @staticmethod
+    def CommandWithArguments() -> "ValueHint":
+        """Command with arguments."""
+        ...
+
+    @staticmethod
+    def Username() -> "ValueHint":
+        """Username."""
+        ...
+
+    @staticmethod
+    def Hostname() -> "ValueHint":
+        """Hostname."""
+        ...
+
+    @staticmethod
+    def Url() -> "ValueHint":
+        """URL."""
+        ...
+
+    @staticmethod
+    def EmailAddress() -> "ValueHint":
+        """Email address."""
+        ...
+
+
 class AnyValueId:
 
     def eq(self, other: Self) -> bool: ...
@@ -1731,7 +1858,7 @@ let m = Command::new("My Program")
 .arg(
 Arg::new("in_file")
 )
-.after_help("Longer explanation to appear after the options when \
+.after_help("Longer explanation to appear after the options when \\
 displaying the help information from --help or -h")
 .get_matches();
 
@@ -2427,4 +2554,4 @@ class ErrorKind:
 
     def fmt(self, f: Formatter) -> Result: ...
 
-__all__: list[str] = ["AnyValueId", "Id", "ReadmeDoctests", "ArgMatches", "IdsRef", "Values", "ValuesRef", "RawValues", "Occurrences", "OccurrenceValues", "OccurrencesRef", "OccurrenceValuesRef", "RawOccurrences", "RawOccurrenceValues", "Indices", "ValueRange", "Str", "Arg", "ArgGroup", "ValueParser", "StringValueParser", "OsStringValueParser", "PathBufValueParser", "EnumValueParser", "PossibleValuesParser", "RangedI64ValueParser", "RangedU64ValueParser", "BoolValueParser", "FalseyValueParser", "BoolishValueParser", "NonEmptyStringValueParser", "MapValueParser", "TryMapValueParser", "UnknownArgumentValueParser", "_infer_ValueParser_for", "_AnonymousValueParser", "StyledStr", "Styles", "OsStr", "Command", "PossibleValue", "KindFormatter", "RichFormatter", "Error", "ColorChoice", "MatchesError", "ValueSource", "Resettable", "ArgAction", "ArgPredicate", "ValueHint", "ContextKind", "ContextValue", "ErrorKind"]
+__all__: list[str] = ["ArgAction", "ValueHint", "AnyValueId", "Id", "ReadmeDoctests", "ArgMatches", "IdsRef", "Values", "ValuesRef", "RawValues", "Occurrences", "OccurrenceValues", "OccurrencesRef", "OccurrenceValuesRef", "RawOccurrences", "RawOccurrenceValues", "Indices", "ValueRange", "Str", "Arg", "ArgGroup", "ValueParser", "StringValueParser", "OsStringValueParser", "PathBufValueParser", "EnumValueParser", "PossibleValuesParser", "RangedI64ValueParser", "RangedU64ValueParser", "BoolValueParser", "FalseyValueParser", "BoolishValueParser", "NonEmptyStringValueParser", "MapValueParser", "TryMapValueParser", "UnknownArgumentValueParser", "_infer_ValueParser_for", "_AnonymousValueParser", "StyledStr", "Styles", "OsStr", "Command", "PossibleValue", "KindFormatter", "RichFormatter", "Error", "ColorChoice", "MatchesError", "ValueSource", "Resettable", "ArgAction", "ArgPredicate", "ValueHint", "ContextKind", "ContextValue", "ErrorKind"]
