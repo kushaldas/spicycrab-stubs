@@ -6,13 +6,13 @@ Python type stubs for Rust crates, enabling transpilation with [spicycrab](https
 
 ```bash
 # Install spicycrab (includes cookcrab)
-python3 -m pip install spicycrab
+pip install spicycrab
 
 # Generate stubs for any crate
 cookcrab generate chrono -o ./stubs
 
 # Install the generated stubs
-python3 -m pip install -e ./stubs/chrono
+pip install -e ./stubs/chrono
 
 # Write Python code using the stubs
 # Then transpile to Rust
@@ -25,25 +25,54 @@ Pre-generated stubs in `stubs/` directory:
 
 | Crate | Version | Description |
 |-------|---------|-------------|
-| [anyhow](stubs/anyhow) | 1.0.x | Flexible error handling |
-| [chrono](stubs/chrono) | 0.4.x | Date and time library |
-| [clap](stubs/clap) | 4.5.x | Command-line argument parser |
-| [clap_builder](stubs/clap_builder) | 4.5.x | clap builder components |
-| [fern](stubs/fern) | 0.7.x | Simple logging |
-| [log](stubs/log) | 0.4.x | Logging facade |
+| [actix-web](stubs/actix-web) | 4.12.1 | Powerful web framework |
+| [actix-web-lab](stubs/actix-web-lab) | 0.24.3 | Experimental actix-web features |
+| [anyhow](stubs/anyhow) | 1.0.100 | Flexible error handling |
+| [base64](stubs/base64) | 0.22.1 | Base64 encoding/decoding |
+| [chrono](stubs/chrono) | 0.4.42 | Date and time library |
+| [clap](stubs/clap) | 4.5.54 | Command-line argument parser |
+| [clap_builder](stubs/clap_builder) | 4.5.54 | clap builder components |
+| [config](stubs/config) | 0.15.19 | Configuration management |
+| [env_logger](stubs/env_logger) | 0.11.8 | Environment-based logging |
+| [fern](stubs/fern) | 0.7.1 | Simple logging |
+| [josekit](stubs/josekit) | 0.10.3 | JWT/JWE/JWS operations |
+| [lazy_static](stubs/lazy_static) | 1.5.0 | Lazy static initialization |
+| [log](stubs/log) | 0.4.29 | Logging facade |
+| [native-tls](stubs/native-tls) | 0.2.14 | Native TLS bindings |
+| [redis](stubs/redis) | 1.0.2 | Redis client |
+| [reqwest](stubs/reqwest) | 0.13.1 | HTTP client |
+| [rustls](stubs/rustls) | 0.23.36 | Modern TLS library |
+| [rustls-pemfile](stubs/rustls-pemfile) | 2.2.0 | PEM file parsing for rustls |
+| [serde](stubs/serde) | 1.0.228 | Serialization framework |
+| [serde_json](stubs/serde_json) | 1.0.149 | JSON serialization |
+| [sha2](stubs/sha2) | 0.10.9 | SHA-2 hash functions |
+| [tokio](stubs/tokio) | 1.49.0 | Async runtime |
+| [toml](stubs/toml) | 0.9.11 | TOML parsing |
+| [ureq](stubs/ureq) | 3.1.4 | Simple HTTP client |
 
 ## Examples
 
-Working examples for each crate in `examples/` directory:
+Working examples for each crate in `examples/` directory (143 total):
 
 | Crate | Examples | Description |
 |-------|----------|-------------|
+| [actix-web](examples/actix-web) | 16 | Web server routes, handlers, middleware |
 | [anyhow](examples/anyhow) | 8 | Result/Error handling patterns |
+| [base64](examples/base64) | 5 | Encoding/decoding operations |
 | [chrono](examples/chrono) | 10 | Date, time, timezone operations |
 | [clap](examples/clap) | 15 | CLI argument parsing patterns |
+| [config](examples/config) | 5 | Configuration loading |
+| [env_logger](examples/env_logger) | 5 | Environment-based logging |
 | [fern](examples/fern) | 10 | Logging configuration |
-
-Each example directory contains a README with usage instructions.
+| [josekit](examples/josekit) | 21 | JWT signing, JWE encryption |
+| [native_tls](examples/native_tls) | 1 | TLS connections |
+| [reqwest](examples/reqwest) | 10 | HTTP requests |
+| [rustls](examples/rustls) | 10 | TLS configuration |
+| [serde_json](examples/serde_json) | 5 | JSON parsing/serialization |
+| [sha2](examples/sha2) | 5 | SHA-256/SHA-512 hashing |
+| [tokio](examples/tokio) | 6 | Async tasks, channels, Arc/Mutex |
+| [toml](examples/toml) | 5 | TOML parsing |
+| [ureq](examples/ureq) | 5 | HTTP requests |
 
 ### Running Examples
 
@@ -51,7 +80,7 @@ Each example directory contains a README with usage instructions.
 cd demospace  # or any working directory
 
 # Install stubs
-python3 -m pip install -e ../spicycrab-stubs/stubs/chrono
+pip install -e ../spicycrab-stubs/stubs/chrono
 
 # Transpile an example
 crabpy transpile ../spicycrab-stubs/examples/chrono/chrono_01_naive_date.py \
@@ -63,34 +92,67 @@ cargo build --release
 ./target/release/chrono_naive_date
 ```
 
+### Batch Transpile and Test
+
+```bash
+# Use shared target directory for faster builds
+export RUSTC_WRAPPER=/path/to/sccache
+export CARGO_TARGET_DIR=/tmp/spicycrab-test-target
+
+# Transpile all examples for a crate
+for f in ../spicycrab-stubs/examples/chrono/*.py; do
+    name=$(basename "$f" .py)
+    crabpy transpile "$f" -o "rust_$name" -n "$name"
+done
+
+# Build all
+for dir in rust_chrono_*; do
+    (cd "$dir" && cargo build --release)
+done
+```
+
 ## Repository Structure
 
 ```
 spicycrab-stubs/
 ├── stubs/                         # Pre-generated stub packages
+│   ├── actix-web/
 │   ├── anyhow/
-│   │   ├── pyproject.toml
-│   │   └── spicycrab_anyhow/
-│   │       ├── __init__.py        # Python stubs
-│   │       └── _spicycrab.toml    # Transpilation mappings
+│   ├── base64/
 │   ├── chrono/
 │   ├── clap/
-│   ├── clap_builder/
+│   ├── config/
+│   ├── env_logger/
 │   ├── fern/
-│   └── log/
+│   ├── josekit/
+│   ├── log/
+│   ├── native-tls/
+│   ├── redis/
+│   ├── reqwest/
+│   ├── rustls/
+│   ├── serde/
+│   ├── serde_json/
+│   ├── sha2/
+│   ├── tokio/
+│   ├── toml/
+│   └── ureq/
 ├── examples/                      # Working examples
+│   ├── actix-web/
 │   ├── anyhow/
-│   │   ├── README.md
-│   │   └── anyhow_*.py
+│   ├── base64/
 │   ├── chrono/
-│   │   ├── README.md
-│   │   └── chrono_*.py
 │   ├── clap/
-│   │   ├── README.md
-│   │   └── clap_*.py
-│   └── fern/
-│       ├── README.md
-│       └── fern_*.py
+│   ├── config/
+│   ├── env_logger/
+│   ├── fern/
+│   ├── josekit/
+│   ├── reqwest/
+│   ├── rustls/
+│   ├── serde_json/
+│   ├── sha2/
+│   ├── tokio/
+│   ├── toml/
+│   └── ureq/
 ├── justfile                       # Tag management commands
 └── README.md
 ```
@@ -103,14 +165,11 @@ Use `cookcrab` to automatically generate stubs for any Rust crate:
 # Generate stubs for a crate
 cookcrab generate <crate_name> -o ./stubs
 
-# Example: generate tokio stubs
-cookcrab generate tokio -o ./stubs
-
-# Validate generated stubs
-cookcrab validate ./stubs/<crate_name>
+# Example: generate a new crate's stubs
+cookcrab generate uuid -o ./stubs
 
 # Install for use
-python3 -m pip install -e ./stubs/<crate_name>
+pip install -e ./stubs/<crate_name>
 ```
 
 ## Stub Package Structure
@@ -229,10 +288,10 @@ Tags follow the format: `<crate>-<version>`
 
 ```bash
 # Create a version tag
-just tag chrono 0.4.38
+just tag chrono 0.4.42
 
 # Push tags
-git push origin main && git push origin chrono-0.4.38
+git push origin main && git push origin chrono-0.4.42
 ```
 
 ## Contributing
