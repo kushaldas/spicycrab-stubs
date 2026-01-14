@@ -32,6 +32,11 @@ def error(message: str) -> None:
     ...
 
 
+def eprintln(message: str) -> None:
+    """Print to stderr."""
+    ...
+
+
 class Record:
     """The "payload" of a log message.
 

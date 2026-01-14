@@ -11,7 +11,7 @@ log = "0.4.29"
 available = ["kv", "kv_serde", "kv_std", "kv_sval", "kv_unstable", "kv_unstable_serde", "kv_unstable_std", "kv_unstable_sval", "max_level_debug", "max_level_error", "max_level_info", "max_level_off", "max_level_trace", "max_level_warn", "release_max_level_debug", "release_max_level_error", "release_max_level_info", "release_max_level_off", "release_max_level_trace", "release_max_level_warn", "serde", "std"]
 default = []
 
-# Macro mappings (hardcoded - macros can't be auto-detected)
+# Macro mappings (signatures from hardcoded stubs)
 [[mappings.functions]]
 python = "log.trace"
 rust_code = "log::trace!(\"{}\", {arg0})"
@@ -46,6 +46,16 @@ rust_code = "log::error!(\"{}\", {arg0})"
 rust_imports = []
 needs_result = false
 param_types = ["&str"]
+
+[[mappings.functions]]
+python = "log.eprintln"
+rust_code = "eprintln!(\"{}\", {arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+# NOTE: Detected 15 macros without stubs: __log, __log_enabled, __log_key, __log_logger, __log_value, __log_value_error, __log_value_serde, __log_value_sval, as_debug, as_display, as_error, as_serde, as_sval, log, log_enabled
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
 
 [[mappings.functions]]
 python = "log.set_max_level"
@@ -96,15 +106,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "log.visit"
-rust_code = "log::kv::value::visit({arg0}, {arg1})"
-rust_imports = ["log::kv::value::visit"]
+rust_code = "log::kv::visit({arg0}, {arg1})"
+rust_imports = ["log::kv::visit"]
 needs_result = true
 param_types = ["&Inner<'v>", "implVisitValue<'v>"]
 
 [[mappings.functions]]
 python = "log.visit"
-rust_code = "log::kv::value::visit({arg0}, {arg1})"
-rust_imports = ["log::kv::value::visit"]
+rust_code = "log::kv::visit({arg0}, {arg1})"
+rust_imports = ["log::kv::visit"]
 needs_result = true
 param_types = ["&Inner<'v>", "implVisitValue<'v>"]
 
@@ -208,15 +218,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "log.Key.from_str"
-rust_code = "log::kv::Key::from_str({arg0})"
-rust_imports = ["log::kv::Key"]
+rust_code = "log::kv::key::Key::from_str({arg0})"
+rust_imports = ["log::kv::key::Key"]
 needs_result = false
 param_types = ["&'kstr"]
 
 [[mappings.functions]]
 python = "log.Key.from_"
-rust_code = "log::kv::Key::from({arg0})"
-rust_imports = ["log::kv::Key"]
+rust_code = "log::kv::key::Key::from({arg0})"
+rust_imports = ["log::kv::key::Key"]
 needs_result = false
 param_types = ["&'kstr"]
 
@@ -791,7 +801,7 @@ rust = "log::ParseLevelError"
 
 [[mappings.types]]
 python = "Key"
-rust = "log::kv::Key"
+rust = "log::kv::key::Key"
 
 [[mappings.types]]
 python = "Value"
@@ -815,8 +825,125 @@ rust = "log::LevelFilter"
 
 [[mappings.types]]
 python = "Inner"
-rust = "log::kv::value::Inner"
+rust = "log::kv::Inner"
 
 [[mappings.types]]
 python = "Token"
-rust = "log::kv::value::Token"
+rust = "log::kv::Token"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Level.Error"
+rust = "log::Level::Error"
+
+[[mappings.enum_variants]]
+python = "Level.Warn"
+rust = "log::Level::Warn"
+
+[[mappings.enum_variants]]
+python = "Level.Info"
+rust = "log::Level::Info"
+
+[[mappings.enum_variants]]
+python = "Level.Debug"
+rust = "log::Level::Debug"
+
+[[mappings.enum_variants]]
+python = "Level.Trace"
+rust = "log::Level::Trace"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Off"
+rust = "log::LevelFilter::Off"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Error"
+rust = "log::LevelFilter::Error"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Warn"
+rust = "log::LevelFilter::Warn"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Info"
+rust = "log::LevelFilter::Info"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Debug"
+rust = "log::LevelFilter::Debug"
+
+[[mappings.enum_variants]]
+python = "LevelFilter.Trace"
+rust = "log::LevelFilter::Trace"
+
+[[mappings.enum_variants]]
+python = "Inner.None_"
+rust = "log::kv::Inner::None"
+
+[[mappings.enum_variants]]
+python = "Inner.Bool"
+rust = "log::kv::Inner::Bool"
+
+[[mappings.enum_variants]]
+python = "Inner.Str"
+rust = "log::kv::Inner::Str"
+
+[[mappings.enum_variants]]
+python = "Inner.Char"
+rust = "log::kv::Inner::Char"
+
+[[mappings.enum_variants]]
+python = "Inner.I64"
+rust = "log::kv::Inner::I64"
+
+[[mappings.enum_variants]]
+python = "Inner.U64"
+rust = "log::kv::Inner::U64"
+
+[[mappings.enum_variants]]
+python = "Inner.F64"
+rust = "log::kv::Inner::F64"
+
+[[mappings.enum_variants]]
+python = "Inner.I128"
+rust = "log::kv::Inner::I128"
+
+[[mappings.enum_variants]]
+python = "Inner.U128"
+rust = "log::kv::Inner::U128"
+
+[[mappings.enum_variants]]
+python = "Inner.Debug"
+rust = "log::kv::Inner::Debug"
+
+[[mappings.enum_variants]]
+python = "Inner.Display"
+rust = "log::kv::Inner::Display"
+
+[[mappings.enum_variants]]
+python = "Token.None_"
+rust = "log::kv::Token::None"
+
+[[mappings.enum_variants]]
+python = "Token.Bool"
+rust = "log::kv::Token::Bool"
+
+[[mappings.enum_variants]]
+python = "Token.Char"
+rust = "log::kv::Token::Char"
+
+[[mappings.enum_variants]]
+python = "Token.Str"
+rust = "log::kv::Token::Str"
+
+[[mappings.enum_variants]]
+python = "Token.F64"
+rust = "log::kv::Token::F64"
+
+[[mappings.enum_variants]]
+python = "Token.I64"
+rust = "log::kv::Token::I64"
+
+[[mappings.enum_variants]]
+python = "Token.U64"
+rust = "log::kv::Token::U64"

@@ -11,6 +11,9 @@ lazy_static = "1.5.0"
 available = ["spin_no_std"]
 default = []
 
+# NOTE: Detected 3 macros without stubs: __lazy_static_create, __lazy_static_internal, lazy_static
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "lazy_static.initialize"
 rust_code = "lazy_static::initialize({arg0})"
@@ -52,8 +55,10 @@ param_types = ["F"]
 
 [[mappings.types]]
 python = "Lazy"
-rust = "lazy_static::Lazy"
+rust = "lazy_static::core_lazy::Lazy"
 
 [[mappings.types]]
 python = "Lazy"
-rust = "lazy_static::Lazy"
+rust = "lazy_static::inline_lazy::Lazy"
+
+# Enum variant access mappings

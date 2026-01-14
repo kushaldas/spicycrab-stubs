@@ -1065,3 +1065,112 @@ rust = "fern::ConfiguredTimezone"
 [[mappings.types]]
 python = "InitError"
 rust = "fern::InitError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "LevelConfiguration.JustDefault"
+rust = "fern::LevelConfiguration::JustDefault"
+
+[[mappings.enum_variants]]
+python = "LevelConfiguration.Minimal"
+rust = "fern::LevelConfiguration::Minimal"
+
+[[mappings.enum_variants]]
+python = "LevelConfiguration.Many"
+rust = "fern::LevelConfiguration::Many"
+
+[[mappings.enum_variants]]
+python = "Output.Stdout"
+rust = "fern::Output::Stdout"
+
+[[mappings.enum_variants]]
+python = "Output.Stderr"
+rust = "fern::Output::Stderr"
+
+[[mappings.enum_variants]]
+python = "Output.File"
+rust = "fern::Output::File"
+
+[[mappings.enum_variants]]
+python = "Output.Sender"
+rust = "fern::Output::Sender"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog3"
+rust = "fern::Output::Syslog3"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog4Rfc3164"
+rust = "fern::Output::Syslog4Rfc3164"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog4Rfc5424"
+rust = "fern::Output::Syslog4Rfc5424"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog6Rfc3164"
+rust = "fern::Output::Syslog6Rfc3164"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog6Rfc5424"
+rust = "fern::Output::Syslog6Rfc5424"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog7Rfc3164"
+rust = "fern::Output::Syslog7Rfc3164"
+
+[[mappings.enum_variants]]
+python = "Output.Syslog7Rfc5424"
+rust = "fern::Output::Syslog7Rfc5424"
+
+[[mappings.enum_variants]]
+python = "Output.Dispatch"
+rust = "fern::Output::Dispatch"
+
+[[mappings.enum_variants]]
+python = "Output.SharedDispatch"
+rust = "fern::Output::SharedDispatch"
+
+[[mappings.enum_variants]]
+python = "Output.OtherBoxed"
+rust = "fern::Output::OtherBoxed"
+
+[[mappings.enum_variants]]
+python = "Output.OtherStatic"
+rust = "fern::Output::OtherStatic"
+
+[[mappings.enum_variants]]
+python = "Output.Panic"
+rust = "fern::Output::Panic"
+
+[[mappings.enum_variants]]
+python = "Output.Writer"
+rust = "fern::Output::Writer"
+
+[[mappings.enum_variants]]
+python = "Output.DateBased"
+rust = "fern::Output::DateBased"
+
+[[mappings.enum_variants]]
+python = "Output.Reopen"
+rust = "fern::Output::Reopen"
+
+[[mappings.enum_variants]]
+python = "Output.Reopen1"
+rust = "fern::Output::Reopen1"
+
+[[mappings.enum_variants]]
+python = "ConfiguredTimezone.Local"
+rust = "fern::ConfiguredTimezone::Local"
+
+[[mappings.enum_variants]]
+python = "ConfiguredTimezone.Utc"
+rust = "fern::ConfiguredTimezone::Utc"
+
+[[mappings.enum_variants]]
+python = "InitError.Io"
+rust = "fern::InitError::Io"
+
+[[mappings.enum_variants]]
+python = "InitError.SetLoggerError"
+rust = "fern::InitError::SetLoggerError"

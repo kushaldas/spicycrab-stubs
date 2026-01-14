@@ -13,8 +13,8 @@ default = ["std"]
 
 [[mappings.functions]]
 python = "base64.encode"
-rust_code = "base64::encode({arg0})"
-rust_imports = ["base64::encode"]
+rust_code = "base64::encode::encode({arg0})"
+rust_imports = ["base64::encode::encode"]
 needs_result = false
 param_types = ["&[u8]"]
 
@@ -83,8 +83,8 @@ param_types = ["&mutR"]
 
 [[mappings.functions]]
 python = "base64.decode"
-rust_code = "base64::decode({arg0})"
-rust_imports = ["base64::decode"]
+rust_code = "base64::decode::decode({arg0})"
+rust_imports = ["base64::decode::decode"]
 needs_result = true
 param_types = ["&[u8]"]
 
@@ -144,15 +144,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "base64.Alphabet.new"
-rust_code = "base64::Alphabet::new({arg0})"
-rust_imports = ["base64::Alphabet"]
+rust_code = "base64::alphabet::Alphabet::new({arg0})"
+rust_imports = ["base64::alphabet::Alphabet"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "base64.Alphabet.try_from"
-rust_code = "base64::Alphabet::try_from({arg0})"
-rust_imports = ["base64::Alphabet"]
+rust_code = "base64::alphabet::Alphabet::try_from({arg0})"
+rust_imports = ["base64::alphabet::Alphabet"]
 needs_result = true
 param_types = ["&str"]
 
@@ -424,6 +424,136 @@ rust_imports = []
 needs_result = true
 param_types = ["&mutFormatter"]
 
+# URL_SAFE_NO_PAD.decode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE_NO_PAD.decode"
+rust_code = "base64::engine::general_purpose::URL_SAFE_NO_PAD.decode({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# STANDARD.decode hardcoded method
+[[mappings.methods]]
+python = "STANDARD.decode"
+rust_code = "base64::engine::general_purpose::STANDARD.decode({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# STANDARD_NO_PAD.decode hardcoded method
+[[mappings.methods]]
+python = "STANDARD_NO_PAD.decode"
+rust_code = "base64::engine::general_purpose::STANDARD_NO_PAD.decode({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# URL_SAFE.decode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE.decode"
+rust_code = "base64::engine::general_purpose::URL_SAFE.decode({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# URL_SAFE_NO_PAD.encode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE_NO_PAD.encode"
+rust_code = "base64::engine::general_purpose::URL_SAFE_NO_PAD.encode({arg0})"
+rust_imports = []
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
+# STANDARD.encode hardcoded method
+[[mappings.methods]]
+python = "STANDARD.encode"
+rust_code = "base64::engine::general_purpose::STANDARD.encode({arg0})"
+rust_imports = []
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
+# =====================================================
+# Module-level Constant Method Mappings
+# =====================================================
+
+# URL_SAFE_NO_PAD.decode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE_NO_PAD.decode"
+rust_code = "base64::engine::general_purpose::URL_SAFE_NO_PAD.decode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# URL_SAFE_NO_PAD.encode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE_NO_PAD.encode"
+rust_code = "base64::engine::general_purpose::URL_SAFE_NO_PAD.encode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
+# STANDARD.decode hardcoded method
+[[mappings.methods]]
+python = "STANDARD.decode"
+rust_code = "base64::engine::general_purpose::STANDARD.decode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# STANDARD.encode hardcoded method
+[[mappings.methods]]
+python = "STANDARD.encode"
+rust_code = "base64::engine::general_purpose::STANDARD.encode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
+# STANDARD_NO_PAD.decode hardcoded method
+[[mappings.methods]]
+python = "STANDARD_NO_PAD.decode"
+rust_code = "base64::engine::general_purpose::STANDARD_NO_PAD.decode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# STANDARD_NO_PAD.encode hardcoded method
+[[mappings.methods]]
+python = "STANDARD_NO_PAD.encode"
+rust_code = "base64::engine::general_purpose::STANDARD_NO_PAD.encode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
+# URL_SAFE.decode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE.decode"
+rust_code = "base64::engine::general_purpose::URL_SAFE.decode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = true
+returns = "Vec<u8>"
+param_types = ["&[u8]"]
+
+# URL_SAFE.encode hardcoded method
+[[mappings.methods]]
+python = "URL_SAFE.encode"
+rust_code = "base64::engine::general_purpose::URL_SAFE.encode({arg0})"
+rust_imports = ["base64::Engine"]
+needs_result = false
+returns = "String"
+param_types = ["&[u8]"]
+
 [[mappings.types]]
 python = "Naive"
 rust = "base64::engine::Naive"
@@ -454,7 +584,7 @@ rust = "base64::engine::DecodeMetadata"
 
 [[mappings.types]]
 python = "Alphabet"
-rust = "base64::Alphabet"
+rust = "base64::alphabet::Alphabet"
 
 [[mappings.types]]
 python = "EncoderStringWriter"
@@ -495,3 +625,60 @@ rust = "base64::decode::DecodeError"
 [[mappings.types]]
 python = "DecodeSliceError"
 rust = "base64::decode::DecodeSliceError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "DecodePaddingMode.Indifferent"
+rust = "base64::engine::DecodePaddingMode::Indifferent"
+
+[[mappings.enum_variants]]
+python = "DecodePaddingMode.RequireCanonical"
+rust = "base64::engine::DecodePaddingMode::RequireCanonical"
+
+[[mappings.enum_variants]]
+python = "DecodePaddingMode.RequireNone"
+rust = "base64::engine::DecodePaddingMode::RequireNone"
+
+[[mappings.enum_variants]]
+python = "EncodeSliceError.OutputSliceTooSmall"
+rust = "base64::encode::EncodeSliceError::OutputSliceTooSmall"
+
+[[mappings.enum_variants]]
+python = "ParseAlphabetError.InvalidLength"
+rust = "base64::alphabet::ParseAlphabetError::InvalidLength"
+
+[[mappings.enum_variants]]
+python = "ParseAlphabetError.DuplicatedByte"
+rust = "base64::alphabet::ParseAlphabetError::DuplicatedByte"
+
+[[mappings.enum_variants]]
+python = "ParseAlphabetError.UnprintableByte"
+rust = "base64::alphabet::ParseAlphabetError::UnprintableByte"
+
+[[mappings.enum_variants]]
+python = "ParseAlphabetError.ReservedByte"
+rust = "base64::alphabet::ParseAlphabetError::ReservedByte"
+
+[[mappings.enum_variants]]
+python = "DecodeError.InvalidByte"
+rust = "base64::decode::DecodeError::InvalidByte"
+
+[[mappings.enum_variants]]
+python = "DecodeError.InvalidLength"
+rust = "base64::decode::DecodeError::InvalidLength"
+
+[[mappings.enum_variants]]
+python = "DecodeError.InvalidLastSymbol"
+rust = "base64::decode::DecodeError::InvalidLastSymbol"
+
+[[mappings.enum_variants]]
+python = "DecodeError.InvalidPadding"
+rust = "base64::decode::DecodeError::InvalidPadding"
+
+[[mappings.enum_variants]]
+python = "DecodeSliceError.DecodeError"
+rust = "base64::decode::DecodeSliceError::DecodeError"
+
+[[mappings.enum_variants]]
+python = "DecodeSliceError.OutputSliceTooSmall"
+rust = "base64::decode::DecodeSliceError::OutputSliceTooSmall"

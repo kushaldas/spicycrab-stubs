@@ -1,6 +1,6 @@
 [package]
 name = "rustls-pemfile"
-rust_crate = "rustls-pemfile"
+rust_crate = "rustls_pemfile"
 rust_version = "2.2.0"
 python_module = "spicycrab_rustls_pemfile"
 
@@ -13,85 +13,126 @@ default = ["std"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.read_one_from_slice"
-rust_code = "rustls-pemfile::pemfile::read_one_from_slice({arg0})"
-rust_imports = ["rustls-pemfile::pemfile::read_one_from_slice"]
+rust_code = "rustls_pemfile::pemfile::read_one_from_slice({arg0})"
+rust_imports = ["rustls_pemfile::pemfile::read_one_from_slice"]
 needs_result = true
 param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.read_one"
-rust_code = "rustls-pemfile::pemfile::read_one({arg0})"
-rust_imports = ["rustls-pemfile::pemfile::read_one"]
+rust_code = "rustls_pemfile::pemfile::read_one({arg0})"
+rust_imports = ["rustls_pemfile::pemfile::read_one"]
 needs_result = true
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.read_all"
-rust_code = "rustls-pemfile::pemfile::read_all({arg0})"
-rust_imports = ["rustls-pemfile::pemfile::read_all"]
+rust_code = "rustls_pemfile::pemfile::read_all({arg0})"
+rust_imports = ["rustls_pemfile::pemfile::read_all"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.certs"
-rust_code = "rustls-pemfile::certs({arg0})"
-rust_imports = ["rustls-pemfile::certs"]
+rust_code = "rustls_pemfile::certs({arg0})"
+rust_imports = ["rustls_pemfile::certs"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.private_key"
-rust_code = "rustls-pemfile::private_key({arg0})"
-rust_imports = ["rustls-pemfile::private_key"]
+rust_code = "rustls_pemfile::private_key({arg0})"
+rust_imports = ["rustls_pemfile::private_key"]
 needs_result = true
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.csr"
-rust_code = "rustls-pemfile::csr({arg0})"
-rust_imports = ["rustls-pemfile::csr"]
+rust_code = "rustls_pemfile::csr({arg0})"
+rust_imports = ["rustls_pemfile::csr"]
 needs_result = true
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.crls"
-rust_code = "rustls-pemfile::crls({arg0})"
-rust_imports = ["rustls-pemfile::crls"]
+rust_code = "rustls_pemfile::crls({arg0})"
+rust_imports = ["rustls_pemfile::crls"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.rsa_private_keys"
-rust_code = "rustls-pemfile::rsa_private_keys({arg0})"
-rust_imports = ["rustls-pemfile::rsa_private_keys"]
+rust_code = "rustls_pemfile::rsa_private_keys({arg0})"
+rust_imports = ["rustls_pemfile::rsa_private_keys"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.pkcs8_private_keys"
-rust_code = "rustls-pemfile::pkcs8_private_keys({arg0})"
-rust_imports = ["rustls-pemfile::pkcs8_private_keys"]
+rust_code = "rustls_pemfile::pkcs8_private_keys({arg0})"
+rust_imports = ["rustls_pemfile::pkcs8_private_keys"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.ec_private_keys"
-rust_code = "rustls-pemfile::ec_private_keys({arg0})"
-rust_imports = ["rustls-pemfile::ec_private_keys"]
+rust_code = "rustls_pemfile::ec_private_keys({arg0})"
+rust_imports = ["rustls_pemfile::ec_private_keys"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.functions]]
 python = "rustls-pemfile.public_keys"
-rust_code = "rustls-pemfile::public_keys({arg0})"
-rust_imports = ["rustls-pemfile::public_keys"]
+rust_code = "rustls_pemfile::public_keys({arg0})"
+rust_imports = ["rustls_pemfile::public_keys"]
 needs_result = false
 param_types = ["&mutdynio::BufRead"]
 
 [[mappings.types]]
 python = "Item"
-rust = "rustls-pemfile::pemfile::Item"
+rust = "rustls_pemfile::pemfile::Item"
 
 [[mappings.types]]
 python = "Error"
-rust = "rustls-pemfile::pemfile::Error"
+rust = "rustls_pemfile::pemfile::Error"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Item.X509Certificate"
+rust = "rustls_pemfile::pemfile::Item::X509Certificate"
+
+[[mappings.enum_variants]]
+python = "Item.SubjectPublicKeyInfo"
+rust = "rustls_pemfile::pemfile::Item::SubjectPublicKeyInfo"
+
+[[mappings.enum_variants]]
+python = "Item.Pkcs1Key"
+rust = "rustls_pemfile::pemfile::Item::Pkcs1Key"
+
+[[mappings.enum_variants]]
+python = "Item.Pkcs8Key"
+rust = "rustls_pemfile::pemfile::Item::Pkcs8Key"
+
+[[mappings.enum_variants]]
+python = "Item.Sec1Key"
+rust = "rustls_pemfile::pemfile::Item::Sec1Key"
+
+[[mappings.enum_variants]]
+python = "Item.Crl"
+rust = "rustls_pemfile::pemfile::Item::Crl"
+
+[[mappings.enum_variants]]
+python = "Item.Csr"
+rust = "rustls_pemfile::pemfile::Item::Csr"
+
+[[mappings.enum_variants]]
+python = "Error.MissingSectionEnd"
+rust = "rustls_pemfile::pemfile::Error::MissingSectionEnd"
+
+[[mappings.enum_variants]]
+python = "Error.IllegalSectionStart"
+rust = "rustls_pemfile::pemfile::Error::IllegalSectionStart"
+
+[[mappings.enum_variants]]
+python = "Error.Base64Decode"
+rust = "rustls_pemfile::pemfile::Error::Base64Decode"

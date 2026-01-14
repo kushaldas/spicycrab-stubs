@@ -1,6 +1,6 @@
 [package]
 name = "actix-web"
-rust_crate = "actix-web"
+rust_crate = "actix_web"
 rust_version = "4.12.1"
 python_module = "spicycrab_actix_web"
 
@@ -179,680 +179,683 @@ rust_code = "actix_web::web::patch()"
 rust_imports = []
 needs_result = false
 
+# NOTE: Detected 1 macros without stubs: services
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "actix-web.init_service"
-rust_code = "actix-web::test::test_utils::init_service({arg0})"
-rust_imports = ["actix-web::test::test_utils::init_service"]
+rust_code = "actix_web::test::test_utils::init_service({arg0})"
+rust_imports = ["actix_web::test::test_utils::init_service"]
 needs_result = false
 is_async = true
 param_types = ["R"]
 
 [[mappings.functions]]
 python = "actix-web.call_service"
-rust_code = "actix-web::test::test_utils::call_service({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::call_service"]
+rust_code = "actix_web::test::test_utils::call_service({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::call_service"]
 needs_result = false
 is_async = true
 param_types = ["&S", "R"]
 
 [[mappings.functions]]
 python = "actix-web.try_call_service"
-rust_code = "actix-web::test::test_utils::try_call_service({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::try_call_service"]
+rust_code = "actix_web::test::test_utils::try_call_service({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::try_call_service"]
 needs_result = true
 is_async = true
 param_types = ["&S", "R"]
 
 [[mappings.functions]]
 python = "actix-web.call_and_read_body"
-rust_code = "actix-web::test::test_utils::call_and_read_body({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::call_and_read_body"]
+rust_code = "actix_web::test::test_utils::call_and_read_body({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::call_and_read_body"]
 needs_result = false
 is_async = true
 param_types = ["&S", "Request"]
 
 [[mappings.functions]]
 python = "actix-web.read_response"
-rust_code = "actix-web::test::test_utils::read_response({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::read_response"]
+rust_code = "actix_web::test::test_utils::read_response({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::read_response"]
 needs_result = false
 is_async = true
 param_types = ["&S", "Request"]
 
 [[mappings.functions]]
 python = "actix-web.read_body"
-rust_code = "actix-web::test::test_utils::read_body({arg0})"
-rust_imports = ["actix-web::test::test_utils::read_body"]
+rust_code = "actix_web::test::test_utils::read_body({arg0})"
+rust_imports = ["actix_web::test::test_utils::read_body"]
 needs_result = false
 is_async = true
 param_types = ["ServiceResponse<B>"]
 
 [[mappings.functions]]
 python = "actix-web.try_read_body"
-rust_code = "actix-web::test::test_utils::try_read_body({arg0})"
-rust_imports = ["actix-web::test::test_utils::try_read_body"]
+rust_code = "actix_web::test::test_utils::try_read_body({arg0})"
+rust_imports = ["actix_web::test::test_utils::try_read_body"]
 needs_result = true
 is_async = true
 param_types = ["ServiceResponse<B>"]
 
 [[mappings.functions]]
 python = "actix-web.read_body_json"
-rust_code = "actix-web::test::test_utils::read_body_json({arg0})"
-rust_imports = ["actix-web::test::test_utils::read_body_json"]
+rust_code = "actix_web::test::test_utils::read_body_json({arg0})"
+rust_imports = ["actix_web::test::test_utils::read_body_json"]
 needs_result = false
 is_async = true
 param_types = ["ServiceResponse<B>"]
 
 [[mappings.functions]]
 python = "actix-web.try_read_body_json"
-rust_code = "actix-web::test::test_utils::try_read_body_json({arg0})"
-rust_imports = ["actix-web::test::test_utils::try_read_body_json"]
+rust_code = "actix_web::test::test_utils::try_read_body_json({arg0})"
+rust_imports = ["actix_web::test::test_utils::try_read_body_json"]
 needs_result = true
 is_async = true
 param_types = ["ServiceResponse<B>"]
 
 [[mappings.functions]]
 python = "actix-web.call_and_read_body_json"
-rust_code = "actix-web::test::test_utils::call_and_read_body_json({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::call_and_read_body_json"]
+rust_code = "actix_web::test::test_utils::call_and_read_body_json({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::call_and_read_body_json"]
 needs_result = false
 is_async = true
 param_types = ["&S", "Request"]
 
 [[mappings.functions]]
 python = "actix-web.try_call_and_read_body_json"
-rust_code = "actix-web::test::test_utils::try_call_and_read_body_json({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::try_call_and_read_body_json"]
+rust_code = "actix_web::test::test_utils::try_call_and_read_body_json({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::try_call_and_read_body_json"]
 needs_result = true
 is_async = true
 param_types = ["&S", "Request"]
 
 [[mappings.functions]]
 python = "actix-web.read_response_json"
-rust_code = "actix-web::test::test_utils::read_response_json({arg0}, {arg1})"
-rust_imports = ["actix-web::test::test_utils::read_response_json"]
+rust_code = "actix_web::test::test_utils::read_response_json({arg0}, {arg1})"
+rust_imports = ["actix_web::test::test_utils::read_response_json"]
 needs_result = false
 is_async = true
 param_types = ["&S", "Request"]
 
 [[mappings.functions]]
 python = "actix-web.ok_service"
-rust_code = "actix-web::test::test_services::ok_service()"
-rust_imports = ["actix-web::test::test_services::ok_service"]
+rust_code = "actix_web::test::test_services::ok_service()"
+rust_imports = ["actix_web::test::test_services::ok_service"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.status_service"
-rust_code = "actix-web::test::test_services::status_service({arg0})"
-rust_imports = ["actix-web::test::test_services::status_service"]
+rust_code = "actix_web::test::test_services::status_service({arg0})"
+rust_imports = ["actix_web::test::test_services::status_service"]
 needs_result = false
 param_types = ["StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web.simple_service"
-rust_code = "actix-web::test::test_services::simple_service({arg0})"
-rust_imports = ["actix-web::test::test_services::simple_service"]
+rust_code = "actix_web::test::test_services::simple_service({arg0})"
+rust_imports = ["actix_web::test::test_services::simple_service"]
 needs_result = false
 param_types = ["StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web.default_service"
-rust_code = "actix-web::test::test_services::default_service({arg0})"
-rust_imports = ["actix-web::test::test_services::default_service"]
+rust_code = "actix_web::test::test_services::default_service({arg0})"
+rust_imports = ["actix_web::test::test_services::default_service"]
 needs_result = false
 param_types = ["StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web.Host"
-rust_code = "actix-web::guard::Host({arg0})"
-rust_imports = ["actix-web::guard::Host"]
+rust_code = "actix_web::guard::host::Host({arg0})"
+rust_imports = ["actix_web::guard::host::Host"]
 needs_result = false
-param_types = ["implAsRef<str>"]
+param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.fn_guard"
-rust_code = "actix-web::fn_guard({arg0})"
-rust_imports = ["actix-web::fn_guard"]
+rust_code = "actix_web::fn_guard({arg0})"
+rust_imports = ["actix_web::fn_guard"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.Any"
-rust_code = "actix-web::guard::Any({arg0})"
-rust_imports = ["actix-web::guard::Any"]
+rust_code = "actix_web::guard::Any({arg0})"
+rust_imports = ["actix_web::guard::Any"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.All"
-rust_code = "actix-web::guard::All({arg0})"
-rust_imports = ["actix-web::guard::All"]
+rust_code = "actix_web::guard::All({arg0})"
+rust_imports = ["actix_web::guard::All"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.Method"
-rust_code = "actix-web::guard::Method({arg0})"
-rust_imports = ["actix-web::guard::Method"]
+rust_code = "actix_web::guard::Method({arg0})"
+rust_imports = ["actix_web::guard::Method"]
 needs_result = false
 param_types = ["HttpMethod"]
 
 [[mappings.functions]]
 python = "actix-web.Header"
-rust_code = "actix-web::guard::Header({arg0}, {arg1})"
-rust_imports = ["actix-web::guard::Header"]
+rust_code = "actix_web::guard::Header({arg0}, {arg1})"
+rust_imports = ["actix_web::guard::Header"]
 needs_result = false
 param_types = ["&'staticstr", "&'staticstr"]
 
 [[mappings.functions]]
 python = "actix-web.my_app"
-rust_code = "actix-web::my_app()"
-rust_imports = ["actix-web::my_app"]
+rust_code = "actix_web::my_app()"
+rust_imports = ["actix_web::my_app"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.gzip_decode"
-rust_code = "actix-web::middleware::compress::gzip_decode({arg0})"
-rust_imports = ["actix-web::middleware::compress::gzip_decode"]
+rust_code = "actix_web::middleware::compress::gzip_decode({arg0})"
+rust_imports = ["actix_web::middleware::compress::gzip_decode"]
 needs_result = false
-param_types = ["implAsRef<[u8]>"]
+param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "actix-web.from_fn"
-rust_code = "actix-web::middleware::from_fn({arg0})"
-rust_imports = ["actix-web::middleware::from_fn"]
+rust_code = "actix_web::middleware::from_fn({arg0})"
+rust_imports = ["actix_web::middleware::from_fn"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.resource"
-rust_code = "actix-web::web::resource({arg0})"
-rust_imports = ["actix-web::web::resource"]
+rust_code = "actix_web::web::resource({arg0})"
+rust_imports = ["actix_web::web::resource"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.scope"
-rust_code = "actix-web::web::scope({arg0})"
-rust_imports = ["actix-web::web::scope"]
+rust_code = "actix_web::web::scope({arg0})"
+rust_imports = ["actix_web::web::scope"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.route"
-rust_code = "actix-web::web::route()"
-rust_imports = ["actix-web::web::route"]
+rust_code = "actix_web::web::route()"
+rust_imports = ["actix_web::web::route"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.method"
-rust_code = "actix-web::web::method({arg0})"
-rust_imports = ["actix-web::web::method"]
+rust_code = "actix_web::web::method({arg0})"
+rust_imports = ["actix_web::web::method"]
 needs_result = false
 param_types = ["Method"]
 
 [[mappings.functions]]
 python = "actix-web.to"
-rust_code = "actix-web::web::to({arg0})"
-rust_imports = ["actix-web::web::to"]
+rust_code = "actix_web::web::to({arg0})"
+rust_imports = ["actix_web::web::to"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.service"
-rust_code = "actix-web::web::service({arg0})"
-rust_imports = ["actix-web::web::service"]
+rust_code = "actix_web::web::service({arg0})"
+rust_imports = ["actix_web::web::service"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.redirect"
-rust_code = "actix-web::web::redirect({arg0}, {arg1})"
-rust_imports = ["actix-web::web::redirect"]
+rust_code = "actix_web::web::redirect({arg0}, {arg1})"
+rust_imports = ["actix_web::web::redirect"]
 needs_result = false
 param_types = ["implInto<Cow<'static,str>>", "implInto<Cow<'static,str>>"]
 
 [[mappings.functions]]
 python = "actix-web.block"
-rust_code = "actix-web::web::block({arg0})"
-rust_imports = ["actix-web::web::block"]
+rust_code = "actix_web::web::block({arg0})"
+rust_imports = ["actix_web::web::block"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.default"
-rust_code = "actix-web::TestRequest::default()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::default()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.with_uri"
-rust_code = "actix-web::TestRequest::with_uri({arg0})"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::with_uri({arg0})"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.get"
-rust_code = "actix-web::TestRequest::get()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::get()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.post"
-rust_code = "actix-web::TestRequest::post()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::post()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.put"
-rust_code = "actix-web::TestRequest::put()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::put()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.patch"
-rust_code = "actix-web::TestRequest::patch()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::patch()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.TestRequest.delete"
-rust_code = "actix-web::TestRequest::delete()"
-rust_imports = ["actix-web::TestRequest"]
+rust_code = "actix_web::test::TestRequest::delete()"
+rust_imports = ["actix_web::test::TestRequest"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.ThinData.from_request"
-rust_code = "actix-web::ThinData::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::ThinData"]
+rust_code = "actix_web::ThinData::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::ThinData"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.ReqData.from_request"
-rust_code = "actix-web::request_data::ReqData::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::request_data::ReqData"]
+rust_code = "actix_web::request_data::ReqData::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::request_data::ReqData"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.Resource.new"
-rust_code = "actix-web::Resource::new({arg0})"
-rust_imports = ["actix-web::Resource"]
+rust_code = "actix_web::resource::Resource::new({arg0})"
+rust_imports = ["actix_web::resource::Resource"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.AppConfig.__priv_test_new"
-rust_code = "actix-web::AppConfig::__priv_test_new({arg0}, {arg1}, {arg2})"
-rust_imports = ["actix-web::AppConfig"]
+rust_code = "actix_web::AppConfig::__priv_test_new({arg0}, {arg1}, {arg2})"
+rust_imports = ["actix_web::AppConfig"]
 needs_result = false
 param_types = ["bool", "String", "SocketAddr"]
 
 [[mappings.functions]]
 python = "actix-web.AppConfig.default"
-rust_code = "actix-web::AppConfig::default()"
-rust_imports = ["actix-web::AppConfig"]
+rust_code = "actix_web::AppConfig::default()"
+rust_imports = ["actix_web::AppConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.Acceptable.new"
-rust_code = "actix-web::guard::Acceptable::new({arg0})"
-rust_imports = ["actix-web::guard::Acceptable"]
+rust_code = "actix_web::guard::acceptable::Acceptable::new({arg0})"
+rust_imports = ["actix_web::guard::acceptable::Acceptable"]
 needs_result = false
 param_types = ["mime::Mime"]
 
 [[mappings.functions]]
 python = "actix-web.AppEntry.new"
-rust_code = "actix-web::app_service::AppEntry::new({arg0})"
-rust_imports = ["actix-web::app_service::AppEntry"]
+rust_code = "actix_web::app_service::AppEntry::new({arg0})"
+rust_imports = ["actix_web::app_service::AppEntry"]
 needs_result = false
 param_types = ["Rc<RefCell<Option<AppRoutingFactory>>>"]
 
 [[mappings.functions]]
 python = "actix-web.ConnectionInfo.from_request"
-rust_code = "actix-web::ConnectionInfo::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::ConnectionInfo"]
+rust_code = "actix_web::info::ConnectionInfo::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::info::ConnectionInfo"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.PeerAddr.from_request"
-rust_code = "actix-web::info::PeerAddr::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::info::PeerAddr"]
+rust_code = "actix_web::info::PeerAddr::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::info::PeerAddr"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.Redirect.new"
-rust_code = "actix-web::Redirect::new({arg0}, {arg1})"
-rust_imports = ["actix-web::Redirect"]
+rust_code = "actix_web::redirect::Redirect::new({arg0}, {arg1})"
+rust_imports = ["actix_web::redirect::Redirect"]
 needs_result = false
 param_types = ["implInto<Cow<'static,str>>", "implInto<Cow<'static,str>>"]
 
 [[mappings.functions]]
 python = "actix-web.Redirect.to"
-rust_code = "actix-web::Redirect::to({arg0})"
-rust_imports = ["actix-web::Redirect"]
+rust_code = "actix_web::redirect::Redirect::to({arg0})"
+rust_imports = ["actix_web::redirect::Redirect"]
 needs_result = false
 param_types = ["implInto<Cow<'static,str>>"]
 
 [[mappings.functions]]
 python = "actix-web.ResourceMap.new"
-rust_code = "actix-web::rmap::ResourceMap::new({arg0})"
-rust_imports = ["actix-web::rmap::ResourceMap"]
+rust_code = "actix_web::rmap::ResourceMap::new({arg0})"
+rust_imports = ["actix_web::rmap::ResourceMap"]
 needs_result = false
 param_types = ["ResourceDef"]
 
 [[mappings.functions]]
 python = "actix-web.Scope.new"
-rust_code = "actix-web::Scope::new({arg0})"
-rust_imports = ["actix-web::Scope"]
+rust_code = "actix_web::scope::Scope::new({arg0})"
+rust_imports = ["actix_web::scope::Scope"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.ContentDisposition.attachment"
-rust_code = "actix-web::http::header::ContentDisposition::attachment({arg0})"
-rust_imports = ["actix-web::http::header::ContentDisposition"]
+rust_code = "actix_web::http::header::ContentDisposition::attachment({arg0})"
+rust_imports = ["actix_web::http::header::ContentDisposition"]
 needs_result = false
 param_types = ["implInto<String>"]
 
 [[mappings.functions]]
 python = "actix-web.ContentDisposition.from_raw"
-rust_code = "actix-web::http::header::ContentDisposition::from_raw({arg0})"
-rust_imports = ["actix-web::http::header::ContentDisposition"]
+rust_code = "actix_web::http::header::ContentDisposition::from_raw({arg0})"
+rust_imports = ["actix_web::http::header::ContentDisposition"]
 needs_result = true
 param_types = ["&header::HeaderValue"]
 
 [[mappings.functions]]
 python = "actix-web.ContentDisposition.name"
-rust_code = "actix-web::http::header::ContentDisposition::name()"
-rust_imports = ["actix-web::http::header::ContentDisposition"]
+rust_code = "actix_web::http::header::ContentDisposition::name()"
+rust_imports = ["actix_web::http::header::ContentDisposition"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.ContentDisposition.parse"
-rust_code = "actix-web::http::header::ContentDisposition::parse({arg0})"
-rust_imports = ["actix-web::http::header::ContentDisposition"]
+rust_code = "actix_web::http::header::ContentDisposition::parse({arg0})"
+rust_imports = ["actix_web::http::header::ContentDisposition"]
 needs_result = true
 param_types = ["&T"]
 
 [[mappings.functions]]
 python = "actix-web.ContentLength.from_str"
-rust_code = "actix-web::http::header::ContentLength::from_str({arg0})"
-rust_imports = ["actix-web::http::header::ContentLength"]
+rust_code = "actix_web::http::header::ContentLength::from_str({arg0})"
+rust_imports = ["actix_web::http::header::ContentLength"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.ContentLength.name"
-rust_code = "actix-web::http::header::ContentLength::name()"
-rust_imports = ["actix-web::http::header::ContentLength"]
+rust_code = "actix_web::http::header::ContentLength::name()"
+rust_imports = ["actix_web::http::header::ContentLength"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.ContentLength.parse"
-rust_code = "actix-web::http::header::ContentLength::parse({arg0})"
-rust_imports = ["actix-web::http::header::ContentLength"]
+rust_code = "actix_web::http::header::ContentLength::parse({arg0})"
+rust_imports = ["actix_web::http::header::ContentLength"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web.ContentLength.from_"
-rust_code = "actix-web::http::header::ContentLength::from({arg0})"
-rust_imports = ["actix-web::http::header::ContentLength"]
+rust_code = "actix_web::http::header::ContentLength::from({arg0})"
+rust_imports = ["actix_web::http::header::ContentLength"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.new"
-rust_code = "actix-web::http::header::EntityTag::new({arg0}, {arg1})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::new({arg0}, {arg1})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = false
 param_types = ["bool", "String"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.new_weak"
-rust_code = "actix-web::http::header::EntityTag::new_weak({arg0})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::new_weak({arg0})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.weak"
-rust_code = "actix-web::http::header::EntityTag::weak({arg0})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::weak({arg0})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.new_strong"
-rust_code = "actix-web::http::header::EntityTag::new_strong({arg0})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::new_strong({arg0})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.strong"
-rust_code = "actix-web::http::header::EntityTag::strong({arg0})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::strong({arg0})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "actix-web.EntityTag.from_str"
-rust_code = "actix-web::http::header::EntityTag::from_str({arg0})"
-rust_imports = ["actix-web::http::header::EntityTag"]
+rust_code = "actix_web::http::header::entity::EntityTag::from_str({arg0})"
+rust_imports = ["actix_web::http::header::entity::EntityTag"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.InternalError.new"
-rust_code = "actix-web::InternalError::new({arg0}, {arg1})"
-rust_imports = ["actix-web::InternalError"]
+rust_code = "actix_web::InternalError::new({arg0}, {arg1})"
+rust_imports = ["actix_web::InternalError"]
 needs_result = false
 param_types = ["T", "StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web.InternalError.from_response"
-rust_code = "actix-web::InternalError::from_response({arg0}, {arg1})"
-rust_imports = ["actix-web::InternalError"]
+rust_code = "actix_web::InternalError::from_response({arg0}, {arg1})"
+rust_imports = ["actix_web::InternalError"]
 needs_result = false
 param_types = ["T", "HttpResponse"]
 
 [[mappings.functions]]
 python = "actix-web.Error.from_"
-rust_code = "actix-web::Error::from({arg0})"
-rust_imports = ["actix-web::Error"]
+rust_code = "actix_web::Error::from({arg0})"
+rust_imports = ["actix_web::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.Error.from_"
-rust_code = "actix-web::Error::from({arg0})"
-rust_imports = ["actix-web::Error"]
+rust_code = "actix_web::Error::from({arg0})"
+rust_imports = ["actix_web::Error"]
 needs_result = false
 param_types = ["Box<dynResponseError>"]
 
 [[mappings.functions]]
 python = "actix-web.Error.from_"
-rust_code = "actix-web::Error::from({arg0})"
-rust_imports = ["actix-web::Error"]
+rust_code = "actix_web::Error::from({arg0})"
+rust_imports = ["actix_web::Error"]
 needs_result = false
 param_types = ["EitherExtractError<L,R>"]
 
 [[mappings.functions]]
 python = "actix-web.ErrorHandlers.default"
-rust_code = "actix-web::middleware::err_handlers::ErrorHandlers::default()"
-rust_imports = ["actix-web::middleware::err_handlers::ErrorHandlers"]
+rust_code = "actix_web::middleware::err_handlers::ErrorHandlers::default()"
+rust_imports = ["actix_web::middleware::err_handlers::ErrorHandlers"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.ErrorHandlers.new"
-rust_code = "actix-web::middleware::err_handlers::ErrorHandlers::new()"
-rust_imports = ["actix-web::middleware::err_handlers::ErrorHandlers"]
+rust_code = "actix_web::middleware::err_handlers::ErrorHandlers::new()"
+rust_imports = ["actix_web::middleware::err_handlers::ErrorHandlers"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.Compat.new"
-rust_code = "actix-web::middleware::Compat::new({arg0})"
-rust_imports = ["actix-web::middleware::Compat"]
+rust_code = "actix_web::middleware::compat::Compat::new({arg0})"
+rust_imports = ["actix_web::middleware::compat::Compat"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.Logger.new"
-rust_code = "actix-web::middleware::Logger::new({arg0})"
-rust_imports = ["actix-web::middleware::Logger"]
+rust_code = "actix_web::middleware::Logger::new({arg0})"
+rust_imports = ["actix_web::middleware::Logger"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web.Logger.default"
-rust_code = "actix-web::middleware::Logger::default()"
-rust_imports = ["actix-web::middleware::Logger"]
+rust_code = "actix_web::middleware::Logger::default()"
+rust_imports = ["actix_web::middleware::Logger"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.NormalizePath.default"
-rust_code = "actix-web::middleware::NormalizePath::default()"
-rust_imports = ["actix-web::middleware::NormalizePath"]
+rust_code = "actix_web::middleware::normalize::NormalizePath::default()"
+rust_imports = ["actix_web::middleware::normalize::NormalizePath"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.NormalizePath.new"
-rust_code = "actix-web::middleware::NormalizePath::new({arg0})"
-rust_imports = ["actix-web::middleware::NormalizePath"]
+rust_code = "actix_web::middleware::normalize::NormalizePath::new({arg0})"
+rust_imports = ["actix_web::middleware::normalize::NormalizePath"]
 needs_result = false
 param_types = ["TrailingSlash"]
 
 [[mappings.functions]]
 python = "actix-web.NormalizePath.trim"
-rust_code = "actix-web::middleware::NormalizePath::trim()"
-rust_imports = ["actix-web::middleware::NormalizePath"]
+rust_code = "actix_web::middleware::normalize::NormalizePath::trim()"
+rust_imports = ["actix_web::middleware::normalize::NormalizePath"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.Condition.new"
-rust_code = "actix-web::middleware::Condition::new({arg0}, {arg1})"
-rust_imports = ["actix-web::middleware::Condition"]
+rust_code = "actix_web::middleware::condition::Condition::new({arg0}, {arg1})"
+rust_imports = ["actix_web::middleware::condition::Condition"]
 needs_result = false
 param_types = ["bool", "T"]
 
 [[mappings.functions]]
 python = "actix-web.DefaultHeaders.new"
-rust_code = "actix-web::middleware::DefaultHeaders::new()"
-rust_imports = ["actix-web::middleware::DefaultHeaders"]
+rust_code = "actix_web::middleware::DefaultHeaders::new()"
+rust_imports = ["actix_web::middleware::DefaultHeaders"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.HttpResponseBuilder.new"
-rust_code = "actix-web::HttpResponseBuilder::new({arg0})"
-rust_imports = ["actix-web::HttpResponseBuilder"]
+rust_code = "actix_web::HttpResponseBuilder::new({arg0})"
+rust_imports = ["actix_web::HttpResponseBuilder"]
 needs_result = false
 param_types = ["StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web.ServiceRequest.from_parts"
-rust_code = "actix-web::ServiceRequest::from_parts({arg0}, {arg1})"
-rust_imports = ["actix-web::ServiceRequest"]
+rust_code = "actix_web::service::ServiceRequest::from_parts({arg0}, {arg1})"
+rust_imports = ["actix_web::service::ServiceRequest"]
 needs_result = false
 param_types = ["HttpRequest", "Payload"]
 
 [[mappings.functions]]
 python = "actix-web.ServiceRequest.from_request"
-rust_code = "actix-web::ServiceRequest::from_request({arg0})"
-rust_imports = ["actix-web::ServiceRequest"]
+rust_code = "actix_web::service::ServiceRequest::from_request({arg0})"
+rust_imports = ["actix_web::service::ServiceRequest"]
 needs_result = false
 param_types = ["HttpRequest"]
 
 [[mappings.functions]]
 python = "actix-web.ServiceResponse.from_err"
-rust_code = "actix-web::ServiceResponse::from_err({arg0}, {arg1})"
-rust_imports = ["actix-web::ServiceResponse"]
+rust_code = "actix_web::service::ServiceResponse::from_err({arg0}, {arg1})"
+rust_imports = ["actix_web::service::ServiceResponse"]
 needs_result = false
 param_types = ["E", "HttpRequest"]
 
 [[mappings.functions]]
 python = "actix-web.ServiceResponse.new"
-rust_code = "actix-web::ServiceResponse::new({arg0}, {arg1})"
-rust_imports = ["actix-web::ServiceResponse"]
+rust_code = "actix_web::service::ServiceResponse::new({arg0}, {arg1})"
+rust_imports = ["actix_web::service::ServiceResponse"]
 needs_result = false
 param_types = ["HttpRequest", "HttpResponse<B>"]
 
 [[mappings.functions]]
 python = "actix-web.WebService.new"
-rust_code = "actix-web::WebService::new({arg0})"
-rust_imports = ["actix-web::WebService"]
+rust_code = "actix_web::WebService::new({arg0})"
+rust_imports = ["actix_web::WebService"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web.JsonConfig.default"
-rust_code = "actix-web::JsonConfig::default()"
-rust_imports = ["actix-web::JsonConfig"]
+rust_code = "actix_web::types::json::JsonConfig::default()"
+rust_imports = ["actix_web::types::json::JsonConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.Html.new"
-rust_code = "actix-web::Html::new({arg0})"
-rust_imports = ["actix-web::Html"]
+rust_code = "actix_web::types::html::Html::new({arg0})"
+rust_imports = ["actix_web::types::html::Html"]
 needs_result = false
 param_types = ["implInto<String>"]
 
 [[mappings.functions]]
 python = "actix-web.FormConfig.default"
-rust_code = "actix-web::FormConfig::default()"
-rust_imports = ["actix-web::FormConfig"]
+rust_code = "actix_web::types::form::FormConfig::default()"
+rust_imports = ["actix_web::types::form::FormConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.UrlEncoded.new"
-rust_code = "actix-web::types::form::UrlEncoded::new({arg0}, {arg1})"
-rust_imports = ["actix-web::types::form::UrlEncoded"]
+rust_code = "actix_web::types::form::UrlEncoded::new({arg0}, {arg1})"
+rust_imports = ["actix_web::types::form::UrlEncoded"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.Payload.from_request"
-rust_code = "actix-web::Payload::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::Payload"]
+rust_code = "actix_web::types::payload::Payload::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::types::payload::Payload"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web.PayloadConfig.new"
-rust_code = "actix-web::PayloadConfig::new({arg0})"
-rust_imports = ["actix-web::PayloadConfig"]
+rust_code = "actix_web::types::payload::PayloadConfig::new({arg0})"
+rust_imports = ["actix_web::types::payload::PayloadConfig"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "actix-web.PayloadConfig.default"
-rust_code = "actix-web::PayloadConfig::default()"
-rust_imports = ["actix-web::PayloadConfig"]
+rust_code = "actix_web::types::payload::PayloadConfig::default()"
+rust_imports = ["actix_web::types::payload::PayloadConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web.HttpMessageBody.new"
-rust_code = "actix-web::types::payload::HttpMessageBody::new({arg0}, {arg1})"
-rust_imports = ["actix-web::types::payload::HttpMessageBody"]
+rust_code = "actix_web::types::payload::HttpMessageBody::new({arg0}, {arg1})"
+rust_imports = ["actix_web::types::payload::HttpMessageBody"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web.Header.from_request"
-rust_code = "actix-web::Header::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web::Header"]
+rust_code = "actix_web::types::header::Header::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web::types::header::Header"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web.Readlines.new"
-rust_code = "actix-web::Readlines::new({arg0})"
-rust_imports = ["actix-web::Readlines"]
+rust_code = "actix_web::types::readlines::Readlines::new({arg0})"
+rust_imports = ["actix_web::types::readlines::Readlines"]
 needs_result = false
 param_types = ["&mutT"]
 
@@ -3172,7 +3175,7 @@ returns_self = true
 # Result type alias
 [[mappings.types]]
 python = "Result"
-rust = "actix-web::Result"
+rust = "actix_web::Result"
 
 # HttpResponse from std
 [[mappings.types]]
@@ -3226,396 +3229,689 @@ rust = "actix_web::web::Route"
 
 [[mappings.types]]
 python = "Person"
-rust = "actix-web::test::test_utils::Person"
+rust = "actix_web::test::test_utils::Person"
 
 [[mappings.types]]
 python = "TestRequest"
-rust = "actix-web::TestRequest"
+rust = "actix_web::test::TestRequest"
 
 [[mappings.types]]
 python = "ThinData"
-rust = "actix-web::ThinData"
+rust = "actix_web::ThinData"
 
 [[mappings.types]]
 python = "ReqData"
-rust = "actix-web::request_data::ReqData"
+rust = "actix_web::request_data::ReqData"
 
 [[mappings.types]]
 python = "Resource"
-rust = "actix-web::Resource"
+rust = "actix_web::resource::Resource"
 
 [[mappings.types]]
 python = "ResourceFactory"
-rust = "actix-web::ResourceFactory"
+rust = "actix_web::resource::ResourceFactory"
 
 [[mappings.types]]
 python = "ResourceService"
-rust = "actix-web::ResourceService"
+rust = "actix_web::resource::ResourceService"
 
 [[mappings.types]]
 python = "ResourceEndpoint"
-rust = "actix-web::ResourceEndpoint"
+rust = "actix_web::resource::ResourceEndpoint"
 
 [[mappings.types]]
 python = "AppService"
-rust = "actix-web::config::AppService"
+rust = "actix_web::config::AppService"
 
 [[mappings.types]]
 python = "AppConfig"
-rust = "actix-web::AppConfig"
+rust = "actix_web::AppConfig"
 
 [[mappings.types]]
 python = "ServiceConfig"
-rust = "actix-web::ServiceConfig"
+rust = "actix_web::config::ServiceConfig"
 
 [[mappings.types]]
 python = "HostGuard"
-rust = "actix-web::HostGuard"
+rust = "actix_web::guard::host::HostGuard"
 
 [[mappings.types]]
 python = "Acceptable"
-rust = "actix-web::guard::Acceptable"
+rust = "actix_web::guard::acceptable::Acceptable"
 
 [[mappings.types]]
 python = "GuardContext"
-rust = "actix-web::GuardContext"
+rust = "actix_web::guard::GuardContext"
 
 [[mappings.types]]
 python = "AnyGuard"
-rust = "actix-web::AnyGuard"
+rust = "actix_web::AnyGuard"
 
 [[mappings.types]]
 python = "AllGuard"
-rust = "actix-web::AllGuard"
+rust = "actix_web::AllGuard"
 
 [[mappings.types]]
 python = "Not"
-rust = "actix-web::guard::Not"
+rust = "actix_web::guard::Not"
 
 [[mappings.types]]
 python = "AppInit"
-rust = "actix-web::app_service::AppInit"
+rust = "actix_web::app_service::AppInit"
 
 [[mappings.types]]
 python = "AppInitService"
-rust = "actix-web::app_service::AppInitService"
+rust = "actix_web::app_service::AppInitService"
 
 [[mappings.types]]
 python = "AppRoutingFactory"
-rust = "actix-web::app_service::AppRoutingFactory"
+rust = "actix_web::app_service::AppRoutingFactory"
 
 [[mappings.types]]
 python = "AppRouting"
-rust = "actix-web::app_service::AppRouting"
+rust = "actix_web::app_service::AppRouting"
 
 [[mappings.types]]
 python = "AppEntry"
-rust = "actix-web::app_service::AppEntry"
+rust = "actix_web::app_service::AppEntry"
 
 [[mappings.types]]
 python = "ConnectionInfo"
-rust = "actix-web::ConnectionInfo"
+rust = "actix_web::info::ConnectionInfo"
 
 [[mappings.types]]
 python = "PeerAddr"
-rust = "actix-web::info::PeerAddr"
+rust = "actix_web::info::PeerAddr"
 
 [[mappings.types]]
 python = "MissingPeerAddr"
-rust = "actix-web::info::MissingPeerAddr"
+rust = "actix_web::info::MissingPeerAddr"
 
 [[mappings.types]]
 python = "RouteService"
-rust = "actix-web::RouteService"
+rust = "actix_web::route::RouteService"
 
 [[mappings.types]]
 python = "Redirect"
-rust = "actix-web::Redirect"
+rust = "actix_web::redirect::Redirect"
 
 [[mappings.types]]
 python = "ResourceMap"
-rust = "actix-web::rmap::ResourceMap"
+rust = "actix_web::rmap::ResourceMap"
 
 [[mappings.types]]
 python = "Scope"
-rust = "actix-web::Scope"
+rust = "actix_web::scope::Scope"
 
 [[mappings.types]]
 python = "ScopeFactory"
-rust = "actix-web::ScopeFactory"
+rust = "actix_web::scope::ScopeFactory"
 
 [[mappings.types]]
 python = "ScopeService"
-rust = "actix-web::ScopeService"
+rust = "actix_web::scope::ScopeService"
 
 [[mappings.types]]
 python = "ScopeEndpoint"
-rust = "actix-web::ScopeEndpoint"
+rust = "actix_web::scope::ScopeEndpoint"
 
 [[mappings.types]]
 python = "ContentDisposition"
-rust = "actix-web::http::header::ContentDisposition"
+rust = "actix_web::http::header::ContentDisposition"
 
 [[mappings.types]]
 python = "ContentLength"
-rust = "actix-web::http::header::ContentLength"
+rust = "actix_web::http::header::ContentLength"
 
 [[mappings.types]]
 python = "EntityTag"
-rust = "actix-web::http::header::EntityTag"
+rust = "actix_web::http::header::entity::EntityTag"
 
 [[mappings.types]]
 python = "InternalError"
-rust = "actix-web::InternalError"
+rust = "actix_web::InternalError"
 
 [[mappings.types]]
 python = "BlockingError"
-rust = "actix-web::BlockingError"
+rust = "actix_web::BlockingError"
 
 [[mappings.types]]
 python = "Error"
-rust = "actix-web::Error"
+rust = "actix_web::Error"
 
 [[mappings.types]]
 python = "Identity"
-rust = "actix-web::middleware::Identity"
+rust = "actix_web::middleware::identity::Identity"
 
 [[mappings.types]]
 python = "IdentityMiddleware"
-rust = "actix-web::IdentityMiddleware"
+rust = "actix_web::middleware::identity::IdentityMiddleware"
 
 [[mappings.types]]
 python = "ErrorHandlers"
-rust = "actix-web::middleware::err_handlers::ErrorHandlers"
+rust = "actix_web::middleware::err_handlers::ErrorHandlers"
 
 [[mappings.types]]
 python = "ErrorHandlersMiddleware"
-rust = "actix-web::middleware::err_handlers::ErrorHandlersMiddleware"
+rust = "actix_web::middleware::err_handlers::ErrorHandlersMiddleware"
 
 [[mappings.types]]
 python = "Compat"
-rust = "actix-web::middleware::Compat"
+rust = "actix_web::middleware::compat::Compat"
 
 [[mappings.types]]
 python = "CompatMiddleware"
-rust = "actix-web::CompatMiddleware"
+rust = "actix_web::middleware::compat::CompatMiddleware"
 
 [[mappings.types]]
 python = "Logger"
-rust = "actix-web::middleware::Logger"
+rust = "actix_web::middleware::Logger"
 
 [[mappings.types]]
 python = "LoggerMiddleware"
-rust = "actix-web::LoggerMiddleware"
+rust = "actix_web::LoggerMiddleware"
 
 [[mappings.types]]
 python = "NormalizePath"
-rust = "actix-web::middleware::NormalizePath"
+rust = "actix_web::middleware::normalize::NormalizePath"
 
 [[mappings.types]]
 python = "NormalizePathNormalization"
-rust = "actix-web::middleware::NormalizePathNormalization"
+rust = "actix_web::middleware::normalize::NormalizePathNormalization"
 
 [[mappings.types]]
 python = "Condition"
-rust = "actix-web::middleware::Condition"
+rust = "actix_web::middleware::condition::Condition"
 
 [[mappings.types]]
 python = "DefaultHeaders"
-rust = "actix-web::middleware::DefaultHeaders"
+rust = "actix_web::middleware::DefaultHeaders"
 
 [[mappings.types]]
 python = "DefaultHeadersMiddleware"
-rust = "actix-web::DefaultHeadersMiddleware"
+rust = "actix_web::middleware::default_headers::DefaultHeadersMiddleware"
 
 [[mappings.types]]
 python = "Compress"
-rust = "actix-web::middleware::Compress"
+rust = "actix_web::middleware::compress::Compress"
 
 [[mappings.types]]
 python = "CompressMiddleware"
-rust = "actix-web::CompressMiddleware"
+rust = "actix_web::middleware::compress::CompressMiddleware"
 
 [[mappings.types]]
 python = "MiddlewareFn"
-rust = "actix-web::middleware::from_fn::MiddlewareFn"
+rust = "actix_web::middleware::from_fn::MiddlewareFn"
 
 [[mappings.types]]
 python = "MiddlewareFnService"
-rust = "actix-web::middleware::from_fn::MiddlewareFnService"
+rust = "actix_web::middleware::from_fn::MiddlewareFnService"
 
 [[mappings.types]]
 python = "Next"
-rust = "actix-web::middleware::from_fn::Next"
+rust = "actix_web::middleware::from_fn::Next"
 
 [[mappings.types]]
 python = "CustomizeResponder"
-rust = "actix-web::response::CustomizeResponder"
+rust = "actix_web::CustomizeResponder"
 
 [[mappings.types]]
 python = "HttpResponseBuilder"
-rust = "actix-web::HttpResponseBuilder"
+rust = "actix_web::HttpResponseBuilder"
 
 [[mappings.types]]
 python = "CookieIter"
-rust = "actix-web::response::response::CookieIter"
+rust = "actix_web::CookieIter"
 
 [[mappings.types]]
 python = "ServiceRequest"
-rust = "actix-web::ServiceRequest"
+rust = "actix_web::service::ServiceRequest"
 
 [[mappings.types]]
 python = "ServiceResponse"
-rust = "actix-web::ServiceResponse"
+rust = "actix_web::service::ServiceResponse"
 
 [[mappings.types]]
 python = "WebService"
-rust = "actix-web::WebService"
+rust = "actix_web::WebService"
 
 [[mappings.types]]
 python = "JsonExtractFut"
-rust = "actix-web::JsonExtractFut"
+rust = "actix_web::types::json::JsonExtractFut"
 
 [[mappings.types]]
 python = "JsonConfig"
-rust = "actix-web::JsonConfig"
+rust = "actix_web::types::json::JsonConfig"
 
 [[mappings.types]]
 python = "PathConfig"
-rust = "actix-web::PathConfig"
+rust = "actix_web::types::path::PathConfig"
 
 [[mappings.types]]
 python = "Html"
-rust = "actix-web::Html"
+rust = "actix_web::types::html::Html"
 
 [[mappings.types]]
 python = "FormExtractFut"
-rust = "actix-web::FormExtractFut"
+rust = "actix_web::types::form::FormExtractFut"
 
 [[mappings.types]]
 python = "FormConfig"
-rust = "actix-web::FormConfig"
+rust = "actix_web::types::form::FormConfig"
 
 [[mappings.types]]
 python = "UrlEncoded"
-rust = "actix-web::types::form::UrlEncoded"
+rust = "actix_web::types::form::UrlEncoded"
 
 [[mappings.types]]
 python = "Payload"
-rust = "actix-web::Payload"
+rust = "actix_web::types::payload::Payload"
 
 [[mappings.types]]
 python = "BytesExtractFut"
-rust = "actix-web::types::payload::BytesExtractFut"
+rust = "actix_web::types::payload::BytesExtractFut"
 
 [[mappings.types]]
 python = "StringExtractFut"
-rust = "actix-web::types::payload::StringExtractFut"
+rust = "actix_web::types::payload::StringExtractFut"
 
 [[mappings.types]]
 python = "PayloadConfig"
-rust = "actix-web::PayloadConfig"
+rust = "actix_web::types::payload::PayloadConfig"
 
 [[mappings.types]]
 python = "HttpMessageBody"
-rust = "actix-web::types::payload::HttpMessageBody"
+rust = "actix_web::types::payload::HttpMessageBody"
 
 [[mappings.types]]
 python = "Header"
-rust = "actix-web::Header"
+rust = "actix_web::types::header::Header"
 
 [[mappings.types]]
 python = "Readlines"
-rust = "actix-web::Readlines"
+rust = "actix_web::types::readlines::Readlines"
 
 [[mappings.types]]
 python = "QueryConfig"
-rust = "actix-web::QueryConfig"
+rust = "actix_web::types::query::QueryConfig"
 
 [[mappings.types]]
 python = "ContentRangeSpec"
-rust = "actix-web::http::header::ContentRangeSpec"
+rust = "actix_web::http::header::content_range::ContentRangeSpec"
 
 [[mappings.types]]
 python = "Range"
-rust = "actix-web::http::header::Range"
+rust = "actix_web::http::header::range::Range"
 
 [[mappings.types]]
 python = "ByteRangeSpec"
-rust = "actix-web::http::header::ByteRangeSpec"
+rust = "actix_web::http::header::range::ByteRangeSpec"
 
 [[mappings.types]]
 python = "AnyOrSome"
-rust = "actix-web::http::header::AnyOrSome"
+rust = "actix_web::http::header::AnyOrSome"
 
 [[mappings.types]]
 python = "Preference"
-rust = "actix-web::http::header::Preference"
+rust = "actix_web::http::header::preference::Preference"
 
 [[mappings.types]]
 python = "Encoding"
-rust = "actix-web::http::header::Encoding"
+rust = "actix_web::http::header::Encoding"
 
 [[mappings.types]]
 python = "IfRange"
-rust = "actix-web::http::header::IfRange"
+rust = "actix_web::http::header::IfRange"
 
 [[mappings.types]]
 python = "CacheDirective"
-rust = "actix-web::http::header::cache_control::CacheDirective"
+rust = "actix_web::http::header::cache_control::CacheDirective"
 
 [[mappings.types]]
 python = "DispositionType"
-rust = "actix-web::http::header::content_disposition::DispositionType"
+rust = "actix_web::http::header::content_disposition::DispositionType"
 
 [[mappings.types]]
 python = "DispositionParam"
-rust = "actix-web::http::header::content_disposition::DispositionParam"
+rust = "actix_web::http::header::content_disposition::DispositionParam"
 
 [[mappings.types]]
 python = "UrlGenerationError"
-rust = "actix-web::UrlGenerationError"
+rust = "actix_web::UrlGenerationError"
 
 [[mappings.types]]
 python = "UrlencodedError"
-rust = "actix-web::UrlencodedError"
+rust = "actix_web::UrlencodedError"
 
 [[mappings.types]]
 python = "JsonPayloadError"
-rust = "actix-web::JsonPayloadError"
+rust = "actix_web::JsonPayloadError"
 
 [[mappings.types]]
 python = "PathError"
-rust = "actix-web::PathError"
+rust = "actix_web::PathError"
 
 [[mappings.types]]
 python = "QueryPayloadError"
-rust = "actix-web::QueryPayloadError"
+rust = "actix_web::QueryPayloadError"
 
 [[mappings.types]]
 python = "ReadlinesError"
-rust = "actix-web::ReadlinesError"
+rust = "actix_web::ReadlinesError"
 
 [[mappings.types]]
 python = "ErrorHandlerResponse"
-rust = "actix-web::middleware::err_handlers::ErrorHandlerResponse"
+rust = "actix_web::middleware::err_handlers::ErrorHandlerResponse"
 
 [[mappings.types]]
 python = "TrailingSlash"
-rust = "actix-web::middleware::normalize::TrailingSlash"
+rust = "actix_web::middleware::normalize::TrailingSlash"
 
 [[mappings.types]]
 python = "ConditionMiddleware"
-rust = "actix-web::ConditionMiddleware"
+rust = "actix_web::middleware::condition::ConditionMiddleware"
 
 [[mappings.types]]
 python = "JsonBody"
-rust = "actix-web::JsonBody"
+rust = "actix_web::types::json::JsonBody"
 
 [[mappings.types]]
 python = "Either"
-rust = "actix-web::Either"
+rust = "actix_web::types::either::Either"
 
 [[mappings.types]]
 python = "EitherExtractError"
-rust = "actix-web::EitherExtractError"
+rust = "actix_web::types::either::EitherExtractError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "ContentRangeSpec.Bytes"
+rust = "actix_web::http::header::content_range::ContentRangeSpec::Bytes"
+
+[[mappings.enum_variants]]
+python = "ContentRangeSpec.Unregistered"
+rust = "actix_web::http::header::content_range::ContentRangeSpec::Unregistered"
+
+[[mappings.enum_variants]]
+python = "Range.Bytes"
+rust = "actix_web::http::header::range::Range::Bytes"
+
+[[mappings.enum_variants]]
+python = "Range.Unregistered"
+rust = "actix_web::http::header::range::Range::Unregistered"
+
+[[mappings.enum_variants]]
+python = "ByteRangeSpec.FromTo"
+rust = "actix_web::http::header::range::ByteRangeSpec::FromTo"
+
+[[mappings.enum_variants]]
+python = "ByteRangeSpec.From"
+rust = "actix_web::http::header::range::ByteRangeSpec::From"
+
+[[mappings.enum_variants]]
+python = "ByteRangeSpec.Last"
+rust = "actix_web::http::header::range::ByteRangeSpec::Last"
+
+[[mappings.enum_variants]]
+python = "AnyOrSome.Any"
+rust = "actix_web::http::header::AnyOrSome::Any"
+
+[[mappings.enum_variants]]
+python = "AnyOrSome.Item"
+rust = "actix_web::http::header::AnyOrSome::Item"
+
+[[mappings.enum_variants]]
+python = "Preference.Any"
+rust = "actix_web::http::header::preference::Preference::Any"
+
+[[mappings.enum_variants]]
+python = "Preference.Specific"
+rust = "actix_web::http::header::preference::Preference::Specific"
+
+[[mappings.enum_variants]]
+python = "Encoding.Known"
+rust = "actix_web::http::header::Encoding::Known"
+
+[[mappings.enum_variants]]
+python = "Encoding.Unknown"
+rust = "actix_web::http::header::Encoding::Unknown"
+
+[[mappings.enum_variants]]
+python = "IfRange.EntityTag"
+rust = "actix_web::http::header::IfRange::EntityTag"
+
+[[mappings.enum_variants]]
+python = "IfRange.Date"
+rust = "actix_web::http::header::IfRange::Date"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoCache"
+rust = "actix_web::http::header::cache_control::CacheDirective::NoCache"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoStore"
+rust = "actix_web::http::header::cache_control::CacheDirective::NoStore"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoTransform"
+rust = "actix_web::http::header::cache_control::CacheDirective::NoTransform"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.OnlyIfCached"
+rust = "actix_web::http::header::cache_control::CacheDirective::OnlyIfCached"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MaxAge"
+rust = "actix_web::http::header::cache_control::CacheDirective::MaxAge"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MaxStale"
+rust = "actix_web::http::header::cache_control::CacheDirective::MaxStale"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MinFresh"
+rust = "actix_web::http::header::cache_control::CacheDirective::MinFresh"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MustRevalidate"
+rust = "actix_web::http::header::cache_control::CacheDirective::MustRevalidate"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Public"
+rust = "actix_web::http::header::cache_control::CacheDirective::Public"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Private"
+rust = "actix_web::http::header::cache_control::CacheDirective::Private"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.ProxyRevalidate"
+rust = "actix_web::http::header::cache_control::CacheDirective::ProxyRevalidate"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.SMaxAge"
+rust = "actix_web::http::header::cache_control::CacheDirective::SMaxAge"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Extension"
+rust = "actix_web::http::header::cache_control::CacheDirective::Extension"
+
+[[mappings.enum_variants]]
+python = "DispositionType.Inline"
+rust = "actix_web::http::header::content_disposition::DispositionType::Inline"
+
+[[mappings.enum_variants]]
+python = "DispositionType.Attachment"
+rust = "actix_web::http::header::content_disposition::DispositionType::Attachment"
+
+[[mappings.enum_variants]]
+python = "DispositionType.FormData"
+rust = "actix_web::http::header::content_disposition::DispositionType::FormData"
+
+[[mappings.enum_variants]]
+python = "DispositionType.Ext"
+rust = "actix_web::http::header::content_disposition::DispositionType::Ext"
+
+[[mappings.enum_variants]]
+python = "DispositionParam.Name"
+rust = "actix_web::http::header::content_disposition::DispositionParam::Name"
+
+[[mappings.enum_variants]]
+python = "DispositionParam.Filename"
+rust = "actix_web::http::header::content_disposition::DispositionParam::Filename"
+
+[[mappings.enum_variants]]
+python = "DispositionParam.FilenameExt"
+rust = "actix_web::http::header::content_disposition::DispositionParam::FilenameExt"
+
+[[mappings.enum_variants]]
+python = "DispositionParam.Unknown"
+rust = "actix_web::http::header::content_disposition::DispositionParam::Unknown"
+
+[[mappings.enum_variants]]
+python = "DispositionParam.UnknownExt"
+rust = "actix_web::http::header::content_disposition::DispositionParam::UnknownExt"
+
+[[mappings.enum_variants]]
+python = "UrlGenerationError.ResourceNotFound"
+rust = "actix_web::UrlGenerationError::ResourceNotFound"
+
+[[mappings.enum_variants]]
+python = "UrlGenerationError.NotEnoughElements"
+rust = "actix_web::UrlGenerationError::NotEnoughElements"
+
+[[mappings.enum_variants]]
+python = "UrlGenerationError.ParseError"
+rust = "actix_web::UrlGenerationError::ParseError"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Chunked"
+rust = "actix_web::UrlencodedError::Chunked"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Overflow"
+rust = "actix_web::UrlencodedError::Overflow"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.UnknownLength"
+rust = "actix_web::UrlencodedError::UnknownLength"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.ContentType"
+rust = "actix_web::UrlencodedError::ContentType"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Parse"
+rust = "actix_web::UrlencodedError::Parse"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Encoding"
+rust = "actix_web::UrlencodedError::Encoding"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Serialize"
+rust = "actix_web::UrlencodedError::Serialize"
+
+[[mappings.enum_variants]]
+python = "UrlencodedError.Payload"
+rust = "actix_web::UrlencodedError::Payload"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.OverflowKnownLength"
+rust = "actix_web::JsonPayloadError::OverflowKnownLength"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Overflow"
+rust = "actix_web::JsonPayloadError::Overflow"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.ContentType"
+rust = "actix_web::JsonPayloadError::ContentType"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Deserialize"
+rust = "actix_web::JsonPayloadError::Deserialize"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Serialize"
+rust = "actix_web::JsonPayloadError::Serialize"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Payload"
+rust = "actix_web::JsonPayloadError::Payload"
+
+[[mappings.enum_variants]]
+python = "PathError.Deserialize"
+rust = "actix_web::PathError::Deserialize"
+
+[[mappings.enum_variants]]
+python = "QueryPayloadError.Deserialize"
+rust = "actix_web::QueryPayloadError::Deserialize"
+
+[[mappings.enum_variants]]
+python = "ReadlinesError.EncodingError"
+rust = "actix_web::ReadlinesError::EncodingError"
+
+[[mappings.enum_variants]]
+python = "ReadlinesError.Payload"
+rust = "actix_web::ReadlinesError::Payload"
+
+[[mappings.enum_variants]]
+python = "ReadlinesError.LimitOverflow"
+rust = "actix_web::ReadlinesError::LimitOverflow"
+
+[[mappings.enum_variants]]
+python = "ReadlinesError.ContentTypeError"
+rust = "actix_web::ReadlinesError::ContentTypeError"
+
+[[mappings.enum_variants]]
+python = "ErrorHandlerResponse.Response"
+rust = "actix_web::middleware::err_handlers::ErrorHandlerResponse::Response"
+
+[[mappings.enum_variants]]
+python = "ErrorHandlerResponse.Future"
+rust = "actix_web::middleware::err_handlers::ErrorHandlerResponse::Future"
+
+[[mappings.enum_variants]]
+python = "TrailingSlash.Trim"
+rust = "actix_web::middleware::normalize::TrailingSlash::Trim"
+
+[[mappings.enum_variants]]
+python = "TrailingSlash.MergeOnly"
+rust = "actix_web::middleware::normalize::TrailingSlash::MergeOnly"
+
+[[mappings.enum_variants]]
+python = "TrailingSlash.Always"
+rust = "actix_web::middleware::normalize::TrailingSlash::Always"
+
+[[mappings.enum_variants]]
+python = "ConditionMiddleware.Enable"
+rust = "actix_web::middleware::condition::ConditionMiddleware::Enable"
+
+[[mappings.enum_variants]]
+python = "ConditionMiddleware.Disable"
+rust = "actix_web::middleware::condition::ConditionMiddleware::Disable"
+
+[[mappings.enum_variants]]
+python = "JsonBody.Error"
+rust = "actix_web::types::json::JsonBody::Error"
+
+[[mappings.enum_variants]]
+python = "JsonBody.Body"
+rust = "actix_web::types::json::JsonBody::Body"
+
+[[mappings.enum_variants]]
+python = "Either.Left"
+rust = "actix_web::types::either::Either::Left"
+
+[[mappings.enum_variants]]
+python = "Either.Right"
+rust = "actix_web::types::either::Either::Right"
+
+[[mappings.enum_variants]]
+python = "EitherExtractError.Bytes"
+rust = "actix_web::types::either::EitherExtractError::Bytes"
+
+[[mappings.enum_variants]]
+python = "EitherExtractError.Extract"
+rust = "actix_web::types::either::EitherExtractError::Extract"

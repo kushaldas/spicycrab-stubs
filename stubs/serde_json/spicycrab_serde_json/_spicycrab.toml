@@ -11,6 +11,17 @@ serde_json = "1.0.149"
 available = ["alloc", "arbitrary_precision", "default", "float_roundtrip", "preserve_order", "raw_value", "std", "unbounded_depth"]
 default = ["std"]
 
+# Macro mappings (signatures from hardcoded stubs)
+[[mappings.functions]]
+python = "serde_json.json"
+rust_code = "serde_json::json!({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["impl Serialize"]
+
+# NOTE: Detected 4 macros without stubs: json_expect_expr_comma, json_internal, json_internal_vec, json_unexpected
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "serde_json.from_reader"
 rust_code = "serde_json::from_reader({arg0})"
@@ -286,69 +297,69 @@ param_types = ["&mutVec<Limb>", "&[Limb]"]
 
 [[mappings.functions]]
 python = "serde_json.parse_concise_float"
-rust_code = "serde_json::lexical::parse_concise_float({arg0}, {arg1})"
-rust_imports = ["serde_json::lexical::parse_concise_float"]
+rust_code = "serde_json::lexical::parse::parse_concise_float({arg0}, {arg1})"
+rust_imports = ["serde_json::lexical::parse::parse_concise_float"]
 needs_result = false
 param_types = ["u64", "i32"]
 
 [[mappings.functions]]
 python = "serde_json.parse_truncated_float"
-rust_code = "serde_json::lexical::parse_truncated_float({arg0}, {arg1}, {arg2})"
-rust_imports = ["serde_json::lexical::parse_truncated_float"]
+rust_code = "serde_json::lexical::parse::parse_truncated_float({arg0}, {arg1}, {arg2})"
+rust_imports = ["serde_json::lexical::parse::parse_truncated_float"]
 needs_result = false
 param_types = ["&[u8]", "&[u8]", "i32"]
 
 [[mappings.functions]]
 python = "serde_json.to_raw_value"
-rust_code = "serde_json::to_raw_value({arg0})"
-rust_imports = ["serde_json::to_raw_value"]
+rust_code = "serde_json::raw::to_raw_value({arg0})"
+rust_imports = ["serde_json::raw::to_raw_value"]
 needs_result = true
 param_types = ["&T"]
 
 [[mappings.functions]]
 python = "serde_json.Map.new"
-rust_code = "serde_json::Map::new()"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::new()"
+rust_imports = ["serde_json::map::Map"]
 needs_result = false
 
 [[mappings.functions]]
 python = "serde_json.Map.with_capacity"
-rust_code = "serde_json::Map::with_capacity({arg0})"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::with_capacity({arg0})"
+rust_imports = ["serde_json::map::Map"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "serde_json.Map.default"
-rust_code = "serde_json::Map::default()"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::default()"
+rust_imports = ["serde_json::map::Map"]
 needs_result = false
 
 [[mappings.functions]]
 python = "serde_json.Map.deserialize"
-rust_code = "serde_json::Map::deserialize({arg0})"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::deserialize({arg0})"
+rust_imports = ["serde_json::map::Map"]
 needs_result = true
 param_types = ["D"]
 
 [[mappings.functions]]
 python = "serde_json.Map.from_iter"
-rust_code = "serde_json::Map::from_iter({arg0})"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::from_iter({arg0})"
+rust_imports = ["serde_json::map::Map"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde_json.Map.from_str"
-rust_code = "serde_json::Map::from_str({arg0})"
-rust_imports = ["serde_json::Map"]
+rust_code = "serde_json::map::Map::from_str({arg0})"
+rust_imports = ["serde_json::map::Map"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "serde_json.LineColIterator.new"
-rust_code = "serde_json::LineColIterator::new({arg0})"
-rust_imports = ["serde_json::LineColIterator"]
+rust_code = "serde_json::iter::LineColIterator::new({arg0})"
+rust_imports = ["serde_json::iter::LineColIterator"]
 needs_result = false
 param_types = ["I"]
 
@@ -431,57 +442,57 @@ param_types = ["R"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_str"
-rust_code = "serde_json::Number::from_str({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from_str({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_f64"
-rust_code = "serde_json::Number::from_f64({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from_f64({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = false
 param_types = ["f64"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_i128"
-rust_code = "serde_json::Number::from_i128({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from_i128({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = false
 param_types = ["i128"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_u128"
-rust_code = "serde_json::Number::from_u128({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from_u128({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = false
 param_types = ["u128"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_string_unchecked"
-rust_code = "serde_json::Number::from_string_unchecked({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from_string_unchecked({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "serde_json.Number.deserialize"
-rust_code = "serde_json::Number::deserialize({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::deserialize({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = true
 param_types = ["D"]
 
 [[mappings.functions]]
 python = "serde_json.Number.from_"
-rust_code = "serde_json::Number::from({arg0})"
-rust_imports = ["serde_json::Number"]
+rust_code = "serde_json::number::Number::from({arg0})"
+rust_imports = ["serde_json::number::Number"]
 needs_result = false
 param_types = ["ParserNumber"]
 
 [[mappings.functions]]
 python = "serde_json.NumberFromString.deserialize"
-rust_code = "serde_json::NumberFromString::deserialize({arg0})"
-rust_imports = ["serde_json::NumberFromString"]
+rust_code = "serde_json::number::NumberFromString::deserialize({arg0})"
+rust_imports = ["serde_json::number::NumberFromString"]
 needs_result = true
 param_types = ["D"]
 
@@ -494,8 +505,8 @@ param_types = ["R"]
 
 [[mappings.functions]]
 python = "serde_json.SliceRead.new"
-rust_code = "serde_json::SliceRead::new({arg0})"
-rust_imports = ["serde_json::SliceRead"]
+rust_code = "serde_json::read::SliceRead::new({arg0})"
+rust_imports = ["serde_json::read::SliceRead"]
 needs_result = false
 param_types = ["&'a[u8]"]
 
@@ -548,22 +559,22 @@ needs_result = false
 
 [[mappings.functions]]
 python = "serde_json.Serializer.new"
-rust_code = "serde_json::value::Serializer::new({arg0})"
-rust_imports = ["serde_json::value::Serializer"]
+rust_code = "serde_json::Serializer::new({arg0})"
+rust_imports = ["serde_json::Serializer"]
 needs_result = false
 param_types = ["W"]
 
 [[mappings.functions]]
 python = "serde_json.Serializer.pretty"
-rust_code = "serde_json::value::Serializer::pretty({arg0})"
-rust_imports = ["serde_json::value::Serializer"]
+rust_code = "serde_json::Serializer::pretty({arg0})"
+rust_imports = ["serde_json::Serializer"]
 needs_result = false
 param_types = ["W"]
 
 [[mappings.functions]]
 python = "serde_json.Serializer.with_formatter"
-rust_code = "serde_json::value::Serializer::with_formatter({arg0}, {arg1})"
-rust_imports = ["serde_json::value::Serializer"]
+rust_code = "serde_json::Serializer::with_formatter({arg0}, {arg1})"
+rust_imports = ["serde_json::Serializer"]
 needs_result = false
 param_types = ["W", "F"]
 
@@ -611,8 +622,8 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde_json.RawValue.from_string"
-rust_code = "serde_json::RawValue::from_string({arg0})"
-rust_imports = ["serde_json::RawValue"]
+rust_code = "serde_json::raw::RawValue::from_string({arg0})"
+rust_imports = ["serde_json::raw::RawValue"]
 needs_result = true
 param_types = ["String"]
 
@@ -2388,9 +2399,42 @@ needs_result = true
 returns = "Value"
 param_types = ["V"]
 
+# Value.as_object hardcoded method
+[[mappings.methods]]
+python = "Value.as_object"
+rust_code = "{self}.as_object().cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Map<String, Value>>"
+
+# Value.as_array hardcoded method
+[[mappings.methods]]
+python = "Value.as_array"
+rust_code = "{self}.as_array().cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Vec<Value>>"
+
+# Value.as_str hardcoded method
+[[mappings.methods]]
+python = "Value.as_str"
+rust_code = "{self}.as_str().map(|s| s.to_string())"
+rust_imports = []
+needs_result = false
+returns = "Option<String>"
+
+# Map.get hardcoded method
+[[mappings.methods]]
+python = "Map.get"
+rust_code = "{self}.get({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
 [[mappings.types]]
 python = "Map"
-rust = "serde_json::Map"
+rust = "serde_json::map::Map"
 
 [[mappings.types]]
 python = "VacantEntry"
@@ -2430,7 +2474,7 @@ rust = "serde_json::map::IntoValues"
 
 [[mappings.types]]
 python = "LineColIterator"
-rust = "serde_json::LineColIterator"
+rust = "serde_json::iter::LineColIterator"
 
 [[mappings.types]]
 python = "Error"
@@ -2446,11 +2490,11 @@ rust = "serde_json::StreamDeserializer"
 
 [[mappings.types]]
 python = "Number"
-rust = "serde_json::Number"
+rust = "serde_json::number::Number"
 
 [[mappings.types]]
 python = "NumberFromString"
-rust = "serde_json::NumberFromString"
+rust = "serde_json::number::NumberFromString"
 
 [[mappings.types]]
 python = "Position"
@@ -2462,7 +2506,7 @@ rust = "serde_json::IoRead"
 
 [[mappings.types]]
 python = "SliceRead"
-rust = "serde_json::SliceRead"
+rust = "serde_json::read::SliceRead"
 
 [[mappings.types]]
 python = "StrRead"
@@ -2482,19 +2526,19 @@ rust = "serde_json::PrettyFormatter"
 
 [[mappings.types]]
 python = "Serializer"
-rust = "serde_json::value::Serializer"
+rust = "serde_json::Serializer"
 
 [[mappings.types]]
 python = "SerializeVec"
-rust = "serde_json::value::SerializeVec"
+rust = "serde_json::SerializeVec"
 
 [[mappings.types]]
 python = "SerializeTupleVariant"
-rust = "serde_json::value::SerializeTupleVariant"
+rust = "serde_json::SerializeTupleVariant"
 
 [[mappings.types]]
 python = "SerializeStructVariant"
-rust = "serde_json::value::SerializeStructVariant"
+rust = "serde_json::SerializeStructVariant"
 
 [[mappings.types]]
 python = "Error"
@@ -2502,7 +2546,7 @@ rust = "serde_json::Error"
 
 [[mappings.types]]
 python = "RawValue"
-rust = "serde_json::RawValue"
+rust = "serde_json::raw::RawValue"
 
 [[mappings.types]]
 python = "ReferenceFromString"
@@ -2514,11 +2558,11 @@ rust = "serde_json::raw::BoxedFromString"
 
 [[mappings.types]]
 python = "OwnedRawDeserializer"
-rust = "serde_json::OwnedRawDeserializer"
+rust = "serde_json::raw::OwnedRawDeserializer"
 
 [[mappings.types]]
 python = "BorrowedRawDeserializer"
-rust = "serde_json::BorrowedRawDeserializer"
+rust = "serde_json::raw::BorrowedRawDeserializer"
 
 [[mappings.types]]
 python = "Entry"
@@ -2546,7 +2590,7 @@ rust = "serde_json::CharEscape"
 
 [[mappings.types]]
 python = "SerializeMap"
-rust = "serde_json::value::SerializeMap"
+rust = "serde_json::SerializeMap"
 
 [[mappings.types]]
 python = "Value"
@@ -2555,3 +2599,136 @@ rust = "serde_json::Value"
 [[mappings.types]]
 python = "Category"
 rust = "serde_json::Category"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Entry.Vacant"
+rust = "serde_json::map::Entry::Vacant"
+
+[[mappings.enum_variants]]
+python = "Entry.Occupied"
+rust = "serde_json::map::Entry::Occupied"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Other"
+rust = "serde_json::ErrorKind::Other"
+
+[[mappings.enum_variants]]
+python = "Reference.Borrowed"
+rust = "serde_json::read::Reference::Borrowed"
+
+[[mappings.enum_variants]]
+python = "Reference.Copied"
+rust = "serde_json::read::Reference::Copied"
+
+[[mappings.enum_variants]]
+python = "State.Empty"
+rust = "serde_json::State::Empty"
+
+[[mappings.enum_variants]]
+python = "State.First"
+rust = "serde_json::State::First"
+
+[[mappings.enum_variants]]
+python = "State.Rest"
+rust = "serde_json::State::Rest"
+
+[[mappings.enum_variants]]
+python = "Compound.Map"
+rust = "serde_json::Compound::Map"
+
+[[mappings.enum_variants]]
+python = "Compound.Number"
+rust = "serde_json::Compound::Number"
+
+[[mappings.enum_variants]]
+python = "Compound.RawValue"
+rust = "serde_json::Compound::RawValue"
+
+[[mappings.enum_variants]]
+python = "CharEscape.Quote"
+rust = "serde_json::CharEscape::Quote"
+
+[[mappings.enum_variants]]
+python = "CharEscape.ReverseSolidus"
+rust = "serde_json::CharEscape::ReverseSolidus"
+
+[[mappings.enum_variants]]
+python = "CharEscape.Solidus"
+rust = "serde_json::CharEscape::Solidus"
+
+[[mappings.enum_variants]]
+python = "CharEscape.Backspace"
+rust = "serde_json::CharEscape::Backspace"
+
+[[mappings.enum_variants]]
+python = "CharEscape.FormFeed"
+rust = "serde_json::CharEscape::FormFeed"
+
+[[mappings.enum_variants]]
+python = "CharEscape.LineFeed"
+rust = "serde_json::CharEscape::LineFeed"
+
+[[mappings.enum_variants]]
+python = "CharEscape.CarriageReturn"
+rust = "serde_json::CharEscape::CarriageReturn"
+
+[[mappings.enum_variants]]
+python = "CharEscape.Tab"
+rust = "serde_json::CharEscape::Tab"
+
+[[mappings.enum_variants]]
+python = "CharEscape.AsciiControl"
+rust = "serde_json::CharEscape::AsciiControl"
+
+[[mappings.enum_variants]]
+python = "SerializeMap.Map"
+rust = "serde_json::SerializeMap::Map"
+
+[[mappings.enum_variants]]
+python = "SerializeMap.Number"
+rust = "serde_json::SerializeMap::Number"
+
+[[mappings.enum_variants]]
+python = "SerializeMap.RawValue"
+rust = "serde_json::SerializeMap::RawValue"
+
+[[mappings.enum_variants]]
+python = "Value.Null"
+rust = "serde_json::Value::Null"
+
+[[mappings.enum_variants]]
+python = "Value.Bool"
+rust = "serde_json::Value::Bool"
+
+[[mappings.enum_variants]]
+python = "Value.Number"
+rust = "serde_json::Value::Number"
+
+[[mappings.enum_variants]]
+python = "Value.String"
+rust = "serde_json::Value::String"
+
+[[mappings.enum_variants]]
+python = "Value.Array"
+rust = "serde_json::Value::Array"
+
+[[mappings.enum_variants]]
+python = "Value.Object"
+rust = "serde_json::Value::Object"
+
+[[mappings.enum_variants]]
+python = "Category.Io"
+rust = "serde_json::Category::Io"
+
+[[mappings.enum_variants]]
+python = "Category.Syntax"
+rust = "serde_json::Category::Syntax"
+
+[[mappings.enum_variants]]
+python = "Category.Data"
+rust = "serde_json::Category::Data"
+
+[[mappings.enum_variants]]
+python = "Category.Eof"
+rust = "serde_json::Category::Eof"

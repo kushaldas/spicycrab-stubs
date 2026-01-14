@@ -505,34 +505,34 @@ param_types = ["Message<'_>"]
 
 [[mappings.functions]]
 python = "rustls.Message.build_alert"
-rust_code = "rustls::msgs::Message::build_alert({arg0}, {arg1})"
-rust_imports = ["rustls::msgs::Message"]
+rust_code = "rustls::msgs::message::Message::build_alert({arg0}, {arg1})"
+rust_imports = ["rustls::msgs::message::Message"]
 needs_result = false
 param_types = ["AlertLevel", "AlertDescription"]
 
 [[mappings.functions]]
 python = "rustls.Message.build_key_update_notify"
-rust_code = "rustls::msgs::Message::build_key_update_notify()"
-rust_imports = ["rustls::msgs::Message"]
+rust_code = "rustls::msgs::message::Message::build_key_update_notify()"
+rust_imports = ["rustls::msgs::message::Message"]
 needs_result = false
 
 [[mappings.functions]]
 python = "rustls.Message.build_key_update_request"
-rust_code = "rustls::msgs::Message::build_key_update_request()"
-rust_imports = ["rustls::msgs::Message"]
+rust_code = "rustls::msgs::message::Message::build_key_update_request()"
+rust_imports = ["rustls::msgs::message::Message"]
 needs_result = false
 
 [[mappings.functions]]
 python = "rustls.Message.try_from"
-rust_code = "rustls::msgs::Message::try_from({arg0})"
-rust_imports = ["rustls::msgs::Message"]
+rust_code = "rustls::msgs::message::Message::try_from({arg0})"
+rust_imports = ["rustls::msgs::message::Message"]
 needs_result = true
 param_types = ["PlainMessage"]
 
 [[mappings.functions]]
 python = "rustls.Message.try_from"
-rust_code = "rustls::msgs::Message::try_from({arg0})"
-rust_imports = ["rustls::msgs::Message"]
+rust_code = "rustls::msgs::message::Message::try_from({arg0})"
+rust_imports = ["rustls::msgs::message::Message"]
 needs_result = true
 param_types = ["InboundPlainMessage<'a>"]
 
@@ -671,14 +671,14 @@ param_types = ["&PrivateKeyDer<'_>"]
 
 [[mappings.functions]]
 python = "rustls.Ticketer.new"
-rust_code = "rustls::crypto::aws_lc_rs::Ticketer::new()"
-rust_imports = ["rustls::crypto::aws_lc_rs::Ticketer"]
+rust_code = "rustls::crypto::aws_lc_rs::ticketer::Ticketer::new()"
+rust_imports = ["rustls::crypto::aws_lc_rs::ticketer::Ticketer"]
 needs_result = true
 
 [[mappings.functions]]
 python = "rustls.Ticketer.new"
-rust_code = "rustls::crypto::aws_lc_rs::Ticketer::new()"
-rust_imports = ["rustls::crypto::aws_lc_rs::Ticketer"]
+rust_code = "rustls::crypto::aws_lc_rs::ticketer::Ticketer::new()"
+rust_imports = ["rustls::crypto::aws_lc_rs::ticketer::Ticketer"]
 needs_result = true
 
 [[mappings.functions]]
@@ -704,14 +704,14 @@ param_types = ["&PrivateKeyDer<'_>"]
 
 [[mappings.functions]]
 python = "rustls.Ticketer.new"
-rust_code = "rustls::crypto::ring::Ticketer::new()"
-rust_imports = ["rustls::crypto::ring::Ticketer"]
+rust_code = "rustls::crypto::ring::ticketer::Ticketer::new()"
+rust_imports = ["rustls::crypto::ring::ticketer::Ticketer"]
 needs_result = true
 
 [[mappings.functions]]
 python = "rustls.Ticketer.new"
-rust_code = "rustls::crypto::ring::Ticketer::new()"
-rust_imports = ["rustls::crypto::ring::Ticketer"]
+rust_code = "rustls::crypto::ring::ticketer::Ticketer::new()"
+rust_imports = ["rustls::crypto::ring::ticketer::Ticketer"]
 needs_result = true
 
 [[mappings.functions]]
@@ -957,8 +957,8 @@ param_types = ["Arc<sign::CertifiedKey>"]
 
 [[mappings.functions]]
 python = "rustls.Stream.new"
-rust_code = "rustls::Stream::new({arg0}, {arg1})"
-rust_imports = ["rustls::Stream"]
+rust_code = "rustls::stream::Stream::new({arg0}, {arg1})"
+rust_imports = ["rustls::stream::Stream"]
 needs_result = false
 param_types = ["&'amutC", "&'amutT"]
 
@@ -4407,7 +4407,7 @@ rust = "rustls::msgs::PlainMessage"
 
 [[mappings.types]]
 python = "Message"
-rust = "rustls::msgs::Message"
+rust = "rustls::msgs::message::Message"
 
 [[mappings.types]]
 python = "Tls13ClientSessionValue"
@@ -4499,7 +4499,7 @@ rust = "rustls::crypto::aws_lc_rs::sign::RsaSigningKey"
 
 [[mappings.types]]
 python = "Ticketer"
-rust = "rustls::crypto::aws_lc_rs::Ticketer"
+rust = "rustls::crypto::aws_lc_rs::ticketer::Ticketer"
 
 [[mappings.types]]
 python = "HpkeAwsLcRs"
@@ -4515,7 +4515,7 @@ rust = "rustls::crypto::ring::sign::RsaSigningKey"
 
 [[mappings.types]]
 python = "Ticketer"
-rust = "rustls::crypto::ring::Ticketer"
+rust = "rustls::crypto::ring::ticketer::Ticketer"
 
 [[mappings.types]]
 python = "CryptoProvider"
@@ -4675,7 +4675,7 @@ rust = "rustls::compress::CompressionCacheInner"
 
 [[mappings.types]]
 python = "Stream"
-rust = "rustls::Stream"
+rust = "rustls::stream::Stream"
 
 [[mappings.types]]
 python = "StreamOwned"
@@ -4840,3 +4840,1044 @@ rust = "rustls::CertRevocationListError"
 [[mappings.types]]
 python = "EncryptedClientHelloError"
 rust = "rustls::EncryptedClientHelloError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "VerifierBuilderError.NoRootAnchors"
+rust = "rustls::VerifierBuilderError::NoRootAnchors"
+
+[[mappings.enum_variants]]
+python = "VerifierBuilderError.InvalidCrl"
+rust = "rustls::VerifierBuilderError::InvalidCrl"
+
+[[mappings.enum_variants]]
+python = "Connection.Client"
+rust = "rustls::Connection::Client"
+
+[[mappings.enum_variants]]
+python = "Connection.Server"
+rust = "rustls::Connection::Server"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.ReadTraffic"
+rust = "rustls::conn::unbuffered::ConnectionState::ReadTraffic"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.PeerClosed"
+rust = "rustls::conn::unbuffered::ConnectionState::PeerClosed"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.Closed"
+rust = "rustls::conn::unbuffered::ConnectionState::Closed"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.ReadEarlyData"
+rust = "rustls::conn::unbuffered::ConnectionState::ReadEarlyData"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.EncodeTlsData"
+rust = "rustls::conn::unbuffered::ConnectionState::EncodeTlsData"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.TransmitTlsData"
+rust = "rustls::conn::unbuffered::ConnectionState::TransmitTlsData"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.BlockedHandshake"
+rust = "rustls::conn::unbuffered::ConnectionState::BlockedHandshake"
+
+[[mappings.enum_variants]]
+python = "ConnectionState.WriteTraffic"
+rust = "rustls::conn::unbuffered::ConnectionState::WriteTraffic"
+
+[[mappings.enum_variants]]
+python = "EncodeError.InsufficientSize"
+rust = "rustls::conn::unbuffered::EncodeError::InsufficientSize"
+
+[[mappings.enum_variants]]
+python = "EncodeError.AlreadyEncoded"
+rust = "rustls::conn::unbuffered::EncodeError::AlreadyEncoded"
+
+[[mappings.enum_variants]]
+python = "EncryptError.InsufficientSize"
+rust = "rustls::conn::unbuffered::EncryptError::InsufficientSize"
+
+[[mappings.enum_variants]]
+python = "EncryptError.EncryptExhausted"
+rust = "rustls::conn::unbuffered::EncryptError::EncryptExhausted"
+
+[[mappings.enum_variants]]
+python = "Connection.Client"
+rust = "rustls::quic::Connection::Client"
+
+[[mappings.enum_variants]]
+python = "Connection.Server"
+rust = "rustls::quic::Connection::Server"
+
+[[mappings.enum_variants]]
+python = "KeyChange.Handshake"
+rust = "rustls::quic::KeyChange::Handshake"
+
+[[mappings.enum_variants]]
+python = "KeyChange.OneRtt"
+rust = "rustls::quic::KeyChange::OneRtt"
+
+[[mappings.enum_variants]]
+python = "Version.V1Draft"
+rust = "rustls::quic::Version::V1Draft"
+
+[[mappings.enum_variants]]
+python = "Version.V1"
+rust = "rustls::quic::Version::V1"
+
+[[mappings.enum_variants]]
+python = "Version.V2"
+rust = "rustls::quic::Version::V2"
+
+[[mappings.enum_variants]]
+python = "SupportedCipherSuite.Tls12"
+rust = "rustls::SupportedCipherSuite::Tls12"
+
+[[mappings.enum_variants]]
+python = "SupportedCipherSuite.Tls13"
+rust = "rustls::SupportedCipherSuite::Tls13"
+
+[[mappings.enum_variants]]
+python = "ConnectionTrafficSecrets.Aes128Gcm"
+rust = "rustls::ConnectionTrafficSecrets::Aes128Gcm"
+
+[[mappings.enum_variants]]
+python = "ConnectionTrafficSecrets.Aes256Gcm"
+rust = "rustls::ConnectionTrafficSecrets::Aes256Gcm"
+
+[[mappings.enum_variants]]
+python = "ConnectionTrafficSecrets.Chacha20Poly1305"
+rust = "rustls::ConnectionTrafficSecrets::Chacha20Poly1305"
+
+[[mappings.enum_variants]]
+python = "OutboundChunks.Single"
+rust = "rustls::msgs::message::outbound::OutboundChunks::Single"
+
+[[mappings.enum_variants]]
+python = "OutboundChunks.Multiple"
+rust = "rustls::msgs::message::outbound::OutboundChunks::Multiple"
+
+[[mappings.enum_variants]]
+python = "MessagePayload.Alert"
+rust = "rustls::msgs::message::MessagePayload::Alert"
+
+[[mappings.enum_variants]]
+python = "MessagePayload.Handshake"
+rust = "rustls::msgs::message::MessagePayload::Handshake"
+
+[[mappings.enum_variants]]
+python = "MessagePayload.HandshakeFlight"
+rust = "rustls::msgs::message::MessagePayload::HandshakeFlight"
+
+[[mappings.enum_variants]]
+python = "MessagePayload.ChangeCipherSpec"
+rust = "rustls::msgs::message::MessagePayload::ChangeCipherSpec"
+
+[[mappings.enum_variants]]
+python = "MessagePayload.ApplicationData"
+rust = "rustls::msgs::message::MessagePayload::ApplicationData"
+
+[[mappings.enum_variants]]
+python = "MessageError.TooShortForHeader"
+rust = "rustls::msgs::message::MessageError::TooShortForHeader"
+
+[[mappings.enum_variants]]
+python = "MessageError.TooShortForLength"
+rust = "rustls::msgs::message::MessageError::TooShortForLength"
+
+[[mappings.enum_variants]]
+python = "MessageError.InvalidEmptyPayload"
+rust = "rustls::msgs::message::MessageError::InvalidEmptyPayload"
+
+[[mappings.enum_variants]]
+python = "MessageError.MessageTooLarge"
+rust = "rustls::msgs::message::MessageError::MessageTooLarge"
+
+[[mappings.enum_variants]]
+python = "MessageError.InvalidContentType"
+rust = "rustls::msgs::message::MessageError::InvalidContentType"
+
+[[mappings.enum_variants]]
+python = "MessageError.UnknownProtocolVersion"
+rust = "rustls::msgs::message::MessageError::UnknownProtocolVersion"
+
+[[mappings.enum_variants]]
+python = "Payload.Borrowed"
+rust = "rustls::msgs::base::Payload::Borrowed"
+
+[[mappings.enum_variants]]
+python = "Payload.Owned"
+rust = "rustls::msgs::base::Payload::Owned"
+
+[[mappings.enum_variants]]
+python = "KeyExchangeAlgorithm.DHE"
+rust = "rustls::msgs::handshake::KeyExchangeAlgorithm::DHE"
+
+[[mappings.enum_variants]]
+python = "KeyExchangeAlgorithm.ECDHE"
+rust = "rustls::msgs::handshake::KeyExchangeAlgorithm::ECDHE"
+
+[[mappings.enum_variants]]
+python = "EchConfigPayload.V18"
+rust = "rustls::msgs::handshake::EchConfigPayload::V18"
+
+[[mappings.enum_variants]]
+python = "EchConfigPayload.Unknown"
+rust = "rustls::msgs::handshake::EchConfigPayload::Unknown"
+
+[[mappings.enum_variants]]
+python = "EchConfigExtension.Unknown"
+rust = "rustls::msgs::handshake::EchConfigExtension::Unknown"
+
+[[mappings.enum_variants]]
+python = "EchMode.Enable"
+rust = "rustls::client::ech::EchMode::Enable"
+
+[[mappings.enum_variants]]
+python = "EchMode.Grease"
+rust = "rustls::client::ech::EchMode::Grease"
+
+[[mappings.enum_variants]]
+python = "EchStatus.NotOffered"
+rust = "rustls::client::ech::EchStatus::NotOffered"
+
+[[mappings.enum_variants]]
+python = "EchStatus.Grease"
+rust = "rustls::client::ech::EchStatus::Grease"
+
+[[mappings.enum_variants]]
+python = "EchStatus.Offered"
+rust = "rustls::client::ech::EchStatus::Offered"
+
+[[mappings.enum_variants]]
+python = "EchStatus.Accepted"
+rust = "rustls::client::ech::EchStatus::Accepted"
+
+[[mappings.enum_variants]]
+python = "EchStatus.Rejected"
+rust = "rustls::client::ech::EchStatus::Rejected"
+
+[[mappings.enum_variants]]
+python = "Tls12Resumption.Disabled"
+rust = "rustls::client::Tls12Resumption::Disabled"
+
+[[mappings.enum_variants]]
+python = "Tls12Resumption.SessionIdOnly"
+rust = "rustls::client::Tls12Resumption::SessionIdOnly"
+
+[[mappings.enum_variants]]
+python = "Tls12Resumption.SessionIdOrTickets"
+rust = "rustls::client::Tls12Resumption::SessionIdOrTickets"
+
+[[mappings.enum_variants]]
+python = "EarlyDataError.ExceededAllowedEarlyData"
+rust = "rustls::client::EarlyDataError::ExceededAllowedEarlyData"
+
+[[mappings.enum_variants]]
+python = "EarlyDataError.Encrypt"
+rust = "rustls::client::EarlyDataError::Encrypt"
+
+[[mappings.enum_variants]]
+python = "HandshakeKind.Full"
+rust = "rustls::common_state::HandshakeKind::Full"
+
+[[mappings.enum_variants]]
+python = "HandshakeKind.FullWithHelloRetryRequest"
+rust = "rustls::common_state::HandshakeKind::FullWithHelloRetryRequest"
+
+[[mappings.enum_variants]]
+python = "HandshakeKind.Resumed"
+rust = "rustls::common_state::HandshakeKind::Resumed"
+
+[[mappings.enum_variants]]
+python = "Side.Client"
+rust = "rustls::common_state::Side::Client"
+
+[[mappings.enum_variants]]
+python = "Side.Server"
+rust = "rustls::common_state::Side::Server"
+
+[[mappings.enum_variants]]
+python = "CompressionLevel.Interactive"
+rust = "rustls::compress::CompressionLevel::Interactive"
+
+[[mappings.enum_variants]]
+python = "CompressionLevel.Amortized"
+rust = "rustls::compress::CompressionLevel::Amortized"
+
+[[mappings.enum_variants]]
+python = "CompressionCache.Disabled"
+rust = "rustls::compress::CompressionCache::Disabled"
+
+[[mappings.enum_variants]]
+python = "CompressionCache.Enabled"
+rust = "rustls::compress::CompressionCache::Enabled"
+
+[[mappings.enum_variants]]
+python = "Error.InappropriateMessage"
+rust = "rustls::Error::InappropriateMessage"
+
+[[mappings.enum_variants]]
+python = "Error.InappropriateHandshakeMessage"
+rust = "rustls::Error::InappropriateHandshakeMessage"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidEncryptedClientHello"
+rust = "rustls::Error::InvalidEncryptedClientHello"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidMessage"
+rust = "rustls::Error::InvalidMessage"
+
+[[mappings.enum_variants]]
+python = "Error.NoCertificatesPresented"
+rust = "rustls::Error::NoCertificatesPresented"
+
+[[mappings.enum_variants]]
+python = "Error.UnsupportedNameType"
+rust = "rustls::Error::UnsupportedNameType"
+
+[[mappings.enum_variants]]
+python = "Error.DecryptError"
+rust = "rustls::Error::DecryptError"
+
+[[mappings.enum_variants]]
+python = "Error.EncryptError"
+rust = "rustls::Error::EncryptError"
+
+[[mappings.enum_variants]]
+python = "Error.PeerIncompatible"
+rust = "rustls::Error::PeerIncompatible"
+
+[[mappings.enum_variants]]
+python = "Error.PeerMisbehaved"
+rust = "rustls::Error::PeerMisbehaved"
+
+[[mappings.enum_variants]]
+python = "Error.AlertReceived"
+rust = "rustls::Error::AlertReceived"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidCertificate"
+rust = "rustls::Error::InvalidCertificate"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidCertRevocationList"
+rust = "rustls::Error::InvalidCertRevocationList"
+
+[[mappings.enum_variants]]
+python = "Error.General"
+rust = "rustls::Error::General"
+
+[[mappings.enum_variants]]
+python = "Error.FailedToGetCurrentTime"
+rust = "rustls::Error::FailedToGetCurrentTime"
+
+[[mappings.enum_variants]]
+python = "Error.FailedToGetRandomBytes"
+rust = "rustls::Error::FailedToGetRandomBytes"
+
+[[mappings.enum_variants]]
+python = "Error.HandshakeNotComplete"
+rust = "rustls::Error::HandshakeNotComplete"
+
+[[mappings.enum_variants]]
+python = "Error.PeerSentOversizedRecord"
+rust = "rustls::Error::PeerSentOversizedRecord"
+
+[[mappings.enum_variants]]
+python = "Error.NoApplicationProtocol"
+rust = "rustls::Error::NoApplicationProtocol"
+
+[[mappings.enum_variants]]
+python = "Error.BadMaxFragmentSize"
+rust = "rustls::Error::BadMaxFragmentSize"
+
+[[mappings.enum_variants]]
+python = "Error.InconsistentKeys"
+rust = "rustls::Error::InconsistentKeys"
+
+[[mappings.enum_variants]]
+python = "Error.Other"
+rust = "rustls::Error::Other"
+
+[[mappings.enum_variants]]
+python = "InconsistentKeys.KeyMismatch"
+rust = "rustls::InconsistentKeys::KeyMismatch"
+
+[[mappings.enum_variants]]
+python = "InconsistentKeys.Unknown"
+rust = "rustls::InconsistentKeys::Unknown"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.CertificatePayloadTooLarge"
+rust = "rustls::InvalidMessage::CertificatePayloadTooLarge"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.HandshakePayloadTooLarge"
+rust = "rustls::InvalidMessage::HandshakePayloadTooLarge"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidCcs"
+rust = "rustls::InvalidMessage::InvalidCcs"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidContentType"
+rust = "rustls::InvalidMessage::InvalidContentType"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidCertificateStatusType"
+rust = "rustls::InvalidMessage::InvalidCertificateStatusType"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidCertRequest"
+rust = "rustls::InvalidMessage::InvalidCertRequest"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidDhParams"
+rust = "rustls::InvalidMessage::InvalidDhParams"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidEmptyPayload"
+rust = "rustls::InvalidMessage::InvalidEmptyPayload"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidKeyUpdate"
+rust = "rustls::InvalidMessage::InvalidKeyUpdate"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.InvalidServerName"
+rust = "rustls::InvalidMessage::InvalidServerName"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.MessageTooLarge"
+rust = "rustls::InvalidMessage::MessageTooLarge"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.MessageTooShort"
+rust = "rustls::InvalidMessage::MessageTooShort"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.MissingData"
+rust = "rustls::InvalidMessage::MissingData"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.MissingKeyExchange"
+rust = "rustls::InvalidMessage::MissingKeyExchange"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.NoSignatureSchemes"
+rust = "rustls::InvalidMessage::NoSignatureSchemes"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.TrailingData"
+rust = "rustls::InvalidMessage::TrailingData"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnexpectedMessage"
+rust = "rustls::InvalidMessage::UnexpectedMessage"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnknownProtocolVersion"
+rust = "rustls::InvalidMessage::UnknownProtocolVersion"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnsupportedCompression"
+rust = "rustls::InvalidMessage::UnsupportedCompression"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnsupportedCurveType"
+rust = "rustls::InvalidMessage::UnsupportedCurveType"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnsupportedKeyExchangeAlgorithm"
+rust = "rustls::InvalidMessage::UnsupportedKeyExchangeAlgorithm"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.EmptyTicketValue"
+rust = "rustls::InvalidMessage::EmptyTicketValue"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.IllegalEmptyList"
+rust = "rustls::InvalidMessage::IllegalEmptyList"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.IllegalEmptyValue"
+rust = "rustls::InvalidMessage::IllegalEmptyValue"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.DuplicateExtension"
+rust = "rustls::InvalidMessage::DuplicateExtension"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.PreSharedKeyIsNotFinalExtension"
+rust = "rustls::InvalidMessage::PreSharedKeyIsNotFinalExtension"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnknownHelloRetryRequestExtension"
+rust = "rustls::InvalidMessage::UnknownHelloRetryRequestExtension"
+
+[[mappings.enum_variants]]
+python = "InvalidMessage.UnknownCertificateExtension"
+rust = "rustls::InvalidMessage::UnknownCertificateExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.AttemptedDowngradeToTls12WhenTls13IsSupported"
+rust = "rustls::PeerMisbehaved::AttemptedDowngradeToTls12WhenTls13IsSupported"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.BadCertChainExtensions"
+rust = "rustls::PeerMisbehaved::BadCertChainExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DisallowedEncryptedExtension"
+rust = "rustls::PeerMisbehaved::DisallowedEncryptedExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateClientHelloExtensions"
+rust = "rustls::PeerMisbehaved::DuplicateClientHelloExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateEncryptedExtensions"
+rust = "rustls::PeerMisbehaved::DuplicateEncryptedExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateHelloRetryRequestExtensions"
+rust = "rustls::PeerMisbehaved::DuplicateHelloRetryRequestExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateNewSessionTicketExtensions"
+rust = "rustls::PeerMisbehaved::DuplicateNewSessionTicketExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateServerHelloExtensions"
+rust = "rustls::PeerMisbehaved::DuplicateServerHelloExtensions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.DuplicateServerNameTypes"
+rust = "rustls::PeerMisbehaved::DuplicateServerNameTypes"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.EarlyDataAttemptedInSecondClientHello"
+rust = "rustls::PeerMisbehaved::EarlyDataAttemptedInSecondClientHello"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.EarlyDataExtensionWithoutResumption"
+rust = "rustls::PeerMisbehaved::EarlyDataExtensionWithoutResumption"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.EarlyDataOfferedWithVariedCipherSuite"
+rust = "rustls::PeerMisbehaved::EarlyDataOfferedWithVariedCipherSuite"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.HandshakeHashVariedAfterRetry"
+rust = "rustls::PeerMisbehaved::HandshakeHashVariedAfterRetry"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithEmptyCookie"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithEmptyCookie"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithNoChanges"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithNoChanges"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithOfferedGroup"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithOfferedGroup"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithUnofferedCipherSuite"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithUnofferedCipherSuite"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithUnofferedNamedGroup"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithUnofferedNamedGroup"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithUnsupportedVersion"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithUnsupportedVersion"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithWrongSessionId"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithWrongSessionId"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalHelloRetryRequestWithInvalidEch"
+rust = "rustls::PeerMisbehaved::IllegalHelloRetryRequestWithInvalidEch"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalMiddleboxChangeCipherSpec"
+rust = "rustls::PeerMisbehaved::IllegalMiddleboxChangeCipherSpec"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IllegalTlsInnerPlaintext"
+rust = "rustls::PeerMisbehaved::IllegalTlsInnerPlaintext"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.IncorrectBinder"
+rust = "rustls::PeerMisbehaved::IncorrectBinder"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.InvalidCertCompression"
+rust = "rustls::PeerMisbehaved::InvalidCertCompression"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.InvalidMaxEarlyDataSize"
+rust = "rustls::PeerMisbehaved::InvalidMaxEarlyDataSize"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.InvalidKeyShare"
+rust = "rustls::PeerMisbehaved::InvalidKeyShare"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.KeyEpochWithPendingFragment"
+rust = "rustls::PeerMisbehaved::KeyEpochWithPendingFragment"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.KeyUpdateReceivedInQuicConnection"
+rust = "rustls::PeerMisbehaved::KeyUpdateReceivedInQuicConnection"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.MessageInterleavedWithHandshakeMessage"
+rust = "rustls::PeerMisbehaved::MessageInterleavedWithHandshakeMessage"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.MissingBinderInPskExtension"
+rust = "rustls::PeerMisbehaved::MissingBinderInPskExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.MissingKeyShare"
+rust = "rustls::PeerMisbehaved::MissingKeyShare"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.MissingPskModesExtension"
+rust = "rustls::PeerMisbehaved::MissingPskModesExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.MissingQuicTransportParameters"
+rust = "rustls::PeerMisbehaved::MissingQuicTransportParameters"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.OfferedDuplicateCertificateCompressions"
+rust = "rustls::PeerMisbehaved::OfferedDuplicateCertificateCompressions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.OfferedDuplicateKeyShares"
+rust = "rustls::PeerMisbehaved::OfferedDuplicateKeyShares"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.OfferedEarlyDataWithOldProtocolVersion"
+rust = "rustls::PeerMisbehaved::OfferedEarlyDataWithOldProtocolVersion"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.OfferedEmptyApplicationProtocol"
+rust = "rustls::PeerMisbehaved::OfferedEmptyApplicationProtocol"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.OfferedIncorrectCompressions"
+rust = "rustls::PeerMisbehaved::OfferedIncorrectCompressions"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.PskExtensionMustBeLast"
+rust = "rustls::PeerMisbehaved::PskExtensionMustBeLast"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.PskExtensionWithMismatchedIdsAndBinders"
+rust = "rustls::PeerMisbehaved::PskExtensionWithMismatchedIdsAndBinders"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.RefusedToFollowHelloRetryRequest"
+rust = "rustls::PeerMisbehaved::RefusedToFollowHelloRetryRequest"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.RejectedEarlyDataInterleavedWithHandshakeMessage"
+rust = "rustls::PeerMisbehaved::RejectedEarlyDataInterleavedWithHandshakeMessage"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ResumptionAttemptedWithVariedEms"
+rust = "rustls::PeerMisbehaved::ResumptionAttemptedWithVariedEms"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ResumptionOfferedWithVariedCipherSuite"
+rust = "rustls::PeerMisbehaved::ResumptionOfferedWithVariedCipherSuite"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ResumptionOfferedWithVariedEms"
+rust = "rustls::PeerMisbehaved::ResumptionOfferedWithVariedEms"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ResumptionOfferedWithIncompatibleCipherSuite"
+rust = "rustls::PeerMisbehaved::ResumptionOfferedWithIncompatibleCipherSuite"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedDifferentCipherSuiteAfterRetry"
+rust = "rustls::PeerMisbehaved::SelectedDifferentCipherSuiteAfterRetry"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedInvalidPsk"
+rust = "rustls::PeerMisbehaved::SelectedInvalidPsk"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedTls12UsingTls13VersionExtension"
+rust = "rustls::PeerMisbehaved::SelectedTls12UsingTls13VersionExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedApplicationProtocol"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedApplicationProtocol"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedCertCompression"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedCertCompression"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedCipherSuite"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedCipherSuite"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedCompression"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedCompression"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedKxGroup"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedKxGroup"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnofferedPsk"
+rust = "rustls::PeerMisbehaved::SelectedUnofferedPsk"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SelectedUnusableCipherSuiteForVersion"
+rust = "rustls::PeerMisbehaved::SelectedUnusableCipherSuiteForVersion"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ServerEchoedCompatibilitySessionId"
+rust = "rustls::PeerMisbehaved::ServerEchoedCompatibilitySessionId"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ServerHelloMustOfferUncompressedEcPoints"
+rust = "rustls::PeerMisbehaved::ServerHelloMustOfferUncompressedEcPoints"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ServerNameDifferedOnRetry"
+rust = "rustls::PeerMisbehaved::ServerNameDifferedOnRetry"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.ServerNameMustContainOneHostName"
+rust = "rustls::PeerMisbehaved::ServerNameMustContainOneHostName"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SignedKxWithWrongAlgorithm"
+rust = "rustls::PeerMisbehaved::SignedKxWithWrongAlgorithm"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.SignedHandshakeWithUnadvertisedSigScheme"
+rust = "rustls::PeerMisbehaved::SignedHandshakeWithUnadvertisedSigScheme"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.TooManyEmptyFragments"
+rust = "rustls::PeerMisbehaved::TooManyEmptyFragments"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.TooManyKeyUpdateRequests"
+rust = "rustls::PeerMisbehaved::TooManyKeyUpdateRequests"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.TooManyRenegotiationRequests"
+rust = "rustls::PeerMisbehaved::TooManyRenegotiationRequests"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.TooManyWarningAlertsReceived"
+rust = "rustls::PeerMisbehaved::TooManyWarningAlertsReceived"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.TooMuchEarlyDataReceived"
+rust = "rustls::PeerMisbehaved::TooMuchEarlyDataReceived"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnexpectedCleartextExtension"
+rust = "rustls::PeerMisbehaved::UnexpectedCleartextExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnsolicitedCertExtension"
+rust = "rustls::PeerMisbehaved::UnsolicitedCertExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnsolicitedEncryptedExtension"
+rust = "rustls::PeerMisbehaved::UnsolicitedEncryptedExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnsolicitedSctList"
+rust = "rustls::PeerMisbehaved::UnsolicitedSctList"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnsolicitedServerHelloExtension"
+rust = "rustls::PeerMisbehaved::UnsolicitedServerHelloExtension"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.WrongGroupForKeyShare"
+rust = "rustls::PeerMisbehaved::WrongGroupForKeyShare"
+
+[[mappings.enum_variants]]
+python = "PeerMisbehaved.UnsolicitedEchExtension"
+rust = "rustls::PeerMisbehaved::UnsolicitedEchExtension"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.EcPointsExtensionRequired"
+rust = "rustls::PeerIncompatible::EcPointsExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.ExtendedMasterSecretExtensionRequired"
+rust = "rustls::PeerIncompatible::ExtendedMasterSecretExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.IncorrectCertificateTypeExtension"
+rust = "rustls::PeerIncompatible::IncorrectCertificateTypeExtension"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.KeyShareExtensionRequired"
+rust = "rustls::PeerIncompatible::KeyShareExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NamedGroupsExtensionRequired"
+rust = "rustls::PeerIncompatible::NamedGroupsExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NoCertificateRequestSignatureSchemesInCommon"
+rust = "rustls::PeerIncompatible::NoCertificateRequestSignatureSchemesInCommon"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NoCipherSuitesInCommon"
+rust = "rustls::PeerIncompatible::NoCipherSuitesInCommon"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NoEcPointFormatsInCommon"
+rust = "rustls::PeerIncompatible::NoEcPointFormatsInCommon"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NoKxGroupsInCommon"
+rust = "rustls::PeerIncompatible::NoKxGroupsInCommon"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NoSignatureSchemesInCommon"
+rust = "rustls::PeerIncompatible::NoSignatureSchemesInCommon"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.NullCompressionRequired"
+rust = "rustls::PeerIncompatible::NullCompressionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.ServerDoesNotSupportTls12Or13"
+rust = "rustls::PeerIncompatible::ServerDoesNotSupportTls12Or13"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.ServerSentHelloRetryRequestWithUnknownExtension"
+rust = "rustls::PeerIncompatible::ServerSentHelloRetryRequestWithUnknownExtension"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.ServerTlsVersionIsDisabledByOurConfig"
+rust = "rustls::PeerIncompatible::ServerTlsVersionIsDisabledByOurConfig"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.SignatureAlgorithmsExtensionRequired"
+rust = "rustls::PeerIncompatible::SignatureAlgorithmsExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.SupportedVersionsExtensionRequired"
+rust = "rustls::PeerIncompatible::SupportedVersionsExtensionRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.Tls12NotOffered"
+rust = "rustls::PeerIncompatible::Tls12NotOffered"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.Tls12NotOfferedOrEnabled"
+rust = "rustls::PeerIncompatible::Tls12NotOfferedOrEnabled"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.Tls13RequiredForQuic"
+rust = "rustls::PeerIncompatible::Tls13RequiredForQuic"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.UncompressedEcPointsRequired"
+rust = "rustls::PeerIncompatible::UncompressedEcPointsRequired"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.UnsolicitedCertificateTypeExtension"
+rust = "rustls::PeerIncompatible::UnsolicitedCertificateTypeExtension"
+
+[[mappings.enum_variants]]
+python = "PeerIncompatible.ServerRejectedEncryptedClientHello"
+rust = "rustls::PeerIncompatible::ServerRejectedEncryptedClientHello"
+
+[[mappings.enum_variants]]
+python = "CertificateError.BadEncoding"
+rust = "rustls::CertificateError::BadEncoding"
+
+[[mappings.enum_variants]]
+python = "CertificateError.Expired"
+rust = "rustls::CertificateError::Expired"
+
+[[mappings.enum_variants]]
+python = "CertificateError.ExpiredContext"
+rust = "rustls::CertificateError::ExpiredContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.NotValidYet"
+rust = "rustls::CertificateError::NotValidYet"
+
+[[mappings.enum_variants]]
+python = "CertificateError.NotValidYetContext"
+rust = "rustls::CertificateError::NotValidYetContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.Revoked"
+rust = "rustls::CertificateError::Revoked"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnhandledCriticalExtension"
+rust = "rustls::CertificateError::UnhandledCriticalExtension"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnknownIssuer"
+rust = "rustls::CertificateError::UnknownIssuer"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnknownRevocationStatus"
+rust = "rustls::CertificateError::UnknownRevocationStatus"
+
+[[mappings.enum_variants]]
+python = "CertificateError.ExpiredRevocationList"
+rust = "rustls::CertificateError::ExpiredRevocationList"
+
+[[mappings.enum_variants]]
+python = "CertificateError.ExpiredRevocationListContext"
+rust = "rustls::CertificateError::ExpiredRevocationListContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.BadSignature"
+rust = "rustls::CertificateError::BadSignature"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnsupportedSignatureAlgorithm"
+rust = "rustls::CertificateError::UnsupportedSignatureAlgorithm"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnsupportedSignatureAlgorithmContext"
+rust = "rustls::CertificateError::UnsupportedSignatureAlgorithmContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.UnsupportedSignatureAlgorithmForPublicKeyContext"
+rust = "rustls::CertificateError::UnsupportedSignatureAlgorithmForPublicKeyContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.NotValidForName"
+rust = "rustls::CertificateError::NotValidForName"
+
+[[mappings.enum_variants]]
+python = "CertificateError.NotValidForNameContext"
+rust = "rustls::CertificateError::NotValidForNameContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.InvalidPurpose"
+rust = "rustls::CertificateError::InvalidPurpose"
+
+[[mappings.enum_variants]]
+python = "CertificateError.InvalidPurposeContext"
+rust = "rustls::CertificateError::InvalidPurposeContext"
+
+[[mappings.enum_variants]]
+python = "CertificateError.InvalidOcspResponse"
+rust = "rustls::CertificateError::InvalidOcspResponse"
+
+[[mappings.enum_variants]]
+python = "CertificateError.ApplicationVerificationFailure"
+rust = "rustls::CertificateError::ApplicationVerificationFailure"
+
+[[mappings.enum_variants]]
+python = "CertificateError.Other"
+rust = "rustls::CertificateError::Other"
+
+[[mappings.enum_variants]]
+python = "ExtendedKeyPurpose.ClientAuth"
+rust = "rustls::ExtendedKeyPurpose::ClientAuth"
+
+[[mappings.enum_variants]]
+python = "ExtendedKeyPurpose.ServerAuth"
+rust = "rustls::ExtendedKeyPurpose::ServerAuth"
+
+[[mappings.enum_variants]]
+python = "ExtendedKeyPurpose.Other"
+rust = "rustls::ExtendedKeyPurpose::Other"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.BadSignature"
+rust = "rustls::CertRevocationListError::BadSignature"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedSignatureAlgorithm"
+rust = "rustls::CertRevocationListError::UnsupportedSignatureAlgorithm"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedSignatureAlgorithmContext"
+rust = "rustls::CertRevocationListError::UnsupportedSignatureAlgorithmContext"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedSignatureAlgorithmForPublicKeyContext"
+rust = "rustls::CertRevocationListError::UnsupportedSignatureAlgorithmForPublicKeyContext"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.InvalidCrlNumber"
+rust = "rustls::CertRevocationListError::InvalidCrlNumber"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.InvalidRevokedCertSerialNumber"
+rust = "rustls::CertRevocationListError::InvalidRevokedCertSerialNumber"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.IssuerInvalidForCrl"
+rust = "rustls::CertRevocationListError::IssuerInvalidForCrl"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.Other"
+rust = "rustls::CertRevocationListError::Other"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.ParseError"
+rust = "rustls::CertRevocationListError::ParseError"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedCrlVersion"
+rust = "rustls::CertRevocationListError::UnsupportedCrlVersion"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedCriticalExtension"
+rust = "rustls::CertRevocationListError::UnsupportedCriticalExtension"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedDeltaCrl"
+rust = "rustls::CertRevocationListError::UnsupportedDeltaCrl"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedIndirectCrl"
+rust = "rustls::CertRevocationListError::UnsupportedIndirectCrl"
+
+[[mappings.enum_variants]]
+python = "CertRevocationListError.UnsupportedRevocationReason"
+rust = "rustls::CertRevocationListError::UnsupportedRevocationReason"
+
+[[mappings.enum_variants]]
+python = "EncryptedClientHelloError.InvalidConfigList"
+rust = "rustls::EncryptedClientHelloError::InvalidConfigList"
+
+[[mappings.enum_variants]]
+python = "EncryptedClientHelloError.NoCompatibleConfig"
+rust = "rustls::EncryptedClientHelloError::NoCompatibleConfig"
+
+[[mappings.enum_variants]]
+python = "EncryptedClientHelloError.SniRequired"
+rust = "rustls::EncryptedClientHelloError::SniRequired"

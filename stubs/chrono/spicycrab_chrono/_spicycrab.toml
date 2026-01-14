@@ -11,6 +11,9 @@ chrono = "0.4.42"
 available = ["__internal_bench", "alloc", "clock", "core-error", "default", "libc", "now", "oldtime", "rkyv", "rkyv-16", "rkyv-32", "rkyv-64", "rkyv-validation", "std", "unstable-locales", "wasmbind", "winapi"]
 default = ["clock", "oldtime", "std", "wasmbind"]
 
+# NOTE: Detected 1 macros without stubs: try_opt
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "chrono.serialize"
 rust_code = "chrono::datetime::serde::serialize({arg0}, {arg1})"
@@ -125,8 +128,8 @@ param_types = ["D"]
 
 [[mappings.functions]]
 python = "chrono.format"
-rust_code = "chrono::format({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
-rust_imports = ["chrono::format"]
+rust_code = "chrono::format::formatting::format({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["chrono::format::formatting::format"]
 needs_result = true
 param_types = ["&mutfmt::Formatter", "Option<&NaiveDate>", "Option<&NaiveTime>", "Option<&(String,FixedOffset)>", "I"]
 
@@ -139,15 +142,15 @@ param_types = ["&mutfmt::Formatter", "Option<&NaiveDate>", "Option<&NaiveTime>",
 
 [[mappings.functions]]
 python = "chrono.parse"
-rust_code = "chrono::parse({arg0}, {arg1}, {arg2})"
-rust_imports = ["chrono::parse"]
+rust_code = "chrono::format::parse::parse({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::format::parse::parse"]
 needs_result = false
 param_types = ["&mutParsed", "&str", "I"]
 
 [[mappings.functions]]
 python = "chrono.parse_and_remainder"
-rust_code = "chrono::parse_and_remainder({arg0}, {arg1}, {arg2})"
-rust_imports = ["chrono::parse_and_remainder"]
+rust_code = "chrono::format::parse::parse_and_remainder({arg0}, {arg1}, {arg2})"
+rust_imports = ["chrono::format::parse::parse_and_remainder"]
 needs_result = false
 param_types = ["&mutParsed", "&'bstr", "I"]
 
@@ -493,22 +496,22 @@ param_types = ["u32"]
 
 [[mappings.functions]]
 python = "chrono.StrftimeItems.new"
-rust_code = "chrono::StrftimeItems::new({arg0})"
-rust_imports = ["chrono::StrftimeItems"]
+rust_code = "chrono::format::strftime::StrftimeItems::new({arg0})"
+rust_imports = ["chrono::format::strftime::StrftimeItems"]
 needs_result = false
 param_types = ["&'astr"]
 
 [[mappings.functions]]
 python = "chrono.StrftimeItems.new_lenient"
-rust_code = "chrono::StrftimeItems::new_lenient({arg0})"
-rust_imports = ["chrono::StrftimeItems"]
+rust_code = "chrono::format::strftime::StrftimeItems::new_lenient({arg0})"
+rust_imports = ["chrono::format::strftime::StrftimeItems"]
 needs_result = false
 param_types = ["&'astr"]
 
 [[mappings.functions]]
 python = "chrono.StrftimeItems.new_with_locale"
-rust_code = "chrono::StrftimeItems::new_with_locale({arg0}, {arg1})"
-rust_imports = ["chrono::StrftimeItems"]
+rust_code = "chrono::format::strftime::StrftimeItems::new_with_locale({arg0}, {arg1})"
+rust_imports = ["chrono::format::strftime::StrftimeItems"]
 needs_result = false
 param_types = ["&'astr", "Locale"]
 
@@ -542,8 +545,8 @@ param_types = ["Option<NaiveDate>", "Option<NaiveTime>", "&Off", "I", "Locale"]
 
 [[mappings.functions]]
 python = "chrono.Parsed.new"
-rust_code = "chrono::Parsed::new()"
-rust_imports = ["chrono::Parsed"]
+rust_code = "chrono::format::parsed::Parsed::new()"
+rust_imports = ["chrono::format::parsed::Parsed"]
 needs_result = false
 
 [[mappings.functions]]
@@ -4954,7 +4957,7 @@ rust = "chrono::ParseMonthError"
 
 [[mappings.types]]
 python = "StrftimeItems"
-rust = "chrono::StrftimeItems"
+rust = "chrono::format::strftime::StrftimeItems"
 
 [[mappings.types]]
 python = "DelayedFormat"
@@ -4978,7 +4981,7 @@ rust = "chrono::ParseError"
 
 [[mappings.types]]
 python = "Parsed"
-rust = "chrono::Parsed"
+rust = "chrono::format::parsed::Parsed"
 
 [[mappings.types]]
 python = "OutOfRange"
@@ -5066,7 +5069,7 @@ rust = "chrono::WeekdaySet"
 
 [[mappings.types]]
 python = "WeekdaySetIter"
-rust = "chrono::WeekdaySetIter"
+rust = "chrono::weekday_set::WeekdaySetIter"
 
 [[mappings.types]]
 python = "Weekday"
@@ -5114,4 +5117,405 @@ rust = "chrono::LocalResult"
 
 [[mappings.types]]
 python = "RoundingError"
-rust = "chrono::RoundingError"
+rust = "chrono::round::RoundingError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Weekday.Mon"
+rust = "chrono::Weekday::Mon"
+
+[[mappings.enum_variants]]
+python = "Weekday.Tue"
+rust = "chrono::Weekday::Tue"
+
+[[mappings.enum_variants]]
+python = "Weekday.Wed"
+rust = "chrono::Weekday::Wed"
+
+[[mappings.enum_variants]]
+python = "Weekday.Thu"
+rust = "chrono::Weekday::Thu"
+
+[[mappings.enum_variants]]
+python = "Weekday.Fri"
+rust = "chrono::Weekday::Fri"
+
+[[mappings.enum_variants]]
+python = "Weekday.Sat"
+rust = "chrono::Weekday::Sat"
+
+[[mappings.enum_variants]]
+python = "Weekday.Sun"
+rust = "chrono::Weekday::Sun"
+
+[[mappings.enum_variants]]
+python = "Month.January"
+rust = "chrono::Month::January"
+
+[[mappings.enum_variants]]
+python = "Month.February"
+rust = "chrono::Month::February"
+
+[[mappings.enum_variants]]
+python = "Month.March"
+rust = "chrono::Month::March"
+
+[[mappings.enum_variants]]
+python = "Month.April"
+rust = "chrono::Month::April"
+
+[[mappings.enum_variants]]
+python = "Month.May"
+rust = "chrono::Month::May"
+
+[[mappings.enum_variants]]
+python = "Month.June"
+rust = "chrono::Month::June"
+
+[[mappings.enum_variants]]
+python = "Month.July"
+rust = "chrono::Month::July"
+
+[[mappings.enum_variants]]
+python = "Month.August"
+rust = "chrono::Month::August"
+
+[[mappings.enum_variants]]
+python = "Month.September"
+rust = "chrono::Month::September"
+
+[[mappings.enum_variants]]
+python = "Month.October"
+rust = "chrono::Month::October"
+
+[[mappings.enum_variants]]
+python = "Month.November"
+rust = "chrono::Month::November"
+
+[[mappings.enum_variants]]
+python = "Month.December"
+rust = "chrono::Month::December"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.Secs"
+rust = "chrono::format::formatting::SecondsFormat::Secs"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.Millis"
+rust = "chrono::format::formatting::SecondsFormat::Millis"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.Micros"
+rust = "chrono::format::formatting::SecondsFormat::Micros"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.Nanos"
+rust = "chrono::format::formatting::SecondsFormat::Nanos"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.AutoSi"
+rust = "chrono::format::formatting::SecondsFormat::AutoSi"
+
+[[mappings.enum_variants]]
+python = "SecondsFormat.__NonExhaustive"
+rust = "chrono::format::formatting::SecondsFormat::__NonExhaustive"
+
+[[mappings.enum_variants]]
+python = "Pad.None_"
+rust = "chrono::Pad::None"
+
+[[mappings.enum_variants]]
+python = "Pad.Zero"
+rust = "chrono::Pad::Zero"
+
+[[mappings.enum_variants]]
+python = "Pad.Space"
+rust = "chrono::Pad::Space"
+
+[[mappings.enum_variants]]
+python = "Numeric.Year"
+rust = "chrono::Numeric::Year"
+
+[[mappings.enum_variants]]
+python = "Numeric.YearDiv100"
+rust = "chrono::Numeric::YearDiv100"
+
+[[mappings.enum_variants]]
+python = "Numeric.YearMod100"
+rust = "chrono::Numeric::YearMod100"
+
+[[mappings.enum_variants]]
+python = "Numeric.IsoYear"
+rust = "chrono::Numeric::IsoYear"
+
+[[mappings.enum_variants]]
+python = "Numeric.IsoYearDiv100"
+rust = "chrono::Numeric::IsoYearDiv100"
+
+[[mappings.enum_variants]]
+python = "Numeric.IsoYearMod100"
+rust = "chrono::Numeric::IsoYearMod100"
+
+[[mappings.enum_variants]]
+python = "Numeric.Quarter"
+rust = "chrono::Numeric::Quarter"
+
+[[mappings.enum_variants]]
+python = "Numeric.Month"
+rust = "chrono::Numeric::Month"
+
+[[mappings.enum_variants]]
+python = "Numeric.Day"
+rust = "chrono::Numeric::Day"
+
+[[mappings.enum_variants]]
+python = "Numeric.WeekFromSun"
+rust = "chrono::Numeric::WeekFromSun"
+
+[[mappings.enum_variants]]
+python = "Numeric.WeekFromMon"
+rust = "chrono::Numeric::WeekFromMon"
+
+[[mappings.enum_variants]]
+python = "Numeric.IsoWeek"
+rust = "chrono::Numeric::IsoWeek"
+
+[[mappings.enum_variants]]
+python = "Numeric.NumDaysFromSun"
+rust = "chrono::Numeric::NumDaysFromSun"
+
+[[mappings.enum_variants]]
+python = "Numeric.WeekdayFromMon"
+rust = "chrono::Numeric::WeekdayFromMon"
+
+[[mappings.enum_variants]]
+python = "Numeric.Ordinal"
+rust = "chrono::Numeric::Ordinal"
+
+[[mappings.enum_variants]]
+python = "Numeric.Hour"
+rust = "chrono::Numeric::Hour"
+
+[[mappings.enum_variants]]
+python = "Numeric.Hour12"
+rust = "chrono::Numeric::Hour12"
+
+[[mappings.enum_variants]]
+python = "Numeric.Minute"
+rust = "chrono::Numeric::Minute"
+
+[[mappings.enum_variants]]
+python = "Numeric.Second"
+rust = "chrono::Numeric::Second"
+
+[[mappings.enum_variants]]
+python = "Numeric.Nanosecond"
+rust = "chrono::Numeric::Nanosecond"
+
+[[mappings.enum_variants]]
+python = "Numeric.Timestamp"
+rust = "chrono::Numeric::Timestamp"
+
+[[mappings.enum_variants]]
+python = "Numeric.Internal"
+rust = "chrono::Numeric::Internal"
+
+[[mappings.enum_variants]]
+python = "Fixed.ShortMonthName"
+rust = "chrono::Fixed::ShortMonthName"
+
+[[mappings.enum_variants]]
+python = "Fixed.LongMonthName"
+rust = "chrono::Fixed::LongMonthName"
+
+[[mappings.enum_variants]]
+python = "Fixed.ShortWeekdayName"
+rust = "chrono::Fixed::ShortWeekdayName"
+
+[[mappings.enum_variants]]
+python = "Fixed.LongWeekdayName"
+rust = "chrono::Fixed::LongWeekdayName"
+
+[[mappings.enum_variants]]
+python = "Fixed.LowerAmPm"
+rust = "chrono::Fixed::LowerAmPm"
+
+[[mappings.enum_variants]]
+python = "Fixed.UpperAmPm"
+rust = "chrono::Fixed::UpperAmPm"
+
+[[mappings.enum_variants]]
+python = "Fixed.Nanosecond"
+rust = "chrono::Fixed::Nanosecond"
+
+[[mappings.enum_variants]]
+python = "Fixed.Nanosecond3"
+rust = "chrono::Fixed::Nanosecond3"
+
+[[mappings.enum_variants]]
+python = "Fixed.Nanosecond6"
+rust = "chrono::Fixed::Nanosecond6"
+
+[[mappings.enum_variants]]
+python = "Fixed.Nanosecond9"
+rust = "chrono::Fixed::Nanosecond9"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneName"
+rust = "chrono::Fixed::TimezoneName"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffsetColon"
+rust = "chrono::Fixed::TimezoneOffsetColon"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffsetDoubleColon"
+rust = "chrono::Fixed::TimezoneOffsetDoubleColon"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffsetTripleColon"
+rust = "chrono::Fixed::TimezoneOffsetTripleColon"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffsetColonZ"
+rust = "chrono::Fixed::TimezoneOffsetColonZ"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffset"
+rust = "chrono::Fixed::TimezoneOffset"
+
+[[mappings.enum_variants]]
+python = "Fixed.TimezoneOffsetZ"
+rust = "chrono::Fixed::TimezoneOffsetZ"
+
+[[mappings.enum_variants]]
+python = "Fixed.RFC2822"
+rust = "chrono::Fixed::RFC2822"
+
+[[mappings.enum_variants]]
+python = "Fixed.RFC3339"
+rust = "chrono::Fixed::RFC3339"
+
+[[mappings.enum_variants]]
+python = "Fixed.Internal"
+rust = "chrono::Fixed::Internal"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.Hours"
+rust = "chrono::OffsetPrecision::Hours"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.Minutes"
+rust = "chrono::OffsetPrecision::Minutes"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.Seconds"
+rust = "chrono::OffsetPrecision::Seconds"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.OptionalMinutes"
+rust = "chrono::OffsetPrecision::OptionalMinutes"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.OptionalSeconds"
+rust = "chrono::OffsetPrecision::OptionalSeconds"
+
+[[mappings.enum_variants]]
+python = "OffsetPrecision.OptionalMinutesAndSeconds"
+rust = "chrono::OffsetPrecision::OptionalMinutesAndSeconds"
+
+[[mappings.enum_variants]]
+python = "Colons.None_"
+rust = "chrono::Colons::None"
+
+[[mappings.enum_variants]]
+python = "Colons.Colon"
+rust = "chrono::Colons::Colon"
+
+[[mappings.enum_variants]]
+python = "Colons.Maybe"
+rust = "chrono::Colons::Maybe"
+
+[[mappings.enum_variants]]
+python = "Item.Literal"
+rust = "chrono::Item::Literal"
+
+[[mappings.enum_variants]]
+python = "Item.OwnedLiteral"
+rust = "chrono::Item::OwnedLiteral"
+
+[[mappings.enum_variants]]
+python = "Item.Space"
+rust = "chrono::Item::Space"
+
+[[mappings.enum_variants]]
+python = "Item.OwnedSpace"
+rust = "chrono::Item::OwnedSpace"
+
+[[mappings.enum_variants]]
+python = "Item.Numeric"
+rust = "chrono::Item::Numeric"
+
+[[mappings.enum_variants]]
+python = "Item.Fixed"
+rust = "chrono::Item::Fixed"
+
+[[mappings.enum_variants]]
+python = "Item.Error"
+rust = "chrono::Item::Error"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.OutOfRange"
+rust = "chrono::ParseErrorKind::OutOfRange"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.Impossible"
+rust = "chrono::ParseErrorKind::Impossible"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.NotEnough"
+rust = "chrono::ParseErrorKind::NotEnough"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.Invalid"
+rust = "chrono::ParseErrorKind::Invalid"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.TooShort"
+rust = "chrono::ParseErrorKind::TooShort"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.TooLong"
+rust = "chrono::ParseErrorKind::TooLong"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.BadFormat"
+rust = "chrono::ParseErrorKind::BadFormat"
+
+[[mappings.enum_variants]]
+python = "ParseErrorKind.__Nonexhaustive"
+rust = "chrono::ParseErrorKind::__Nonexhaustive"
+
+[[mappings.enum_variants]]
+python = "LocalResult.Single"
+rust = "chrono::LocalResult::Single"
+
+[[mappings.enum_variants]]
+python = "LocalResult.Ambiguous"
+rust = "chrono::LocalResult::Ambiguous"
+
+[[mappings.enum_variants]]
+python = "LocalResult.None_"
+rust = "chrono::LocalResult::None"
+
+[[mappings.enum_variants]]
+python = "RoundingError.DurationExceedsTimestamp"
+rust = "chrono::round::RoundingError::DurationExceedsTimestamp"
+
+[[mappings.enum_variants]]
+python = "RoundingError.DurationExceedsLimit"
+rust = "chrono::round::RoundingError::DurationExceedsLimit"
+
+[[mappings.enum_variants]]
+python = "RoundingError.TimestampExceedsLimit"
+rust = "chrono::round::RoundingError::TimestampExceedsLimit"

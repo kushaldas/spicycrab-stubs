@@ -11,6 +11,9 @@ serde = "1.0.228"
 available = ["alloc", "default", "derive", "rc", "std", "unstable"]
 default = ["std"]
 
+# NOTE: Detected 9 macros without stubs: __private_serialize, __require_serde_not_serde_core, __serialize_unimplemented, __serialize_unimplemented_helper, __serialize_unimplemented_method, forward_to_deserialize_any, forward_to_deserialize_any_helper, forward_to_deserialize_any_method, serde_if_integer128
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "serde.missing_field"
 rust_code = "serde::missing_field({arg0})"
@@ -83,15 +86,15 @@ param_types = ["Option<usize>"]
 
 [[mappings.functions]]
 python = "serde.unit_only"
-rust_code = "serde::core::de::value::unit_only({arg0})"
-rust_imports = ["serde::core::de::value::unit_only"]
+rust_code = "serde::unit_only({arg0})"
+rust_imports = ["serde::unit_only"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.map_as_enum"
-rust_code = "serde::core::de::value::map_as_enum({arg0})"
-rust_imports = ["serde::core::de::value::map_as_enum"]
+rust_code = "serde::map_as_enum({arg0})"
+rust_imports = ["serde::map_as_enum"]
 needs_result = false
 param_types = ["A"]
 
@@ -214,126 +217,126 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.Error.custom"
-rust_code = "serde::core::de::value::Error::custom({arg0})"
-rust_imports = ["serde::core::de::value::Error"]
+rust_code = "serde::Error::custom({arg0})"
+rust_imports = ["serde::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.Error.custom"
-rust_code = "serde::core::de::value::Error::custom({arg0})"
-rust_imports = ["serde::core::de::value::Error"]
+rust_code = "serde::Error::custom({arg0})"
+rust_imports = ["serde::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.Error.custom"
-rust_code = "serde::core::de::value::Error::custom({arg0})"
-rust_imports = ["serde::core::de::value::Error"]
+rust_code = "serde::Error::custom({arg0})"
+rust_imports = ["serde::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.Error.custom"
-rust_code = "serde::core::de::value::Error::custom({arg0})"
-rust_imports = ["serde::core::de::value::Error"]
+rust_code = "serde::Error::custom({arg0})"
+rust_imports = ["serde::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.Error.custom"
-rust_code = "serde::core::de::value::Error::custom({arg0})"
-rust_imports = ["serde::core::de::value::Error"]
+rust_code = "serde::Error::custom({arg0})"
+rust_imports = ["serde::Error"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "serde.UnitDeserializer.new"
-rust_code = "serde::core::de::value::UnitDeserializer::new()"
-rust_imports = ["serde::core::de::value::UnitDeserializer"]
+rust_code = "serde::UnitDeserializer::new()"
+rust_imports = ["serde::UnitDeserializer"]
 needs_result = false
 
 [[mappings.functions]]
 python = "serde.U32Deserializer.new"
-rust_code = "serde::core::de::value::U32Deserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::U32Deserializer"]
+rust_code = "serde::U32Deserializer::new({arg0})"
+rust_imports = ["serde::U32Deserializer"]
 needs_result = false
 param_types = ["u32"]
 
 [[mappings.functions]]
 python = "serde.StrDeserializer.new"
-rust_code = "serde::core::de::value::StrDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::StrDeserializer"]
+rust_code = "serde::StrDeserializer::new({arg0})"
+rust_imports = ["serde::StrDeserializer"]
 needs_result = false
 param_types = ["&'astr"]
 
 [[mappings.functions]]
 python = "serde.BorrowedStrDeserializer.new"
-rust_code = "serde::core::de::value::BorrowedStrDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::BorrowedStrDeserializer"]
+rust_code = "serde::BorrowedStrDeserializer::new({arg0})"
+rust_imports = ["serde::BorrowedStrDeserializer"]
 needs_result = false
 param_types = ["&'destr"]
 
 [[mappings.functions]]
 python = "serde.StringDeserializer.new"
-rust_code = "serde::core::de::value::StringDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::StringDeserializer"]
+rust_code = "serde::StringDeserializer::new({arg0})"
+rust_imports = ["serde::StringDeserializer"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "serde.CowStrDeserializer.new"
-rust_code = "serde::core::de::value::CowStrDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::CowStrDeserializer"]
+rust_code = "serde::CowStrDeserializer::new({arg0})"
+rust_imports = ["serde::CowStrDeserializer"]
 needs_result = false
 param_types = ["Cow<'a,str>"]
 
 [[mappings.functions]]
 python = "serde.BytesDeserializer.new"
-rust_code = "serde::core::de::value::BytesDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::BytesDeserializer"]
+rust_code = "serde::BytesDeserializer::new({arg0})"
+rust_imports = ["serde::BytesDeserializer"]
 needs_result = false
 param_types = ["&'a[u8]"]
 
 [[mappings.functions]]
 python = "serde.BorrowedBytesDeserializer.new"
-rust_code = "serde::core::de::value::BorrowedBytesDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::BorrowedBytesDeserializer"]
+rust_code = "serde::BorrowedBytesDeserializer::new({arg0})"
+rust_imports = ["serde::BorrowedBytesDeserializer"]
 needs_result = false
 param_types = ["&'de[u8]"]
 
 [[mappings.functions]]
 python = "serde.SeqDeserializer.new"
-rust_code = "serde::core::de::value::SeqDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::SeqDeserializer"]
+rust_code = "serde::SeqDeserializer::new({arg0})"
+rust_imports = ["serde::SeqDeserializer"]
 needs_result = false
 param_types = ["I"]
 
 [[mappings.functions]]
 python = "serde.SeqAccessDeserializer.new"
-rust_code = "serde::core::de::value::SeqAccessDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::SeqAccessDeserializer"]
+rust_code = "serde::SeqAccessDeserializer::new({arg0})"
+rust_imports = ["serde::SeqAccessDeserializer"]
 needs_result = false
 param_types = ["A"]
 
 [[mappings.functions]]
 python = "serde.MapDeserializer.new"
-rust_code = "serde::core::de::value::MapDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::MapDeserializer"]
+rust_code = "serde::MapDeserializer::new({arg0})"
+rust_imports = ["serde::MapDeserializer"]
 needs_result = false
 param_types = ["I"]
 
 [[mappings.functions]]
 python = "serde.MapAccessDeserializer.new"
-rust_code = "serde::core::de::value::MapAccessDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::MapAccessDeserializer"]
+rust_code = "serde::MapAccessDeserializer::new({arg0})"
+rust_imports = ["serde::MapAccessDeserializer"]
 needs_result = false
 param_types = ["A"]
 
 [[mappings.functions]]
 python = "serde.EnumAccessDeserializer.new"
-rust_code = "serde::core::de::value::EnumAccessDeserializer::new({arg0})"
-rust_imports = ["serde::core::de::value::EnumAccessDeserializer"]
+rust_code = "serde::EnumAccessDeserializer::new({arg0})"
+rust_imports = ["serde::EnumAccessDeserializer"]
 needs_result = false
 param_types = ["A"]
 
@@ -3582,11 +3585,11 @@ rust = "serde::CannotSerializeVariant"
 
 [[mappings.types]]
 python = "Impossible"
-rust = "serde::Impossible"
+rust = "serde::core::ser::impossible::Impossible"
 
 [[mappings.types]]
 python = "InPlaceSeed"
-rust = "serde::InPlaceSeed"
+rust = "serde::core::private::seed::InPlaceSeed"
 
 [[mappings.types]]
 python = "Error"
@@ -3594,71 +3597,71 @@ rust = "serde::core::private::doc::Error"
 
 [[mappings.types]]
 python = "Error"
-rust = "serde::core::de::value::Error"
+rust = "serde::Error"
 
 [[mappings.types]]
 python = "UnitDeserializer"
-rust = "serde::core::de::value::UnitDeserializer"
+rust = "serde::UnitDeserializer"
 
 [[mappings.types]]
 python = "NeverDeserializer"
-rust = "serde::core::de::value::NeverDeserializer"
+rust = "serde::NeverDeserializer"
 
 [[mappings.types]]
 python = "U32Deserializer"
-rust = "serde::core::de::value::U32Deserializer"
+rust = "serde::U32Deserializer"
 
 [[mappings.types]]
 python = "StrDeserializer"
-rust = "serde::core::de::value::StrDeserializer"
+rust = "serde::StrDeserializer"
 
 [[mappings.types]]
 python = "BorrowedStrDeserializer"
-rust = "serde::core::de::value::BorrowedStrDeserializer"
+rust = "serde::BorrowedStrDeserializer"
 
 [[mappings.types]]
 python = "StringDeserializer"
-rust = "serde::core::de::value::StringDeserializer"
+rust = "serde::StringDeserializer"
 
 [[mappings.types]]
 python = "CowStrDeserializer"
-rust = "serde::core::de::value::CowStrDeserializer"
+rust = "serde::CowStrDeserializer"
 
 [[mappings.types]]
 python = "BytesDeserializer"
-rust = "serde::core::de::value::BytesDeserializer"
+rust = "serde::BytesDeserializer"
 
 [[mappings.types]]
 python = "BorrowedBytesDeserializer"
-rust = "serde::core::de::value::BorrowedBytesDeserializer"
+rust = "serde::BorrowedBytesDeserializer"
 
 [[mappings.types]]
 python = "SeqDeserializer"
-rust = "serde::core::de::value::SeqDeserializer"
+rust = "serde::SeqDeserializer"
 
 [[mappings.types]]
 python = "SeqAccessDeserializer"
-rust = "serde::core::de::value::SeqAccessDeserializer"
+rust = "serde::SeqAccessDeserializer"
 
 [[mappings.types]]
 python = "MapDeserializer"
-rust = "serde::core::de::value::MapDeserializer"
+rust = "serde::MapDeserializer"
 
 [[mappings.types]]
 python = "MapAccessDeserializer"
-rust = "serde::core::de::value::MapAccessDeserializer"
+rust = "serde::MapAccessDeserializer"
 
 [[mappings.types]]
 python = "EnumAccessDeserializer"
-rust = "serde::core::de::value::EnumAccessDeserializer"
+rust = "serde::EnumAccessDeserializer"
 
 [[mappings.types]]
 python = "UnitOnly"
-rust = "serde::core::de::value::UnitOnly"
+rust = "serde::UnitOnly"
 
 [[mappings.types]]
 python = "MapAsEnum"
-rust = "serde::core::de::value::MapAsEnum"
+rust = "serde::MapAsEnum"
 
 [[mappings.types]]
 python = "IgnoredAny"
@@ -3694,8 +3697,309 @@ rust = "serde::Content"
 
 [[mappings.types]]
 python = "Content"
-rust = "serde::Content"
+rust = "serde::core::private::content::Content"
 
 [[mappings.types]]
 python = "Unexpected"
 rust = "serde::Unexpected"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "TagOrContent.Tag"
+rust = "serde::TagOrContent::Tag"
+
+[[mappings.enum_variants]]
+python = "TagOrContent.Content"
+rust = "serde::TagOrContent::Content"
+
+[[mappings.enum_variants]]
+python = "TagOrContentField.Tag"
+rust = "serde::TagOrContentField::Tag"
+
+[[mappings.enum_variants]]
+python = "TagOrContentField.Content"
+rust = "serde::TagOrContentField::Content"
+
+[[mappings.enum_variants]]
+python = "TagContentOtherField.Tag"
+rust = "serde::TagContentOtherField::Tag"
+
+[[mappings.enum_variants]]
+python = "TagContentOtherField.Content"
+rust = "serde::TagContentOtherField::Content"
+
+[[mappings.enum_variants]]
+python = "TagContentOtherField.Other"
+rust = "serde::TagContentOtherField::Other"
+
+[[mappings.enum_variants]]
+python = "Content.Bool"
+rust = "serde::Content::Bool"
+
+[[mappings.enum_variants]]
+python = "Content.U8"
+rust = "serde::Content::U8"
+
+[[mappings.enum_variants]]
+python = "Content.U16"
+rust = "serde::Content::U16"
+
+[[mappings.enum_variants]]
+python = "Content.U32"
+rust = "serde::Content::U32"
+
+[[mappings.enum_variants]]
+python = "Content.U64"
+rust = "serde::Content::U64"
+
+[[mappings.enum_variants]]
+python = "Content.I8"
+rust = "serde::Content::I8"
+
+[[mappings.enum_variants]]
+python = "Content.I16"
+rust = "serde::Content::I16"
+
+[[mappings.enum_variants]]
+python = "Content.I32"
+rust = "serde::Content::I32"
+
+[[mappings.enum_variants]]
+python = "Content.I64"
+rust = "serde::Content::I64"
+
+[[mappings.enum_variants]]
+python = "Content.F32"
+rust = "serde::Content::F32"
+
+[[mappings.enum_variants]]
+python = "Content.F64"
+rust = "serde::Content::F64"
+
+[[mappings.enum_variants]]
+python = "Content.Char"
+rust = "serde::Content::Char"
+
+[[mappings.enum_variants]]
+python = "Content.String"
+rust = "serde::Content::String"
+
+[[mappings.enum_variants]]
+python = "Content.Bytes"
+rust = "serde::Content::Bytes"
+
+[[mappings.enum_variants]]
+python = "Content.None_"
+rust = "serde::Content::None"
+
+[[mappings.enum_variants]]
+python = "Content.Some"
+rust = "serde::Content::Some"
+
+[[mappings.enum_variants]]
+python = "Content.Unit"
+rust = "serde::Content::Unit"
+
+[[mappings.enum_variants]]
+python = "Content.UnitStruct"
+rust = "serde::Content::UnitStruct"
+
+[[mappings.enum_variants]]
+python = "Content.UnitVariant"
+rust = "serde::Content::UnitVariant"
+
+[[mappings.enum_variants]]
+python = "Content.NewtypeStruct"
+rust = "serde::Content::NewtypeStruct"
+
+[[mappings.enum_variants]]
+python = "Content.NewtypeVariant"
+rust = "serde::Content::NewtypeVariant"
+
+[[mappings.enum_variants]]
+python = "Content.Seq"
+rust = "serde::Content::Seq"
+
+[[mappings.enum_variants]]
+python = "Content.Tuple"
+rust = "serde::Content::Tuple"
+
+[[mappings.enum_variants]]
+python = "Content.TupleStruct"
+rust = "serde::Content::TupleStruct"
+
+[[mappings.enum_variants]]
+python = "Content.TupleVariant"
+rust = "serde::Content::TupleVariant"
+
+[[mappings.enum_variants]]
+python = "Content.Map"
+rust = "serde::Content::Map"
+
+[[mappings.enum_variants]]
+python = "Content.Struct"
+rust = "serde::Content::Struct"
+
+[[mappings.enum_variants]]
+python = "Content.StructVariant"
+rust = "serde::Content::StructVariant"
+
+[[mappings.enum_variants]]
+python = "Content.Bool"
+rust = "serde::core::private::content::Content::Bool"
+
+[[mappings.enum_variants]]
+python = "Content.U8"
+rust = "serde::core::private::content::Content::U8"
+
+[[mappings.enum_variants]]
+python = "Content.U16"
+rust = "serde::core::private::content::Content::U16"
+
+[[mappings.enum_variants]]
+python = "Content.U32"
+rust = "serde::core::private::content::Content::U32"
+
+[[mappings.enum_variants]]
+python = "Content.U64"
+rust = "serde::core::private::content::Content::U64"
+
+[[mappings.enum_variants]]
+python = "Content.I8"
+rust = "serde::core::private::content::Content::I8"
+
+[[mappings.enum_variants]]
+python = "Content.I16"
+rust = "serde::core::private::content::Content::I16"
+
+[[mappings.enum_variants]]
+python = "Content.I32"
+rust = "serde::core::private::content::Content::I32"
+
+[[mappings.enum_variants]]
+python = "Content.I64"
+rust = "serde::core::private::content::Content::I64"
+
+[[mappings.enum_variants]]
+python = "Content.F32"
+rust = "serde::core::private::content::Content::F32"
+
+[[mappings.enum_variants]]
+python = "Content.F64"
+rust = "serde::core::private::content::Content::F64"
+
+[[mappings.enum_variants]]
+python = "Content.Char"
+rust = "serde::core::private::content::Content::Char"
+
+[[mappings.enum_variants]]
+python = "Content.String"
+rust = "serde::core::private::content::Content::String"
+
+[[mappings.enum_variants]]
+python = "Content.Str"
+rust = "serde::core::private::content::Content::Str"
+
+[[mappings.enum_variants]]
+python = "Content.ByteBuf"
+rust = "serde::core::private::content::Content::ByteBuf"
+
+[[mappings.enum_variants]]
+python = "Content.Bytes"
+rust = "serde::core::private::content::Content::Bytes"
+
+[[mappings.enum_variants]]
+python = "Content.None_"
+rust = "serde::core::private::content::Content::None"
+
+[[mappings.enum_variants]]
+python = "Content.Some"
+rust = "serde::core::private::content::Content::Some"
+
+[[mappings.enum_variants]]
+python = "Content.Unit"
+rust = "serde::core::private::content::Content::Unit"
+
+[[mappings.enum_variants]]
+python = "Content.Newtype"
+rust = "serde::core::private::content::Content::Newtype"
+
+[[mappings.enum_variants]]
+python = "Content.Seq"
+rust = "serde::core::private::content::Content::Seq"
+
+[[mappings.enum_variants]]
+python = "Content.Map"
+rust = "serde::core::private::content::Content::Map"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Bool"
+rust = "serde::Unexpected::Bool"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Unsigned"
+rust = "serde::Unexpected::Unsigned"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Signed"
+rust = "serde::Unexpected::Signed"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Float"
+rust = "serde::Unexpected::Float"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Char"
+rust = "serde::Unexpected::Char"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Str"
+rust = "serde::Unexpected::Str"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Bytes"
+rust = "serde::Unexpected::Bytes"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Unit"
+rust = "serde::Unexpected::Unit"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Option"
+rust = "serde::Unexpected::Option"
+
+[[mappings.enum_variants]]
+python = "Unexpected.NewtypeStruct"
+rust = "serde::Unexpected::NewtypeStruct"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Seq"
+rust = "serde::Unexpected::Seq"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Map"
+rust = "serde::Unexpected::Map"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Enum"
+rust = "serde::Unexpected::Enum"
+
+[[mappings.enum_variants]]
+python = "Unexpected.UnitVariant"
+rust = "serde::Unexpected::UnitVariant"
+
+[[mappings.enum_variants]]
+python = "Unexpected.NewtypeVariant"
+rust = "serde::Unexpected::NewtypeVariant"
+
+[[mappings.enum_variants]]
+python = "Unexpected.TupleVariant"
+rust = "serde::Unexpected::TupleVariant"
+
+[[mappings.enum_variants]]
+python = "Unexpected.StructVariant"
+rust = "serde::Unexpected::StructVariant"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Other"
+rust = "serde::Unexpected::Other"

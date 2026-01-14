@@ -1,6 +1,6 @@
 [package]
 name = "actix-web-lab"
-rust_crate = "actix-web-lab"
+rust_crate = "actix_web_lab"
 rust_version = "0.24.3"
 python_module = "spicycrab_actix_web_lab"
 
@@ -11,442 +11,445 @@ actix-web-lab = "0.24.3"
 available = ["cbor", "default", "derive", "msgpack", "spa"]
 default = ["derive"]
 
+# NOTE: Detected 2 macros without stubs: assert_response_matches, test_request
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "actix-web-lab.fork_request_payload"
-rust_code = "actix-web-lab::fork_request_payload({arg0})"
-rust_imports = ["actix-web-lab::fork_request_payload"]
+rust_code = "actix_web_lab::fork_request_payload({arg0})"
+rust_imports = ["actix_web_lab::fork_request_payload"]
 needs_result = false
 param_types = ["&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.map_response_body"
-rust_code = "actix-web-lab::map_response_body({arg0})"
-rust_imports = ["actix-web-lab::map_response_body"]
+rust_code = "actix_web_lab::middleware_map_response_body::map_response_body({arg0})"
+rust_imports = ["actix_web_lab::middleware_map_response_body::map_response_body"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web-lab.echo_path_service"
-rust_code = "actix-web-lab::test_services::echo_path_service({arg0})"
-rust_imports = ["actix-web-lab::test_services::echo_path_service"]
+rust_code = "actix_web_lab::test_services::echo_path_service({arg0})"
+rust_imports = ["actix_web_lab::test_services::echo_path_service"]
 needs_result = false
 param_types = ["StatusCode"]
 
 [[mappings.functions]]
 python = "actix-web-lab.channel"
-rust_code = "actix-web-lab::channel()"
-rust_imports = ["actix-web-lab::channel"]
+rust_code = "actix_web_lab::body_channel::channel()"
+rust_imports = ["actix_web_lab::body_channel::channel"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.writer"
-rust_code = "actix-web-lab::body_async_write::writer()"
-rust_imports = ["actix-web-lab::body_async_write::writer"]
+rust_code = "actix_web_lab::body_async_write::writer()"
+rust_imports = ["actix_web_lab::body_async_write::writer"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.new_infallible_body_stream"
-rust_code = "actix-web-lab::new_infallible_body_stream({arg0})"
-rust_imports = ["actix-web-lab::new_infallible_body_stream"]
+rust_code = "actix_web_lab::new_infallible_body_stream({arg0})"
+rust_imports = ["actix_web_lab::new_infallible_body_stream"]
 needs_result = false
 param_types = ["S"]
 
 [[mappings.functions]]
 python = "actix-web-lab.new_infallible_sized_stream"
-rust_code = "actix-web-lab::infallible_body_stream::new_infallible_sized_stream({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::infallible_body_stream::new_infallible_sized_stream"]
+rust_code = "actix_web_lab::infallible_body_stream::new_infallible_sized_stream({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::infallible_body_stream::new_infallible_sized_stream"]
 needs_result = false
 param_types = ["u64", "S"]
 
 [[mappings.functions]]
 python = "actix-web-lab.map_response"
-rust_code = "actix-web-lab::map_response({arg0})"
-rust_imports = ["actix-web-lab::map_response"]
+rust_code = "actix_web_lab::middleware_map_response::map_response({arg0})"
+rust_imports = ["actix_web_lab::middleware_map_response::map_response"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web-lab.redirect_to_www"
-rust_code = "actix-web-lab::redirect_to_www({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::redirect_to_www"]
+rust_code = "actix_web_lab::redirect_to_www({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::redirect_to_www"]
 needs_result = true
 is_async = true
 param_types = ["ServiceRequest", "Next<implMessageBody+'static>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.redirect_to_non_www"
-rust_code = "actix-web-lab::redirect_to_non_www({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::redirect_to_non_www"]
+rust_code = "actix_web_lab::redirect_to_non_www({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::redirect_to_non_www"]
 needs_result = true
 is_async = true
 param_types = ["ServiceRequest", "Next<implMessageBody+'static>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.spa"
-rust_code = "actix-web-lab::web::spa()"
-rust_imports = ["actix-web-lab::web::spa"]
+rust_code = "actix_web_lab::web::spa()"
+rust_imports = ["actix_web_lab::web::spa"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.Host.from_request"
-rust_code = "actix-web-lab::Host::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::Host"]
+rust_code = "actix_web_lab::host::Host::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::host::Host"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Bytes.from_request"
-rust_code = "actix-web-lab::Bytes::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::Bytes"]
+rust_code = "actix_web_lab::bytes::Bytes::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::bytes::Bytes"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ClearSiteData.all"
-rust_code = "actix-web-lab::ClearSiteData::all()"
-rust_imports = ["actix-web-lab::ClearSiteData"]
+rust_code = "actix_web_lab::ClearSiteData::all()"
+rust_imports = ["actix_web_lab::ClearSiteData"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.ClearSiteData.name"
-rust_code = "actix-web-lab::ClearSiteData::name()"
-rust_imports = ["actix-web-lab::ClearSiteData"]
+rust_code = "actix_web_lab::ClearSiteData::name()"
+rust_imports = ["actix_web_lab::ClearSiteData"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.ClearSiteData.parse"
-rust_code = "actix-web-lab::ClearSiteData::parse({arg0})"
-rust_imports = ["actix-web-lab::ClearSiteData"]
+rust_code = "actix_web_lab::ClearSiteData::parse({arg0})"
+rust_imports = ["actix_web_lab::ClearSiteData"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Json.from_request"
-rust_code = "actix-web-lab::Json::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::Json"]
+rust_code = "actix_web_lab::json::Json::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::json::Json"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LoadShed.new"
-rust_code = "actix-web-lab::LoadShed::new()"
-rust_imports = ["actix-web-lab::LoadShed"]
+rust_code = "actix_web_lab::LoadShed::new()"
+rust_imports = ["actix_web_lab::LoadShed"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.Spa.default"
-rust_code = "actix-web-lab::Spa::default()"
-rust_imports = ["actix-web-lab::Spa"]
+rust_code = "actix_web_lab::spa::Spa::default()"
+rust_imports = ["actix_web_lab::spa::Spa"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.Data.new"
-rust_code = "actix-web-lab::sse::Data::new({arg0})"
-rust_imports = ["actix-web-lab::sse::Data"]
+rust_code = "actix_web_lab::sse::Data::new({arg0})"
+rust_imports = ["actix_web_lab::sse::Data"]
 needs_result = false
 param_types = ["implInto<ByteString>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Data.new_json"
-rust_code = "actix-web-lab::sse::Data::new_json({arg0})"
-rust_imports = ["actix-web-lab::sse::Data"]
+rust_code = "actix_web_lab::sse::Data::new_json({arg0})"
+rust_imports = ["actix_web_lab::sse::Data"]
 needs_result = true
 param_types = ["implSerialize"]
 
 [[mappings.functions]]
 python = "actix-web-lab.SwapData.new"
-rust_code = "actix-web-lab::SwapData::new({arg0})"
-rust_imports = ["actix-web-lab::SwapData"]
+rust_code = "actix_web_lab::SwapData::new({arg0})"
+rust_imports = ["actix_web_lab::SwapData"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web-lab.SwapData.from_request"
-rust_code = "actix-web-lab::SwapData::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::SwapData"]
+rust_code = "actix_web_lab::SwapData::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::SwapData"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.NormalizePath.default"
-rust_code = "actix-web-lab::NormalizePath::default()"
-rust_imports = ["actix-web-lab::NormalizePath"]
+rust_code = "actix_web_lab::NormalizePath::default()"
+rust_imports = ["actix_web_lab::NormalizePath"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.NormalizePath.new"
-rust_code = "actix-web-lab::NormalizePath::new({arg0})"
-rust_imports = ["actix-web-lab::NormalizePath"]
+rust_code = "actix_web_lab::NormalizePath::new({arg0})"
+rust_imports = ["actix_web_lab::NormalizePath"]
 needs_result = false
 param_types = ["TrailingSlash"]
 
 [[mappings.functions]]
 python = "actix-web-lab.NormalizePath.trim"
-rust_code = "actix-web-lab::NormalizePath::trim()"
-rust_imports = ["actix-web-lab::NormalizePath"]
+rust_code = "actix_web_lab::NormalizePath::trim()"
+rust_imports = ["actix_web_lab::NormalizePath"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.CacheControl.name"
-rust_code = "actix-web-lab::CacheControl::name()"
-rust_imports = ["actix-web-lab::CacheControl"]
+rust_code = "actix_web_lab::CacheControl::name()"
+rust_imports = ["actix_web_lab::CacheControl"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.CacheControl.parse"
-rust_code = "actix-web-lab::CacheControl::parse({arg0})"
-rust_imports = ["actix-web-lab::CacheControl"]
+rust_code = "actix_web_lab::CacheControl::parse({arg0})"
+rust_imports = ["actix_web_lab::CacheControl"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web-lab.XForwardedPrefix.name"
-rust_code = "actix-web-lab::XForwardedPrefix::name()"
-rust_imports = ["actix-web-lab::XForwardedPrefix"]
+rust_code = "actix_web_lab::XForwardedPrefix::name()"
+rust_imports = ["actix_web_lab::XForwardedPrefix"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.XForwardedPrefix.parse"
-rust_code = "actix-web-lab::XForwardedPrefix::parse({arg0})"
-rust_imports = ["actix-web-lab::XForwardedPrefix"]
+rust_code = "actix_web_lab::XForwardedPrefix::parse({arg0})"
+rust_imports = ["actix_web_lab::XForwardedPrefix"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ReconstructedPath.from_request"
-rust_code = "actix-web-lab::x_forwarded_prefix::ReconstructedPath::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::x_forwarded_prefix::ReconstructedPath"]
+rust_code = "actix_web_lab::x_forwarded_prefix::ReconstructedPath::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::x_forwarded_prefix::ReconstructedPath"]
 needs_result = false
 param_types = ["&actix_web::HttpRequest", "&mutactix_http::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Path.from_request"
-rust_code = "actix-web-lab::Path::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::Path"]
+rust_code = "actix_web_lab::path::Path::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::path::Path"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LazyData.new"
-rust_code = "actix-web-lab::LazyData::new({arg0})"
-rust_imports = ["actix-web-lab::LazyData"]
+rust_code = "actix_web_lab::LazyData::new({arg0})"
+rust_imports = ["actix_web_lab::LazyData"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LazyData.from_request"
-rust_code = "actix-web-lab::LazyData::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::LazyData"]
+rust_code = "actix_web_lab::LazyData::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::LazyData"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.BodyLimit.from_"
-rust_code = "actix-web-lab::BodyLimit::from({arg0})"
-rust_imports = ["actix-web-lab::BodyLimit"]
+rust_code = "actix_web_lab::BodyLimit::from({arg0})"
+rust_imports = ["actix_web_lab::BodyLimit"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web-lab.BodyLimit.from_request"
-rust_code = "actix-web-lab::BodyLimit::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::BodyLimit"]
+rust_code = "actix_web_lab::BodyLimit::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::BodyLimit"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ConditionOption.from_"
-rust_code = "actix-web-lab::ConditionOption::from({arg0})"
-rust_imports = ["actix-web-lab::ConditionOption"]
+rust_code = "actix_web_lab::ConditionOption::from({arg0})"
+rust_imports = ["actix_web_lab::ConditionOption"]
 needs_result = false
 param_types = ["Option<T>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Forwarded.new"
-rust_code = "actix-web-lab::Forwarded::new({arg0}, {arg1}, {arg2}, {arg3})"
-rust_imports = ["actix-web-lab::Forwarded"]
+rust_code = "actix_web_lab::forwarded::Forwarded::new({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["actix_web_lab::forwarded::Forwarded"]
 needs_result = false
 param_types = ["implInto<Option<String>>", "implInto<Vec<String>>", "implInto<Option<String>>", "implInto<Option<String>>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Forwarded.new_for"
-rust_code = "actix-web-lab::Forwarded::new_for({arg0})"
-rust_imports = ["actix-web-lab::Forwarded"]
+rust_code = "actix_web_lab::forwarded::Forwarded::new_for({arg0})"
+rust_imports = ["actix_web_lab::forwarded::Forwarded"]
 needs_result = false
 param_types = ["implInto<String>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Forwarded.from_str"
-rust_code = "actix-web-lab::Forwarded::from_str({arg0})"
-rust_imports = ["actix-web-lab::Forwarded"]
+rust_code = "actix_web_lab::forwarded::Forwarded::from_str({arg0})"
+rust_imports = ["actix_web_lab::forwarded::Forwarded"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Forwarded.name"
-rust_code = "actix-web-lab::Forwarded::name()"
-rust_imports = ["actix-web-lab::Forwarded"]
+rust_code = "actix_web_lab::forwarded::Forwarded::name()"
+rust_imports = ["actix_web_lab::forwarded::Forwarded"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.Forwarded.parse"
-rust_code = "actix-web-lab::Forwarded::parse({arg0})"
-rust_imports = ["actix-web-lab::Forwarded"]
+rust_code = "actix_web_lab::forwarded::Forwarded::parse({arg0})"
+rust_imports = ["actix_web_lab::forwarded::Forwarded"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LazyDataShared.new"
-rust_code = "actix-web-lab::LazyDataShared::new({arg0})"
-rust_imports = ["actix-web-lab::LazyDataShared"]
+rust_code = "actix_web_lab::LazyDataShared::new({arg0})"
+rust_imports = ["actix_web_lab::LazyDataShared"]
 needs_result = false
 param_types = ["F"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LazyDataShared.from_request"
-rust_code = "actix-web-lab::LazyDataShared::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::LazyDataShared"]
+rust_code = "actix_web_lab::LazyDataShared::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::LazyDataShared"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ContentLength.from_str"
-rust_code = "actix-web-lab::ContentLength::from_str({arg0})"
-rust_imports = ["actix-web-lab::ContentLength"]
+rust_code = "actix_web_lab::ContentLength::from_str({arg0})"
+rust_imports = ["actix_web_lab::ContentLength"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ContentLength.name"
-rust_code = "actix-web-lab::ContentLength::name()"
-rust_imports = ["actix-web-lab::ContentLength"]
+rust_code = "actix_web_lab::ContentLength::name()"
+rust_imports = ["actix_web_lab::ContentLength"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.ContentLength.parse"
-rust_code = "actix-web-lab::ContentLength::parse({arg0})"
-rust_imports = ["actix-web-lab::ContentLength"]
+rust_code = "actix_web_lab::ContentLength::parse({arg0})"
+rust_imports = ["actix_web_lab::ContentLength"]
 needs_result = true
 param_types = ["&M"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ContentLength.from_"
-rust_code = "actix-web-lab::ContentLength::from({arg0})"
-rust_imports = ["actix-web-lab::ContentLength"]
+rust_code = "actix_web_lab::ContentLength::from({arg0})"
+rust_imports = ["actix_web_lab::ContentLength"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "actix-web-lab.RequestSignature.from_request"
-rust_code = "actix-web-lab::RequestSignature::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::RequestSignature"]
+rust_code = "actix_web_lab::RequestSignature::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::RequestSignature"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutdev::Payload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.RedirectHttps.with_hsts"
-rust_code = "actix-web-lab::redirect_to_https::RedirectHttps::with_hsts({arg0})"
-rust_imports = ["actix-web-lab::redirect_to_https::RedirectHttps"]
+rust_code = "actix_web_lab::redirect_to_https::RedirectHttps::with_hsts({arg0})"
+rust_imports = ["actix_web_lab::redirect_to_https::RedirectHttps"]
 needs_result = false
 param_types = ["StrictTransportSecurity"]
 
 [[mappings.functions]]
 python = "actix-web-lab.ErrorHandlers.default"
-rust_code = "actix-web-lab::err_handler::ErrorHandlers::default()"
-rust_imports = ["actix-web-lab::err_handler::ErrorHandlers"]
+rust_code = "actix_web_lab::err_handler::ErrorHandlers::default()"
+rust_imports = ["actix_web_lab::err_handler::ErrorHandlers"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.ErrorHandlers.new"
-rust_code = "actix-web-lab::err_handler::ErrorHandlers::new()"
-rust_imports = ["actix-web-lab::err_handler::ErrorHandlers"]
+rust_code = "actix_web_lab::err_handler::ErrorHandlers::new()"
+rust_imports = ["actix_web_lab::err_handler::ErrorHandlers"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.UrlEncodedForm.from_request"
-rust_code = "actix-web-lab::UrlEncodedForm::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::UrlEncodedForm"]
+rust_code = "actix_web_lab::UrlEncodedForm::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::UrlEncodedForm"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Query.from_query"
-rust_code = "actix-web-lab::Query::from_query({arg0})"
-rust_imports = ["actix-web-lab::Query"]
+rust_code = "actix_web_lab::query::Query::from_query({arg0})"
+rust_imports = ["actix_web_lab::query::Query"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web-lab.Query.from_request"
-rust_code = "actix-web-lab::Query::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::Query"]
+rust_code = "actix_web_lab::query::Query::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::query::Query"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LocalData.new"
-rust_code = "actix-web-lab::LocalData::new({arg0})"
-rust_imports = ["actix-web-lab::LocalData"]
+rust_code = "actix_web_lab::LocalData::new({arg0})"
+rust_imports = ["actix_web_lab::LocalData"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LocalData.from_"
-rust_code = "actix-web-lab::LocalData::from({arg0})"
-rust_imports = ["actix-web-lab::LocalData"]
+rust_code = "actix_web_lab::LocalData::from({arg0})"
+rust_imports = ["actix_web_lab::LocalData"]
 needs_result = false
 param_types = ["Rc<T>"]
 
 [[mappings.functions]]
 python = "actix-web-lab.LocalData.from_request"
-rust_code = "actix-web-lab::LocalData::from_request({arg0}, {arg1})"
-rust_imports = ["actix-web-lab::LocalData"]
+rust_code = "actix_web_lab::LocalData::from_request({arg0}, {arg1})"
+rust_imports = ["actix_web_lab::LocalData"]
 needs_result = false
 param_types = ["&HttpRequest", "&mutPayload"]
 
 [[mappings.functions]]
 python = "actix-web-lab.PanicReporter.new"
-rust_code = "actix-web-lab::PanicReporter::new({arg0})"
-rust_imports = ["actix-web-lab::PanicReporter"]
+rust_code = "actix_web_lab::PanicReporter::new({arg0})"
+rust_imports = ["actix_web_lab::PanicReporter"]
 needs_result = false
 param_types = ["implFn(&(dynAny+Send))+'static"]
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.new"
-rust_code = "actix-web-lab::StrictTransportSecurity::new({arg0})"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::new({arg0})"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = false
 param_types = ["Duration"]
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.recommended"
-rust_code = "actix-web-lab::StrictTransportSecurity::recommended()"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::recommended()"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.default"
-rust_code = "actix-web-lab::StrictTransportSecurity::default()"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::default()"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.from_str"
-rust_code = "actix-web-lab::StrictTransportSecurity::from_str({arg0})"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::from_str({arg0})"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.name"
-rust_code = "actix-web-lab::StrictTransportSecurity::name()"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::name()"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = false
 
 [[mappings.functions]]
 python = "actix-web-lab.StrictTransportSecurity.parse"
-rust_code = "actix-web-lab::StrictTransportSecurity::parse({arg0})"
-rust_imports = ["actix-web-lab::StrictTransportSecurity"]
+rust_code = "actix_web_lab::StrictTransportSecurity::parse({arg0})"
+rust_imports = ["actix_web_lab::StrictTransportSecurity"]
 needs_result = true
 param_types = ["&M"]
 
@@ -1287,252 +1290,453 @@ returns = "HeaderValue"
 
 [[mappings.types]]
 python = "Host"
-rust = "actix-web-lab::Host"
+rust = "actix_web_lab::host::Host"
 
 [[mappings.types]]
 python = "Bytes"
-rust = "actix-web-lab::Bytes"
+rust = "actix_web_lab::bytes::Bytes"
 
 [[mappings.types]]
 python = "BytesExtractFut"
-rust = "actix-web-lab::BytesExtractFut"
+rust = "actix_web_lab::bytes::BytesExtractFut"
 
 [[mappings.types]]
 python = "ClearSiteData"
-rust = "actix-web-lab::ClearSiteData"
+rust = "actix_web_lab::ClearSiteData"
 
 [[mappings.types]]
 python = "Json"
-rust = "actix-web-lab::Json"
+rust = "actix_web_lab::json::Json"
 
 [[mappings.types]]
 python = "JsonExtractFut"
-rust = "actix-web-lab::JsonExtractFut"
+rust = "actix_web_lab::json::JsonExtractFut"
 
 [[mappings.types]]
 python = "JsonDeserializeError"
-rust = "actix-web-lab::JsonDeserializeError"
+rust = "actix_web_lab::json::JsonDeserializeError"
 
 [[mappings.types]]
 python = "LoadShed"
-rust = "actix-web-lab::LoadShed"
+rust = "actix_web_lab::LoadShed"
 
 [[mappings.types]]
 python = "LoadShedService"
-rust = "actix-web-lab::LoadShedService"
+rust = "actix_web_lab::load_shed::LoadShedService"
 
 [[mappings.types]]
 python = "Spa"
-rust = "actix-web-lab::Spa"
+rust = "actix_web_lab::spa::Spa"
 
 [[mappings.types]]
 python = "Data"
-rust = "actix-web-lab::sse::Data"
+rust = "actix_web_lab::sse::Data"
 
 [[mappings.types]]
 python = "Cbor"
-rust = "actix-web-lab::Cbor"
+rust = "actix_web_lab::cbor::Cbor"
 
 [[mappings.types]]
 python = "SwapData"
-rust = "actix-web-lab::SwapData"
+rust = "actix_web_lab::SwapData"
 
 [[mappings.types]]
 python = "MapResBodyMiddleware"
-rust = "actix-web-lab::middleware_map_response_body::MapResBodyMiddleware"
+rust = "actix_web_lab::middleware_map_response_body::MapResBodyMiddleware"
 
 [[mappings.types]]
 python = "MapResBodyService"
-rust = "actix-web-lab::middleware_map_response_body::MapResBodyService"
+rust = "actix_web_lab::middleware_map_response_body::MapResBodyService"
 
 [[mappings.types]]
 python = "Sender"
-rust = "actix-web-lab::body_channel::Sender"
+rust = "actix_web_lab::body_channel::Sender"
 
 [[mappings.types]]
 python = "Writer"
-rust = "actix-web-lab::body_async_write::Writer"
+rust = "actix_web_lab::body_async_write::Writer"
 
 [[mappings.types]]
 python = "NormalizePath"
-rust = "actix-web-lab::NormalizePath"
+rust = "actix_web_lab::NormalizePath"
 
 [[mappings.types]]
 python = "NormalizePathService"
-rust = "actix-web-lab::NormalizePathService"
+rust = "actix_web_lab::normalize_path::NormalizePathService"
 
 [[mappings.types]]
 python = "CacheControl"
-rust = "actix-web-lab::CacheControl"
+rust = "actix_web_lab::CacheControl"
 
 [[mappings.types]]
 python = "XForwardedPrefix"
-rust = "actix-web-lab::XForwardedPrefix"
+rust = "actix_web_lab::XForwardedPrefix"
 
 [[mappings.types]]
 python = "ReconstructedPath"
-rust = "actix-web-lab::x_forwarded_prefix::ReconstructedPath"
+rust = "actix_web_lab::x_forwarded_prefix::ReconstructedPath"
 
 [[mappings.types]]
 python = "Path"
-rust = "actix-web-lab::Path"
+rust = "actix_web_lab::path::Path"
 
 [[mappings.types]]
 python = "LazyData"
-rust = "actix-web-lab::LazyData"
+rust = "actix_web_lab::LazyData"
 
 [[mappings.types]]
 python = "BodyLimit"
-rust = "actix-web-lab::BodyLimit"
+rust = "actix_web_lab::BodyLimit"
 
 [[mappings.types]]
 python = "BodyLimitFut"
-rust = "actix-web-lab::BodyLimitFut"
+rust = "actix_web_lab::body_limit::BodyLimitFut"
 
 [[mappings.types]]
 python = "ConditionOption"
-rust = "actix-web-lab::ConditionOption"
+rust = "actix_web_lab::ConditionOption"
 
 [[mappings.types]]
 python = "Forwarded"
-rust = "actix-web-lab::Forwarded"
+rust = "actix_web_lab::forwarded::Forwarded"
 
 [[mappings.types]]
 python = "MapResMiddleware"
-rust = "actix-web-lab::middleware_map_response::MapResMiddleware"
+rust = "actix_web_lab::middleware_map_response::MapResMiddleware"
 
 [[mappings.types]]
 python = "MapResService"
-rust = "actix-web-lab::middleware_map_response::MapResService"
+rust = "actix_web_lab::middleware_map_response::MapResService"
 
 [[mappings.types]]
 python = "LazyDataShared"
-rust = "actix-web-lab::LazyDataShared"
+rust = "actix_web_lab::LazyDataShared"
 
 [[mappings.types]]
 python = "ContentLength"
-rust = "actix-web-lab::ContentLength"
+rust = "actix_web_lab::ContentLength"
 
 [[mappings.types]]
 python = "CatchPanic"
-rust = "actix-web-lab::CatchPanic"
+rust = "actix_web_lab::CatchPanic"
 
 [[mappings.types]]
 python = "CatchPanicMiddleware"
-rust = "actix-web-lab::CatchPanicMiddleware"
+rust = "actix_web_lab::catch_panic::CatchPanicMiddleware"
 
 [[mappings.types]]
 python = "RequestSignature"
-rust = "actix-web-lab::RequestSignature"
+rust = "actix_web_lab::RequestSignature"
 
 [[mappings.types]]
 python = "RedirectHttps"
-rust = "actix-web-lab::redirect_to_https::RedirectHttps"
+rust = "actix_web_lab::redirect_to_https::RedirectHttps"
 
 [[mappings.types]]
 python = "RedirectHttpsMiddleware"
-rust = "actix-web-lab::redirect_to_https::RedirectHttpsMiddleware"
+rust = "actix_web_lab::redirect_to_https::RedirectHttpsMiddleware"
 
 [[mappings.types]]
 python = "ErrorHandlers"
-rust = "actix-web-lab::err_handler::ErrorHandlers"
+rust = "actix_web_lab::err_handler::ErrorHandlers"
 
 [[mappings.types]]
 python = "ErrorHandlersMiddleware"
-rust = "actix-web-lab::err_handler::ErrorHandlersMiddleware"
+rust = "actix_web_lab::err_handler::ErrorHandlersMiddleware"
 
 [[mappings.types]]
 python = "UrlEncodedForm"
-rust = "actix-web-lab::UrlEncodedForm"
+rust = "actix_web_lab::UrlEncodedForm"
 
 [[mappings.types]]
 python = "UrlEncodedFormExtractFut"
-rust = "actix-web-lab::UrlEncodedFormExtractFut"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormExtractFut"
 
 [[mappings.types]]
 python = "UrlEncodedFormDeserializeError"
-rust = "actix-web-lab::UrlEncodedFormDeserializeError"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormDeserializeError"
 
 [[mappings.types]]
 python = "Query"
-rust = "actix-web-lab::Query"
+rust = "actix_web_lab::query::Query"
 
 [[mappings.types]]
 python = "QueryDeserializeError"
-rust = "actix-web-lab::QueryDeserializeError"
+rust = "actix_web_lab::query::QueryDeserializeError"
 
 [[mappings.types]]
 python = "MessagePack"
-rust = "actix-web-lab::msgpack::MessagePack"
+rust = "actix_web_lab::msgpack::MessagePack"
 
 [[mappings.types]]
 python = "MessagePackNamed"
-rust = "actix-web-lab::msgpack::MessagePackNamed"
+rust = "actix_web_lab::msgpack::MessagePackNamed"
 
 [[mappings.types]]
 python = "LocalData"
-rust = "actix-web-lab::LocalData"
+rust = "actix_web_lab::LocalData"
 
 [[mappings.types]]
 python = "PanicReporter"
-rust = "actix-web-lab::PanicReporter"
+rust = "actix_web_lab::PanicReporter"
 
 [[mappings.types]]
 python = "PanicReporterMiddleware"
-rust = "actix-web-lab::PanicReporterMiddleware"
+rust = "actix_web_lab::panic_reporter::PanicReporterMiddleware"
 
 [[mappings.types]]
 python = "StrictTransportSecurity"
-rust = "actix-web-lab::StrictTransportSecurity"
+rust = "actix_web_lab::StrictTransportSecurity"
 
 [[mappings.types]]
 python = "BytesBody"
-rust = "actix-web-lab::BytesBody"
+rust = "actix_web_lab::bytes::BytesBody"
 
 [[mappings.types]]
 python = "BytesPayloadError"
-rust = "actix-web-lab::BytesPayloadError"
+rust = "actix_web_lab::bytes::BytesPayloadError"
 
 [[mappings.types]]
 python = "ClearSiteDataDirective"
-rust = "actix-web-lab::ClearSiteDataDirective"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective"
 
 [[mappings.types]]
 python = "JsonBody"
-rust = "actix-web-lab::JsonBody"
+rust = "actix_web_lab::json::JsonBody"
 
 [[mappings.types]]
 python = "JsonPayloadError"
-rust = "actix-web-lab::JsonPayloadError"
+rust = "actix_web_lab::json::JsonPayloadError"
 
 [[mappings.types]]
 python = "Overloaded"
-rust = "actix-web-lab::load_shed::Overloaded"
+rust = "actix_web_lab::load_shed::Overloaded"
 
 [[mappings.types]]
 python = "Event"
-rust = "actix-web-lab::sse::Event"
+rust = "actix_web_lab::sse::Event"
 
 [[mappings.types]]
 python = "CacheDirective"
-rust = "actix-web-lab::cache_control::CacheDirective"
+rust = "actix_web_lab::cache_control::CacheDirective"
 
 [[mappings.types]]
 python = "BodyLimitError"
-rust = "actix-web-lab::BodyLimitError"
+rust = "actix_web_lab::body_limit::BodyLimitError"
 
 [[mappings.types]]
 python = "ConditionMiddleware"
-rust = "actix-web-lab::condition_option::ConditionMiddleware"
+rust = "actix_web_lab::condition_option::ConditionMiddleware"
 
 [[mappings.types]]
 python = "RequestSignatureError"
-rust = "actix-web-lab::RequestSignatureError"
+rust = "actix_web_lab::request_signature::RequestSignatureError"
 
 [[mappings.types]]
 python = "UrlEncodedFormBody"
-rust = "actix-web-lab::UrlEncodedFormBody"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormBody"
 
 [[mappings.types]]
 python = "UrlEncodedFormError"
-rust = "actix-web-lab::UrlEncodedFormError"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "BytesBody.Error"
+rust = "actix_web_lab::bytes::BytesBody::Error"
+
+[[mappings.enum_variants]]
+python = "BytesBody.Body"
+rust = "actix_web_lab::bytes::BytesBody::Body"
+
+[[mappings.enum_variants]]
+python = "BytesPayloadError.OverflowKnownLength"
+rust = "actix_web_lab::bytes::BytesPayloadError::OverflowKnownLength"
+
+[[mappings.enum_variants]]
+python = "BytesPayloadError.Overflow"
+rust = "actix_web_lab::bytes::BytesPayloadError::Overflow"
+
+[[mappings.enum_variants]]
+python = "BytesPayloadError.Payload"
+rust = "actix_web_lab::bytes::BytesPayloadError::Payload"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.All"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::All"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.Cache"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::Cache"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.ClientHints"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::ClientHints"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.Cookies"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::Cookies"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.Storage"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::Storage"
+
+[[mappings.enum_variants]]
+python = "ClearSiteDataDirective.ExecutionContexts"
+rust = "actix_web_lab::clear_site_data::ClearSiteDataDirective::ExecutionContexts"
+
+[[mappings.enum_variants]]
+python = "JsonBody.Error"
+rust = "actix_web_lab::json::JsonBody::Error"
+
+[[mappings.enum_variants]]
+python = "JsonBody.Body"
+rust = "actix_web_lab::json::JsonBody::Body"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Overflow"
+rust = "actix_web_lab::json::JsonPayloadError::Overflow"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.ContentType"
+rust = "actix_web_lab::json::JsonPayloadError::ContentType"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Deserialize"
+rust = "actix_web_lab::json::JsonPayloadError::Deserialize"
+
+[[mappings.enum_variants]]
+python = "JsonPayloadError.Payload"
+rust = "actix_web_lab::json::JsonPayloadError::Payload"
+
+[[mappings.enum_variants]]
+python = "Overloaded.Service"
+rust = "actix_web_lab::load_shed::Overloaded::Service"
+
+[[mappings.enum_variants]]
+python = "Overloaded.Overloaded"
+rust = "actix_web_lab::load_shed::Overloaded::Overloaded"
+
+[[mappings.enum_variants]]
+python = "Event.Data"
+rust = "actix_web_lab::sse::Event::Data"
+
+[[mappings.enum_variants]]
+python = "Event.Comment"
+rust = "actix_web_lab::sse::Event::Comment"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MaxAge"
+rust = "actix_web_lab::cache_control::CacheDirective::MaxAge"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MaxStale"
+rust = "actix_web_lab::cache_control::CacheDirective::MaxStale"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MinFresh"
+rust = "actix_web_lab::cache_control::CacheDirective::MinFresh"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.SMaxAge"
+rust = "actix_web_lab::cache_control::CacheDirective::SMaxAge"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoCache"
+rust = "actix_web_lab::cache_control::CacheDirective::NoCache"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoStore"
+rust = "actix_web_lab::cache_control::CacheDirective::NoStore"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.NoTransform"
+rust = "actix_web_lab::cache_control::CacheDirective::NoTransform"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.OnlyIfCached"
+rust = "actix_web_lab::cache_control::CacheDirective::OnlyIfCached"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MustRevalidate"
+rust = "actix_web_lab::cache_control::CacheDirective::MustRevalidate"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.ProxyRevalidate"
+rust = "actix_web_lab::cache_control::CacheDirective::ProxyRevalidate"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.MustUnderstand"
+rust = "actix_web_lab::cache_control::CacheDirective::MustUnderstand"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Private"
+rust = "actix_web_lab::cache_control::CacheDirective::Private"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Public"
+rust = "actix_web_lab::cache_control::CacheDirective::Public"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Immutable"
+rust = "actix_web_lab::cache_control::CacheDirective::Immutable"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.StaleWhileRevalidate"
+rust = "actix_web_lab::cache_control::CacheDirective::StaleWhileRevalidate"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.StaleIfError"
+rust = "actix_web_lab::cache_control::CacheDirective::StaleIfError"
+
+[[mappings.enum_variants]]
+python = "CacheDirective.Extension"
+rust = "actix_web_lab::cache_control::CacheDirective::Extension"
+
+[[mappings.enum_variants]]
+python = "BodyLimitError.Extractor"
+rust = "actix_web_lab::body_limit::BodyLimitError::Extractor"
+
+[[mappings.enum_variants]]
+python = "BodyLimitError.Overflow"
+rust = "actix_web_lab::body_limit::BodyLimitError::Overflow"
+
+[[mappings.enum_variants]]
+python = "ConditionMiddleware.Enable"
+rust = "actix_web_lab::condition_option::ConditionMiddleware::Enable"
+
+[[mappings.enum_variants]]
+python = "ConditionMiddleware.Disable"
+rust = "actix_web_lab::condition_option::ConditionMiddleware::Disable"
+
+[[mappings.enum_variants]]
+python = "RequestSignatureError.Extractor"
+rust = "actix_web_lab::request_signature::RequestSignatureError::Extractor"
+
+[[mappings.enum_variants]]
+python = "RequestSignatureError.Signature"
+rust = "actix_web_lab::request_signature::RequestSignatureError::Signature"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormBody.Error"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormBody::Error"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormBody.Body"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormBody::Body"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormError.Overflow"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormError::Overflow"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormError.ContentType"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormError::ContentType"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormError.Deserialize"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormError::Deserialize"
+
+[[mappings.enum_variants]]
+python = "UrlEncodedFormError.Payload"
+rust = "actix_web_lab::url_encoded_form::UrlEncodedFormError::Payload"

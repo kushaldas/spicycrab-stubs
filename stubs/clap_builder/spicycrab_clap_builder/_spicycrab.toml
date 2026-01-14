@@ -151,6 +151,9 @@ rust_code = "clap_builder::ValueHint::EmailAddress"
 rust_imports = []
 needs_result = false
 
+# NOTE: Detected 8 macros without stubs: arg, arg_impl, command, crate_authors, crate_description, crate_name, crate_version, value_parser
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "clap_builder.AnyValueId.from_"
 rust_code = "clap_builder::util::any_value::AnyValueId::from({arg0})"
@@ -160,57 +163,57 @@ param_types = ["&'aA"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["&'_Id"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["Str"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["&'_Str"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["&'_String"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["&'_&'staticstr"]
 
 [[mappings.functions]]
 python = "clap_builder.Id.from_"
-rust_code = "clap_builder::Id::from({arg0})"
-rust_imports = ["clap_builder::Id"]
+rust_code = "clap_builder::util::id::Id::from({arg0})"
+rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["Cow<'static,str>"]
 
@@ -320,50 +323,50 @@ param_types = ["std::ops::RangeToInclusive<usize>"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["Id"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["&'_Str"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["&'_String"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["&'_&'staticstr"]
 
 [[mappings.functions]]
 python = "clap_builder.Str.from_"
-rust_code = "clap_builder::Str::from({arg0})"
-rust_imports = ["clap_builder::Str"]
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
 param_types = ["Cow<'static,str>"]
 
@@ -4783,6 +4786,67 @@ needs_result = true
 returns = "Result"
 param_types = ["&mutFormatter<'_>"]
 
+# ArgMatches.get_many hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.get_many"
+rust_code = "{self}.get_many::<String>({arg0}).map(|v| v.cloned().collect::<Vec<_>>()).unwrap_or_default()"
+rust_imports = []
+needs_result = false
+returns = "Vec<String>"
+param_types = ["&str"]
+
+# ArgMatches.get_one hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.get_one"
+rust_code = "{self}.get_one::<String>({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<String>"
+param_types = ["&str"]
+
+# ArgMatches.subcommand_name hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.subcommand_name"
+rust_code = "{self}.subcommand_name().map(|s| s.to_string())"
+rust_imports = []
+needs_result = false
+returns = "Option<String>"
+
+# ArgMatches.get_flag hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.get_flag"
+rust_code = "{self}.get_flag({arg0})"
+rust_imports = []
+needs_result = false
+returns = "bool"
+param_types = ["&str"]
+
+# ArgMatches.get_count hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.get_count"
+rust_code = "{self}.get_count({arg0})"
+rust_imports = []
+needs_result = false
+returns = "u8"
+param_types = ["&str"]
+
+# ArgMatches.subcommand hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.subcommand"
+rust_code = "{self}.subcommand().map(|(name, matches)| (name.to_string(), matches.clone()))"
+rust_imports = []
+needs_result = false
+returns = "Option<(String, ArgMatches)>"
+
+# ArgMatches.subcommand_matches hardcoded method
+[[mappings.methods]]
+python = "ArgMatches.subcommand_matches"
+rust_code = "{self}.subcommand_matches({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<ArgMatches>"
+param_types = ["&str"]
+
 # ArgAction from std
 [[mappings.types]]
 python = "ArgAction"
@@ -4799,7 +4863,7 @@ rust = "clap_builder::util::any_value::AnyValueId"
 
 [[mappings.types]]
 python = "Id"
-rust = "clap_builder::Id"
+rust = "clap_builder::util::id::Id"
 
 [[mappings.types]]
 python = "ReadmeDoctests"
@@ -4859,7 +4923,7 @@ rust = "clap_builder::builder::range::ValueRange"
 
 [[mappings.types]]
 python = "Str"
-rust = "clap_builder::Str"
+rust = "clap_builder::builder::str::Str"
 
 [[mappings.types]]
 python = "Arg"
@@ -4983,7 +5047,7 @@ rust = "clap_builder::ValueSource"
 
 [[mappings.types]]
 python = "Resettable"
-rust = "clap_builder::Resettable"
+rust = "clap_builder::builder::resettable::Resettable"
 
 [[mappings.types]]
 python = "ArgPredicate"
@@ -5000,3 +5064,216 @@ rust = "clap_builder::error::context::ContextValue"
 [[mappings.types]]
 python = "ErrorKind"
 rust = "clap_builder::error::kind::ErrorKind"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "ColorChoice.Auto"
+rust = "clap_builder::util::color::ColorChoice::Auto"
+
+[[mappings.enum_variants]]
+python = "ColorChoice.Always"
+rust = "clap_builder::util::color::ColorChoice::Always"
+
+[[mappings.enum_variants]]
+python = "ColorChoice.Never"
+rust = "clap_builder::util::color::ColorChoice::Never"
+
+[[mappings.enum_variants]]
+python = "MatchesError.Downcast"
+rust = "clap_builder::MatchesError::Downcast"
+
+[[mappings.enum_variants]]
+python = "MatchesError.UnknownArgument"
+rust = "clap_builder::MatchesError::UnknownArgument"
+
+[[mappings.enum_variants]]
+python = "ValueSource.DefaultValue"
+rust = "clap_builder::ValueSource::DefaultValue"
+
+[[mappings.enum_variants]]
+python = "ValueSource.EnvVariable"
+rust = "clap_builder::ValueSource::EnvVariable"
+
+[[mappings.enum_variants]]
+python = "ValueSource.CommandLine"
+rust = "clap_builder::ValueSource::CommandLine"
+
+[[mappings.enum_variants]]
+python = "Resettable.Value"
+rust = "clap_builder::builder::resettable::Resettable::Value"
+
+[[mappings.enum_variants]]
+python = "Resettable.Reset"
+rust = "clap_builder::builder::resettable::Resettable::Reset"
+
+[[mappings.enum_variants]]
+python = "ArgPredicate.IsPresent"
+rust = "clap_builder::ArgPredicate::IsPresent"
+
+[[mappings.enum_variants]]
+python = "ArgPredicate.Equals"
+rust = "clap_builder::ArgPredicate::Equals"
+
+[[mappings.enum_variants]]
+python = "ContextKind.InvalidSubcommand"
+rust = "clap_builder::error::context::ContextKind::InvalidSubcommand"
+
+[[mappings.enum_variants]]
+python = "ContextKind.InvalidArg"
+rust = "clap_builder::error::context::ContextKind::InvalidArg"
+
+[[mappings.enum_variants]]
+python = "ContextKind.PriorArg"
+rust = "clap_builder::error::context::ContextKind::PriorArg"
+
+[[mappings.enum_variants]]
+python = "ContextKind.ValidSubcommand"
+rust = "clap_builder::error::context::ContextKind::ValidSubcommand"
+
+[[mappings.enum_variants]]
+python = "ContextKind.ValidValue"
+rust = "clap_builder::error::context::ContextKind::ValidValue"
+
+[[mappings.enum_variants]]
+python = "ContextKind.InvalidValue"
+rust = "clap_builder::error::context::ContextKind::InvalidValue"
+
+[[mappings.enum_variants]]
+python = "ContextKind.ActualNumValues"
+rust = "clap_builder::error::context::ContextKind::ActualNumValues"
+
+[[mappings.enum_variants]]
+python = "ContextKind.ExpectedNumValues"
+rust = "clap_builder::error::context::ContextKind::ExpectedNumValues"
+
+[[mappings.enum_variants]]
+python = "ContextKind.MinValues"
+rust = "clap_builder::error::context::ContextKind::MinValues"
+
+[[mappings.enum_variants]]
+python = "ContextKind.SuggestedCommand"
+rust = "clap_builder::error::context::ContextKind::SuggestedCommand"
+
+[[mappings.enum_variants]]
+python = "ContextKind.SuggestedSubcommand"
+rust = "clap_builder::error::context::ContextKind::SuggestedSubcommand"
+
+[[mappings.enum_variants]]
+python = "ContextKind.SuggestedArg"
+rust = "clap_builder::error::context::ContextKind::SuggestedArg"
+
+[[mappings.enum_variants]]
+python = "ContextKind.SuggestedValue"
+rust = "clap_builder::error::context::ContextKind::SuggestedValue"
+
+[[mappings.enum_variants]]
+python = "ContextKind.TrailingArg"
+rust = "clap_builder::error::context::ContextKind::TrailingArg"
+
+[[mappings.enum_variants]]
+python = "ContextKind.Suggested"
+rust = "clap_builder::error::context::ContextKind::Suggested"
+
+[[mappings.enum_variants]]
+python = "ContextKind.Usage"
+rust = "clap_builder::error::context::ContextKind::Usage"
+
+[[mappings.enum_variants]]
+python = "ContextKind.Custom"
+rust = "clap_builder::error::context::ContextKind::Custom"
+
+[[mappings.enum_variants]]
+python = "ContextValue.None_"
+rust = "clap_builder::error::context::ContextValue::None"
+
+[[mappings.enum_variants]]
+python = "ContextValue.Bool"
+rust = "clap_builder::error::context::ContextValue::Bool"
+
+[[mappings.enum_variants]]
+python = "ContextValue.String"
+rust = "clap_builder::error::context::ContextValue::String"
+
+[[mappings.enum_variants]]
+python = "ContextValue.Strings"
+rust = "clap_builder::error::context::ContextValue::Strings"
+
+[[mappings.enum_variants]]
+python = "ContextValue.StyledStr"
+rust = "clap_builder::error::context::ContextValue::StyledStr"
+
+[[mappings.enum_variants]]
+python = "ContextValue.StyledStrs"
+rust = "clap_builder::error::context::ContextValue::StyledStrs"
+
+[[mappings.enum_variants]]
+python = "ContextValue.Number"
+rust = "clap_builder::error::context::ContextValue::Number"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.InvalidValue"
+rust = "clap_builder::error::kind::ErrorKind::InvalidValue"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.UnknownArgument"
+rust = "clap_builder::error::kind::ErrorKind::UnknownArgument"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.InvalidSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::InvalidSubcommand"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.NoEquals"
+rust = "clap_builder::error::kind::ErrorKind::NoEquals"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.ValueValidation"
+rust = "clap_builder::error::kind::ErrorKind::ValueValidation"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.TooManyValues"
+rust = "clap_builder::error::kind::ErrorKind::TooManyValues"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.TooFewValues"
+rust = "clap_builder::error::kind::ErrorKind::TooFewValues"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.WrongNumberOfValues"
+rust = "clap_builder::error::kind::ErrorKind::WrongNumberOfValues"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.ArgumentConflict"
+rust = "clap_builder::error::kind::ErrorKind::ArgumentConflict"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.MissingRequiredArgument"
+rust = "clap_builder::error::kind::ErrorKind::MissingRequiredArgument"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.MissingSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::MissingSubcommand"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.InvalidUtf8"
+rust = "clap_builder::error::kind::ErrorKind::InvalidUtf8"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayHelp"
+rust = "clap_builder::error::kind::ErrorKind::DisplayHelp"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayHelpOnMissingArgumentOrSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::DisplayHelpOnMissingArgumentOrSubcommand"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayVersion"
+rust = "clap_builder::error::kind::ErrorKind::DisplayVersion"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Io"
+rust = "clap_builder::error::kind::ErrorKind::Io"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Format"
+rust = "clap_builder::error::kind::ErrorKind::Format"

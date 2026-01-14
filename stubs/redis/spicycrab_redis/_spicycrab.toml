@@ -83,8 +83,8 @@ param_types = ["&str"]
 
 [[mappings.functions]]
 python = "redis.connect"
-rust_code = "redis::connect({arg0}, {arg1})"
-rust_imports = ["redis::connect"]
+rust_code = "redis::connection::connect({arg0}, {arg1})"
+rust_imports = ["redis::connection::connect"]
 needs_result = false
 param_types = ["&ConnectionInfo", "Option<Duration>"]
 
@@ -125,8 +125,8 @@ param_types = ["RedisError"]
 
 [[mappings.functions]]
 python = "redis.cmd"
-rust_code = "redis::cmd({arg0})"
-rust_imports = ["redis::cmd"]
+rust_code = "redis::cmd::cmd({arg0})"
+rust_imports = ["redis::cmd::cmd"]
 needs_result = false
 param_types = ["&str"]
 
@@ -234,8 +234,8 @@ param_types = ["Value"]
 
 [[mappings.functions]]
 python = "redis.AclInfo.from_redis_value"
-rust_code = "redis::commands::AclInfo::from_redis_value({arg0})"
-rust_imports = ["redis::commands::AclInfo"]
+rust_code = "redis::commands::acl::AclInfo::from_redis_value({arg0})"
+rust_imports = ["redis::commands::acl::AclInfo"]
 needs_result = true
 param_types = ["Value"]
 
@@ -349,8 +349,8 @@ param_types = ["Value"]
 
 [[mappings.functions]]
 python = "redis.TcpSettings.default"
-rust_code = "redis::TcpSettings::default()"
-rust_imports = ["redis::TcpSettings"]
+rust_code = "redis::io::tcp::TcpSettings::default()"
+rust_imports = ["redis::io::tcp::TcpSettings"]
 needs_result = false
 
 [[mappings.functions]]
@@ -400,22 +400,22 @@ needs_result = false
 
 [[mappings.functions]]
 python = "redis.ClusterClientBuilder.new"
-rust_code = "redis::cluster_handling::ClusterClientBuilder::new({arg0})"
-rust_imports = ["redis::cluster_handling::ClusterClientBuilder"]
+rust_code = "redis::cluster_handling::client::ClusterClientBuilder::new({arg0})"
+rust_imports = ["redis::cluster_handling::client::ClusterClientBuilder"]
 needs_result = false
 param_types = ["implIntoIterator<Item=T>"]
 
 [[mappings.functions]]
 python = "redis.ClusterClient.new"
-rust_code = "redis::cluster_handling::ClusterClient::new({arg0})"
-rust_imports = ["redis::cluster_handling::ClusterClient"]
+rust_code = "redis::cluster_handling::client::ClusterClient::new({arg0})"
+rust_imports = ["redis::cluster_handling::client::ClusterClient"]
 needs_result = false
 param_types = ["implIntoIterator<Item=T>"]
 
 [[mappings.functions]]
 python = "redis.ClusterClient.builder"
-rust_code = "redis::cluster_handling::ClusterClient::builder({arg0})"
-rust_imports = ["redis::cluster_handling::ClusterClient"]
+rust_code = "redis::cluster_handling::client::ClusterClient::builder({arg0})"
+rust_imports = ["redis::cluster_handling::client::ClusterClient"]
 needs_result = false
 param_types = ["implIntoIterator<Item=T>"]
 
@@ -440,8 +440,8 @@ needs_result = false
 
 [[mappings.functions]]
 python = "redis.ConnectionInfo.from_str"
-rust_code = "redis::ConnectionInfo::from_str({arg0})"
-rust_imports = ["redis::ConnectionInfo"]
+rust_code = "redis::connection::ConnectionInfo::from_str({arg0})"
+rust_imports = ["redis::connection::ConnectionInfo"]
 needs_result = true
 param_types = ["&str"]
 
@@ -687,14 +687,14 @@ param_types = ["&RedisConnectionInfo", "C", "AsyncConnectionConfig"]
 
 [[mappings.functions]]
 python = "redis.ConnectionManagerConfig.new"
-rust_code = "redis::aio::ConnectionManagerConfig::new()"
-rust_imports = ["redis::aio::ConnectionManagerConfig"]
+rust_code = "redis::aio::connection_manager::ConnectionManagerConfig::new()"
+rust_imports = ["redis::aio::connection_manager::ConnectionManagerConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "redis.ConnectionManagerConfig.default"
-rust_code = "redis::aio::ConnectionManagerConfig::default()"
-rust_imports = ["redis::aio::ConnectionManagerConfig"]
+rust_code = "redis::aio::connection_manager::ConnectionManagerConfig::default()"
+rust_imports = ["redis::aio::connection_manager::ConnectionManagerConfig"]
 needs_result = false
 
 [[mappings.functions]]
@@ -713,50 +713,50 @@ param_types = ["Client", "ConnectionManagerConfig"]
 
 [[mappings.functions]]
 python = "redis.Script.new"
-rust_code = "redis::Script::new({arg0})"
-rust_imports = ["redis::Script"]
+rust_code = "redis::script::Script::new({arg0})"
+rust_imports = ["redis::script::Script"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "redis.Sentinel.build"
-rust_code = "redis::Sentinel::build({arg0})"
-rust_imports = ["redis::Sentinel"]
+rust_code = "redis::sentinel::Sentinel::build({arg0})"
+rust_imports = ["redis::sentinel::Sentinel"]
 needs_result = false
 param_types = ["Vec<T>"]
 
 [[mappings.functions]]
 python = "redis.Sentinel.build"
-rust_code = "redis::Sentinel::build({arg0})"
-rust_imports = ["redis::Sentinel"]
+rust_code = "redis::sentinel::Sentinel::build({arg0})"
+rust_imports = ["redis::sentinel::Sentinel"]
 needs_result = false
 param_types = ["Vec<T>"]
 
 [[mappings.functions]]
 python = "redis.LockedSentinelClient.new"
-rust_code = "redis::LockedSentinelClient::new({arg0})"
-rust_imports = ["redis::LockedSentinelClient"]
+rust_code = "redis::sentinel::LockedSentinelClient::new({arg0})"
+rust_imports = ["redis::sentinel::LockedSentinelClient"]
 needs_result = false
 param_types = ["SentinelClient"]
 
 [[mappings.functions]]
 python = "redis.SentinelClient.build"
-rust_code = "redis::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
-rust_imports = ["redis::SentinelClient"]
+rust_code = "redis::sentinel::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::sentinel::SentinelClient"]
 needs_result = false
 param_types = ["Vec<T>", "String", "Option<SentinelNodeConnectionInfo>", "SentinelServerType"]
 
 [[mappings.functions]]
 python = "redis.SentinelClient.build"
-rust_code = "redis::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
-rust_imports = ["redis::SentinelClient"]
+rust_code = "redis::sentinel::SentinelClient::build({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["redis::sentinel::SentinelClient"]
 needs_result = false
 param_types = ["Vec<T>", "implAsRef<str>", "Option<SentinelNodeConnectionInfo>", "SentinelServerType"]
 
 [[mappings.functions]]
 python = "redis.SentinelClientBuilder.new"
-rust_code = "redis::SentinelClientBuilder::new({arg0}, {arg1}, {arg2})"
-rust_imports = ["redis::SentinelClientBuilder"]
+rust_code = "redis::sentinel::SentinelClientBuilder::new({arg0}, {arg1}, {arg2})"
+rust_imports = ["redis::sentinel::SentinelClientBuilder"]
 needs_result = false
 param_types = ["T", "implAsRef<str>", "SentinelServerType"]
 
@@ -4195,6 +4195,102 @@ returns_self = true
 returns = "SentinelClientBuilder"
 param_types = ["TlsCertificates"]
 
+# Cmd.query_async_await hardcoded method
+[[mappings.methods]]
+python = "Cmd.query_async_await"
+rust_code = "{self}.query_async({arg0}).await"
+rust_imports = []
+needs_result = true
+param_types = ["&mut ConnectionManager"]
+
+# Client.get_connection_manager_await hardcoded method
+[[mappings.methods]]
+python = "Client.get_connection_manager_await"
+rust_code = "{self}.get_connection_manager().await"
+rust_imports = []
+needs_result = true
+returns = "ConnectionManager"
+
+# redis.Cmd.get static constructor
+[[mappings.functions]]
+python = "redis.Cmd.get"
+rust_code = 'redis::cmd("GET").arg({arg0})'
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+# redis.Cmd.set static constructor
+[[mappings.functions]]
+python = "redis.Cmd.set"
+rust_code = 'redis::cmd("SET").arg({arg0}).arg({arg1})'
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+
+# redis.Cmd.hget static constructor
+[[mappings.functions]]
+python = "redis.Cmd.hget"
+rust_code = 'redis::cmd("HGET").arg({arg0}).arg({arg1})'
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+
+# redis.Cmd.hset static constructor
+[[mappings.functions]]
+python = "redis.Cmd.hset"
+rust_code = 'redis::cmd("HSET").arg({arg0}).arg({arg1}).arg({arg2})'
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str", "&str"]
+
+# redis.Cmd.hgetall static constructor
+[[mappings.functions]]
+python = "redis.Cmd.hgetall"
+rust_code = 'redis::cmd("HGETALL").arg({arg0})'
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+# redis.Cmd.smembers static constructor
+[[mappings.functions]]
+python = "redis.Cmd.smembers"
+rust_code = 'redis::cmd("SMEMBERS").arg({arg0})'
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+# redis.Cmd.sismember static constructor
+[[mappings.functions]]
+python = "redis.Cmd.sismember"
+rust_code = 'redis::cmd("SISMEMBER").arg({arg0}).arg({arg1})'
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+
+# redis.Cmd.sadd static constructor
+[[mappings.functions]]
+python = "redis.Cmd.sadd"
+rust_code = 'redis::cmd("SADD").arg({arg0}).arg({arg1})'
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+
+# redis.Cmd.del_ static constructor
+[[mappings.functions]]
+python = "redis.Cmd.del_"
+rust_code = 'redis::cmd("DEL").arg({arg0})'
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+# redis.Cmd.exists static constructor
+[[mappings.functions]]
+python = "redis.Cmd.exists"
+rust_code = 'redis::cmd("EXISTS").arg({arg0})'
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
 [[mappings.types]]
 python = "StreamTrimOptions"
 rust = "redis::commands::streams::StreamTrimOptions"
@@ -4273,7 +4369,7 @@ rust = "redis::commands::streams::StreamId"
 
 [[mappings.types]]
 python = "AclInfo"
-rust = "redis::commands::AclInfo"
+rust = "redis::commands::acl::AclInfo"
 
 [[mappings.types]]
 python = "VSimOptions"
@@ -4353,7 +4449,7 @@ rust = "redis::PushInfo"
 
 [[mappings.types]]
 python = "TcpSettings"
-rust = "redis::TcpSettings"
+rust = "redis::io::tcp::TcpSettings"
 
 [[mappings.types]]
 python = "Client"
@@ -4377,11 +4473,11 @@ rust = "redis::cluster_handling::sync_connection::ClusterConnection"
 
 [[mappings.types]]
 python = "ClusterClientBuilder"
-rust = "redis::cluster_handling::ClusterClientBuilder"
+rust = "redis::cluster_handling::client::ClusterClientBuilder"
 
 [[mappings.types]]
 python = "ClusterClient"
-rust = "redis::cluster_handling::ClusterClient"
+rust = "redis::cluster_handling::client::ClusterClient"
 
 [[mappings.types]]
 python = "ClusterConnection"
@@ -4405,11 +4501,11 @@ rust = "redis::connection::TlsConnParams"
 
 [[mappings.types]]
 python = "ConnectionInfo"
-rust = "redis::ConnectionInfo"
+rust = "redis::connection::ConnectionInfo"
 
 [[mappings.types]]
 python = "RedisConnectionInfo"
-rust = "redis::RedisConnectionInfo"
+rust = "redis::connection::RedisConnectionInfo"
 
 [[mappings.types]]
 python = "Connection"
@@ -4445,15 +4541,15 @@ rust = "redis::Pipeline"
 
 [[mappings.types]]
 python = "ClientTlsConfig"
-rust = "redis::ClientTlsConfig"
+rust = "redis::tls::ClientTlsConfig"
 
 [[mappings.types]]
 python = "TlsCertificates"
-rust = "redis::TlsCertificates"
+rust = "redis::tls::TlsCertificates"
 
 [[mappings.types]]
 python = "ClientTlsParams"
-rust = "redis::ClientTlsParams"
+rust = "redis::tls::ClientTlsParams"
 
 [[mappings.types]]
 python = "ParsingError"
@@ -4469,7 +4565,7 @@ rust = "redis::RedisError"
 
 [[mappings.types]]
 python = "Monitor"
-rust = "redis::aio::Monitor"
+rust = "redis::aio::monitor::Monitor"
 
 [[mappings.types]]
 python = "PubSubSink"
@@ -4489,7 +4585,7 @@ rust = "redis::aio::SendError"
 
 [[mappings.types]]
 python = "ConnectionManagerConfig"
-rust = "redis::aio::ConnectionManagerConfig"
+rust = "redis::aio::connection_manager::ConnectionManagerConfig"
 
 [[mappings.types]]
 python = "ConnectionManager"
@@ -4497,31 +4593,31 @@ rust = "redis::aio::ConnectionManager"
 
 [[mappings.types]]
 python = "Script"
-rust = "redis::Script"
+rust = "redis::script::Script"
 
 [[mappings.types]]
 python = "ScriptInvocation"
-rust = "redis::ScriptInvocation"
+rust = "redis::script::ScriptInvocation"
 
 [[mappings.types]]
 python = "Sentinel"
-rust = "redis::Sentinel"
+rust = "redis::sentinel::Sentinel"
 
 [[mappings.types]]
 python = "SentinelNodeConnectionInfo"
-rust = "redis::SentinelNodeConnectionInfo"
+rust = "redis::sentinel::SentinelNodeConnectionInfo"
 
 [[mappings.types]]
 python = "LockedSentinelClient"
-rust = "redis::LockedSentinelClient"
+rust = "redis::sentinel::LockedSentinelClient"
 
 [[mappings.types]]
 python = "SentinelClient"
-rust = "redis::SentinelClient"
+rust = "redis::sentinel::SentinelClient"
 
 [[mappings.types]]
 python = "SentinelClientBuilder"
-rust = "redis::SentinelClientBuilder"
+rust = "redis::sentinel::SentinelClientBuilder"
 
 [[mappings.types]]
 python = "StreamMaxlen"
@@ -4673,15 +4769,15 @@ rust = "redis::cluster_handling::routing::ResponsePolicy"
 
 [[mappings.types]]
 python = "RoutingInfo"
-rust = "redis::cluster_handling::RoutingInfo"
+rust = "redis::cluster_handling::routing::RoutingInfo"
 
 [[mappings.types]]
 python = "SingleNodeRoutingInfo"
-rust = "redis::cluster_handling::SingleNodeRoutingInfo"
+rust = "redis::cluster_handling::routing::SingleNodeRoutingInfo"
 
 [[mappings.types]]
 python = "MultipleNodeRoutingInfo"
-rust = "redis::cluster_handling::MultipleNodeRoutingInfo"
+rust = "redis::cluster_handling::routing::MultipleNodeRoutingInfo"
 
 [[mappings.types]]
 python = "MultiSlotArgPattern"
@@ -4697,7 +4793,7 @@ rust = "redis::connection::TlsMode"
 
 [[mappings.types]]
 python = "ConnectionAddr"
-rust = "redis::ConnectionAddr"
+rust = "redis::connection::ConnectionAddr"
 
 [[mappings.types]]
 python = "Arg"
@@ -4705,7 +4801,7 @@ rust = "redis::cmd::Arg"
 
 [[mappings.types]]
 python = "ServerErrorKind"
-rust = "redis::ServerErrorKind"
+rust = "redis::errors::server_error::ServerErrorKind"
 
 [[mappings.types]]
 python = "ErrorKind"
@@ -4717,4 +4813,841 @@ rust = "redis::errors::redis_error::RetryMethod"
 
 [[mappings.types]]
 python = "SentinelServerType"
-rust = "redis::SentinelServerType"
+rust = "redis::sentinel::SentinelServerType"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "StreamMaxlen.Equals"
+rust = "redis::commands::streams::StreamMaxlen::Equals"
+
+[[mappings.enum_variants]]
+python = "StreamMaxlen.Approx"
+rust = "redis::commands::streams::StreamMaxlen::Approx"
+
+[[mappings.enum_variants]]
+python = "StreamTrimmingMode.Exact"
+rust = "redis::commands::streams::StreamTrimmingMode::Exact"
+
+[[mappings.enum_variants]]
+python = "StreamTrimmingMode.Approx"
+rust = "redis::commands::streams::StreamTrimmingMode::Approx"
+
+[[mappings.enum_variants]]
+python = "StreamTrimStrategy.MaxLen"
+rust = "redis::commands::streams::StreamTrimStrategy::MaxLen"
+
+[[mappings.enum_variants]]
+python = "StreamTrimStrategy.MinId"
+rust = "redis::commands::streams::StreamTrimStrategy::MinId"
+
+[[mappings.enum_variants]]
+python = "StreamPendingReply.Empty"
+rust = "redis::commands::streams::StreamPendingReply::Empty"
+
+[[mappings.enum_variants]]
+python = "StreamPendingReply.Data"
+rust = "redis::commands::streams::StreamPendingReply::Data"
+
+[[mappings.enum_variants]]
+python = "StreamDeletionPolicy.KeepRef"
+rust = "redis::commands::streams::StreamDeletionPolicy::KeepRef"
+
+[[mappings.enum_variants]]
+python = "StreamDeletionPolicy.DelRef"
+rust = "redis::commands::streams::StreamDeletionPolicy::DelRef"
+
+[[mappings.enum_variants]]
+python = "StreamDeletionPolicy.Acked"
+rust = "redis::commands::streams::StreamDeletionPolicy::Acked"
+
+[[mappings.enum_variants]]
+python = "XDelExStatusCode.IdNotFound"
+rust = "redis::commands::streams::XDelExStatusCode::IdNotFound"
+
+[[mappings.enum_variants]]
+python = "XDelExStatusCode.Deleted"
+rust = "redis::commands::streams::XDelExStatusCode::Deleted"
+
+[[mappings.enum_variants]]
+python = "XDelExStatusCode.NotDeletedUnacknowledgedOrStillReferenced"
+rust = "redis::commands::streams::XDelExStatusCode::NotDeletedUnacknowledgedOrStillReferenced"
+
+[[mappings.enum_variants]]
+python = "XAckDelStatusCode.IdNotFound"
+rust = "redis::commands::streams::XAckDelStatusCode::IdNotFound"
+
+[[mappings.enum_variants]]
+python = "XAckDelStatusCode.AcknowledgedAndDeleted"
+rust = "redis::commands::streams::XAckDelStatusCode::AcknowledgedAndDeleted"
+
+[[mappings.enum_variants]]
+python = "XAckDelStatusCode.AcknowledgedNotDeletedStillReferenced"
+rust = "redis::commands::streams::XAckDelStatusCode::AcknowledgedNotDeletedStillReferenced"
+
+[[mappings.enum_variants]]
+python = "Rule.On"
+rust = "redis::commands::acl::Rule::On"
+
+[[mappings.enum_variants]]
+python = "Rule.Off"
+rust = "redis::commands::acl::Rule::Off"
+
+[[mappings.enum_variants]]
+python = "Rule.AddCommand"
+rust = "redis::commands::acl::Rule::AddCommand"
+
+[[mappings.enum_variants]]
+python = "Rule.RemoveCommand"
+rust = "redis::commands::acl::Rule::RemoveCommand"
+
+[[mappings.enum_variants]]
+python = "Rule.AddCategory"
+rust = "redis::commands::acl::Rule::AddCategory"
+
+[[mappings.enum_variants]]
+python = "Rule.RemoveCategory"
+rust = "redis::commands::acl::Rule::RemoveCategory"
+
+[[mappings.enum_variants]]
+python = "Rule.AllCommands"
+rust = "redis::commands::acl::Rule::AllCommands"
+
+[[mappings.enum_variants]]
+python = "Rule.NoCommands"
+rust = "redis::commands::acl::Rule::NoCommands"
+
+[[mappings.enum_variants]]
+python = "Rule.AddPass"
+rust = "redis::commands::acl::Rule::AddPass"
+
+[[mappings.enum_variants]]
+python = "Rule.RemovePass"
+rust = "redis::commands::acl::Rule::RemovePass"
+
+[[mappings.enum_variants]]
+python = "Rule.AddHashedPass"
+rust = "redis::commands::acl::Rule::AddHashedPass"
+
+[[mappings.enum_variants]]
+python = "Rule.RemoveHashedPass"
+rust = "redis::commands::acl::Rule::RemoveHashedPass"
+
+[[mappings.enum_variants]]
+python = "Rule.NoPass"
+rust = "redis::commands::acl::Rule::NoPass"
+
+[[mappings.enum_variants]]
+python = "Rule.ResetPass"
+rust = "redis::commands::acl::Rule::ResetPass"
+
+[[mappings.enum_variants]]
+python = "Rule.Pattern"
+rust = "redis::commands::acl::Rule::Pattern"
+
+[[mappings.enum_variants]]
+python = "Rule.AllKeys"
+rust = "redis::commands::acl::Rule::AllKeys"
+
+[[mappings.enum_variants]]
+python = "Rule.ResetKeys"
+rust = "redis::commands::acl::Rule::ResetKeys"
+
+[[mappings.enum_variants]]
+python = "Rule.Reset"
+rust = "redis::commands::acl::Rule::Reset"
+
+[[mappings.enum_variants]]
+python = "Rule.Other"
+rust = "redis::commands::acl::Rule::Other"
+
+[[mappings.enum_variants]]
+python = "EmbeddingInput.Float32"
+rust = "redis::commands::vector_sets::EmbeddingInput::Float32"
+
+[[mappings.enum_variants]]
+python = "EmbeddingInput.Float64"
+rust = "redis::commands::vector_sets::EmbeddingInput::Float64"
+
+[[mappings.enum_variants]]
+python = "EmbeddingInput.String"
+rust = "redis::commands::vector_sets::EmbeddingInput::String"
+
+[[mappings.enum_variants]]
+python = "VectorAddInput.Fp32"
+rust = "redis::commands::vector_sets::VectorAddInput::Fp32"
+
+[[mappings.enum_variants]]
+python = "VectorAddInput.Values"
+rust = "redis::commands::vector_sets::VectorAddInput::Values"
+
+[[mappings.enum_variants]]
+python = "VectorQuantization.NoQuant"
+rust = "redis::commands::vector_sets::VectorQuantization::NoQuant"
+
+[[mappings.enum_variants]]
+python = "VectorQuantization.Q8"
+rust = "redis::commands::vector_sets::VectorQuantization::Q8"
+
+[[mappings.enum_variants]]
+python = "VectorQuantization.Bin"
+rust = "redis::commands::vector_sets::VectorQuantization::Bin"
+
+[[mappings.enum_variants]]
+python = "VectorSimilaritySearchInput.Fp32"
+rust = "redis::commands::vector_sets::VectorSimilaritySearchInput::Fp32"
+
+[[mappings.enum_variants]]
+python = "VectorSimilaritySearchInput.Values"
+rust = "redis::commands::vector_sets::VectorSimilaritySearchInput::Values"
+
+[[mappings.enum_variants]]
+python = "VectorSimilaritySearchInput.Element"
+rust = "redis::commands::vector_sets::VectorSimilaritySearchInput::Element"
+
+[[mappings.enum_variants]]
+python = "ControlFlow.Continue"
+rust = "redis::commands::ControlFlow::Continue"
+
+[[mappings.enum_variants]]
+python = "ControlFlow.Break"
+rust = "redis::commands::ControlFlow::Break"
+
+[[mappings.enum_variants]]
+python = "Direction.Left"
+rust = "redis::commands::Direction::Left"
+
+[[mappings.enum_variants]]
+python = "Direction.Right"
+rust = "redis::commands::Direction::Right"
+
+[[mappings.enum_variants]]
+python = "UpdateCheck.LT"
+rust = "redis::commands::UpdateCheck::LT"
+
+[[mappings.enum_variants]]
+python = "UpdateCheck.GT"
+rust = "redis::commands::UpdateCheck::GT"
+
+[[mappings.enum_variants]]
+python = "Unit.Meters"
+rust = "redis::commands::geo::Unit::Meters"
+
+[[mappings.enum_variants]]
+python = "Unit.Kilometers"
+rust = "redis::commands::geo::Unit::Kilometers"
+
+[[mappings.enum_variants]]
+python = "Unit.Miles"
+rust = "redis::commands::geo::Unit::Miles"
+
+[[mappings.enum_variants]]
+python = "Unit.Feet"
+rust = "redis::commands::geo::Unit::Feet"
+
+[[mappings.enum_variants]]
+python = "RadiusOrder.Unsorted"
+rust = "redis::commands::geo::RadiusOrder::Unsorted"
+
+[[mappings.enum_variants]]
+python = "RadiusOrder.Asc"
+rust = "redis::commands::geo::RadiusOrder::Asc"
+
+[[mappings.enum_variants]]
+python = "RadiusOrder.Desc"
+rust = "redis::commands::geo::RadiusOrder::Desc"
+
+[[mappings.enum_variants]]
+python = "CacheMode.All"
+rust = "redis::caching::config::CacheMode::All"
+
+[[mappings.enum_variants]]
+python = "CacheMode.OptIn"
+rust = "redis::caching::config::CacheMode::OptIn"
+
+[[mappings.enum_variants]]
+python = "Expiry.EX"
+rust = "redis::Expiry::EX"
+
+[[mappings.enum_variants]]
+python = "Expiry.PX"
+rust = "redis::Expiry::PX"
+
+[[mappings.enum_variants]]
+python = "Expiry.EXAT"
+rust = "redis::Expiry::EXAT"
+
+[[mappings.enum_variants]]
+python = "Expiry.PXAT"
+rust = "redis::Expiry::PXAT"
+
+[[mappings.enum_variants]]
+python = "Expiry.PERSIST"
+rust = "redis::Expiry::PERSIST"
+
+[[mappings.enum_variants]]
+python = "SetExpiry.EX"
+rust = "redis::SetExpiry::EX"
+
+[[mappings.enum_variants]]
+python = "SetExpiry.PX"
+rust = "redis::SetExpiry::PX"
+
+[[mappings.enum_variants]]
+python = "SetExpiry.EXAT"
+rust = "redis::SetExpiry::EXAT"
+
+[[mappings.enum_variants]]
+python = "SetExpiry.PXAT"
+rust = "redis::SetExpiry::PXAT"
+
+[[mappings.enum_variants]]
+python = "SetExpiry.KEEPTTL"
+rust = "redis::SetExpiry::KEEPTTL"
+
+[[mappings.enum_variants]]
+python = "ExistenceCheck.NX"
+rust = "redis::ExistenceCheck::NX"
+
+[[mappings.enum_variants]]
+python = "ExistenceCheck.XX"
+rust = "redis::ExistenceCheck::XX"
+
+[[mappings.enum_variants]]
+python = "FieldExistenceCheck.FNX"
+rust = "redis::FieldExistenceCheck::FNX"
+
+[[mappings.enum_variants]]
+python = "FieldExistenceCheck.FXX"
+rust = "redis::FieldExistenceCheck::FXX"
+
+[[mappings.enum_variants]]
+python = "NumericBehavior.NonNumeric"
+rust = "redis::NumericBehavior::NonNumeric"
+
+[[mappings.enum_variants]]
+python = "NumericBehavior.NumberIsInteger"
+rust = "redis::NumericBehavior::NumberIsInteger"
+
+[[mappings.enum_variants]]
+python = "NumericBehavior.NumberIsFloat"
+rust = "redis::NumericBehavior::NumberIsFloat"
+
+[[mappings.enum_variants]]
+python = "Value.Nil"
+rust = "redis::Value::Nil"
+
+[[mappings.enum_variants]]
+python = "Value.Int"
+rust = "redis::Value::Int"
+
+[[mappings.enum_variants]]
+python = "Value.BulkString"
+rust = "redis::Value::BulkString"
+
+[[mappings.enum_variants]]
+python = "Value.Array"
+rust = "redis::Value::Array"
+
+[[mappings.enum_variants]]
+python = "Value.SimpleString"
+rust = "redis::Value::SimpleString"
+
+[[mappings.enum_variants]]
+python = "Value.Okay"
+rust = "redis::Value::Okay"
+
+[[mappings.enum_variants]]
+python = "Value.Map"
+rust = "redis::Value::Map"
+
+[[mappings.enum_variants]]
+python = "Value.Attribute"
+rust = "redis::Value::Attribute"
+
+[[mappings.enum_variants]]
+python = "Value.Set"
+rust = "redis::Value::Set"
+
+[[mappings.enum_variants]]
+python = "Value.Double"
+rust = "redis::Value::Double"
+
+[[mappings.enum_variants]]
+python = "Value.Boolean"
+rust = "redis::Value::Boolean"
+
+[[mappings.enum_variants]]
+python = "Value.VerbatimString"
+rust = "redis::Value::VerbatimString"
+
+[[mappings.enum_variants]]
+python = "Value.BigNumber"
+rust = "redis::Value::BigNumber"
+
+[[mappings.enum_variants]]
+python = "Value.BigNumber"
+rust = "redis::Value::BigNumber"
+
+[[mappings.enum_variants]]
+python = "Value.Push"
+rust = "redis::Value::Push"
+
+[[mappings.enum_variants]]
+python = "Value.ServerError"
+rust = "redis::Value::ServerError"
+
+[[mappings.enum_variants]]
+python = "ValueComparison.IFEQ"
+rust = "redis::ValueComparison::IFEQ"
+
+[[mappings.enum_variants]]
+python = "ValueComparison.IFNE"
+rust = "redis::ValueComparison::IFNE"
+
+[[mappings.enum_variants]]
+python = "ValueComparison.IFDEQ"
+rust = "redis::ValueComparison::IFDEQ"
+
+[[mappings.enum_variants]]
+python = "ValueComparison.IFDNE"
+rust = "redis::ValueComparison::IFDNE"
+
+[[mappings.enum_variants]]
+python = "VerbatimFormat.Unknown"
+rust = "redis::VerbatimFormat::Unknown"
+
+[[mappings.enum_variants]]
+python = "VerbatimFormat.Markdown"
+rust = "redis::VerbatimFormat::Markdown"
+
+[[mappings.enum_variants]]
+python = "VerbatimFormat.Text"
+rust = "redis::VerbatimFormat::Text"
+
+[[mappings.enum_variants]]
+python = "PushKind.Disconnection"
+rust = "redis::PushKind::Disconnection"
+
+[[mappings.enum_variants]]
+python = "PushKind.Other"
+rust = "redis::PushKind::Other"
+
+[[mappings.enum_variants]]
+python = "PushKind.Invalidate"
+rust = "redis::PushKind::Invalidate"
+
+[[mappings.enum_variants]]
+python = "PushKind.Message"
+rust = "redis::PushKind::Message"
+
+[[mappings.enum_variants]]
+python = "PushKind.PMessage"
+rust = "redis::PushKind::PMessage"
+
+[[mappings.enum_variants]]
+python = "PushKind.SMessage"
+rust = "redis::PushKind::SMessage"
+
+[[mappings.enum_variants]]
+python = "PushKind.Unsubscribe"
+rust = "redis::PushKind::Unsubscribe"
+
+[[mappings.enum_variants]]
+python = "PushKind.PUnsubscribe"
+rust = "redis::PushKind::PUnsubscribe"
+
+[[mappings.enum_variants]]
+python = "PushKind.SUnsubscribe"
+rust = "redis::PushKind::SUnsubscribe"
+
+[[mappings.enum_variants]]
+python = "PushKind.Subscribe"
+rust = "redis::PushKind::Subscribe"
+
+[[mappings.enum_variants]]
+python = "PushKind.PSubscribe"
+rust = "redis::PushKind::PSubscribe"
+
+[[mappings.enum_variants]]
+python = "PushKind.SSubscribe"
+rust = "redis::PushKind::SSubscribe"
+
+[[mappings.enum_variants]]
+python = "MapIter.Array"
+rust = "redis::MapIter::Array"
+
+[[mappings.enum_variants]]
+python = "MapIter.Map"
+rust = "redis::MapIter::Map"
+
+[[mappings.enum_variants]]
+python = "OwnedMapIter.Array"
+rust = "redis::OwnedMapIter::Array"
+
+[[mappings.enum_variants]]
+python = "OwnedMapIter.Map"
+rust = "redis::OwnedMapIter::Map"
+
+[[mappings.enum_variants]]
+python = "Role.Primary"
+rust = "redis::Role::Primary"
+
+[[mappings.enum_variants]]
+python = "Role.Replica"
+rust = "redis::Role::Replica"
+
+[[mappings.enum_variants]]
+python = "Role.Sentinel"
+rust = "redis::Role::Sentinel"
+
+[[mappings.enum_variants]]
+python = "ProtocolVersion.RESP2"
+rust = "redis::ProtocolVersion::RESP2"
+
+[[mappings.enum_variants]]
+python = "ProtocolVersion.RESP3"
+rust = "redis::ProtocolVersion::RESP3"
+
+[[mappings.enum_variants]]
+python = "ExpireOption.NONE"
+rust = "redis::ExpireOption::NONE"
+
+[[mappings.enum_variants]]
+python = "ExpireOption.NX"
+rust = "redis::ExpireOption::NX"
+
+[[mappings.enum_variants]]
+python = "ExpireOption.XX"
+rust = "redis::ExpireOption::XX"
+
+[[mappings.enum_variants]]
+python = "ExpireOption.GT"
+rust = "redis::ExpireOption::GT"
+
+[[mappings.enum_variants]]
+python = "ExpireOption.LT"
+rust = "redis::ExpireOption::LT"
+
+[[mappings.enum_variants]]
+python = "ValueType.String"
+rust = "redis::ValueType::String"
+
+[[mappings.enum_variants]]
+python = "ValueType.List"
+rust = "redis::ValueType::List"
+
+[[mappings.enum_variants]]
+python = "ValueType.Set"
+rust = "redis::ValueType::Set"
+
+[[mappings.enum_variants]]
+python = "ValueType.ZSet"
+rust = "redis::ValueType::ZSet"
+
+[[mappings.enum_variants]]
+python = "ValueType.Hash"
+rust = "redis::ValueType::Hash"
+
+[[mappings.enum_variants]]
+python = "ValueType.Stream"
+rust = "redis::ValueType::Stream"
+
+[[mappings.enum_variants]]
+python = "ValueType.Unknown"
+rust = "redis::ValueType::Unknown"
+
+[[mappings.enum_variants]]
+python = "IntegerReplyOrNoOp.IntegerReply"
+rust = "redis::IntegerReplyOrNoOp::IntegerReply"
+
+[[mappings.enum_variants]]
+python = "IntegerReplyOrNoOp.NotExists"
+rust = "redis::IntegerReplyOrNoOp::NotExists"
+
+[[mappings.enum_variants]]
+python = "IntegerReplyOrNoOp.ExistsButNotRelevant"
+rust = "redis::IntegerReplyOrNoOp::ExistsButNotRelevant"
+
+[[mappings.enum_variants]]
+python = "LogicalAggregateOp.And"
+rust = "redis::cluster_handling::routing::LogicalAggregateOp::And"
+
+[[mappings.enum_variants]]
+python = "AggregateOp.Min"
+rust = "redis::cluster_handling::routing::AggregateOp::Min"
+
+[[mappings.enum_variants]]
+python = "AggregateOp.Sum"
+rust = "redis::cluster_handling::routing::AggregateOp::Sum"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.OneSucceeded"
+rust = "redis::cluster_handling::routing::ResponsePolicy::OneSucceeded"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.FirstSucceededNonEmptyOrAllEmpty"
+rust = "redis::cluster_handling::routing::ResponsePolicy::FirstSucceededNonEmptyOrAllEmpty"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.AllSucceeded"
+rust = "redis::cluster_handling::routing::ResponsePolicy::AllSucceeded"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.AggregateLogical"
+rust = "redis::cluster_handling::routing::ResponsePolicy::AggregateLogical"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.Aggregate"
+rust = "redis::cluster_handling::routing::ResponsePolicy::Aggregate"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.CombineArrays"
+rust = "redis::cluster_handling::routing::ResponsePolicy::CombineArrays"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.Special"
+rust = "redis::cluster_handling::routing::ResponsePolicy::Special"
+
+[[mappings.enum_variants]]
+python = "ResponsePolicy.CombineMaps"
+rust = "redis::cluster_handling::routing::ResponsePolicy::CombineMaps"
+
+[[mappings.enum_variants]]
+python = "RoutingInfo.SingleNode"
+rust = "redis::cluster_handling::routing::RoutingInfo::SingleNode"
+
+[[mappings.enum_variants]]
+python = "RoutingInfo.MultiNode"
+rust = "redis::cluster_handling::routing::RoutingInfo::MultiNode"
+
+[[mappings.enum_variants]]
+python = "SingleNodeRoutingInfo.Random"
+rust = "redis::cluster_handling::routing::SingleNodeRoutingInfo::Random"
+
+[[mappings.enum_variants]]
+python = "SingleNodeRoutingInfo.RandomPrimary"
+rust = "redis::cluster_handling::routing::SingleNodeRoutingInfo::RandomPrimary"
+
+[[mappings.enum_variants]]
+python = "SingleNodeRoutingInfo.SpecificNode"
+rust = "redis::cluster_handling::routing::SingleNodeRoutingInfo::SpecificNode"
+
+[[mappings.enum_variants]]
+python = "SingleNodeRoutingInfo.ByAddress"
+rust = "redis::cluster_handling::routing::SingleNodeRoutingInfo::ByAddress"
+
+[[mappings.enum_variants]]
+python = "MultipleNodeRoutingInfo.AllNodes"
+rust = "redis::cluster_handling::routing::MultipleNodeRoutingInfo::AllNodes"
+
+[[mappings.enum_variants]]
+python = "MultipleNodeRoutingInfo.AllMasters"
+rust = "redis::cluster_handling::routing::MultipleNodeRoutingInfo::AllMasters"
+
+[[mappings.enum_variants]]
+python = "MultipleNodeRoutingInfo.MultiSlot"
+rust = "redis::cluster_handling::routing::MultipleNodeRoutingInfo::MultiSlot"
+
+[[mappings.enum_variants]]
+python = "MultiSlotArgPattern.KeysOnly"
+rust = "redis::cluster_handling::routing::MultiSlotArgPattern::KeysOnly"
+
+[[mappings.enum_variants]]
+python = "MultiSlotArgPattern.KeyValuePairs"
+rust = "redis::cluster_handling::routing::MultiSlotArgPattern::KeyValuePairs"
+
+[[mappings.enum_variants]]
+python = "MultiSlotArgPattern.KeysAndLastArg"
+rust = "redis::cluster_handling::routing::MultiSlotArgPattern::KeysAndLastArg"
+
+[[mappings.enum_variants]]
+python = "MultiSlotArgPattern.KeyWithTwoArgTriples"
+rust = "redis::cluster_handling::routing::MultiSlotArgPattern::KeyWithTwoArgTriples"
+
+[[mappings.enum_variants]]
+python = "SlotAddr.Master"
+rust = "redis::cluster_handling::routing::SlotAddr::Master"
+
+[[mappings.enum_variants]]
+python = "SlotAddr.ReplicaOptional"
+rust = "redis::cluster_handling::routing::SlotAddr::ReplicaOptional"
+
+[[mappings.enum_variants]]
+python = "SlotAddr.ReplicaRequired"
+rust = "redis::cluster_handling::routing::SlotAddr::ReplicaRequired"
+
+[[mappings.enum_variants]]
+python = "TlsMode.Secure"
+rust = "redis::connection::TlsMode::Secure"
+
+[[mappings.enum_variants]]
+python = "TlsMode.Insecure"
+rust = "redis::connection::TlsMode::Insecure"
+
+[[mappings.enum_variants]]
+python = "ConnectionAddr.Tcp"
+rust = "redis::connection::ConnectionAddr::Tcp"
+
+[[mappings.enum_variants]]
+python = "ConnectionAddr.TcpTls"
+rust = "redis::connection::ConnectionAddr::TcpTls"
+
+[[mappings.enum_variants]]
+python = "ConnectionAddr.Unix"
+rust = "redis::connection::ConnectionAddr::Unix"
+
+[[mappings.enum_variants]]
+python = "Arg.Simple"
+rust = "redis::cmd::Arg::Simple"
+
+[[mappings.enum_variants]]
+python = "Arg.Cursor"
+rust = "redis::cmd::Arg::Cursor"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.ResponseError"
+rust = "redis::errors::server_error::ServerErrorKind::ResponseError"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.ExecAbort"
+rust = "redis::errors::server_error::ServerErrorKind::ExecAbort"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.BusyLoading"
+rust = "redis::errors::server_error::ServerErrorKind::BusyLoading"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.NoScript"
+rust = "redis::errors::server_error::ServerErrorKind::NoScript"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.Moved"
+rust = "redis::errors::server_error::ServerErrorKind::Moved"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.Ask"
+rust = "redis::errors::server_error::ServerErrorKind::Ask"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.TryAgain"
+rust = "redis::errors::server_error::ServerErrorKind::TryAgain"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.ClusterDown"
+rust = "redis::errors::server_error::ServerErrorKind::ClusterDown"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.CrossSlot"
+rust = "redis::errors::server_error::ServerErrorKind::CrossSlot"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.MasterDown"
+rust = "redis::errors::server_error::ServerErrorKind::MasterDown"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.ReadOnly"
+rust = "redis::errors::server_error::ServerErrorKind::ReadOnly"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.NotBusy"
+rust = "redis::errors::server_error::ServerErrorKind::NotBusy"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.NoSub"
+rust = "redis::errors::server_error::ServerErrorKind::NoSub"
+
+[[mappings.enum_variants]]
+python = "ServerErrorKind.NoPerm"
+rust = "redis::errors::server_error::ServerErrorKind::NoPerm"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Parse"
+rust = "redis::errors::redis_error::ErrorKind::Parse"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.AuthenticationFailed"
+rust = "redis::errors::redis_error::ErrorKind::AuthenticationFailed"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.UnexpectedReturnType"
+rust = "redis::errors::redis_error::ErrorKind::UnexpectedReturnType"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.InvalidClientConfig"
+rust = "redis::errors::redis_error::ErrorKind::InvalidClientConfig"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Io"
+rust = "redis::errors::redis_error::ErrorKind::Io"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Client"
+rust = "redis::errors::redis_error::ErrorKind::Client"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Extension"
+rust = "redis::errors::redis_error::ErrorKind::Extension"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.MasterNameNotFoundBySentinel"
+rust = "redis::errors::redis_error::ErrorKind::MasterNameNotFoundBySentinel"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.NoValidReplicasFoundBySentinel"
+rust = "redis::errors::redis_error::ErrorKind::NoValidReplicasFoundBySentinel"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.EmptySentinelList"
+rust = "redis::errors::redis_error::ErrorKind::EmptySentinelList"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.ClusterConnectionNotFound"
+rust = "redis::errors::redis_error::ErrorKind::ClusterConnectionNotFound"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Server"
+rust = "redis::errors::redis_error::ErrorKind::Server"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Serialize"
+rust = "redis::errors::redis_error::ErrorKind::Serialize"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.RESP3NotSupported"
+rust = "redis::errors::redis_error::ErrorKind::RESP3NotSupported"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.Reconnect"
+rust = "redis::errors::redis_error::RetryMethod::Reconnect"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.NoRetry"
+rust = "redis::errors::redis_error::RetryMethod::NoRetry"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.RetryImmediately"
+rust = "redis::errors::redis_error::RetryMethod::RetryImmediately"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.WaitAndRetry"
+rust = "redis::errors::redis_error::RetryMethod::WaitAndRetry"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.AskRedirect"
+rust = "redis::errors::redis_error::RetryMethod::AskRedirect"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.MovedRedirect"
+rust = "redis::errors::redis_error::RetryMethod::MovedRedirect"
+
+[[mappings.enum_variants]]
+python = "RetryMethod.ReconnectFromInitialConnections"
+rust = "redis::errors::redis_error::RetryMethod::ReconnectFromInitialConnections"
+
+[[mappings.enum_variants]]
+python = "SentinelServerType.Master"
+rust = "redis::sentinel::SentinelServerType::Master"
+
+[[mappings.enum_variants]]
+python = "SentinelServerType.Replica"
+rust = "redis::sentinel::SentinelServerType::Replica"

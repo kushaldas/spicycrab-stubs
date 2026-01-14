@@ -25,6 +25,9 @@ rust_code = "Err({arg0})"
 rust_imports = []
 needs_result = false
 
+# NOTE: Detected 6 macros without stubs: __anyhow, __fallback_ensure, __fancy_ensure, __parse_ensure, anyhow, bail
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "anyhow.Ok"
 rust_code = "anyhow::Ok({arg0})"
@@ -562,3 +565,5 @@ rust = "anyhow::kind::Trait"
 [[mappings.types]]
 python = "Boxed"
 rust = "anyhow::kind::Boxed"
+
+# Enum variant access mappings

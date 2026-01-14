@@ -43,8 +43,8 @@ async def test_something() -> None:
 def main() -> None:
     """Main entry point."""
     entity: EntityDetails = EntityDetails(
-        entity_id="https://example.com",
-        entity_type="openid_relying_party",
-        has_trustmark=True
+        "https://example.com",
+        "openid_relying_party",
+        True
     )
     print(entity.entity_id)

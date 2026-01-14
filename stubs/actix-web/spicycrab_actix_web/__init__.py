@@ -14,7 +14,7 @@ E = TypeVar('E')
 class Result(Generic[T, E]):
     """A Result type alias for actix-web.
 
-    Maps to actix-web::Result which is an alias for std::result::Result<T,E>.
+    Maps to actix_web::Result which is an alias for std::result::Result<T,E>.
     """
 
     @staticmethod

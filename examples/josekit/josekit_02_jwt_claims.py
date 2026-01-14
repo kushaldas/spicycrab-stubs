@@ -13,7 +13,6 @@ from spicycrab_josekit import (
     encode_with_signer,
     decode_with_verifier,
 )
-import time
 
 
 def main() -> None:
@@ -29,11 +28,10 @@ def main() -> None:
     payload.set_audience(["api.example.com", "web.example.com"])
     payload.set_jwt_id("unique-token-id-123")
 
-    # Set time-based claims (using current timestamp)
-    now: int = int(time.time())
-    payload.set_issued_at(now)
-    payload.set_not_before(now)
-    payload.set_expires_at(now + 3600)  # Expires in 1 hour
+    # Set time-based claims using helper methods
+    # These methods use SystemTime internally
+    payload.set_issued_at_now()  # Sets iat to current time
+    payload.set_expires_at_hours(1)  # Expires in 1 hour
 
     # Sign with HMAC-SHA256
     key = b"supersecretkey32byteslong1234567"

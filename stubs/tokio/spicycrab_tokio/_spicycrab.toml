@@ -132,6 +132,9 @@ rust_code = "tokio::sync::mpsc::unbounded_channel()"
 rust_imports = ["tokio::sync::mpsc"]
 needs_result = false
 
+# NOTE: Detected 6 macros without stubs: __task_local_inner, count, count_field, pin, select_variant, task_local
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "tokio.duplex"
 rust_code = "tokio::io::util::mem::duplex({arg0})"
@@ -156,16 +159,16 @@ param_types = ["&mutA", "&mutB"]
 
 [[mappings.functions]]
 python = "tokio.copy_bidirectional_with_sizes"
-rust_code = "tokio::copy_bidirectional_with_sizes({arg0}, {arg1}, {arg2}, {arg3})"
-rust_imports = ["tokio::copy_bidirectional_with_sizes"]
+rust_code = "tokio::io::util::copy_bidirectional::copy_bidirectional_with_sizes({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["tokio::io::util::copy_bidirectional::copy_bidirectional_with_sizes"]
 needs_result = true
 is_async = true
 param_types = ["&mutA", "&mutB", "usize", "usize"]
 
 [[mappings.functions]]
 python = "tokio.join"
-rust_code = "tokio::join({arg0}, {arg1})"
-rust_imports = ["tokio::join"]
+rust_code = "tokio::io::join::join({arg0}, {arg1})"
+rust_imports = ["tokio::io::join::join"]
 needs_result = false
 param_types = ["R", "W"]
 
@@ -198,8 +201,8 @@ param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.unbounded_channel"
-rust_code = "tokio::sync::mpsc::unbounded_channel()"
-rust_imports = ["tokio::sync::mpsc::unbounded_channel"]
+rust_code = "tokio::sync::mpsc::unbounded::unbounded_channel()"
+rust_imports = ["tokio::sync::mpsc::unbounded::unbounded_channel"]
 needs_result = false
 
 [[mappings.functions]]
@@ -211,8 +214,8 @@ param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.pipe"
-rust_code = "tokio::net::unix::pipe()"
-rust_imports = ["tokio::net::unix::pipe"]
+rust_code = "tokio::net::unix::pipe::pipe()"
+rust_imports = ["tokio::net::unix::pipe::pipe"]
 needs_result = true
 
 [[mappings.functions]]
@@ -268,8 +271,8 @@ needs_result = true
 
 [[mappings.functions]]
 python = "tokio.id"
-rust_code = "tokio::runtime::task::id()"
-rust_imports = ["tokio::runtime::task::id"]
+rust_code = "tokio::runtime::task::id::id()"
+rust_imports = ["tokio::runtime::task::id::id"]
 needs_result = false
 
 [[mappings.functions]]
@@ -284,7 +287,7 @@ rust_code = "tokio::fs::symlink_dir({arg0}, {arg1})"
 rust_imports = ["tokio::fs::symlink_dir"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.symlink_metadata"
@@ -292,15 +295,15 @@ rust_code = "tokio::fs::symlink_metadata({arg0})"
 rust_imports = ["tokio::fs::symlink_metadata"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.metadata"
-rust_code = "tokio::fs::metadata({arg0})"
-rust_imports = ["tokio::fs::metadata"]
+rust_code = "tokio::fs::metadata::metadata({arg0})"
+rust_imports = ["tokio::fs::metadata::metadata"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.read_dir"
@@ -308,15 +311,15 @@ rust_code = "tokio::fs::read_dir({arg0})"
 rust_imports = ["tokio::fs::read_dir"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.canonicalize"
-rust_code = "tokio::fs::canonicalize({arg0})"
-rust_imports = ["tokio::fs::canonicalize"]
+rust_code = "tokio::fs::canonicalize::canonicalize({arg0})"
+rust_imports = ["tokio::fs::canonicalize::canonicalize"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.remove_dir"
@@ -324,7 +327,7 @@ rust_code = "tokio::fs::remove_dir({arg0})"
 rust_imports = ["tokio::fs::remove_dir"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.read_to_string"
@@ -332,15 +335,15 @@ rust_code = "tokio::fs::read_to_string({arg0})"
 rust_imports = ["tokio::fs::read_to_string"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.symlink"
-rust_code = "tokio::fs::symlink({arg0}, {arg1})"
-rust_imports = ["tokio::fs::symlink"]
+rust_code = "tokio::fs::symlink::symlink({arg0}, {arg1})"
+rust_imports = ["tokio::fs::symlink::symlink"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.create_dir"
@@ -348,7 +351,7 @@ rust_code = "tokio::fs::create_dir({arg0})"
 rust_imports = ["tokio::fs::create_dir"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.remove_file"
@@ -356,39 +359,39 @@ rust_code = "tokio::fs::remove_file({arg0})"
 rust_imports = ["tokio::fs::remove_file"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.write"
-rust_code = "tokio::fs::write({arg0}, {arg1})"
-rust_imports = ["tokio::fs::write"]
+rust_code = "tokio::fs::write::write({arg0}, {arg1})"
+rust_imports = ["tokio::fs::write::write"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<[u8]>"]
+param_types = ["&Path", "&[u8]"]
 
 [[mappings.functions]]
 python = "tokio.rename"
-rust_code = "tokio::fs::rename({arg0}, {arg1})"
-rust_imports = ["tokio::fs::rename"]
+rust_code = "tokio::fs::rename::rename({arg0}, {arg1})"
+rust_imports = ["tokio::fs::rename::rename"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.read"
-rust_code = "tokio::fs::read({arg0})"
-rust_imports = ["tokio::fs::read"]
+rust_code = "tokio::fs::read::read({arg0})"
+rust_imports = ["tokio::fs::read::read"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.copy"
-rust_code = "tokio::fs::copy({arg0}, {arg1})"
-rust_imports = ["tokio::fs::copy"]
+rust_code = "tokio::fs::copy::copy({arg0}, {arg1})"
+rust_imports = ["tokio::fs::copy::copy"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.read_link"
@@ -396,7 +399,7 @@ rust_code = "tokio::fs::read_link({arg0})"
 rust_imports = ["tokio::fs::read_link"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.create_dir_all"
@@ -404,7 +407,7 @@ rust_code = "tokio::fs::create_dir_all({arg0})"
 rust_imports = ["tokio::fs::create_dir_all"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.set_permissions"
@@ -412,7 +415,7 @@ rust_code = "tokio::fs::set_permissions({arg0}, {arg1})"
 rust_imports = ["tokio::fs::set_permissions"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "Permissions"]
+param_types = ["&Path", "Permissions"]
 
 [[mappings.functions]]
 python = "tokio.symlink_file"
@@ -420,7 +423,7 @@ rust_code = "tokio::fs::symlink_file({arg0}, {arg1})"
 rust_imports = ["tokio::fs::symlink_file"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.try_exists"
@@ -428,7 +431,7 @@ rust_code = "tokio::fs::try_exists({arg0})"
 rust_imports = ["tokio::fs::try_exists"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.hard_link"
@@ -436,7 +439,7 @@ rust_code = "tokio::fs::hard_link({arg0}, {arg1})"
 rust_imports = ["tokio::fs::hard_link"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>", "implAsRef<Path>"]
+param_types = ["&Path", "&Path"]
 
 [[mappings.functions]]
 python = "tokio.remove_dir_all"
@@ -444,33 +447,33 @@ rust_code = "tokio::fs::remove_dir_all({arg0})"
 rust_imports = ["tokio::fs::remove_dir_all"]
 needs_result = true
 is_async = true
-param_types = ["implAsRef<Path>"]
+param_types = ["&Path"]
 
 [[mappings.functions]]
 python = "tokio.interval"
-rust_code = "tokio::time::interval({arg0})"
-rust_imports = ["tokio::time::interval"]
+rust_code = "tokio::time::interval::interval({arg0})"
+rust_imports = ["tokio::time::interval::interval"]
 needs_result = false
 param_types = ["Duration"]
 
 [[mappings.functions]]
 python = "tokio.interval_at"
-rust_code = "tokio::time::interval_at({arg0}, {arg1})"
-rust_imports = ["tokio::time::interval_at"]
+rust_code = "tokio::time::interval::interval_at({arg0}, {arg1})"
+rust_imports = ["tokio::time::interval::interval_at"]
 needs_result = false
 param_types = ["Instant", "Duration"]
 
 [[mappings.functions]]
 python = "tokio.timeout"
-rust_code = "tokio::timeout({arg0}, {arg1})"
-rust_imports = ["tokio::timeout"]
+rust_code = "tokio::time::timeout::timeout({arg0}, {arg1})"
+rust_imports = ["tokio::time::timeout::timeout"]
 needs_result = false
 param_types = ["Duration", "F"]
 
 [[mappings.functions]]
 python = "tokio.timeout_at"
-rust_code = "tokio::timeout_at({arg0}, {arg1})"
-rust_imports = ["tokio::timeout_at"]
+rust_code = "tokio::time::timeout::timeout_at({arg0}, {arg1})"
+rust_imports = ["tokio::time::timeout::timeout_at"]
 needs_result = false
 param_types = ["Instant", "F"]
 
@@ -497,8 +500,8 @@ is_async = true
 
 [[mappings.functions]]
 python = "tokio.unconstrained"
-rust_code = "tokio::task::coop::unconstrained({arg0})"
-rust_imports = ["tokio::task::coop::unconstrained"]
+rust_code = "tokio::task::coop::unconstrained::unconstrained({arg0})"
+rust_imports = ["tokio::task::coop::unconstrained::unconstrained"]
 needs_result = false
 param_types = ["F"]
 
@@ -566,15 +569,15 @@ param_types = ["&'amut[MaybeUninit<u8>]"]
 
 [[mappings.functions]]
 python = "tokio.Aio.new_for_aio"
-rust_code = "tokio::io::bsd::Aio::new_for_aio({arg0})"
-rust_imports = ["tokio::io::bsd::Aio"]
+rust_code = "tokio::io::bsd::poll_aio::Aio::new_for_aio({arg0})"
+rust_imports = ["tokio::io::bsd::poll_aio::Aio"]
 needs_result = true
 param_types = ["E"]
 
 [[mappings.functions]]
 python = "tokio.Aio.new_for_lio"
-rust_code = "tokio::io::bsd::Aio::new_for_lio({arg0})"
-rust_imports = ["tokio::io::bsd::Aio"]
+rust_code = "tokio::io::bsd::poll_aio::Aio::new_for_lio({arg0})"
+rust_imports = ["tokio::io::bsd::poll_aio::Aio"]
 needs_result = true
 param_types = ["E"]
 
@@ -849,20 +852,20 @@ param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Notify.new"
-rust_code = "tokio::Notify::new()"
-rust_imports = ["tokio::Notify"]
+rust_code = "tokio::sync::notify::Notify::new()"
+rust_imports = ["tokio::sync::notify::Notify"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Notify.const_new"
-rust_code = "tokio::Notify::const_new()"
-rust_imports = ["tokio::Notify"]
+rust_code = "tokio::sync::notify::Notify::const_new()"
+rust_imports = ["tokio::sync::notify::Notify"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Notify.default"
-rust_code = "tokio::Notify::default()"
-rust_imports = ["tokio::Notify"]
+rust_code = "tokio::sync::notify::Notify::default()"
+rust_imports = ["tokio::sync::notify::Notify"]
 needs_result = false
 
 [[mappings.functions]]
@@ -943,8 +946,8 @@ param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.Barrier.new"
-rust_code = "tokio::Barrier::new({arg0})"
-rust_imports = ["tokio::Barrier"]
+rust_code = "tokio::sync::barrier::Barrier::new({arg0})"
+rust_imports = ["tokio::sync::barrier::Barrier"]
 needs_result = false
 param_types = ["usize"]
 
@@ -1026,85 +1029,85 @@ param_types = ["OwnedFd"]
 
 [[mappings.functions]]
 python = "tokio.MutexGuard.map"
-rust_code = "tokio::MutexGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::MutexGuard"]
+rust_code = "tokio::sync::mutex::MutexGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::MutexGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.MutexGuard.try_map"
-rust_code = "tokio::MutexGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::MutexGuard"]
+rust_code = "tokio::sync::mutex::MutexGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::MutexGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.MutexGuard.mutex"
-rust_code = "tokio::MutexGuard::mutex({arg0})"
-rust_imports = ["tokio::MutexGuard"]
+rust_code = "tokio::sync::mutex::MutexGuard::mutex({arg0})"
+rust_imports = ["tokio::sync::mutex::MutexGuard"]
 needs_result = false
 param_types = ["&Self"]
 
 [[mappings.functions]]
 python = "tokio.OwnedMutexGuard.map"
-rust_code = "tokio::OwnedMutexGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedMutexGuard"]
+rust_code = "tokio::sync::mutex::OwnedMutexGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::OwnedMutexGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedMutexGuard.try_map"
-rust_code = "tokio::OwnedMutexGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedMutexGuard"]
+rust_code = "tokio::sync::mutex::OwnedMutexGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::OwnedMutexGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedMutexGuard.mutex"
-rust_code = "tokio::OwnedMutexGuard::mutex({arg0})"
-rust_imports = ["tokio::OwnedMutexGuard"]
+rust_code = "tokio::sync::mutex::OwnedMutexGuard::mutex({arg0})"
+rust_imports = ["tokio::sync::mutex::OwnedMutexGuard"]
 needs_result = false
 param_types = ["&Self"]
 
 [[mappings.functions]]
 python = "tokio.MappedMutexGuard.map"
-rust_code = "tokio::MappedMutexGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::MappedMutexGuard"]
+rust_code = "tokio::sync::mutex::MappedMutexGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::MappedMutexGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.MappedMutexGuard.try_map"
-rust_code = "tokio::MappedMutexGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::MappedMutexGuard"]
+rust_code = "tokio::sync::mutex::MappedMutexGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::MappedMutexGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedMappedMutexGuard.map"
-rust_code = "tokio::OwnedMappedMutexGuard::map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedMappedMutexGuard"]
+rust_code = "tokio::sync::mutex::OwnedMappedMutexGuard::map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::OwnedMappedMutexGuard"]
 needs_result = false
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.OwnedMappedMutexGuard.try_map"
-rust_code = "tokio::OwnedMappedMutexGuard::try_map({arg0}, {arg1})"
-rust_imports = ["tokio::OwnedMappedMutexGuard"]
+rust_code = "tokio::sync::mutex::OwnedMappedMutexGuard::try_map({arg0}, {arg1})"
+rust_imports = ["tokio::sync::mutex::OwnedMappedMutexGuard"]
 needs_result = true
 param_types = ["Self", "F"]
 
 [[mappings.functions]]
 python = "tokio.Semaphore.new"
-rust_code = "tokio::Semaphore::new({arg0})"
-rust_imports = ["tokio::Semaphore"]
+rust_code = "tokio::sync::semaphore::Semaphore::new({arg0})"
+rust_imports = ["tokio::sync::semaphore::Semaphore"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "tokio.Semaphore.const_new"
-rust_code = "tokio::Semaphore::const_new({arg0})"
-rust_imports = ["tokio::Semaphore"]
+rust_code = "tokio::sync::semaphore::Semaphore::const_new({arg0})"
+rust_imports = ["tokio::sync::semaphore::Semaphore"]
 needs_result = false
 param_types = ["usize"]
 
@@ -1225,15 +1228,15 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "tokio.NamedPipeServer.from_raw_handle"
-rust_code = "tokio::net::windows::NamedPipeServer::from_raw_handle({arg0})"
-rust_imports = ["tokio::net::windows::NamedPipeServer"]
+rust_code = "tokio::net::windows::named_pipe::NamedPipeServer::from_raw_handle({arg0})"
+rust_imports = ["tokio::net::windows::named_pipe::NamedPipeServer"]
 needs_result = true
 param_types = ["RawHandle"]
 
 [[mappings.functions]]
 python = "tokio.NamedPipeClient.from_raw_handle"
-rust_code = "tokio::net::windows::NamedPipeClient::from_raw_handle({arg0})"
-rust_imports = ["tokio::net::windows::NamedPipeClient"]
+rust_code = "tokio::net::windows::named_pipe::NamedPipeClient::from_raw_handle({arg0})"
+rust_imports = ["tokio::net::windows::named_pipe::NamedPipeClient"]
 needs_result = true
 param_types = ["RawHandle"]
 
@@ -1499,27 +1502,27 @@ param_types = ["std::os::raw::c_int"]
 
 [[mappings.functions]]
 python = "tokio.Handle.current"
-rust_code = "tokio::Handle::current()"
-rust_imports = ["tokio::Handle"]
+rust_code = "tokio::runtime::handle::Handle::current()"
+rust_imports = ["tokio::runtime::handle::Handle"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Handle.try_current"
-rust_code = "tokio::Handle::try_current()"
-rust_imports = ["tokio::Handle"]
+rust_code = "tokio::runtime::handle::Handle::try_current()"
+rust_imports = ["tokio::runtime::handle::Handle"]
 needs_result = true
 
 [[mappings.functions]]
 python = "tokio.Handle.wake"
-rust_code = "tokio::Handle::wake({arg0})"
-rust_imports = ["tokio::Handle"]
+rust_code = "tokio::runtime::handle::Handle::wake({arg0})"
+rust_imports = ["tokio::runtime::handle::Handle"]
 needs_result = false
 param_types = ["Arc<Self>"]
 
 [[mappings.functions]]
 python = "tokio.Handle.wake_by_ref"
-rust_code = "tokio::Handle::wake_by_ref({arg0})"
-rust_imports = ["tokio::Handle"]
+rust_code = "tokio::runtime::handle::Handle::wake_by_ref({arg0})"
+rust_imports = ["tokio::runtime::handle::Handle"]
 needs_result = false
 param_types = ["&Arc<Self>"]
 
@@ -1701,54 +1704,54 @@ needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::time::Error::from({arg0})"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::from({arg0})"
+rust_imports = ["tokio::Error"]
 needs_result = false
 param_types = ["AsyncFdTryNewError<T>"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::time::Error::from({arg0})"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::from({arg0})"
+rust_imports = ["tokio::Error"]
 needs_result = false
 param_types = ["JoinError"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::time::Error::from({arg0})"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::from({arg0})"
+rust_imports = ["tokio::Error"]
 needs_result = false
 param_types = ["SpawnError"]
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::time::Error::from({arg0})"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::from({arg0})"
+rust_imports = ["tokio::Error"]
 needs_result = false
 param_types = ["Kind"]
 
 [[mappings.functions]]
 python = "tokio.Error.shutdown"
-rust_code = "tokio::time::Error::shutdown()"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::shutdown()"
+rust_imports = ["tokio::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.at_capacity"
-rust_code = "tokio::time::Error::at_capacity()"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::at_capacity()"
+rust_imports = ["tokio::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.invalid"
-rust_code = "tokio::time::Error::invalid()"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::invalid()"
+rust_imports = ["tokio::Error"]
 needs_result = false
 
 [[mappings.functions]]
 python = "tokio.Error.from_"
-rust_code = "tokio::time::Error::from({arg0})"
-rust_imports = ["tokio::time::Error"]
+rust_code = "tokio::Error::from({arg0})"
+rust_imports = ["tokio::Error"]
 needs_result = false
 param_types = ["Elapsed"]
 
@@ -13290,11 +13293,11 @@ rust = "tokio::AsyncFd"
 
 [[mappings.types]]
 python = "AsyncFdReadyGuard"
-rust = "tokio::AsyncFdReadyGuard"
+rust = "tokio::io::async_fd::AsyncFdReadyGuard"
 
 [[mappings.types]]
 python = "AsyncFdReadyMutGuard"
-rust = "tokio::AsyncFdReadyMutGuard"
+rust = "tokio::io::async_fd::AsyncFdReadyMutGuard"
 
 [[mappings.types]]
 python = "TryIoError"
@@ -13302,7 +13305,7 @@ rust = "tokio::io::async_fd::TryIoError"
 
 [[mappings.types]]
 python = "AsyncFdTryNewError"
-rust = "tokio::AsyncFdTryNewError"
+rust = "tokio::io::async_fd::AsyncFdTryNewError"
 
 [[mappings.types]]
 python = "DuplexStream"
@@ -13318,7 +13321,7 @@ rust = "tokio::ReadBuf"
 
 [[mappings.types]]
 python = "Aio"
-rust = "tokio::io::bsd::Aio"
+rust = "tokio::io::bsd::poll_aio::Aio"
 
 [[mappings.types]]
 python = "AioEvent"
@@ -13326,11 +13329,11 @@ rust = "tokio::io::bsd::poll_aio::AioEvent"
 
 [[mappings.types]]
 python = "Interest"
-rust = "tokio::Interest"
+rust = "tokio::io::interest::Interest"
 
 [[mappings.types]]
 python = "Ready"
-rust = "tokio::Ready"
+rust = "tokio::io::ready::Ready"
 
 [[mappings.types]]
 python = "RngSeed"
@@ -13342,7 +13345,7 @@ rust = "tokio::SetOnce"
 
 [[mappings.types]]
 python = "SetOnceError"
-rust = "tokio::SetOnceError"
+rust = "tokio::sync::set_once::SetOnceError"
 
 [[mappings.types]]
 python = "OwnedRwLockReadGuard"
@@ -13382,7 +13385,7 @@ rust = "tokio::sync::oneshot::RecvError"
 
 [[mappings.types]]
 python = "Notify"
-rust = "tokio::Notify"
+rust = "tokio::sync::notify::Notify"
 
 [[mappings.types]]
 python = "Notified"
@@ -13414,11 +13417,11 @@ rust = "tokio::sync::watch::RecvError"
 
 [[mappings.types]]
 python = "Barrier"
-rust = "tokio::Barrier"
+rust = "tokio::sync::barrier::Barrier"
 
 [[mappings.types]]
 python = "BarrierWaitResult"
-rust = "tokio::BarrierWaitResult"
+rust = "tokio::sync::barrier::BarrierWaitResult"
 
 [[mappings.types]]
 python = "Sender"
@@ -13446,15 +13449,15 @@ rust = "tokio::sync::mpsc::bounded::Receiver"
 
 [[mappings.types]]
 python = "UnboundedSender"
-rust = "tokio::sync::mpsc::UnboundedSender"
+rust = "tokio::sync::mpsc::unbounded::UnboundedSender"
 
 [[mappings.types]]
 python = "WeakUnboundedSender"
-rust = "tokio::sync::mpsc::WeakUnboundedSender"
+rust = "tokio::sync::mpsc::unbounded::WeakUnboundedSender"
 
 [[mappings.types]]
 python = "UnboundedReceiver"
-rust = "tokio::sync::mpsc::UnboundedReceiver"
+rust = "tokio::sync::mpsc::unbounded::UnboundedReceiver"
 
 [[mappings.types]]
 python = "SendError"
@@ -13466,19 +13469,19 @@ rust = "tokio::sync::mpsc::RecvError"
 
 [[mappings.types]]
 python = "MutexGuard"
-rust = "tokio::MutexGuard"
+rust = "tokio::sync::mutex::MutexGuard"
 
 [[mappings.types]]
 python = "OwnedMutexGuard"
-rust = "tokio::OwnedMutexGuard"
+rust = "tokio::sync::mutex::OwnedMutexGuard"
 
 [[mappings.types]]
 python = "MappedMutexGuard"
-rust = "tokio::MappedMutexGuard"
+rust = "tokio::sync::mutex::MappedMutexGuard"
 
 [[mappings.types]]
 python = "OwnedMappedMutexGuard"
-rust = "tokio::OwnedMappedMutexGuard"
+rust = "tokio::sync::mutex::OwnedMappedMutexGuard"
 
 [[mappings.types]]
 python = "TryLockError"
@@ -13486,15 +13489,15 @@ rust = "tokio::sync::mutex::TryLockError"
 
 [[mappings.types]]
 python = "Semaphore"
-rust = "tokio::Semaphore"
+rust = "tokio::sync::semaphore::Semaphore"
 
 [[mappings.types]]
 python = "SemaphorePermit"
-rust = "tokio::SemaphorePermit"
+rust = "tokio::sync::semaphore::SemaphorePermit"
 
 [[mappings.types]]
 python = "OwnedSemaphorePermit"
-rust = "tokio::OwnedSemaphorePermit"
+rust = "tokio::sync::semaphore::OwnedSemaphorePermit"
 
 [[mappings.types]]
 python = "Sender"
@@ -13522,11 +13525,11 @@ rust = "tokio::OnceCell"
 
 [[mappings.types]]
 python = "NamedPipeServer"
-rust = "tokio::net::windows::NamedPipeServer"
+rust = "tokio::net::windows::named_pipe::NamedPipeServer"
 
 [[mappings.types]]
 python = "NamedPipeClient"
-rust = "tokio::net::windows::NamedPipeClient"
+rust = "tokio::net::windows::named_pipe::NamedPipeClient"
 
 [[mappings.types]]
 python = "ServerOptions"
@@ -13670,7 +13673,7 @@ rust = "tokio::signal::windows::CtrlLogoff"
 
 [[mappings.types]]
 python = "Handle"
-rust = "tokio::Handle"
+rust = "tokio::runtime::handle::Handle"
 
 [[mappings.types]]
 python = "EnterGuard"
@@ -13694,7 +13697,7 @@ rust = "tokio::LocalRuntime"
 
 [[mappings.types]]
 python = "Dump"
-rust = "tokio::Dump"
+rust = "tokio::runtime::dump::Dump"
 
 [[mappings.types]]
 python = "Tasks"
@@ -13722,7 +13725,7 @@ rust = "tokio::runtime::dump::Trace"
 
 [[mappings.types]]
 python = "RuntimeMetrics"
-rust = "tokio::RuntimeMetrics"
+rust = "tokio::runtime::metrics::RuntimeMetrics"
 
 [[mappings.types]]
 python = "LogHistogram"
@@ -13738,15 +13741,15 @@ rust = "tokio::Builder"
 
 [[mappings.types]]
 python = "Id"
-rust = "tokio::Id"
+rust = "tokio::runtime::id::Id"
 
 [[mappings.types]]
 python = "AbortHandle"
-rust = "tokio::runtime::task::AbortHandle"
+rust = "tokio::runtime::task::abort::AbortHandle"
 
 [[mappings.types]]
 python = "Id"
-rust = "tokio::runtime::task::Id"
+rust = "tokio::runtime::task::id::Id"
 
 [[mappings.types]]
 python = "TaskMeta"
@@ -13774,15 +13777,15 @@ rust = "tokio::fs::DirBuilder"
 
 [[mappings.types]]
 python = "Interval"
-rust = "tokio::time::Interval"
+rust = "tokio::time::interval::Interval"
 
 [[mappings.types]]
 python = "Error"
-rust = "tokio::time::Error"
+rust = "tokio::Error"
 
 [[mappings.types]]
 python = "Elapsed"
-rust = "tokio::time::Elapsed"
+rust = "tokio::Elapsed"
 
 [[mappings.types]]
 python = "LocalEnterGuard"
@@ -13859,3 +13862,104 @@ rust = "tokio::runtime::metrics::histogram::h2_histogram::InvalidHistogramConfig
 [[mappings.types]]
 python = "MissedTickBehavior"
 rust = "tokio::time::interval::MissedTickBehavior"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "TryRecvError.Empty"
+rust = "tokio::sync::oneshot::TryRecvError::Empty"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Closed"
+rust = "tokio::sync::oneshot::TryRecvError::Closed"
+
+[[mappings.enum_variants]]
+python = "TrySendError.Full"
+rust = "tokio::sync::mpsc::TrySendError::Full"
+
+[[mappings.enum_variants]]
+python = "TrySendError.Closed"
+rust = "tokio::sync::mpsc::TrySendError::Closed"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Empty"
+rust = "tokio::sync::mpsc::TryRecvError::Empty"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Disconnected"
+rust = "tokio::sync::mpsc::TryRecvError::Disconnected"
+
+[[mappings.enum_variants]]
+python = "RecvError.Closed"
+rust = "tokio::sync::broadcast::RecvError::Closed"
+
+[[mappings.enum_variants]]
+python = "RecvError.Lagged"
+rust = "tokio::sync::broadcast::RecvError::Lagged"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Empty"
+rust = "tokio::sync::broadcast::TryRecvError::Empty"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Closed"
+rust = "tokio::sync::broadcast::TryRecvError::Closed"
+
+[[mappings.enum_variants]]
+python = "TryRecvError.Lagged"
+rust = "tokio::sync::broadcast::TryRecvError::Lagged"
+
+[[mappings.enum_variants]]
+python = "TryAcquireError.Closed"
+rust = "tokio::sync::batch_semaphore::TryAcquireError::Closed"
+
+[[mappings.enum_variants]]
+python = "TryAcquireError.NoPermits"
+rust = "tokio::sync::batch_semaphore::TryAcquireError::NoPermits"
+
+[[mappings.enum_variants]]
+python = "SetError.AlreadyInitializedError"
+rust = "tokio::sync::once_cell::SetError::AlreadyInitializedError"
+
+[[mappings.enum_variants]]
+python = "SetError.InitializingError"
+rust = "tokio::sync::once_cell::SetError::InitializingError"
+
+[[mappings.enum_variants]]
+python = "PipeMode.Byte"
+rust = "tokio::net::windows::named_pipe::PipeMode::Byte"
+
+[[mappings.enum_variants]]
+python = "PipeMode.Message"
+rust = "tokio::net::windows::named_pipe::PipeMode::Message"
+
+[[mappings.enum_variants]]
+python = "PipeEnd.Client"
+rust = "tokio::net::windows::named_pipe::PipeEnd::Client"
+
+[[mappings.enum_variants]]
+python = "PipeEnd.Server"
+rust = "tokio::net::windows::named_pipe::PipeEnd::Server"
+
+[[mappings.enum_variants]]
+python = "RuntimeFlavor.CurrentThread"
+rust = "tokio::RuntimeFlavor::CurrentThread"
+
+[[mappings.enum_variants]]
+python = "RuntimeFlavor.MultiThread"
+rust = "tokio::RuntimeFlavor::MultiThread"
+
+[[mappings.enum_variants]]
+python = "InvalidHistogramConfiguration.TooManyBuckets"
+rust = "tokio::runtime::metrics::histogram::h2_histogram::InvalidHistogramConfiguration::TooManyBuckets"
+
+[[mappings.enum_variants]]
+python = "MissedTickBehavior.Burst"
+rust = "tokio::time::interval::MissedTickBehavior::Burst"
+
+[[mappings.enum_variants]]
+python = "MissedTickBehavior.Delay"
+rust = "tokio::time::interval::MissedTickBehavior::Delay"
+
+[[mappings.enum_variants]]
+python = "MissedTickBehavior.Skip"
+rust = "tokio::time::interval::MissedTickBehavior::Skip"

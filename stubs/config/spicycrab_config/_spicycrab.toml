@@ -39,8 +39,8 @@ param_types = ["&'astr"]
 
 [[mappings.functions]]
 python = "config.FileSourceFile.new"
-rust_code = "config::file::source::file::FileSourceFile::new({arg0})"
-rust_imports = ["config::file::source::file::FileSourceFile"]
+rust_code = "config::FileSourceFile::new({arg0})"
+rust_imports = ["config::FileSourceFile"]
 needs_result = false
 param_types = ["PathBuf"]
 
@@ -702,11 +702,11 @@ rust = "config::file::source::string::FileSourceString"
 
 [[mappings.types]]
 python = "FileSourceResult"
-rust = "config::file::source::FileSourceResult"
+rust = "config::FileSourceResult"
 
 [[mappings.types]]
 python = "FileSourceFile"
-rust = "config::file::source::file::FileSourceFile"
+rust = "config::FileSourceFile"
 
 [[mappings.types]]
 python = "File"
@@ -738,11 +738,11 @@ rust = "config::env::Environment"
 
 [[mappings.types]]
 python = "FileFormat"
-rust = "config::file::FileFormat"
+rust = "config::FileFormat"
 
 [[mappings.types]]
 python = "ValueKind"
-rust = "config::value::ValueKind"
+rust = "config::ValueKind"
 
 [[mappings.types]]
 python = "Unexpected"
@@ -751,3 +751,144 @@ rust = "config::Unexpected"
 [[mappings.types]]
 python = "ConfigError"
 rust = "config::ConfigError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "FileFormat.Toml"
+rust = "config::FileFormat::Toml"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Json"
+rust = "config::FileFormat::Json"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Yaml"
+rust = "config::FileFormat::Yaml"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Ini"
+rust = "config::FileFormat::Ini"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Ron"
+rust = "config::FileFormat::Ron"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Json5"
+rust = "config::FileFormat::Json5"
+
+[[mappings.enum_variants]]
+python = "FileFormat.Corn"
+rust = "config::FileFormat::Corn"
+
+[[mappings.enum_variants]]
+python = "ValueKind.Nil"
+rust = "config::ValueKind::Nil"
+
+[[mappings.enum_variants]]
+python = "ValueKind.Boolean"
+rust = "config::ValueKind::Boolean"
+
+[[mappings.enum_variants]]
+python = "ValueKind.I64"
+rust = "config::ValueKind::I64"
+
+[[mappings.enum_variants]]
+python = "ValueKind.I128"
+rust = "config::ValueKind::I128"
+
+[[mappings.enum_variants]]
+python = "ValueKind.U64"
+rust = "config::ValueKind::U64"
+
+[[mappings.enum_variants]]
+python = "ValueKind.U128"
+rust = "config::ValueKind::U128"
+
+[[mappings.enum_variants]]
+python = "ValueKind.Float"
+rust = "config::ValueKind::Float"
+
+[[mappings.enum_variants]]
+python = "ValueKind.String"
+rust = "config::ValueKind::String"
+
+[[mappings.enum_variants]]
+python = "ValueKind.Table"
+rust = "config::ValueKind::Table"
+
+[[mappings.enum_variants]]
+python = "ValueKind.Array"
+rust = "config::ValueKind::Array"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Bool"
+rust = "config::Unexpected::Bool"
+
+[[mappings.enum_variants]]
+python = "Unexpected.I64"
+rust = "config::Unexpected::I64"
+
+[[mappings.enum_variants]]
+python = "Unexpected.I128"
+rust = "config::Unexpected::I128"
+
+[[mappings.enum_variants]]
+python = "Unexpected.U64"
+rust = "config::Unexpected::U64"
+
+[[mappings.enum_variants]]
+python = "Unexpected.U128"
+rust = "config::Unexpected::U128"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Float"
+rust = "config::Unexpected::Float"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Str"
+rust = "config::Unexpected::Str"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Unit"
+rust = "config::Unexpected::Unit"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Seq"
+rust = "config::Unexpected::Seq"
+
+[[mappings.enum_variants]]
+python = "Unexpected.Map"
+rust = "config::Unexpected::Map"
+
+[[mappings.enum_variants]]
+python = "ConfigError.Frozen"
+rust = "config::ConfigError::Frozen"
+
+[[mappings.enum_variants]]
+python = "ConfigError.NotFound"
+rust = "config::ConfigError::NotFound"
+
+[[mappings.enum_variants]]
+python = "ConfigError.PathParse"
+rust = "config::ConfigError::PathParse"
+
+[[mappings.enum_variants]]
+python = "ConfigError.FileParse"
+rust = "config::ConfigError::FileParse"
+
+[[mappings.enum_variants]]
+python = "ConfigError.Type"
+rust = "config::ConfigError::Type"
+
+[[mappings.enum_variants]]
+python = "ConfigError.At"
+rust = "config::ConfigError::At"
+
+[[mappings.enum_variants]]
+python = "ConfigError.Message"
+rust = "config::ConfigError::Message"
+
+[[mappings.enum_variants]]
+python = "ConfigError.Foreign"
+rust = "config::ConfigError::Foreign"

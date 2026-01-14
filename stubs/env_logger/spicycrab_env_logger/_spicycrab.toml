@@ -680,7 +680,7 @@ rust = "env_logger::Env"
 
 [[mappings.types]]
 python = "Target"
-rust = "env_logger::fmt::writer::Target"
+rust = "env_logger::fmt::writer::target::Target"
 
 [[mappings.types]]
 python = "WriteStyle"
@@ -689,3 +689,44 @@ rust = "env_logger::fmt::writer::WriteStyle"
 [[mappings.types]]
 python = "TimestampPrecision"
 rust = "env_logger::TimestampPrecision"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Target.Stdout"
+rust = "env_logger::fmt::writer::target::Target::Stdout"
+
+[[mappings.enum_variants]]
+python = "Target.Stderr"
+rust = "env_logger::fmt::writer::target::Target::Stderr"
+
+[[mappings.enum_variants]]
+python = "Target.Pipe"
+rust = "env_logger::fmt::writer::target::Target::Pipe"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Auto"
+rust = "env_logger::fmt::writer::WriteStyle::Auto"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Always"
+rust = "env_logger::fmt::writer::WriteStyle::Always"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Never"
+rust = "env_logger::fmt::writer::WriteStyle::Never"
+
+[[mappings.enum_variants]]
+python = "TimestampPrecision.Seconds"
+rust = "env_logger::TimestampPrecision::Seconds"
+
+[[mappings.enum_variants]]
+python = "TimestampPrecision.Millis"
+rust = "env_logger::TimestampPrecision::Millis"
+
+[[mappings.enum_variants]]
+python = "TimestampPrecision.Micros"
+rust = "env_logger::TimestampPrecision::Micros"
+
+[[mappings.enum_variants]]
+python = "TimestampPrecision.Nanos"
+rust = "env_logger::TimestampPrecision::Nanos"

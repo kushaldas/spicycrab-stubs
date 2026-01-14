@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spicycrab-sha2"
-version = "0.11.0-rc.3"
+version = "0.10.9"
 description = "spicycrab type stubs for the sha2 Rust crate"
 requires-python = ">=3.11"
 dependencies = []

@@ -108,8 +108,9 @@ def main() -> None:
     verbose: bool = matches.get_flag("verbose")
     subcmd_name: str | None = matches.subcommand_name()
 
-    if verbose and config_path is not None:
-        print(f"[INFO] Using config: {config_path}")
+    if verbose:
+        if config_path is not None:
+            print(f"[INFO] Using config: {config_path}")
 
     if subcmd_name == "init":
         print("Initializing taskmaster...")
@@ -132,7 +133,8 @@ def main() -> None:
                         if priority is not None:
                             print(f"  Priority: {priority}")
                         if len(tags) > 0:
-                            print(f"  Tags: {tags}")
+                            tags_str: str = ", ".join(tags)
+                            print(f"  Tags: {tags_str}")
 
             elif task_subcmd == "list":
                 list_matches: ArgMatches | None = task_matches.subcommand_matches(

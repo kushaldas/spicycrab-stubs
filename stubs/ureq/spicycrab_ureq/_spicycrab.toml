@@ -123,8 +123,8 @@ param_types = ["&str"]
 
 [[mappings.functions]]
 python = "ureq.LazyBuffers.new"
-rust_code = "ureq::unversioned::transport::LazyBuffers::new({arg0}, {arg1})"
-rust_imports = ["ureq::unversioned::transport::LazyBuffers"]
+rust_code = "ureq::unversioned::transport::buf::LazyBuffers::new({arg0}, {arg1})"
+rust_imports = ["ureq::unversioned::transport::buf::LazyBuffers"]
 needs_result = false
 param_types = ["usize", "usize"]
 
@@ -142,15 +142,15 @@ needs_result = false
 
 [[mappings.functions]]
 python = "ureq.TransportAdapter.new"
-rust_code = "ureq::unversioned::TransportAdapter::new({arg0})"
-rust_imports = ["ureq::unversioned::TransportAdapter"]
+rust_code = "ureq::unversioned::transport::TransportAdapter::new({arg0})"
+rust_imports = ["ureq::unversioned::transport::TransportAdapter"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "ureq.TcpTransport.new"
-rust_code = "ureq::unversioned::TcpTransport::new({arg0}, {arg1})"
-rust_imports = ["ureq::unversioned::TcpTransport"]
+rust_code = "ureq::unversioned::transport::tcp::TcpTransport::new({arg0}, {arg1})"
+rust_imports = ["ureq::unversioned::transport::tcp::TcpTransport"]
 needs_result = false
 param_types = ["TcpStream", "LazyBuffers"]
 
@@ -163,21 +163,21 @@ param_types = ["&Scheme", "&Authority"]
 
 [[mappings.functions]]
 python = "ureq.Body.builder"
-rust_code = "ureq::Body::builder()"
-rust_imports = ["ureq::Body"]
+rust_code = "ureq::body::Body::builder()"
+rust_imports = ["ureq::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Certificate.from_der"
-rust_code = "ureq::tls::Certificate::from_der({arg0})"
-rust_imports = ["ureq::tls::Certificate"]
+rust_code = "ureq::tls::cert::Certificate::from_der({arg0})"
+rust_imports = ["ureq::tls::cert::Certificate"]
 needs_result = false
 param_types = ["&'a[u8]"]
 
 [[mappings.functions]]
 python = "ureq.Certificate.from_pem"
-rust_code = "ureq::tls::Certificate::from_pem({arg0})"
-rust_imports = ["ureq::tls::Certificate"]
+rust_code = "ureq::tls::cert::Certificate::from_pem({arg0})"
+rust_imports = ["ureq::tls::cert::Certificate"]
 needs_result = true
 param_types = ["&'a[u8]"]
 
@@ -197,14 +197,14 @@ param_types = ["&'a[u8]"]
 
 [[mappings.functions]]
 python = "ureq.TlsConfig.builder"
-rust_code = "ureq::TlsConfig::builder()"
-rust_imports = ["ureq::TlsConfig"]
+rust_code = "ureq::tls::TlsConfig::builder()"
+rust_imports = ["ureq::tls::TlsConfig"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.TlsConfig.default"
-rust_code = "ureq::TlsConfig::default()"
-rust_imports = ["ureq::TlsConfig"]
+rust_code = "ureq::tls::TlsConfig::default()"
+rust_imports = ["ureq::tls::TlsConfig"]
 needs_result = false
 
 [[mappings.functions]]
@@ -216,41 +216,41 @@ param_types = ["&[Certificate<'static>]", "PrivateKey<'static>"]
 
 [[mappings.functions]]
 python = "ureq.Cookie.parse"
-rust_code = "ureq::Cookie::parse({arg0}, {arg1})"
-rust_imports = ["ureq::Cookie"]
+rust_code = "ureq::cookies::Cookie::parse({arg0}, {arg1})"
+rust_imports = ["ureq::cookies::Cookie"]
 needs_result = true
 param_types = ["S", "&Uri"]
 
 [[mappings.functions]]
 python = "ureq.Proxy.new"
-rust_code = "ureq::Proxy::new({arg0})"
-rust_imports = ["ureq::Proxy"]
+rust_code = "ureq::proxy::Proxy::new({arg0})"
+rust_imports = ["ureq::proxy::Proxy"]
 needs_result = true
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "ureq.Proxy.builder"
-rust_code = "ureq::Proxy::builder({arg0})"
-rust_imports = ["ureq::Proxy"]
+rust_code = "ureq::proxy::Proxy::builder({arg0})"
+rust_imports = ["ureq::proxy::Proxy"]
 needs_result = false
 param_types = ["ProxyProtocol"]
 
 [[mappings.functions]]
 python = "ureq.Proxy.try_from_env"
-rust_code = "ureq::Proxy::try_from_env()"
-rust_imports = ["ureq::Proxy"]
+rust_code = "ureq::proxy::Proxy::try_from_env()"
+rust_imports = ["ureq::proxy::Proxy"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Config.builder"
-rust_code = "ureq::Config::builder()"
-rust_imports = ["ureq::Config"]
+rust_code = "ureq::config::Config::builder()"
+rust_imports = ["ureq::config::Config"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Config.default"
-rust_code = "ureq::Config::default()"
-rust_imports = ["ureq::Config"]
+rust_code = "ureq::config::Config::default()"
+rust_imports = ["ureq::config::Config"]
 needs_result = false
 
 [[mappings.functions]]
@@ -295,34 +295,34 @@ param_types = ["(Option<u64>,BodyInner<'a>)"]
 
 [[mappings.functions]]
 python = "ureq.Agent.new_with_defaults"
-rust_code = "ureq::Agent::new_with_defaults()"
-rust_imports = ["ureq::Agent"]
+rust_code = "ureq::agent::Agent::new_with_defaults()"
+rust_imports = ["ureq::agent::Agent"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Agent.new_with_config"
-rust_code = "ureq::Agent::new_with_config({arg0})"
-rust_imports = ["ureq::Agent"]
+rust_code = "ureq::agent::Agent::new_with_config({arg0})"
+rust_imports = ["ureq::agent::Agent"]
 needs_result = false
 param_types = ["Config"]
 
 [[mappings.functions]]
 python = "ureq.Agent.config_builder"
-rust_code = "ureq::Agent::config_builder()"
-rust_imports = ["ureq::Agent"]
+rust_code = "ureq::agent::Agent::config_builder()"
+rust_imports = ["ureq::agent::Agent"]
 needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Agent.with_parts"
-rust_code = "ureq::Agent::with_parts({arg0}, {arg1}, {arg2})"
-rust_imports = ["ureq::Agent"]
+rust_code = "ureq::agent::Agent::with_parts({arg0}, {arg1}, {arg2})"
+rust_imports = ["ureq::agent::Agent"]
 needs_result = false
 param_types = ["Config", "implConnector", "implResolver"]
 
 [[mappings.functions]]
 python = "ureq.Agent.from_"
-rust_code = "ureq::Agent::from({arg0})"
-rust_imports = ["ureq::Agent"]
+rust_code = "ureq::agent::Agent::from({arg0})"
+rust_imports = ["ureq::agent::Agent"]
 needs_result = false
 param_types = ["Config"]
 
@@ -340,36 +340,36 @@ needs_result = false
 
 [[mappings.functions]]
 python = "ureq.Part.text"
-rust_code = "ureq::Part::text({arg0})"
-rust_imports = ["ureq::Part"]
+rust_code = "ureq::multipart::Part::text({arg0})"
+rust_imports = ["ureq::multipart::Part"]
 needs_result = false
 param_types = ["&'astr"]
 
 [[mappings.functions]]
 python = "ureq.Part.bytes"
-rust_code = "ureq::Part::bytes({arg0})"
-rust_imports = ["ureq::Part"]
+rust_code = "ureq::multipart::Part::bytes({arg0})"
+rust_imports = ["ureq::multipart::Part"]
 needs_result = false
 param_types = ["&'a[u8]"]
 
 [[mappings.functions]]
 python = "ureq.Part.reader"
-rust_code = "ureq::Part::reader({arg0})"
-rust_imports = ["ureq::Part"]
+rust_code = "ureq::multipart::Part::reader({arg0})"
+rust_imports = ["ureq::multipart::Part"]
 needs_result = false
 param_types = ["&'amutdynRead"]
 
 [[mappings.functions]]
 python = "ureq.Part.owned_reader"
-rust_code = "ureq::Part::owned_reader({arg0})"
-rust_imports = ["ureq::Part"]
+rust_code = "ureq::multipart::Part::owned_reader({arg0})"
+rust_imports = ["ureq::multipart::Part"]
 needs_result = false
 param_types = ["implRead+'static"]
 
 [[mappings.functions]]
 python = "ureq.Part.file"
-rust_code = "ureq::Part::file({arg0})"
-rust_imports = ["ureq::Part"]
+rust_code = "ureq::multipart::Part::file({arg0})"
+rust_imports = ["ureq::multipart::Part"]
 needs_result = true
 param_types = ["P"]
 
@@ -2245,15 +2245,15 @@ returns = "HeaderMap"
 
 [[mappings.types]]
 python = "ConnectProxyConnector"
-rust = "ureq::unversioned::transport::ConnectProxyConnector"
+rust = "ureq::unversioned::transport::connect::ConnectProxyConnector"
 
 [[mappings.types]]
 python = "LazyBuffers"
-rust = "ureq::unversioned::transport::LazyBuffers"
+rust = "ureq::unversioned::transport::buf::LazyBuffers"
 
 [[mappings.types]]
 python = "ChainedConnector"
-rust = "ureq::unversioned::transport::ChainedConnector"
+rust = "ureq::unversioned::transport::chain::ChainedConnector"
 
 [[mappings.types]]
 python = "ConnectionDetails"
@@ -2265,19 +2265,19 @@ rust = "ureq::unversioned::transport::DefaultConnector"
 
 [[mappings.types]]
 python = "TransportAdapter"
-rust = "ureq::unversioned::TransportAdapter"
+rust = "ureq::unversioned::transport::TransportAdapter"
 
 [[mappings.types]]
 python = "SocksConnector"
-rust = "ureq::unversioned::transport::SocksConnector"
+rust = "ureq::unversioned::transport::socks::SocksConnector"
 
 [[mappings.types]]
 python = "TcpConnector"
-rust = "ureq::unversioned::transport::TcpConnector"
+rust = "ureq::unversioned::transport::tcp::TcpConnector"
 
 [[mappings.types]]
 python = "TcpTransport"
-rust = "ureq::unversioned::TcpTransport"
+rust = "ureq::unversioned::transport::tcp::TcpTransport"
 
 [[mappings.types]]
 python = "DefaultResolver"
@@ -2285,35 +2285,35 @@ rust = "ureq::unversioned::DefaultResolver"
 
 [[mappings.types]]
 python = "Body"
-rust = "ureq::Body"
+rust = "ureq::body::Body"
 
 [[mappings.types]]
 python = "BodyWithConfig"
-rust = "ureq::BodyWithConfig"
+rust = "ureq::body::BodyWithConfig"
 
 [[mappings.types]]
 python = "BodyReader"
-rust = "ureq::BodyReader"
+rust = "ureq::body::BodyReader"
 
 [[mappings.types]]
 python = "LossyUtf8Reader"
-rust = "ureq::body::LossyUtf8Reader"
+rust = "ureq::body::lossy::LossyUtf8Reader"
 
 [[mappings.types]]
 python = "BodyBuilder"
-rust = "ureq::BodyBuilder"
+rust = "ureq::body::build::BodyBuilder"
 
 [[mappings.types]]
 python = "NativeTlsConnector"
-rust = "ureq::NativeTlsConnector"
+rust = "ureq::tls::native_tls::NativeTlsConnector"
 
 [[mappings.types]]
 python = "NativeTlsTransport"
-rust = "ureq::NativeTlsTransport"
+rust = "ureq::tls::native_tls::NativeTlsTransport"
 
 [[mappings.types]]
 python = "Certificate"
-rust = "ureq::tls::Certificate"
+rust = "ureq::tls::cert::Certificate"
 
 [[mappings.types]]
 python = "PrivateKey"
@@ -2321,19 +2321,19 @@ rust = "ureq::tls::cert::PrivateKey"
 
 [[mappings.types]]
 python = "RustlsConnector"
-rust = "ureq::RustlsConnector"
+rust = "ureq::tls::rustls::RustlsConnector"
 
 [[mappings.types]]
 python = "RustlsTransport"
-rust = "ureq::RustlsTransport"
+rust = "ureq::tls::rustls::RustlsTransport"
 
 [[mappings.types]]
 python = "TlsConfig"
-rust = "ureq::TlsConfig"
+rust = "ureq::tls::TlsConfig"
 
 [[mappings.types]]
 python = "TlsConfigBuilder"
-rust = "ureq::TlsConfigBuilder"
+rust = "ureq::tls::TlsConfigBuilder"
 
 [[mappings.types]]
 python = "ClientCert"
@@ -2345,15 +2345,15 @@ rust = "ureq::cookies::CookieJar"
 
 [[mappings.types]]
 python = "Cookie"
-rust = "ureq::Cookie"
+rust = "ureq::cookies::Cookie"
 
 [[mappings.types]]
 python = "Proxy"
-rust = "ureq::Proxy"
+rust = "ureq::proxy::Proxy"
 
 [[mappings.types]]
 python = "ProxyBuilder"
-rust = "ureq::ProxyBuilder"
+rust = "ureq::proxy::ProxyBuilder"
 
 [[mappings.types]]
 python = "AgentScope"
@@ -2373,11 +2373,11 @@ rust = "ureq::config::RequestExtScope"
 
 [[mappings.types]]
 python = "Config"
-rust = "ureq::Config"
+rust = "ureq::config::Config"
 
 [[mappings.types]]
 python = "ConfigBuilder"
-rust = "ureq::ConfigBuilder"
+rust = "ureq::config::ConfigBuilder"
 
 [[mappings.types]]
 python = "Timeouts"
@@ -2393,7 +2393,7 @@ rust = "ureq::SendBody"
 
 [[mappings.types]]
 python = "MiddlewareNext"
-rust = "ureq::MiddlewareNext"
+rust = "ureq::middleware::MiddlewareNext"
 
 [[mappings.types]]
 python = "RequestBuilder"
@@ -2401,15 +2401,15 @@ rust = "ureq::RequestBuilder"
 
 [[mappings.types]]
 python = "WithoutBody"
-rust = "ureq::request::WithoutBody"
+rust = "ureq::WithoutBody"
 
 [[mappings.types]]
 python = "WithBody"
-rust = "ureq::request::WithBody"
+rust = "ureq::WithBody"
 
 [[mappings.types]]
 python = "Agent"
-rust = "ureq::Agent"
+rust = "ureq::agent::Agent"
 
 [[mappings.types]]
 python = "NextTimeout"
@@ -2421,15 +2421,15 @@ rust = "ureq::multipart::Form"
 
 [[mappings.types]]
 python = "Part"
-rust = "ureq::Part"
+rust = "ureq::multipart::Part"
 
 [[mappings.types]]
 python = "Instant"
-rust = "ureq::unversioned::transport::time::Instant"
+rust = "ureq::unversioned::transport::Instant"
 
 [[mappings.types]]
 python = "Duration"
-rust = "ureq::unversioned::transport::time::Duration"
+rust = "ureq::unversioned::transport::Duration"
 
 [[mappings.types]]
 python = "Either"
@@ -2445,7 +2445,7 @@ rust = "ureq::tls::cert::PemItem"
 
 [[mappings.types]]
 python = "TlsProvider"
-rust = "ureq::TlsProvider"
+rust = "ureq::tls::TlsProvider"
 
 [[mappings.types]]
 python = "RootCerts"
@@ -2453,7 +2453,7 @@ rust = "ureq::tls::RootCerts"
 
 [[mappings.types]]
 python = "ProxyProtocol"
-rust = "ureq::ProxyProtocol"
+rust = "ureq::proxy::ProxyProtocol"
 
 [[mappings.types]]
 python = "AutoHeaderValue"
@@ -2474,3 +2474,280 @@ rust = "ureq::timings::Timeout"
 [[mappings.types]]
 python = "Error"
 rust = "ureq::Error"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Instant.AlreadyHappened"
+rust = "ureq::unversioned::transport::Instant::AlreadyHappened"
+
+[[mappings.enum_variants]]
+python = "Instant.Exact"
+rust = "ureq::unversioned::transport::Instant::Exact"
+
+[[mappings.enum_variants]]
+python = "Instant.NotHappening"
+rust = "ureq::unversioned::transport::Instant::NotHappening"
+
+[[mappings.enum_variants]]
+python = "Duration.Exact"
+rust = "ureq::unversioned::transport::Duration::Exact"
+
+[[mappings.enum_variants]]
+python = "Duration.NotHappening"
+rust = "ureq::unversioned::transport::Duration::NotHappening"
+
+[[mappings.enum_variants]]
+python = "Either.A"
+rust = "ureq::unversioned::transport::chain::Either::A"
+
+[[mappings.enum_variants]]
+python = "Either.B"
+rust = "ureq::unversioned::transport::chain::Either::B"
+
+[[mappings.enum_variants]]
+python = "KeyKind.Pkcs1"
+rust = "ureq::tls::cert::KeyKind::Pkcs1"
+
+[[mappings.enum_variants]]
+python = "KeyKind.Pkcs8"
+rust = "ureq::tls::cert::KeyKind::Pkcs8"
+
+[[mappings.enum_variants]]
+python = "KeyKind.Sec1"
+rust = "ureq::tls::cert::KeyKind::Sec1"
+
+[[mappings.enum_variants]]
+python = "PemItem.Certificate"
+rust = "ureq::tls::cert::PemItem::Certificate"
+
+[[mappings.enum_variants]]
+python = "PemItem.PrivateKey"
+rust = "ureq::tls::cert::PemItem::PrivateKey"
+
+[[mappings.enum_variants]]
+python = "TlsProvider.Rustls"
+rust = "ureq::tls::TlsProvider::Rustls"
+
+[[mappings.enum_variants]]
+python = "TlsProvider.NativeTls"
+rust = "ureq::tls::TlsProvider::NativeTls"
+
+[[mappings.enum_variants]]
+python = "RootCerts.Specific"
+rust = "ureq::tls::RootCerts::Specific"
+
+[[mappings.enum_variants]]
+python = "RootCerts.PlatformVerifier"
+rust = "ureq::tls::RootCerts::PlatformVerifier"
+
+[[mappings.enum_variants]]
+python = "RootCerts.WebPki"
+rust = "ureq::tls::RootCerts::WebPki"
+
+[[mappings.enum_variants]]
+python = "ProxyProtocol.Http"
+rust = "ureq::proxy::ProxyProtocol::Http"
+
+[[mappings.enum_variants]]
+python = "ProxyProtocol.Https"
+rust = "ureq::proxy::ProxyProtocol::Https"
+
+[[mappings.enum_variants]]
+python = "ProxyProtocol.Socks4"
+rust = "ureq::proxy::ProxyProtocol::Socks4"
+
+[[mappings.enum_variants]]
+python = "ProxyProtocol.Socks4A"
+rust = "ureq::proxy::ProxyProtocol::Socks4A"
+
+[[mappings.enum_variants]]
+python = "ProxyProtocol.Socks5"
+rust = "ureq::proxy::ProxyProtocol::Socks5"
+
+[[mappings.enum_variants]]
+python = "AutoHeaderValue.None_"
+rust = "ureq::config::AutoHeaderValue::None"
+
+[[mappings.enum_variants]]
+python = "AutoHeaderValue.Default"
+rust = "ureq::config::AutoHeaderValue::Default"
+
+[[mappings.enum_variants]]
+python = "AutoHeaderValue.Provided"
+rust = "ureq::config::AutoHeaderValue::Provided"
+
+[[mappings.enum_variants]]
+python = "IpFamily.Any"
+rust = "ureq::config::IpFamily::Any"
+
+[[mappings.enum_variants]]
+python = "IpFamily.Ipv4Only"
+rust = "ureq::config::IpFamily::Ipv4Only"
+
+[[mappings.enum_variants]]
+python = "IpFamily.Ipv6Only"
+rust = "ureq::config::IpFamily::Ipv6Only"
+
+[[mappings.enum_variants]]
+python = "AgentRef.Owned"
+rust = "ureq::request_ext::AgentRef::Owned"
+
+[[mappings.enum_variants]]
+python = "AgentRef.Borrowed"
+rust = "ureq::request_ext::AgentRef::Borrowed"
+
+[[mappings.enum_variants]]
+python = "Timeout.Global"
+rust = "ureq::timings::Timeout::Global"
+
+[[mappings.enum_variants]]
+python = "Timeout.PerCall"
+rust = "ureq::timings::Timeout::PerCall"
+
+[[mappings.enum_variants]]
+python = "Timeout.Resolve"
+rust = "ureq::timings::Timeout::Resolve"
+
+[[mappings.enum_variants]]
+python = "Timeout.Connect"
+rust = "ureq::timings::Timeout::Connect"
+
+[[mappings.enum_variants]]
+python = "Timeout.SendRequest"
+rust = "ureq::timings::Timeout::SendRequest"
+
+[[mappings.enum_variants]]
+python = "Timeout.Await100"
+rust = "ureq::timings::Timeout::Await100"
+
+[[mappings.enum_variants]]
+python = "Timeout.SendBody"
+rust = "ureq::timings::Timeout::SendBody"
+
+[[mappings.enum_variants]]
+python = "Timeout.RecvResponse"
+rust = "ureq::timings::Timeout::RecvResponse"
+
+[[mappings.enum_variants]]
+python = "Timeout.RecvBody"
+rust = "ureq::timings::Timeout::RecvBody"
+
+[[mappings.enum_variants]]
+python = "Error.StatusCode"
+rust = "ureq::Error::StatusCode"
+
+[[mappings.enum_variants]]
+python = "Error.Http"
+rust = "ureq::Error::Http"
+
+[[mappings.enum_variants]]
+python = "Error.BadUri"
+rust = "ureq::Error::BadUri"
+
+[[mappings.enum_variants]]
+python = "Error.Protocol"
+rust = "ureq::Error::Protocol"
+
+[[mappings.enum_variants]]
+python = "Error.Io"
+rust = "ureq::Error::Io"
+
+[[mappings.enum_variants]]
+python = "Error.Timeout"
+rust = "ureq::Error::Timeout"
+
+[[mappings.enum_variants]]
+python = "Error.HostNotFound"
+rust = "ureq::Error::HostNotFound"
+
+[[mappings.enum_variants]]
+python = "Error.RedirectFailed"
+rust = "ureq::Error::RedirectFailed"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidProxyUrl"
+rust = "ureq::Error::InvalidProxyUrl"
+
+[[mappings.enum_variants]]
+python = "Error.ConnectionFailed"
+rust = "ureq::Error::ConnectionFailed"
+
+[[mappings.enum_variants]]
+python = "Error.BodyExceedsLimit"
+rust = "ureq::Error::BodyExceedsLimit"
+
+[[mappings.enum_variants]]
+python = "Error.TooManyRedirects"
+rust = "ureq::Error::TooManyRedirects"
+
+[[mappings.enum_variants]]
+python = "Error.Tls"
+rust = "ureq::Error::Tls"
+
+[[mappings.enum_variants]]
+python = "Error.Pem"
+rust = "ureq::Error::Pem"
+
+[[mappings.enum_variants]]
+python = "Error.Rustls"
+rust = "ureq::Error::Rustls"
+
+[[mappings.enum_variants]]
+python = "Error.NativeTls"
+rust = "ureq::Error::NativeTls"
+
+[[mappings.enum_variants]]
+python = "Error.Der"
+rust = "ureq::Error::Der"
+
+[[mappings.enum_variants]]
+python = "Error.Cookie"
+rust = "ureq::Error::Cookie"
+
+[[mappings.enum_variants]]
+python = "Error.CookieValue"
+rust = "ureq::Error::CookieValue"
+
+[[mappings.enum_variants]]
+python = "Error.CookieJar"
+rust = "ureq::Error::CookieJar"
+
+[[mappings.enum_variants]]
+python = "Error.UnknownCharset"
+rust = "ureq::Error::UnknownCharset"
+
+[[mappings.enum_variants]]
+python = "Error.RequireHttpsOnly"
+rust = "ureq::Error::RequireHttpsOnly"
+
+[[mappings.enum_variants]]
+python = "Error.LargeResponseHeader"
+rust = "ureq::Error::LargeResponseHeader"
+
+[[mappings.enum_variants]]
+python = "Error.Decompress"
+rust = "ureq::Error::Decompress"
+
+[[mappings.enum_variants]]
+python = "Error.Json"
+rust = "ureq::Error::Json"
+
+[[mappings.enum_variants]]
+python = "Error.InvalidMimeType"
+rust = "ureq::Error::InvalidMimeType"
+
+[[mappings.enum_variants]]
+python = "Error.ConnectProxyFailed"
+rust = "ureq::Error::ConnectProxyFailed"
+
+[[mappings.enum_variants]]
+python = "Error.TlsRequired"
+rust = "ureq::Error::TlsRequired"
+
+[[mappings.enum_variants]]
+python = "Error.Other"
+rust = "ureq::Error::Other"
+
+[[mappings.enum_variants]]
+python = "Error.BodyStalled"
+rust = "ureq::Error::BodyStalled"

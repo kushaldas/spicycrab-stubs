@@ -135,28 +135,28 @@ python = "josekit.deserialize_compact"
 rust_code = "josekit::jws::deserialize_compact({arg0}, {arg1})"
 rust_imports = ["josekit::jws::deserialize_compact"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&dynJwsVerifier"]
+param_types = ["&[u8]", "&dynJwsVerifier"]
 
 [[mappings.functions]]
 python = "josekit.deserialize_compact_with_selector"
 rust_code = "josekit::jws::deserialize_compact_with_selector({arg0}, {arg1})"
 rust_imports = ["josekit::jws::deserialize_compact_with_selector"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "F"]
+param_types = ["&[u8]", "F"]
 
 [[mappings.functions]]
 python = "josekit.deserialize_json"
 rust_code = "josekit::jws::deserialize_json({arg0}, {arg1})"
 rust_imports = ["josekit::jws::deserialize_json"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&'adynJwsVerifier"]
+param_types = ["&[u8]", "&'adynJwsVerifier"]
 
 [[mappings.functions]]
 python = "josekit.deserialize_json_with_selector"
 rust_code = "josekit::jws::deserialize_json_with_selector({arg0}, {arg1})"
 rust_imports = ["josekit::jws::deserialize_json_with_selector"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "F"]
+param_types = ["&[u8]", "F"]
 
 [[mappings.functions]]
 python = "josekit.encode_unsecured"
@@ -184,56 +184,56 @@ python = "josekit.decode_header"
 rust_code = "josekit::jwt::decode_header({arg0})"
 rust_imports = ["josekit::jwt::decode_header"]
 needs_result = true
-param_types = ["implAsRef<[u8]>"]
+param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "josekit.decode_unsecured"
 rust_code = "josekit::jwt::decode_unsecured({arg0})"
 rust_imports = ["josekit::jwt::decode_unsecured"]
 needs_result = true
-param_types = ["implAsRef<[u8]>"]
+param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_verifier"
 rust_code = "josekit::jwt::decode_with_verifier({arg0}, {arg1})"
 rust_imports = ["josekit::jwt::decode_with_verifier"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&dynJwsVerifier"]
+param_types = ["&[u8]", "&dynJwsVerifier"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_verifier_selector"
 rust_code = "josekit::jwt::decode_with_verifier_selector({arg0}, {arg1})"
 rust_imports = ["josekit::jwt::decode_with_verifier_selector"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "F"]
+param_types = ["&[u8]", "F"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_verifier_in_jwk_set"
 rust_code = "josekit::jwt::decode_with_verifier_in_jwk_set({arg0}, {arg1}, {arg2})"
 rust_imports = ["josekit::jwt::decode_with_verifier_in_jwk_set"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&JwkSet", "F"]
+param_types = ["&[u8]", "&JwkSet", "F"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_decrypter"
 rust_code = "josekit::jwt::decode_with_decrypter({arg0}, {arg1})"
 rust_imports = ["josekit::jwt::decode_with_decrypter"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&dynJweDecrypter"]
+param_types = ["&[u8]", "&dynJweDecrypter"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_decrypter_selector"
 rust_code = "josekit::jwt::decode_with_decrypter_selector({arg0}, {arg1})"
 rust_imports = ["josekit::jwt::decode_with_decrypter_selector"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "F"]
+param_types = ["&[u8]", "F"]
 
 [[mappings.functions]]
 python = "josekit.decode_with_decrypter_in_jwk_set"
 rust_code = "josekit::jwt::decode_with_decrypter_in_jwk_set({arg0}, {arg1}, {arg2})"
 rust_imports = ["josekit::jwt::decode_with_decrypter_in_jwk_set"]
 needs_result = true
-param_types = ["implAsRef<[u8]>", "&JwkSet", "F"]
+param_types = ["&[u8]", "&JwkSet", "F"]
 
 [[mappings.functions]]
 python = "josekit.JwsHeader.new"
@@ -468,64 +468,64 @@ param_types = ["&Jwk", "HashAlgorithm", "HashAlgorithm", "u8"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.new"
-rust_code = "josekit::Jwk::new({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::new({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.from_map"
-rust_code = "josekit::Jwk::from_map({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::from_map({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["implInto<Map<String,Value>>"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.from_reader"
-rust_code = "josekit::Jwk::from_reader({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::from_reader({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["&mutdynRead"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.from_bytes"
-rust_code = "josekit::Jwk::from_bytes({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::from_bytes({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["implAsRef<[u8]>"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.generate_oct_key"
-rust_code = "josekit::Jwk::generate_oct_key({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::generate_oct_key({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["u8"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.generate_rsa_key"
-rust_code = "josekit::Jwk::generate_rsa_key({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::generate_rsa_key({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["u32"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.generate_ec_key"
-rust_code = "josekit::Jwk::generate_ec_key({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::generate_ec_key({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["EcCurve"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.generate_ed_key"
-rust_code = "josekit::Jwk::generate_ed_key({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::generate_ed_key({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["EdCurve"]
 
 [[mappings.functions]]
 python = "josekit.Jwk.generate_ecx_key"
-rust_code = "josekit::Jwk::generate_ecx_key({arg0})"
-rust_imports = ["josekit::Jwk"]
+rust_code = "josekit::jwk::Jwk::generate_ecx_key({arg0})"
+rust_imports = ["josekit::jwk::Jwk"]
 needs_result = true
 param_types = ["EcxCurve"]
 
@@ -4733,6 +4733,117 @@ rust_imports = []
 needs_result = true
 param_types = ["implAsRef<[u8]>", "&JwkSet", "F"]
 
+# JwtPayload.set_issued_at_now hardcoded method
+[[mappings.methods]]
+python = "JwtPayload.set_issued_at_now"
+rust_code = "{self}.set_issued_at(&std::time::SystemTime::now())"
+rust_imports = []
+needs_result = false
+returns_self = true
+
+# JwtPayload.set_expires_at_hours hardcoded method
+[[mappings.methods]]
+python = "JwtPayload.set_expires_at_hours"
+rust_code = "{self}.set_expires_at(&(std::time::SystemTime::now() + std::time::Duration::from_secs({arg0} * 3600)))"
+rust_imports = []
+needs_result = false
+returns_self = true
+param_types = ["u64"]
+
+# JwtPayload.claim hardcoded method
+[[mappings.methods]]
+python = "JwtPayload.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# JwsHeader.claim hardcoded method
+[[mappings.methods]]
+python = "JwsHeader.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# JweHeader.claim hardcoded method
+[[mappings.methods]]
+python = "JweHeader.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# JwsHeaderSet.claim hardcoded method
+[[mappings.methods]]
+python = "JwsHeaderSet.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# JweHeaderSet.claim hardcoded method
+[[mappings.methods]]
+python = "JweHeaderSet.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# JwtPayloadValidator.claim hardcoded method
+[[mappings.methods]]
+python = "JwtPayloadValidator.claim"
+rust_code = "{self}.claim({arg0}).cloned()"
+rust_imports = []
+needs_result = false
+returns = "Option<Value>"
+param_types = ["&str"]
+
+# =====================================================
+# Module-level Constant Method Mappings
+# =====================================================
+
+# Dir.encrypter_from_bytes hardcoded method
+[[mappings.methods]]
+python = "Dir.encrypter_from_bytes"
+rust_code = "josekit::jwe::Dir.encrypter_from_bytes({arg0})"
+rust_imports = ["josekit::jwe::Dir"]
+needs_result = true
+returns = "DirectJweEncrypter"
+param_types = ["&[u8]"]
+
+# Dir.encrypter_from_jwk hardcoded method
+[[mappings.methods]]
+python = "Dir.encrypter_from_jwk"
+rust_code = "josekit::jwe::Dir.encrypter_from_jwk(&{arg0})"
+rust_imports = ["josekit::jwe::Dir"]
+needs_result = true
+returns = "DirectJweEncrypter"
+param_types = ["&Jwk"]
+
+# Dir.decrypter_from_bytes hardcoded method
+[[mappings.methods]]
+python = "Dir.decrypter_from_bytes"
+rust_code = "josekit::jwe::Dir.decrypter_from_bytes({arg0})"
+rust_imports = ["josekit::jwe::Dir"]
+needs_result = true
+returns = "DirectJweDecrypter"
+param_types = ["&[u8]"]
+
+# Dir.decrypter_from_jwk hardcoded method
+[[mappings.methods]]
+python = "Dir.decrypter_from_jwk"
+rust_code = "josekit::jwe::Dir.decrypter_from_jwk(&{arg0})"
+rust_imports = ["josekit::jwe::Dir"]
+needs_result = true
+returns = "DirectJweDecrypter"
+param_types = ["&Jwk"]
+
 # =====================================================
 # Enum Variant Alias Constants
 # =====================================================
@@ -7992,11 +8103,11 @@ rust = "josekit::jwe::alg::aeskw::AeskwJweDecrypter"
 
 [[mappings.types]]
 python = "DirectJweEncrypter"
-rust = "josekit::jwe::alg::direct::DirectJweEncrypter"
+rust = "josekit::jwe::DirectJweEncrypter"
 
 [[mappings.types]]
 python = "DirectJweDecrypter"
-rust = "josekit::jwe::alg::direct::DirectJweDecrypter"
+rust = "josekit::jwe::DirectJweDecrypter"
 
 [[mappings.types]]
 python = "Pbes2HmacAeskwJweEncrypter"
@@ -8060,7 +8171,7 @@ rust = "josekit::jwk::alg::rsapss::RsaPssKeyPair"
 
 [[mappings.types]]
 python = "Jwk"
-rust = "josekit::Jwk"
+rust = "josekit::jwk::Jwk"
 
 [[mappings.types]]
 python = "KeyInfo"
@@ -8132,7 +8243,7 @@ rust = "josekit::jwe::alg::aeskw::AeskwJweAlgorithm"
 
 [[mappings.types]]
 python = "DirectJweAlgorithm"
-rust = "josekit::jwe::alg::direct::DirectJweAlgorithm"
+rust = "josekit::jwe::DirectJweAlgorithm"
 
 [[mappings.types]]
 python = "Pbes2HmacAeskwJweAlgorithm"
@@ -8189,3 +8300,464 @@ rust = "josekit::jwt::alg::unsecured::UnsecuredJwsAlgorithm"
 [[mappings.types]]
 python = "JoseError"
 rust = "josekit::JoseError"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "EddsaJwsAlgorithm.Eddsa"
+rust = "josekit::jws::alg::eddsa::EddsaJwsAlgorithm::Eddsa"
+
+[[mappings.enum_variants]]
+python = "EcdsaJwsAlgorithm.Es256"
+rust = "josekit::jws::alg::ecdsa::EcdsaJwsAlgorithm::Es256"
+
+[[mappings.enum_variants]]
+python = "EcdsaJwsAlgorithm.Es384"
+rust = "josekit::jws::alg::ecdsa::EcdsaJwsAlgorithm::Es384"
+
+[[mappings.enum_variants]]
+python = "EcdsaJwsAlgorithm.Es512"
+rust = "josekit::jws::alg::ecdsa::EcdsaJwsAlgorithm::Es512"
+
+[[mappings.enum_variants]]
+python = "EcdsaJwsAlgorithm.Es256k"
+rust = "josekit::jws::alg::ecdsa::EcdsaJwsAlgorithm::Es256k"
+
+[[mappings.enum_variants]]
+python = "RsassaPssJwsAlgorithm.Ps256"
+rust = "josekit::jws::alg::rsassa_pss::RsassaPssJwsAlgorithm::Ps256"
+
+[[mappings.enum_variants]]
+python = "RsassaPssJwsAlgorithm.Ps384"
+rust = "josekit::jws::alg::rsassa_pss::RsassaPssJwsAlgorithm::Ps384"
+
+[[mappings.enum_variants]]
+python = "RsassaPssJwsAlgorithm.Ps512"
+rust = "josekit::jws::alg::rsassa_pss::RsassaPssJwsAlgorithm::Ps512"
+
+[[mappings.enum_variants]]
+python = "HmacJwsAlgorithm.Hs256"
+rust = "josekit::jws::alg::hmac::HmacJwsAlgorithm::Hs256"
+
+[[mappings.enum_variants]]
+python = "HmacJwsAlgorithm.Hs384"
+rust = "josekit::jws::alg::hmac::HmacJwsAlgorithm::Hs384"
+
+[[mappings.enum_variants]]
+python = "HmacJwsAlgorithm.Hs512"
+rust = "josekit::jws::alg::hmac::HmacJwsAlgorithm::Hs512"
+
+[[mappings.enum_variants]]
+python = "RsassaJwsAlgorithm.Rs256"
+rust = "josekit::jws::alg::rsassa::RsassaJwsAlgorithm::Rs256"
+
+[[mappings.enum_variants]]
+python = "RsassaJwsAlgorithm.Rs384"
+rust = "josekit::jws::alg::rsassa::RsassaJwsAlgorithm::Rs384"
+
+[[mappings.enum_variants]]
+python = "RsassaJwsAlgorithm.Rs512"
+rust = "josekit::jws::alg::rsassa::RsassaJwsAlgorithm::Rs512"
+
+[[mappings.enum_variants]]
+python = "HashAlgorithm.Sha1"
+rust = "josekit::HashAlgorithm::Sha1"
+
+[[mappings.enum_variants]]
+python = "HashAlgorithm.Sha256"
+rust = "josekit::HashAlgorithm::Sha256"
+
+[[mappings.enum_variants]]
+python = "HashAlgorithm.Sha384"
+rust = "josekit::HashAlgorithm::Sha384"
+
+[[mappings.enum_variants]]
+python = "HashAlgorithm.Sha512"
+rust = "josekit::HashAlgorithm::Sha512"
+
+[[mappings.enum_variants]]
+python = "DerClass.Universal"
+rust = "josekit::util::der::DerClass::Universal"
+
+[[mappings.enum_variants]]
+python = "DerClass.Application"
+rust = "josekit::util::der::DerClass::Application"
+
+[[mappings.enum_variants]]
+python = "DerClass.ContextSpecific"
+rust = "josekit::util::der::DerClass::ContextSpecific"
+
+[[mappings.enum_variants]]
+python = "DerClass.Private"
+rust = "josekit::util::der::DerClass::Private"
+
+[[mappings.enum_variants]]
+python = "DerType.EndOfContents"
+rust = "josekit::util::der::DerType::EndOfContents"
+
+[[mappings.enum_variants]]
+python = "DerType.Boolean"
+rust = "josekit::util::der::DerType::Boolean"
+
+[[mappings.enum_variants]]
+python = "DerType.Integer"
+rust = "josekit::util::der::DerType::Integer"
+
+[[mappings.enum_variants]]
+python = "DerType.BitString"
+rust = "josekit::util::der::DerType::BitString"
+
+[[mappings.enum_variants]]
+python = "DerType.OctetString"
+rust = "josekit::util::der::DerType::OctetString"
+
+[[mappings.enum_variants]]
+python = "DerType.Null"
+rust = "josekit::util::der::DerType::Null"
+
+[[mappings.enum_variants]]
+python = "DerType.ObjectIdentifier"
+rust = "josekit::util::der::DerType::ObjectIdentifier"
+
+[[mappings.enum_variants]]
+python = "DerType.ObjectDescriptor"
+rust = "josekit::util::der::DerType::ObjectDescriptor"
+
+[[mappings.enum_variants]]
+python = "DerType.External"
+rust = "josekit::util::der::DerType::External"
+
+[[mappings.enum_variants]]
+python = "DerType.Real"
+rust = "josekit::util::der::DerType::Real"
+
+[[mappings.enum_variants]]
+python = "DerType.Enumerated"
+rust = "josekit::util::der::DerType::Enumerated"
+
+[[mappings.enum_variants]]
+python = "DerType.EmbeddedPdv"
+rust = "josekit::util::der::DerType::EmbeddedPdv"
+
+[[mappings.enum_variants]]
+python = "DerType.Utf8String"
+rust = "josekit::util::der::DerType::Utf8String"
+
+[[mappings.enum_variants]]
+python = "DerType.RelativeOid"
+rust = "josekit::util::der::DerType::RelativeOid"
+
+[[mappings.enum_variants]]
+python = "DerType.Time"
+rust = "josekit::util::der::DerType::Time"
+
+[[mappings.enum_variants]]
+python = "DerType.Sequence"
+rust = "josekit::util::der::DerType::Sequence"
+
+[[mappings.enum_variants]]
+python = "DerType.Set"
+rust = "josekit::util::der::DerType::Set"
+
+[[mappings.enum_variants]]
+python = "DerType.NumericString"
+rust = "josekit::util::der::DerType::NumericString"
+
+[[mappings.enum_variants]]
+python = "DerType.PrintableString"
+rust = "josekit::util::der::DerType::PrintableString"
+
+[[mappings.enum_variants]]
+python = "DerType.TeletexString"
+rust = "josekit::util::der::DerType::TeletexString"
+
+[[mappings.enum_variants]]
+python = "DerType.VideotexString"
+rust = "josekit::util::der::DerType::VideotexString"
+
+[[mappings.enum_variants]]
+python = "DerType.Ia5String"
+rust = "josekit::util::der::DerType::Ia5String"
+
+[[mappings.enum_variants]]
+python = "DerType.UtcTime"
+rust = "josekit::util::der::DerType::UtcTime"
+
+[[mappings.enum_variants]]
+python = "DerType.GeneralizedTime"
+rust = "josekit::util::der::DerType::GeneralizedTime"
+
+[[mappings.enum_variants]]
+python = "DerType.GraphicString"
+rust = "josekit::util::der::DerType::GraphicString"
+
+[[mappings.enum_variants]]
+python = "DerType.VisibleString"
+rust = "josekit::util::der::DerType::VisibleString"
+
+[[mappings.enum_variants]]
+python = "DerType.GeneralString"
+rust = "josekit::util::der::DerType::GeneralString"
+
+[[mappings.enum_variants]]
+python = "DerType.UniversalString"
+rust = "josekit::util::der::DerType::UniversalString"
+
+[[mappings.enum_variants]]
+python = "DerType.CharacterString"
+rust = "josekit::util::der::DerType::CharacterString"
+
+[[mappings.enum_variants]]
+python = "DerType.BmpString"
+rust = "josekit::util::der::DerType::BmpString"
+
+[[mappings.enum_variants]]
+python = "DerType.Date"
+rust = "josekit::util::der::DerType::Date"
+
+[[mappings.enum_variants]]
+python = "DerType.TimeOfDay"
+rust = "josekit::util::der::DerType::TimeOfDay"
+
+[[mappings.enum_variants]]
+python = "DerType.DateTime"
+rust = "josekit::util::der::DerType::DateTime"
+
+[[mappings.enum_variants]]
+python = "DerType.Duration"
+rust = "josekit::util::der::DerType::Duration"
+
+[[mappings.enum_variants]]
+python = "DerType.Other"
+rust = "josekit::util::der::DerType::Other"
+
+[[mappings.enum_variants]]
+python = "DerError.UnexpectedEndOfInput"
+rust = "josekit::util::der::DerError::UnexpectedEndOfInput"
+
+[[mappings.enum_variants]]
+python = "DerError.InvalidTag"
+rust = "josekit::util::der::DerError::InvalidTag"
+
+[[mappings.enum_variants]]
+python = "DerError.InvalidLength"
+rust = "josekit::util::der::DerError::InvalidLength"
+
+[[mappings.enum_variants]]
+python = "DerError.InvalidContents"
+rust = "josekit::util::der::DerError::InvalidContents"
+
+[[mappings.enum_variants]]
+python = "DerError.Overflow"
+rust = "josekit::util::der::DerError::Overflow"
+
+[[mappings.enum_variants]]
+python = "DerError.ReadFailure"
+rust = "josekit::util::der::DerError::ReadFailure"
+
+[[mappings.enum_variants]]
+python = "AeskwJweAlgorithm.A128kw"
+rust = "josekit::jwe::alg::aeskw::AeskwJweAlgorithm::A128kw"
+
+[[mappings.enum_variants]]
+python = "AeskwJweAlgorithm.A192kw"
+rust = "josekit::jwe::alg::aeskw::AeskwJweAlgorithm::A192kw"
+
+[[mappings.enum_variants]]
+python = "AeskwJweAlgorithm.A256kw"
+rust = "josekit::jwe::alg::aeskw::AeskwJweAlgorithm::A256kw"
+
+[[mappings.enum_variants]]
+python = "DirectJweAlgorithm.Dir"
+rust = "josekit::jwe::DirectJweAlgorithm::Dir"
+
+[[mappings.enum_variants]]
+python = "Pbes2HmacAeskwJweAlgorithm.Pbes2Hs256A128kw"
+rust = "josekit::jwe::alg::pbes2_hmac_aeskw::Pbes2HmacAeskwJweAlgorithm::Pbes2Hs256A128kw"
+
+[[mappings.enum_variants]]
+python = "Pbes2HmacAeskwJweAlgorithm.Pbes2Hs384A192kw"
+rust = "josekit::jwe::alg::pbes2_hmac_aeskw::Pbes2HmacAeskwJweAlgorithm::Pbes2Hs384A192kw"
+
+[[mappings.enum_variants]]
+python = "Pbes2HmacAeskwJweAlgorithm.Pbes2Hs512A256kw"
+rust = "josekit::jwe::alg::pbes2_hmac_aeskw::Pbes2HmacAeskwJweAlgorithm::Pbes2Hs512A256kw"
+
+[[mappings.enum_variants]]
+python = "EcdhEsJweAlgorithm.EcdhEs"
+rust = "josekit::jwe::alg::ecdh_es::EcdhEsJweAlgorithm::EcdhEs"
+
+[[mappings.enum_variants]]
+python = "EcdhEsJweAlgorithm.EcdhEsA128kw"
+rust = "josekit::jwe::alg::ecdh_es::EcdhEsJweAlgorithm::EcdhEsA128kw"
+
+[[mappings.enum_variants]]
+python = "EcdhEsJweAlgorithm.EcdhEsA192kw"
+rust = "josekit::jwe::alg::ecdh_es::EcdhEsJweAlgorithm::EcdhEsA192kw"
+
+[[mappings.enum_variants]]
+python = "EcdhEsJweAlgorithm.EcdhEsA256kw"
+rust = "josekit::jwe::alg::ecdh_es::EcdhEsJweAlgorithm::EcdhEsA256kw"
+
+[[mappings.enum_variants]]
+python = "AesgcmkwJweAlgorithm.A128gcmkw"
+rust = "josekit::jwe::alg::aesgcmkw::AesgcmkwJweAlgorithm::A128gcmkw"
+
+[[mappings.enum_variants]]
+python = "AesgcmkwJweAlgorithm.A192gcmkw"
+rust = "josekit::jwe::alg::aesgcmkw::AesgcmkwJweAlgorithm::A192gcmkw"
+
+[[mappings.enum_variants]]
+python = "AesgcmkwJweAlgorithm.A256gcmkw"
+rust = "josekit::jwe::alg::aesgcmkw::AesgcmkwJweAlgorithm::A256gcmkw"
+
+[[mappings.enum_variants]]
+python = "RsaesJweAlgorithm.Rsa1_5"
+rust = "josekit::jwe::alg::rsaes::RsaesJweAlgorithm::Rsa1_5"
+
+[[mappings.enum_variants]]
+python = "RsaesJweAlgorithm.RsaOaep"
+rust = "josekit::jwe::alg::rsaes::RsaesJweAlgorithm::RsaOaep"
+
+[[mappings.enum_variants]]
+python = "RsaesJweAlgorithm.RsaOaep256"
+rust = "josekit::jwe::alg::rsaes::RsaesJweAlgorithm::RsaOaep256"
+
+[[mappings.enum_variants]]
+python = "RsaesJweAlgorithm.RsaOaep384"
+rust = "josekit::jwe::alg::rsaes::RsaesJweAlgorithm::RsaOaep384"
+
+[[mappings.enum_variants]]
+python = "RsaesJweAlgorithm.RsaOaep512"
+rust = "josekit::jwe::alg::rsaes::RsaesJweAlgorithm::RsaOaep512"
+
+[[mappings.enum_variants]]
+python = "DeflateJweCompression.Def"
+rust = "josekit::jwe::zip::deflate::DeflateJweCompression::Def"
+
+[[mappings.enum_variants]]
+python = "AesgcmJweEncryption.A128gcm"
+rust = "josekit::jwe::enc::aesgcm::AesgcmJweEncryption::A128gcm"
+
+[[mappings.enum_variants]]
+python = "AesgcmJweEncryption.A192gcm"
+rust = "josekit::jwe::enc::aesgcm::AesgcmJweEncryption::A192gcm"
+
+[[mappings.enum_variants]]
+python = "AesgcmJweEncryption.A256gcm"
+rust = "josekit::jwe::enc::aesgcm::AesgcmJweEncryption::A256gcm"
+
+[[mappings.enum_variants]]
+python = "AescbcHmacJweEncryption.A128cbcHs256"
+rust = "josekit::jwe::enc::aescbc_hmac::AescbcHmacJweEncryption::A128cbcHs256"
+
+[[mappings.enum_variants]]
+python = "AescbcHmacJweEncryption.A192cbcHs384"
+rust = "josekit::jwe::enc::aescbc_hmac::AescbcHmacJweEncryption::A192cbcHs384"
+
+[[mappings.enum_variants]]
+python = "AescbcHmacJweEncryption.A256cbcHs512"
+rust = "josekit::jwe::enc::aescbc_hmac::AescbcHmacJweEncryption::A256cbcHs512"
+
+[[mappings.enum_variants]]
+python = "EcxCurve.X25519"
+rust = "josekit::jwk::alg::ecx::EcxCurve::X25519"
+
+[[mappings.enum_variants]]
+python = "EcxCurve.X448"
+rust = "josekit::jwk::alg::ecx::EcxCurve::X448"
+
+[[mappings.enum_variants]]
+python = "EcCurve.P256"
+rust = "josekit::jwk::alg::ec::EcCurve::P256"
+
+[[mappings.enum_variants]]
+python = "EcCurve.P384"
+rust = "josekit::jwk::alg::ec::EcCurve::P384"
+
+[[mappings.enum_variants]]
+python = "EcCurve.P521"
+rust = "josekit::jwk::alg::ec::EcCurve::P521"
+
+[[mappings.enum_variants]]
+python = "EcCurve.Secp256k1"
+rust = "josekit::jwk::alg::ec::EcCurve::Secp256k1"
+
+[[mappings.enum_variants]]
+python = "EdCurve.Ed25519"
+rust = "josekit::jwk::alg::ed::EdCurve::Ed25519"
+
+[[mappings.enum_variants]]
+python = "EdCurve.Ed448"
+rust = "josekit::jwk::alg::ed::EdCurve::Ed448"
+
+[[mappings.enum_variants]]
+python = "KeyAlg.Rsa"
+rust = "josekit::jwk::key_info::KeyAlg::Rsa"
+
+[[mappings.enum_variants]]
+python = "KeyAlg.RsaPss"
+rust = "josekit::jwk::key_info::KeyAlg::RsaPss"
+
+[[mappings.enum_variants]]
+python = "KeyAlg.Ec"
+rust = "josekit::jwk::key_info::KeyAlg::Ec"
+
+[[mappings.enum_variants]]
+python = "KeyAlg.Ed"
+rust = "josekit::jwk::key_info::KeyAlg::Ed"
+
+[[mappings.enum_variants]]
+python = "KeyAlg.Ecx"
+rust = "josekit::jwk::key_info::KeyAlg::Ecx"
+
+[[mappings.enum_variants]]
+python = "KeyFormat.Der"
+rust = "josekit::jwk::key_info::KeyFormat::Der"
+
+[[mappings.enum_variants]]
+python = "KeyFormat.Pem"
+rust = "josekit::jwk::key_info::KeyFormat::Pem"
+
+[[mappings.enum_variants]]
+python = "KeyFormat.Jwk"
+rust = "josekit::jwk::key_info::KeyFormat::Jwk"
+
+[[mappings.enum_variants]]
+python = "UnsecuredJwsAlgorithm.None_"
+rust = "josekit::jwt::alg::unsecured::UnsecuredJwsAlgorithm::None"
+
+[[mappings.enum_variants]]
+python = "JoseError.UnsupportedSignatureAlgorithm"
+rust = "josekit::JoseError::UnsupportedSignatureAlgorithm"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidJwtFormat"
+rust = "josekit::JoseError::InvalidJwtFormat"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidJwkFormat"
+rust = "josekit::JoseError::InvalidJwkFormat"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidJwsFormat"
+rust = "josekit::JoseError::InvalidJwsFormat"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidJweFormat"
+rust = "josekit::JoseError::InvalidJweFormat"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidKeyFormat"
+rust = "josekit::JoseError::InvalidKeyFormat"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidJson"
+rust = "josekit::JoseError::InvalidJson"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidClaim"
+rust = "josekit::JoseError::InvalidClaim"
+
+[[mappings.enum_variants]]
+python = "JoseError.InvalidSignature"
+rust = "josekit::JoseError::InvalidSignature"

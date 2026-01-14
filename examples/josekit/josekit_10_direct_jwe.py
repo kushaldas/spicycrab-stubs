@@ -28,7 +28,7 @@ def main() -> None:
     # 16-byte key for A128GCM content encryption
     key = b"0123456789ABCDEF"
 
-    # Encrypt the JWT
+    # Encrypt the JWT using direct encryption algorithm
     encrypter = Dir.encrypter_from_bytes(key)
     jwe: str = encode_with_encrypter(payload, header, encrypter)
     print(f"Encrypted JWT: {jwe}")

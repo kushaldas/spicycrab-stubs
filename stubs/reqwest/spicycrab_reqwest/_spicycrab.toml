@@ -69,348 +69,348 @@ param_types = ["implscope::Scope"]
 
 [[mappings.functions]]
 python = "reqwest.Client.new"
-rust_code = "reqwest::wasm::Client::new()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::new()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.builder"
-rust_code = "reqwest::wasm::Client::builder()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::builder()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.default"
-rust_code = "reqwest::wasm::Client::default()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::default()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.default"
-rust_code = "reqwest::wasm::Client::default()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::default()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.new"
-rust_code = "reqwest::wasm::Client::new()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::new()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.builder"
-rust_code = "reqwest::wasm::Client::builder()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::builder()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.default"
-rust_code = "reqwest::wasm::Client::default()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::default()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.new"
-rust_code = "reqwest::wasm::Client::new()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::new()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Client.builder"
-rust_code = "reqwest::wasm::Client::builder()"
-rust_imports = ["reqwest::wasm::Client"]
+rust_code = "reqwest::Client::builder()"
+rust_imports = ["reqwest::Client"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.new"
-rust_code = "reqwest::wasm::ClientBuilder::new()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::new()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.default"
-rust_code = "reqwest::wasm::ClientBuilder::default()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::default()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.default"
-rust_code = "reqwest::wasm::ClientBuilder::default()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::default()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.new"
-rust_code = "reqwest::wasm::ClientBuilder::new()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::new()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.default"
-rust_code = "reqwest::wasm::ClientBuilder::default()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::default()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.new"
-rust_code = "reqwest::wasm::ClientBuilder::new()"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::new()"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.ClientBuilder.from_"
-rust_code = "reqwest::wasm::ClientBuilder::from({arg0})"
-rust_imports = ["reqwest::wasm::ClientBuilder"]
+rust_code = "reqwest::ClientBuilder::from({arg0})"
+rust_imports = ["reqwest::ClientBuilder"]
 needs_result = false
 param_types = ["async_impl::ClientBuilder"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::wasm::Body::default()"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::default()"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap_stream"
-rust_code = "reqwest::wasm::Body::wrap_stream({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::wrap_stream({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["S"]
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap"
-rust_code = "reqwest::wasm::Body::wrap({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::wrap({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["B"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::wasm::Body::default()"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::default()"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Response"]
 
 [[mappings.functions]]
 python = "reqwest.Body.new"
-rust_code = "reqwest::wasm::Body::new({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::new({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["R"]
 
 [[mappings.functions]]
 python = "reqwest.Body.sized"
-rust_code = "reqwest::wasm::Body::sized({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::sized({arg0}, {arg1})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["R", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::wasm::Body::from({arg0})"
-rust_imports = ["reqwest::wasm::Body"]
+rust_code = "reqwest::wasm::body::Body::from({arg0})"
+rust_imports = ["reqwest::wasm::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Request.new"
-rust_code = "reqwest::wasm::Request::new({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::new({arg0}, {arg1})"
+rust_imports = ["reqwest::Request"]
 needs_result = false
 param_types = ["Method", "Url"]
 
 [[mappings.functions]]
 python = "reqwest.Request.try_from"
-rust_code = "reqwest::wasm::Request::try_from({arg0})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::try_from({arg0})"
+rust_imports = ["reqwest::Request"]
 needs_result = true
 param_types = ["HttpRequest<T>"]
 
 [[mappings.functions]]
 python = "reqwest.Request.new"
-rust_code = "reqwest::wasm::Request::new({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::new({arg0}, {arg1})"
+rust_imports = ["reqwest::Request"]
 needs_result = false
 param_types = ["Method", "Url"]
 
 [[mappings.functions]]
 python = "reqwest.Request.try_from"
-rust_code = "reqwest::wasm::Request::try_from({arg0})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::try_from({arg0})"
+rust_imports = ["reqwest::Request"]
 needs_result = true
 param_types = ["HttpRequest<T>"]
 
 [[mappings.functions]]
 python = "reqwest.Request.new"
-rust_code = "reqwest::wasm::Request::new({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::new({arg0}, {arg1})"
+rust_imports = ["reqwest::Request"]
 needs_result = false
 param_types = ["Method", "Url"]
 
 [[mappings.functions]]
 python = "reqwest.Request.try_from"
-rust_code = "reqwest::wasm::Request::try_from({arg0})"
-rust_imports = ["reqwest::wasm::Request"]
+rust_code = "reqwest::Request::try_from({arg0})"
+rust_imports = ["reqwest::Request"]
 needs_result = true
 param_types = ["HttpRequest<T>"]
 
 [[mappings.functions]]
 python = "reqwest.RequestBuilder.from_parts"
-rust_code = "reqwest::wasm::RequestBuilder::from_parts({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::RequestBuilder"]
+rust_code = "reqwest::RequestBuilder::from_parts({arg0}, {arg1})"
+rust_imports = ["reqwest::RequestBuilder"]
 needs_result = false
 param_types = ["crate::Client", "crate::Request"]
 
 [[mappings.functions]]
 python = "reqwest.RequestBuilder.from_parts"
-rust_code = "reqwest::wasm::RequestBuilder::from_parts({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::RequestBuilder"]
+rust_code = "reqwest::RequestBuilder::from_parts({arg0}, {arg1})"
+rust_imports = ["reqwest::RequestBuilder"]
 needs_result = false
 param_types = ["Client", "Request"]
 
 [[mappings.functions]]
 python = "reqwest.RequestBuilder.from_parts"
-rust_code = "reqwest::wasm::RequestBuilder::from_parts({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::RequestBuilder"]
+rust_code = "reqwest::RequestBuilder::from_parts({arg0}, {arg1})"
+rust_imports = ["reqwest::RequestBuilder"]
 needs_result = false
 param_types = ["Client", "Request"]
 
 [[mappings.functions]]
 python = "reqwest.Response.from_"
-rust_code = "reqwest::wasm::Response::from({arg0})"
-rust_imports = ["reqwest::wasm::Response"]
+rust_code = "reqwest::Response::from({arg0})"
+rust_imports = ["reqwest::Response"]
 needs_result = false
 param_types = ["http::Response<T>"]
 
 [[mappings.functions]]
 python = "reqwest.Response.from_"
-rust_code = "reqwest::wasm::Response::from({arg0})"
-rust_imports = ["reqwest::wasm::Response"]
+rust_code = "reqwest::Response::from({arg0})"
+rust_imports = ["reqwest::Response"]
 needs_result = false
 param_types = ["Response"]
 
 [[mappings.functions]]
 python = "reqwest.Response.from_"
-rust_code = "reqwest::wasm::Response::from({arg0})"
-rust_imports = ["reqwest::wasm::Response"]
+rust_code = "reqwest::Response::from({arg0})"
+rust_imports = ["reqwest::Response"]
 needs_result = false
 param_types = ["http::Response<T>"]
 
@@ -452,105 +452,105 @@ needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::wasm::Part::text({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::wasm::Part::bytes({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::wasm::Part::stream({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::wasm::Part::text({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::wasm::Part::bytes({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::wasm::Part::stream({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream_with_length"
-rust_code = "reqwest::wasm::Part::stream_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::stream_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::wasm::Part::file({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::wasm::Part::text({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::wasm::Part::bytes({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader"
-rust_code = "reqwest::wasm::Part::reader({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::reader({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader_with_length"
-rust_code = "reqwest::wasm::Part::reader_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::reader_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::wasm::Part::file({arg0})"
-rust_imports = ["reqwest::wasm::Part"]
+rust_code = "reqwest::wasm::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::wasm::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.GaiResolver.new"
-rust_code = "reqwest::dns::GaiResolver::new()"
-rust_imports = ["reqwest::dns::GaiResolver"]
+rust_code = "reqwest::dns::gai::GaiResolver::new()"
+rust_imports = ["reqwest::dns::gai::GaiResolver"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.GaiResolver.default"
-rust_code = "reqwest::dns::GaiResolver::default()"
-rust_imports = ["reqwest::dns::GaiResolver"]
+rust_code = "reqwest::dns::gai::GaiResolver::default()"
+rust_imports = ["reqwest::dns::gai::GaiResolver"]
 needs_result = false
 
 [[mappings.functions]]
@@ -562,29 +562,29 @@ param_types = ["&str"]
 
 [[mappings.functions]]
 python = "reqwest.Proxy.http"
-rust_code = "reqwest::Proxy::http({arg0})"
-rust_imports = ["reqwest::Proxy"]
+rust_code = "reqwest::proxy::Proxy::http({arg0})"
+rust_imports = ["reqwest::proxy::Proxy"]
 needs_result = true
 param_types = ["U"]
 
 [[mappings.functions]]
 python = "reqwest.Proxy.https"
-rust_code = "reqwest::Proxy::https({arg0})"
-rust_imports = ["reqwest::Proxy"]
+rust_code = "reqwest::proxy::Proxy::https({arg0})"
+rust_imports = ["reqwest::proxy::Proxy"]
 needs_result = true
 param_types = ["U"]
 
 [[mappings.functions]]
 python = "reqwest.Proxy.all"
-rust_code = "reqwest::Proxy::all({arg0})"
-rust_imports = ["reqwest::Proxy"]
+rust_code = "reqwest::proxy::Proxy::all({arg0})"
+rust_imports = ["reqwest::proxy::Proxy"]
 needs_result = true
 param_types = ["U"]
 
 [[mappings.functions]]
 python = "reqwest.Proxy.custom"
-rust_code = "reqwest::Proxy::custom({arg0})"
-rust_imports = ["reqwest::Proxy"]
+rust_code = "reqwest::proxy::Proxy::custom({arg0})"
+rust_imports = ["reqwest::proxy::Proxy"]
 needs_result = false
 param_types = ["F"]
 
@@ -603,22 +603,22 @@ param_types = ["&str"]
 
 [[mappings.functions]]
 python = "reqwest.Pool.new"
-rust_code = "reqwest::async_impl::h3_client::Pool::new({arg0})"
-rust_imports = ["reqwest::async_impl::h3_client::Pool"]
+rust_code = "reqwest::async_impl::h3_client::pool::Pool::new({arg0})"
+rust_imports = ["reqwest::async_impl::h3_client::pool::Pool"]
 needs_result = false
 param_types = ["Option<Duration>"]
 
 [[mappings.functions]]
 python = "reqwest.PoolClient.new"
-rust_code = "reqwest::async_impl::h3_client::PoolClient::new({arg0})"
-rust_imports = ["reqwest::async_impl::h3_client::PoolClient"]
+rust_code = "reqwest::async_impl::h3_client::pool::PoolClient::new({arg0})"
+rust_imports = ["reqwest::async_impl::h3_client::pool::PoolClient"]
 needs_result = false
 param_types = ["SendRequest<OpenStreams,Bytes>"]
 
 [[mappings.functions]]
 python = "reqwest.PoolConnection.new"
-rust_code = "reqwest::async_impl::h3_client::PoolConnection::new({arg0}, {arg1})"
-rust_imports = ["reqwest::async_impl::h3_client::PoolConnection"]
+rust_code = "reqwest::async_impl::h3_client::pool::PoolConnection::new({arg0}, {arg1})"
+rust_imports = ["reqwest::async_impl::h3_client::pool::PoolConnection"]
 needs_result = false
 param_types = ["PoolClient", "Receiver<h3::error::ConnectionError>"]
 
@@ -721,174 +721,174 @@ param_types = ["async_impl::ClientBuilder"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::Body::default()"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::default()"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap_stream"
-rust_code = "reqwest::Body::wrap_stream({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::wrap_stream({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["S"]
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap"
-rust_code = "reqwest::Body::wrap({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::wrap({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["B"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::Body::default()"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::default()"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Response"]
 
 [[mappings.functions]]
 python = "reqwest.Body.new"
-rust_code = "reqwest::Body::new({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::new({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["R"]
 
 [[mappings.functions]]
 python = "reqwest.Body.sized"
-rust_code = "reqwest::Body::sized({arg0}, {arg1})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::sized({arg0}, {arg1})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["R", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::async_impl::body::Body::from({arg0})"
+rust_imports = ["reqwest::async_impl::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Upgraded.from_"
-rust_code = "reqwest::Upgraded::from({arg0})"
-rust_imports = ["reqwest::Upgraded"]
+rust_code = "reqwest::async_impl::upgrade::Upgraded::from({arg0})"
+rust_imports = ["reqwest::async_impl::upgrade::Upgraded"]
 needs_result = false
 param_types = ["hyper::upgrade::Upgraded"]
 
@@ -1014,92 +1014,92 @@ needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::Part::stream({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::Part::stream({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream_with_length"
-rust_code = "reqwest::Part::stream_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::stream_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::Part::file({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader"
-rust_code = "reqwest::Part::reader({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::reader({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader_with_length"
-rust_code = "reqwest::Part::reader_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::reader_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::Part::file({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::async_impl::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::async_impl::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
@@ -1187,8 +1187,8 @@ param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.CookieService.new"
-rust_code = "reqwest::CookieService::new({arg0}, {arg1})"
-rust_imports = ["reqwest::CookieService"]
+rust_code = "reqwest::cookie::CookieService::new({arg0}, {arg1})"
+rust_imports = ["reqwest::cookie::CookieService"]
 needs_result = false
 param_types = ["S", "Option<Arc<dyncookie::CookieStore>>"]
 
@@ -1298,167 +1298,167 @@ param_types = ["async_impl::ClientBuilder"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::Body::default()"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::default()"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap_stream"
-rust_code = "reqwest::Body::wrap_stream({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::wrap_stream({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["S"]
 
 [[mappings.functions]]
 python = "reqwest.Body.wrap"
-rust_code = "reqwest::Body::wrap({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::wrap({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["B"]
 
 [[mappings.functions]]
 python = "reqwest.Body.default"
-rust_code = "reqwest::Body::default()"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::default()"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Response"]
 
 [[mappings.functions]]
 python = "reqwest.Body.new"
-rust_code = "reqwest::Body::new({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::new({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["R"]
 
 [[mappings.functions]]
 python = "reqwest.Body.sized"
-rust_code = "reqwest::Body::sized({arg0}, {arg1})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::sized({arg0}, {arg1})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["R", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Vec<u8>"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["String"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'static[u8]"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["&'staticstr"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["File"]
 
 [[mappings.functions]]
 python = "reqwest.Body.from_"
-rust_code = "reqwest::Body::from({arg0})"
-rust_imports = ["reqwest::Body"]
+rust_code = "reqwest::blocking::body::Body::from({arg0})"
+rust_imports = ["reqwest::blocking::body::Body"]
 needs_result = false
 param_types = ["Bytes"]
 
@@ -1584,92 +1584,92 @@ needs_result = false
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::Part::stream({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream"
-rust_code = "reqwest::Part::stream({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::stream({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.stream_with_length"
-rust_code = "reqwest::Part::stream_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::stream_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::Part::file({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.text"
-rust_code = "reqwest::Part::text({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::text({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.bytes"
-rust_code = "reqwest::Part::bytes({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::bytes({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader"
-rust_code = "reqwest::Part::reader({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::reader({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T"]
 
 [[mappings.functions]]
 python = "reqwest.Part.reader_with_length"
-rust_code = "reqwest::Part::reader_with_length({arg0}, {arg1})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::reader_with_length({arg0}, {arg1})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = false
 param_types = ["T", "u64"]
 
 [[mappings.functions]]
 python = "reqwest.Part.file"
-rust_code = "reqwest::Part::file({arg0})"
-rust_imports = ["reqwest::Part"]
+rust_code = "reqwest::blocking::multipart::Part::file({arg0})"
+rust_imports = ["reqwest::blocking::multipart::Part"]
 needs_result = true
 param_types = ["T"]
 
@@ -12099,27 +12099,27 @@ rust = "reqwest::connect::Internal"
 
 [[mappings.types]]
 python = "Client"
-rust = "reqwest::wasm::Client"
+rust = "reqwest::Client"
 
 [[mappings.types]]
 python = "ClientBuilder"
-rust = "reqwest::wasm::ClientBuilder"
+rust = "reqwest::ClientBuilder"
 
 [[mappings.types]]
 python = "Body"
-rust = "reqwest::wasm::Body"
+rust = "reqwest::wasm::body::Body"
 
 [[mappings.types]]
 python = "Request"
-rust = "reqwest::wasm::Request"
+rust = "reqwest::Request"
 
 [[mappings.types]]
 python = "RequestBuilder"
-rust = "reqwest::wasm::RequestBuilder"
+rust = "reqwest::RequestBuilder"
 
 [[mappings.types]]
 python = "Response"
-rust = "reqwest::wasm::Response"
+rust = "reqwest::Response"
 
 [[mappings.types]]
 python = "Form"
@@ -12127,11 +12127,11 @@ rust = "reqwest::wasm::multipart::Form"
 
 [[mappings.types]]
 python = "Part"
-rust = "reqwest::wasm::Part"
+rust = "reqwest::wasm::multipart::Part"
 
 [[mappings.types]]
 python = "GaiResolver"
-rust = "reqwest::dns::GaiResolver"
+rust = "reqwest::dns::gai::GaiResolver"
 
 [[mappings.types]]
 python = "Name"
@@ -12143,7 +12143,7 @@ rust = "reqwest::dns::resolve::InvalidNameError"
 
 [[mappings.types]]
 python = "Proxy"
-rust = "reqwest::Proxy"
+rust = "reqwest::proxy::Proxy"
 
 [[mappings.types]]
 python = "NoProxy"
@@ -12151,7 +12151,7 @@ rust = "reqwest::NoProxy"
 
 [[mappings.types]]
 python = "Pool"
-rust = "reqwest::async_impl::h3_client::Pool"
+rust = "reqwest::async_impl::h3_client::pool::Pool"
 
 [[mappings.types]]
 python = "ConnectingLock"
@@ -12163,11 +12163,11 @@ rust = "reqwest::async_impl::h3_client::pool::ConnectingWaiter"
 
 [[mappings.types]]
 python = "PoolClient"
-rust = "reqwest::async_impl::h3_client::PoolClient"
+rust = "reqwest::async_impl::h3_client::pool::PoolClient"
 
 [[mappings.types]]
 python = "PoolConnection"
-rust = "reqwest::async_impl::h3_client::PoolConnection"
+rust = "reqwest::async_impl::h3_client::pool::PoolConnection"
 
 [[mappings.types]]
 python = "Client"
@@ -12179,11 +12179,11 @@ rust = "reqwest::ClientBuilder"
 
 [[mappings.types]]
 python = "Body"
-rust = "reqwest::Body"
+rust = "reqwest::async_impl::body::Body"
 
 [[mappings.types]]
 python = "Upgraded"
-rust = "reqwest::Upgraded"
+rust = "reqwest::async_impl::upgrade::Upgraded"
 
 [[mappings.types]]
 python = "Request"
@@ -12203,7 +12203,7 @@ rust = "reqwest::async_impl::multipart::Form"
 
 [[mappings.types]]
 python = "Part"
-rust = "reqwest::Part"
+rust = "reqwest::async_impl::multipart::Part"
 
 [[mappings.types]]
 python = "Policy"
@@ -12235,11 +12235,11 @@ rust = "reqwest::tls::Version"
 
 [[mappings.types]]
 python = "TlsInfo"
-rust = "reqwest::TlsInfo"
+rust = "reqwest::tls::TlsInfo"
 
 [[mappings.types]]
 python = "Cookie"
-rust = "reqwest::Cookie"
+rust = "reqwest::cookie::Cookie"
 
 [[mappings.types]]
 python = "Jar"
@@ -12247,7 +12247,7 @@ rust = "reqwest::cookie::Jar"
 
 [[mappings.types]]
 python = "CookieService"
-rust = "reqwest::CookieService"
+rust = "reqwest::cookie::CookieService"
 
 [[mappings.types]]
 python = "Error"
@@ -12263,7 +12263,7 @@ rust = "reqwest::ClientBuilder"
 
 [[mappings.types]]
 python = "Body"
-rust = "reqwest::Body"
+rust = "reqwest::blocking::body::Body"
 
 [[mappings.types]]
 python = "Request"
@@ -12283,7 +12283,7 @@ rust = "reqwest::blocking::multipart::Form"
 
 [[mappings.types]]
 python = "Part"
-rust = "reqwest::Part"
+rust = "reqwest::blocking::multipart::Part"
 
 [[mappings.types]]
 python = "Action"
@@ -12292,3 +12292,20 @@ rust = "reqwest::retry::Action"
 [[mappings.types]]
 python = "Connecting"
 rust = "reqwest::async_impl::h3_client::pool::Connecting"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "Action.Success"
+rust = "reqwest::retry::Action::Success"
+
+[[mappings.enum_variants]]
+python = "Action.Retryable"
+rust = "reqwest::retry::Action::Retryable"
+
+[[mappings.enum_variants]]
+python = "Connecting.InProgress"
+rust = "reqwest::async_impl::h3_client::pool::Connecting::InProgress"
+
+[[mappings.enum_variants]]
+python = "Connecting.Acquired"
+rust = "reqwest::async_impl::h3_client::pool::Connecting::Acquired"

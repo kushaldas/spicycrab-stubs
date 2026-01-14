@@ -11,6 +11,9 @@ toml = "0.9.11+spec-1.1.0"
 available = ["debug", "default", "display", "fast_hash", "parse", "preserve_order", "serde", "std", "unbounded"]
 default = ["display", "parse", "serde", "std"]
 
+# NOTE: Detected 2 macros without stubs: toml, toml_internal
+# To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
+
 [[mappings.functions]]
 python = "toml.to_string"
 rust_code = "toml::to_string({arg0})"
@@ -69,8 +72,8 @@ param_types = ["&'dmutBuffer"]
 
 [[mappings.functions]]
 python = "toml.Buffer.new"
-rust_code = "toml::ser::document::Buffer::new()"
-rust_imports = ["toml::ser::document::Buffer"]
+rust_code = "toml::ser::document::buffer::Buffer::new()"
+rust_imports = ["toml::ser::document::buffer::Buffer"]
 needs_result = false
 
 [[mappings.functions]]
@@ -103,34 +106,34 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "toml.Map.new"
-rust_code = "toml::Map::new()"
-rust_imports = ["toml::Map"]
+rust_code = "toml::map::Map::new()"
+rust_imports = ["toml::map::Map"]
 needs_result = false
 
 [[mappings.functions]]
 python = "toml.Map.with_capacity"
-rust_code = "toml::Map::with_capacity({arg0})"
-rust_imports = ["toml::Map"]
+rust_code = "toml::map::Map::with_capacity({arg0})"
+rust_imports = ["toml::map::Map"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "toml.Map.with_capacity"
-rust_code = "toml::Map::with_capacity({arg0})"
-rust_imports = ["toml::Map"]
+rust_code = "toml::map::Map::with_capacity({arg0})"
+rust_imports = ["toml::map::Map"]
 needs_result = false
 param_types = ["usize"]
 
 [[mappings.functions]]
 python = "toml.Map.default"
-rust_code = "toml::Map::default()"
-rust_imports = ["toml::Map"]
+rust_code = "toml::map::Map::default()"
+rust_imports = ["toml::map::Map"]
 needs_result = false
 
 [[mappings.functions]]
 python = "toml.Map.from_iter"
-rust_code = "toml::Map::from_iter({arg0})"
-rust_imports = ["toml::Map"]
+rust_code = "toml::map::Map::from_iter({arg0})"
+rust_imports = ["toml::map::Map"]
 needs_result = false
 param_types = ["T"]
 
@@ -157,22 +160,22 @@ param_types = ["Spanned<DeValue<'i>>"]
 
 [[mappings.functions]]
 python = "toml.Deserializer.parse"
-rust_code = "toml::Deserializer::parse({arg0})"
-rust_imports = ["toml::Deserializer"]
+rust_code = "toml::de::deserializer::Deserializer::parse({arg0})"
+rust_imports = ["toml::de::deserializer::Deserializer"]
 needs_result = true
 param_types = ["&'istr"]
 
 [[mappings.functions]]
 python = "toml.Deserializer.new"
-rust_code = "toml::Deserializer::new({arg0})"
-rust_imports = ["toml::Deserializer"]
+rust_code = "toml::de::deserializer::Deserializer::new({arg0})"
+rust_imports = ["toml::de::deserializer::Deserializer"]
 needs_result = true
 param_types = ["&'istr"]
 
 [[mappings.functions]]
 python = "toml.Deserializer.from_"
-rust_code = "toml::Deserializer::from({arg0})"
-rust_imports = ["toml::Deserializer"]
+rust_code = "toml::de::deserializer::Deserializer::from({arg0})"
+rust_imports = ["toml::de::deserializer::Deserializer"]
 needs_result = false
 param_types = ["Spanned<DeTable<'i>>"]
 
@@ -1764,7 +1767,7 @@ rust = "toml::ser::document::Serializer"
 
 [[mappings.types]]
 python = "Buffer"
-rust = "toml::ser::document::Buffer"
+rust = "toml::ser::document::buffer::Buffer"
 
 [[mappings.types]]
 python = "SerializeDatetime"
@@ -1780,7 +1783,7 @@ rust = "toml::ser::value::map::SerializeStructVariant"
 
 [[mappings.types]]
 python = "SerializeValueArray"
-rust = "toml::SerializeValueArray"
+rust = "toml::ser::value::array::SerializeValueArray"
 
 [[mappings.types]]
 python = "SerializeTupleVariant"
@@ -1796,7 +1799,7 @@ rust = "toml::Error"
 
 [[mappings.types]]
 python = "Map"
-rust = "toml::Map"
+rust = "toml::map::Map"
 
 [[mappings.types]]
 python = "VacantEntry"
@@ -1836,7 +1839,7 @@ rust = "toml::ValueDeserializer"
 
 [[mappings.types]]
 python = "Deserializer"
-rust = "toml::Deserializer"
+rust = "toml::de::deserializer::Deserializer"
 
 [[mappings.types]]
 python = "DeInteger"
@@ -1856,7 +1859,7 @@ rust = "toml::Error"
 
 [[mappings.types]]
 python = "SerializeMap"
-rust = "toml::ser::value::SerializeMap"
+rust = "toml::ser::value::map::SerializeMap"
 
 [[mappings.types]]
 python = "Entry"
@@ -1869,3 +1872,76 @@ rust = "toml::de::parser::devalue::DeValue"
 [[mappings.types]]
 python = "Value"
 rust = "toml::Value"
+
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "SerializeMap.Datetime"
+rust = "toml::ser::value::map::SerializeMap::Datetime"
+
+[[mappings.enum_variants]]
+python = "SerializeMap.Table"
+rust = "toml::ser::value::map::SerializeMap::Table"
+
+[[mappings.enum_variants]]
+python = "Entry.Vacant"
+rust = "toml::map::Entry::Vacant"
+
+[[mappings.enum_variants]]
+python = "Entry.Occupied"
+rust = "toml::map::Entry::Occupied"
+
+[[mappings.enum_variants]]
+python = "DeValue.String"
+rust = "toml::de::parser::devalue::DeValue::String"
+
+[[mappings.enum_variants]]
+python = "DeValue.Integer"
+rust = "toml::de::parser::devalue::DeValue::Integer"
+
+[[mappings.enum_variants]]
+python = "DeValue.Float"
+rust = "toml::de::parser::devalue::DeValue::Float"
+
+[[mappings.enum_variants]]
+python = "DeValue.Boolean"
+rust = "toml::de::parser::devalue::DeValue::Boolean"
+
+[[mappings.enum_variants]]
+python = "DeValue.Datetime"
+rust = "toml::de::parser::devalue::DeValue::Datetime"
+
+[[mappings.enum_variants]]
+python = "DeValue.Array"
+rust = "toml::de::parser::devalue::DeValue::Array"
+
+[[mappings.enum_variants]]
+python = "DeValue.Table"
+rust = "toml::de::parser::devalue::DeValue::Table"
+
+[[mappings.enum_variants]]
+python = "Value.String"
+rust = "toml::Value::String"
+
+[[mappings.enum_variants]]
+python = "Value.Integer"
+rust = "toml::Value::Integer"
+
+[[mappings.enum_variants]]
+python = "Value.Float"
+rust = "toml::Value::Float"
+
+[[mappings.enum_variants]]
+python = "Value.Boolean"
+rust = "toml::Value::Boolean"
+
+[[mappings.enum_variants]]
+python = "Value.Datetime"
+rust = "toml::Value::Datetime"
+
+[[mappings.enum_variants]]
+python = "Value.Array"
+rust = "toml::Value::Array"
+
+[[mappings.enum_variants]]
+python = "Value.Table"
+rust = "toml::Value::Table"

@@ -7,6 +7,14 @@ from __future__ import annotations
 
 from typing import Self
 
+def json(value: Any) -> "Value":
+    """Convert a Python value to a serde_json::Value.
+
+    Uses the serde_json::json! macro.
+    """
+    ...
+
+
 class Map:
     """Represents a JSON key/value type."""
 
