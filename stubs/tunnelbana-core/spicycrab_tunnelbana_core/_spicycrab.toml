@@ -1,0 +1,234 @@
+[package]
+name = "tunnelbana-core"
+rust_crate = "tunnelbana_core"
+rust_version = "0.2.0"
+python_module = "spicycrab_tunnelbana_core"
+
+[cargo.dependencies]
+tunnelbana-core = { path = "/home/kdas/code/xml/tunnelbana/crates/tunnelbana-core" }
+async-trait = "0.1"
+serde_json = "1"
+
+[[mappings.functions]]
+python = "tunnelbana-core.Result.Ok"
+rust_code = "Ok({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Result.Err"
+rust_code = "Err({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.InternalData.request"
+rust_code = "tunnelbana_core::InternalData::request({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Response.new"
+rust_code = "tunnelbana_core::Response::new({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Response.text"
+rust_code = "tunnelbana_core::Response::text({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Response.redirect"
+rust_code = "tunnelbana_core::Response::redirect({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Route.new"
+rust_code = "tunnelbana_core::Route::new({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Error.Config"
+rust_code = "tunnelbana_core::Error::Config({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Error.Authn"
+rust_code = "tunnelbana_core::Error::Authn({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Error.Internal"
+rust_code = "tunnelbana_core::Error::Internal({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "tunnelbana-core.Error.BadRequest"
+rust_code = "tunnelbana_core::Error::BadRequest({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "InternalData.attr_first"
+rust_code = "{self}.attr_first({arg0}).map(|s| s.to_string())"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+returns = "Option<String>"
+
+[[mappings.methods]]
+python = "InternalData.set_attr"
+rust_code = "{self}.set_attr({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["impl Into<String>", "impl Into<String>"]
+
+[[mappings.methods]]
+python = "InternalData.set_extension"
+rust_code = "{self}.set_extension({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "InternalData.extension"
+rust_code = "{self}.extension({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+returns = "Option<&serde_json::Value>"
+
+[[mappings.methods]]
+python = "Context.decorate"
+rust_code = "{self}.decorate({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Context.decoration"
+rust_code = "{self}.decoration({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Context.requester"
+rust_code = "{self}.requester()"
+rust_imports = []
+needs_result = false
+returns = "Option<String>"
+
+[[mappings.methods]]
+python = "State.get_str"
+rust_code = "{self}.get_str({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+returns = "Option<String>"
+
+[[mappings.methods]]
+python = "State.set_str"
+rust_code = "{self}.set_str({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str", "impl Into<String>"]
+
+[[mappings.methods]]
+python = "State.get_value"
+rust_code = "{self}.get_value({arg0}, {arg1}).cloned()"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str"]
+returns = "Option<serde_json::Value>"
+
+[[mappings.methods]]
+python = "State.set_value"
+rust_code = "{self}.set_value({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str", "serde_json::Value"]
+
+[[mappings.methods]]
+python = "State.clear_namespace"
+rust_code = "{self}.clear_namespace({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Response.with_header"
+rust_code = "{self}.with_header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Response"
+
+[[mappings.methods]]
+python = "Response.with_body"
+rust_code = "{self}.with_body({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Response"
+
+[[mappings.types]]
+python = "Context"
+rust = "tunnelbana_core::Context"
+
+[[mappings.types]]
+python = "InternalData"
+rust = "tunnelbana_core::InternalData"
+
+[[mappings.types]]
+python = "AuthenticationInformation"
+rust = "tunnelbana_core::AuthenticationInformation"
+
+[[mappings.types]]
+python = "SubjectType"
+rust = "tunnelbana_core::SubjectType"
+
+[[mappings.types]]
+python = "Response"
+rust = "tunnelbana_core::Response"
+
+[[mappings.types]]
+python = "Route"
+rust = "tunnelbana_core::Route"
+
+[[mappings.types]]
+python = "BuildContext"
+rust = "tunnelbana_core::BuildContext"
+
+[[mappings.types]]
+python = "State"
+rust = "tunnelbana_core::State"
+
+[[mappings.types]]
+python = "Registry"
+rust = "tunnelbana_core::Registry"
+
+[[mappings.types]]
+python = "MicroService"
+rust = "tunnelbana_core::MicroService"
+
+[[mappings.types]]
+python = "Frontend"
+rust = "Box<dyn tunnelbana_core::Frontend>"
+
+[[mappings.types]]
+python = "Backend"
+rust = "Box<dyn tunnelbana_core::Backend>"
+
+[[mappings.types]]
+python = "Result"
+rust = "tunnelbana_core::Result"
+
+[[mappings.types]]
+python = "Error"
+rust = "tunnelbana_core::Error"

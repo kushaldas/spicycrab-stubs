@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-grindvakt"
+version = "0.6.1"
+description = "spicycrab type stubs for the grindvakt Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+grindvakt = "spicycrab_grindvakt"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_grindvakt"]

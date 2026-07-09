@@ -1,0 +1,218 @@
+[package]
+name = "grindvakt"
+rust_crate = "grindvakt"
+rust_version = "0.6.1"
+python_module = "spicycrab_grindvakt"
+
+[cargo.dependencies]
+grindvakt = { path = "/home/kdas/code/xml/grindvakt" }
+
+[[mappings.functions]]
+python = "grindvakt.signing_key_from_jwk_json"
+rust_code = "grindvakt::signing_key_from_jwk_json({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "Option<&str>", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.signing_key_from_pem"
+rust_code = "grindvakt::signing_key_from_pem({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+param_types = ["&[u8]", "Option<&str>", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.hmac_sha256"
+rust_code = "grindvakt::mac::hmac_sha256({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "grindvakt.sha256"
+rust_code = "grindvakt::mac::sha256({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]"]
+
+[[mappings.functions]]
+python = "grindvakt.constant_time_eq"
+rust_code = "grindvakt::mac::constant_time_eq({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["&[u8]", "&[u8]"]
+
+[[mappings.functions]]
+python = "grindvakt.s256_challenge"
+rust_code = "grindvakt::pkce::s256_challenge({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_pkce"
+rust_code = "grindvakt::pkce::verify({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+param_types = ["&str", "&str", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.Response.new"
+rust_code = "grindvakt::Response::new({arg0} as u16)"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.Response.redirect"
+rust_code = "grindvakt::Response::redirect({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.Response.html"
+rust_code = "grindvakt::Response::html({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.Response.json"
+rust_code = "grindvakt::Response::json({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
+python = "grindvakt.Response.json_status"
+rust_code = "grindvakt::Response::json_status({arg0} as u16, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["u16", "&T"]
+
+[[mappings.functions]]
+python = "grindvakt.Response.text"
+rust_code = "grindvakt::Response::text({arg0} as u16, {arg1})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.ProviderMetadata.new"
+rust_code = "grindvakt::ProviderMetadata::new({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["impl Into<String>", "&str"]
+
+[[mappings.methods]]
+python = "HttpRequestData.param"
+rust_code = "{self}.param({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+returns = "Option<&str>"
+
+[[mappings.methods]]
+python = "HttpRequestData.authorization"
+rust_code = "{self}.authorization()"
+rust_imports = []
+needs_result = false
+returns = "Option<&str>"
+
+[[mappings.methods]]
+python = "HttpRequestData.bearer_token"
+rust_code = "{self}.bearer_token()"
+rust_imports = []
+needs_result = false
+returns = "Option<&str>"
+
+[[mappings.methods]]
+python = "Response.with_header"
+rust_code = "{self}.with_header({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "Response"
+param_types = ["impl Into<String>", "impl Into<String>"]
+
+[[mappings.methods]]
+python = "Response.with_body"
+rust_code = "{self}.with_body({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Response"
+
+[[mappings.methods]]
+python = "HttpFetchResponse.text"
+rust_code = "{self}.text()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "HttpFetchResponse.json"
+rust_code = "{self}.json()"
+rust_imports = []
+needs_result = true
+returns = "serde_json::Value"
+
+[[mappings.methods]]
+python = "SigningKey.kid"
+rust_code = "{self}.kid()"
+rust_imports = []
+needs_result = false
+returns = "Option<&str>"
+
+[[mappings.methods]]
+python = "SigningKey.public_jwk"
+rust_code = "{self}.public_jwk()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SigningKey.to_public_jwks"
+rust_code = "{self}.to_public_jwks()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ProviderMetadata.to_json"
+rust_code = "{self}.to_json()"
+rust_imports = []
+needs_result = false
+returns = "serde_json::Value"
+
+[[mappings.methods]]
+python = "Error.status_hint"
+rust_code = "{self}.status_hint()"
+rust_imports = []
+needs_result = false
+returns = "u16"
+
+[[mappings.types]]
+python = "Error"
+rust = "grindvakt::Error"
+
+[[mappings.types]]
+python = "Result"
+rust = "grindvakt::Result"
+
+[[mappings.types]]
+python = "HttpRequestData"
+rust = "grindvakt::HttpRequestData"
+
+[[mappings.types]]
+python = "Response"
+rust = "grindvakt::Response"
+
+[[mappings.types]]
+python = "HttpFetchResponse"
+rust = "grindvakt::HttpFetchResponse"
+
+[[mappings.types]]
+python = "HttpClient"
+rust = "grindvakt::HttpClient"
+
+[[mappings.types]]
+python = "SigningKey"
+rust = "grindvakt::SigningKey"
+
+[[mappings.types]]
+python = "ProviderMetadata"
+rust = "grindvakt::ProviderMetadata"
