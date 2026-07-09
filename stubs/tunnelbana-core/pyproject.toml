@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spicycrab-tunnelbana-core"
+version = "0.2.0"
+description = "spicycrab type stubs for the tunnelbana-core Rust crate"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.entry-points."spicycrab.stubs"]
+tunnelbana-core = "spicycrab_tunnelbana_core"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spicycrab_tunnelbana_core"]

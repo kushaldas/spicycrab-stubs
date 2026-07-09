@@ -1,0 +1,269 @@
+[package]
+name = "tunnelbana-plugins"
+rust_crate = "tunnelbana_plugins"
+rust_version = "0.2.0"
+python_module = "spicycrab_tunnelbana_plugins"
+
+[cargo.dependencies]
+tunnelbana-core = { path = "/home/kdas/code/xml/tunnelbana/crates/tunnelbana-core" }
+tunnelbana-plugins = { path = "/home/kdas/code/xml/tunnelbana/crates/tunnelbana-plugins" }
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.register_all"
+rust_code = "tunnelbana_plugins::register_all({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mut tunnelbana_core::Registry"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.OidcFrontend.build"
+rust_code = "tunnelbana_plugins::oidc_frontend::OidcFrontend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.FederationFrontend.build"
+rust_code = "tunnelbana_plugins::federation_frontend::FederationFrontend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.Saml2Frontend.build"
+rust_code = "tunnelbana_plugins::saml2_frontend::Saml2Frontend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.OidcBackend.build"
+rust_code = "tunnelbana_plugins::oidc_backend::OidcBackend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.FederationBackend.build"
+rust_code = "tunnelbana_plugins::federation_backend::FederationBackend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.Saml2Backend.build"
+rust_code = "tunnelbana_plugins::saml2_backend::Saml2Backend::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.StaticAttributes.build"
+rust_code = "tunnelbana_plugins::microservices::StaticAttributes::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.FilterAttributes.build"
+rust_code = "tunnelbana_plugins::microservices::FilterAttributes::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.CustomRouting.build"
+rust_code = "tunnelbana_plugins::microservices::CustomRouting::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.AttributeProcessor.build"
+rust_code = "tunnelbana_plugins::microservices::AttributeProcessor::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.AttributeAuthorization.build"
+rust_code = "tunnelbana_plugins::microservices::AttributeAuthorization::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.FilterAttributeValues.build"
+rust_code = "tunnelbana_plugins::microservices::FilterAttributeValues::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.RenameAttributes.build"
+rust_code = "tunnelbana_plugins::microservices::RenameAttributes::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.AttributeGeneration.build"
+rust_code = "tunnelbana_plugins::microservices::AttributeGeneration::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.Hasher.build"
+rust_code = "tunnelbana_plugins::microservices::Hasher::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.LegacyEptid.build"
+rust_code = "tunnelbana_plugins::microservices::LegacyEptid::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.PrimaryIdentifier.build"
+rust_code = "tunnelbana_plugins::microservices::PrimaryIdentifier::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.IdpHinting.build"
+rust_code = "tunnelbana_plugins::microservices::IdpHinting::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.CustomLogging.build"
+rust_code = "tunnelbana_plugins::microservices::CustomLogging::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.PairwiseId.build"
+rust_code = "tunnelbana_plugins::microservices::PairwiseId::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.StaticAttributesForVirtualIdp.build"
+rust_code = "tunnelbana_plugins::microservices::StaticAttributesForVirtualIdp::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.NameId.build"
+rust_code = "tunnelbana_plugins::microservices::NameId::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.functions]]
+python = "tunnelbana-plugins.Accr.build"
+rust_code = "tunnelbana_plugins::microservices::Accr::build({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&tunnelbana_core::BuildContext"]
+
+[[mappings.types]]
+python = "OidcFrontend"
+rust = "tunnelbana_plugins::oidc_frontend::OidcFrontend"
+
+[[mappings.types]]
+python = "FederationFrontend"
+rust = "tunnelbana_plugins::federation_frontend::FederationFrontend"
+
+[[mappings.types]]
+python = "Saml2Frontend"
+rust = "tunnelbana_plugins::saml2_frontend::Saml2Frontend"
+
+[[mappings.types]]
+python = "OidcBackend"
+rust = "tunnelbana_plugins::oidc_backend::OidcBackend"
+
+[[mappings.types]]
+python = "FederationBackend"
+rust = "tunnelbana_plugins::federation_backend::FederationBackend"
+
+[[mappings.types]]
+python = "Saml2Backend"
+rust = "tunnelbana_plugins::saml2_backend::Saml2Backend"
+
+[[mappings.types]]
+python = "StaticAttributes"
+rust = "tunnelbana_plugins::microservices::StaticAttributes"
+
+[[mappings.types]]
+python = "FilterAttributes"
+rust = "tunnelbana_plugins::microservices::FilterAttributes"
+
+[[mappings.types]]
+python = "CustomRouting"
+rust = "tunnelbana_plugins::microservices::CustomRouting"
+
+[[mappings.types]]
+python = "AttributeProcessor"
+rust = "tunnelbana_plugins::microservices::AttributeProcessor"
+
+[[mappings.types]]
+python = "AttributeAuthorization"
+rust = "tunnelbana_plugins::microservices::AttributeAuthorization"
+
+[[mappings.types]]
+python = "FilterAttributeValues"
+rust = "tunnelbana_plugins::microservices::FilterAttributeValues"
+
+[[mappings.types]]
+python = "RenameAttributes"
+rust = "tunnelbana_plugins::microservices::RenameAttributes"
+
+[[mappings.types]]
+python = "AttributeGeneration"
+rust = "tunnelbana_plugins::microservices::AttributeGeneration"
+
+[[mappings.types]]
+python = "Hasher"
+rust = "tunnelbana_plugins::microservices::Hasher"
+
+[[mappings.types]]
+python = "LegacyEptid"
+rust = "tunnelbana_plugins::microservices::LegacyEptid"
+
+[[mappings.types]]
+python = "PrimaryIdentifier"
+rust = "tunnelbana_plugins::microservices::PrimaryIdentifier"
+
+[[mappings.types]]
+python = "IdpHinting"
+rust = "tunnelbana_plugins::microservices::IdpHinting"
+
+[[mappings.types]]
+python = "CustomLogging"
+rust = "tunnelbana_plugins::microservices::CustomLogging"
+
+[[mappings.types]]
+python = "PairwiseId"
+rust = "tunnelbana_plugins::microservices::PairwiseId"
+
+[[mappings.types]]
+python = "StaticAttributesForVirtualIdp"
+rust = "tunnelbana_plugins::microservices::StaticAttributesForVirtualIdp"
+
+[[mappings.types]]
+python = "NameId"
+rust = "tunnelbana_plugins::microservices::NameId"
+
+[[mappings.types]]
+python = "Accr"
+rust = "tunnelbana_plugins::microservices::Accr"
