@@ -48,6 +48,9 @@ Pre-generated stubs in `stubs/` directory:
 | [sha2](stubs/sha2) | 0.10.9 | SHA-2 hash functions |
 | [tokio](stubs/tokio) | 1.49.0 | Async runtime |
 | [toml](stubs/toml) | 0.9.11 | TOML parsing |
+| [tunnelbana-core](stubs/tunnelbana-core) | 0.2.0 | tunnelbana core plugin API |
+| [tunnelbana-plugins](stubs/tunnelbana-plugins) | 0.2.0 | tunnelbana built-in plugin registry |
+| [grindvakt](stubs/grindvakt) | 0.6.1 | Shared HTTP, error, key, MAC, and PKCE primitives |
 | [ureq](stubs/ureq) | 3.1.4 | Simple HTTP client |
 
 ## Examples
