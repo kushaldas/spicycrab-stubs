@@ -74,6 +74,19 @@ make an API for sending requests."""
 
     def fmt(self, f: Formatter) -> Result: ...
 
+class Response:
+    """HTTP response returned after a ureq request is sent."""
+
+    def status(self) -> object: ...
+
+    def headers(self) -> object: ...
+
+    def headers_debug(self) -> str: ...
+
+    def body_mut(self) -> Body: ...
+
+    def into_body(self) -> Body: ...
+
 class WithoutBody:
     """Typestate when [`RequestBuilder`] has no send body.
 

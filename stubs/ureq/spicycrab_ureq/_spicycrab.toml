@@ -572,6 +572,39 @@ returns = "Response"
 param_types = ["implserde::ser::Serialize"]
 
 [[mappings.methods]]
+python = "Response.status"
+rust_code = "{self}.status()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Response.headers"
+rust_code = "{self}.headers()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Response.headers_debug"
+rust_code = "format!(\"{:?}\", {self}.headers())"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "Response.body_mut"
+rust_code = "{self}.body_mut()"
+rust_imports = []
+needs_result = false
+returns = "Body"
+
+[[mappings.methods]]
+python = "Response.into_body"
+rust_code = "{self}.into_body()"
+rust_imports = []
+needs_result = false
+returns = "Body"
+
+[[mappings.methods]]
 python = "RequestBuilder.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
@@ -2264,11 +2297,11 @@ rust = "ureq::RequestBuilder"
 
 [[mappings.types]]
 python = "WithoutBody"
-rust = "ureq::WithoutBody"
+rust = "ureq::typestate::WithoutBody"
 
 [[mappings.types]]
 python = "WithBody"
-rust = "ureq::WithBody"
+rust = "ureq::typestate::WithBody"
 
 [[mappings.types]]
 python = "Proxy"
@@ -2352,7 +2385,11 @@ rust = "ureq::body::lossy::LossyUtf8Reader"
 
 [[mappings.types]]
 python = "Body"
-rust = "ureq::body::Body"
+rust = "ureq::Body"
+
+[[mappings.types]]
+python = "Response"
+rust = "ureq::http::Response<ureq::Body>"
 
 [[mappings.types]]
 python = "BodyWithConfig"
@@ -2412,7 +2449,7 @@ rust = "ureq::request_ext::WithAgent"
 
 [[mappings.types]]
 python = "Agent"
-rust = "ureq::agent::Agent"
+rust = "ureq::Agent"
 
 [[mappings.types]]
 python = "CookieJar"
