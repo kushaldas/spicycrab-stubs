@@ -1,11 +1,11 @@
 [package]
 name = "clap_builder"
 rust_crate = "clap_builder"
-rust_version = "4.5.54"
+rust_version = "4.6.0"
 python_module = "spicycrab_clap_builder"
 
 [cargo.dependencies]
-clap_builder = "4.5.54"
+clap_builder = "4.6.0"
 
 [cargo.features]
 available = ["cargo", "color", "debug", "default", "deprecated", "env", "error-context", "help", "std", "string", "suggestions", "unicode", "unstable-doc", "unstable-ext", "unstable-styles", "unstable-v5", "usage", "wrap_help"]
@@ -155,13 +155,6 @@ needs_result = false
 # To use these macros, add signatures to CRATE_MACRO_STUBS in generator.py
 
 [[mappings.functions]]
-python = "clap_builder.AnyValueId.from_"
-rust_code = "clap_builder::util::any_value::AnyValueId::from({arg0})"
-rust_imports = ["clap_builder::util::any_value::AnyValueId"]
-needs_result = false
-param_types = ["&'aA"]
-
-[[mappings.functions]]
 python = "clap_builder.Id.from_"
 rust_code = "clap_builder::util::id::Id::from({arg0})"
 rust_imports = ["clap_builder::util::id::Id"]
@@ -216,6 +209,55 @@ rust_code = "clap_builder::util::id::Id::from({arg0})"
 rust_imports = ["clap_builder::util::id::Id"]
 needs_result = false
 param_types = ["Cow<'static,str>"]
+
+[[mappings.functions]]
+python = "clap_builder.AnyValueId.from_"
+rust_code = "clap_builder::util::any_value::AnyValueId::from({arg0})"
+rust_imports = ["clap_builder::util::any_value::AnyValueId"]
+needs_result = false
+param_types = ["&'aA"]
+
+[[mappings.functions]]
+python = "clap_builder.KindFormatter.format_error"
+rust_code = "clap_builder::KindFormatter::format_error({arg0})"
+rust_imports = ["clap_builder::KindFormatter"]
+needs_result = false
+param_types = ["&crate::error::Error<Self>"]
+
+[[mappings.functions]]
+python = "clap_builder.RichFormatter.format_error"
+rust_code = "clap_builder::RichFormatter::format_error({arg0})"
+rust_imports = ["clap_builder::RichFormatter"]
+needs_result = false
+param_types = ["&crate::error::Error<Self>"]
+
+[[mappings.functions]]
+python = "clap_builder.Error.raw"
+rust_code = "clap_builder::Error::raw({arg0}, {arg1})"
+rust_imports = ["clap_builder::Error"]
+needs_result = false
+param_types = ["ErrorKind", "implDisplay"]
+
+[[mappings.functions]]
+python = "clap_builder.Error.new"
+rust_code = "clap_builder::Error::new({arg0})"
+rust_imports = ["clap_builder::Error"]
+needs_result = false
+param_types = ["ErrorKind"]
+
+[[mappings.functions]]
+python = "clap_builder.Error.from_"
+rust_code = "clap_builder::Error::from({arg0})"
+rust_imports = ["clap_builder::Error"]
+needs_result = false
+param_types = ["io::Error"]
+
+[[mappings.functions]]
+python = "clap_builder.Error.from_"
+rust_code = "clap_builder::Error::from({arg0})"
+rust_imports = ["clap_builder::Error"]
+needs_result = false
+param_types = ["fmt::Error"]
 
 [[mappings.functions]]
 python = "clap_builder.Values.default"
@@ -322,81 +364,18 @@ needs_result = false
 param_types = ["std::ops::RangeToInclusive<usize>"]
 
 [[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
+python = "clap_builder.PossibleValue.new"
+rust_code = "clap_builder::PossibleValue::new({arg0})"
+rust_imports = ["clap_builder::PossibleValue"]
 needs_result = false
-param_types = ["Id"]
+param_types = ["implInto<Str>"]
 
 [[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
+python = "clap_builder.PossibleValue.from_"
+rust_code = "clap_builder::PossibleValue::from({arg0})"
+rust_imports = ["clap_builder::PossibleValue"]
 needs_result = false
-param_types = ["&'_Str"]
-
-[[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
-needs_result = false
-param_types = ["String"]
-
-[[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
-needs_result = false
-param_types = ["&'_String"]
-
-[[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
-needs_result = false
-param_types = ["&'staticstr"]
-
-[[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
-needs_result = false
-param_types = ["&'_&'staticstr"]
-
-[[mappings.functions]]
-python = "clap_builder.Str.from_"
-rust_code = "clap_builder::builder::str::Str::from({arg0})"
-rust_imports = ["clap_builder::builder::str::Str"]
-needs_result = false
-param_types = ["Cow<'static,str>"]
-
-[[mappings.functions]]
-python = "clap_builder.Arg.new"
-rust_code = "clap_builder::Arg::new({arg0})"
-rust_imports = ["clap_builder::Arg"]
-needs_result = false
-param_types = ["implInto<Id>"]
-
-[[mappings.functions]]
-python = "clap_builder.Arg.from_"
-rust_code = "clap_builder::Arg::from({arg0})"
-rust_imports = ["clap_builder::Arg"]
-needs_result = false
-param_types = ["&Arg"]
-
-[[mappings.functions]]
-python = "clap_builder.ArgGroup.new"
-rust_code = "clap_builder::ArgGroup::new({arg0})"
-rust_imports = ["clap_builder::ArgGroup"]
-needs_result = false
-param_types = ["implInto<Id>"]
-
-[[mappings.functions]]
-python = "clap_builder.ArgGroup.from_"
-rust_code = "clap_builder::ArgGroup::from({arg0})"
-rust_imports = ["clap_builder::ArgGroup"]
-needs_result = false
-param_types = ["&ArgGroup"]
+param_types = ["S"]
 
 [[mappings.functions]]
 python = "clap_builder.ValueParser.new"
@@ -668,65 +647,6 @@ rust_imports = ["clap_builder::builder::value_parser::_infer_ValueParser_for"]
 needs_result = false
 
 [[mappings.functions]]
-python = "clap_builder.StyledStr.new"
-rust_code = "clap_builder::StyledStr::new()"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-
-[[mappings.functions]]
-python = "clap_builder.StyledStr.from_"
-rust_code = "clap_builder::StyledStr::from({arg0})"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-param_types = ["String"]
-
-[[mappings.functions]]
-python = "clap_builder.StyledStr.from_"
-rust_code = "clap_builder::StyledStr::from({arg0})"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-param_types = ["&'_String"]
-
-[[mappings.functions]]
-python = "clap_builder.StyledStr.from_"
-rust_code = "clap_builder::StyledStr::from({arg0})"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-param_types = ["&'staticstr"]
-
-[[mappings.functions]]
-python = "clap_builder.StyledStr.from_"
-rust_code = "clap_builder::StyledStr::from({arg0})"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-param_types = ["&'_&'staticstr"]
-
-[[mappings.functions]]
-python = "clap_builder.StyledStr.from_"
-rust_code = "clap_builder::StyledStr::from({arg0})"
-rust_imports = ["clap_builder::StyledStr"]
-needs_result = false
-param_types = ["Cow<'static,str>"]
-
-[[mappings.functions]]
-python = "clap_builder.Styles.plain"
-rust_code = "clap_builder::builder::styling::Styles::plain()"
-rust_imports = ["clap_builder::builder::styling::Styles"]
-needs_result = false
-
-[[mappings.functions]]
-python = "clap_builder.Styles.styled"
-rust_code = "clap_builder::builder::styling::Styles::styled()"
-rust_imports = ["clap_builder::builder::styling::Styles"]
-needs_result = false
-
-[[mappings.functions]]
-python = "clap_builder.Styles.default"
-rust_code = "clap_builder::builder::styling::Styles::default()"
-rust_imports = ["clap_builder::builder::styling::Styles"]
-needs_result = false
-
-[[mappings.functions]]
 python = "clap_builder.OsStr.from_"
 rust_code = "clap_builder::OsStr::from({arg0})"
 rust_imports = ["clap_builder::OsStr"]
@@ -838,104 +758,140 @@ needs_result = false
 param_types = ["&'_Command"]
 
 [[mappings.functions]]
-python = "clap_builder.PossibleValue.new"
-rust_code = "clap_builder::PossibleValue::new({arg0})"
-rust_imports = ["clap_builder::PossibleValue"]
+python = "clap_builder.Styles.plain"
+rust_code = "clap_builder::builder::styling::Styles::plain()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
-param_types = ["implInto<Str>"]
 
 [[mappings.functions]]
-python = "clap_builder.PossibleValue.from_"
-rust_code = "clap_builder::PossibleValue::from({arg0})"
-rust_imports = ["clap_builder::PossibleValue"]
+python = "clap_builder.Styles.styled"
+rust_code = "clap_builder::builder::styling::Styles::styled()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
-param_types = ["S"]
 
 [[mappings.functions]]
-python = "clap_builder.KindFormatter.format_error"
-rust_code = "clap_builder::KindFormatter::format_error({arg0})"
-rust_imports = ["clap_builder::KindFormatter"]
+python = "clap_builder.Styles.default"
+rust_code = "clap_builder::builder::styling::Styles::default()"
+rust_imports = ["clap_builder::builder::styling::Styles"]
 needs_result = false
-param_types = ["&crate::error::Error<Self>"]
 
 [[mappings.functions]]
-python = "clap_builder.RichFormatter.format_error"
-rust_code = "clap_builder::RichFormatter::format_error({arg0})"
-rust_imports = ["clap_builder::RichFormatter"]
+python = "clap_builder.ArgGroup.new"
+rust_code = "clap_builder::ArgGroup::new({arg0})"
+rust_imports = ["clap_builder::ArgGroup"]
 needs_result = false
-param_types = ["&crate::error::Error<Self>"]
+param_types = ["implInto<Id>"]
 
 [[mappings.functions]]
-python = "clap_builder.Error.raw"
-rust_code = "clap_builder::Error::raw({arg0}, {arg1})"
-rust_imports = ["clap_builder::Error"]
+python = "clap_builder.ArgGroup.from_"
+rust_code = "clap_builder::ArgGroup::from({arg0})"
+rust_imports = ["clap_builder::ArgGroup"]
 needs_result = false
-param_types = ["ErrorKind", "implDisplay"]
+param_types = ["&ArgGroup"]
 
 [[mappings.functions]]
-python = "clap_builder.Error.new"
-rust_code = "clap_builder::Error::new({arg0})"
-rust_imports = ["clap_builder::Error"]
+python = "clap_builder.Arg.new"
+rust_code = "clap_builder::Arg::new({arg0})"
+rust_imports = ["clap_builder::Arg"]
 needs_result = false
-param_types = ["ErrorKind"]
+param_types = ["implInto<Id>"]
 
 [[mappings.functions]]
-python = "clap_builder.Error.from_"
-rust_code = "clap_builder::Error::from({arg0})"
-rust_imports = ["clap_builder::Error"]
+python = "clap_builder.Arg.from_"
+rust_code = "clap_builder::Arg::from({arg0})"
+rust_imports = ["clap_builder::Arg"]
 needs_result = false
-param_types = ["io::Error"]
+param_types = ["&Arg"]
 
 [[mappings.functions]]
-python = "clap_builder.Error.from_"
-rust_code = "clap_builder::Error::from({arg0})"
-rust_imports = ["clap_builder::Error"]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-param_types = ["fmt::Error"]
+param_types = ["Id"]
 
-[[mappings.methods]]
-python = "AnyValueId.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-param_types = ["&Self"]
+param_types = ["&'_Str"]
 
-[[mappings.methods]]
-python = "AnyValueId.partial_cmp"
-rust_code = "{self}.partial_cmp({arg0})"
-rust_imports = []
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-returns = "Ordering"
-param_types = ["&Self"]
+param_types = ["String"]
 
-[[mappings.methods]]
-python = "AnyValueId.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-param_types = ["&std::any::TypeId"]
+param_types = ["&'_String"]
 
-[[mappings.methods]]
-python = "AnyValueId.cmp"
-rust_code = "{self}.cmp({arg0})"
-rust_imports = []
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-returns = "Ordering"
-param_types = ["&Self"]
+param_types = ["&'staticstr"]
 
-[[mappings.methods]]
-python = "AnyValueId.hash"
-rust_code = "{self}.hash({arg0})"
-rust_imports = []
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
 needs_result = false
-param_types = ["&mutH"]
+param_types = ["&'_&'staticstr"]
 
-[[mappings.methods]]
-python = "AnyValueId.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-param_types = ["&mutstd::fmt::Formatter<'_>"]
+[[mappings.functions]]
+python = "clap_builder.Str.from_"
+rust_code = "clap_builder::builder::str::Str::from({arg0})"
+rust_imports = ["clap_builder::builder::str::Str"]
+needs_result = false
+param_types = ["Cow<'static,str>"]
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.new"
+rust_code = "clap_builder::StyledStr::new()"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.from_"
+rust_code = "clap_builder::StyledStr::from({arg0})"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+param_types = ["String"]
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.from_"
+rust_code = "clap_builder::StyledStr::from({arg0})"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+param_types = ["&'_String"]
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.from_"
+rust_code = "clap_builder::StyledStr::from({arg0})"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+param_types = ["&'staticstr"]
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.from_"
+rust_code = "clap_builder::StyledStr::from({arg0})"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+param_types = ["&'_&'staticstr"]
+
+[[mappings.functions]]
+python = "clap_builder.StyledStr.from_"
+rust_code = "clap_builder::StyledStr::from({arg0})"
+rust_imports = ["clap_builder::StyledStr"]
+needs_result = false
+param_types = ["Cow<'static,str>"]
 
 [[mappings.methods]]
 python = "Id.as_str"
@@ -1001,6 +957,170 @@ rust_code = "{self}.eq({arg0})"
 rust_imports = []
 needs_result = false
 param_types = ["&String"]
+
+[[mappings.methods]]
+python = "AnyValueId.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "AnyValueId.partial_cmp"
+rust_code = "{self}.partial_cmp({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Ordering"
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "AnyValueId.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&std::any::TypeId"]
+
+[[mappings.methods]]
+python = "AnyValueId.cmp"
+rust_code = "{self}.cmp({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Ordering"
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "AnyValueId.hash"
+rust_code = "{self}.hash({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&mutH"]
+
+[[mappings.methods]]
+python = "AnyValueId.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error"
+param_types = ["&mutCommand"]
+
+[[mappings.methods]]
+python = "Error.with_cmd"
+rust_code = "{self}.with_cmd({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error"
+param_types = ["&Command"]
+
+[[mappings.methods]]
+python = "Error.apply"
+rust_code = "{self}.apply()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error"
+
+[[mappings.methods]]
+python = "Error.kind"
+rust_code = "{self}.kind()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ErrorKind"
+
+[[mappings.methods]]
+python = "Error.context"
+rust_code = "{self}.context()"
+rust_imports = []
+needs_result = false
+returns = "implIterator"
+
+[[mappings.methods]]
+python = "Error.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["ContextKind"]
+
+[[mappings.methods]]
+python = "Error.insert"
+rust_code = "{self}.insert({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns = "ContextValue"
+param_types = ["ContextKind", "ContextValue"]
+
+[[mappings.methods]]
+python = "Error.remove"
+rust_code = "{self}.remove({arg0})"
+rust_imports = []
+needs_result = false
+returns = "ContextValue"
+param_types = ["ContextKind"]
+
+[[mappings.methods]]
+python = "Error.use_stderr"
+rust_code = "{self}.use_stderr()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.exit_code"
+rust_code = "{self}.exit_code()"
+rust_imports = []
+needs_result = false
+returns = "i32"
+
+[[mappings.methods]]
+python = "Error.exit"
+rust_code = "{self}.exit()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Error.print"
+rust_code = "{self}.print()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Error.render"
+rust_code = "{self}.render()"
+rust_imports = []
+needs_result = false
+returns = "StyledStr"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns_self = true
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "Error.source"
+rust_code = "{self}.source()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Error+'static)"
+
+[[mappings.methods]]
+python = "Error.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutFormatter<'_>"]
 
 [[mappings.methods]]
 python = "ArgMatches.get_one"
@@ -1519,1239 +1639,73 @@ returns = "Result"
 param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 [[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&Id"]
-
-[[mappings.methods]]
-python = "Str.as_str"
-rust_code = "{self}.as_str()"
-rust_imports = []
-needs_result = false
-returns = "str"
-
-[[mappings.methods]]
-python = "Str.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutstd::fmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "Str.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutstd::fmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "Str.deref"
-rust_code = "{self}.deref()"
-rust_imports = []
-needs_result = false
-returns = "str"
-
-[[mappings.methods]]
-python = "Str.as_ref"
-rust_code = "{self}.as_ref()"
-rust_imports = []
-needs_result = false
-returns = "str"
-
-[[mappings.methods]]
-python = "Str.as_ref"
-rust_code = "{self}.as_ref()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Str.as_ref"
-rust_code = "{self}.as_ref()"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "OsStr"
-
-[[mappings.methods]]
-python = "Str.as_ref"
-rust_code = "{self}.as_ref()"
-rust_imports = []
-needs_result = false
-returns = "Path"
-
-[[mappings.methods]]
-python = "Str.borrow"
-rust_code = "{self}.borrow()"
-rust_imports = []
-needs_result = false
-returns = "str"
-
-[[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&str"]
-
-[[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&&str"]
-
-[[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&std::ffi::OsStr"]
-
-[[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&&std::ffi::OsStr"]
-
-[[mappings.methods]]
-python = "Str.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&String"]
-
-[[mappings.methods]]
-python = "Arg.id"
-rust_code = "{self}.id({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<Id>"]
-
-[[mappings.methods]]
-python = "Arg.short"
-rust_code = "{self}.short({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<char>"]
-
-[[mappings.methods]]
-python = "Arg.long"
-rust_code = "{self}.long({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.alias"
-rust_code = "{self}.alias({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.short_alias"
-rust_code = "{self}.short_alias({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<char>"]
-
-[[mappings.methods]]
-python = "Arg.aliases"
-rust_code = "{self}.aliases({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Str>>"]
-
-[[mappings.methods]]
-python = "Arg.short_aliases"
-rust_code = "{self}.short_aliases({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=char>"]
-
-[[mappings.methods]]
-python = "Arg.visible_alias"
-rust_code = "{self}.visible_alias({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.visible_short_alias"
-rust_code = "{self}.visible_short_alias({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<char>"]
-
-[[mappings.methods]]
-python = "Arg.visible_aliases"
-rust_code = "{self}.visible_aliases({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Str>>"]
-
-[[mappings.methods]]
-python = "Arg.visible_short_aliases"
-rust_code = "{self}.visible_short_aliases({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=char>"]
-
-[[mappings.methods]]
-python = "Arg.index"
-rust_code = "{self}.index({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<usize>"]
-
-[[mappings.methods]]
-python = "Arg.trailing_var_arg"
-rust_code = "{self}.trailing_var_arg({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.last"
-rust_code = "{self}.last({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.required"
-rust_code = "{self}.required({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.requires"
-rust_code = "{self}.requires({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "Arg.exclusive"
-rust_code = "{self}.exclusive({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.global_"
-rust_code = "{self}.global({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.add"
-rust_code = "{self}.add({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["T"]
-
-[[mappings.methods]]
-python = "Arg.action"
-rust_code = "{self}.action({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<ArgAction>"]
-
-[[mappings.methods]]
-python = "Arg.value_parser"
-rust_code = "{self}.value_parser({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<super::ValueParser>"]
-
-[[mappings.methods]]
-python = "Arg.num_args"
-rust_code = "{self}.num_args({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<ValueRange>"]
-
-[[mappings.methods]]
-python = "Arg.number_of_values"
-rust_code = "{self}.number_of_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["usize"]
-
-[[mappings.methods]]
-python = "Arg.value_name"
-rust_code = "{self}.value_name({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.value_names"
-rust_code = "{self}.value_names({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Str>>"]
-
-[[mappings.methods]]
-python = "Arg.value_hint"
-rust_code = "{self}.value_hint({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<ValueHint>"]
-
-[[mappings.methods]]
-python = "Arg.ignore_case"
-rust_code = "{self}.ignore_case({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.allow_hyphen_values"
-rust_code = "{self}.allow_hyphen_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.allow_negative_numbers"
-rust_code = "{self}.allow_negative_numbers({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.require_equals"
-rust_code = "{self}.require_equals({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.use_value_delimiter"
-rust_code = "{self}.use_value_delimiter({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.value_delimiter"
-rust_code = "{self}.value_delimiter({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<char>"]
-
-[[mappings.methods]]
-python = "Arg.value_terminator"
-rust_code = "{self}.value_terminator({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.raw"
-rust_code = "{self}.raw({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.default_value"
-rust_code = "{self}.default_value({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_value_os"
-rust_code = "{self}.default_value_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_values"
-rust_code = "{self}.default_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
-
-[[mappings.methods]]
-python = "Arg.default_values_os"
-rust_code = "{self}.default_values_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
-
-[[mappings.methods]]
-python = "Arg.default_missing_value"
-rust_code = "{self}.default_missing_value({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_missing_value_os"
-rust_code = "{self}.default_missing_value_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_missing_values"
-rust_code = "{self}.default_missing_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
-
-[[mappings.methods]]
-python = "Arg.default_missing_values_os"
-rust_code = "{self}.default_missing_values_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
-
-[[mappings.methods]]
-python = "Arg.env"
-rust_code = "{self}.env({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.env_os"
-rust_code = "{self}.env_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.help"
+python = "PossibleValue.help"
 rust_code = "{self}.help({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "Arg"
+returns = "PossibleValue"
 param_types = ["implIntoResettable<StyledStr>"]
 
 [[mappings.methods]]
-python = "Arg.long_help"
-rust_code = "{self}.long_help({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<StyledStr>"]
-
-[[mappings.methods]]
-python = "Arg.display_order"
-rust_code = "{self}.display_order({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<usize>"]
-
-[[mappings.methods]]
-python = "Arg.help_heading"
-rust_code = "{self}.help_heading({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Str>"]
-
-[[mappings.methods]]
-python = "Arg.next_line_help"
-rust_code = "{self}.next_line_help({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.hide"
+python = "PossibleValue.hide"
 rust_code = "{self}.hide({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "Arg"
+returns = "PossibleValue"
 param_types = ["bool"]
 
 [[mappings.methods]]
-python = "Arg.hide_possible_values"
-rust_code = "{self}.hide_possible_values({arg0})"
+python = "PossibleValue.alias"
+rust_code = "{self}.alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "Arg"
-param_types = ["bool"]
+returns = "PossibleValue"
+param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
-python = "Arg.hide_default_value"
-rust_code = "{self}.hide_default_value({arg0})"
+python = "PossibleValue.aliases"
+rust_code = "{self}.aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "Arg"
-param_types = ["bool"]
+returns = "PossibleValue"
+param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
-python = "Arg.hide_env"
-rust_code = "{self}.hide_env({arg0})"
+python = "PossibleValue.get_name"
+rust_code = "{self}.get_name()"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
+returns = "str"
 
 [[mappings.methods]]
-python = "Arg.hide_env_values"
-rust_code = "{self}.hide_env_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.hide_short_help"
-rust_code = "{self}.hide_short_help({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.hide_long_help"
-rust_code = "{self}.hide_long_help({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "Arg.group"
-rust_code = "{self}.group({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "Arg.groups"
-rust_code = "{self}.groups({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.default_value_if"
-rust_code = "{self}.default_value_if({arg0}, {arg1}, {arg2})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_values_if"
-rust_code = "{self}.default_values_if({arg0}, {arg1}, {arg2})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoIterator<Item=implInto<OsStr>>"]
-
-[[mappings.methods]]
-python = "Arg.default_value_if_os"
-rust_code = "{self}.default_value_if_os({arg0}, {arg1}, {arg2})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.default_value_ifs"
-rust_code = "{self}.default_value_ifs({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
-
-[[mappings.methods]]
-python = "Arg.default_values_ifs"
-rust_code = "{self}.default_values_ifs({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoIterator<Item=implInto<OsStr>>,),>"]
-
-[[mappings.methods]]
-python = "Arg.default_value_ifs_os"
-rust_code = "{self}.default_value_ifs_os({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
-
-[[mappings.methods]]
-python = "Arg.required_unless_present"
-rust_code = "{self}.required_unless_present({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "Arg.required_unless_present_all"
-rust_code = "{self}.required_unless_present_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.required_unless_present_any"
-rust_code = "{self}.required_unless_present_any({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.required_if_eq"
-rust_code = "{self}.required_if_eq({arg0}, {arg1})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<Id>", "implInto<OsStr>"]
-
-[[mappings.methods]]
-python = "Arg.required_if_eq_any"
-rust_code = "{self}.required_if_eq_any({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
-
-[[mappings.methods]]
-python = "Arg.required_if_eq_all"
-rust_code = "{self}.required_if_eq_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
-
-[[mappings.methods]]
-python = "Arg.requires_if"
-rust_code = "{self}.requires_if({arg0}, {arg1})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implInto<ArgPredicate>", "implInto<Id>"]
-
-[[mappings.methods]]
-python = "Arg.requires_ifs"
-rust_code = "{self}.requires_ifs({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=(implInto<ArgPredicate>,implInto<Id>)>"]
-
-[[mappings.methods]]
-python = "Arg.requires_all"
-rust_code = "{self}.requires_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.conflicts_with"
-rust_code = "{self}.conflicts_with({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "Arg.conflicts_with_all"
-rust_code = "{self}.conflicts_with_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.overrides_with"
-rust_code = "{self}.overrides_with({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "Arg.overrides_with_all"
-rust_code = "{self}.overrides_with_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Arg"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "Arg.get_id"
-rust_code = "{self}.get_id()"
-rust_imports = []
-needs_result = false
-returns = "Id"
-
-[[mappings.methods]]
-python = "Arg.get_help"
+python = "PossibleValue.get_help"
 rust_code = "{self}.get_help()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "Arg.get_long_help"
-rust_code = "{self}.get_long_help()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_display_order"
-rust_code = "{self}.get_display_order()"
-rust_imports = []
-needs_result = false
-returns = "usize"
-
-[[mappings.methods]]
-python = "Arg.get_help_heading"
-rust_code = "{self}.get_help_heading()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_short"
-rust_code = "{self}.get_short()"
-rust_imports = []
-needs_result = false
-returns = "char"
-
-[[mappings.methods]]
-python = "Arg.get_visible_short_aliases"
-rust_code = "{self}.get_visible_short_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_all_short_aliases"
-rust_code = "{self}.get_all_short_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_short_and_visible_aliases"
-rust_code = "{self}.get_short_and_visible_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_long"
-rust_code = "{self}.get_long()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_visible_aliases"
-rust_code = "{self}.get_visible_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_all_aliases"
-rust_code = "{self}.get_all_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_long_and_visible_aliases"
-rust_code = "{self}.get_long_and_visible_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_aliases"
-rust_code = "{self}.get_aliases()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_possible_values"
-rust_code = "{self}.get_possible_values()"
-rust_imports = []
-needs_result = false
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Arg.get_value_names"
-rust_code = "{self}.get_value_names()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_num_args"
-rust_code = "{self}.get_num_args()"
-rust_imports = []
-needs_result = false
-returns = "ValueRange"
-
-[[mappings.methods]]
-python = "Arg.get_value_delimiter"
-rust_code = "{self}.get_value_delimiter()"
-rust_imports = []
-needs_result = false
-returns = "char"
-
-[[mappings.methods]]
-python = "Arg.get_value_terminator"
-rust_code = "{self}.get_value_terminator()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_index"
-rust_code = "{self}.get_index()"
-rust_imports = []
-needs_result = false
-returns = "usize"
-
-[[mappings.methods]]
-python = "Arg.get_value_hint"
-rust_code = "{self}.get_value_hint()"
-rust_imports = []
-needs_result = false
-returns = "ValueHint"
-
-[[mappings.methods]]
-python = "Arg.get_env"
-rust_code = "{self}.get_env()"
-rust_imports = []
-needs_result = false
-returns = "OsStr"
-
-[[mappings.methods]]
-python = "Arg.get_default_values"
-rust_code = "{self}.get_default_values()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_positional"
-rust_code = "{self}.is_positional()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_required_set"
-rust_code = "{self}.is_required_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_allow_hyphen_values_set"
-rust_code = "{self}.is_allow_hyphen_values_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_allow_negative_numbers_set"
-rust_code = "{self}.is_allow_negative_numbers_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get_action"
-rust_code = "{self}.get_action()"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgAction"
-
-[[mappings.methods]]
-python = "Arg.get_value_parser"
-rust_code = "{self}.get_value_parser()"
-rust_imports = []
-needs_result = false
-returns = "ValueParser"
-
-[[mappings.methods]]
-python = "Arg.is_global_set"
-rust_code = "{self}.is_global_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_next_line_help_set"
-rust_code = "{self}.is_next_line_help_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_set"
+python = "PossibleValue.is_hide_set"
 rust_code = "{self}.is_hide_set()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "Arg.is_hide_default_value_set"
-rust_code = "{self}.is_hide_default_value_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_possible_values_set"
-rust_code = "{self}.is_hide_possible_values_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_env_set"
-rust_code = "{self}.is_hide_env_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_env_values_set"
-rust_code = "{self}.is_hide_env_values_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_short_help_set"
-rust_code = "{self}.is_hide_short_help_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_hide_long_help_set"
-rust_code = "{self}.is_hide_long_help_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_require_equals_set"
-rust_code = "{self}.is_require_equals_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_exclusive_set"
-rust_code = "{self}.is_exclusive_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_trailing_var_arg_set"
-rust_code = "{self}.is_trailing_var_arg_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_last_set"
-rust_code = "{self}.is_last_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.is_ignore_case_set"
-rust_code = "{self}.is_ignore_case_set()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.get"
-rust_code = "{self}.get()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Arg.remove"
-rust_code = "{self}.remove()"
-rust_imports = []
-needs_result = false
-returns = "T"
-
-[[mappings.methods]]
-python = "Arg.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&Arg"]
-
-[[mappings.methods]]
-python = "Arg.partial_cmp"
-rust_code = "{self}.partial_cmp({arg0})"
-rust_imports = []
-needs_result = false
-returns = "Ordering"
-param_types = ["&Self"]
-
-[[mappings.methods]]
-python = "Arg.cmp"
-rust_code = "{self}.cmp({arg0})"
-rust_imports = []
-needs_result = false
-returns = "Ordering"
-param_types = ["&Arg"]
-
-[[mappings.methods]]
-python = "Arg.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutFormatter<'_>"]
-
-[[mappings.methods]]
-python = "Arg.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-param_types = ["&mutFormatter<'_>"]
-
-[[mappings.methods]]
-python = "ArgGroup.id"
-rust_code = "{self}.id({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implInto<Id>"]
-
-[[mappings.methods]]
-python = "ArgGroup.arg"
-rust_code = "{self}.arg({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "ArgGroup.args"
-rust_code = "{self}.args({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "ArgGroup.get_args"
-rust_code = "{self}.get_args()"
+python = "PossibleValue.get_name_and_aliases"
+rust_code = "{self}.get_name_and_aliases()"
 rust_imports = []
 needs_result = false
 returns = "implIterator"
 
 [[mappings.methods]]
-python = "ArgGroup.multiple"
-rust_code = "{self}.multiple({arg0})"
+python = "PossibleValue.matches"
+rust_code = "{self}.matches({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ArgGroup.is_multiple"
-rust_code = "{self}.is_multiple()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "ArgGroup.required"
-rust_code = "{self}.required({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ArgGroup.requires"
-rust_code = "{self}.requires({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "ArgGroup.requires_all"
-rust_code = "{self}.requires_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "ArgGroup.conflicts_with"
-rust_code = "{self}.conflicts_with({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoResettable<Id>"]
-
-[[mappings.methods]]
-python = "ArgGroup.conflicts_with_all"
-rust_code = "{self}.conflicts_with_all({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ArgGroup"
-param_types = ["implIntoIterator<Item=implInto<Id>>"]
-
-[[mappings.methods]]
-python = "ArgGroup.get_id"
-rust_code = "{self}.get_id()"
-rust_imports = []
-needs_result = false
-returns = "Id"
-
-[[mappings.methods]]
-python = "ArgGroup.is_required_set"
-rust_code = "{self}.is_required_set()"
-rust_imports = []
-needs_result = false
+param_types = ["&str", "bool"]
 
 [[mappings.methods]]
 python = "ValueParser.type_id"
@@ -3044,193 +1998,6 @@ rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "StyledStr.ansi"
-rust_code = "{self}.ansi()"
-rust_imports = []
-needs_result = false
-returns = "Display+'_"
-
-[[mappings.methods]]
-python = "StyledStr.push_str"
-rust_code = "{self}.push_str({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&str"]
-
-[[mappings.methods]]
-python = "StyledStr.write_str"
-rust_code = "{self}.write_str({arg0})"
-rust_imports = []
-needs_result = true
-param_types = ["&str"]
-
-[[mappings.methods]]
-python = "StyledStr.write_char"
-rust_code = "{self}.write_char({arg0})"
-rust_imports = []
-needs_result = true
-param_types = ["char"]
-
-[[mappings.methods]]
-python = "StyledStr.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutstd::fmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "Styles.header"
-rust_code = "{self}.header({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.error"
-rust_code = "{self}.error({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.usage"
-rust_code = "{self}.usage({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.literal"
-rust_code = "{self}.literal({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.placeholder"
-rust_code = "{self}.placeholder({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.valid"
-rust_code = "{self}.valid({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.invalid"
-rust_code = "{self}.invalid({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.context"
-rust_code = "{self}.context({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.context_value"
-rust_code = "{self}.context_value({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Styles"
-param_types = ["Style"]
-
-[[mappings.methods]]
-python = "Styles.get_header"
-rust_code = "{self}.get_header()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_error"
-rust_code = "{self}.get_error()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_usage"
-rust_code = "{self}.get_usage()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_literal"
-rust_code = "{self}.get_literal()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_placeholder"
-rust_code = "{self}.get_placeholder()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_valid"
-rust_code = "{self}.get_valid()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_invalid"
-rust_code = "{self}.get_invalid()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_context"
-rust_code = "{self}.get_context()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "Styles.get_context_value"
-rust_code = "{self}.get_context_value()"
-rust_imports = []
-needs_result = false
-returns = "Style"
-
-[[mappings.methods]]
-python = "OsStr.eq"
-rust_code = "{self}.eq({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["&Str"]
-
-[[mappings.methods]]
 python = "OsStr.as_os_str"
 rust_code = "{self}.as_os_str()"
 rust_imports = []
@@ -3319,6 +2086,13 @@ rust_code = "{self}.eq({arg0})"
 rust_imports = []
 needs_result = false
 param_types = ["&std::ffi::OsString"]
+
+[[mappings.methods]]
+python = "OsStr.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Str"]
 
 [[mappings.methods]]
 python = "Command.arg"
@@ -4598,193 +3372,1419 @@ returns = "Result"
 param_types = ["&mutfmt::Formatter<'_>"]
 
 [[mappings.methods]]
-python = "PossibleValue.help"
-rust_code = "{self}.help({arg0})"
+python = "Styles.header"
+rust_code = "{self}.header({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "PossibleValue"
-param_types = ["implIntoResettable<StyledStr>"]
+returns = "Styles"
+param_types = ["Style"]
 
 [[mappings.methods]]
-python = "PossibleValue.hide"
-rust_code = "{self}.hide({arg0})"
+python = "Styles.error"
+rust_code = "{self}.error({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "PossibleValue"
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.usage"
+rust_code = "{self}.usage({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.literal"
+rust_code = "{self}.literal({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.placeholder"
+rust_code = "{self}.placeholder({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.valid"
+rust_code = "{self}.valid({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.invalid"
+rust_code = "{self}.invalid({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.context"
+rust_code = "{self}.context({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.context_value"
+rust_code = "{self}.context_value({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Styles"
+param_types = ["Style"]
+
+[[mappings.methods]]
+python = "Styles.get_header"
+rust_code = "{self}.get_header()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_error"
+rust_code = "{self}.get_error()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_usage"
+rust_code = "{self}.get_usage()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_literal"
+rust_code = "{self}.get_literal()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_placeholder"
+rust_code = "{self}.get_placeholder()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_valid"
+rust_code = "{self}.get_valid()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_invalid"
+rust_code = "{self}.get_invalid()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_context"
+rust_code = "{self}.get_context()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "Styles.get_context_value"
+rust_code = "{self}.get_context_value()"
+rust_imports = []
+needs_result = false
+returns = "Style"
+
+[[mappings.methods]]
+python = "ArgGroup.id"
+rust_code = "{self}.id({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implInto<Id>"]
+
+[[mappings.methods]]
+python = "ArgGroup.arg"
+rust_code = "{self}.arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "ArgGroup.args"
+rust_code = "{self}.args({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "ArgGroup.get_args"
+rust_code = "{self}.get_args()"
+rust_imports = []
+needs_result = false
+returns = "implIterator"
+
+[[mappings.methods]]
+python = "ArgGroup.multiple"
+rust_code = "{self}.multiple({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
 param_types = ["bool"]
 
 [[mappings.methods]]
-python = "PossibleValue.alias"
+python = "ArgGroup.is_multiple"
+rust_code = "{self}.is_multiple()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "ArgGroup.required"
+rust_code = "{self}.required({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ArgGroup.requires"
+rust_code = "{self}.requires({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "ArgGroup.requires_all"
+rust_code = "{self}.requires_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "ArgGroup.conflicts_with"
+rust_code = "{self}.conflicts_with({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "ArgGroup.conflicts_with_all"
+rust_code = "{self}.conflicts_with_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgGroup"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "ArgGroup.get_id"
+rust_code = "{self}.get_id()"
+rust_imports = []
+needs_result = false
+returns = "Id"
+
+[[mappings.methods]]
+python = "ArgGroup.is_required_set"
+rust_code = "{self}.is_required_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.id"
+rust_code = "{self}.id({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<Id>"]
+
+[[mappings.methods]]
+python = "Arg.short"
+rust_code = "{self}.short({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<char>"]
+
+[[mappings.methods]]
+python = "Arg.long"
+rust_code = "{self}.long({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Str>"]
+
+[[mappings.methods]]
+python = "Arg.alias"
 rust_code = "{self}.alias({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "PossibleValue"
+returns = "Arg"
 param_types = ["implIntoResettable<Str>"]
 
 [[mappings.methods]]
-python = "PossibleValue.aliases"
+python = "Arg.short_alias"
+rust_code = "{self}.short_alias({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<char>"]
+
+[[mappings.methods]]
+python = "Arg.aliases"
 rust_code = "{self}.aliases({arg0})"
 rust_imports = []
 needs_result = false
 returns_self = true
-returns = "PossibleValue"
+returns = "Arg"
 param_types = ["implIntoIterator<Item=implInto<Str>>"]
 
 [[mappings.methods]]
-python = "PossibleValue.get_name"
-rust_code = "{self}.get_name()"
+python = "Arg.short_aliases"
+rust_code = "{self}.short_aliases({arg0})"
 rust_imports = []
 needs_result = false
-returns = "str"
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=char>"]
 
 [[mappings.methods]]
-python = "PossibleValue.get_help"
+python = "Arg.visible_alias"
+rust_code = "{self}.visible_alias({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Str>"]
+
+[[mappings.methods]]
+python = "Arg.visible_short_alias"
+rust_code = "{self}.visible_short_alias({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<char>"]
+
+[[mappings.methods]]
+python = "Arg.visible_aliases"
+rust_code = "{self}.visible_aliases({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Str>>"]
+
+[[mappings.methods]]
+python = "Arg.visible_short_aliases"
+rust_code = "{self}.visible_short_aliases({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=char>"]
+
+[[mappings.methods]]
+python = "Arg.index"
+rust_code = "{self}.index({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<usize>"]
+
+[[mappings.methods]]
+python = "Arg.trailing_var_arg"
+rust_code = "{self}.trailing_var_arg({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.last"
+rust_code = "{self}.last({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.required"
+rust_code = "{self}.required({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.requires"
+rust_code = "{self}.requires({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "Arg.exclusive"
+rust_code = "{self}.exclusive({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.global_"
+rust_code = "{self}.global({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.add"
+rust_code = "{self}.add({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["T"]
+
+[[mappings.methods]]
+python = "Arg.action"
+rust_code = "{self}.action({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<ArgAction>"]
+
+[[mappings.methods]]
+python = "Arg.value_parser"
+rust_code = "{self}.value_parser({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<super::ValueParser>"]
+
+[[mappings.methods]]
+python = "Arg.num_args"
+rust_code = "{self}.num_args({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<ValueRange>"]
+
+[[mappings.methods]]
+python = "Arg.number_of_values"
+rust_code = "{self}.number_of_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["usize"]
+
+[[mappings.methods]]
+python = "Arg.value_name"
+rust_code = "{self}.value_name({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Str>"]
+
+[[mappings.methods]]
+python = "Arg.value_names"
+rust_code = "{self}.value_names({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Str>>"]
+
+[[mappings.methods]]
+python = "Arg.value_hint"
+rust_code = "{self}.value_hint({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<ValueHint>"]
+
+[[mappings.methods]]
+python = "Arg.ignore_case"
+rust_code = "{self}.ignore_case({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.allow_hyphen_values"
+rust_code = "{self}.allow_hyphen_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.allow_negative_numbers"
+rust_code = "{self}.allow_negative_numbers({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.require_equals"
+rust_code = "{self}.require_equals({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.use_value_delimiter"
+rust_code = "{self}.use_value_delimiter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.value_delimiter"
+rust_code = "{self}.value_delimiter({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<char>"]
+
+[[mappings.methods]]
+python = "Arg.value_terminator"
+rust_code = "{self}.value_terminator({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Str>"]
+
+[[mappings.methods]]
+python = "Arg.raw"
+rust_code = "{self}.raw({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.default_value"
+rust_code = "{self}.default_value({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_value_os"
+rust_code = "{self}.default_value_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_values"
+rust_code = "{self}.default_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
+
+[[mappings.methods]]
+python = "Arg.default_values_os"
+rust_code = "{self}.default_values_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
+
+[[mappings.methods]]
+python = "Arg.default_missing_value"
+rust_code = "{self}.default_missing_value({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_missing_value_os"
+rust_code = "{self}.default_missing_value_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_missing_values"
+rust_code = "{self}.default_missing_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
+
+[[mappings.methods]]
+python = "Arg.default_missing_values_os"
+rust_code = "{self}.default_missing_values_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<OsStr>>"]
+
+[[mappings.methods]]
+python = "Arg.env"
+rust_code = "{self}.env({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.env_os"
+rust_code = "{self}.env_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.help"
+rust_code = "{self}.help({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<StyledStr>"]
+
+[[mappings.methods]]
+python = "Arg.long_help"
+rust_code = "{self}.long_help({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<StyledStr>"]
+
+[[mappings.methods]]
+python = "Arg.display_order"
+rust_code = "{self}.display_order({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<usize>"]
+
+[[mappings.methods]]
+python = "Arg.help_heading"
+rust_code = "{self}.help_heading({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Str>"]
+
+[[mappings.methods]]
+python = "Arg.next_line_help"
+rust_code = "{self}.next_line_help({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide"
+rust_code = "{self}.hide({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_possible_values"
+rust_code = "{self}.hide_possible_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_default_value"
+rust_code = "{self}.hide_default_value({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_env"
+rust_code = "{self}.hide_env({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_env_values"
+rust_code = "{self}.hide_env_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_short_help"
+rust_code = "{self}.hide_short_help({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.hide_long_help"
+rust_code = "{self}.hide_long_help({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "Arg.group"
+rust_code = "{self}.group({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "Arg.groups"
+rust_code = "{self}.groups({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.default_value_if"
+rust_code = "{self}.default_value_if({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_values_if"
+rust_code = "{self}.default_values_if({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoIterator<Item=implInto<OsStr>>"]
+
+[[mappings.methods]]
+python = "Arg.default_value_if_os"
+rust_code = "{self}.default_value_if_os({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<Id>", "implInto<ArgPredicate>", "implIntoResettable<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.default_value_ifs"
+rust_code = "{self}.default_value_ifs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
+
+[[mappings.methods]]
+python = "Arg.default_values_ifs"
+rust_code = "{self}.default_values_ifs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoIterator<Item=implInto<OsStr>>,),>"]
+
+[[mappings.methods]]
+python = "Arg.default_value_ifs_os"
+rust_code = "{self}.default_value_ifs_os({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<ArgPredicate>,implIntoResettable<OsStr>,),>"]
+
+[[mappings.methods]]
+python = "Arg.required_unless_present"
+rust_code = "{self}.required_unless_present({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "Arg.required_unless_present_all"
+rust_code = "{self}.required_unless_present_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.required_unless_present_any"
+rust_code = "{self}.required_unless_present_any({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.required_if_eq"
+rust_code = "{self}.required_if_eq({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<Id>", "implInto<OsStr>"]
+
+[[mappings.methods]]
+python = "Arg.required_if_eq_any"
+rust_code = "{self}.required_if_eq_any({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
+
+[[mappings.methods]]
+python = "Arg.required_if_eq_all"
+rust_code = "{self}.required_if_eq_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<Id>,implInto<OsStr>)>"]
+
+[[mappings.methods]]
+python = "Arg.requires_if"
+rust_code = "{self}.requires_if({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implInto<ArgPredicate>", "implInto<Id>"]
+
+[[mappings.methods]]
+python = "Arg.requires_ifs"
+rust_code = "{self}.requires_ifs({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=(implInto<ArgPredicate>,implInto<Id>)>"]
+
+[[mappings.methods]]
+python = "Arg.requires_all"
+rust_code = "{self}.requires_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.conflicts_with"
+rust_code = "{self}.conflicts_with({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "Arg.conflicts_with_all"
+rust_code = "{self}.conflicts_with_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.overrides_with"
+rust_code = "{self}.overrides_with({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoResettable<Id>"]
+
+[[mappings.methods]]
+python = "Arg.overrides_with_all"
+rust_code = "{self}.overrides_with_all({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Arg"
+param_types = ["implIntoIterator<Item=implInto<Id>>"]
+
+[[mappings.methods]]
+python = "Arg.get_id"
+rust_code = "{self}.get_id()"
+rust_imports = []
+needs_result = false
+returns = "Id"
+
+[[mappings.methods]]
+python = "Arg.get_help"
 rust_code = "{self}.get_help()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "PossibleValue.is_hide_set"
+python = "Arg.get_long_help"
+rust_code = "{self}.get_long_help()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_display_order"
+rust_code = "{self}.get_display_order()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Arg.get_help_heading"
+rust_code = "{self}.get_help_heading()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_short"
+rust_code = "{self}.get_short()"
+rust_imports = []
+needs_result = false
+returns = "char"
+
+[[mappings.methods]]
+python = "Arg.get_visible_short_aliases"
+rust_code = "{self}.get_visible_short_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_all_short_aliases"
+rust_code = "{self}.get_all_short_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_short_and_visible_aliases"
+rust_code = "{self}.get_short_and_visible_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_long"
+rust_code = "{self}.get_long()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_visible_aliases"
+rust_code = "{self}.get_visible_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_all_aliases"
+rust_code = "{self}.get_all_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_long_and_visible_aliases"
+rust_code = "{self}.get_long_and_visible_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_aliases"
+rust_code = "{self}.get_aliases()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_possible_values"
+rust_code = "{self}.get_possible_values()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Arg.get_value_names"
+rust_code = "{self}.get_value_names()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_num_args"
+rust_code = "{self}.get_num_args()"
+rust_imports = []
+needs_result = false
+returns = "ValueRange"
+
+[[mappings.methods]]
+python = "Arg.get_value_delimiter"
+rust_code = "{self}.get_value_delimiter()"
+rust_imports = []
+needs_result = false
+returns = "char"
+
+[[mappings.methods]]
+python = "Arg.get_value_terminator"
+rust_code = "{self}.get_value_terminator()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_index"
+rust_code = "{self}.get_index()"
+rust_imports = []
+needs_result = false
+returns = "usize"
+
+[[mappings.methods]]
+python = "Arg.get_value_hint"
+rust_code = "{self}.get_value_hint()"
+rust_imports = []
+needs_result = false
+returns = "ValueHint"
+
+[[mappings.methods]]
+python = "Arg.get_env"
+rust_code = "{self}.get_env()"
+rust_imports = []
+needs_result = false
+returns = "OsStr"
+
+[[mappings.methods]]
+python = "Arg.get_default_values"
+rust_code = "{self}.get_default_values()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_positional"
+rust_code = "{self}.is_positional()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_required_set"
+rust_code = "{self}.is_required_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_allow_hyphen_values_set"
+rust_code = "{self}.is_allow_hyphen_values_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_allow_negative_numbers_set"
+rust_code = "{self}.is_allow_negative_numbers_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get_action"
+rust_code = "{self}.get_action()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "ArgAction"
+
+[[mappings.methods]]
+python = "Arg.get_value_parser"
+rust_code = "{self}.get_value_parser()"
+rust_imports = []
+needs_result = false
+returns = "ValueParser"
+
+[[mappings.methods]]
+python = "Arg.is_global_set"
+rust_code = "{self}.is_global_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_next_line_help_set"
+rust_code = "{self}.is_next_line_help_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_hide_set"
 rust_code = "{self}.is_hide_set()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "PossibleValue.get_name_and_aliases"
-rust_code = "{self}.get_name_and_aliases()"
-rust_imports = []
-needs_result = false
-returns = "implIterator"
-
-[[mappings.methods]]
-python = "PossibleValue.matches"
-rust_code = "{self}.matches({arg0}, {arg1})"
-rust_imports = []
-needs_result = false
-param_types = ["&str", "bool"]
-
-[[mappings.methods]]
-python = "Error.format"
-rust_code = "{self}.format({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Error"
-param_types = ["&mutCommand"]
-
-[[mappings.methods]]
-python = "Error.with_cmd"
-rust_code = "{self}.with_cmd({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Error"
-param_types = ["&Command"]
-
-[[mappings.methods]]
-python = "Error.apply"
-rust_code = "{self}.apply()"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "Error"
-
-[[mappings.methods]]
-python = "Error.kind"
-rust_code = "{self}.kind()"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "ErrorKind"
-
-[[mappings.methods]]
-python = "Error.context"
-rust_code = "{self}.context()"
-rust_imports = []
-needs_result = false
-returns = "implIterator"
-
-[[mappings.methods]]
-python = "Error.get"
-rust_code = "{self}.get({arg0})"
-rust_imports = []
-needs_result = false
-param_types = ["ContextKind"]
-
-[[mappings.methods]]
-python = "Error.insert"
-rust_code = "{self}.insert({arg0}, {arg1})"
-rust_imports = []
-needs_result = false
-returns = "ContextValue"
-param_types = ["ContextKind", "ContextValue"]
-
-[[mappings.methods]]
-python = "Error.remove"
-rust_code = "{self}.remove({arg0})"
-rust_imports = []
-needs_result = false
-returns = "ContextValue"
-param_types = ["ContextKind"]
-
-[[mappings.methods]]
-python = "Error.use_stderr"
-rust_code = "{self}.use_stderr()"
+python = "Arg.is_hide_default_value_set"
+rust_code = "{self}.is_hide_default_value_set()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "Error.exit_code"
-rust_code = "{self}.exit_code()"
-rust_imports = []
-needs_result = false
-returns = "i32"
-
-[[mappings.methods]]
-python = "Error.exit"
-rust_code = "{self}.exit()"
+python = "Arg.is_hide_possible_values_set"
+rust_code = "{self}.is_hide_possible_values_set()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "Error.print"
-rust_code = "{self}.print()"
-rust_imports = []
-needs_result = true
-
-[[mappings.methods]]
-python = "Error.render"
-rust_code = "{self}.render()"
+python = "Arg.is_hide_env_set"
+rust_code = "{self}.is_hide_env_set()"
 rust_imports = []
 needs_result = false
-returns = "StyledStr"
 
 [[mappings.methods]]
-python = "Error.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns_self = true
-param_types = ["&mutFormatter<'_>"]
-
-[[mappings.methods]]
-python = "Error.source"
-rust_code = "{self}.source()"
+python = "Arg.is_hide_env_values_set"
+rust_code = "{self}.is_hide_env_values_set()"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Error+'static)"
 
 [[mappings.methods]]
-python = "Error.fmt"
+python = "Arg.is_hide_short_help_set"
+rust_code = "{self}.is_hide_short_help_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_hide_long_help_set"
+rust_code = "{self}.is_hide_long_help_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_require_equals_set"
+rust_code = "{self}.is_require_equals_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_exclusive_set"
+rust_code = "{self}.is_exclusive_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_trailing_var_arg_set"
+rust_code = "{self}.is_trailing_var_arg_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_last_set"
+rust_code = "{self}.is_last_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.is_ignore_case_set"
+rust_code = "{self}.is_ignore_case_set()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.get"
+rust_code = "{self}.get()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arg.remove"
+rust_code = "{self}.remove()"
+rust_imports = []
+needs_result = false
+returns = "T"
+
+[[mappings.methods]]
+python = "Arg.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Arg"]
+
+[[mappings.methods]]
+python = "Arg.partial_cmp"
+rust_code = "{self}.partial_cmp({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Ordering"
+param_types = ["&Self"]
+
+[[mappings.methods]]
+python = "Arg.cmp"
+rust_code = "{self}.cmp({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Ordering"
+param_types = ["&Arg"]
+
+[[mappings.methods]]
+python = "Arg.fmt"
 rust_code = "{self}.fmt({arg0})"
 rust_imports = []
 needs_result = true
 returns = "Result"
 param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "Arg.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter<'_>"]
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&Id"]
+
+[[mappings.methods]]
+python = "Str.as_str"
+rust_code = "{self}.as_str()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Str.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Str.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Str.deref"
+rust_code = "{self}.deref()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Str.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Str.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Str.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "OsStr"
+
+[[mappings.methods]]
+python = "Str.as_ref"
+rust_code = "{self}.as_ref()"
+rust_imports = []
+needs_result = false
+returns = "Path"
+
+[[mappings.methods]]
+python = "Str.borrow"
+rust_code = "{self}.borrow()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&&str"]
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&std::ffi::OsStr"]
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&&std::ffi::OsStr"]
+
+[[mappings.methods]]
+python = "Str.eq"
+rust_code = "{self}.eq({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&String"]
+
+[[mappings.methods]]
+python = "StyledStr.ansi"
+rust_code = "{self}.ansi()"
+rust_imports = []
+needs_result = false
+returns = "Display+'_"
+
+[[mappings.methods]]
+python = "StyledStr.push_str"
+rust_code = "{self}.push_str({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "StyledStr.write_str"
+rust_code = "{self}.write_str({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "StyledStr.write_char"
+rust_code = "{self}.write_char({arg0})"
+rust_imports = []
+needs_result = true
+param_types = ["char"]
+
+[[mappings.methods]]
+python = "StyledStr.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
 
 # ArgMatches.get_many hardcoded method
 [[mappings.methods]]
@@ -4858,16 +4858,24 @@ python = "ValueHint"
 rust = "clap_builder::ValueHint"
 
 [[mappings.types]]
-python = "AnyValueId"
-rust = "clap_builder::util::any_value::AnyValueId"
-
-[[mappings.types]]
 python = "Id"
 rust = "clap_builder::util::id::Id"
 
 [[mappings.types]]
-python = "ReadmeDoctests"
-rust = "clap_builder::ReadmeDoctests"
+python = "AnyValueId"
+rust = "clap_builder::util::any_value::AnyValueId"
+
+[[mappings.types]]
+python = "KindFormatter"
+rust = "clap_builder::KindFormatter"
+
+[[mappings.types]]
+python = "RichFormatter"
+rust = "clap_builder::RichFormatter"
+
+[[mappings.types]]
+python = "Error"
+rust = "clap_builder::Error"
 
 [[mappings.types]]
 python = "ArgMatches"
@@ -4922,16 +4930,8 @@ python = "ValueRange"
 rust = "clap_builder::builder::range::ValueRange"
 
 [[mappings.types]]
-python = "Str"
-rust = "clap_builder::builder::str::Str"
-
-[[mappings.types]]
-python = "Arg"
-rust = "clap_builder::Arg"
-
-[[mappings.types]]
-python = "ArgGroup"
-rust = "clap_builder::ArgGroup"
+python = "PossibleValue"
+rust = "clap_builder::PossibleValue"
 
 [[mappings.types]]
 python = "ValueParser"
@@ -5002,14 +5002,6 @@ python = "_AnonymousValueParser"
 rust = "clap_builder::_AnonymousValueParser"
 
 [[mappings.types]]
-python = "StyledStr"
-rust = "clap_builder::StyledStr"
-
-[[mappings.types]]
-python = "Styles"
-rust = "clap_builder::builder::styling::Styles"
-
-[[mappings.types]]
 python = "OsStr"
 rust = "clap_builder::OsStr"
 
@@ -5018,40 +5010,36 @@ python = "Command"
 rust = "clap_builder::Command"
 
 [[mappings.types]]
-python = "PossibleValue"
-rust = "clap_builder::PossibleValue"
+python = "Styles"
+rust = "clap_builder::builder::styling::Styles"
 
 [[mappings.types]]
-python = "KindFormatter"
-rust = "clap_builder::KindFormatter"
+python = "ArgGroup"
+rust = "clap_builder::ArgGroup"
 
 [[mappings.types]]
-python = "RichFormatter"
-rust = "clap_builder::RichFormatter"
+python = "Arg"
+rust = "clap_builder::Arg"
 
 [[mappings.types]]
-python = "Error"
-rust = "clap_builder::Error"
+python = "Str"
+rust = "clap_builder::builder::str::Str"
+
+[[mappings.types]]
+python = "StyledStr"
+rust = "clap_builder::StyledStr"
+
+[[mappings.types]]
+python = "ReadmeDoctests"
+rust = "clap_builder::ReadmeDoctests"
 
 [[mappings.types]]
 python = "ColorChoice"
 rust = "clap_builder::util::color::ColorChoice"
 
 [[mappings.types]]
-python = "MatchesError"
-rust = "clap_builder::MatchesError"
-
-[[mappings.types]]
-python = "ValueSource"
-rust = "clap_builder::ValueSource"
-
-[[mappings.types]]
-python = "Resettable"
-rust = "clap_builder::builder::resettable::Resettable"
-
-[[mappings.types]]
-python = "ArgPredicate"
-rust = "clap_builder::ArgPredicate"
+python = "ErrorKind"
+rust = "clap_builder::error::kind::ErrorKind"
 
 [[mappings.types]]
 python = "ContextKind"
@@ -5062,8 +5050,20 @@ python = "ContextValue"
 rust = "clap_builder::error::context::ContextValue"
 
 [[mappings.types]]
-python = "ErrorKind"
-rust = "clap_builder::error::kind::ErrorKind"
+python = "ValueSource"
+rust = "clap_builder::ValueSource"
+
+[[mappings.types]]
+python = "MatchesError"
+rust = "clap_builder::MatchesError"
+
+[[mappings.types]]
+python = "ArgPredicate"
+rust = "clap_builder::ArgPredicate"
+
+[[mappings.types]]
+python = "Resettable"
+rust = "clap_builder::builder::resettable::Resettable"
 
 # Enum variant access mappings
 [[mappings.enum_variants]]
@@ -5079,40 +5079,72 @@ python = "ColorChoice.Never"
 rust = "clap_builder::util::color::ColorChoice::Never"
 
 [[mappings.enum_variants]]
-python = "MatchesError.Downcast"
-rust = "clap_builder::MatchesError::Downcast"
+python = "ErrorKind.InvalidValue"
+rust = "clap_builder::error::kind::ErrorKind::InvalidValue"
 
 [[mappings.enum_variants]]
-python = "MatchesError.UnknownArgument"
-rust = "clap_builder::MatchesError::UnknownArgument"
+python = "ErrorKind.UnknownArgument"
+rust = "clap_builder::error::kind::ErrorKind::UnknownArgument"
 
 [[mappings.enum_variants]]
-python = "ValueSource.DefaultValue"
-rust = "clap_builder::ValueSource::DefaultValue"
+python = "ErrorKind.InvalidSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::InvalidSubcommand"
 
 [[mappings.enum_variants]]
-python = "ValueSource.EnvVariable"
-rust = "clap_builder::ValueSource::EnvVariable"
+python = "ErrorKind.NoEquals"
+rust = "clap_builder::error::kind::ErrorKind::NoEquals"
 
 [[mappings.enum_variants]]
-python = "ValueSource.CommandLine"
-rust = "clap_builder::ValueSource::CommandLine"
+python = "ErrorKind.ValueValidation"
+rust = "clap_builder::error::kind::ErrorKind::ValueValidation"
 
 [[mappings.enum_variants]]
-python = "Resettable.Value"
-rust = "clap_builder::builder::resettable::Resettable::Value"
+python = "ErrorKind.TooManyValues"
+rust = "clap_builder::error::kind::ErrorKind::TooManyValues"
 
 [[mappings.enum_variants]]
-python = "Resettable.Reset"
-rust = "clap_builder::builder::resettable::Resettable::Reset"
+python = "ErrorKind.TooFewValues"
+rust = "clap_builder::error::kind::ErrorKind::TooFewValues"
 
 [[mappings.enum_variants]]
-python = "ArgPredicate.IsPresent"
-rust = "clap_builder::ArgPredicate::IsPresent"
+python = "ErrorKind.WrongNumberOfValues"
+rust = "clap_builder::error::kind::ErrorKind::WrongNumberOfValues"
 
 [[mappings.enum_variants]]
-python = "ArgPredicate.Equals"
-rust = "clap_builder::ArgPredicate::Equals"
+python = "ErrorKind.ArgumentConflict"
+rust = "clap_builder::error::kind::ErrorKind::ArgumentConflict"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.MissingRequiredArgument"
+rust = "clap_builder::error::kind::ErrorKind::MissingRequiredArgument"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.MissingSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::MissingSubcommand"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.InvalidUtf8"
+rust = "clap_builder::error::kind::ErrorKind::InvalidUtf8"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayHelp"
+rust = "clap_builder::error::kind::ErrorKind::DisplayHelp"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayHelpOnMissingArgumentOrSubcommand"
+rust = "clap_builder::error::kind::ErrorKind::DisplayHelpOnMissingArgumentOrSubcommand"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.DisplayVersion"
+rust = "clap_builder::error::kind::ErrorKind::DisplayVersion"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Io"
+rust = "clap_builder::error::kind::ErrorKind::Io"
+
+[[mappings.enum_variants]]
+python = "ErrorKind.Format"
+rust = "clap_builder::error::kind::ErrorKind::Format"
 
 [[mappings.enum_variants]]
 python = "ContextKind.InvalidSubcommand"
@@ -5211,69 +5243,37 @@ python = "ContextValue.Number"
 rust = "clap_builder::error::context::ContextValue::Number"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.InvalidValue"
-rust = "clap_builder::error::kind::ErrorKind::InvalidValue"
+python = "ValueSource.DefaultValue"
+rust = "clap_builder::ValueSource::DefaultValue"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.UnknownArgument"
-rust = "clap_builder::error::kind::ErrorKind::UnknownArgument"
+python = "ValueSource.EnvVariable"
+rust = "clap_builder::ValueSource::EnvVariable"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.InvalidSubcommand"
-rust = "clap_builder::error::kind::ErrorKind::InvalidSubcommand"
+python = "ValueSource.CommandLine"
+rust = "clap_builder::ValueSource::CommandLine"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.NoEquals"
-rust = "clap_builder::error::kind::ErrorKind::NoEquals"
+python = "MatchesError.Downcast"
+rust = "clap_builder::MatchesError::Downcast"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.ValueValidation"
-rust = "clap_builder::error::kind::ErrorKind::ValueValidation"
+python = "MatchesError.UnknownArgument"
+rust = "clap_builder::MatchesError::UnknownArgument"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.TooManyValues"
-rust = "clap_builder::error::kind::ErrorKind::TooManyValues"
+python = "ArgPredicate.IsPresent"
+rust = "clap_builder::ArgPredicate::IsPresent"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.TooFewValues"
-rust = "clap_builder::error::kind::ErrorKind::TooFewValues"
+python = "ArgPredicate.Equals"
+rust = "clap_builder::ArgPredicate::Equals"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.WrongNumberOfValues"
-rust = "clap_builder::error::kind::ErrorKind::WrongNumberOfValues"
+python = "Resettable.Value"
+rust = "clap_builder::builder::resettable::Resettable::Value"
 
 [[mappings.enum_variants]]
-python = "ErrorKind.ArgumentConflict"
-rust = "clap_builder::error::kind::ErrorKind::ArgumentConflict"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.MissingRequiredArgument"
-rust = "clap_builder::error::kind::ErrorKind::MissingRequiredArgument"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.MissingSubcommand"
-rust = "clap_builder::error::kind::ErrorKind::MissingSubcommand"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.InvalidUtf8"
-rust = "clap_builder::error::kind::ErrorKind::InvalidUtf8"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.DisplayHelp"
-rust = "clap_builder::error::kind::ErrorKind::DisplayHelp"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.DisplayHelpOnMissingArgumentOrSubcommand"
-rust = "clap_builder::error::kind::ErrorKind::DisplayHelpOnMissingArgumentOrSubcommand"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.DisplayVersion"
-rust = "clap_builder::error::kind::ErrorKind::DisplayVersion"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.Io"
-rust = "clap_builder::error::kind::ErrorKind::Io"
-
-[[mappings.enum_variants]]
-python = "ErrorKind.Format"
-rust = "clap_builder::error::kind::ErrorKind::Format"
+python = "Resettable.Reset"
+rust = "clap_builder::builder::resettable::Resettable::Reset"
