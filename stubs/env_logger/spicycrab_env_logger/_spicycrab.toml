@@ -1,29 +1,15 @@
 [package]
 name = "env_logger"
 rust_crate = "env_logger"
-rust_version = "0.11.8"
+rust_version = "0.11.11"
 python_module = "spicycrab_env_logger"
 
 [cargo.dependencies]
-env_logger = "0.11.8"
+env_logger = "0.11.11"
 
 [cargo.features]
 available = ["auto-color", "color", "default", "humantime", "kv", "regex", "unstable-kv"]
 default = ["auto-color", "humantime", "regex"]
-
-[[mappings.functions]]
-python = "env_logger.hidden_kv_format"
-rust_code = "env_logger::fmt::kv::hidden_kv_format({arg0}, {arg1})"
-rust_imports = ["env_logger::fmt::kv::hidden_kv_format"]
-needs_result = true
-param_types = ["&mutFormatter", "&dynSource"]
-
-[[mappings.functions]]
-python = "env_logger.default_kv_format"
-rust_code = "env_logger::fmt::kv::default_kv_format({arg0}, {arg1})"
-rust_imports = ["env_logger::fmt::kv::default_kv_format"]
-needs_result = true
-param_types = ["&mutFormatter", "&dynSource"]
 
 [[mappings.functions]]
 python = "env_logger.try_init"
@@ -65,16 +51,18 @@ needs_result = false
 param_types = ["E"]
 
 [[mappings.functions]]
-python = "env_logger.ConfigurableFormat.default"
-rust_code = "env_logger::ConfigurableFormat::default()"
-rust_imports = ["env_logger::ConfigurableFormat"]
-needs_result = false
+python = "env_logger.hidden_kv_format"
+rust_code = "env_logger::fmt::kv::hidden_kv_format({arg0}, {arg1})"
+rust_imports = ["env_logger::fmt::kv::hidden_kv_format"]
+needs_result = true
+param_types = ["&mutFormatter", "&dynSource"]
 
 [[mappings.functions]]
-python = "env_logger.Builder.default"
-rust_code = "env_logger::Builder::default()"
-rust_imports = ["env_logger::Builder"]
-needs_result = false
+python = "env_logger.default_kv_format"
+rust_code = "env_logger::fmt::kv::default_kv_format({arg0}, {arg1})"
+rust_imports = ["env_logger::fmt::kv::default_kv_format"]
+needs_result = true
+param_types = ["&mutFormatter", "&dynSource"]
 
 [[mappings.functions]]
 python = "env_logger.Builder.new"
@@ -92,6 +80,12 @@ param_types = ["E"]
 [[mappings.functions]]
 python = "env_logger.Builder.from_default_env"
 rust_code = "env_logger::Builder::from_default_env()"
+rust_imports = ["env_logger::Builder"]
+needs_result = false
+
+[[mappings.functions]]
+python = "env_logger.Builder.default"
+rust_code = "env_logger::Builder::default()"
 rust_imports = ["env_logger::Builder"]
 needs_result = false
 
@@ -127,181 +121,11 @@ rust_code = "env_logger::Env::default()"
 rust_imports = ["env_logger::Env"]
 needs_result = false
 
-[[mappings.methods]]
-python = "Timestamp.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutfmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "Timestamp.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutfmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "Formatter.timestamp"
-rust_code = "{self}.timestamp()"
-rust_imports = []
+[[mappings.functions]]
+python = "env_logger.ConfigurableFormat.default"
+rust_code = "env_logger::ConfigurableFormat::default()"
+rust_imports = ["env_logger::ConfigurableFormat"]
 needs_result = false
-returns = "Timestamp"
-
-[[mappings.methods]]
-python = "Formatter.timestamp_seconds"
-rust_code = "{self}.timestamp_seconds()"
-rust_imports = []
-needs_result = false
-returns = "Timestamp"
-
-[[mappings.methods]]
-python = "Formatter.timestamp_millis"
-rust_code = "{self}.timestamp_millis()"
-rust_imports = []
-needs_result = false
-returns = "Timestamp"
-
-[[mappings.methods]]
-python = "Formatter.timestamp_micros"
-rust_code = "{self}.timestamp_micros()"
-rust_imports = []
-needs_result = false
-returns = "Timestamp"
-
-[[mappings.methods]]
-python = "Formatter.timestamp_nanos"
-rust_code = "{self}.timestamp_nanos()"
-rust_imports = []
-needs_result = false
-returns = "Timestamp"
-
-[[mappings.methods]]
-python = "Formatter.default_level_style"
-rust_code = "{self}.default_level_style({arg0})"
-rust_imports = []
-needs_result = false
-returns = "Style"
-param_types = ["Level"]
-
-[[mappings.methods]]
-python = "Formatter.write"
-rust_code = "{self}.write({arg0})"
-rust_imports = []
-needs_result = true
-returns = "usize"
-param_types = ["&[u8]"]
-
-[[mappings.methods]]
-python = "Formatter.flush"
-rust_code = "{self}.flush()"
-rust_imports = []
-needs_result = true
-
-[[mappings.methods]]
-python = "Formatter.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutfmt::Formatter<'_>"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.format"
-rust_code = "{self}.format({arg0}, {arg1})"
-rust_imports = []
-needs_result = true
-param_types = ["&mutFormatter", "&Record<'_>"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.level"
-rust_code = "{self}.level({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.file"
-rust_code = "{self}.file({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.line_number"
-rust_code = "{self}.line_number({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.module_path"
-rust_code = "{self}.module_path({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.target"
-rust_code = "{self}.target({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.indent"
-rust_code = "{self}.indent({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["Option<usize>"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.timestamp"
-rust_code = "{self}.timestamp({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["Option<TimestampPrecision>"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.suffix"
-rust_code = "{self}.suffix({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["&'staticstr"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.key_values"
-rust_code = "{self}.key_values({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "mutSelf"
-param_types = ["F"]
-
-[[mappings.methods]]
-python = "ConfigurableFormat.format"
-rust_code = "{self}.format({arg0}, {arg1})"
-rust_imports = []
-needs_result = true
-param_types = ["&mutFormatter", "&Record<'_>"]
 
 [[mappings.methods]]
 python = "Builder.parse_env"
@@ -654,17 +478,181 @@ returns_self = true
 returns = "Env"
 param_types = ["V"]
 
-[[mappings.types]]
-python = "Timestamp"
-rust = "env_logger::fmt::humantime::Timestamp"
+[[mappings.methods]]
+python = "Formatter.default_level_style"
+rust_code = "{self}.default_level_style({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Style"
+param_types = ["Level"]
 
-[[mappings.types]]
-python = "Formatter"
-rust = "env_logger::Formatter"
+[[mappings.methods]]
+python = "Formatter.write"
+rust_code = "{self}.write({arg0})"
+rust_imports = []
+needs_result = true
+returns = "usize"
+param_types = ["&[u8]"]
 
-[[mappings.types]]
-python = "ConfigurableFormat"
-rust = "env_logger::ConfigurableFormat"
+[[mappings.methods]]
+python = "Formatter.flush"
+rust_code = "{self}.flush()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Formatter.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Formatter.timestamp"
+rust_code = "{self}.timestamp()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_seconds"
+rust_code = "{self}.timestamp_seconds()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_millis"
+rust_code = "{self}.timestamp_millis()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_micros"
+rust_code = "{self}.timestamp_micros()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "Formatter.timestamp_nanos"
+rust_code = "{self}.timestamp_nanos()"
+rust_imports = []
+needs_result = false
+returns = "Timestamp"
+
+[[mappings.methods]]
+python = "ConfigurableFormat.format"
+rust_code = "{self}.format({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter", "&Record<'_>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.level"
+rust_code = "{self}.level({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.file"
+rust_code = "{self}.file({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.line_number"
+rust_code = "{self}.line_number({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.module_path"
+rust_code = "{self}.module_path({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.target"
+rust_code = "{self}.target({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.indent"
+rust_code = "{self}.indent({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<usize>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.timestamp"
+rust_code = "{self}.timestamp({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["Option<TimestampPrecision>"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.suffix"
+rust_code = "{self}.suffix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["&'staticstr"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.key_values"
+rust_code = "{self}.key_values({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "mutSelf"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "ConfigurableFormat.format"
+rust_code = "{self}.format({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&mutFormatter", "&Record<'_>"]
+
+[[mappings.methods]]
+python = "Timestamp.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Timestamp.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
 
 [[mappings.types]]
 python = "Builder"
@@ -679,42 +667,34 @@ python = "Env"
 rust = "env_logger::Env"
 
 [[mappings.types]]
-python = "Target"
-rust = "env_logger::fmt::writer::target::Target"
+python = "Formatter"
+rust = "env_logger::Formatter"
 
 [[mappings.types]]
-python = "WriteStyle"
-rust = "env_logger::fmt::writer::WriteStyle"
+python = "ConfigurableFormat"
+rust = "env_logger::ConfigurableFormat"
+
+[[mappings.types]]
+python = "Timestamp"
+rust = "env_logger::fmt::humantime::Timestamp"
+
+[[mappings.types]]
+python = "ReadmeDoctests"
+rust = "env_logger::ReadmeDoctests"
 
 [[mappings.types]]
 python = "TimestampPrecision"
 rust = "env_logger::TimestampPrecision"
 
+[[mappings.types]]
+python = "WriteStyle"
+rust = "env_logger::writer::WriteStyle"
+
+[[mappings.types]]
+python = "Target"
+rust = "env_logger::writer::target::Target"
+
 # Enum variant access mappings
-[[mappings.enum_variants]]
-python = "Target.Stdout"
-rust = "env_logger::fmt::writer::target::Target::Stdout"
-
-[[mappings.enum_variants]]
-python = "Target.Stderr"
-rust = "env_logger::fmt::writer::target::Target::Stderr"
-
-[[mappings.enum_variants]]
-python = "Target.Pipe"
-rust = "env_logger::fmt::writer::target::Target::Pipe"
-
-[[mappings.enum_variants]]
-python = "WriteStyle.Auto"
-rust = "env_logger::fmt::writer::WriteStyle::Auto"
-
-[[mappings.enum_variants]]
-python = "WriteStyle.Always"
-rust = "env_logger::fmt::writer::WriteStyle::Always"
-
-[[mappings.enum_variants]]
-python = "WriteStyle.Never"
-rust = "env_logger::fmt::writer::WriteStyle::Never"
-
 [[mappings.enum_variants]]
 python = "TimestampPrecision.Seconds"
 rust = "env_logger::TimestampPrecision::Seconds"
@@ -730,3 +710,27 @@ rust = "env_logger::TimestampPrecision::Micros"
 [[mappings.enum_variants]]
 python = "TimestampPrecision.Nanos"
 rust = "env_logger::TimestampPrecision::Nanos"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Auto"
+rust = "env_logger::writer::WriteStyle::Auto"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Always"
+rust = "env_logger::writer::WriteStyle::Always"
+
+[[mappings.enum_variants]]
+python = "WriteStyle.Never"
+rust = "env_logger::writer::WriteStyle::Never"
+
+[[mappings.enum_variants]]
+python = "Target.Stdout"
+rust = "env_logger::writer::target::Target::Stdout"
+
+[[mappings.enum_variants]]
+python = "Target.Stderr"
+rust = "env_logger::writer::target::Target::Stderr"
+
+[[mappings.enum_variants]]
+python = "Target.Pipe"
+rust = "env_logger::writer::target::Target::Pipe"

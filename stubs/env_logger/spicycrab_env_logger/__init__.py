@@ -7,86 +7,6 @@ from __future__ import annotations
 
 from typing import Self
 
-class Timestamp:
-    """An [RFC3339] formatted timestamp.
-
-The timestamp implements [`Display`] and can be written to a [`Formatter`].
-
-[RFC3339]: https://www.ietf.org/rfc/rfc3339.txt
-[`Display`]: std::fmt::Display"""
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class Formatter:
-    """A formatter to write logs into.
-
-`Formatter` implements the standard [`Write`] trait for writing log records.
-It also supports terminal styling using ANSI escape codes.
-
-# Examples
-
-Use the [`writeln`] macro to format a log record.
-An instance of a `Formatter` is passed to an `env_logger` format as `buf`:
-
-```
-use std::io::Write;
-
-let mut builder = env_logger::Builder::new();
-
-builder.format(|buf, record| writeln!(buf, "{}: {}", record.level(), record.args()));
-```
-
-[`Write`]: std::io::Write
-[`writeln`]: std::writeln"""
-
-    def timestamp(self) -> Timestamp: ...
-
-    def timestamp_seconds(self) -> Timestamp: ...
-
-    def timestamp_millis(self) -> Timestamp: ...
-
-    def timestamp_micros(self) -> Timestamp: ...
-
-    def timestamp_nanos(self) -> Timestamp: ...
-
-    def default_level_style(self, level: Level) -> Style: ...
-
-    def write(self, buf: object) -> int: ...
-
-    def flush(self) -> object: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class ConfigurableFormat:
-    """A [custom format][crate::Builder::format] with settings for which fields to show"""
-
-    def format(self, formatter: Formatter, record: Record) -> object: ...
-
-    def level(self, write: bool) -> Self: ...
-
-    def file(self, write: bool) -> Self: ...
-
-    def line_number(self, write: bool) -> Self: ...
-
-    def module_path(self, write: bool) -> Self: ...
-
-    def target(self, write: bool) -> Self: ...
-
-    def indent(self, indent: int | None) -> Self: ...
-
-    def timestamp(self, timestamp: TimestampPrecision | None) -> Self: ...
-
-    def suffix(self, suffix: object) -> Self: ...
-
-    def key_values(self, format: F) -> Self: ...
-
-    @staticmethod
-    def default() -> "ConfigurableFormat": ...
-
-    def format(self, formatter: Formatter, record: Record) -> object: ...
-
 class Builder:
     """`Builder` acts as builder for initializing a `Logger`.
 
@@ -110,9 +30,6 @@ builder
 error!("error message");
 info!("info message");
 ```"""
-
-    @staticmethod
-    def default() -> "Builder": ...
 
     @staticmethod
     def new() -> "Builder": ...
@@ -182,6 +99,9 @@ info!("info message");
     def build(self) -> Logger: ...
 
     def fmt(self, f: Formatter) -> Result: ...
+
+    @staticmethod
+    def default() -> "Builder": ...
 
 class Logger:
     """The env logger.
@@ -255,22 +175,88 @@ These sources can be configured using the builder methods on `Env`."""
     @staticmethod
     def default() -> "Env": ...
 
-class Target:
-    """Log target, either `stdout`, `stderr` or a custom pipe."""
-    Stdout: "Target"
-    Stderr: "Target"
-    Pipe: "Target"
+class Formatter:
+    """A formatter to write logs into.
+
+`Formatter` implements the standard [`Write`] trait for writing log records.
+It also supports terminal styling using ANSI escape codes.
+
+# Examples
+
+Use the [`writeln`] macro to format a log record.
+An instance of a `Formatter` is passed to an `env_logger` format as `buf`:
+
+```
+use std::io::Write;
+
+let mut builder = env_logger::Builder::new();
+
+builder.format(|buf, record| writeln!(buf, "{}: {}", record.level(), record.args()));
+```
+
+[`Write`]: std::io::Write
+[`writeln`]: std::writeln"""
+
+    def default_level_style(self, level: Level) -> Style: ...
+
+    def write(self, buf: object) -> int: ...
+
+    def flush(self) -> object: ...
 
     def fmt(self, f: Formatter) -> Result: ...
 
-class WriteStyle:
-    """Whether or not to print styles to the target."""
-    Auto: "WriteStyle"
-    Always: "WriteStyle"
-    Never: "WriteStyle"
+    def timestamp(self) -> Timestamp: ...
+
+    def timestamp_seconds(self) -> Timestamp: ...
+
+    def timestamp_millis(self) -> Timestamp: ...
+
+    def timestamp_micros(self) -> Timestamp: ...
+
+    def timestamp_nanos(self) -> Timestamp: ...
+
+class ConfigurableFormat:
+    """A [custom format][crate::Builder::format] with settings for which fields to show"""
+
+    def format(self, formatter: Formatter, record: Record) -> object: ...
+
+    def level(self, write: bool) -> Self: ...
+
+    def file(self, write: bool) -> Self: ...
+
+    def line_number(self, write: bool) -> Self: ...
+
+    def module_path(self, write: bool) -> Self: ...
+
+    def target(self, write: bool) -> Self: ...
+
+    def indent(self, indent: int | None) -> Self: ...
+
+    def timestamp(self, timestamp: TimestampPrecision | None) -> Self: ...
+
+    def suffix(self, suffix: object) -> Self: ...
+
+    def key_values(self, format: F) -> Self: ...
 
     @staticmethod
-    def from_(choice: ColorChoice) -> "WriteStyle": ...
+    def default() -> "ConfigurableFormat": ...
+
+    def format(self, formatter: Formatter, record: Record) -> object: ...
+
+class Timestamp:
+    """An [RFC3339] formatted timestamp.
+
+The timestamp implements [`Display`] and can be written to a [`Formatter`].
+
+[RFC3339]: https://www.ietf.org/rfc/rfc3339.txt
+[`Display`]: std::fmt::Display"""
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class ReadmeDoctests:
+    pass
 
 class TimestampPrecision:
     """Formatting precision of timestamps.
@@ -286,25 +272,22 @@ digits) and nanoseconds are billionth of a second (9 decimal digits)."""
     @staticmethod
     def default() -> "TimestampPrecision": ...
 
-"""Null Key Value Format
+class WriteStyle:
+    """Whether or not to print styles to the target."""
+    Auto: "WriteStyle"
+    Always: "WriteStyle"
+    Never: "WriteStyle"
 
-This function is intended to be passed to
-[`Builder::format_key_values`](crate::Builder::format_key_values).
+    @staticmethod
+    def from_(choice: ColorChoice) -> "WriteStyle": ...
 
-This key value format simply ignores any key/value fields and doesn't include them in the
-output."""
-def hidden_kv_format(_formatter: Formatter, _fields: dynSource) -> object: ...
+class Target:
+    """Log target, either `stdout`, `stderr` or a custom pipe."""
+    Stdout: "Target"
+    Stderr: "Target"
+    Pipe: "Target"
 
-"""Default Key Value Format
-
-This function is intended to be passed to
-[`Builder::format_key_values`](crate::Builder::format_key_values).
-
-This is the default key/value format. Which uses an "=" as the separator between the key and
-value and a " " between each pair.
-
-For example: `ip=127.0.0.1 port=123456 path=/example`"""
-def default_kv_format(formatter: Formatter, fields: dynSource) -> object: ...
+    def fmt(self, f: Formatter) -> Result: ...
 
 """Attempts to initialize the global logger with an env logger.
 
@@ -396,4 +379,24 @@ def builder() -> Builder: ...
 The builder can be configured before being initialized."""
 def from_env(env: E) -> Builder: ...
 
-__all__: list[str] = ["hidden_kv_format", "default_kv_format", "try_init", "init", "try_init_from_env", "init_from_env", "builder", "from_env", "Timestamp", "Formatter", "ConfigurableFormat", "Builder", "Logger", "Env", "Target", "WriteStyle", "TimestampPrecision"]
+"""Null Key Value Format
+
+This function is intended to be passed to
+[`Builder::format_key_values`](crate::Builder::format_key_values).
+
+This key value format simply ignores any key/value fields and doesn't include them in the
+output."""
+def hidden_kv_format(_formatter: Formatter, _fields: dynSource) -> object: ...
+
+"""Default Key Value Format
+
+This function is intended to be passed to
+[`Builder::format_key_values`](crate::Builder::format_key_values).
+
+This is the default key/value format. Which uses an "=" as the separator between the key and
+value and a " " between each pair.
+
+For example: `ip=127.0.0.1 port=123456 path=/example`"""
+def default_kv_format(formatter: Formatter, fields: dynSource) -> object: ...
+
+__all__: list[str] = ["try_init", "init", "try_init_from_env", "init_from_env", "builder", "from_env", "hidden_kv_format", "default_kv_format", "Builder", "Logger", "Env", "Formatter", "ConfigurableFormat", "Timestamp", "ReadmeDoctests", "TimestampPrecision", "WriteStyle", "Target"]
