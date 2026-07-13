@@ -7,6 +7,801 @@ from __future__ import annotations
 
 from typing import Self
 
+class IgnoredAny:
+    """An efficient way of discarding data from a deserializer.
+
+Think of this like `serde_json::Value` in that it can be deserialized from
+any type, except that it does not store any information about the data that
+gets deserialized.
+
+```edition2021
+use serde::de::{
+self, Deserialize, DeserializeSeed, Deserializer, IgnoredAny, SeqAccess, Visitor,
+};
+use std::fmt;
+use std::marker::PhantomData;
+
+/// A seed that can be used to deserialize only the `n`th element of a sequence
+/// while efficiently discarding elements of any type before or after index `n`.
+///
+/// For example to deserialize only the element at index 3:
+///
+/// ```
+/// NthElement::new(3).deserialize(deserializer)
+/// ```
+pub struct NthElement<T> {
+n: usize,
+marker: PhantomData<T>,
+}
+
+impl<T> NthElement<T> {
+pub fn new(n: usize) -> Self {
+NthElement {
+n: n,
+marker: PhantomData,
+}
+}
+}
+
+impl<'de, T> Visitor<'de> for NthElement<T>
+where
+T: Deserialize<'de>,
+{
+type Value = T;
+
+fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+write!(
+formatter,
+"a sequence in which we care about element {}",
+self.n
+)
+}
+
+fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
+where
+A: SeqAccess<'de>,
+{
+// Skip over the first `n` elements.
+for i in 0..self.n {
+// It is an error if the sequence ends before we get to element `n`.
+if seq.next_element::<IgnoredAny>()?.is_none() {
+return Err(de::Error::invalid_length(i, &self));
+}
+}
+
+// Deserialize the one we care about.
+let nth = match seq.next_element()? {
+Some(nth) => nth,
+None => {
+return Err(de::Error::invalid_length(self.n, &self));
+}
+};
+
+// Skip over any remaining elements in the sequence after `n`.
+while let Some(IgnoredAny) = seq.next_element()? {
+// ignore
+}
+
+Ok(nth)
+}
+}
+
+impl<'de, T> DeserializeSeed<'de> for NthElement<T>
+where
+T: Deserialize<'de>,
+{
+type Value = T;
+
+fn deserialize<D>(self, deserializer: D) -> Result<Self::Value, D::Error>
+where
+D: Deserializer<'de>,
+{
+deserializer.deserialize_seq(self)
+}
+}
+
+# fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
+# where
+#     D: Deserializer<'de>,
+# {
+// Deserialize only the sequence element at index 3 from this deserializer.
+// The element at index 3 is required to be a string. Elements before and
+// after index 3 are allowed to be of any type.
+let s: String = NthElement::new(3).deserialize(deserializer)?;
+#     Ok(())
+# }
+```"""
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_bool(self, x: bool) -> Value: ...
+
+    def visit_i64(self, x: int) -> Value: ...
+
+    def visit_i128(self, x: int) -> Value: ...
+
+    def visit_u64(self, x: int) -> Value: ...
+
+    def visit_u128(self, x: int) -> Value: ...
+
+    def visit_f64(self, x: float) -> Value: ...
+
+    def visit_str(self, s: str) -> Value: ...
+
+    def visit_none(self) -> Value: ...
+
+    def visit_some(self, deserializer: D) -> Value: ...
+
+    def visit_newtype_struct(self, deserializer: D) -> Value: ...
+
+    def visit_unit(self) -> Value: ...
+
+    def visit_seq(self, seq: A) -> Value: ...
+
+    def visit_map(self, map: A) -> Value: ...
+
+    def visit_bytes(self, bytes: object) -> Value: ...
+
+    def visit_enum(self, data: A) -> Value: ...
+
+    @staticmethod
+    def deserialize(deserializer: D) -> "IgnoredAny": ...
+
+class Error:
+    """A minimal representation of all possible errors that can occur using the
+`IntoDeserializer` trait."""
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def description(self) -> str: ...
+
+    @staticmethod
+    def custom(_msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(_: T) -> "Error": ...
+
+    def description(self) -> str: ...
+
+    def fmt(self, _: Formatter) -> Result: ...
+
+class UnitDeserializer:
+    """A deserializer holding a `()`."""
+
+    @staticmethod
+    def new() -> "UnitDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_option(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class NeverDeserializer:
+    """A deserializer that cannot be instantiated."""
+
+    def deserialize_any(self, _visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+class U32Deserializer:
+    """A deserializer holding a `u32`."""
+
+    @staticmethod
+    def new(value: int) -> "U32Deserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class StrDeserializer:
+    """A deserializer holding a `&str`."""
+
+    @staticmethod
+    def new(value: object) -> "StrDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+class BorrowedStrDeserializer:
+    """A deserializer holding a `&str` with a lifetime tied to another
+deserializer."""
+
+    @staticmethod
+    def new(value: object) -> object: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+class StringDeserializer:
+    """A deserializer holding a `String`."""
+
+    def clone(self) -> Self: ...
+
+    @staticmethod
+    def new(value: str) -> "StringDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class CowStrDeserializer:
+    """A deserializer holding a `Cow<str>`."""
+
+    def clone(self) -> Self: ...
+
+    @staticmethod
+    def new(value: object) -> "CowStrDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class BytesDeserializer:
+    """A deserializer holding a `&[u8]`. Always calls [`Visitor::visit_bytes`]."""
+
+    @staticmethod
+    def new(value: object) -> "BytesDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class BorrowedBytesDeserializer:
+    """A deserializer holding a `&[u8]` with a lifetime tied to another
+deserializer. Always calls [`Visitor::visit_borrowed_bytes`]."""
+
+    @staticmethod
+    def new(value: object) -> "BorrowedBytesDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+class SeqDeserializer:
+    """A deserializer that iterates over a sequence."""
+
+    @staticmethod
+    def new(iter: I) -> "SeqDeserializer": ...
+
+    def end(self) -> None: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def next_element_seed(self, seed: V) -> Value | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def next_element_seed(self, seed: V) -> Value | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+class SeqAccessDeserializer:
+    """A deserializer holding a `SeqAccess`."""
+
+    @staticmethod
+    def new(seq: A) -> "SeqAccessDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+class MapDeserializer:
+    """A deserializer that iterates over a map."""
+
+    @staticmethod
+    def new(iter: I) -> "MapDeserializer": ...
+
+    def end(self) -> None: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_seq(self, visitor: V) -> Value: ...
+
+    def deserialize_tuple(self, len: int, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def next_key_seed(self, seed: T) -> Value | None: ...
+
+    def next_value_seed(self, seed: T) -> Value: ...
+
+    def next_entry_seed(self, kseed: TK, vseed: TV) -> object | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+    def next_element_seed(self, seed: T) -> Value | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+    def clone(self) -> Self: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_seq(self, visitor: V) -> Value: ...
+
+    def deserialize_tuple(self, len: int, visitor: V) -> Value: ...
+
+    def next_key_seed(self, seed: T) -> Value | None: ...
+
+    def next_value_seed(self, seed: T) -> Value: ...
+
+    def next_entry_seed(self, kseed: TK, vseed: TV) -> object | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+    def next_element_seed(self, seed: T) -> Value | None: ...
+
+    def size_hint(self) -> int | None: ...
+
+class MapAccessDeserializer:
+    """A deserializer holding a `MapAccess`."""
+
+    @staticmethod
+    def new(map: A) -> "MapAccessDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, _name: str, _variants: object, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+    def variant_seed(self, seed: T) -> object: ...
+
+class EnumAccessDeserializer:
+    """A deserializer holding an `EnumAccess`."""
+
+    @staticmethod
+    def new(access: A) -> "EnumAccessDeserializer": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Self: ...
+
+class UnitOnly:
+
+    def unit_variant(self) -> None: ...
+
+    def newtype_variant_seed(self, _seed: T) -> Value: ...
+
+    def tuple_variant(self, _len: int, _visitor: V) -> Value: ...
+
+    def struct_variant(self, _fields: object, _visitor: V) -> Value: ...
+
+class MapAsEnum:
+
+    def unit_variant(self) -> None: ...
+
+    def newtype_variant_seed(self, seed: T) -> Value: ...
+
+    def tuple_variant(self, len: int, visitor: V) -> Value: ...
+
+    def struct_variant(self, _fields: object, visitor: V) -> Value: ...
+
+class RangeVisitor:
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_seq(self, seq: A) -> Value: ...
+
+    def visit_map(self, map: A) -> Value: ...
+
+class RangeFromVisitor:
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_seq(self, seq: A) -> Value: ...
+
+    def visit_map(self, map: A) -> Value: ...
+
+class RangeToVisitor:
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_seq(self, seq: A) -> Value: ...
+
+    def visit_map(self, map: A) -> Value: ...
+
+class Impossible:
+    """Helper type for implementing a `Serializer` that does not support
+serializing one of the compound types.
+
+This type cannot be instantiated, but implements every one of the traits
+corresponding to the [`Serializer`] compound types: [`SerializeSeq`],
+[`SerializeTuple`], [`SerializeTupleStruct`], [`SerializeTupleVariant`],
+[`SerializeMap`], [`SerializeStruct`], and [`SerializeStructVariant`].
+
+```edition2021
+# use serde::ser::{Serializer, Impossible};
+# use serde_core::__private::doc::Error;
+#
+# struct MySerializer;
+#
+impl Serializer for MySerializer {
+type Ok = ();
+type Error = Error;
+
+type SerializeSeq = Impossible<(), Error>;
+/* other associated types */
+
+/// This data format does not support serializing sequences.
+fn serialize_seq(self,
+len: Option<usize>)
+-> Result<Self::SerializeSeq, Error> {
+// Given Impossible cannot be instantiated, the only
+// thing we can do here is to return an error.
+#         stringify! {
+Err(...)
+#         };
+#         unimplemented!()
+}
+
+/* other Serializer methods */
+#     serde_core::__serialize_unimplemented! {
+#         bool i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 char str bytes none some
+#         unit unit_struct unit_variant newtype_struct newtype_variant
+#         tuple tuple_struct tuple_variant map struct struct_variant
+#     }
+}
+```
+
+[`Serializer`]: crate::Serializer
+[`SerializeSeq`]: crate::ser::SerializeSeq
+[`SerializeTuple`]: crate::ser::SerializeTuple
+[`SerializeTupleStruct`]: crate::ser::SerializeTupleStruct
+[`SerializeTupleVariant`]: crate::ser::SerializeTupleVariant
+[`SerializeMap`]: crate::ser::SerializeMap
+[`SerializeStruct`]: crate::ser::SerializeStruct
+[`SerializeStructVariant`]: crate::ser::SerializeStructVariant"""
+
+    def serialize_element(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_element(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_key(self, key: T) -> None: ...
+
+    def serialize_value(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+class Error:
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(msg: T) -> "Error": ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def description(self) -> str: ...
+
+    @staticmethod
+    def custom(_msg: T) -> "Error": ...
+
+    @staticmethod
+    def custom(_: T) -> "Error": ...
+
+    def description(self) -> str: ...
+
+    def fmt(self, _: Formatter) -> Result: ...
+
+class InPlaceSeed:
+    """A DeserializeSeed helper for implementing deserialize_in_place Visitors.
+
+Wraps a mutable reference and calls deserialize_in_place on it."""
+
+    def deserialize(self, deserializer: D) -> Value: ...
+
+class SerializeTupleVariantAsMapValue:
+
+    @staticmethod
+    def new(map: M, name: object, len: int) -> "SerializeTupleVariantAsMapValue": ...
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+class SerializeStructVariantAsMapValue:
+
+    @staticmethod
+    def new(map: M, name: object, len: int) -> "SerializeStructVariantAsMapValue": ...
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Ok: ...
+
+class ContentSerializer:
+
+    @staticmethod
+    def new() -> "ContentSerializer": ...
+
+    def serialize_bool(self, v: bool) -> Content: ...
+
+    def serialize_i8(self, v: int) -> Content: ...
+
+    def serialize_i16(self, v: int) -> Content: ...
+
+    def serialize_i32(self, v: int) -> Content: ...
+
+    def serialize_i64(self, v: int) -> Content: ...
+
+    def serialize_u8(self, v: int) -> Content: ...
+
+    def serialize_u16(self, v: int) -> Content: ...
+
+    def serialize_u32(self, v: int) -> Content: ...
+
+    def serialize_u64(self, v: int) -> Content: ...
+
+    def serialize_f32(self, v: float) -> Content: ...
+
+    def serialize_f64(self, v: float) -> Content: ...
+
+    def serialize_char(self, v: str) -> Content: ...
+
+    def serialize_str(self, value: str) -> Content: ...
+
+    def serialize_bytes(self, value: object) -> Content: ...
+
+    def serialize_none(self) -> Content: ...
+
+    def serialize_some(self, value: T) -> Content: ...
+
+    def serialize_unit(self) -> Content: ...
+
+    def serialize_unit_struct(self, name: object) -> Content: ...
+
+    def serialize_unit_variant(self, name: object, variant_index: int, variant: object) -> Content: ...
+
+    def serialize_newtype_struct(self, name: object, value: T) -> Content: ...
+
+    def serialize_newtype_variant(self, name: object, variant_index: int, variant: object, value: T) -> Content: ...
+
+    def serialize_seq(self, len: int | None) -> SerializeSeq: ...
+
+    def serialize_tuple(self, len: int) -> SerializeTuple: ...
+
+    def serialize_tuple_struct(self, name: object, len: int) -> SerializeTupleStruct: ...
+
+    def serialize_tuple_variant(self, name: object, variant_index: int, variant: object, len: int) -> SerializeTupleVariant: ...
+
+    def serialize_map(self, len: int | None) -> SerializeMap: ...
+
+    def serialize_struct(self, name: object, len: int) -> SerializeStruct: ...
+
+    def serialize_struct_variant(self, name: object, variant_index: int, variant: object, len: int) -> SerializeStructVariant: ...
+
+class SerializeSeq:
+
+    def serialize_element(self, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class SerializeTuple:
+
+    def serialize_element(self, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class SerializeTupleStruct:
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class SerializeTupleVariant:
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class SerializeMap:
+
+    def serialize_key(self, key: T) -> None: ...
+
+    def serialize_value(self, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+    def serialize_entry(self, key: K, value: V) -> None: ...
+
+class SerializeStruct:
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class SerializeStructVariant:
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Content: ...
+
+class FlatMapSerializer:
+
+    def serialize_bool(self, _: bool) -> Ok: ...
+
+    def serialize_i8(self, _: int) -> Ok: ...
+
+    def serialize_i16(self, _: int) -> Ok: ...
+
+    def serialize_i32(self, _: int) -> Ok: ...
+
+    def serialize_i64(self, _: int) -> Ok: ...
+
+    def serialize_u8(self, _: int) -> Ok: ...
+
+    def serialize_u16(self, _: int) -> Ok: ...
+
+    def serialize_u32(self, _: int) -> Ok: ...
+
+    def serialize_u64(self, _: int) -> Ok: ...
+
+    def serialize_f32(self, _: float) -> Ok: ...
+
+    def serialize_f64(self, _: float) -> Ok: ...
+
+    def serialize_char(self, _: str) -> Ok: ...
+
+    def serialize_str(self, _: str) -> Ok: ...
+
+    def serialize_bytes(self, _: object) -> Ok: ...
+
+    def serialize_none(self) -> Ok: ...
+
+    def serialize_some(self, value: T) -> Ok: ...
+
+    def serialize_unit(self) -> Ok: ...
+
+    def serialize_unit_struct(self, _: object) -> Ok: ...
+
+    def serialize_unit_variant(self, _: object, _1: int, variant: object) -> Ok: ...
+
+    def serialize_newtype_struct(self, _: object, value: T) -> Ok: ...
+
+    def serialize_newtype_variant(self, _: object, _1: int, variant: object, value: T) -> Ok: ...
+
+    def serialize_seq(self, _: int | None) -> SerializeSeq: ...
+
+    def serialize_tuple(self, _: int) -> SerializeTuple: ...
+
+    def serialize_tuple_struct(self, _: object, _1: int) -> SerializeTupleStruct: ...
+
+    def serialize_tuple_variant(self, _: object, _1: int, variant: object, _2: int) -> SerializeTupleVariant: ...
+
+    def serialize_map(self, _: int | None) -> SerializeMap: ...
+
+    def serialize_struct(self, _: object, _1: int) -> SerializeStruct: ...
+
+    def serialize_struct_variant(self, _: object, _1: int, inner_variant: object, _2: int) -> SerializeStructVariant: ...
+
+class FlatMapSerializeMap:
+
+    def serialize_key(self, key: T) -> None: ...
+
+    def serialize_value(self, value: T) -> None: ...
+
+    def serialize_entry(self, key: K, value: V) -> None: ...
+
+    def end(self) -> None: ...
+
+class FlatMapSerializeStruct:
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> None: ...
+
+class FlatMapSerializeTupleVariantAsMapValue:
+
+    def serialize_field(self, value: T) -> None: ...
+
+    def end(self) -> None: ...
+
+class FlatMapSerializeStructVariantAsMapValue:
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> None: ...
+
+class AdjacentlyTaggedEnumVariant:
+
+    def serialize(self, serializer: S) -> Ok: ...
+
+class CannotSerializeVariant:
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
 class ContentVisitor:
 
     @staticmethod
@@ -300,8 +1095,6 @@ class Borrowed:
 
 class StrDeserializer:
 
-    def deserialize_any(self, visitor: V) -> Value: ...
-
     @staticmethod
     def new(value: object) -> "StrDeserializer": ...
 
@@ -315,9 +1108,9 @@ class StrDeserializer:
 
     def fmt(self, formatter: Formatter) -> Result: ...
 
-class BorrowedStrDeserializer:
-
     def deserialize_any(self, visitor: V) -> Value: ...
+
+class BorrowedStrDeserializer:
 
     @staticmethod
     def new(value: object) -> object: ...
@@ -331,6 +1124,8 @@ class BorrowedStrDeserializer:
     def variant_seed(self, seed: T) -> object: ...
 
     def fmt(self, formatter: Formatter) -> Result: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
 
 class FlatMapDeserializer:
 
@@ -361,882 +1156,6 @@ class AdjacentlyTaggedEnumVariantVisitor:
     def expecting(self, formatter: Formatter) -> Result: ...
 
     def visit_enum(self, data: A) -> Value: ...
-
-class SerializeTupleVariantAsMapValue:
-
-    @staticmethod
-    def new(map: M, name: object, len: int) -> "SerializeTupleVariantAsMapValue": ...
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-class SerializeStructVariantAsMapValue:
-
-    @staticmethod
-    def new(map: M, name: object, len: int) -> "SerializeStructVariantAsMapValue": ...
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-class ContentSerializer:
-
-    @staticmethod
-    def new() -> "ContentSerializer": ...
-
-    def serialize_bool(self, v: bool) -> Content: ...
-
-    def serialize_i8(self, v: int) -> Content: ...
-
-    def serialize_i16(self, v: int) -> Content: ...
-
-    def serialize_i32(self, v: int) -> Content: ...
-
-    def serialize_i64(self, v: int) -> Content: ...
-
-    def serialize_u8(self, v: int) -> Content: ...
-
-    def serialize_u16(self, v: int) -> Content: ...
-
-    def serialize_u32(self, v: int) -> Content: ...
-
-    def serialize_u64(self, v: int) -> Content: ...
-
-    def serialize_f32(self, v: float) -> Content: ...
-
-    def serialize_f64(self, v: float) -> Content: ...
-
-    def serialize_char(self, v: str) -> Content: ...
-
-    def serialize_str(self, value: str) -> Content: ...
-
-    def serialize_bytes(self, value: object) -> Content: ...
-
-    def serialize_none(self) -> Content: ...
-
-    def serialize_some(self, value: T) -> Content: ...
-
-    def serialize_unit(self) -> Content: ...
-
-    def serialize_unit_struct(self, name: object) -> Content: ...
-
-    def serialize_unit_variant(self, name: object, variant_index: int, variant: object) -> Content: ...
-
-    def serialize_newtype_struct(self, name: object, value: T) -> Content: ...
-
-    def serialize_newtype_variant(self, name: object, variant_index: int, variant: object, value: T) -> Content: ...
-
-    def serialize_seq(self, len: int | None) -> SerializeSeq: ...
-
-    def serialize_tuple(self, len: int) -> SerializeTuple: ...
-
-    def serialize_tuple_struct(self, name: object, len: int) -> SerializeTupleStruct: ...
-
-    def serialize_tuple_variant(self, name: object, variant_index: int, variant: object, len: int) -> SerializeTupleVariant: ...
-
-    def serialize_map(self, len: int | None) -> SerializeMap: ...
-
-    def serialize_struct(self, name: object, len: int) -> SerializeStruct: ...
-
-    def serialize_struct_variant(self, name: object, variant_index: int, variant: object, len: int) -> SerializeStructVariant: ...
-
-class SerializeSeq:
-
-    def serialize_element(self, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class SerializeTuple:
-
-    def serialize_element(self, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class SerializeTupleStruct:
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class SerializeTupleVariant:
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class SerializeMap:
-
-    def serialize_key(self, key: T) -> None: ...
-
-    def serialize_value(self, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-    def serialize_entry(self, key: K, value: V) -> None: ...
-
-class SerializeStruct:
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class SerializeStructVariant:
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Content: ...
-
-class FlatMapSerializer:
-
-    def serialize_bool(self, _: bool) -> Ok: ...
-
-    def serialize_i8(self, _: int) -> Ok: ...
-
-    def serialize_i16(self, _: int) -> Ok: ...
-
-    def serialize_i32(self, _: int) -> Ok: ...
-
-    def serialize_i64(self, _: int) -> Ok: ...
-
-    def serialize_u8(self, _: int) -> Ok: ...
-
-    def serialize_u16(self, _: int) -> Ok: ...
-
-    def serialize_u32(self, _: int) -> Ok: ...
-
-    def serialize_u64(self, _: int) -> Ok: ...
-
-    def serialize_f32(self, _: float) -> Ok: ...
-
-    def serialize_f64(self, _: float) -> Ok: ...
-
-    def serialize_char(self, _: str) -> Ok: ...
-
-    def serialize_str(self, _: str) -> Ok: ...
-
-    def serialize_bytes(self, _: object) -> Ok: ...
-
-    def serialize_none(self) -> Ok: ...
-
-    def serialize_some(self, value: T) -> Ok: ...
-
-    def serialize_unit(self) -> Ok: ...
-
-    def serialize_unit_struct(self, _: object) -> Ok: ...
-
-    def serialize_unit_variant(self, _: object, _1: int, variant: object) -> Ok: ...
-
-    def serialize_newtype_struct(self, _: object, value: T) -> Ok: ...
-
-    def serialize_newtype_variant(self, _: object, _1: int, variant: object, value: T) -> Ok: ...
-
-    def serialize_seq(self, _: int | None) -> SerializeSeq: ...
-
-    def serialize_tuple(self, _: int) -> SerializeTuple: ...
-
-    def serialize_tuple_struct(self, _: object, _1: int) -> SerializeTupleStruct: ...
-
-    def serialize_tuple_variant(self, _: object, _1: int, variant: object, _2: int) -> SerializeTupleVariant: ...
-
-    def serialize_map(self, _: int | None) -> SerializeMap: ...
-
-    def serialize_struct(self, _: object, _1: int) -> SerializeStruct: ...
-
-    def serialize_struct_variant(self, _: object, _1: int, inner_variant: object, _2: int) -> SerializeStructVariant: ...
-
-class FlatMapSerializeMap:
-
-    def serialize_key(self, key: T) -> None: ...
-
-    def serialize_value(self, value: T) -> None: ...
-
-    def serialize_entry(self, key: K, value: V) -> None: ...
-
-    def end(self) -> None: ...
-
-class FlatMapSerializeStruct:
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> None: ...
-
-class FlatMapSerializeTupleVariantAsMapValue:
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> None: ...
-
-class FlatMapSerializeStructVariantAsMapValue:
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> None: ...
-
-class AdjacentlyTaggedEnumVariant:
-
-    def serialize(self, serializer: S) -> Ok: ...
-
-class CannotSerializeVariant:
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class Impossible:
-    """Helper type for implementing a `Serializer` that does not support
-serializing one of the compound types.
-
-This type cannot be instantiated, but implements every one of the traits
-corresponding to the [`Serializer`] compound types: [`SerializeSeq`],
-[`SerializeTuple`], [`SerializeTupleStruct`], [`SerializeTupleVariant`],
-[`SerializeMap`], [`SerializeStruct`], and [`SerializeStructVariant`].
-
-```edition2021
-# use serde::ser::{Serializer, Impossible};
-# use serde_core::__private::doc::Error;
-#
-# struct MySerializer;
-#
-impl Serializer for MySerializer {
-type Ok = ();
-type Error = Error;
-
-type SerializeSeq = Impossible<(), Error>;
-/* other associated types */
-
-/// This data format does not support serializing sequences.
-fn serialize_seq(self,
-len: Option<usize>)
--> Result<Self::SerializeSeq, Error> {
-// Given Impossible cannot be instantiated, the only
-// thing we can do here is to return an error.
-#         stringify! {
-Err(...)
-#         };
-#         unimplemented!()
-}
-
-/* other Serializer methods */
-#     serde_core::__serialize_unimplemented! {
-#         bool i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 char str bytes none some
-#         unit unit_struct unit_variant newtype_struct newtype_variant
-#         tuple tuple_struct tuple_variant map struct struct_variant
-#     }
-}
-```
-
-[`Serializer`]: crate::Serializer
-[`SerializeSeq`]: crate::ser::SerializeSeq
-[`SerializeTuple`]: crate::ser::SerializeTuple
-[`SerializeTupleStruct`]: crate::ser::SerializeTupleStruct
-[`SerializeTupleVariant`]: crate::ser::SerializeTupleVariant
-[`SerializeMap`]: crate::ser::SerializeMap
-[`SerializeStruct`]: crate::ser::SerializeStruct
-[`SerializeStructVariant`]: crate::ser::SerializeStructVariant"""
-
-    def serialize_element(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_element(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_field(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_key(self, key: T) -> None: ...
-
-    def serialize_value(self, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Ok: ...
-
-class InPlaceSeed:
-    """A DeserializeSeed helper for implementing deserialize_in_place Visitors.
-
-Wraps a mutable reference and calls deserialize_in_place on it."""
-
-    def deserialize(self, deserializer: D) -> Value: ...
-
-class Error:
-
-    @staticmethod
-    def custom(_msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(_: T) -> "Error": ...
-
-    def description(self) -> str: ...
-
-    def fmt(self, _: Formatter) -> Result: ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def description(self) -> str: ...
-
-class Error:
-    """A minimal representation of all possible errors that can occur using the
-`IntoDeserializer` trait."""
-
-    @staticmethod
-    def custom(_msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(_: T) -> "Error": ...
-
-    def description(self) -> str: ...
-
-    def fmt(self, _: Formatter) -> Result: ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    @staticmethod
-    def custom(msg: T) -> "Error": ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def description(self) -> str: ...
-
-class UnitDeserializer:
-    """A deserializer holding a `()`."""
-
-    @staticmethod
-    def new() -> "UnitDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_option(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class NeverDeserializer:
-    """A deserializer that cannot be instantiated."""
-
-    def deserialize_any(self, _visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-class U32Deserializer:
-    """A deserializer holding a `u32`."""
-
-    @staticmethod
-    def new(value: int) -> "U32Deserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class StrDeserializer:
-    """A deserializer holding a `&str`."""
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    @staticmethod
-    def new(value: object) -> "StrDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class BorrowedStrDeserializer:
-    """A deserializer holding a `&str` with a lifetime tied to another
-deserializer."""
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    @staticmethod
-    def new(value: object) -> object: ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class StringDeserializer:
-    """A deserializer holding a `String`."""
-
-    def clone(self) -> Self: ...
-
-    @staticmethod
-    def new(value: str) -> "StringDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class CowStrDeserializer:
-    """A deserializer holding a `Cow<str>`."""
-
-    def clone(self) -> Self: ...
-
-    @staticmethod
-    def new(value: object) -> "CowStrDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: str, variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class BytesDeserializer:
-    """A deserializer holding a `&[u8]`. Always calls [`Visitor::visit_bytes`]."""
-
-    @staticmethod
-    def new(value: object) -> "BytesDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class BorrowedBytesDeserializer:
-    """A deserializer holding a `&[u8]` with a lifetime tied to another
-deserializer. Always calls [`Visitor::visit_borrowed_bytes`]."""
-
-    @staticmethod
-    def new(value: object) -> "BorrowedBytesDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class SeqDeserializer:
-    """A deserializer that iterates over a sequence."""
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def next_element_seed(self, seed: V) -> Value | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    @staticmethod
-    def new(iter: I) -> "SeqDeserializer": ...
-
-    def end(self) -> None: ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def next_element_seed(self, seed: V) -> Value | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class SeqAccessDeserializer:
-    """A deserializer holding a `SeqAccess`."""
-
-    @staticmethod
-    def new(seq: A) -> "SeqAccessDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-class MapDeserializer:
-    """A deserializer that iterates over a map."""
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_seq(self, visitor: V) -> Value: ...
-
-    def deserialize_tuple(self, len: int, visitor: V) -> Value: ...
-
-    def next_key_seed(self, seed: T) -> Value | None: ...
-
-    def next_value_seed(self, seed: T) -> Value: ...
-
-    def next_entry_seed(self, kseed: TK, vseed: TV) -> object | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    def next_element_seed(self, seed: T) -> Value | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    @staticmethod
-    def new(iter: I) -> "MapDeserializer": ...
-
-    def end(self) -> None: ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_seq(self, visitor: V) -> Value: ...
-
-    def deserialize_tuple(self, len: int, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def next_key_seed(self, seed: T) -> Value | None: ...
-
-    def next_value_seed(self, seed: T) -> Value: ...
-
-    def next_entry_seed(self, kseed: TK, vseed: TV) -> object | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    def next_element_seed(self, seed: T) -> Value | None: ...
-
-    def size_hint(self) -> int | None: ...
-
-    def clone(self) -> Self: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-class MapAccessDeserializer:
-    """A deserializer holding a `MapAccess`."""
-
-    @staticmethod
-    def new(map: A) -> "MapAccessDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, _name: str, _variants: object, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-    def variant_seed(self, seed: T) -> object: ...
-
-class EnumAccessDeserializer:
-    """A deserializer holding an `EnumAccess`."""
-
-    @staticmethod
-    def new(access: A) -> "EnumAccessDeserializer": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Self: ...
-
-class UnitOnly:
-
-    def unit_variant(self) -> None: ...
-
-    def newtype_variant_seed(self, _seed: T) -> Value: ...
-
-    def tuple_variant(self, _len: int, _visitor: V) -> Value: ...
-
-    def struct_variant(self, _fields: object, _visitor: V) -> Value: ...
-
-class MapAsEnum:
-
-    def unit_variant(self) -> None: ...
-
-    def newtype_variant_seed(self, seed: T) -> Value: ...
-
-    def tuple_variant(self, len: int, visitor: V) -> Value: ...
-
-    def struct_variant(self, _fields: object, visitor: V) -> Value: ...
-
-class IgnoredAny:
-    """An efficient way of discarding data from a deserializer.
-
-Think of this like `serde_json::Value` in that it can be deserialized from
-any type, except that it does not store any information about the data that
-gets deserialized.
-
-```edition2021
-use serde::de::{
-self, Deserialize, DeserializeSeed, Deserializer, IgnoredAny, SeqAccess, Visitor,
-};
-use std::fmt;
-use std::marker::PhantomData;
-
-/// A seed that can be used to deserialize only the `n`th element of a sequence
-/// while efficiently discarding elements of any type before or after index `n`.
-///
-/// For example to deserialize only the element at index 3:
-///
-/// ```
-/// NthElement::new(3).deserialize(deserializer)
-/// ```
-pub struct NthElement<T> {
-n: usize,
-marker: PhantomData<T>,
-}
-
-impl<T> NthElement<T> {
-pub fn new(n: usize) -> Self {
-NthElement {
-n: n,
-marker: PhantomData,
-}
-}
-}
-
-impl<'de, T> Visitor<'de> for NthElement<T>
-where
-T: Deserialize<'de>,
-{
-type Value = T;
-
-fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-write!(
-formatter,
-"a sequence in which we care about element {}",
-self.n
-)
-}
-
-fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
-where
-A: SeqAccess<'de>,
-{
-// Skip over the first `n` elements.
-for i in 0..self.n {
-// It is an error if the sequence ends before we get to element `n`.
-if seq.next_element::<IgnoredAny>()?.is_none() {
-return Err(de::Error::invalid_length(i, &self));
-}
-}
-
-// Deserialize the one we care about.
-let nth = match seq.next_element()? {
-Some(nth) => nth,
-None => {
-return Err(de::Error::invalid_length(self.n, &self));
-}
-};
-
-// Skip over any remaining elements in the sequence after `n`.
-while let Some(IgnoredAny) = seq.next_element()? {
-// ignore
-}
-
-Ok(nth)
-}
-}
-
-impl<'de, T> DeserializeSeed<'de> for NthElement<T>
-where
-T: Deserialize<'de>,
-{
-type Value = T;
-
-fn deserialize<D>(self, deserializer: D) -> Result<Self::Value, D::Error>
-where
-D: Deserializer<'de>,
-{
-deserializer.deserialize_seq(self)
-}
-}
-
-# fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
-# where
-#     D: Deserializer<'de>,
-# {
-// Deserialize only the sequence element at index 3 from this deserializer.
-// The element at index 3 is required to be a string. Elements before and
-// after index 3 are allowed to be of any type.
-let s: String = NthElement::new(3).deserialize(deserializer)?;
-#     Ok(())
-# }
-```"""
-
-    def expecting(self, formatter: Formatter) -> Result: ...
-
-    def visit_bool(self, x: bool) -> Value: ...
-
-    def visit_i64(self, x: int) -> Value: ...
-
-    def visit_i128(self, x: int) -> Value: ...
-
-    def visit_u64(self, x: int) -> Value: ...
-
-    def visit_u128(self, x: int) -> Value: ...
-
-    def visit_f64(self, x: float) -> Value: ...
-
-    def visit_str(self, s: str) -> Value: ...
-
-    def visit_none(self) -> Value: ...
-
-    def visit_some(self, deserializer: D) -> Value: ...
-
-    def visit_newtype_struct(self, deserializer: D) -> Value: ...
-
-    def visit_unit(self) -> Value: ...
-
-    def visit_seq(self, seq: A) -> Value: ...
-
-    def visit_map(self, map: A) -> Value: ...
-
-    def visit_bytes(self, bytes: object) -> Value: ...
-
-    def visit_enum(self, data: A) -> Value: ...
-
-    @staticmethod
-    def deserialize(deserializer: D) -> "IgnoredAny": ...
-
-class RangeVisitor:
-
-    def expecting(self, formatter: Formatter) -> Result: ...
-
-    def visit_seq(self, seq: A) -> Value: ...
-
-    def visit_map(self, map: A) -> Value: ...
-
-class RangeFromVisitor:
-
-    def expecting(self, formatter: Formatter) -> Result: ...
-
-    def visit_seq(self, seq: A) -> Value: ...
-
-    def visit_map(self, map: A) -> Value: ...
-
-class RangeToVisitor:
-
-    def expecting(self, formatter: Formatter) -> Result: ...
-
-    def visit_seq(self, seq: A) -> Value: ...
-
-    def visit_map(self, map: A) -> Value: ...
-
-class TagOrContent:
-    """This is the type of the map keys in an internally tagged enum.
-
-Not public API."""
-    Tag: "TagOrContent"
-    Content: "TagOrContent"
-
-class TagOrContentField:
-    """Used by generated code to deserialize an adjacently tagged enum.
-
-Not public API."""
-    Tag: "TagOrContentField"
-    Content: "TagOrContentField"
-
-class TagContentOtherField:
-    """Used by generated code to deserialize an adjacently tagged enum when
-ignoring unrelated fields is allowed.
-
-Not public API."""
-    Tag: "TagContentOtherField"
-    Content: "TagContentOtherField"
-    Other: "TagContentOtherField"
-
-class Content:
-    Bool: "Content"
-    U8: "Content"
-    U16: "Content"
-    U32: "Content"
-    U64: "Content"
-    I8: "Content"
-    I16: "Content"
-    I32: "Content"
-    I64: "Content"
-    F32: "Content"
-    F64: "Content"
-    Char: "Content"
-    String: "Content"
-    Bytes: "Content"
-    None_: "Content"
-    Some: "Content"
-    Unit: "Content"
-    UnitStruct: "Content"
-    UnitVariant: "Content"
-    NewtypeStruct: "Content"
-    NewtypeVariant: "Content"
-    Seq: "Content"
-    Tuple: "Content"
-    TupleStruct: "Content"
-    TupleVariant: "Content"
-    Map: "Content"
-    Struct: "Content"
-    StructVariant: "Content"
-
-    def serialize(self, serializer: S) -> Ok: ...
-
-class Content:
-    Bool: "Content"
-    U8: "Content"
-    U16: "Content"
-    U32: "Content"
-    U64: "Content"
-    I8: "Content"
-    I16: "Content"
-    I32: "Content"
-    I64: "Content"
-    F32: "Content"
-    F64: "Content"
-    Char: "Content"
-    String: "Content"
-    Str: "Content"
-    ByteBuf: "Content"
-    Bytes: "Content"
-    None_: "Content"
-    Some: "Content"
-    Unit: "Content"
-    Newtype: "Content"
-    Seq: "Content"
-    Map: "Content"
-
-    def serialize(self, serializer: S) -> Ok: ...
 
 class Unexpected:
     """`Unexpected` represents an unexpected invocation of any one of the `Visitor`
@@ -1288,6 +1207,106 @@ Err(de::Error::invalid_type(Unexpected::Bool(v), &self))
 
     def fmt(self, formatter: Formatter) -> Result: ...
 
+class Content:
+    Bool: "Content"
+    U8: "Content"
+    U16: "Content"
+    U32: "Content"
+    U64: "Content"
+    I8: "Content"
+    I16: "Content"
+    I32: "Content"
+    I64: "Content"
+    F32: "Content"
+    F64: "Content"
+    Char: "Content"
+    String: "Content"
+    Str: "Content"
+    ByteBuf: "Content"
+    Bytes: "Content"
+    None_: "Content"
+    Some: "Content"
+    Unit: "Content"
+    Newtype: "Content"
+    Seq: "Content"
+    Map: "Content"
+
+    def serialize(self, serializer: S) -> Ok: ...
+
+class Content:
+    Bool: "Content"
+    U8: "Content"
+    U16: "Content"
+    U32: "Content"
+    U64: "Content"
+    I8: "Content"
+    I16: "Content"
+    I32: "Content"
+    I64: "Content"
+    F32: "Content"
+    F64: "Content"
+    Char: "Content"
+    String: "Content"
+    Bytes: "Content"
+    None_: "Content"
+    Some: "Content"
+    Unit: "Content"
+    UnitStruct: "Content"
+    UnitVariant: "Content"
+    NewtypeStruct: "Content"
+    NewtypeVariant: "Content"
+    Seq: "Content"
+    Tuple: "Content"
+    TupleStruct: "Content"
+    TupleVariant: "Content"
+    Map: "Content"
+    Struct: "Content"
+    StructVariant: "Content"
+
+    def serialize(self, serializer: S) -> Ok: ...
+
+class TagOrContent:
+    """This is the type of the map keys in an internally tagged enum.
+
+Not public API."""
+    Tag: "TagOrContent"
+    Content: "TagOrContent"
+
+class TagOrContentField:
+    """Used by generated code to deserialize an adjacently tagged enum.
+
+Not public API."""
+    Tag: "TagOrContentField"
+    Content: "TagOrContentField"
+
+class TagContentOtherField:
+    """Used by generated code to deserialize an adjacently tagged enum when
+ignoring unrelated fields is allowed.
+
+Not public API."""
+    Tag: "TagContentOtherField"
+    Content: "TagContentOtherField"
+    Other: "TagContentOtherField"
+
+def unit_only(t: T) -> object: ...
+
+def map_as_enum(map: A) -> object: ...
+
+def from_bounds(iter: I) -> int | None: ...
+
+def cautious(hint: int | None) -> int: ...
+
+def from_utf8_lossy(bytes: object) -> object: ...
+
+def from_utf8_lossy(bytes: object) -> str: ...
+
+"""Used to check that serde(getter) attributes return the expected type.
+Not public API."""
+def constrain(t: T) -> T: ...
+
+"""Not public API."""
+def serialize_tagged_newtype(serializer: S, type_ident: object, variant_ident: object, tag: object, variant_name: object, value: T) -> Ok: ...
+
 """If the missing field is of type `Option<T>` then treat is as `None`,
 otherwise it is an error."""
 def missing_field(field: object) -> V: ...
@@ -1298,23 +1317,4 @@ def borrow_cow_bytes(deserializer: D) -> R: ...
 
 def content_as_str(content: object) -> object: ...
 
-"""Used to check that serde(getter) attributes return the expected type.
-Not public API."""
-def constrain(t: T) -> T: ...
-
-"""Not public API."""
-def serialize_tagged_newtype(serializer: S, type_ident: object, variant_ident: object, tag: object, variant_name: object, value: T) -> Ok: ...
-
-def from_utf8_lossy(bytes: object) -> object: ...
-
-def from_utf8_lossy(bytes: object) -> str: ...
-
-def from_bounds(iter: I) -> int | None: ...
-
-def cautious(hint: int | None) -> int: ...
-
-def unit_only(t: T) -> object: ...
-
-def map_as_enum(map: A) -> object: ...
-
-__all__: list[str] = ["missing_field", "borrow_cow_str", "borrow_cow_bytes", "content_as_str", "constrain", "serialize_tagged_newtype", "from_utf8_lossy", "from_utf8_lossy", "from_bounds", "cautious", "unit_only", "map_as_enum", "ContentVisitor", "TaggedContentVisitor", "TagOrContentFieldVisitor", "TagContentOtherFieldVisitor", "ContentDeserializer", "EnumDeserializer", "VariantDeserializer", "ContentRefDeserializer", "InternallyTaggedUnitVisitor", "UntaggedUnitVisitor", "Borrowed", "StrDeserializer", "BorrowedStrDeserializer", "FlatMapDeserializer", "AdjacentlyTaggedEnumVariantSeed", "AdjacentlyTaggedEnumVariantVisitor", "SerializeTupleVariantAsMapValue", "SerializeStructVariantAsMapValue", "ContentSerializer", "SerializeSeq", "SerializeTuple", "SerializeTupleStruct", "SerializeTupleVariant", "SerializeMap", "SerializeStruct", "SerializeStructVariant", "FlatMapSerializer", "FlatMapSerializeMap", "FlatMapSerializeStruct", "FlatMapSerializeTupleVariantAsMapValue", "FlatMapSerializeStructVariantAsMapValue", "AdjacentlyTaggedEnumVariant", "CannotSerializeVariant", "Impossible", "InPlaceSeed", "Error", "Error", "UnitDeserializer", "NeverDeserializer", "U32Deserializer", "StrDeserializer", "BorrowedStrDeserializer", "StringDeserializer", "CowStrDeserializer", "BytesDeserializer", "BorrowedBytesDeserializer", "SeqDeserializer", "SeqAccessDeserializer", "MapDeserializer", "MapAccessDeserializer", "EnumAccessDeserializer", "UnitOnly", "MapAsEnum", "IgnoredAny", "RangeVisitor", "RangeFromVisitor", "RangeToVisitor", "TagOrContent", "TagOrContentField", "TagContentOtherField", "Content", "Content", "Unexpected"]
+__all__: list[str] = ["unit_only", "map_as_enum", "from_bounds", "cautious", "from_utf8_lossy", "from_utf8_lossy", "constrain", "serialize_tagged_newtype", "missing_field", "borrow_cow_str", "borrow_cow_bytes", "content_as_str", "IgnoredAny", "Error", "UnitDeserializer", "NeverDeserializer", "U32Deserializer", "StrDeserializer", "BorrowedStrDeserializer", "StringDeserializer", "CowStrDeserializer", "BytesDeserializer", "BorrowedBytesDeserializer", "SeqDeserializer", "SeqAccessDeserializer", "MapDeserializer", "MapAccessDeserializer", "EnumAccessDeserializer", "UnitOnly", "MapAsEnum", "RangeVisitor", "RangeFromVisitor", "RangeToVisitor", "Impossible", "Error", "InPlaceSeed", "SerializeTupleVariantAsMapValue", "SerializeStructVariantAsMapValue", "ContentSerializer", "SerializeSeq", "SerializeTuple", "SerializeTupleStruct", "SerializeTupleVariant", "SerializeMap", "SerializeStruct", "SerializeStructVariant", "FlatMapSerializer", "FlatMapSerializeMap", "FlatMapSerializeStruct", "FlatMapSerializeTupleVariantAsMapValue", "FlatMapSerializeStructVariantAsMapValue", "AdjacentlyTaggedEnumVariant", "CannotSerializeVariant", "ContentVisitor", "TaggedContentVisitor", "TagOrContentFieldVisitor", "TagContentOtherFieldVisitor", "ContentDeserializer", "EnumDeserializer", "VariantDeserializer", "ContentRefDeserializer", "InternallyTaggedUnitVisitor", "UntaggedUnitVisitor", "Borrowed", "StrDeserializer", "BorrowedStrDeserializer", "FlatMapDeserializer", "AdjacentlyTaggedEnumVariantSeed", "AdjacentlyTaggedEnumVariantVisitor", "Unexpected", "Content", "Content", "TagOrContent", "TagOrContentField", "TagContentOtherField"]
