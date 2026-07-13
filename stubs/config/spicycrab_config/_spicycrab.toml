@@ -1,48 +1,15 @@
 [package]
 name = "config"
 rust_crate = "config"
-rust_version = "0.15.19"
+rust_version = "0.15.25"
 python_module = "spicycrab_config"
 
 [cargo.dependencies]
-config = "0.15.19"
+config = "0.15.25"
 
 [cargo.features]
 available = ["async", "convert-case", "corn", "default", "ini", "json", "json5", "preserve_order", "toml", "yaml"]
 default = ["async", "convert-case", "ini", "json", "json5", "ron", "toml", "yaml"]
-
-[[mappings.functions]]
-python = "config.Config.default"
-rust_code = "config::Config::default()"
-rust_imports = ["config::Config"]
-needs_result = false
-
-[[mappings.functions]]
-python = "config.Config.builder"
-rust_code = "config::Config::builder()"
-rust_imports = ["config::Config"]
-needs_result = false
-
-[[mappings.functions]]
-python = "config.Config.try_from"
-rust_code = "config::Config::try_from({arg0})"
-rust_imports = ["config::Config"]
-needs_result = true
-param_types = ["&T"]
-
-[[mappings.functions]]
-python = "config.FileSourceString.from_"
-rust_code = "config::file::source::string::FileSourceString::from({arg0})"
-rust_imports = ["config::file::source::string::FileSourceString"]
-needs_result = false
-param_types = ["&'astr"]
-
-[[mappings.functions]]
-python = "config.FileSourceFile.new"
-rust_code = "config::FileSourceFile::new({arg0})"
-rust_imports = ["config::FileSourceFile"]
-needs_result = false
-param_types = ["PathBuf"]
 
 [[mappings.functions]]
 python = "config.File.from_str"
@@ -80,6 +47,39 @@ needs_result = false
 param_types = ["PathBuf"]
 
 [[mappings.functions]]
+python = "config.FileSourceFile.new"
+rust_code = "config::FileSourceFile::new({arg0})"
+rust_imports = ["config::FileSourceFile"]
+needs_result = false
+param_types = ["PathBuf"]
+
+[[mappings.functions]]
+python = "config.FileSourceString.from_"
+rust_code = "config::file::source::string::FileSourceString::from({arg0})"
+rust_imports = ["config::file::source::string::FileSourceString"]
+needs_result = false
+param_types = ["&'astr"]
+
+[[mappings.functions]]
+python = "config.Config.default"
+rust_code = "config::Config::default()"
+rust_imports = ["config::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "config.Config.builder"
+rust_code = "config::Config::builder()"
+rust_imports = ["config::Config"]
+needs_result = false
+
+[[mappings.functions]]
+python = "config.Config.try_from"
+rust_code = "config::Config::try_from({arg0})"
+rust_imports = ["config::Config"]
+needs_result = true
+param_types = ["&T"]
+
+[[mappings.functions]]
 python = "config.Value.new"
 rust_code = "config::Value::new({arg0}, {arg1})"
 rust_imports = ["config::Value"]
@@ -113,6 +113,75 @@ rust_code = "config::env::Environment::with_convert_case({arg0})"
 rust_imports = ["config::env::Environment"]
 needs_result = false
 param_types = ["Case"]
+
+[[mappings.methods]]
+python = "File.format"
+rust_code = "{self}.format({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "File"
+param_types = ["F"]
+
+[[mappings.methods]]
+python = "File.required"
+rust_code = "{self}.required({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "File"
+param_types = ["bool"]
+
+[[mappings.methods]]
+python = "File.clone_into_box"
+rust_code = "{self}.clone_into_box()"
+rust_imports = []
+needs_result = false
+returns = "dynSource+Send+Sync"
+
+[[mappings.methods]]
+python = "File.collect"
+rust_code = "{self}.collect()"
+rust_imports = []
+needs_result = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "FileSourceResult.uri"
+rust_code = "{self}.uri()"
+rust_imports = []
+needs_result = false
+returns = "String"
+
+[[mappings.methods]]
+python = "FileSourceResult.content"
+rust_code = "{self}.content()"
+rust_imports = []
+needs_result = false
+returns = "str"
+
+[[mappings.methods]]
+python = "FileSourceResult.format"
+rust_code = "{self}.format()"
+rust_imports = []
+needs_result = false
+returns = "dynFormat"
+
+[[mappings.methods]]
+python = "FileSourceFile.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = true
+returns = "FileSourceResult"
+param_types = ["Option<F>"]
+
+[[mappings.methods]]
+python = "FileSourceString.resolve"
+rust_code = "{self}.resolve({arg0})"
+rust_imports = []
+needs_result = true
+returns = "FileSourceResult"
+param_types = ["Option<F>"]
 
 [[mappings.methods]]
 python = "Config.get"
@@ -185,75 +254,6 @@ returns = "dynSource+Send+Sync"
 
 [[mappings.methods]]
 python = "Config.collect"
-rust_code = "{self}.collect()"
-rust_imports = []
-needs_result = true
-returns = "Map"
-
-[[mappings.methods]]
-python = "FileSourceString.resolve"
-rust_code = "{self}.resolve({arg0})"
-rust_imports = []
-needs_result = true
-returns = "FileSourceResult"
-param_types = ["Option<F>"]
-
-[[mappings.methods]]
-python = "FileSourceResult.uri"
-rust_code = "{self}.uri()"
-rust_imports = []
-needs_result = false
-returns = "String"
-
-[[mappings.methods]]
-python = "FileSourceResult.content"
-rust_code = "{self}.content()"
-rust_imports = []
-needs_result = false
-returns = "str"
-
-[[mappings.methods]]
-python = "FileSourceResult.format"
-rust_code = "{self}.format()"
-rust_imports = []
-needs_result = false
-returns = "dynFormat"
-
-[[mappings.methods]]
-python = "FileSourceFile.resolve"
-rust_code = "{self}.resolve({arg0})"
-rust_imports = []
-needs_result = true
-returns = "FileSourceResult"
-param_types = ["Option<F>"]
-
-[[mappings.methods]]
-python = "File.format"
-rust_code = "{self}.format({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "File"
-param_types = ["F"]
-
-[[mappings.methods]]
-python = "File.required"
-rust_code = "{self}.required({arg0})"
-rust_imports = []
-needs_result = false
-returns_self = true
-returns = "File"
-param_types = ["bool"]
-
-[[mappings.methods]]
-python = "File.clone_into_box"
-rust_code = "{self}.clone_into_box()"
-rust_imports = []
-needs_result = false
-returns = "dynSource+Send+Sync"
-
-[[mappings.methods]]
-python = "File.collect"
 rust_code = "{self}.collect()"
 rust_imports = []
 needs_result = true
@@ -349,6 +349,91 @@ rust_code = "{self}.build_cloned()"
 rust_imports = []
 needs_result = true
 returns = "Config"
+
+[[mappings.methods]]
+python = "Value.origin"
+rust_code = "{self}.origin()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Value.try_deserialize"
+rust_code = "{self}.try_deserialize()"
+rust_imports = []
+needs_result = true
+returns = "T"
+
+[[mappings.methods]]
+python = "Value.into_bool"
+rust_code = "{self}.into_bool()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "Value.into_int"
+rust_code = "{self}.into_int()"
+rust_imports = []
+needs_result = true
+returns = "i64"
+
+[[mappings.methods]]
+python = "Value.into_int128"
+rust_code = "{self}.into_int128()"
+rust_imports = []
+needs_result = true
+returns = "i128"
+
+[[mappings.methods]]
+python = "Value.into_uint"
+rust_code = "{self}.into_uint()"
+rust_imports = []
+needs_result = true
+returns = "u64"
+
+[[mappings.methods]]
+python = "Value.into_uint128"
+rust_code = "{self}.into_uint128()"
+rust_imports = []
+needs_result = true
+returns = "u128"
+
+[[mappings.methods]]
+python = "Value.into_float"
+rust_code = "{self}.into_float()"
+rust_imports = []
+needs_result = true
+returns = "f64"
+
+[[mappings.methods]]
+python = "Value.into_string"
+rust_code = "{self}.into_string()"
+rust_imports = []
+needs_result = true
+returns = "String"
+
+[[mappings.methods]]
+python = "Value.into_array"
+rust_code = "{self}.into_array()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Vec"
+
+[[mappings.methods]]
+python = "Value.into_table"
+rust_code = "{self}.into_table()"
+rust_imports = []
+needs_result = true
+returns_self = true
+returns = "Map"
+
+[[mappings.methods]]
+python = "Value.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutfmt::Formatter<'_>"]
 
 [[mappings.methods]]
 python = "Value.deserialize_any"
@@ -504,91 +589,6 @@ returns = "Value"
 param_types = ["&'staticstr", "&'static[&'staticstr]", "V"]
 
 [[mappings.methods]]
-python = "Value.origin"
-rust_code = "{self}.origin()"
-rust_imports = []
-needs_result = false
-
-[[mappings.methods]]
-python = "Value.try_deserialize"
-rust_code = "{self}.try_deserialize()"
-rust_imports = []
-needs_result = true
-returns = "T"
-
-[[mappings.methods]]
-python = "Value.into_bool"
-rust_code = "{self}.into_bool()"
-rust_imports = []
-needs_result = true
-
-[[mappings.methods]]
-python = "Value.into_int"
-rust_code = "{self}.into_int()"
-rust_imports = []
-needs_result = true
-returns = "i64"
-
-[[mappings.methods]]
-python = "Value.into_int128"
-rust_code = "{self}.into_int128()"
-rust_imports = []
-needs_result = true
-returns = "i128"
-
-[[mappings.methods]]
-python = "Value.into_uint"
-rust_code = "{self}.into_uint()"
-rust_imports = []
-needs_result = true
-returns = "u64"
-
-[[mappings.methods]]
-python = "Value.into_uint128"
-rust_code = "{self}.into_uint128()"
-rust_imports = []
-needs_result = true
-returns = "u128"
-
-[[mappings.methods]]
-python = "Value.into_float"
-rust_code = "{self}.into_float()"
-rust_imports = []
-needs_result = true
-returns = "f64"
-
-[[mappings.methods]]
-python = "Value.into_string"
-rust_code = "{self}.into_string()"
-rust_imports = []
-needs_result = true
-returns = "String"
-
-[[mappings.methods]]
-python = "Value.into_array"
-rust_code = "{self}.into_array()"
-rust_imports = []
-needs_result = true
-returns_self = true
-returns = "Vec"
-
-[[mappings.methods]]
-python = "Value.into_table"
-rust_code = "{self}.into_table()"
-rust_imports = []
-needs_result = true
-returns_self = true
-returns = "Map"
-
-[[mappings.methods]]
-python = "Value.fmt"
-rust_code = "{self}.fmt({arg0})"
-rust_imports = []
-needs_result = true
-returns = "Result"
-param_types = ["&mutfmt::Formatter<'_>"]
-
-[[mappings.methods]]
 python = "Environment.prefix"
 rust_code = "{self}.prefix({arg0})"
 rust_imports = []
@@ -693,12 +693,8 @@ needs_result = true
 returns = "Map"
 
 [[mappings.types]]
-python = "Config"
-rust = "config::Config"
-
-[[mappings.types]]
-python = "FileSourceString"
-rust = "config::file::source::string::FileSourceString"
+python = "File"
+rust = "config::File"
 
 [[mappings.types]]
 python = "FileSourceResult"
@@ -709,12 +705,12 @@ python = "FileSourceFile"
 rust = "config::FileSourceFile"
 
 [[mappings.types]]
-python = "File"
-rust = "config::File"
+python = "FileSourceString"
+rust = "config::file::source::string::FileSourceString"
 
 [[mappings.types]]
-python = "ReadmeDoctests"
-rust = "config::ReadmeDoctests"
+python = "Config"
+rust = "config::Config"
 
 [[mappings.types]]
 python = "ConfigBuilder"
@@ -735,6 +731,10 @@ rust = "config::Value"
 [[mappings.types]]
 python = "Environment"
 rust = "config::env::Environment"
+
+[[mappings.types]]
+python = "ReadmeDoctests"
+rust = "config::ReadmeDoctests"
 
 [[mappings.types]]
 python = "FileFormat"
