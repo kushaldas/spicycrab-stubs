@@ -15,278 +15,153 @@ def json(value: Any) -> "Value":
     ...
 
 
-class Map:
-    """Represents a JSON key/value type."""
+class RawValue:
+    """Reference to a range of bytes encompassing a single valid JSON value in the
+input data.
 
-    @staticmethod
-    def new() -> "Map": ...
+A `RawValue` can be used to defer parsing parts of a payload until later,
+or to avoid parsing it at all in the case that part of the payload just
+needs to be transferred verbatim into a different output object.
 
-    @staticmethod
-    def with_capacity(capacity: int) -> "Map": ...
+When serializing, a value of this type will retain its original formatting
+and will not be minified or pretty-printed.
 
-    def clear(self) -> None: ...
+# Note
 
-    def get(self, key: Q) -> object: ...
+`RawValue` is only available if serde\\_json is built with the `"raw_value"`
+feature.
 
-    def contains_key(self, key: Q) -> bool: ...
+```toml
+[dependencies]
+serde_json = { version = "1.0", features = ["raw_value"] }
+```
 
-    def get_mut(self, key: Q) -> object: ...
-
-    def get_key_value(self, key: Q) -> object | None: ...
-
-    def insert(self, k: str, v: Value) -> Value | None: ...
-
-    def shift_insert(self, index: int, k: str, v: Value) -> Value | None: ...
-
-    def remove(self, key: Q) -> Value | None: ...
-
-    def remove_entry(self, key: Q) -> object | None: ...
-
-    def swap_remove(self, key: Q) -> Value | None: ...
-
-    def swap_remove_entry(self, key: Q) -> object | None: ...
-
-    def shift_remove(self, key: Q) -> Value | None: ...
-
-    def shift_remove_entry(self, key: Q) -> object | None: ...
-
-    def append(self, other: Self) -> None: ...
-
-    def entry(self, key: S) -> Entry: ...
-
-    def len(self) -> int: ...
-
-    def is_empty(self) -> bool: ...
-
-    def iter(self) -> Iter: ...
-
-    def iter_mut(self) -> IterMut: ...
-
-    def keys(self) -> Keys: ...
-
-    def values(self) -> Values: ...
-
-    def values_mut(self) -> ValuesMut: ...
-
-    def into_values(self) -> IntoValues: ...
-
-    def retain(self, f: F) -> None: ...
-
-    def sort_keys(self) -> None: ...
-
-    @staticmethod
-    def default() -> "Map": ...
-
-    def clone(self) -> Self: ...
-
-    def clone_from(self, source: Self) -> None: ...
-
-    def eq(self, other: Self) -> bool: ...
-
-    def hash(self, state: H) -> None: ...
-
-    def index(self, index: Q) -> Value: ...
-
-    def index_mut(self, index: Q) -> Value: ...
-
-    def fmt(self, formatter: Formatter) -> None: ...
-
-    def serialize(self, serializer: S) -> Ok: ...
-
-    @staticmethod
-    def deserialize(deserializer: D) -> object: ...
-
-    @staticmethod
-    def from_iter(iter: T) -> "Map": ...
-
-    def extend(self, iter: T) -> None: ...
-
-    def into_deserializer(self) -> Deserializer: ...
-
-    def into_iter(self) -> IntoIter: ...
-
-    @staticmethod
-    def from_str(s: str) -> object: ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, _name: object, _variants: object, visitor: V) -> Value: ...
-
-    def deserialize_ignored_any(self, visitor: V) -> Value: ...
-
-class VacantEntry:
-    """A vacant Entry. It is part of the [`Entry`] enum."""
-
-    def key(self) -> str: ...
-
-    def insert(self, value: Value) -> object: ...
-
-class OccupiedEntry:
-    """An occupied Entry. It is part of the [`Entry`] enum."""
-
-    def key(self) -> str: ...
-
-    def get(self) -> Value: ...
-
-    def get_mut(self) -> Value: ...
-
-    def into_mut(self) -> object: ...
-
-    def insert(self, value: Value) -> Value: ...
-
-    def remove(self) -> Value: ...
-
-    def swap_remove(self) -> Value: ...
-
-    def shift_remove(self) -> Value: ...
-
-    def remove_entry(self) -> object: ...
-
-    def swap_remove_entry(self) -> object: ...
-
-    def shift_remove_entry(self) -> object: ...
-
-class Iter:
-    """An iterator over a serde_json::Map's entries."""
-    pass
-
-class IterMut:
-    """A mutable iterator over a serde_json::Map's entries."""
-    pass
-
-class IntoIter:
-    """An owning iterator over a serde_json::Map's entries."""
-    pass
-
-class Keys:
-    """An iterator over a serde_json::Map's keys."""
-    pass
-
-class Values:
-    """An iterator over a serde_json::Map's values."""
-    pass
-
-class ValuesMut:
-    """A mutable iterator over a serde_json::Map's values."""
-    pass
-
-class IntoValues:
-    """An owning iterator over a serde_json::Map's values."""
-    pass
-
-class LineColIterator:
-
-    @staticmethod
-    def new(iter: I) -> object: ...
-
-    def line(self) -> int: ...
-
-    def col(self) -> int: ...
-
-    def byte_offset(self) -> int: ...
-
-    def next(self) -> int | None: ...
-
-class Error:
-
-    def fmt(self, _formatter: Formatter) -> Result: ...
-
-    def line(self) -> int: ...
-
-    def column(self) -> int: ...
-
-    def classify(self) -> Category: ...
-
-    def is_io(self) -> bool: ...
-
-    def is_syntax(self) -> bool: ...
-
-    def is_data(self) -> bool: ...
-
-    def is_eof(self) -> bool: ...
-
-    def io_error_kind(self) -> ErrorKind | None: ...
-
-    @staticmethod
-    def from_(j: Exception) -> "Error": ...
-
-    @staticmethod
-    def io(error: Exception) -> "Error": ...
-
-    def source(self) -> object: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-    @staticmethod
-    def custom(msg: T) -> Exception: ...
-
-    @staticmethod
-    def invalid_type(unexp: Unexpected, exp: Expected) -> "Error": ...
-
-    @staticmethod
-    def invalid_value(unexp: Unexpected, exp: Expected) -> "Error": ...
-
-    @staticmethod
-    def custom(msg: T) -> Exception: ...
-
-class Deserializer:
-    """A structure that deserializes JSON into Rust values."""
-
-    @staticmethod
-    def new(read: R) -> "Deserializer": ...
-
-    @staticmethod
-    def from_reader(reader: R) -> "Deserializer": ...
-
-    @staticmethod
-    def from_slice(bytes: object) -> "Deserializer": ...
-
-    @staticmethod
-    def from_str(s: object) -> "Deserializer": ...
-
-    def end(self) -> None: ...
-
-    def into_iter(self) -> object: ...
-
-    def disable_recursion_limit(self) -> None: ...
-
-class StreamDeserializer:
-    """Iterator that deserializes a stream into multiple JSON values.
-
-A stream deserializer can be created from any JSON deserializer using the
-`Deserializer::into_iter` method.
-
-The data can consist of any JSON value. Values need to be a self-delineating value e.g.
-arrays, objects, or strings, or be followed by whitespace or a self-delineating value.
+# Example
 
 ```
-use serde_json::{Deserializer, Value};
+use serde::{Deserialize, Serialize};
+use serde_json::{Result, value::RawValue};
 
-fn main() {
-let data = "{\\"k\\": 3}1\\"cool\\"\\"stuff\\" 3{}  [0, 1, 2]";
-
-let stream = Deserializer::from_str(data).into_iter::<Value>();
-
-for value in stream {
-println!("{}", value.unwrap());
+#[derive(Deserialize)]
+struct Input<'a> {
+code: u32,
+#[serde(borrow)]
+payload: &'a RawValue,
 }
+
+#[derive(Serialize)]
+struct Output<'a> {
+info: (u32, &'a RawValue),
+}
+
+// Efficiently rearrange JSON input containing separate "code" and "payload"
+// keys into a single "info" key holding an array of code and payload.
+//
+// This could be done equivalently using serde_json::Value as the type for
+// payload, but &RawValue will perform better because it does not require
+// memory allocation. The correct range of bytes is borrowed from the input
+// data and pasted verbatim into the output.
+fn rearrange(input: &str) -> Result<String> {
+let input: Input = serde_json::from_str(input)?;
+
+let output = Output {
+info: (input.code, input.payload),
+};
+
+serde_json::to_string(&output)
+}
+
+fn main() -> Result<()> {
+let out = rearrange(r#" {"code": 200, "payload": {}} "#)?;
+
+assert_eq!(out, r#"{"info":[200,{}]}"#);
+
+Ok(())
+}
+```
+
+# Ownership
+
+The typical usage of `RawValue` will be in the borrowed form:
+
+```
+# use serde::Deserialize;
+# use serde_json::value::RawValue;
+#
+#[derive(Deserialize)]
+struct SomeStruct<'a> {
+#[serde(borrow)]
+raw_value: &'a RawValue,
+}
+```
+
+The borrowed form is suitable when deserializing through
+[`serde_json::from_str`] and [`serde_json::from_slice`] which support
+borrowing from the input data without memory allocation.
+
+When deserializing through [`serde_json::from_reader`] you will need to use
+the boxed form of `RawValue` instead. This is almost as efficient but
+involves buffering the raw value from the I/O stream into memory.
+
+[`serde_json::from_str`]: crate::from_str
+[`serde_json::from_slice`]: crate::from_slice
+[`serde_json::from_reader`]: crate::from_reader
+
+```
+# use serde::Deserialize;
+# use serde_json::value::RawValue;
+#
+#[derive(Deserialize)]
+struct SomeStruct {
+raw_value: Box<RawValue>,
 }
 ```"""
 
+    def to_owned(self) -> Owned: ...
+
+    def fmt(self, formatter: Formatter) -> Result: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
     @staticmethod
-    def new(read: R) -> "StreamDeserializer": ...
+    def from_string(json: str) -> object: ...
 
-    def byte_offset(self) -> int: ...
+    def get(self) -> str: ...
 
-    def next(self) -> T | None: ...
+    def serialize(self, serializer: S) -> Ok: ...
+
+class ReferenceFromString:
+
+    def deserialize(self, deserializer: D) -> Value: ...
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_borrowed_str(self, s: object) -> Value: ...
+
+class BoxedFromString:
+
+    def deserialize(self, deserializer: D) -> Value: ...
+
+    def expecting(self, formatter: Formatter) -> Result: ...
+
+    def visit_str(self, s: str) -> Value: ...
+
+    def visit_string(self, s: str) -> Value: ...
+
+class OwnedRawDeserializer:
+
+    def next_key_seed(self, seed: K) -> Value | None: ...
+
+    def next_value_seed(self, seed: V) -> Value: ...
+
+class BorrowedRawDeserializer:
+
+    def next_key_seed(self, seed: K) -> Value | None: ...
+
+    def next_value_seed(self, seed: V) -> Value: ...
 
 class Number:
     """Represents a JSON number, whether integer or floating point."""
-
-    @staticmethod
-    def from_str(s: str) -> object: ...
 
     def is_i64(self) -> bool: ...
 
@@ -334,111 +209,13 @@ class Number:
     @staticmethod
     def from_(value: ParserNumber) -> "Number": ...
 
+    @staticmethod
+    def from_str(s: str) -> object: ...
+
 class NumberFromString:
 
     @staticmethod
     def deserialize(deserializer: D) -> "NumberFromString": ...
-
-class Position:
-    pass
-
-class IoRead:
-    """JSON input source that reads from a std::io input stream."""
-
-    @staticmethod
-    def new(reader: R) -> "IoRead": ...
-
-    def next(self) -> int | None: ...
-
-    def peek(self) -> int | None: ...
-
-    def discard(self) -> None: ...
-
-    def discard(self) -> None: ...
-
-    def position(self) -> Position: ...
-
-    def peek_position(self) -> Position: ...
-
-    def byte_offset(self) -> int: ...
-
-    def parse_str(self, scratch: object) -> object: ...
-
-    def parse_str_raw(self, scratch: object) -> object: ...
-
-    def ignore_str(self) -> None: ...
-
-    def decode_hex_escape(self) -> int: ...
-
-    def begin_raw_buffering(self) -> None: ...
-
-    def end_raw_buffering(self, visitor: V) -> Value: ...
-
-    def set_failed(self, failed: mutbool) -> None: ...
-
-class SliceRead:
-    """JSON input source that reads from a slice of bytes."""
-
-    @staticmethod
-    def new(slice: object) -> "SliceRead": ...
-
-    def next(self) -> int | None: ...
-
-    def peek(self) -> int | None: ...
-
-    def discard(self) -> None: ...
-
-    def position(self) -> Position: ...
-
-    def peek_position(self) -> Position: ...
-
-    def byte_offset(self) -> int: ...
-
-    def parse_str(self, scratch: object) -> object: ...
-
-    def parse_str_raw(self, scratch: object) -> object: ...
-
-    def ignore_str(self) -> None: ...
-
-    def decode_hex_escape(self) -> int: ...
-
-    def begin_raw_buffering(self) -> None: ...
-
-    def end_raw_buffering(self, visitor: V) -> Value: ...
-
-    def set_failed(self, _failed: mutbool) -> None: ...
-
-class StrRead:
-    """JSON input source that reads from a UTF-8 string."""
-
-    @staticmethod
-    def new(s: object) -> "StrRead": ...
-
-    def next(self) -> int | None: ...
-
-    def peek(self) -> int | None: ...
-
-    def discard(self) -> None: ...
-
-    def position(self) -> Position: ...
-
-    def peek_position(self) -> Position: ...
-
-    def byte_offset(self) -> int: ...
-
-    def parse_str(self, scratch: object) -> object: ...
-
-    def parse_str_raw(self, scratch: object) -> object: ...
-
-    def ignore_str(self) -> None: ...
-
-    def decode_hex_escape(self) -> int: ...
-
-    def begin_raw_buffering(self) -> None: ...
-
-    def end_raw_buffering(self, visitor: V) -> Value: ...
-
-    def set_failed(self, failed: mutbool) -> None: ...
 
 class Serializer:
     """A structure for serializing Rust values into JSON."""
@@ -672,6 +449,273 @@ class SerializeStructVariant:
     def end(self) -> Value: ...
 
 class Error:
+
+    def fmt(self, _formatter: Formatter) -> Result: ...
+
+    def line(self) -> int: ...
+
+    def column(self) -> int: ...
+
+    def classify(self) -> Category: ...
+
+    def is_io(self) -> bool: ...
+
+    def is_syntax(self) -> bool: ...
+
+    def is_data(self) -> bool: ...
+
+    def is_eof(self) -> bool: ...
+
+    def io_error_kind(self) -> ErrorKind | None: ...
+
+    @staticmethod
+    def from_(j: Exception) -> "Error": ...
+
+    @staticmethod
+    def io(error: Exception) -> "Error": ...
+
+    def source(self) -> object: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+    @staticmethod
+    def custom(msg: T) -> Exception: ...
+
+    @staticmethod
+    def invalid_type(unexp: Unexpected, exp: Expected) -> "Error": ...
+
+    @staticmethod
+    def invalid_value(unexp: Unexpected, exp: Expected) -> "Error": ...
+
+    @staticmethod
+    def custom(msg: T) -> Exception: ...
+
+class Map:
+    """Represents a JSON key/value type."""
+
+    @staticmethod
+    def from_str(s: str) -> object: ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, _name: object, _variants: object, visitor: V) -> Value: ...
+
+    def deserialize_ignored_any(self, visitor: V) -> Value: ...
+
+    @staticmethod
+    def new() -> "Map": ...
+
+    @staticmethod
+    def with_capacity(capacity: int) -> "Map": ...
+
+    def clear(self) -> None: ...
+
+    def get(self, key: Q) -> object: ...
+
+    def contains_key(self, key: Q) -> bool: ...
+
+    def get_mut(self, key: Q) -> object: ...
+
+    def get_key_value(self, key: Q) -> object | None: ...
+
+    def insert(self, k: str, v: Value) -> Value | None: ...
+
+    def shift_insert(self, index: int, k: str, v: Value) -> Value | None: ...
+
+    def remove(self, key: Q) -> Value | None: ...
+
+    def remove_entry(self, key: Q) -> object | None: ...
+
+    def swap_remove(self, key: Q) -> Value | None: ...
+
+    def swap_remove_entry(self, key: Q) -> object | None: ...
+
+    def shift_remove(self, key: Q) -> Value | None: ...
+
+    def shift_remove_entry(self, key: Q) -> object | None: ...
+
+    def append(self, other: Self) -> None: ...
+
+    def entry(self, key: S) -> Entry: ...
+
+    def len(self) -> int: ...
+
+    def is_empty(self) -> bool: ...
+
+    def iter(self) -> Iter: ...
+
+    def iter_mut(self) -> IterMut: ...
+
+    def keys(self) -> Keys: ...
+
+    def values(self) -> Values: ...
+
+    def values_mut(self) -> ValuesMut: ...
+
+    def into_values(self) -> IntoValues: ...
+
+    def retain(self, f: F) -> None: ...
+
+    def sort_keys(self) -> None: ...
+
+    @staticmethod
+    def default() -> "Map": ...
+
+    def clone(self) -> Self: ...
+
+    def clone_from(self, source: Self) -> None: ...
+
+    def eq(self, other: Self) -> bool: ...
+
+    def hash(self, state: H) -> None: ...
+
+    def index(self, index: Q) -> Value: ...
+
+    def index_mut(self, index: Q) -> Value: ...
+
+    def fmt(self, formatter: Formatter) -> None: ...
+
+    def serialize(self, serializer: S) -> Ok: ...
+
+    @staticmethod
+    def deserialize(deserializer: D) -> object: ...
+
+    @staticmethod
+    def from_iter(iter: T) -> "Map": ...
+
+    def extend(self, iter: T) -> None: ...
+
+    def into_deserializer(self) -> Deserializer: ...
+
+    def into_iter(self) -> IntoIter: ...
+
+class VacantEntry:
+    """A vacant Entry. It is part of the [`Entry`] enum."""
+
+    def key(self) -> str: ...
+
+    def insert(self, value: Value) -> object: ...
+
+class OccupiedEntry:
+    """An occupied Entry. It is part of the [`Entry`] enum."""
+
+    def key(self) -> str: ...
+
+    def get(self) -> Value: ...
+
+    def get_mut(self) -> Value: ...
+
+    def into_mut(self) -> object: ...
+
+    def insert(self, value: Value) -> Value: ...
+
+    def remove(self) -> Value: ...
+
+    def swap_remove(self) -> Value: ...
+
+    def shift_remove(self) -> Value: ...
+
+    def remove_entry(self) -> object: ...
+
+    def swap_remove_entry(self) -> object: ...
+
+    def shift_remove_entry(self) -> object: ...
+
+class Iter:
+    """An iterator over a serde_json::Map's entries."""
+    pass
+
+class IterMut:
+    """A mutable iterator over a serde_json::Map's entries."""
+    pass
+
+class IntoIter:
+    """An owning iterator over a serde_json::Map's entries."""
+    pass
+
+class Keys:
+    """An iterator over a serde_json::Map's keys."""
+    pass
+
+class Values:
+    """An iterator over a serde_json::Map's values."""
+    pass
+
+class ValuesMut:
+    """A mutable iterator over a serde_json::Map's values."""
+    pass
+
+class IntoValues:
+    """An owning iterator over a serde_json::Map's values."""
+    pass
+
+class Deserializer:
+    """A structure that deserializes JSON into Rust values."""
+
+    @staticmethod
+    def new(read: R) -> "Deserializer": ...
+
+    @staticmethod
+    def from_reader(reader: R) -> "Deserializer": ...
+
+    @staticmethod
+    def from_slice(bytes: object) -> "Deserializer": ...
+
+    @staticmethod
+    def from_str(s: object) -> "Deserializer": ...
+
+    def end(self) -> None: ...
+
+    def into_iter(self) -> object: ...
+
+    def disable_recursion_limit(self) -> None: ...
+
+class StreamDeserializer:
+    """Iterator that deserializes a stream into multiple JSON values.
+
+A stream deserializer can be created from any JSON deserializer using the
+`Deserializer::into_iter` method.
+
+The data can consist of any JSON value. Values need to be a self-delineating value e.g.
+arrays, objects, or strings, or be followed by whitespace or a self-delineating value.
+
+```
+use serde_json::{Deserializer, Value};
+
+fn main() {
+let data = "{\\"k\\": 3}1\\"cool\\"\\"stuff\\" 3{}  [0, 1, 2]";
+
+let stream = Deserializer::from_str(data).into_iter::<Value>();
+
+for value in stream {
+println!("{}", value.unwrap());
+}
+}
+```"""
+
+    @staticmethod
+    def new(read: R) -> "StreamDeserializer": ...
+
+    def byte_offset(self) -> int: ...
+
+    def next(self) -> T | None: ...
+
+class LineColIterator:
+
+    @staticmethod
+    def new(iter: I) -> object: ...
+
+    def line(self) -> int: ...
+
+    def col(self) -> int: ...
+
+    def byte_offset(self) -> int: ...
+
+    def next(self) -> int | None: ...
+
+class Error:
     """This type represents all possible errors that can occur when serializing or
 deserializing JSON data."""
 
@@ -717,175 +761,106 @@ deserializing JSON data."""
     @staticmethod
     def custom(msg: T) -> Exception: ...
 
-class RawValue:
-    """Reference to a range of bytes encompassing a single valid JSON value in the
-input data.
+class Position:
+    pass
 
-A `RawValue` can be used to defer parsing parts of a payload until later,
-or to avoid parsing it at all in the case that part of the payload just
-needs to be transferred verbatim into a different output object.
-
-When serializing, a value of this type will retain its original formatting
-and will not be minified or pretty-printed.
-
-# Note
-
-`RawValue` is only available if serde\\_json is built with the `"raw_value"`
-feature.
-
-```toml
-[dependencies]
-serde_json = { version = "1.0", features = ["raw_value"] }
-```
-
-# Example
-
-```
-use serde::{Deserialize, Serialize};
-use serde_json::{Result, value::RawValue};
-
-#[derive(Deserialize)]
-struct Input<'a> {
-code: u32,
-#[serde(borrow)]
-payload: &'a RawValue,
-}
-
-#[derive(Serialize)]
-struct Output<'a> {
-info: (u32, &'a RawValue),
-}
-
-// Efficiently rearrange JSON input containing separate "code" and "payload"
-// keys into a single "info" key holding an array of code and payload.
-//
-// This could be done equivalently using serde_json::Value as the type for
-// payload, but &RawValue will perform better because it does not require
-// memory allocation. The correct range of bytes is borrowed from the input
-// data and pasted verbatim into the output.
-fn rearrange(input: &str) -> Result<String> {
-let input: Input = serde_json::from_str(input)?;
-
-let output = Output {
-info: (input.code, input.payload),
-};
-
-serde_json::to_string(&output)
-}
-
-fn main() -> Result<()> {
-let out = rearrange(r#" {"code": 200, "payload": {}} "#)?;
-
-assert_eq!(out, r#"{"info":[200,{}]}"#);
-
-Ok(())
-}
-```
-
-# Ownership
-
-The typical usage of `RawValue` will be in the borrowed form:
-
-```
-# use serde::Deserialize;
-# use serde_json::value::RawValue;
-#
-#[derive(Deserialize)]
-struct SomeStruct<'a> {
-#[serde(borrow)]
-raw_value: &'a RawValue,
-}
-```
-
-The borrowed form is suitable when deserializing through
-[`serde_json::from_str`] and [`serde_json::from_slice`] which support
-borrowing from the input data without memory allocation.
-
-When deserializing through [`serde_json::from_reader`] you will need to use
-the boxed form of `RawValue` instead. This is almost as efficient but
-involves buffering the raw value from the I/O stream into memory.
-
-[`serde_json::from_str`]: crate::from_str
-[`serde_json::from_slice`]: crate::from_slice
-[`serde_json::from_reader`]: crate::from_reader
-
-```
-# use serde::Deserialize;
-# use serde_json::value::RawValue;
-#
-#[derive(Deserialize)]
-struct SomeStruct {
-raw_value: Box<RawValue>,
-}
-```"""
-
-    def to_owned(self) -> Owned: ...
-
-    def fmt(self, formatter: Formatter) -> Result: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
+class IoRead:
+    """JSON input source that reads from a std::io input stream."""
 
     @staticmethod
-    def from_string(json: str) -> object: ...
+    def new(reader: R) -> "IoRead": ...
 
-    def get(self) -> str: ...
+    def next(self) -> int | None: ...
 
-    def serialize(self, serializer: S) -> Ok: ...
+    def peek(self) -> int | None: ...
 
-class ReferenceFromString:
+    def discard(self) -> None: ...
 
-    def deserialize(self, deserializer: D) -> Value: ...
+    def discard(self) -> None: ...
 
-    def expecting(self, formatter: Formatter) -> Result: ...
+    def position(self) -> Position: ...
 
-    def visit_borrowed_str(self, s: object) -> Value: ...
+    def peek_position(self) -> Position: ...
 
-class BoxedFromString:
+    def byte_offset(self) -> int: ...
 
-    def deserialize(self, deserializer: D) -> Value: ...
+    def parse_str(self, scratch: object) -> object: ...
 
-    def expecting(self, formatter: Formatter) -> Result: ...
+    def parse_str_raw(self, scratch: object) -> object: ...
 
-    def visit_str(self, s: str) -> Value: ...
+    def ignore_str(self) -> None: ...
 
-    def visit_string(self, s: str) -> Value: ...
+    def decode_hex_escape(self) -> int: ...
 
-class OwnedRawDeserializer:
+    def begin_raw_buffering(self) -> None: ...
 
-    def next_key_seed(self, seed: K) -> Value | None: ...
+    def end_raw_buffering(self, visitor: V) -> Value: ...
 
-    def next_value_seed(self, seed: V) -> Value: ...
+    def set_failed(self, failed: mutbool) -> None: ...
 
-class BorrowedRawDeserializer:
+class SliceRead:
+    """JSON input source that reads from a slice of bytes."""
 
-    def next_key_seed(self, seed: K) -> Value | None: ...
+    @staticmethod
+    def new(slice: object) -> "SliceRead": ...
 
-    def next_value_seed(self, seed: V) -> Value: ...
+    def next(self) -> int | None: ...
 
-class Entry:
-    """A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the [`entry`] method on [`Map`].
+    def peek(self) -> int | None: ...
 
-[`entry`]: Map::entry"""
-    Vacant: "Entry"
-    Occupied: "Entry"
+    def discard(self) -> None: ...
 
-    def key(self) -> str: ...
+    def position(self) -> Position: ...
 
-    def or_insert(self, default: Value) -> object: ...
+    def peek_position(self) -> Position: ...
 
-    def or_insert_with(self, default: F) -> object: ...
+    def byte_offset(self) -> int: ...
 
-    def and_modify(self, f: F) -> Self: ...
+    def parse_str(self, scratch: object) -> object: ...
 
-class ErrorKind:
-    Other: "ErrorKind"
+    def parse_str_raw(self, scratch: object) -> object: ...
 
-class Reference:
-    Borrowed: "Reference"
-    Copied: "Reference"
+    def ignore_str(self) -> None: ...
 
-    def deref(self) -> Target: ...
+    def decode_hex_escape(self) -> int: ...
+
+    def begin_raw_buffering(self) -> None: ...
+
+    def end_raw_buffering(self, visitor: V) -> Value: ...
+
+    def set_failed(self, _failed: mutbool) -> None: ...
+
+class StrRead:
+    """JSON input source that reads from a UTF-8 string."""
+
+    @staticmethod
+    def new(s: object) -> "StrRead": ...
+
+    def next(self) -> int | None: ...
+
+    def peek(self) -> int | None: ...
+
+    def discard(self) -> None: ...
+
+    def position(self) -> Position: ...
+
+    def peek_position(self) -> Position: ...
+
+    def byte_offset(self) -> int: ...
+
+    def parse_str(self, scratch: object) -> object: ...
+
+    def parse_str_raw(self, scratch: object) -> object: ...
+
+    def ignore_str(self) -> None: ...
+
+    def decode_hex_escape(self) -> int: ...
+
+    def begin_raw_buffering(self) -> None: ...
+
+    def end_raw_buffering(self, visitor: V) -> Value: ...
+
+    def set_failed(self, failed: mutbool) -> None: ...
 
 class State:
     Empty: "State"
@@ -939,21 +914,6 @@ class CharEscape:
     Tab: "CharEscape"
     AsciiControl: "CharEscape"
 
-class SerializeMap:
-    Map: "SerializeMap"
-    Number: "SerializeMap"
-    RawValue: "SerializeMap"
-
-    def serialize_key(self, key: T) -> None: ...
-
-    def serialize_value(self, value: T) -> None: ...
-
-    def end(self) -> Value: ...
-
-    def serialize_field(self, key: object, value: T) -> None: ...
-
-    def end(self) -> Value: ...
-
 class Value:
     """Represents any valid JSON value.
 
@@ -964,99 +924,6 @@ See the [`serde_json::value` module documentation](self) for usage examples."""
     String: "Value"
     Array: "Value"
     Object: "Value"
-
-    @staticmethod
-    def deserialize(deserializer: D) -> "Value": ...
-
-    @staticmethod
-    def from_str(s: str) -> "Value": ...
-
-    def deserialize_any(self, visitor: V) -> Value: ...
-
-    def deserialize_option(self, visitor: V) -> Value: ...
-
-    def deserialize_enum(self, name: object, variants: object, visitor: V) -> Value: ...
-
-    def deserialize_newtype_struct(self, name: object, visitor: V) -> Value: ...
-
-    def deserialize_bool(self, visitor: V) -> Value: ...
-
-    def deserialize_char(self, visitor: V) -> Value: ...
-
-    def deserialize_str(self, visitor: V) -> Value: ...
-
-    def deserialize_string(self, visitor: V) -> Value: ...
-
-    def deserialize_bytes(self, visitor: V) -> Value: ...
-
-    def deserialize_byte_buf(self, visitor: V) -> Value: ...
-
-    def deserialize_unit(self, visitor: V) -> Value: ...
-
-    def deserialize_unit_struct(self, _name: object, visitor: V) -> Value: ...
-
-    def deserialize_seq(self, visitor: V) -> Value: ...
-
-    def deserialize_tuple(self, _len: int, visitor: V) -> Value: ...
-
-    def deserialize_tuple_struct(self, _name: object, _len: int, visitor: V) -> Value: ...
-
-    def deserialize_map(self, visitor: V) -> Value: ...
-
-    def deserialize_struct(self, _name: object, _fields: object, visitor: V) -> Value: ...
-
-    def deserialize_identifier(self, visitor: V) -> Value: ...
-
-    def deserialize_ignored_any(self, visitor: V) -> Value: ...
-
-    def into_deserializer(self) -> Deserializer: ...
-
-    @staticmethod
-    def from_(f: float) -> "Value": ...
-
-    @staticmethod
-    def from_(f: float) -> "Value": ...
-
-    @staticmethod
-    def from_(f: bool) -> "Value": ...
-
-    @staticmethod
-    def from_(f: str) -> "Value": ...
-
-    @staticmethod
-    def from_(f: str) -> "Value": ...
-
-    @staticmethod
-    def from_(f: object) -> "Value": ...
-
-    @staticmethod
-    def from_(f: Number) -> "Value": ...
-
-    @staticmethod
-    def from_(f: object) -> "Value": ...
-
-    @staticmethod
-    def from_(f: list[T]) -> "Value": ...
-
-    @staticmethod
-    def from_(array: object) -> "Value": ...
-
-    @staticmethod
-    def from_(f: object) -> "Value": ...
-
-    @staticmethod
-    def from_iter(iter: I) -> "Value": ...
-
-    @staticmethod
-    def from_iter(iter: I) -> "Value": ...
-
-    @staticmethod
-    def from_(_: None) -> "Value": ...
-
-    @staticmethod
-    def from_(opt: T | None) -> "Value": ...
-
-    def serialize(self, serializer: S) -> Ok: ...
 
     def fmt(self, formatter: Formatter) -> Result: ...
 
@@ -1117,15 +984,142 @@ See the [`serde_json::value` module documentation](self) for usage examples."""
     @staticmethod
     def default() -> "Value": ...
 
+    @staticmethod
+    def from_(f: float) -> "Value": ...
+
+    @staticmethod
+    def from_(f: float) -> "Value": ...
+
+    @staticmethod
+    def from_(f: bool) -> "Value": ...
+
+    @staticmethod
+    def from_(f: str) -> "Value": ...
+
+    @staticmethod
+    def from_(f: str) -> "Value": ...
+
+    @staticmethod
+    def from_(f: object) -> "Value": ...
+
+    @staticmethod
+    def from_(f: Number) -> "Value": ...
+
+    @staticmethod
+    def from_(f: object) -> "Value": ...
+
+    @staticmethod
+    def from_(f: list[T]) -> "Value": ...
+
+    @staticmethod
+    def from_(array: object) -> "Value": ...
+
+    @staticmethod
+    def from_(f: object) -> "Value": ...
+
+    @staticmethod
+    def from_iter(iter: I) -> "Value": ...
+
+    @staticmethod
+    def from_iter(iter: I) -> "Value": ...
+
+    @staticmethod
+    def from_(_: None) -> "Value": ...
+
+    @staticmethod
+    def from_(opt: T | None) -> "Value": ...
+
+    def eq(self, other: str) -> bool: ...
+
+    def eq(self, other: str) -> bool: ...
+
+    def eq(self, other: str) -> bool: ...
+
+    def serialize(self, serializer: S) -> Ok: ...
+
+    @staticmethod
+    def deserialize(deserializer: D) -> "Value": ...
+
+    @staticmethod
+    def from_str(s: str) -> "Value": ...
+
+    def deserialize_any(self, visitor: V) -> Value: ...
+
+    def deserialize_option(self, visitor: V) -> Value: ...
+
+    def deserialize_enum(self, name: object, variants: object, visitor: V) -> Value: ...
+
+    def deserialize_newtype_struct(self, name: object, visitor: V) -> Value: ...
+
+    def deserialize_bool(self, visitor: V) -> Value: ...
+
+    def deserialize_char(self, visitor: V) -> Value: ...
+
+    def deserialize_str(self, visitor: V) -> Value: ...
+
+    def deserialize_string(self, visitor: V) -> Value: ...
+
+    def deserialize_bytes(self, visitor: V) -> Value: ...
+
+    def deserialize_byte_buf(self, visitor: V) -> Value: ...
+
+    def deserialize_unit(self, visitor: V) -> Value: ...
+
+    def deserialize_unit_struct(self, _name: object, visitor: V) -> Value: ...
+
+    def deserialize_seq(self, visitor: V) -> Value: ...
+
+    def deserialize_tuple(self, _len: int, visitor: V) -> Value: ...
+
+    def deserialize_tuple_struct(self, _name: object, _len: int, visitor: V) -> Value: ...
+
+    def deserialize_map(self, visitor: V) -> Value: ...
+
+    def deserialize_struct(self, _name: object, _fields: object, visitor: V) -> Value: ...
+
+    def deserialize_identifier(self, visitor: V) -> Value: ...
+
+    def deserialize_ignored_any(self, visitor: V) -> Value: ...
+
+    def into_deserializer(self) -> Deserializer: ...
+
     def index(self, index: I) -> Value: ...
 
     def index_mut(self, index: I) -> Value: ...
 
-    def eq(self, other: str) -> bool: ...
+class SerializeMap:
+    Map: "SerializeMap"
+    Number: "SerializeMap"
+    RawValue: "SerializeMap"
 
-    def eq(self, other: str) -> bool: ...
+    def serialize_key(self, key: T) -> None: ...
 
-    def eq(self, other: str) -> bool: ...
+    def serialize_value(self, value: T) -> None: ...
+
+    def end(self) -> Value: ...
+
+    def serialize_field(self, key: object, value: T) -> None: ...
+
+    def end(self) -> Value: ...
+
+class ErrorKind:
+    Other: "ErrorKind"
+
+class Entry:
+    """A view into a single entry in a map, which may either be vacant or occupied.
+This enum is constructed from the [`entry`] method on [`Map`].
+
+[`entry`]: Map::entry"""
+    Vacant: "Entry"
+    Occupied: "Entry"
+
+    def key(self) -> str: ...
+
+    def or_insert(self, default: Value) -> object: ...
+
+    def or_insert_with(self, default: F) -> object: ...
+
+    def and_modify(self, f: F) -> Self: ...
 
 class Category:
     """Categorizes the cause of a `serde_json::Error`."""
@@ -1134,183 +1128,65 @@ class Category:
     Data: "Category"
     Eof: "Category"
 
-"""Deserialize an instance of type `T` from an I/O stream of JSON.
+class Reference:
+    Borrowed: "Reference"
+    Copied: "Reference"
 
-The content of the I/O stream is deserialized directly from the stream
-without being buffered in memory by serde_json.
+    def deref(self) -> Target: ...
 
-When reading from a source against which short reads are not efficient, such
-as a [`File`], you will want to apply your own buffering because serde_json
-will not buffer the input. See [`std::io::BufReader`].
-
-It is expected that the input stream ends after the deserialized object.
-If the stream does not end, such as in the case of a persistent socket connection,
-this function will not return. It is possible instead to deserialize from a prefix of an input
-stream without looking for EOF by managing your own [`Deserializer`].
-
-Note that counter to intuition, this function is usually slower than
-reading a file completely into memory and then applying [`from_str`]
-or [`from_slice`] on it. See [issue #160].
-
-[`File`]: std::fs::File
-[issue #160]: https://github.com/serde-rs/json/issues/160
-
-# Example
-
-Reading the contents of a file.
-
-```
-use serde::Deserialize;
-
-use std::error::Error;
-use std::fs::File;
-use std::io::BufReader;
-use std::path::Path;
-
-#[derive(Deserialize, Debug)]
-struct User {
-fingerprint: String,
-location: String,
-}
-
-fn read_user_from_file<P: AsRef<Path>>(path: P) -> Result<User, Box<dyn Error>> {
-// Open the file in read-only mode with buffer.
-let file = File::open(path)?;
-let reader = BufReader::new(file);
-
-// Read the JSON contents of the file as an instance of `User`.
-let u = serde_json::from_reader(reader)?;
-
-// Return the `User`.
-Ok(u)
-}
-
-fn main() {
-# }
-# fn fake_main() {
-let u = read_user_from_file("test.json").unwrap();
-println!("{:#?}", u);
-}
-```
-
-Reading from a persistent socket connection.
-
-```
-use serde::Deserialize;
-
-use std::error::Error;
-use std::io::BufReader;
-use std::net::{TcpListener, TcpStream};
-
-#[derive(Deserialize, Debug)]
-struct User {
-fingerprint: String,
-location: String,
-}
-
-fn read_user_from_stream(stream: &mut BufReader<TcpStream>) -> Result<User, Box<dyn Error>> {
-let mut de = serde_json::Deserializer::from_reader(stream);
-let u = User::deserialize(&mut de)?;
-
-Ok(u)
-}
-
-fn main() {
-# }
-# fn fake_main() {
-let listener = TcpListener::bind("127.0.0.1:4000").unwrap();
-
-for tcp_stream in listener.incoming() {
-let mut buffered = BufReader::new(tcp_stream.unwrap());
-println!("{:#?}", read_user_from_stream(&mut buffered));
-}
-}
-```
-
-# Errors
-
-This conversion can fail if the structure of the input does not match the
-structure expected by `T`, for example if `T` is a struct type but the input
-contains something other than a JSON map. It can also fail if the structure
-is correct but `T`'s implementation of `Deserialize` decides that something
-is wrong with the data, for example required struct fields are missing from
-the JSON map or some number is too big to fit in the expected primitive
-type."""
-def from_reader(rdr: R) -> T: ...
-
-"""Deserialize an instance of type `T` from bytes of JSON text.
+"""Convert a `T` into a boxed `RawValue`.
 
 # Example
 
 ```
-use serde::Deserialize;
-
-#[derive(Deserialize, Debug)]
-struct User {
-fingerprint: String,
-location: String,
+// Upstream crate
+# #[derive(Serialize)]
+pub struct Thing {
+foo: String,
+bar: Option<String>,
+extra_data: Box<RawValue>,
 }
 
-fn main() {
-// The type of `j` is `&[u8]`
-let j = b"
-{
-\\"fingerprint\\": \\"0xF9BA143B95FF6D82\\",
-\\"location\\": \\"Menlo Park, CA\\"
-}";
+// Local crate
+use serde::Serialize;
+use serde_json::value::{to_raw_value, RawValue};
 
-let u: User = serde_json::from_slice(j).unwrap();
-println!("{:#?}", u);
+#[derive(Serialize)]
+struct MyExtraData {
+a: u32,
+b: u32,
 }
+
+let my_thing = Thing {
+foo: "FooVal".into(),
+bar: None,
+extra_data: to_raw_value(&MyExtraData { a: 1, b: 2 }).unwrap(),
+};
+# assert_eq!(
+#     serde_json::to_value(my_thing).unwrap(),
+#     serde_json::json!({
+#         "foo": "FooVal",
+#         "bar": null,
+#         "extra_data": { "a": 1, "b": 2 }
+#     })
+# );
 ```
 
 # Errors
 
-This conversion can fail if the structure of the input does not match the
-structure expected by `T`, for example if `T` is a struct type but the input
-contains something other than a JSON map. It can also fail if the structure
-is correct but `T`'s implementation of `Deserialize` decides that something
-is wrong with the data, for example required struct fields are missing from
-the JSON map or some number is too big to fit in the expected primitive
-type."""
-def from_slice(v: object) -> T: ...
-
-"""Deserialize an instance of type `T` from a string of JSON text.
-
-# Example
+This conversion can fail if `T`'s implementation of `Serialize` decides to
+fail, or if `T` contains a map with non-string keys.
 
 ```
-use serde::Deserialize;
+use std::collections::BTreeMap;
 
-#[derive(Deserialize, Debug)]
-struct User {
-fingerprint: String,
-location: String,
-}
+// The keys in this map are vectors, not strings.
+let mut map = BTreeMap::new();
+map.insert(vec![32, 64], "x86");
 
-fn main() {
-// The type of `j` is `&str`
-let j = "
-{
-\\"fingerprint\\": \\"0xF9BA143B95FF6D82\\",
-\\"location\\": \\"Menlo Park, CA\\"
-}";
-
-let u: User = serde_json::from_str(j).unwrap();
-println!("{:#?}", u);
-}
-```
-
-# Errors
-
-This conversion can fail if the structure of the input does not match the
-structure expected by `T`, for example if `T` is a struct type but the input
-contains something other than a JSON map. It can also fail if the structure
-is correct but `T`'s implementation of `Deserialize` decides that something
-is wrong with the data, for example required struct fields are missing from
-the JSON map or some number is too big to fit in the expected primitive
-type."""
-def from_str(s: object) -> T: ...
+println!("{}", serde_json::value::to_raw_value(&map).unwrap_err());
+```"""
+def to_raw_value(value: T) -> RawValue: ...
 
 """Serialize the given data structure as JSON into the I/O stream.
 
@@ -1598,58 +1474,182 @@ def parse_concise_float(mantissa: int, mant_exp: int) -> F: ...
 Precondition: The integer must not have leading zeros."""
 def parse_truncated_float(integer: object, fraction: object, exponent: int) -> F: ...
 
-"""Convert a `T` into a boxed `RawValue`.
+"""Deserialize an instance of type `T` from an I/O stream of JSON.
+
+The content of the I/O stream is deserialized directly from the stream
+without being buffered in memory by serde_json.
+
+When reading from a source against which short reads are not efficient, such
+as a [`File`], you will want to apply your own buffering because serde_json
+will not buffer the input. See [`std::io::BufReader`].
+
+It is expected that the input stream ends after the deserialized object.
+If the stream does not end, such as in the case of a persistent socket connection,
+this function will not return. It is possible instead to deserialize from a prefix of an input
+stream without looking for EOF by managing your own [`Deserializer`].
+
+Note that counter to intuition, this function is usually slower than
+reading a file completely into memory and then applying [`from_str`]
+or [`from_slice`] on it. See [issue #160].
+
+[`File`]: std::fs::File
+[issue #160]: https://github.com/serde-rs/json/issues/160
 
 # Example
 
+Reading the contents of a file.
+
 ```
-// Upstream crate
-# #[derive(Serialize)]
-pub struct Thing {
-foo: String,
-bar: Option<String>,
-extra_data: Box<RawValue>,
+use serde::Deserialize;
+
+use std::error::Error;
+use std::fs::File;
+use std::io::BufReader;
+use std::path::Path;
+
+#[derive(Deserialize, Debug)]
+struct User {
+fingerprint: String,
+location: String,
 }
 
-// Local crate
-use serde::Serialize;
-use serde_json::value::{to_raw_value, RawValue};
+fn read_user_from_file<P: AsRef<Path>>(path: P) -> Result<User, Box<dyn Error>> {
+// Open the file in read-only mode with buffer.
+let file = File::open(path)?;
+let reader = BufReader::new(file);
 
-#[derive(Serialize)]
-struct MyExtraData {
-a: u32,
-b: u32,
+// Read the JSON contents of the file as an instance of `User`.
+let u = serde_json::from_reader(reader)?;
+
+// Return the `User`.
+Ok(u)
 }
 
-let my_thing = Thing {
-foo: "FooVal".into(),
-bar: None,
-extra_data: to_raw_value(&MyExtraData { a: 1, b: 2 }).unwrap(),
-};
-# assert_eq!(
-#     serde_json::to_value(my_thing).unwrap(),
-#     serde_json::json!({
-#         "foo": "FooVal",
-#         "bar": null,
-#         "extra_data": { "a": 1, "b": 2 }
-#     })
-# );
+fn main() {
+# }
+# fn fake_main() {
+let u = read_user_from_file("test.json").unwrap();
+println!("{:#?}", u);
+}
+```
+
+Reading from a persistent socket connection.
+
+```
+use serde::Deserialize;
+
+use std::error::Error;
+use std::io::BufReader;
+use std::net::{TcpListener, TcpStream};
+
+#[derive(Deserialize, Debug)]
+struct User {
+fingerprint: String,
+location: String,
+}
+
+fn read_user_from_stream(stream: &mut BufReader<TcpStream>) -> Result<User, Box<dyn Error>> {
+let mut de = serde_json::Deserializer::from_reader(stream);
+let u = User::deserialize(&mut de)?;
+
+Ok(u)
+}
+
+fn main() {
+# }
+# fn fake_main() {
+let listener = TcpListener::bind("127.0.0.1:4000").unwrap();
+
+for tcp_stream in listener.incoming() {
+let mut buffered = BufReader::new(tcp_stream.unwrap());
+println!("{:#?}", read_user_from_stream(&mut buffered));
+}
+}
 ```
 
 # Errors
 
-This conversion can fail if `T`'s implementation of `Serialize` decides to
-fail, or if `T` contains a map with non-string keys.
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type."""
+def from_reader(rdr: R) -> T: ...
+
+"""Deserialize an instance of type `T` from bytes of JSON text.
+
+# Example
 
 ```
-use std::collections::BTreeMap;
+use serde::Deserialize;
 
-// The keys in this map are vectors, not strings.
-let mut map = BTreeMap::new();
-map.insert(vec![32, 64], "x86");
+#[derive(Deserialize, Debug)]
+struct User {
+fingerprint: String,
+location: String,
+}
 
-println!("{}", serde_json::value::to_raw_value(&map).unwrap_err());
-```"""
-def to_raw_value(value: T) -> RawValue: ...
+fn main() {
+// The type of `j` is `&[u8]`
+let j = b"
+{
+\\"fingerprint\\": \\"0xF9BA143B95FF6D82\\",
+\\"location\\": \\"Menlo Park, CA\\"
+}";
 
-__all__: list[str] = ["from_reader", "from_slice", "from_str", "to_writer", "to_writer_pretty", "to_vec", "to_vec_pretty", "to_string", "to_string_pretty", "to_value", "from_value", "nonzero", "add", "iadd", "sub", "isub", "mul", "imul", "iadd_impl", "iadd", "isub_impl", "imul", "mul", "imul_pow5", "leading_zeros", "bit_length", "ishl_bits", "ishl_limbs", "ishl", "normalize", "compare", "less", "greater_equal", "iadd_impl", "iadd", "add", "isub", "karatsuba_split", "imul", "parse_concise_float", "parse_truncated_float", "to_raw_value", "Map", "VacantEntry", "OccupiedEntry", "Iter", "IterMut", "IntoIter", "Keys", "Values", "ValuesMut", "IntoValues", "LineColIterator", "Error", "Deserializer", "StreamDeserializer", "Number", "NumberFromString", "Position", "IoRead", "SliceRead", "StrRead", "Serializer", "CompactFormatter", "PrettyFormatter", "Serializer", "SerializeVec", "SerializeTupleVariant", "SerializeStructVariant", "Error", "RawValue", "ReferenceFromString", "BoxedFromString", "OwnedRawDeserializer", "BorrowedRawDeserializer", "Entry", "ErrorKind", "Reference", "State", "Compound", "CharEscape", "SerializeMap", "Value", "Category"]
+let u: User = serde_json::from_slice(j).unwrap();
+println!("{:#?}", u);
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type."""
+def from_slice(v: object) -> T: ...
+
+"""Deserialize an instance of type `T` from a string of JSON text.
+
+# Example
+
+```
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct User {
+fingerprint: String,
+location: String,
+}
+
+fn main() {
+// The type of `j` is `&str`
+let j = "
+{
+\\"fingerprint\\": \\"0xF9BA143B95FF6D82\\",
+\\"location\\": \\"Menlo Park, CA\\"
+}";
+
+let u: User = serde_json::from_str(j).unwrap();
+println!("{:#?}", u);
+}
+```
+
+# Errors
+
+This conversion can fail if the structure of the input does not match the
+structure expected by `T`, for example if `T` is a struct type but the input
+contains something other than a JSON map. It can also fail if the structure
+is correct but `T`'s implementation of `Deserialize` decides that something
+is wrong with the data, for example required struct fields are missing from
+the JSON map or some number is too big to fit in the expected primitive
+type."""
+def from_str(s: object) -> T: ...
+
+__all__: list[str] = ["to_raw_value", "to_writer", "to_writer_pretty", "to_vec", "to_vec_pretty", "to_string", "to_string_pretty", "to_value", "from_value", "nonzero", "add", "iadd", "sub", "isub", "mul", "imul", "iadd_impl", "iadd", "isub_impl", "imul", "mul", "imul_pow5", "leading_zeros", "bit_length", "ishl_bits", "ishl_limbs", "ishl", "normalize", "compare", "less", "greater_equal", "iadd_impl", "iadd", "add", "isub", "karatsuba_split", "imul", "parse_concise_float", "parse_truncated_float", "from_reader", "from_slice", "from_str", "RawValue", "ReferenceFromString", "BoxedFromString", "OwnedRawDeserializer", "BorrowedRawDeserializer", "Number", "NumberFromString", "Serializer", "CompactFormatter", "PrettyFormatter", "Serializer", "SerializeVec", "SerializeTupleVariant", "SerializeStructVariant", "Error", "Map", "VacantEntry", "OccupiedEntry", "Iter", "IterMut", "IntoIter", "Keys", "Values", "ValuesMut", "IntoValues", "Deserializer", "StreamDeserializer", "LineColIterator", "Error", "Position", "IoRead", "SliceRead", "StrRead", "State", "Compound", "CharEscape", "Value", "SerializeMap", "ErrorKind", "Entry", "Category", "Reference"]
