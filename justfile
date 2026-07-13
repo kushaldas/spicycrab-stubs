@@ -70,6 +70,49 @@ tags:
 tags-for crate:
     @git -C "{{ repo_root }}" tag -l "{{ crate }}-*" | sort -V
 
+# List stub crates with staged, unstaged, or untracked changes and their versions
+changed:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cd "{{ repo_root }}"
+
+    mapfile -d '' CRATES < <(
+        {
+            git diff --name-only --no-renames -z -- stubs/
+            git diff --cached --name-only --no-renames -z -- stubs/
+            git ls-files --others --exclude-standard -z -- stubs/
+        } |
+            while IFS= read -r -d '' PATHNAME; do
+                case "$PATHNAME" in
+                    stubs/*/*)
+                        CRATE="${PATHNAME#stubs/}"
+                        printf '%s\0' "${CRATE%%/*}"
+                        ;;
+                esac
+            done |
+            sort -zu
+    )
+
+    if [ "${#CRATES[@]}" -eq 0 ]; then
+        echo "No stub crates have uncommitted changes."
+        exit 0
+    fi
+
+    printf '%-28s %s\n' "CRATE" "VERSION"
+    printf '%-28s %s\n' "----------------------------" "----------------"
+    for CRATE in "${CRATES[@]}"; do
+        PYPROJECT="stubs/$CRATE/pyproject.toml"
+        if [ ! -f "$PYPROJECT" ]; then
+            VERSION="<missing pyproject.toml>"
+        else
+            VERSION=$(awk -F'"' '/^[[:space:]]*version[[:space:]]*=/{print $2; exit}' "$PYPROJECT")
+            if [ -z "$VERSION" ]; then
+                VERSION="<missing version>"
+            fi
+        fi
+        printf '%-28s %s\n' "$CRATE" "$VERSION"
+    done
+
 # Validate a stub package
 # Usage: just validate <crate>
 validate crate:
