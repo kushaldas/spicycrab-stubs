@@ -1,9 +1,13 @@
 # spicycrab-stubs justfile
 # Commands for managing stub packages and version tags
 
+# Resolve paths from the repository root, including when this file is invoked
+# with `just --justfile /path/to/spicycrab-stubs/justfile ...`.
+repo_root := justfile_directory()
+
 # Default recipe - list available commands
 default:
-    @just --list
+    @just --justfile "{{ repo_root }}/justfile" --list
 
 # Create a version tag for a stub package
 # Usage: just tag <crate> <version>
@@ -11,25 +15,27 @@ default:
 tag crate version:
     #!/usr/bin/env bash
     set -euo pipefail
+    cd "{{ repo_root }}"
 
-    TAG="{{crate}}-{{version}}"
+    TAG="{{ crate }}-{{ version }}"
+    STUB_DIR="stubs/{{ crate }}"
 
     # Verify the crate directory exists
-    if [ ! -d "{{crate}}" ]; then
-        echo "Error: Crate directory '{{crate}}' not found"
+    if [ ! -d "$STUB_DIR" ]; then
+        echo "Error: Stub directory '$STUB_DIR' not found"
         exit 1
     fi
 
     # Verify pyproject.toml exists
-    if [ ! -f "{{crate}}/pyproject.toml" ]; then
-        echo "Error: {{crate}}/pyproject.toml not found"
+    if [ ! -f "$STUB_DIR/pyproject.toml" ]; then
+        echo "Error: $STUB_DIR/pyproject.toml not found"
         exit 1
     fi
 
     # Check version in pyproject.toml matches
-    TOML_VERSION=$(grep -E '^version\s*=' "{{crate}}/pyproject.toml" | head -1 | sed 's/.*"\(.*\)".*/\1/')
-    if [ "$TOML_VERSION" != "{{version}}" ]; then
-        echo "Warning: pyproject.toml version ($TOML_VERSION) doesn't match tag version ({{version}})"
+    TOML_VERSION=$(grep -E '^[[:space:]]*version[[:space:]]*=' "$STUB_DIR/pyproject.toml" | head -1 | sed 's/.*"\(.*\)".*/\1/')
+    if [ "$TOML_VERSION" != "{{ version }}" ]; then
+        echo "Warning: pyproject.toml version ($TOML_VERSION) doesn't match tag version ({{ version }})"
         read -p "Continue anyway? [y/N] " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -38,7 +44,7 @@ tag crate version:
     fi
 
     # Check if tag already exists
-    if git rev-parse "$TAG" >/dev/null 2>&1; then
+    if git rev-parse --verify "refs/tags/$TAG" >/dev/null 2>&1; then
         echo "Error: Tag '$TAG' already exists"
         echo "To update, delete it first: git tag -d $TAG && git push origin :refs/tags/$TAG"
         exit 1
@@ -46,9 +52,10 @@ tag crate version:
 
     # Create and push tag
     echo "Creating tag: $TAG"
-    git add "{{crate}}/"
-    git commit -m "{{crate}}: version {{version}}" --allow-empty
-    git tag -a "$TAG" -m "{{crate}} version {{version}}"
+    git add -- "$STUB_DIR"
+    # Commit only this stub package. Unrelated staged work remains staged.
+    git commit --only --allow-empty -m "{{ crate }}: version {{ version }}" -- "$STUB_DIR"
+    git tag -a "$TAG" -m "{{ crate }} version {{ version }}"
 
     echo ""
     echo "Tag '$TAG' created locally."
@@ -56,44 +63,43 @@ tag crate version:
 
 # List all existing tags
 tags:
-    @git tag -l | sort -V
+    @git -C "{{ repo_root }}" tag -l | sort -V
 
 # List tags for a specific crate
 # Usage: just tags-for <crate>
 tags-for crate:
-    @git tag -l "{{crate}}-*" | sort -V
+    @git -C "{{ repo_root }}" tag -l "{{ crate }}-*" | sort -V
 
 # Validate a stub package
 # Usage: just validate <crate>
 validate crate:
     #!/usr/bin/env bash
     set -euo pipefail
+    cd "{{ repo_root }}"
 
-    if [ ! -d "{{crate}}" ]; then
-        echo "Error: Crate directory '{{crate}}' not found"
+    STUB_DIR="stubs/{{ crate }}"
+    PKG_NAME="spicycrab_$(echo "{{ crate }}" | tr '-' '_')"
+    PKG_DIR="$STUB_DIR/$PKG_NAME"
+
+    if [ ! -d "$STUB_DIR" ]; then
+        echo "Error: Stub directory '$STUB_DIR' not found"
         exit 1
     fi
 
-    echo "Validating {{crate}}..."
+    echo "Validating {{ crate }}..."
 
     # Check required files
     ERRORS=0
 
-    if [ ! -f "{{crate}}/pyproject.toml" ]; then
+    if [ ! -f "$STUB_DIR/pyproject.toml" ]; then
         echo "  [FAIL] Missing pyproject.toml"
         ERRORS=$((ERRORS + 1))
     else
         echo "  [OK] pyproject.toml"
     fi
 
-    PKG_DIR="{{crate}}/spicycrab_{{crate}}"
     if [ ! -d "$PKG_DIR" ]; then
-        # Try with underscores replaced
-        PKG_DIR="{{crate}}/spicycrab_$(echo {{crate}} | tr '-' '_')"
-    fi
-
-    if [ ! -d "$PKG_DIR" ]; then
-        echo "  [FAIL] Missing package directory"
+        echo "  [FAIL] Missing package directory: $PKG_DIR"
         ERRORS=$((ERRORS + 1))
     else
         echo "  [OK] Package directory: $(basename $PKG_DIR)"
@@ -126,64 +132,78 @@ validate crate:
 build crate:
     #!/usr/bin/env bash
     set -euo pipefail
+    cd "{{ repo_root }}"
 
-    if [ ! -d "{{crate}}" ]; then
-        echo "Error: Crate directory '{{crate}}' not found"
+    STUB_DIR="stubs/{{ crate }}"
+
+    if [ ! -d "$STUB_DIR" ]; then
+        echo "Error: Stub directory '$STUB_DIR' not found"
         exit 1
     fi
 
-    echo "Building wheel for {{crate}}..."
-    python -m build --wheel "{{crate}}/"
+    echo "Building wheel for {{ crate }}..."
+    if command -v uv >/dev/null 2>&1; then
+        uv run --quiet --with build python -m build --wheel "$STUB_DIR"
+    elif python3 -c 'import build' >/dev/null 2>&1; then
+        python3 -m build --wheel "$STUB_DIR"
+    else
+        echo "Error: building requires either uv or the Python 'build' package" >&2
+        echo "Install one with: python3 -m pip install build" >&2
+        exit 1
+    fi
     echo ""
-    echo "Wheel built in {{crate}}/dist/"
+    echo "Wheel built in $STUB_DIR/dist/"
 
 # Create a new stub package scaffold
 # Usage: just new <crate> <version>
 new crate version:
     #!/usr/bin/env bash
     set -euo pipefail
+    cd "{{ repo_root }}"
 
-    if [ -d "{{crate}}" ]; then
-        echo "Error: Directory '{{crate}}' already exists"
+    STUB_DIR="stubs/{{ crate }}"
+    PKG_NAME="spicycrab_$(echo "{{ crate }}" | tr '-' '_')"
+    RUST_CRATE_NAME="$(echo "{{ crate }}" | tr '-' '_')"
+
+    if [ -d "$STUB_DIR" ]; then
+        echo "Error: Directory '$STUB_DIR' already exists"
         exit 1
     fi
 
-    PKG_NAME="spicycrab_$(echo {{crate}} | tr '-' '_')"
+    echo "Creating stub scaffold for {{ crate }}..."
 
-    echo "Creating stub scaffold for {{crate}}..."
-
-    mkdir -p "{{crate}}/$PKG_NAME"
+    mkdir -p "$STUB_DIR/$PKG_NAME"
 
     # Create pyproject.toml
-    cat > "{{crate}}/pyproject.toml" << 'PYPROJECT'
+    cat > "$STUB_DIR/pyproject.toml" << 'PYPROJECT'
     [build-system]
     requires = ["hatchling"]
     build-backend = "hatchling.build"
 
     [project]
-    name = "spicycrab-{{crate}}"
-    version = "{{version}}"
-    description = "spicycrab type stubs for the {{crate}} Rust crate"
+    name = "spicycrab-{{ crate }}"
+    version = "{{ version }}"
+    description = "spicycrab type stubs for the {{ crate }} Rust crate"
     requires-python = ">=3.11"
     dependencies = []
 
     [project.entry-points."spicycrab.stubs"]
-    {{crate}} = "PKG_NAME"
+    {{ crate }} = "PKG_NAME"
 
     [tool.hatch.build.targets.wheel]
     packages = ["PKG_NAME"]
     PYPROJECT
 
     # Fix the PKG_NAME placeholder
-    sed -i "s/PKG_NAME/$PKG_NAME/g" "{{crate}}/pyproject.toml"
+    sed -i "s/PKG_NAME/$PKG_NAME/g" "$STUB_DIR/pyproject.toml"
     # Remove leading spaces from heredoc
-    sed -i 's/^    //' "{{crate}}/pyproject.toml"
+    sed -i 's/^    //' "$STUB_DIR/pyproject.toml"
 
     # Create __init__.py
-    cat > "{{crate}}/$PKG_NAME/__init__.py" << 'INIT'
-    """Python stubs for the {{crate}} Rust crate.
+    cat > "$STUB_DIR/$PKG_NAME/__init__.py" << 'INIT'
+    """Python stubs for the {{ crate }} Rust crate.
 
-    Install with: cookcrab install {{crate}}
+    Install with: cookcrab install {{ crate }}
     """
 
     from __future__ import annotations
@@ -192,24 +212,24 @@ new crate version:
 
     __all__: list[str] = []
     INIT
-    sed -i 's/^    //' "{{crate}}/$PKG_NAME/__init__.py"
+    sed -i 's/^    //' "$STUB_DIR/$PKG_NAME/__init__.py"
 
     # Create _spicycrab.toml
-    cat > "{{crate}}/$PKG_NAME/_spicycrab.toml" << 'TOML'
+    cat > "$STUB_DIR/$PKG_NAME/_spicycrab.toml" << 'TOML'
     [package]
-    name = "{{crate}}"
-    rust_crate = "{{crate}}"
-    rust_version = "{{version}}"
+    name = "{{ crate }}"
+    rust_crate = "RUST_CRATE_NAME"
+    rust_version = "{{ version }}"
     python_module = "PKG_NAME"
 
     [cargo.dependencies]
-    {{crate}} = "{{version}}"
+    {{ crate }} = "{{ version }}"
 
     # TODO: Add function mappings
     # [[mappings.functions]]
-    # python = "{{crate}}.SomeType.new"
-    # rust_code = "{{crate}}::SomeType::new({arg0})"
-    # rust_imports = ["{{crate}}::SomeType"]
+    # python = "{{ crate }}.SomeType.new"
+    # rust_code = "RUST_CRATE_NAME::SomeType::new({arg0})"
+    # rust_imports = ["RUST_CRATE_NAME::SomeType"]
     # needs_result = false
 
     # TODO: Add method mappings
@@ -222,21 +242,22 @@ new crate version:
     # TODO: Add type mappings
     # [[mappings.types]]
     # python = "SomeType"
-    # rust = "{{crate}}::SomeType"
+    # rust = "RUST_CRATE_NAME::SomeType"
     TOML
-    sed -i "s/PKG_NAME/$PKG_NAME/g" "{{crate}}/$PKG_NAME/_spicycrab.toml"
-    sed -i 's/^    //' "{{crate}}/$PKG_NAME/_spicycrab.toml"
+    sed -i "s/PKG_NAME/$PKG_NAME/g" "$STUB_DIR/$PKG_NAME/_spicycrab.toml"
+    sed -i "s/RUST_CRATE_NAME/$RUST_CRATE_NAME/g" "$STUB_DIR/$PKG_NAME/_spicycrab.toml"
+    sed -i 's/^    //' "$STUB_DIR/$PKG_NAME/_spicycrab.toml"
 
     # Create README.md
-    cat > "{{crate}}/README.md" << 'README'
-    # spicycrab-{{crate}}
+    cat > "$STUB_DIR/README.md" << 'README'
+    # spicycrab-{{ crate }}
 
-    Python type stubs for the [{{crate}}](https://crates.io/crates/{{crate}}) Rust crate.
+    Python type stubs for the [{{ crate }}](https://crates.io/crates/{{ crate }}) Rust crate.
 
     **Install with cookcrab, NOT pip:**
 
     ```bash
-    cookcrab install {{crate}}
+    cookcrab install {{ crate }}
     ```
 
     ## Usage
@@ -247,25 +268,26 @@ new crate version:
     # TODO: Add usage example
     ```
     README
-    sed -i "s/PKG_NAME/$PKG_NAME/g" "{{crate}}/README.md"
-    sed -i 's/^    //' "{{crate}}/README.md"
+    sed -i "s/PKG_NAME/$PKG_NAME/g" "$STUB_DIR/README.md"
+    sed -i 's/^    //' "$STUB_DIR/README.md"
 
     echo ""
-    echo "Scaffold created at {{crate}}/"
+    echo "Scaffold created at $STUB_DIR/"
     echo ""
     echo "Next steps:"
-    echo "  1. Edit {{crate}}/$PKG_NAME/__init__.py - add Python stubs"
-    echo "  2. Edit {{crate}}/$PKG_NAME/_spicycrab.toml - add mappings"
-    echo "  3. Validate: just validate {{crate}}"
-    echo "  4. Tag: just tag {{crate}} {{version}}"
+    echo "  1. Edit $STUB_DIR/$PKG_NAME/__init__.py - add Python stubs"
+    echo "  2. Edit $STUB_DIR/$PKG_NAME/_spicycrab.toml - add mappings"
+    echo "  3. Validate: just validate {{ crate }}"
+    echo "  4. Tag: just tag {{ crate }} {{ version }}"
 
 # Delete a tag (local and remote)
 # Usage: just delete-tag <crate> <version>
 delete-tag crate version:
     #!/usr/bin/env bash
     set -euo pipefail
+    cd "{{ repo_root }}"
 
-    TAG="{{crate}}-{{version}}"
+    TAG="{{ crate }}-{{ version }}"
 
     echo "Deleting tag: $TAG"
 
