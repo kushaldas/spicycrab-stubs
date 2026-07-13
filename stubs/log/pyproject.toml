@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spicycrab-log"
-version = "0.4.29"
+version = "0.4.33"
 description = "spicycrab type stubs for the log Rust crate"
 requires-python = ">=3.11"
 dependencies = []
