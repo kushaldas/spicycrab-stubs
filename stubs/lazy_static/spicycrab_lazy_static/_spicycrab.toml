@@ -55,10 +55,10 @@ param_types = ["F"]
 
 [[mappings.types]]
 python = "Lazy"
-rust = "lazy_static::core_lazy::Lazy"
+rust = "lazy_static::inline_lazy::Lazy"
 
 [[mappings.types]]
 python = "Lazy"
-rust = "lazy_static::inline_lazy::Lazy"
+rust = "lazy_static::core_lazy::Lazy"
 
 # Enum variant access mappings

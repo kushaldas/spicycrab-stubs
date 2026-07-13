@@ -9,15 +9,15 @@ from typing import Self
 
 class Lazy:
 
-    def get(self, builder: F) -> T: ...
-
     def get(self, f: F) -> T: ...
+
+    def get(self, builder: F) -> T: ...
 
 class Lazy:
 
-    def get(self, builder: F) -> T: ...
-
     def get(self, f: F) -> T: ...
+
+    def get(self, builder: F) -> T: ...
 
 """Takes a shared reference to a lazy static and initializes
 it if it has not been already.
