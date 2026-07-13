@@ -25,45 +25,46 @@ Pre-generated stubs in `stubs/` directory:
 
 | Crate | Version | Description |
 |-------|---------|-------------|
-| [actix-web](stubs/actix-web) | 4.12.1 | Powerful web framework |
-| [actix-web-lab](stubs/actix-web-lab) | 0.24.3 | Experimental actix-web features |
-| [anyhow](stubs/anyhow) | 1.0.100 | Flexible error handling |
+| [actix-web](stubs/actix-web) | 4.14.0 | Powerful web framework |
+| [actix-web-lab](stubs/actix-web-lab) | 0.26.0 | Experimental actix-web features |
+| [anyhow](stubs/anyhow) | 1.0.103 | Flexible error handling |
 | [base64](stubs/base64) | 0.22.1 | Base64 encoding/decoding |
-| [chrono](stubs/chrono) | 0.4.42 | Date and time library |
-| [clap](stubs/clap) | 4.5.54 | Command-line argument parser |
-| [clap_builder](stubs/clap_builder) | 4.5.54 | clap builder components |
-| [config](stubs/config) | 0.15.19 | Configuration management |
-| [env_logger](stubs/env_logger) | 0.11.8 | Environment-based logging |
+| [chrono](stubs/chrono) | 0.4.45 | Date and time library |
+| [clap](stubs/clap) | 4.6.1 | Command-line argument parser |
+| [clap_builder](stubs/clap_builder) | 4.6.0 | clap builder components |
+| [config](stubs/config) | 0.15.25 | Configuration management |
+| [env_logger](stubs/env_logger) | 0.11.11 | Environment-based logging |
 | [fern](stubs/fern) | 0.7.1 | Simple logging |
+| [grindvakt](stubs/grindvakt) | 0.6.1 | Shared HTTP, error, key, MAC, and PKCE primitives |
 | [josekit](stubs/josekit) | 0.10.3 | JWT/JWE/JWS operations |
 | [lazy_static](stubs/lazy_static) | 1.5.0 | Lazy static initialization |
-| [log](stubs/log) | 0.4.29 | Logging facade |
-| [native-tls](stubs/native-tls) | 0.2.14 | Native TLS bindings |
-| [redis](stubs/redis) | 1.0.2 | Redis client |
-| [reqwest](stubs/reqwest) | 0.13.1 | HTTP client |
-| [rustls](stubs/rustls) | 0.23.36 | Modern TLS library |
+| [log](stubs/log) | 0.4.33 | Logging facade |
+| [native-tls](stubs/native-tls) | 0.2.18 | Native TLS bindings |
+| [oidfed_metadata_policy](stubs/oidfed_metadata_policy) | 0.8.0 | OpenID federation metadata policy |
+| [redis](stubs/redis) | 1.3.0 | Redis client |
+| [reqwest](stubs/reqwest) | 0.13.4 | HTTP client |
+| [rustls](stubs/rustls) | 0.23.41 | Modern TLS library |
 | [rustls-pemfile](stubs/rustls-pemfile) | 2.2.0 | PEM file parsing for rustls |
 | [serde](stubs/serde) | 1.0.228 | Serialization framework |
-| [serde_json](stubs/serde_json) | 1.0.149 | JSON serialization |
-| [sha2](stubs/sha2) | 0.10.9 | SHA-2 hash functions |
-| [tokio](stubs/tokio) | 1.49.0 | Async runtime |
-| [toml](stubs/toml) | 0.9.11 | TOML parsing |
+| [serde_json](stubs/serde_json) | 1.0.150 | JSON serialization |
+| [sha2](stubs/sha2) | 0.11.0 | SHA-2 hash functions |
+| [tokio](stubs/tokio) | 1.52.3 | Async runtime |
+| [toml](stubs/toml) | 1.1.2+spec-1.1.0 | TOML parsing |
 | [tunnelbana-core](stubs/tunnelbana-core) | 0.2.0 | tunnelbana core plugin API |
 | [tunnelbana-plugins](stubs/tunnelbana-plugins) | 0.2.0 | tunnelbana built-in plugin registry |
-| [grindvakt](stubs/grindvakt) | 0.6.1 | Shared HTTP, error, key, MAC, and PKCE primitives |
-| [ureq](stubs/ureq) | 3.1.4 | Simple HTTP client |
+| [ureq](stubs/ureq) | 3.3.0 | Simple HTTP client |
 
 ## Examples
 
-Working examples for each crate in `examples/` directory (143 total):
+Working examples in `examples/` directory (170 total):
 
 | Crate | Examples | Description |
 |-------|----------|-------------|
 | [actix-web](examples/actix-web) | 16 | Web server routes, handlers, middleware |
-| [anyhow](examples/anyhow) | 8 | Result/Error handling patterns |
+| [anyhow](examples/anyhow) | 16 | Result/Error handling patterns |
 | [base64](examples/base64) | 5 | Encoding/decoding operations |
 | [chrono](examples/chrono) | 10 | Date, time, timezone operations |
-| [clap](examples/clap) | 15 | CLI argument parsing patterns |
+| [clap](examples/clap) | 30 | CLI argument parsing patterns |
 | [config](examples/config) | 5 | Configuration loading |
 | [env_logger](examples/env_logger) | 5 | Environment-based logging |
 | [fern](examples/fern) | 10 | Logging configuration |
@@ -75,7 +76,12 @@ Working examples for each crate in `examples/` directory (143 total):
 | [sha2](examples/sha2) | 5 | SHA-256/SHA-512 hashing |
 | [tokio](examples/tokio) | 6 | Async tasks, channels, Arc/Mutex |
 | [toml](examples/toml) | 5 | TOML parsing |
+| [tunnelbana-core](examples/tunnelbana-core) | 4 | Async MicroService trait generation |
 | [ureq](examples/ureq) | 5 | HTTP requests |
+
+Some stub packages are dependency or API-surface packages and do not currently have their own example directory:
+`actix-web-lab`, `clap_builder`, `grindvakt`, `lazy_static`, `log`, `oidfed_metadata_policy`,
+`redis`, `rustls-pemfile`, `serde`, and `tunnelbana-plugins`.
 
 ### Running Examples
 
@@ -114,30 +120,50 @@ for dir in rust_chrono_*; do
 done
 ```
 
+Runtime notes:
+
+- Web-server examples such as `actix-web` are expected to keep running until stopped.
+- Clap examples with required arguments should be run with the sample arguments in each file's `Usage` block.
+- Network examples such as `reqwest`, `ureq`, and TLS examples depend on the local network and remote service availability.
+
+Latest verification for this tree:
+
+- `cookcrab validate` passed for all 28 stub packages.
+- All 170 examples transpiled, `cargo check` passed, and `cargo build` passed.
+- Runtime smoke passed for the finite examples; the 16 `actix-web` examples were observed as long-running servers.
+
 ## Repository Structure
 
 ```
 spicycrab-stubs/
 ├── stubs/                         # Pre-generated stub packages
 │   ├── actix-web/
+│   ├── actix-web-lab/
 │   ├── anyhow/
 │   ├── base64/
 │   ├── chrono/
 │   ├── clap/
+│   ├── clap_builder/
 │   ├── config/
 │   ├── env_logger/
 │   ├── fern/
+│   ├── grindvakt/
 │   ├── josekit/
+│   ├── lazy_static/
 │   ├── log/
 │   ├── native-tls/
+│   ├── oidfed_metadata_policy/
 │   ├── redis/
 │   ├── reqwest/
 │   ├── rustls/
+│   ├── rustls-pemfile/
 │   ├── serde/
 │   ├── serde_json/
 │   ├── sha2/
 │   ├── tokio/
 │   ├── toml/
+│   ├── tunnelbana-core/
+│   ├── tunnelbana-plugins/
 │   └── ureq/
 ├── examples/                      # Working examples
 │   ├── actix-web/
@@ -149,12 +175,14 @@ spicycrab-stubs/
 │   ├── env_logger/
 │   ├── fern/
 │   ├── josekit/
+│   ├── native_tls/
 │   ├── reqwest/
 │   ├── rustls/
 │   ├── serde_json/
 │   ├── sha2/
 │   ├── tokio/
 │   ├── toml/
+│   ├── tunnelbana-core/
 │   └── ureq/
 ├── justfile                       # Tag management commands
 └── README.md
@@ -291,10 +319,10 @@ Tags follow the format: `<crate>-<version>`
 
 ```bash
 # Create a version tag
-just tag chrono 0.4.42
+just tag chrono 0.4.45
 
 # Push tags
-git push origin main && git push origin chrono-0.4.42
+git push origin main && git push origin chrono-0.4.45
 ```
 
 ## Contributing
