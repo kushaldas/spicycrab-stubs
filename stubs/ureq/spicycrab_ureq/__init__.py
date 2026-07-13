@@ -7,561 +7,88 @@ from __future__ import annotations
 
 from typing import Self
 
-class ConnectProxyConnector:
-    """Connector for CONNECT proxy settings.
+class NextTimeout:
+    """A pair of [`Duration`] and [`Timeout`]."""
 
-This operates on the previous chained transport typically a TcpConnector optionally
-wrapped in TLS."""
+    def not_zero(self) -> Duration | None: ...
 
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+class MiddlewareNext:
+    """Continuation of a [`Middleware`] chain."""
 
-    def fmt(self, f: Formatter) -> Result: ...
+    def handle(self, request: object) -> object: ...
 
-class LazyBuffers:
-    """Default buffer implementation.
+class RequestBuilder:
+    """Transparent wrapper around [`http::request::Builder`].
 
-The buffers are lazy such that no allocations are made until needed. That means
-a [`Transport`](crate::transport::Transport) implementation can freely instantiate
-the `LazyBuffers`."""
+The purpose is to provide the [`.call()`][RequestBuilder::call] and [`.send()`][RequestBuilder::send]
+and additional helpers for query parameters like [`.query()`][RequestBuilder::query] functions to
+make an API for sending requests."""
 
-    @staticmethod
-    def new(input_size: int, output_size: int) -> "LazyBuffers": ...
+    def method_ref(self) -> object: ...
 
-    def output(self) -> object: ...
+    def header(self, key: K, value: V) -> Self: ...
 
-    def input(self) -> object: ...
+    def headers_ref(self) -> object: ...
 
-    def input_append_buf(self) -> object: ...
+    def headers_mut(self) -> object: ...
 
-    def tmp_and_output(self) -> object: ...
+    def query(self, key: K, value: V) -> Self: ...
 
-    def input_appended(self, amount: int) -> None: ...
+    def query_raw(self, key: K, value: V) -> Self: ...
 
-    def input_consume(self, amount: int) -> None: ...
+    def query_pairs(self, iter: I) -> Self: ...
 
-    def can_use_input(self) -> bool: ...
+    def query_pairs_raw(self, iter: I) -> Self: ...
 
-class ChainedConnector:
-    """Two chained connectors called one after another.
+    def uri(self, uri: T) -> Self: ...
 
-Created by calling [`Connector::chain`] on the first connector."""
+    def uri_ref(self) -> object: ...
 
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+    def version(self, version: Version) -> Self: ...
 
-    def fmt(self, f: Formatter) -> Result: ...
+    def version_ref(self) -> object: ...
 
-    def clone(self) -> Self: ...
+    def config(self) -> object: ...
 
-class ConnectionDetails:
-    """The parameters needed to create a [`Transport`]."""
+    def extension(self, extension: T) -> Self: ...
 
-    def needs_tls(self) -> bool: ...
+    def extensions_ref(self) -> object: ...
 
-class DefaultConnector:
-    """Default connector providing TCP sockets, TLS and SOCKS proxy.
+    def extensions_mut(self) -> object: ...
 
-This connector is the following chain:
+    def call(self) -> object: ...
 
-1. [`SocksConnector`] to handle proxy settings if set.
-2. [`TcpConnector`] to open a socket directly if a proxy is not used.
-3. [`RustlsConnector`] which wraps the
-connection from 1 or 2 in TLS if the scheme is `https` and the
-[`TlsConfig`](crate::tls::TlsConfig) indicate we are using **rustls**.
-This is the default TLS provider.
-4. [`NativeTlsConnector`] which wraps
-the connection from 1 or 2 in TLS if the scheme is `https` and
-[`TlsConfig`](crate::tls::TlsConfig) indicate we are using **native-tls**.
-"""
+    def force_send_body(self) -> object: ...
 
-    @staticmethod
-    def new() -> "DefaultConnector": ...
+    def content_type(self, content_type: V) -> Self: ...
 
-    @staticmethod
-    def default() -> "DefaultConnector": ...
+    def send(self, data: object) -> object: ...
 
-    def connect(self, details: ConnectionDetails, chained: object) -> Out | None: ...
+    def send_empty(self) -> object: ...
 
-class TransportAdapter:
-    """Helper to turn a [`Transport`] into a std::io [`Read`](io::Read) and [`Write`](io::Write).
+    def send_form(self, iter: I) -> object: ...
 
-This is useful when integrating with components that expect a regular `Read`/`Write`. In
-ureq this is used both for the [`RustlsConnector`](crate::unversioned::transport::RustlsConnector) and the
-[`NativeTlsConnector`](crate::unversioned::transport::NativeTlsConnector)."""
-
-    @staticmethod
-    def new(transport: T) -> "TransportAdapter": ...
-
-    def set_timeout(self, timeout: NextTimeout) -> None: ...
-
-    def get_ref(self) -> dynTransport: ...
-
-    def get_mut(self) -> mutdynTransport: ...
-
-    def inner(self) -> dynTransport: ...
-
-    def into_inner(self) -> T: ...
-
-    def read(self, buf: object) -> int: ...
-
-    def write(self, buf: object) -> int: ...
-
-    def flush(self) -> object: ...
-
-class SocksConnector:
-    """Connector for SOCKS proxies.
-
-Requires the **socks-proxy** feature.
-
-The connector looks at the proxy settings in [`proxy`](crate::config::ConfigBuilder::proxy) to
-determine whether to attempt a proxy connection or not."""
-
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+    def send_json(self, data: object) -> object: ...
 
     def fmt(self, f: Formatter) -> Result: ...
 
-class TcpConnector:
-    """Connector for regular TCP sockets."""
-
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
-
     def fmt(self, f: Formatter) -> Result: ...
 
-class TcpTransport:
+class WithoutBody:
+    """Typestate when [`RequestBuilder`] has no send body.
 
-    @staticmethod
-    def new(stream: TcpStream, buffers: LazyBuffers) -> "TcpTransport": ...
+`RequestBuilder<WithoutBody>`
 
-    def buffers(self) -> mutdynBuffers: ...
+Methods: GET, DELETE, HEAD, OPTIONS, CONNECT, TRACE"""
+    pass
 
-    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
+class WithBody:
+    """Typestate when [`RequestBuilder`] needs to a send body.
 
-    def await_input(self, timeout: NextTimeout) -> bool: ...
+`RequestBuilder<WithBody>`
 
-    def is_open(self) -> bool: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class DefaultResolver:
-    """Default resolver implementation.
-
-Uses std::net [`ToSocketAddrs`](https://doc.rust-lang.org/std/net/trait.ToSocketAddrs.html) to
-do the lookup. Can optionally spawn a thread to abort lookup if the relevant timeout is set."""
-
-    @staticmethod
-    def host_and_port(scheme: Scheme, authority: Authority) -> str | None: ...
-
-    def resolve(self, uri: Uri, config: Config, timeout: NextTimeout) -> ResolvedSocketAddrs: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class Body:
-    """A response body returned as [`http::Response<Body>`].
-
-# Default size limit
-
-Methods like `read_to_string()`, `read_to_vec()`, and `read_json()` have a **default 10MB limit**
-to prevent memory exhaustion. To download larger files, use `with_config().limit(new_size)`:
-
-```
-// Download a 20MB file
-let bytes = ureq::get("http://httpbin.org/bytes/200000000")
-.call()?
-.body_mut()
-.with_config()
-.limit(20 * 1024 * 1024) // 20MB
-.read_to_vec()?;
-# Ok::<_, ureq::Error>(())
-```
-
-# Body lengths
-
-HTTP/1.1 has two major modes of transfering body data. Either a `Content-Length`
-header defines exactly how many bytes to transfer, or `Transfer-Encoding: chunked`
-facilitates a streaming style when the size is not known up front.
-
-To protect against a problem called [request smuggling], ureq has heuristics for
-how to interpret a server sending both `Transfer-Encoding` and `Content-Length` headers.
-
-1. `chunked` takes precedence if there both headers are present (not for HTTP/1.0)
-2. `content-length` is used if there is no chunked
-3. If there are no headers, fall back on "close delimited" meaning the socket
-must close to end the body
-
-When a `Content-Length` header is used, ureq will ensure the received body is _EXACTLY_
-as many bytes as declared (it cannot be less). This mechanic is in `ureq-proto`
-and is different to the [`BodyWithConfig::limit()`] below.
-
-# Pool reuse
-
-To return a connection (aka [`Transport`][crate::unversioned::transport::Transport])
-to the Agent's pool, the body must be read to end. If [`BodyWithConfig::limit()`] is set
-shorter size than the actual response body, the connection will not be reused.
-
-# Example
-
-```
-use std::io::Read;
-let mut res = ureq::get("http://httpbin.org/bytes/100")
-.call()?;
-
-assert!(res.headers().contains_key("Content-Length"));
-let len: usize = res.headers().get("Content-Length")
-.unwrap().to_str().unwrap().parse().unwrap();
-
-let mut bytes: Vec<u8> = Vec::with_capacity(len);
-res.body_mut().as_reader()
-.read_to_end(&mut bytes)?;
-
-assert_eq!(bytes.len(), len);
-# Ok::<_, ureq::Error>(())
-```
-
-[request smuggling]: https://en.wikipedia.org/wiki/HTTP_request_smuggling"""
-
-    @staticmethod
-    def builder() -> BodyBuilder: ...
-
-    def mime_type(self) -> object: ...
-
-    def charset(self) -> object: ...
-
-    def content_length(self) -> int | None: ...
-
-    def as_reader(self) -> BodyReader: ...
-
-    def into_reader(self) -> BodyReader: ...
-
-    def read_to_string(self) -> str: ...
-
-    def read_to_vec(self) -> list[int]: ...
-
-    def read_json(self) -> T: ...
-
-    def with_config(self) -> BodyWithConfig: ...
-
-    def into_with_config(self) -> BodyWithConfig: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-    def as_body(self) -> SendBody: ...
-
-class BodyWithConfig:
-    """Configuration of how to read the body.
-
-Obtained via one of:
-
-* [Body::with_config()]
-* [Body::into_with_config()]
-
-# Handling large responses
-
-The `BodyWithConfig` is the primary way to increase the default 10MB size limit
-when downloading large files to memory:
-
-```
-// Download a 50MB file
-let large_data = ureq::get("http://httpbin.org/bytes/200000000")
-.call()?
-.body_mut()
-.with_config()
-.limit(50 * 1024 * 1024) // 50MB
-.read_to_vec()?;
-# Ok::<_, ureq::Error>(())
-```"""
-
-    def limit(self, value: int) -> Self: ...
-
-    def lossy_utf8(self, value: bool) -> Self: ...
-
-    def reader(self) -> BodyReader: ...
-
-    def read_to_string(self) -> str: ...
-
-    def read_to_vec(self) -> list[int]: ...
-
-    def read_json(self) -> T: ...
-
-class BodyReader:
-    """A reader of the response data.
-
-1. If `Transfer-Encoding: chunked`, the returned reader will unchunk it
-and any `Content-Length` header is ignored.
-2. If `Content-Encoding: gzip` (or `br`) and the corresponding feature
-flag is enabled (**gzip** and **brotli**), decompresses the body data.
-3. Given a header like `Content-Type: text/plain; charset=ISO-8859-1`
-and the **charset** feature enabled, will translate the body to utf-8.
-This mechanic need two components a mime-type starting `text/` and
-a non-utf8 charset indication.
-4. If `Content-Length` is set, the returned reader is limited to this byte
-length regardless of how many bytes the server sends.
-5. If no length header, the reader is until server stream end.
-6. The limit in the body method used to obtain the reader.
-
-Note: The reader is also limited by the [`Body::as_reader`] and
-[`Body::into_reader`] calls. If that limit is set very high, a malicious
-server might return enough bytes to exhaust available memory. If you're
-making requests to untrusted servers, you should use set that
-limit accordingly.
-
-# Example
-
-```
-use std::io::Read;
-let mut res = ureq::get("http://httpbin.org/bytes/100")
-.call()?;
-
-assert!(res.headers().contains_key("Content-Length"));
-let len: usize = res.headers().get("Content-Length")
-.unwrap().to_str().unwrap().parse().unwrap();
-
-let mut bytes: Vec<u8> = Vec::with_capacity(len);
-res.body_mut().as_reader()
-.read_to_end(&mut bytes)?;
-
-assert_eq!(bytes.len(), len);
-# Ok::<_, ureq::Error>(())
-```"""
-
-    def read(self, buf: object) -> int: ...
-
-class LossyUtf8Reader:
-
-    def read(self, buf: object) -> int: ...
-
-class BodyBuilder:
-    """Builder for creating a response body.
-
-This is useful for testing, or for [`Middleware`][crate::middleware::Middleware] that
-returns another body than the requested one.
-
-# Example
-
-```
-use ureq::Body;
-use ureq::http::Response;
-
-let body = Body::builder()
-.mime_type("text/plain")
-.charset("utf-8")
-.data("Hello world!");
-
-let mut response = Response::builder()
-.status(200)
-.header("content-type", "text/plain; charset=utf-8")
-.body(body)?;
-
-let text = response
-.body_mut()
-.read_to_string()?;
-
-assert_eq!(text, "Hello world!");
-# Ok::<_, ureq::Error>(())
-```"""
-
-    def mime_type(self, mime_type: object) -> Self: ...
-
-    def charset(self, charset: object) -> Self: ...
-
-    def limit(self, l: int) -> Self: ...
-
-    def data(self, data: object) -> Body: ...
-
-    def reader(self, data: object) -> Body: ...
-
-class NativeTlsConnector:
-    """Wrapper for TLS using native-tls.
-
-Requires feature flag **native-tls**."""
-
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class NativeTlsTransport:
-
-    def buffers(self) -> mutdynBuffers: ...
-
-    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
-
-    def await_input(self, timeout: NextTimeout) -> bool: ...
-
-    def is_open(self) -> bool: ...
-
-    def is_tls(self) -> bool: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class Certificate:
-    """An X509 certificate for a server or a client.
-
-These are either used as trust roots, or client authentication.
-
-The internal representation is DER form. The provided helpers for PEM
-translates to DER."""
-
-    @staticmethod
-    def from_der(der: object) -> "Certificate": ...
-
-    @staticmethod
-    def from_pem(pem: object) -> "Certificate": ...
-
-    def der(self) -> object: ...
-
-    def to_owned(self) -> Certificate: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class PrivateKey:
-    """A private key used in client certificate auth.
-
-The internal representation is DER form. The provided helpers for PEM
-translates to DER.
-
-Deliberately not `Clone` to avoid accidental copies in memory."""
-
-    def as_ref(self) -> object: ...
-
-    @staticmethod
-    def from_der(kind: KeyKind, der: object) -> "PrivateKey": ...
-
-    @staticmethod
-    def from_pem(pem: object) -> "PrivateKey": ...
-
-    def kind(self) -> KeyKind: ...
-
-    def der(self) -> object: ...
-
-    def to_owned(self) -> PrivateKey: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class RustlsConnector:
-    """Wrapper for TLS using rustls.
-
-Requires feature flag **rustls**."""
-
-    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class RustlsTransport:
-
-    def buffers(self) -> mutdynBuffers: ...
-
-    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
-
-    def await_input(self, timeout: NextTimeout) -> bool: ...
-
-    def is_open(self) -> bool: ...
-
-    def is_tls(self) -> bool: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-class TlsConfig:
-    """Configuration of TLS.
-
-This configuration is in common for both the different TLS mechanisms (available through
-feature flags **rustls** and **native-tls**)."""
-
-    @staticmethod
-    def builder() -> TlsConfigBuilder: ...
-
-    def provider(self) -> TlsProvider: ...
-
-    def client_cert(self) -> object: ...
-
-    def root_certs(self) -> RootCerts: ...
-
-    def use_sni(self) -> bool: ...
-
-    def disable_verification(self) -> bool: ...
-
-    def unversioned_rustls_crypto_provider(self) -> object | None: ...
-
-    @staticmethod
-    def default() -> "TlsConfig": ...
-
-    def fmt(self, f: Formatter) -> Result: ...
-
-    def hash(self, state: H) -> None: ...
-
-class TlsConfigBuilder:
-    """Builder of [`TlsConfig`]"""
-
-    def provider(self, v: TlsProvider) -> Self: ...
-
-    def client_cert(self, v: ClientCert | None) -> Self: ...
-
-    def root_certs(self, v: RootCerts) -> Self: ...
-
-    def use_sni(self, v: bool) -> Self: ...
-
-    def disable_verification(self, v: bool) -> Self: ...
-
-    def unversioned_rustls_crypto_provider(self, v: object) -> Self: ...
-
-    def build(self) -> TlsConfig: ...
-
-class ClientCert:
-    """A client certificate."""
-
-    @staticmethod
-    def new_with_certs(chain: object, key: PrivateKey) -> "ClientCert": ...
-
-    def certs(self) -> object: ...
-
-    def private_key(self) -> PrivateKey: ...
-
-class CookieJar:
-    """Collection of cookies.
-
-The jar is accessed using [`Agent::cookie_jar_lock`][crate::Agent::cookie_jar_lock].
-It can be saved and loaded."""
-
-    def get(self, domain: str, path: str, name: str) -> Cookie | None: ...
-
-    def remove(self, domain: str, path: str, name: str) -> Cookie | None: ...
-
-    def insert(self, cookie: Cookie, uri: Uri) -> None: ...
-
-    def clear(self) -> None: ...
-
-    def iter(self) -> object: ...
-
-    def save_json(self, writer: W) -> None: ...
-
-    def load_json(self, reader: R) -> None: ...
-
-    def release(self) -> None: ...
-
-class Cookie:
-    """Representation of an HTTP cookie.
-
-Conforms to [IETF RFC6265](https://datatracker.ietf.org/doc/html/rfc6265)
-
-## Constructing a `Cookie`
-
-To construct a cookie it must be parsed and bound to a uri:
-
-```
-use ureq::Cookie;
-use ureq::http::Uri;
-
-let uri = Uri::from_static("https://my.server.com");
-let cookie = Cookie::parse("name=value", &uri)?;
-assert_eq!(cookie.to_string(), "name=value");
-# Ok::<_, ureq::Error>(())
-```"""
-
-    @staticmethod
-    def parse(cookie_str: S, uri: Uri) -> "Cookie": ...
-
-    def name(self) -> str: ...
-
-    def value(self) -> str: ...
-
-    def fmt(self, f: Formatter) -> Result: ...
+Methods: POST, PUT, PATCH"""
+    pass
 
 class Proxy:
     """Proxy server settings
@@ -661,6 +188,151 @@ Obtained via [`Proxy::builder()`]."""
     def no_proxy(self, expr: str) -> Self: ...
 
     def build(self) -> Proxy: ...
+
+class NativeTlsConnector:
+    """Wrapper for TLS using native-tls.
+
+Requires feature flag **native-tls**."""
+
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class NativeTlsTransport:
+
+    def buffers(self) -> mutdynBuffers: ...
+
+    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
+
+    def await_input(self, timeout: NextTimeout) -> bool: ...
+
+    def is_open(self) -> bool: ...
+
+    def is_tls(self) -> bool: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class TlsConfig:
+    """Configuration of TLS.
+
+This configuration is in common for both the different TLS mechanisms (available through
+feature flags **rustls** and **native-tls**)."""
+
+    @staticmethod
+    def builder() -> TlsConfigBuilder: ...
+
+    def provider(self) -> TlsProvider: ...
+
+    def client_cert(self) -> object: ...
+
+    def root_certs(self) -> RootCerts: ...
+
+    def use_sni(self) -> bool: ...
+
+    def disable_verification(self) -> bool: ...
+
+    def unversioned_rustls_crypto_provider(self) -> object | None: ...
+
+    @staticmethod
+    def default() -> "TlsConfig": ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+    def hash(self, state: H) -> None: ...
+
+class TlsConfigBuilder:
+    """Builder of [`TlsConfig`]"""
+
+    def provider(self, v: TlsProvider) -> Self: ...
+
+    def client_cert(self, v: ClientCert | None) -> Self: ...
+
+    def root_certs(self, v: RootCerts) -> Self: ...
+
+    def use_sni(self, v: bool) -> Self: ...
+
+    def disable_verification(self, v: bool) -> Self: ...
+
+    def unversioned_rustls_crypto_provider(self, v: object) -> Self: ...
+
+    def build(self) -> TlsConfig: ...
+
+class ClientCert:
+    """A client certificate."""
+
+    @staticmethod
+    def new_with_certs(chain: object, key: PrivateKey) -> "ClientCert": ...
+
+    def certs(self) -> object: ...
+
+    def private_key(self) -> PrivateKey: ...
+
+class Certificate:
+    """An X509 certificate for a server or a client.
+
+These are either used as trust roots, or client authentication.
+
+The internal representation is DER form. The provided helpers for PEM
+translates to DER."""
+
+    @staticmethod
+    def from_der(der: object) -> "Certificate": ...
+
+    @staticmethod
+    def from_pem(pem: object) -> "Certificate": ...
+
+    def der(self) -> object: ...
+
+    def to_owned(self) -> Certificate: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class PrivateKey:
+    """A private key used in client certificate auth.
+
+The internal representation is DER form. The provided helpers for PEM
+translates to DER.
+
+Deliberately not `Clone` to avoid accidental copies in memory."""
+
+    def as_ref(self) -> object: ...
+
+    @staticmethod
+    def from_der(kind: KeyKind, der: object) -> "PrivateKey": ...
+
+    @staticmethod
+    def from_pem(pem: object) -> "PrivateKey": ...
+
+    def kind(self) -> KeyKind: ...
+
+    def der(self) -> object: ...
+
+    def to_owned(self) -> PrivateKey: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class RustlsConnector:
+    """Wrapper for TLS using rustls.
+
+Requires feature flag **rustls**."""
+
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class RustlsTransport:
+
+    def buffers(self) -> mutdynBuffers: ...
+
+    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
+
+    def await_input(self, timeout: NextTimeout) -> bool: ...
+
+    def is_open(self) -> bool: ...
+
+    def is_tls(self) -> bool: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
 
 class AgentScope:
     """Typestate for [`Config`] when configured for an [`Agent`]."""
@@ -892,13 +564,6 @@ This can be configured both on Agent level as well as per request."""
 
     def fmt(self, f: Formatter) -> Result: ...
 
-class WithAgent:
-    """Wrapper struct that holds a [`Request`] associated with an [`Agent`]."""
-
-    def configure(self) -> object: ...
-
-    def run(self) -> object: ...
-
 class SendBody:
     """Request body for sending data via POST, PUT and PATCH.
 
@@ -930,83 +595,373 @@ body directly. See below [`SendBody::from_reader`].
     @staticmethod
     def from_(_: object) -> "SendBody": ...
 
-class MiddlewareNext:
-    """Continuation of a [`Middleware`] chain."""
+class LossyUtf8Reader:
 
-    def handle(self, request: object) -> object: ...
+    def read(self, buf: object) -> int: ...
 
-class RequestBuilder:
-    """Transparent wrapper around [`http::request::Builder`].
+class Body:
+    """A response body returned as [`http::Response<Body>`].
 
-The purpose is to provide the [`.call()`][RequestBuilder::call] and [`.send()`][RequestBuilder::send]
-and additional helpers for query parameters like [`.query()`][RequestBuilder::query] functions to
-make an API for sending requests."""
+# Default size limit
 
-    def method_ref(self) -> object: ...
+Methods like `read_to_string()`, `read_to_vec()`, and `read_json()` have a **default 10MB limit**
+to prevent memory exhaustion. To download larger files, use `with_config().limit(new_size)`:
 
-    def header(self, key: K, value: V) -> Self: ...
+```
+// Download a 20MB file
+let bytes = ureq::get("http://httpbin.org/bytes/200000000")
+.call()?
+.body_mut()
+.with_config()
+.limit(20 * 1024 * 1024) // 20MB
+.read_to_vec()?;
+# Ok::<_, ureq::Error>(())
+```
 
-    def headers_ref(self) -> object: ...
+# Body lengths
 
-    def headers_mut(self) -> object: ...
+HTTP/1.1 has two major modes of transfering body data. Either a `Content-Length`
+header defines exactly how many bytes to transfer, or `Transfer-Encoding: chunked`
+facilitates a streaming style when the size is not known up front.
 
-    def query(self, key: K, value: V) -> Self: ...
+To protect against a problem called [request smuggling], ureq has heuristics for
+how to interpret a server sending both `Transfer-Encoding` and `Content-Length` headers.
 
-    def query_raw(self, key: K, value: V) -> Self: ...
+1. `chunked` takes precedence if there both headers are present (not for HTTP/1.0)
+2. `content-length` is used if there is no chunked
+3. If there are no headers, fall back on "close delimited" meaning the socket
+must close to end the body
 
-    def query_pairs(self, iter: I) -> Self: ...
+When a `Content-Length` header is used, ureq will ensure the received body is _EXACTLY_
+as many bytes as declared (it cannot be less). This mechanic is in `ureq-proto`
+and is different to the [`BodyWithConfig::limit()`] below.
 
-    def query_pairs_raw(self, iter: I) -> Self: ...
+# Pool reuse
 
-    def uri(self, uri: T) -> Self: ...
+To return a connection (aka [`Transport`][crate::unversioned::transport::Transport])
+to the Agent's pool, the body must be read to end. If [`BodyWithConfig::limit()`] is set
+shorter size than the actual response body, the connection will not be reused.
 
-    def uri_ref(self) -> object: ...
+# Example
 
-    def version(self, version: Version) -> Self: ...
+```
+use std::io::Read;
+let mut res = ureq::get("http://httpbin.org/bytes/100")
+.call()?;
 
-    def version_ref(self) -> object: ...
+assert!(res.headers().contains_key("Content-Length"));
+let len: usize = res.headers().get("Content-Length")
+.unwrap().to_str().unwrap().parse().unwrap();
 
-    def config(self) -> object: ...
+let mut bytes: Vec<u8> = Vec::with_capacity(len);
+res.body_mut().as_reader()
+.read_to_end(&mut bytes)?;
 
-    def extension(self, extension: T) -> Self: ...
+assert_eq!(bytes.len(), len);
+# Ok::<_, ureq::Error>(())
+```
 
-    def extensions_ref(self) -> object: ...
+[request smuggling]: https://en.wikipedia.org/wiki/HTTP_request_smuggling"""
 
-    def extensions_mut(self) -> object: ...
+    def as_body(self) -> SendBody: ...
 
-    def call(self) -> object: ...
+    @staticmethod
+    def builder() -> BodyBuilder: ...
 
-    def force_send_body(self) -> object: ...
+    def mime_type(self) -> object: ...
 
-    def content_type(self, content_type: V) -> Self: ...
+    def charset(self) -> object: ...
 
-    def send(self, data: object) -> object: ...
+    def content_length(self) -> int | None: ...
 
-    def send_empty(self) -> object: ...
+    def as_reader(self) -> BodyReader: ...
 
-    def send_form(self, iter: I) -> object: ...
+    def into_reader(self) -> BodyReader: ...
 
-    def send_json(self, data: object) -> object: ...
+    def read_to_string(self) -> str: ...
+
+    def read_to_vec(self) -> list[int]: ...
+
+    def read_json(self) -> T: ...
+
+    def with_config(self) -> BodyWithConfig: ...
+
+    def into_with_config(self) -> BodyWithConfig: ...
 
     def fmt(self, f: Formatter) -> Result: ...
 
+class BodyWithConfig:
+    """Configuration of how to read the body.
+
+Obtained via one of:
+
+* [Body::with_config()]
+* [Body::into_with_config()]
+
+# Handling large responses
+
+The `BodyWithConfig` is the primary way to increase the default 10MB size limit
+when downloading large files to memory:
+
+```
+// Download a 50MB file
+let large_data = ureq::get("http://httpbin.org/bytes/200000000")
+.call()?
+.body_mut()
+.with_config()
+.limit(50 * 1024 * 1024) // 50MB
+.read_to_vec()?;
+# Ok::<_, ureq::Error>(())
+```"""
+
+    def limit(self, value: int) -> Self: ...
+
+    def lossy_utf8(self, value: bool) -> Self: ...
+
+    def reader(self) -> BodyReader: ...
+
+    def read_to_string(self) -> str: ...
+
+    def read_to_vec(self) -> list[int]: ...
+
+    def read_json(self) -> T: ...
+
+class BodyReader:
+    """A reader of the response data.
+
+1. If `Transfer-Encoding: chunked`, the returned reader will unchunk it
+and any `Content-Length` header is ignored.
+2. If `Content-Encoding: gzip` (or `br`) and the corresponding feature
+flag is enabled (**gzip** and **brotli**), decompresses the body data.
+3. Given a header like `Content-Type: text/plain; charset=ISO-8859-1`
+and the **charset** feature enabled, will translate the body to utf-8.
+This mechanic need two components a mime-type starting `text/` and
+a non-utf8 charset indication.
+4. If `Content-Length` is set, the returned reader is limited to this byte
+length regardless of how many bytes the server sends.
+5. If no length header, the reader is until server stream end.
+6. The limit in the body method used to obtain the reader.
+
+Note: The reader is also limited by the [`Body::as_reader`] and
+[`Body::into_reader`] calls. If that limit is set very high, a malicious
+server might return enough bytes to exhaust available memory. If you're
+making requests to untrusted servers, you should use set that
+limit accordingly.
+
+# Example
+
+```
+use std::io::Read;
+let mut res = ureq::get("http://httpbin.org/bytes/100")
+.call()?;
+
+assert!(res.headers().contains_key("Content-Length"));
+let len: usize = res.headers().get("Content-Length")
+.unwrap().to_str().unwrap().parse().unwrap();
+
+let mut bytes: Vec<u8> = Vec::with_capacity(len);
+res.body_mut().as_reader()
+.read_to_end(&mut bytes)?;
+
+assert_eq!(bytes.len(), len);
+# Ok::<_, ureq::Error>(())
+```"""
+
+    def read(self, buf: object) -> int: ...
+
+class BodyBuilder:
+    """Builder for creating a response body.
+
+This is useful for testing, or for [`Middleware`][crate::middleware::Middleware] that
+returns another body than the requested one.
+
+# Example
+
+```
+use ureq::Body;
+use ureq::http::Response;
+
+let body = Body::builder()
+.mime_type("text/plain")
+.charset("utf-8")
+.data("Hello world!");
+
+let mut response = Response::builder()
+.status(200)
+.header("content-type", "text/plain; charset=utf-8")
+.body(body)?;
+
+let text = response
+.body_mut()
+.read_to_string()?;
+
+assert_eq!(text, "Hello world!");
+# Ok::<_, ureq::Error>(())
+```"""
+
+    def mime_type(self, mime_type: object) -> Self: ...
+
+    def charset(self, charset: object) -> Self: ...
+
+    def limit(self, l: int) -> Self: ...
+
+    def data(self, data: object) -> Body: ...
+
+    def reader(self, data: object) -> Body: ...
+
+class ConnectProxyConnector:
+    """Connector for CONNECT proxy settings.
+
+This operates on the previous chained transport typically a TcpConnector optionally
+wrapped in TLS."""
+
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+
     def fmt(self, f: Formatter) -> Result: ...
 
-class WithoutBody:
-    """Typestate when [`RequestBuilder`] has no send body.
+class ChainedConnector:
+    """Two chained connectors called one after another.
 
-`RequestBuilder<WithoutBody>`
+Created by calling [`Connector::chain`] on the first connector."""
 
-Methods: GET, DELETE, HEAD, OPTIONS, CONNECT, TRACE"""
-    pass
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
 
-class WithBody:
-    """Typestate when [`RequestBuilder`] needs to a send body.
+    def fmt(self, f: Formatter) -> Result: ...
 
-`RequestBuilder<WithBody>`
+    def clone(self) -> Self: ...
 
-Methods: POST, PUT, PATCH"""
-    pass
+class ConnectionDetails:
+    """The parameters needed to create a [`Transport`]."""
+
+    def needs_tls(self) -> bool: ...
+
+class DefaultConnector:
+    """Default connector providing TCP sockets, TLS and SOCKS proxy.
+
+This connector is the following chain:
+
+1. [`SocksConnector`] to handle proxy settings if set.
+2. [`TcpConnector`] to open a socket directly if a proxy is not used.
+3. [`RustlsConnector`] which wraps the
+connection from 1 or 2 in TLS if the scheme is `https` and the
+[`TlsConfig`](crate::tls::TlsConfig) indicate we are using **rustls**.
+This is the default TLS provider.
+4. [`NativeTlsConnector`] which wraps
+the connection from 1 or 2 in TLS if the scheme is `https` and
+[`TlsConfig`](crate::tls::TlsConfig) indicate we are using **native-tls**.
+"""
+
+    @staticmethod
+    def new() -> "DefaultConnector": ...
+
+    @staticmethod
+    def default() -> "DefaultConnector": ...
+
+    def connect(self, details: ConnectionDetails, chained: object) -> Out | None: ...
+
+class LazyBuffers:
+    """Default buffer implementation.
+
+The buffers are lazy such that no allocations are made until needed. That means
+a [`Transport`](crate::transport::Transport) implementation can freely instantiate
+the `LazyBuffers`."""
+
+    @staticmethod
+    def new(input_size: int, output_size: int) -> "LazyBuffers": ...
+
+    def output(self) -> object: ...
+
+    def input(self) -> object: ...
+
+    def input_append_buf(self) -> object: ...
+
+    def tmp_and_output(self) -> object: ...
+
+    def input_appended(self, amount: int) -> None: ...
+
+    def input_consume(self, amount: int) -> None: ...
+
+    def can_use_input(self) -> bool: ...
+
+class TransportAdapter:
+    """Helper to turn a [`Transport`] into a std::io [`Read`](io::Read) and [`Write`](io::Write).
+
+This is useful when integrating with components that expect a regular `Read`/`Write`. In
+ureq this is used both for the [`RustlsConnector`](crate::unversioned::transport::RustlsConnector) and the
+[`NativeTlsConnector`](crate::unversioned::transport::NativeTlsConnector)."""
+
+    @staticmethod
+    def new(transport: T) -> "TransportAdapter": ...
+
+    def set_timeout(self, timeout: NextTimeout) -> None: ...
+
+    def get_ref(self) -> dynTransport: ...
+
+    def get_mut(self) -> mutdynTransport: ...
+
+    def inner(self) -> dynTransport: ...
+
+    def into_inner(self) -> T: ...
+
+    def read(self, buf: object) -> int: ...
+
+    def write(self, buf: object) -> int: ...
+
+    def flush(self) -> object: ...
+
+class SocksConnector:
+    """Connector for SOCKS proxies.
+
+Requires the **socks-proxy** feature.
+
+The connector looks at the proxy settings in [`proxy`](crate::config::ConfigBuilder::proxy) to
+determine whether to attempt a proxy connection or not."""
+
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class TcpConnector:
+    """Connector for regular TCP sockets."""
+
+    def connect(self, details: ConnectionDetails, chained: In | None) -> Out | None: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class TcpTransport:
+
+    @staticmethod
+    def new(stream: TcpStream, buffers: LazyBuffers) -> "TcpTransport": ...
+
+    def buffers(self) -> mutdynBuffers: ...
+
+    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
+
+    def await_input(self, timeout: NextTimeout) -> bool: ...
+
+    def is_open(self) -> bool: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class DefaultResolver:
+    """Default resolver implementation.
+
+Uses std::net [`ToSocketAddrs`](https://doc.rust-lang.org/std/net/trait.ToSocketAddrs.html) to
+do the lookup. Can optionally spawn a thread to abort lookup if the relevant timeout is set."""
+
+    @staticmethod
+    def host_and_port(scheme: Scheme, authority: Authority) -> str | None: ...
+
+    def resolve(self, uri: Uri, config: Config, timeout: NextTimeout) -> ResolvedSocketAddrs: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class WithAgent:
+    """Wrapper struct that holds a [`Request`] associated with an [`Agent`]."""
+
+    def configure(self) -> object: ...
+
+    def run(self) -> object: ...
 
 class Agent:
     """Agents keep state between requests.
@@ -1122,10 +1077,55 @@ incur any heap allocation."""
 
     def pool_count(self) -> int: ...
 
-class NextTimeout:
-    """A pair of [`Duration`] and [`Timeout`]."""
+class CookieJar:
+    """Collection of cookies.
 
-    def not_zero(self) -> Duration | None: ...
+The jar is accessed using [`Agent::cookie_jar_lock`][crate::Agent::cookie_jar_lock].
+It can be saved and loaded."""
+
+    def get(self, domain: str, path: str, name: str) -> Cookie | None: ...
+
+    def remove(self, domain: str, path: str, name: str) -> Cookie | None: ...
+
+    def insert(self, cookie: Cookie, uri: Uri) -> None: ...
+
+    def clear(self) -> None: ...
+
+    def iter(self) -> object: ...
+
+    def save_json(self, writer: W) -> None: ...
+
+    def load_json(self, reader: R) -> None: ...
+
+    def release(self) -> None: ...
+
+class Cookie:
+    """Representation of an HTTP cookie.
+
+Conforms to [IETF RFC6265](https://datatracker.ietf.org/doc/html/rfc6265)
+
+## Constructing a `Cookie`
+
+To construct a cookie it must be parsed and bound to a uri:
+
+```
+use ureq::Cookie;
+use ureq::http::Uri;
+
+let uri = Uri::from_static("https://my.server.com");
+let cookie = Cookie::parse("name=value", &uri)?;
+assert_eq!(cookie.to_string(), "name=value");
+# Ok::<_, ureq::Error>(())
+```"""
+
+    @staticmethod
+    def parse(cookie_str: S, uri: Uri) -> "Cookie": ...
+
+    def name(self) -> str: ...
+
+    def value(self) -> str: ...
+
+    def fmt(self, f: Formatter) -> Result: ...
 
 class Form:
     """A multipart/form-data request.
@@ -1246,74 +1246,36 @@ let response = ureq::post("http://httpbin.org/post")
 
     def headers(self) -> HeaderMap: ...
 
-class Instant:
-    """Wrapper for [`std::time::Instant`] that provides additional time points in the past or future"""
-    AlreadyHappened: "Instant"
-    Exact: "Instant"
-    NotHappening: "Instant"
+class Timeout:
+    """The various timeouts.
+
+Each enum corresponds to a value in
+[`ConfigBuilder::timeout_xxx`][crate::config::ConfigBuilder::timeout_global]."""
+    Global: "Timeout"
+    PerCall: "Timeout"
+    Resolve: "Timeout"
+    Connect: "Timeout"
+    SendRequest: "Timeout"
+    Await100: "Timeout"
+    SendBody: "Timeout"
+    RecvResponse: "Timeout"
+    RecvBody: "Timeout"
+
+    def fmt(self, f: Formatter) -> Result: ...
+
+class ProxyProtocol:
+    """Proxy protocol"""
+    Http: "ProxyProtocol"
+    Https: "ProxyProtocol"
+    Socks4: "ProxyProtocol"
+    Socks4A: "ProxyProtocol"
+    Socks5: "ProxyProtocol"
+    Socks5h: "ProxyProtocol"
 
     @staticmethod
-    def now() -> "Instant": ...
+    def try_from(scheme: str) -> object: ...
 
-    def add(self, rhs: Duration) -> Output: ...
-
-    def partial_cmp(self, other: Self) -> Ordering | None: ...
-
-    def cmp(self, other: Self) -> Ordering: ...
-
-class Duration:
-    """Wrapper for [`std::time::Duration`] that provides a duration to a distant future"""
-    Exact: "Duration"
-    NotHappening: "Duration"
-
-    @staticmethod
-    def from_secs(secs: int) -> "Duration": ...
-
-    def is_not_happening(self) -> bool: ...
-
-    def deref(self) -> Target: ...
-
-    def partial_cmp(self, other: Self) -> Ordering | None: ...
-
-    def cmp(self, other: Self) -> Ordering: ...
-
-    @staticmethod
-    def from_(value: Duration) -> "Duration": ...
-
-class Either:
-    """A selection between two transports."""
-    A: "Either"
-    B: "Either"
-
-    def buffers(self) -> Buffers: ...
-
-    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
-
-    def await_input(self, timeout: NextTimeout) -> bool: ...
-
-    def is_open(self) -> bool: ...
-
-    def is_tls(self) -> bool: ...
-
-class KeyKind:
-    """The kind of private key.
-
-* For **rustls** any kind is valid.
-* For **native-tls** the only valid option is [`Pkcs8`](KeyKind::Pkcs8)."""
-    Pkcs1: "KeyKind"
-    Pkcs8: "KeyKind"
-    Sec1: "KeyKind"
-
-class PemItem:
-    """Kinds of PEM data found by [`parse_pem`]"""
-    Certificate: "PemItem"
-    PrivateKey: "PemItem"
-
-    @staticmethod
-    def from_(value: Certificate) -> "PemItem": ...
-
-    @staticmethod
-    def from_(value: PrivateKey) -> "PemItem": ...
+    def fmt(self, f: Formatter) -> Result: ...
 
 class TlsProvider:
     """Setting for which TLS provider to use.
@@ -1336,18 +1298,25 @@ class RootCerts:
     @staticmethod
     def from_(value: I) -> "RootCerts": ...
 
-class ProxyProtocol:
-    """Proxy protocol"""
-    Http: "ProxyProtocol"
-    Https: "ProxyProtocol"
-    Socks4: "ProxyProtocol"
-    Socks4A: "ProxyProtocol"
-    Socks5: "ProxyProtocol"
+class KeyKind:
+    """The kind of private key.
+
+* For **rustls** any kind is valid.
+* For **native-tls** the only valid option is [`Pkcs8`](KeyKind::Pkcs8)."""
+    Pkcs1: "KeyKind"
+    Pkcs8: "KeyKind"
+    Sec1: "KeyKind"
+
+class PemItem:
+    """Kinds of PEM data found by [`parse_pem`]"""
+    Certificate: "PemItem"
+    PrivateKey: "PemItem"
 
     @staticmethod
-    def try_from(scheme: str) -> object: ...
+    def from_(value: Certificate) -> "PemItem": ...
 
-    def fmt(self, f: Formatter) -> Result: ...
+    @staticmethod
+    def from_(value: PrivateKey) -> "PemItem": ...
 
 class AutoHeaderValue:
     """Possible config values for headers.
@@ -1372,35 +1341,59 @@ Used to limit the IP to either IPv4, IPv6 or any."""
 
     def keep_wanted(self, iter: object) -> object: ...
 
-class AgentRef:
-    """Reference type to hold an owned or borrowed [`Agent`]."""
-    Owned: "AgentRef"
-    Borrowed: "AgentRef"
+class Either:
+    """A selection between two transports."""
+    A: "Either"
+    B: "Either"
+
+    def buffers(self) -> Buffers: ...
+
+    def transmit_output(self, amount: int, timeout: NextTimeout) -> None: ...
+
+    def await_input(self, timeout: NextTimeout) -> bool: ...
+
+    def is_open(self) -> bool: ...
+
+    def is_tls(self) -> bool: ...
+
+class Instant:
+    """Wrapper for [`std::time::Instant`] that provides additional time points in the past or future"""
+    AlreadyHappened: "Instant"
+    Exact: "Instant"
+    NotHappening: "Instant"
 
     @staticmethod
-    def from_(value: Agent) -> "AgentRef": ...
+    def now() -> "Instant": ...
+
+    def add(self, rhs: Duration) -> Output: ...
+
+    def partial_cmp(self, other: Self) -> Ordering | None: ...
+
+    def cmp(self, other: Self) -> Ordering: ...
+
+class Duration:
+    """Wrapper for [`std::time::Duration`] that provides a duration to a distant future"""
+    Exact: "Duration"
+    NotHappening: "Duration"
 
     @staticmethod
-    def from_(value: object) -> "AgentRef": ...
+    def from_secs(secs: int) -> "Duration": ...
+
+    @staticmethod
+    def from_millis(millis: int) -> "Duration": ...
+
+    def is_not_happening(self) -> bool: ...
 
     def deref(self) -> Target: ...
 
-class Timeout:
-    """The various timeouts.
+    def div(self, rhs: int) -> Output: ...
 
-Each enum corresponds to a value in
-[`ConfigBuilder::timeout_xxx`][crate::config::ConfigBuilder::timeout_global]."""
-    Global: "Timeout"
-    PerCall: "Timeout"
-    Resolve: "Timeout"
-    Connect: "Timeout"
-    SendRequest: "Timeout"
-    Await100: "Timeout"
-    SendBody: "Timeout"
-    RecvResponse: "Timeout"
-    RecvBody: "Timeout"
+    def partial_cmp(self, other: Self) -> Ordering | None: ...
 
-    def fmt(self, f: Formatter) -> Result: ...
+    def cmp(self, other: Self) -> Ordering: ...
+
+    @staticmethod
+    def from_(value: Duration) -> "Duration": ...
 
 class Error:
     """Errors from ureq."""
@@ -1466,14 +1459,36 @@ class Error:
     @staticmethod
     def from_(value: Exception) -> "Error": ...
 
-"""Helper for **_test** feature tests."""
-def set_handler(pattern: object, status: int, headers: object, body: object) -> None: ...
+class AgentRef:
+    """Reference type to hold an owned or borrowed [`Agent`]."""
+    Owned: "AgentRef"
+    Borrowed: "AgentRef"
+
+    @staticmethod
+    def from_(value: Agent) -> "AgentRef": ...
+
+    @staticmethod
+    def from_(value: object) -> "AgentRef": ...
+
+    def deref(self) -> Target: ...
+
+"""Percent-encode a string using the ENCODED_IN_QUERY set."""
+def url_enc(i: str) -> object: ...
+
+"""Percent-encode a string using the ENCODED_IN_QUERY set, but replace encoded `%20` with `+`."""
+def form_url_enc(i: str) -> object: ...
 
 """Parser of PEM data.
 
 The data may contain one or many PEM items. The iterator produces the recognized PEM
 items and skip others."""
 def parse_pem(pem: object) -> object: ...
+
+"""Helper for **_test** feature tests."""
+def set_handler(pattern: object, status: int, headers: object, body: object) -> None: ...
+
+"""Helper for **_test** feature tests that need to inspect the request."""
+def set_handler_cb(pattern: object, status: int, headers: object, body: object, cb: object) -> None: ...
 
 """Run a [`http::Request<impl AsSendBody>`]."""
 def run(request: object) -> object: ...
@@ -1530,10 +1545,4 @@ def trace(uri: T) -> object: ...
 
 def init_test_log() -> None: ...
 
-"""Percent-encode a string using the ENCODED_IN_QUERY set."""
-def url_enc(i: str) -> object: ...
-
-"""Percent-encode a string using the ENCODED_IN_QUERY set, but replace encoded `%20` with `+`."""
-def form_url_enc(i: str) -> object: ...
-
-__all__: list[str] = ["set_handler", "parse_pem", "run", "agent", "get", "post", "put", "delete", "head", "options", "connect", "patch", "trace", "init_test_log", "url_enc", "form_url_enc", "ConnectProxyConnector", "LazyBuffers", "ChainedConnector", "ConnectionDetails", "DefaultConnector", "TransportAdapter", "SocksConnector", "TcpConnector", "TcpTransport", "DefaultResolver", "Body", "BodyWithConfig", "BodyReader", "LossyUtf8Reader", "BodyBuilder", "NativeTlsConnector", "NativeTlsTransport", "Certificate", "PrivateKey", "RustlsConnector", "RustlsTransport", "TlsConfig", "TlsConfigBuilder", "ClientCert", "CookieJar", "Cookie", "Proxy", "ProxyBuilder", "AgentScope", "RequestScope", "HttpCrateScope", "RequestExtScope", "Config", "ConfigBuilder", "Timeouts", "WithAgent", "SendBody", "MiddlewareNext", "RequestBuilder", "WithoutBody", "WithBody", "Agent", "NextTimeout", "Form", "Part", "Instant", "Duration", "Either", "KeyKind", "PemItem", "TlsProvider", "RootCerts", "ProxyProtocol", "AutoHeaderValue", "IpFamily", "AgentRef", "Timeout", "Error"]
+__all__: list[str] = ["url_enc", "form_url_enc", "parse_pem", "set_handler", "set_handler_cb", "run", "agent", "get", "post", "put", "delete", "head", "options", "connect", "patch", "trace", "init_test_log", "NextTimeout", "MiddlewareNext", "RequestBuilder", "WithoutBody", "WithBody", "Proxy", "ProxyBuilder", "NativeTlsConnector", "NativeTlsTransport", "TlsConfig", "TlsConfigBuilder", "ClientCert", "Certificate", "PrivateKey", "RustlsConnector", "RustlsTransport", "AgentScope", "RequestScope", "HttpCrateScope", "RequestExtScope", "Config", "ConfigBuilder", "Timeouts", "SendBody", "LossyUtf8Reader", "Body", "BodyWithConfig", "BodyReader", "BodyBuilder", "ConnectProxyConnector", "ChainedConnector", "ConnectionDetails", "DefaultConnector", "LazyBuffers", "TransportAdapter", "SocksConnector", "TcpConnector", "TcpTransport", "DefaultResolver", "WithAgent", "Agent", "CookieJar", "Cookie", "Form", "Part", "Timeout", "ProxyProtocol", "TlsProvider", "RootCerts", "KeyKind", "PemItem", "AutoHeaderValue", "IpFamily", "Either", "Instant", "Duration", "Error", "AgentRef"]
