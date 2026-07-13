@@ -5,101 +5,716 @@ rust_version = "0.6.1"
 python_module = "spicycrab_grindvakt"
 
 [cargo.dependencies]
-grindvakt = { path = "/home/kdas/code/xml/grindvakt" }
+grindvakt = "0.6.1"
+
+[cargo.features]
+available = ["default", "pkcs11", "redis"]
+default = []
+
+# Result type alias - Ok constructor
+[[mappings.functions]]
+python = "grindvakt.Result.Ok"
+rust_code = "Ok({arg0})"
+rust_imports = []
+needs_result = false
+
+# Result type alias - Err constructor
+[[mappings.functions]]
+python = "grindvakt.Result.Err"
+rust_code = "Err({arg0})"
+rust_imports = []
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.flatten_claims"
+rust_code = "grindvakt::provider::flatten_claims({arg0})"
+rust_imports = ["grindvakt::provider::flatten_claims"]
+needs_result = false
+param_types = ["&BTreeMap<String,Vec<String>>"]
 
 [[mappings.functions]]
 python = "grindvakt.signing_key_from_jwk_json"
-rust_code = "grindvakt::signing_key_from_jwk_json({arg0}, {arg1}, {arg2})"
-rust_imports = []
+rust_code = "grindvakt::keys::signing_key_from_jwk_json({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::keys::signing_key_from_jwk_json"]
 needs_result = true
 param_types = ["&str", "Option<&str>", "Option<&str>"]
 
 [[mappings.functions]]
 python = "grindvakt.signing_key_from_pem"
-rust_code = "grindvakt::signing_key_from_pem({arg0}, {arg1}, {arg2})"
-rust_imports = []
+rust_code = "grindvakt::keys::signing_key_from_pem({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::keys::signing_key_from_pem"]
 needs_result = true
 param_types = ["&[u8]", "Option<&str>", "Option<&str>"]
 
 [[mappings.functions]]
+python = "grindvakt.signing_key_from_pkcs11"
+rust_code = "grindvakt::keys::signing_key_from_pkcs11({arg0})"
+rust_imports = ["grindvakt::keys::signing_key_from_pkcs11"]
+needs_result = true
+param_types = ["&Pkcs11KeyConfig"]
+
+[[mappings.functions]]
+python = "grindvakt.validate_proof"
+rust_code = "grindvakt::dpop::validate_proof({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["grindvakt::dpop::validate_proof"]
+needs_result = true
+is_async = true
+param_types = ["&dynReplayStore", "&DpopConfig", "&str", "&str", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.validate_resource_proof"
+rust_code = "grindvakt::dpop::validate_resource_proof({arg0}, {arg1}, {arg2}, {arg3}, {arg4}, {arg5})"
+rust_imports = ["grindvakt::dpop::validate_resource_proof"]
+needs_result = true
+is_async = true
+param_types = ["&dynReplayStore", "&DpopConfig", "&str", "&str", "&str", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.issue_nonce"
+rust_code = "grindvakt::dpop::issue_nonce({arg0})"
+rust_imports = ["grindvakt::dpop::issue_nonce"]
+needs_result = false
+param_types = ["&DpopConfig"]
+
+[[mappings.functions]]
+python = "grindvakt.validate_entity_id"
+rust_code = "grindvakt::discovery::validate_entity_id({arg0})"
+rust_imports = ["grindvakt::discovery::validate_entity_id"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.discovery_request_url"
+rust_code = "grindvakt::discovery::discovery_request_url({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["grindvakt::discovery::discovery_request_url"]
+needs_result = true
+param_types = ["&str", "&str", "Option<&str>", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.parse_third_party_initiated_login"
+rust_code = "grindvakt::discovery::parse_third_party_initiated_login({arg0})"
+rust_imports = ["grindvakt::discovery::parse_third_party_initiated_login"]
+needs_result = true
+param_types = ["&BTreeMap<String,String>"]
+
+[[mappings.functions]]
+python = "grindvakt.initiate_login_uri"
+rust_code = "grindvakt::discovery::initiate_login_uri({arg0})"
+rust_imports = ["grindvakt::discovery::initiate_login_uri"]
+needs_result = true
+param_types = ["&Value"]
+
+[[mappings.functions]]
+python = "grindvakt.initiate_login_uri_from_resolved"
+rust_code = "grindvakt::discovery::initiate_login_uri_from_resolved({arg0})"
+rust_imports = ["grindvakt::discovery::initiate_login_uri_from_resolved"]
+needs_result = true
+param_types = ["&ResolvedEntity"]
+
+[[mappings.functions]]
+python = "grindvakt.self_published_rp"
+rust_code = "grindvakt::discovery::self_published_rp({arg0}, {arg1})"
+rust_imports = ["grindvakt::discovery::self_published_rp"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.self_published_initiate_login_uri"
+rust_code = "grindvakt::discovery::self_published_initiate_login_uri({arg0}, {arg1})"
+rust_imports = ["grindvakt::discovery::self_published_initiate_login_uri"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.third_party_login_url"
+rust_code = "grindvakt::discovery::third_party_login_url({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["grindvakt::discovery::third_party_login_url"]
+needs_result = false
+param_types = ["&str", "&str", "Option<&str>", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.promote_hint"
+rust_code = "grindvakt::discovery::promote_hint({arg0}, {arg1})"
+rust_imports = ["grindvakt::discovery::promote_hint"]
+needs_result = false
+param_types = ["&mutVec<CollectionEntity>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.build_entity_configuration"
+rust_code = "grindvakt::federation::build_entity_configuration({arg0}, {arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6})"
+rust_imports = ["grindvakt::federation::build_entity_configuration"]
+needs_result = true
+param_types = ["&SigningKey", "&str", "&JwkSet", "&[String]", "Value", "&[Value]", "u64"]
+
+[[mappings.functions]]
+python = "grindvakt.decode_unverified"
+rust_code = "grindvakt::federation::decode_unverified({arg0})"
+rust_imports = ["grindvakt::federation::decode_unverified"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.verify"
+rust_code = "grindvakt::federation::verify({arg0}, {arg1})"
+rust_imports = ["grindvakt::federation::verify"]
+needs_result = true
+param_types = ["&str", "&JwkSet"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_typed"
+rust_code = "grindvakt::federation::verify_typed({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::federation::verify_typed"]
+needs_result = true
+param_types = ["&str", "&JwkSet", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_self_signed"
+rust_code = "grindvakt::federation::verify_self_signed({arg0})"
+rust_imports = ["grindvakt::federation::verify_self_signed"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.fetch_entity_configuration"
+rust_code = "grindvakt::federation::fetch_entity_configuration({arg0}, {arg1})"
+rust_imports = ["grindvakt::federation::fetch_entity_configuration"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.resolve_via_trust_anchors"
+rust_code = "grindvakt::federation::resolve_via_trust_anchors({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::federation::resolve_via_trust_anchors"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str", "&TrustAnchors"]
+
+[[mappings.functions]]
+python = "grindvakt.entity_metadata_jwks"
+rust_code = "grindvakt::federation::entity_metadata_jwks({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["grindvakt::federation::entity_metadata_jwks"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&Value", "&str", "&JwkSet"]
+
+[[mappings.functions]]
+python = "grindvakt.fetch_signed_jwks"
+rust_code = "grindvakt::federation::fetch_signed_jwks({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = ["grindvakt::federation::fetch_signed_jwks"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str", "&str", "&JwkSet"]
+
+[[mappings.functions]]
+python = "grindvakt.fetch_collection"
+rust_code = "grindvakt::federation::fetch_collection({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::federation::fetch_collection"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.parse_collection"
+rust_code = "grindvakt::federation::parse_collection({arg0}, {arg1})"
+rust_imports = ["grindvakt::federation::parse_collection"]
+needs_result = false
+param_types = ["&Value", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.apply_policy"
+rust_code = "grindvakt::federation::apply_policy({arg0}, {arg1})"
+rust_imports = ["grindvakt::federation::apply_policy"]
+needs_result = true
+param_types = ["&mutMap<String,Value>", "&Map<String,Value>"]
+
+[[mappings.functions]]
+python = "grindvakt.sign"
+rust_code = "grindvakt::jwt::sign({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::jwt::sign"]
+needs_result = true
+param_types = ["&SigningKey", "&Claims", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_with_jwks"
+rust_code = "grindvakt::jwt::verify_with_jwks({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::jwt::verify_with_jwks"]
+needs_result = true
+param_types = ["&JwkSet", "&str", "&Validation"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_with_jwk"
+rust_code = "grindvakt::jwt::verify_with_jwk({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::jwt::verify_with_jwk"]
+needs_result = true
+param_types = ["&Jwk", "&str", "&Validation"]
+
+[[mappings.functions]]
+python = "grindvakt.peek_header"
+rust_code = "grindvakt::jwt::peek_header({arg0})"
+rust_imports = ["grindvakt::jwt::peek_header"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.peek_claims_unverified"
+rust_code = "grindvakt::jwt::peek_claims_unverified({arg0})"
+rust_imports = ["grindvakt::jwt::peek_claims_unverified"]
+needs_result = true
+param_types = ["&str"]
+
+[[mappings.functions]]
 python = "grindvakt.hmac_sha256"
 rust_code = "grindvakt::mac::hmac_sha256({arg0}, {arg1})"
-rust_imports = []
+rust_imports = ["grindvakt::mac::hmac_sha256"]
 needs_result = false
 param_types = ["&[u8]", "&[u8]"]
 
 [[mappings.functions]]
 python = "grindvakt.sha256"
 rust_code = "grindvakt::mac::sha256({arg0})"
-rust_imports = []
+rust_imports = ["grindvakt::mac::sha256"]
 needs_result = false
 param_types = ["&[u8]"]
 
 [[mappings.functions]]
 python = "grindvakt.constant_time_eq"
 rust_code = "grindvakt::mac::constant_time_eq({arg0}, {arg1})"
-rust_imports = []
+rust_imports = ["grindvakt::mac::constant_time_eq"]
 needs_result = false
 param_types = ["&[u8]", "&[u8]"]
 
 [[mappings.functions]]
+python = "grindvakt.authorization_url"
+rust_code = "grindvakt::rp::authorization_url({arg0}, {arg1}, {arg2}, {arg3}, {arg4}, {arg5})"
+rust_imports = ["grindvakt::rp::authorization_url"]
+needs_result = false
+param_types = ["&ProviderInfo", "&RpClient", "&str", "&str", "Option<&str>", "&[(&str,&str)]"]
+
+[[mappings.functions]]
+python = "grindvakt.signed_request_object"
+rust_code = "grindvakt::rp::signed_request_object({arg0}, {arg1}, {arg2}, {arg3}, {arg4}, {arg5})"
+rust_imports = ["grindvakt::rp::signed_request_object"]
+needs_result = true
+param_types = ["&ProviderInfo", "&RpClient", "&SigningKey", "&str", "&str", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.discover"
+rust_code = "grindvakt::rp::discover({arg0}, {arg1})"
+rust_imports = ["grindvakt::rp::discover"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.fetch_jwks"
+rust_code = "grindvakt::rp::fetch_jwks({arg0}, {arg1})"
+rust_imports = ["grindvakt::rp::fetch_jwks"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.exchange_code"
+rust_code = "grindvakt::rp::exchange_code({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["grindvakt::rp::exchange_code"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&ProviderInfo", "&RpClient", "&str", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.verify_id_token"
+rust_code = "grindvakt::rp::verify_id_token({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["grindvakt::rp::verify_id_token"]
+needs_result = true
+param_types = ["&JwkSet", "&str", "&str", "&str", "Option<&str>"]
+
+[[mappings.functions]]
+python = "grindvakt.fetch_userinfo"
+rust_code = "grindvakt::rp::fetch_userinfo({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::rp::fetch_userinfo"]
+needs_result = true
+is_async = true
+param_types = ["&Arc<dynHttpClient>", "&str", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.build_client_assertion"
+rust_code = "grindvakt::rp::build_client_assertion({arg0}, {arg1}, {arg2})"
+rust_imports = ["grindvakt::rp::build_client_assertion"]
+needs_result = true
+param_types = ["&SigningKey", "&str", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.claims_to_attributes"
+rust_code = "grindvakt::rp::claims_to_attributes({arg0})"
+rust_imports = ["grindvakt::rp::claims_to_attributes"]
+needs_result = false
+param_types = ["&serde_json::Value"]
+
+[[mappings.functions]]
+python = "grindvakt.now_secs"
+rust_code = "grindvakt::now_secs()"
+rust_imports = ["grindvakt::now_secs"]
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.now_rfc3339"
+rust_code = "grindvakt::now_rfc3339()"
+rust_imports = ["grindvakt::now_rfc3339"]
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.random_token"
+rust_code = "grindvakt::random_token({arg0})"
+rust_imports = ["grindvakt::random_token"]
+needs_result = false
+param_types = ["usize"]
+
+[[mappings.functions]]
 python = "grindvakt.s256_challenge"
 rust_code = "grindvakt::pkce::s256_challenge({arg0})"
-rust_imports = []
+rust_imports = ["grindvakt::pkce::s256_challenge"]
 needs_result = false
 param_types = ["&str"]
 
 [[mappings.functions]]
-python = "grindvakt.verify_pkce"
+python = "grindvakt.verify"
 rust_code = "grindvakt::pkce::verify({arg0}, {arg1}, {arg2})"
-rust_imports = []
+rust_imports = ["grindvakt::pkce::verify"]
 needs_result = false
 param_types = ["&str", "&str", "Option<&str>"]
 
 [[mappings.functions]]
-python = "grindvakt.Response.new"
-rust_code = "grindvakt::Response::new({arg0} as u16)"
-rust_imports = []
+python = "grindvakt.OAuthError.new"
+rust_code = "grindvakt::oauth_error::OAuthError::new({arg0}, {arg1})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
 needs_result = false
+param_types = ["OAuthErrorCode", "implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.OAuthError.bare"
+rust_code = "grindvakt::oauth_error::OAuthError::bare({arg0})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
+needs_result = false
+param_types = ["OAuthErrorCode"]
+
+[[mappings.functions]]
+python = "grindvakt.OAuthError.invalid_request"
+rust_code = "grindvakt::oauth_error::OAuthError::invalid_request({arg0})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.OAuthError.invalid_client"
+rust_code = "grindvakt::oauth_error::OAuthError::invalid_client({arg0})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.OAuthError.invalid_grant"
+rust_code = "grindvakt::oauth_error::OAuthError::invalid_grant({arg0})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.OAuthError.invalid_dpop_proof"
+rust_code = "grindvakt::oauth_error::OAuthError::invalid_dpop_proof({arg0})"
+rust_imports = ["grindvakt::oauth_error::OAuthError"]
+needs_result = false
+param_types = ["implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.TokenLifetimes.default"
+rust_code = "grindvakt::provider::TokenLifetimes::default()"
+rust_imports = ["grindvakt::provider::TokenLifetimes"]
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.Provider.new"
+rust_code = "grindvakt::provider::Provider::new({arg0}, {arg1}, {arg2}, {arg3}, {arg4})"
+rust_imports = ["grindvakt::provider::Provider"]
+needs_result = false
+param_types = ["ProviderMetadata", "SigningKey", "Arc<dynClientStore>", "TokenCodec", "TokenLifetimes"]
+
+[[mappings.functions]]
+python = "grindvakt.InMemoryTokenUseStore.new"
+rust_code = "grindvakt::provider::InMemoryTokenUseStore::new()"
+rust_imports = ["grindvakt::provider::InMemoryTokenUseStore"]
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.RedisStore.new"
+rust_code = "grindvakt::provider::RedisStore::new({arg0})"
+rust_imports = ["grindvakt::provider::RedisStore"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.functions]]
+python = "grindvakt.RedisStore.from_client"
+rust_code = "grindvakt::provider::RedisStore::from_client({arg0})"
+rust_imports = ["grindvakt::provider::RedisStore"]
+needs_result = false
+param_types = ["redis::Client"]
+
+[[mappings.functions]]
+python = "grindvakt.ProviderMetadata.new"
+rust_code = "grindvakt::metadata::ProviderMetadata::new({arg0}, {arg1})"
+rust_imports = ["grindvakt::metadata::ProviderMetadata"]
+needs_result = false
+param_types = ["implInto<String>", "&str"]
+
+[[mappings.functions]]
+python = "grindvakt.DpopConfig.default"
+rust_code = "grindvakt::dpop::DpopConfig::default()"
+rust_imports = ["grindvakt::dpop::DpopConfig"]
+needs_result = false
+
+[[mappings.functions]]
+python = "grindvakt.Response.new"
+rust_code = "grindvakt::http::Response::new({arg0})"
+rust_imports = ["grindvakt::http::Response"]
+needs_result = false
+param_types = ["u16"]
 
 [[mappings.functions]]
 python = "grindvakt.Response.redirect"
-rust_code = "grindvakt::Response::redirect({arg0})"
-rust_imports = []
+rust_code = "grindvakt::http::Response::redirect({arg0})"
+rust_imports = ["grindvakt::http::Response"]
 needs_result = false
+param_types = ["implInto<String>"]
 
 [[mappings.functions]]
 python = "grindvakt.Response.html"
-rust_code = "grindvakt::Response::html({arg0})"
-rust_imports = []
+rust_code = "grindvakt::http::Response::html({arg0})"
+rust_imports = ["grindvakt::http::Response"]
 needs_result = false
+param_types = ["implInto<String>"]
 
 [[mappings.functions]]
 python = "grindvakt.Response.json"
-rust_code = "grindvakt::Response::json({arg0})"
-rust_imports = []
+rust_code = "grindvakt::http::Response::json({arg0})"
+rust_imports = ["grindvakt::http::Response"]
 needs_result = true
 param_types = ["&T"]
 
 [[mappings.functions]]
 python = "grindvakt.Response.json_status"
-rust_code = "grindvakt::Response::json_status({arg0} as u16, {arg1})"
-rust_imports = []
+rust_code = "grindvakt::http::Response::json_status({arg0}, {arg1})"
+rust_imports = ["grindvakt::http::Response"]
 needs_result = true
 param_types = ["u16", "&T"]
 
 [[mappings.functions]]
 python = "grindvakt.Response.text"
-rust_code = "grindvakt::Response::text({arg0} as u16, {arg1})"
-rust_imports = []
+rust_code = "grindvakt::http::Response::text({arg0}, {arg1})"
+rust_imports = ["grindvakt::http::Response"]
+needs_result = false
+param_types = ["u16", "implInto<String>"]
+
+[[mappings.functions]]
+python = "grindvakt.InMemoryClientStore.new"
+rust_code = "grindvakt::InMemoryClientStore::new()"
+rust_imports = ["grindvakt::InMemoryClientStore"]
 needs_result = false
 
 [[mappings.functions]]
-python = "grindvakt.ProviderMetadata.new"
-rust_code = "grindvakt::ProviderMetadata::new({arg0}, {arg1})"
+python = "grindvakt.InMemoryClientStore.with_clients"
+rust_code = "grindvakt::InMemoryClientStore::with_clients({arg0})"
+rust_imports = ["grindvakt::InMemoryClientStore"]
+needs_result = false
+param_types = ["Vec<Client>"]
+
+[[mappings.functions]]
+python = "grindvakt.AuthorizationRequest.from_params"
+rust_code = "grindvakt::AuthorizationRequest::from_params({arg0})"
+rust_imports = ["grindvakt::AuthorizationRequest"]
+needs_result = true
+param_types = ["&BTreeMap<String,String>"]
+
+[[mappings.functions]]
+python = "grindvakt.ProviderInfo.from_"
+rust_code = "grindvakt::rp::ProviderInfo::from({arg0})"
+rust_imports = ["grindvakt::rp::ProviderInfo"]
+needs_result = false
+param_types = ["ProviderMetadata"]
+
+[[mappings.functions]]
+python = "grindvakt.TokenCodec.new"
+rust_code = "grindvakt::tokens::TokenCodec::new({arg0})"
+rust_imports = ["grindvakt::tokens::TokenCodec"]
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "OAuthError.with_state"
+rust_code = "{self}.with_state({arg0})"
 rust_imports = []
 needs_result = false
-param_types = ["impl Into<String>", "&str"]
+returns_self = true
+returns = "OAuthError"
+param_types = ["Option<String>"]
+
+[[mappings.methods]]
+python = "OAuthError.to_response"
+rust_code = "{self}.to_response()"
+rust_imports = []
+needs_result = false
+returns = "Response"
+
+[[mappings.methods]]
+python = "OAuthError.to_redirect"
+rust_code = "{self}.to_redirect({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Response"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "OAuthError.fmt"
+rust_code = "{self}.fmt({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Result"
+param_types = ["&mutstd::fmt::Formatter<'_>"]
+
+[[mappings.methods]]
+python = "Provider.with_token_use_store"
+rust_code = "{self}.with_token_use_store({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "Provider"
+param_types = ["Arc<dynTokenUseStore>"]
+
+[[mappings.methods]]
+python = "Provider.discovery_document"
+rust_code = "{self}.discovery_document()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "Provider.jwks_document"
+rust_code = "{self}.jwks_document()"
+rust_imports = []
+needs_result = false
+returns = "JwkSet"
+
+[[mappings.methods]]
+python = "Provider.validate_authorization_request"
+rust_code = "{self}.validate_authorization_request({arg0})"
+rust_imports = []
+needs_result = true
+returns = "Client"
+param_types = ["&AuthorizationRequest"]
+
+[[mappings.methods]]
+python = "Provider.authorization_redirect"
+rust_code = "{self}.authorization_redirect({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns = "Response"
+param_types = ["&AuthorizationRequest", "&str", "&BTreeMap<String,Vec<String>>", "Option<String>"]
+
+[[mappings.methods]]
+python = "Provider.handle_token_request"
+rust_code = "{self}.handle_token_request({arg0}, {arg1}, {arg2}, {arg3})"
+rust_imports = []
+needs_result = true
+returns = "TokenResponse"
+param_types = ["&BTreeMap<String,String>", "Option<&str>", "&str", "Option<&crate::dpop::DpopProof>"]
+
+[[mappings.methods]]
+python = "Provider.userinfo"
+rust_code = "{self}.userinfo({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+returns = "Value"
+param_types = ["&str", "Option<&str>"]
+
+[[mappings.methods]]
+python = "Provider.authenticate_client"
+rust_code = "{self}.authenticate_client({arg0}, {arg1}, {arg2})"
+rust_imports = []
+needs_result = true
+returns = "Client"
+param_types = ["&BTreeMap<String,String>", "Option<&str>", "&str"]
+
+[[mappings.methods]]
+python = "InMemoryTokenUseStore.consume"
+rust_code = "{self}.consume({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "u64"]
+
+[[mappings.methods]]
+python = "RedisStore.with_key_prefix"
+rust_code = "{self}.with_key_prefix({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "RedisStore"
+param_types = ["implInto<String>"]
+
+[[mappings.methods]]
+python = "RedisStore.consume"
+rust_code = "{self}.consume({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "u64"]
+
+[[mappings.methods]]
+python = "SigningKey.signer"
+rust_code = "{self}.signer()"
+rust_imports = []
+needs_result = false
+returns = "Signer"
+
+[[mappings.methods]]
+python = "SigningKey.alg"
+rust_code = "{self}.alg()"
+rust_imports = []
+needs_result = false
+returns = "JwsAlgorithm"
+
+[[mappings.methods]]
+python = "SigningKey.kid"
+rust_code = "{self}.kid()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "SigningKey.public_jwk"
+rust_code = "{self}.public_jwk()"
+rust_imports = []
+needs_result = false
+returns = "Jwk"
+
+[[mappings.methods]]
+python = "SigningKey.to_public_jwks"
+rust_code = "{self}.to_public_jwks()"
+rust_imports = []
+needs_result = false
+returns = "JwkSet"
+
+[[mappings.methods]]
+python = "ProviderMetadata.to_json"
+rust_code = "{self}.to_json()"
+rust_imports = []
+needs_result = false
+returns = "Value"
+
+[[mappings.methods]]
+python = "NoReplayStore.record"
+rust_code = "{self}.record({arg0}, {arg1})"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "u64"]
 
 [[mappings.methods]]
 python = "HttpRequestData.param"
@@ -107,36 +722,36 @@ rust_code = "{self}.param({arg0})"
 rust_imports = []
 needs_result = false
 param_types = ["&str"]
-returns = "Option<&str>"
 
 [[mappings.methods]]
 python = "HttpRequestData.authorization"
 rust_code = "{self}.authorization()"
 rust_imports = []
 needs_result = false
-returns = "Option<&str>"
 
 [[mappings.methods]]
 python = "HttpRequestData.bearer_token"
 rust_code = "{self}.bearer_token()"
 rust_imports = []
 needs_result = false
-returns = "Option<&str>"
 
 [[mappings.methods]]
 python = "Response.with_header"
 rust_code = "{self}.with_header({arg0}, {arg1})"
 rust_imports = []
 needs_result = false
+returns_self = true
 returns = "Response"
-param_types = ["impl Into<String>", "impl Into<String>"]
+param_types = ["implInto<String>", "implInto<String>"]
 
 [[mappings.methods]]
 python = "Response.with_body"
 rust_code = "{self}.with_body({arg0})"
 rust_imports = []
 needs_result = false
+returns_self = true
 returns = "Response"
+param_types = ["implInto<Vec<u8>>"]
 
 [[mappings.methods]]
 python = "HttpFetchResponse.text"
@@ -150,69 +765,434 @@ python = "HttpFetchResponse.json"
 rust_code = "{self}.json()"
 rust_imports = []
 needs_result = true
-returns = "serde_json::Value"
+returns = "T"
 
 [[mappings.methods]]
-python = "SigningKey.kid"
-rust_code = "{self}.kid()"
+python = "Client.allows_redirect"
+rust_code = "{self}.allows_redirect({arg0})"
 rust_imports = []
 needs_result = false
-returns = "Option<&str>"
+param_types = ["&str"]
 
 [[mappings.methods]]
-python = "SigningKey.public_jwk"
-rust_code = "{self}.public_jwk()"
+python = "Client.allows_response_type"
+rust_code = "{self}.allows_response_type({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "InMemoryClientStore.get"
+rust_code = "{self}.get({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Client"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "InMemoryClientStore.put"
+rust_code = "{self}.put({arg0})"
+rust_imports = []
+needs_result = false
+param_types = ["Client"]
+
+[[mappings.methods]]
+python = "InMemoryClientStore.put_with_ttl"
+rust_code = "{self}.put_with_ttl({arg0}, {arg1})"
+rust_imports = []
+needs_result = false
+param_types = ["Client", "u64"]
+
+[[mappings.methods]]
+python = "AuthorizationRequest.scopes"
+rust_code = "{self}.scopes()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "AuthorizationRequest.is_oidc"
+rust_code = "{self}.is_oidc()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "SigningKey.to_public_jwks"
-rust_code = "{self}.to_public_jwks()"
+python = "AuthorizationRequest.wants_code"
+rust_code = "{self}.wants_code()"
 rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
-python = "ProviderMetadata.to_json"
-rust_code = "{self}.to_json()"
+python = "AuthorizationRequest.wants_id_token"
+rust_code = "{self}.wants_id_token()"
 rust_imports = []
 needs_result = false
-returns = "serde_json::Value"
 
 [[mappings.methods]]
-python = "Error.status_hint"
-rust_code = "{self}.status_hint()"
+python = "AuthorizationRequest.use_fragment"
+rust_code = "{self}.use_fragment()"
 rust_imports = []
 needs_result = false
-returns = "u16"
+
+[[mappings.methods]]
+python = "AuthorizationRequest.validate_response_type"
+rust_code = "{self}.validate_response_type()"
+rust_imports = []
+needs_result = true
+
+[[mappings.methods]]
+python = "EntityStatement.iss"
+rust_code = "{self}.iss()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "EntityStatement.sub"
+rust_code = "{self}.sub()"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "EntityStatement.jwks"
+rust_code = "{self}.jwks()"
+rust_imports = []
+needs_result = true
+returns = "JwkSet"
+
+[[mappings.methods]]
+python = "EntityStatement.metadata"
+rust_code = "{self}.metadata({arg0})"
+rust_imports = []
+needs_result = false
+returns = "Value"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "EntityStatement.authority_hints"
+rust_code = "{self}.authority_hints()"
+rust_imports = []
+needs_result = false
+returns = "Vec"
+
+[[mappings.methods]]
+python = "TokenCodec.with_previous_secrets"
+rust_code = "{self}.with_previous_secrets({arg0})"
+rust_imports = []
+needs_result = false
+returns_self = true
+returns = "TokenCodec"
+param_types = ["&[String]"]
+
+[[mappings.methods]]
+python = "TokenCodec.seal_code"
+rust_code = "{self}.seal_code({arg0})"
+rust_imports = []
+needs_result = true
+returns = "String"
+param_types = ["&AuthCodePayload"]
+
+[[mappings.methods]]
+python = "TokenCodec.open_code"
+rust_code = "{self}.open_code({arg0})"
+rust_imports = []
+needs_result = true
+returns = "AuthCodePayload"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "TokenCodec.seal_access_token"
+rust_code = "{self}.seal_access_token({arg0})"
+rust_imports = []
+needs_result = true
+returns = "String"
+param_types = ["&AccessTokenPayload"]
+
+[[mappings.methods]]
+python = "TokenCodec.open_access_token"
+rust_code = "{self}.open_access_token({arg0})"
+rust_imports = []
+needs_result = true
+returns = "AccessTokenPayload"
+param_types = ["&str"]
+
+[[mappings.methods]]
+python = "TokenCodec.seal_refresh_token"
+rust_code = "{self}.seal_refresh_token({arg0})"
+rust_imports = []
+needs_result = true
+returns = "String"
+param_types = ["&RefreshTokenPayload"]
+
+[[mappings.methods]]
+python = "TokenCodec.open_refresh_token"
+rust_code = "{self}.open_refresh_token({arg0})"
+rust_imports = []
+needs_result = true
+returns = "RefreshTokenPayload"
+param_types = ["&str"]
+
+# Result type alias
+[[mappings.types]]
+python = "Result"
+rust = "grindvakt::Result"
+
+[[mappings.types]]
+python = "OAuthError"
+rust = "grindvakt::oauth_error::OAuthError"
+
+[[mappings.types]]
+python = "TokenLifetimes"
+rust = "grindvakt::provider::TokenLifetimes"
+
+[[mappings.types]]
+python = "Provider"
+rust = "grindvakt::provider::Provider"
+
+[[mappings.types]]
+python = "TokenResponse"
+rust = "grindvakt::provider::TokenResponse"
+
+[[mappings.types]]
+python = "InMemoryTokenUseStore"
+rust = "grindvakt::provider::InMemoryTokenUseStore"
+
+[[mappings.types]]
+python = "RedisStore"
+rust = "grindvakt::provider::RedisStore"
+
+[[mappings.types]]
+python = "SigningKey"
+rust = "grindvakt::keys::SigningKey"
+
+[[mappings.types]]
+python = "Pkcs11KeyConfig"
+rust = "grindvakt::keys::Pkcs11KeyConfig"
+
+[[mappings.types]]
+python = "ProviderMetadata"
+rust = "grindvakt::metadata::ProviderMetadata"
+
+[[mappings.types]]
+python = "DpopConfig"
+rust = "grindvakt::dpop::DpopConfig"
+
+[[mappings.types]]
+python = "DpopProof"
+rust = "grindvakt::dpop::DpopProof"
+
+[[mappings.types]]
+python = "NoReplayStore"
+rust = "grindvakt::dpop::NoReplayStore"
+
+[[mappings.types]]
+python = "HttpRequestData"
+rust = "grindvakt::http::HttpRequestData"
+
+[[mappings.types]]
+python = "Response"
+rust = "grindvakt::http::Response"
+
+[[mappings.types]]
+python = "HttpFetchResponse"
+rust = "grindvakt::http::HttpFetchResponse"
+
+[[mappings.types]]
+python = "Client"
+rust = "grindvakt::Client"
+
+[[mappings.types]]
+python = "InMemoryClientStore"
+rust = "grindvakt::InMemoryClientStore"
+
+[[mappings.types]]
+python = "AuthorizationRequest"
+rust = "grindvakt::AuthorizationRequest"
+
+[[mappings.types]]
+python = "ThirdPartyInitiatedLogin"
+rust = "grindvakt::discovery::ThirdPartyInitiatedLogin"
+
+[[mappings.types]]
+python = "SelfPublishedRp"
+rust = "grindvakt::discovery::SelfPublishedRp"
+
+[[mappings.types]]
+python = "ResolvedEntity"
+rust = "grindvakt::federation::ResolvedEntity"
+
+[[mappings.types]]
+python = "EntityStatement"
+rust = "grindvakt::federation::EntityStatement"
+
+[[mappings.types]]
+python = "CollectionEntity"
+rust = "grindvakt::federation::CollectionEntity"
+
+[[mappings.types]]
+python = "ProviderInfo"
+rust = "grindvakt::rp::ProviderInfo"
+
+[[mappings.types]]
+python = "RpClient"
+rust = "grindvakt::rp::RpClient"
+
+[[mappings.types]]
+python = "TokenSet"
+rust = "grindvakt::rp::TokenSet"
+
+[[mappings.types]]
+python = "AuthCodePayload"
+rust = "grindvakt::tokens::AuthCodePayload"
+
+[[mappings.types]]
+python = "AccessTokenPayload"
+rust = "grindvakt::tokens::AccessTokenPayload"
+
+[[mappings.types]]
+python = "RefreshTokenPayload"
+rust = "grindvakt::tokens::RefreshTokenPayload"
+
+[[mappings.types]]
+python = "TokenCodec"
+rust = "grindvakt::tokens::TokenCodec"
+
+[[mappings.types]]
+python = "OAuthErrorCode"
+rust = "grindvakt::oauth_error::OAuthErrorCode"
+
+[[mappings.types]]
+python = "DpopError"
+rust = "grindvakt::dpop::DpopError"
 
 [[mappings.types]]
 python = "Error"
 rust = "grindvakt::Error"
 
 [[mappings.types]]
-python = "Result"
-rust = "grindvakt::Result"
+python = "ClientAuth"
+rust = "grindvakt::rp::ClientAuth"
 
-[[mappings.types]]
-python = "HttpRequestData"
-rust = "grindvakt::HttpRequestData"
+# Enum variant access mappings
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.InvalidRequest"
+rust = "grindvakt::oauth_error::OAuthErrorCode::InvalidRequest"
 
-[[mappings.types]]
-python = "Response"
-rust = "grindvakt::Response"
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.InvalidClient"
+rust = "grindvakt::oauth_error::OAuthErrorCode::InvalidClient"
 
-[[mappings.types]]
-python = "HttpFetchResponse"
-rust = "grindvakt::HttpFetchResponse"
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.InvalidGrant"
+rust = "grindvakt::oauth_error::OAuthErrorCode::InvalidGrant"
 
-[[mappings.types]]
-python = "HttpClient"
-rust = "grindvakt::HttpClient"
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.UnauthorizedClient"
+rust = "grindvakt::oauth_error::OAuthErrorCode::UnauthorizedClient"
 
-[[mappings.types]]
-python = "SigningKey"
-rust = "grindvakt::SigningKey"
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.UnsupportedGrantType"
+rust = "grindvakt::oauth_error::OAuthErrorCode::UnsupportedGrantType"
 
-[[mappings.types]]
-python = "ProviderMetadata"
-rust = "grindvakt::ProviderMetadata"
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.UnsupportedResponseType"
+rust = "grindvakt::oauth_error::OAuthErrorCode::UnsupportedResponseType"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.InvalidScope"
+rust = "grindvakt::oauth_error::OAuthErrorCode::InvalidScope"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.AccessDenied"
+rust = "grindvakt::oauth_error::OAuthErrorCode::AccessDenied"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.LoginRequired"
+rust = "grindvakt::oauth_error::OAuthErrorCode::LoginRequired"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.ServerError"
+rust = "grindvakt::oauth_error::OAuthErrorCode::ServerError"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.TemporarilyUnavailable"
+rust = "grindvakt::oauth_error::OAuthErrorCode::TemporarilyUnavailable"
+
+[[mappings.enum_variants]]
+python = "OAuthErrorCode.InvalidDpopProof"
+rust = "grindvakt::oauth_error::OAuthErrorCode::InvalidDpopProof"
+
+[[mappings.enum_variants]]
+python = "DpopError.Invalid"
+rust = "grindvakt::dpop::DpopError::Invalid"
+
+[[mappings.enum_variants]]
+python = "DpopError.Replay"
+rust = "grindvakt::dpop::DpopError::Replay"
+
+[[mappings.enum_variants]]
+python = "DpopError.NonceRequired"
+rust = "grindvakt::dpop::DpopError::NonceRequired"
+
+[[mappings.enum_variants]]
+python = "DpopError.Server"
+rust = "grindvakt::dpop::DpopError::Server"
+
+[[mappings.enum_variants]]
+python = "Error.NoBoundEndpoint"
+rust = "grindvakt::Error::NoBoundEndpoint"
+
+[[mappings.enum_variants]]
+python = "Error.UnknownModule"
+rust = "grindvakt::Error::UnknownModule"
+
+[[mappings.enum_variants]]
+python = "Error.BadRequest"
+rust = "grindvakt::Error::BadRequest"
+
+[[mappings.enum_variants]]
+python = "Error.Authn"
+rust = "grindvakt::Error::Authn"
+
+[[mappings.enum_variants]]
+python = "Error.State"
+rust = "grindvakt::Error::State"
+
+[[mappings.enum_variants]]
+python = "Error.Config"
+rust = "grindvakt::Error::Config"
+
+[[mappings.enum_variants]]
+python = "Error.Crypto"
+rust = "grindvakt::Error::Crypto"
+
+[[mappings.enum_variants]]
+python = "Error.Attribute"
+rust = "grindvakt::Error::Attribute"
+
+[[mappings.enum_variants]]
+python = "Error.Jose"
+rust = "grindvakt::Error::Jose"
+
+[[mappings.enum_variants]]
+python = "Error.Json"
+rust = "grindvakt::Error::Json"
+
+[[mappings.enum_variants]]
+python = "Error.Internal"
+rust = "grindvakt::Error::Internal"
+
+[[mappings.enum_variants]]
+python = "ClientAuth.None_"
+rust = "grindvakt::rp::ClientAuth::None"
+
+[[mappings.enum_variants]]
+python = "ClientAuth.ClientSecretBasic"
+rust = "grindvakt::rp::ClientAuth::ClientSecretBasic"
+
+[[mappings.enum_variants]]
+python = "ClientAuth.ClientSecretPost"
+rust = "grindvakt::rp::ClientAuth::ClientSecretPost"
+
+[[mappings.enum_variants]]
+python = "ClientAuth.PrivateKeyJwt"
+rust = "grindvakt::rp::ClientAuth::PrivateKeyJwt"
