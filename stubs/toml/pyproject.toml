@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spicycrab-toml"
-version = "0.9.11+spec-1.1.0"
+version = "1.1.2+spec-1.1.0"
 description = "spicycrab type stubs for the toml Rust crate"
 requires-python = ">=3.11"
 dependencies = []
