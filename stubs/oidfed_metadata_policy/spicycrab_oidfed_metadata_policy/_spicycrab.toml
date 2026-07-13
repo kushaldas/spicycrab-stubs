@@ -1,11 +1,11 @@
 [package]
 name = "oidfed_metadata_policy"
 rust_crate = "oidfed_metadata_policy"
-rust_version = "0.7.0"
+rust_version = "0.8.0"
 python_module = "spicycrab_oidfed_metadata_policy"
 
 [cargo.dependencies]
-oidfed_metadata_policy = "0.7.0"
+oidfed_metadata_policy = "0.8.0"
 
 [[mappings.functions]]
 python = "oidfed_metadata_policy.merge_policies"
