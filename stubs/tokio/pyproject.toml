@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spicycrab-tokio"
-version = "1.49.0"
+version = "1.52.3"
 description = "spicycrab type stubs for the tokio Rust crate"
 requires-python = ">=3.11"
 dependencies = []
