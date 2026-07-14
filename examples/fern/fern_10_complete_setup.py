@@ -7,7 +7,7 @@ Demonstrates a production-ready logging configuration with:
 """
 
 from spicycrab_fern import Dispatch
-from spicycrab_log import LevelFilter
+from spicycrab_log import LevelFilter, debug, error, warn
 import sys
 
 
@@ -42,4 +42,6 @@ def setup_logger() -> None:
 
 def main() -> None:
     setup_logger()
-    print("Production logger initialized!")
+    debug("The crate-level debug record is filtered by the Warn default")
+    warn("Warning record reaches the stdout dispatch")
+    error("Error record reaches stdout and stderr")

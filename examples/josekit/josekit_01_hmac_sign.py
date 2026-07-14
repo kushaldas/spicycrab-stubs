@@ -36,5 +36,7 @@ def main() -> None:
 
     # Verify the JWT
     verifier = HS256.verifier_from_bytes(key)
-    decoded = decode_with_verifier(jwt, verifier)
-    print("JWT verified successfully!")
+    decoded_payload, _decoded_header = decode_with_verifier(jwt, verifier)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Verified subject: {subject}")

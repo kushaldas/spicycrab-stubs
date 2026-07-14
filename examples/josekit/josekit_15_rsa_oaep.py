@@ -35,5 +35,7 @@ def main() -> None:
 
     # Decrypt with private key
     decrypter = RSA_OAEP.decrypter_from_jwk(key_pair.to_jwk_private_key())
-    decoded = decode_with_decrypter(jwe, decrypter)
-    print("RSA-OAEP JWE decrypted successfully!")
+    decoded_payload, _decoded_header = decode_with_decrypter(jwe, decrypter)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Decrypted subject: {subject}")

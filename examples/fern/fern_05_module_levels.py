@@ -4,7 +4,7 @@ Demonstrates setting different log levels for different modules.
 """
 
 from spicycrab_fern import Dispatch
-from spicycrab_log import LevelFilter
+from spicycrab_log import LevelFilter, info, warn
 import sys
 
 
@@ -23,4 +23,5 @@ def setup_logger() -> None:
 
 def main() -> None:
     setup_logger()
-    print("Logger with module-specific levels initialized!")
+    info("The crate-level info record is filtered by the Warn default")
+    warn("The crate-level warning passes the default filter")

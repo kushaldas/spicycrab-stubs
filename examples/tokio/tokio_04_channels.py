@@ -1,6 +1,6 @@
 """Example 04: Communication between tasks using mpsc channels."""
 
-from spicycrab_tokio import spawn, mpsc_channel, sleep, Duration, MpscSender, MpscReceiver
+from spicycrab_tokio import spawn, mpsc_channel, sleep, Duration, MpscSender
 from spicycrab.types import Result
 
 

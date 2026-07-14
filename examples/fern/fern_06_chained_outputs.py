@@ -4,7 +4,7 @@ Demonstrates logging to both stdout and stderr based on level.
 """
 
 from spicycrab_fern import Dispatch
-from spicycrab_log import LevelFilter
+from spicycrab_log import LevelFilter, error, info
 import sys
 
 
@@ -29,4 +29,5 @@ def setup_logger() -> None:
 
 def main() -> None:
     setup_logger()
-    print("Multi-output logger initialized!")
+    info("Info record is written to stdout")
+    error("Error record reaches both configured outputs")

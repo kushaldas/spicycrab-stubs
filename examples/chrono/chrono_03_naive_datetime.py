@@ -8,7 +8,7 @@ Demonstrates:
 Usage:
     ./naive_datetime
 """
-from spicycrab_chrono import NaiveDate, NaiveDateTime, NaiveTime
+from spicycrab_chrono import DateTime, NaiveDate, NaiveDateTime, NaiveTime
 
 
 def main() -> None:
@@ -23,10 +23,13 @@ def main() -> None:
             print(f"Christmas morning: {dt.year()}-{dt.month()}-{dt.day()} {dt.hour()}:{dt.minute()}")
 
     # Create from Unix timestamp (seconds since epoch)
-    ts_dt: NaiveDateTime | None = NaiveDateTime.from_timestamp_opt(1704067200, 0)
-    if ts_dt is not None:
+    # Leave the timezone generic to Rust's inference: this constructor always
+    # returns DateTime<Utc>, while Python does not need to spell that parameter.
+    timestamp_dt = DateTime.from_timestamp(1704067200, 0)
+    if timestamp_dt is not None:
+        ts_dt: NaiveDateTime = timestamp_dt.naive_utc()
         print(f"From timestamp: {ts_dt.year()}-{ts_dt.month()}-{ts_dt.day()}")
 
         # Get the timestamp back
-        ts: int = ts_dt.timestamp()
+        ts: int = timestamp_dt.timestamp()
         print(f"Timestamp: {ts}")

@@ -34,5 +34,7 @@ def main() -> None:
 
     # Decrypt the JWT
     decrypter = PBES2_HS256_A128KW.decrypter_from_bytes(password)
-    decoded = decode_with_decrypter(jwe, decrypter)
-    print("PBES2 JWE decrypted successfully!")
+    decoded_payload, _decoded_header = decode_with_decrypter(jwe, decrypter)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Decrypted subject: {subject}")

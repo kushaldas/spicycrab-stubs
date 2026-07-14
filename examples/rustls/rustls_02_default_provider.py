@@ -5,4 +5,6 @@ from spicycrab_rustls import default_provider, CryptoProvider
 def main() -> None:
     # Get the default cryptographic provider
     provider: CryptoProvider = default_provider()
-    print("Got default crypto provider")
+    print(f"Provider is FIPS enabled: {provider.fips()}")
+    print(f"Supported cipher suites: {provider.cipher_suite_count()}")
+    print(f"Supported key-exchange groups: {provider.kx_group_count()}")

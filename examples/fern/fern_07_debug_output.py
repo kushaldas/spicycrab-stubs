@@ -1,15 +1,15 @@
-"""Example 3: Logging to stdout.
+"""Example 7: Debug-level stdout logging.
 
-Demonstrates chaining stdout output using std::io.
+Demonstrates a simple stdout logger with debug level.
 """
 
 from spicycrab_fern import Dispatch
-from spicycrab_log import LevelFilter, debug, info
+from spicycrab_log import LevelFilter, debug
 import sys
 
 
 def setup_logger() -> None:
-    """Set up logger that outputs to stdout."""
+    """Set up logger with debug output to stdout."""
     dispatch: Dispatch = Dispatch.new()
     dispatch = dispatch.level(LevelFilter.Debug)
     dispatch = dispatch.chain(sys.stdout)
@@ -18,5 +18,4 @@ def setup_logger() -> None:
 
 def main() -> None:
     setup_logger()
-    debug("Debug record written to stdout")
-    info("Info record written to stdout")
+    debug("Debug-level stdout logging is active")

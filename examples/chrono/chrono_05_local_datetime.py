@@ -8,7 +8,7 @@ Demonstrates:
 Usage:
     ./local_datetime
 """
-from spicycrab_chrono import DateTime, Local, NaiveDateTime
+from spicycrab_chrono import Local, NaiveDateTime
 
 
 def main() -> None:

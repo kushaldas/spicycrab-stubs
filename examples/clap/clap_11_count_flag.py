@@ -41,10 +41,10 @@ def main() -> None:
         elif verbosity == 1:
             print(f"INFO: {message}")
         elif verbosity == 2:
-            print(f"DEBUG: Processing message...")
+            print("DEBUG: Processing message...")
             print(f"DEBUG: {message}")
         else:
             print(f"TRACE: Verbosity level: {verbosity}")
             print(f"TRACE: Message length: {len(message)}")
-            print(f"TRACE: Processing message...")
+            print("TRACE: Processing message...")
             print(f"TRACE: {message}")

@@ -1,16 +1,19 @@
-"""Example 10: Create separate stores for client and server verification."""
-from spicycrab_rustls import RootCertStore
+"""Example 10: Create both WebPKI verifier builders."""
+from spicycrab_rustls import (
+    ClientCertVerifierBuilder,
+    RootCertStore,
+    ServerCertVerifierBuilder,
+    WebPkiClientVerifier,
+    WebPkiServerVerifier,
+)
 
 
 def main() -> None:
-    # Create certificate stores for different purposes
-
-    # Store for verifying server certificates (client-side)
     server_roots: RootCertStore = RootCertStore.empty()
-    print(f"Server trust store: empty={server_roots.is_empty()}")
+    _server_builder: ServerCertVerifierBuilder = WebPkiServerVerifier.builder_from_store(server_roots)
 
-    # Store for verifying client certificates (server-side, for mTLS)
     client_roots: RootCertStore = RootCertStore.empty()
-    print(f"Client trust store: empty={client_roots.is_empty()}")
+    _client_builder: ClientCertVerifierBuilder = WebPkiClientVerifier.builder_from_store(client_roots)
 
-    print("Both certificate stores ready for TLS configuration")
+    print("Created server- and client-certificate verifier builders")
+    print("Both builders need non-empty trust stores before build()")

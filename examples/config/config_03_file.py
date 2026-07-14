@@ -9,5 +9,5 @@ from spicycrab_config import File
 
 def main() -> None:
     """Create a file source."""
-    file = File.with_name("config")
+    _file = File.with_name("config")
     print("Created file source for 'config'")

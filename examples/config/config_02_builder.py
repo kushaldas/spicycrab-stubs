@@ -9,5 +9,5 @@ from spicycrab_config import Config
 
 def main() -> None:
     """Use config builder."""
-    builder = Config.builder()
+    _builder = Config.builder()
     print("Created config builder")

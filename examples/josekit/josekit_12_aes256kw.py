@@ -35,5 +35,7 @@ def main() -> None:
 
     # Decrypt the JWT
     decrypter = A256KW.decrypter_from_bytes(key)
-    decoded = decode_with_decrypter(jwe, decrypter)
-    print("A256KW JWE decrypted successfully!")
+    decoded_payload, _decoded_header = decode_with_decrypter(jwe, decrypter)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Decrypted subject: {subject}")

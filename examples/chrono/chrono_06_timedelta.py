@@ -26,6 +26,8 @@ def main() -> None:
     # Two hours in various units
     print(f"Two hours in minutes: {two_hours.num_minutes()}")
     print(f"Two hours in seconds: {two_hours.num_seconds()}")
+    print(f"Thirty minutes in minutes: {thirty_mins.num_minutes()}")
+    print(f"Ten seconds in seconds: {ten_secs.num_seconds()}")
 
     # Check zero duration
     zero: TimeDelta = TimeDelta.zero()

@@ -87,9 +87,9 @@ pub fn main() {
 | [fern_04_stderr_logging.py](fern_04_stderr_logging.py) | Logging errors to stderr |
 | [fern_05_module_levels.py](fern_05_module_levels.py) | Module-specific log levels |
 | [fern_06_chained_outputs.py](fern_06_chained_outputs.py) | Multiple output destinations |
-| [fern_07_colored_output.py](fern_07_colored_output.py) | Debug-level stdout logger |
-| [fern_08_panic_on_error.py](fern_08_panic_on_error.py) | Error-level filtering |
-| [fern_09_date_based_files.py](fern_09_date_based_files.py) | Trace-level verbose logging |
+| [fern_07_debug_output.py](fern_07_debug_output.py) | Debug-level stdout logger |
+| [fern_08_error_filter.py](fern_08_error_filter.py) | Error-level filtering |
+| [fern_09_trace_logging.py](fern_09_trace_logging.py) | Trace-level verbose logging |
 | [fern_10_complete_setup.py](fern_10_complete_setup.py) | Production-ready configuration |
 
 ## Transpiling Examples

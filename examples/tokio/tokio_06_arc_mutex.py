@@ -20,10 +20,9 @@ from spicycrab.types import Result
 async def increment_counter(counter: Arc[Mutex[int]], task_id: int, times: int) -> None:
     """Increment the shared counter multiple times."""
     for i in range(times):
-        # Lock the mutex to get exclusive access
-        # In Rust: let mut guard = counter.lock().await;
-        # Then: *guard += 1;
-        # The guard auto-releases when it goes out of scope
+        # increment_mutex_int locks the mutex, updates the value through the guard,
+        # and releases the guard before returning.
+        await counter.increment_mutex_int()
         print(f"Task {task_id}: incrementing (iteration {i + 1})")
         await sleep(Duration.from_millis(10))
 
@@ -54,6 +53,6 @@ async def main() -> None:
     Result.unwrap(await handle3)
 
     print(f"After tasks complete: strong count = {Arc.strong_count(counter)}")
+    final_value: int = await counter.mutex_int_value()
+    print(f"Final counter value: {final_value}")
     print("All increments completed!")
-    # In a real implementation, we would read the final counter value
-    # Final counter value would be 9 (3 tasks * 3 increments each)

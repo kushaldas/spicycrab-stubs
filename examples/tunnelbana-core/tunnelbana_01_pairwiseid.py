@@ -1,6 +1,13 @@
 """Target Python shape for tunnelbana pairwiseid microservice codegen."""
 
-from spicycrab_tunnelbana_core import Context, Error, InternalData, MicroService, Result
+from spicycrab_tunnelbana_core import (
+    Context,
+    Error,
+    InternalData,
+    MicroService,
+    Result,
+    derive_pairwise_id,
+)
 
 
 class PairwiseId(MicroService):
@@ -15,8 +22,11 @@ class PairwiseId(MicroService):
         subject_id = data.attr_first("subject-id")
         if subject_id is None:
             return Result.Err(Error.Authn("No subject-id attribute found"))
-        # The current spicycrab pilot should replace this helper section with
-        # the handwritten Rust HMAC-SHA256 implementation target.
-        data.set_attr("pairwise-id", subject_id)
+        requester = data.requester
+        if requester is None:
+            anonymous_pairwise = derive_pairwise_id(self.pairwise_salt, "", subject_id)
+            data.set_attr("pairwise-id", anonymous_pairwise)
+            return Result.Ok(data)
+        pairwise = derive_pairwise_id(self.pairwise_salt, requester, subject_id)
+        data.set_attr("pairwise-id", pairwise)
         return Result.Ok(data)
-

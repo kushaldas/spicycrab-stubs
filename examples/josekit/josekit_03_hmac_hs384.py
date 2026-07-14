@@ -31,5 +31,7 @@ def main() -> None:
     print(f"HS384 JWT: {jwt}")
 
     verifier = HS384.verifier_from_bytes(key)
-    decoded = decode_with_verifier(jwt, verifier)
-    print("HS384 JWT verified!")
+    decoded_payload, _decoded_header = decode_with_verifier(jwt, verifier)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Verified subject: {subject}")

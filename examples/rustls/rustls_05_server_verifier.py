@@ -1,14 +1,9 @@
-"""Example 5: Create multiple root certificate stores."""
-from spicycrab_rustls import RootCertStore
+"""Example 5: Create a server-certificate verifier builder."""
+from spicycrab_rustls import RootCertStore, ServerCertVerifierBuilder, WebPkiServerVerifier
 
 
 def main() -> None:
-    # Create first store
-    store1: RootCertStore = RootCertStore.empty()
-    print(f"Store 1 is empty: {store1.is_empty()}")
-
-    # Create second store
-    store2: RootCertStore = RootCertStore.empty()
-    print(f"Store 2 is empty: {store2.is_empty()}")
-
-    print("Created two empty RootCertStores successfully")
+    roots: RootCertStore = RootCertStore.empty()
+    _builder: ServerCertVerifierBuilder = WebPkiServerVerifier.builder_from_store(roots)
+    print("Created a WebPkiServerVerifier builder")
+    print("Add trusted roots before calling builder.build()")

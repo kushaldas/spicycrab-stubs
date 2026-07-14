@@ -8,7 +8,7 @@ Demonstrates:
 Usage:
     ./weekday
 """
-from spicycrab_chrono import NaiveDate, Weekday
+from spicycrab_chrono import NaiveDate
 
 
 def main() -> None:

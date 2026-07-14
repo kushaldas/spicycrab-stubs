@@ -11,6 +11,7 @@ from spicycrab_josekit import (
     HS256,
     encode_with_signer,
     decode_with_verifier,
+    get_string_claim,
 )
 
 
@@ -22,6 +23,8 @@ def main() -> None:
     payload: JwtPayload = JwtPayload.new()
     payload.set_subject("custom-user")
     payload.set_issuer("custom.example.com")
+    payload.set_string_claim("role", "administrator")
+    payload.set_string_claim("tenant", "example-org")
 
     # 32-byte key for HS256
     key = b"0123456789ABCDEF0123456789ABCDEF"
@@ -33,5 +36,8 @@ def main() -> None:
 
     # Verify
     verifier = HS256.verifier_from_bytes(key)
-    decoded = decode_with_verifier(jwt, verifier)
-    print("Custom claims JWT verified!")
+    decoded_payload, _decoded_header = decode_with_verifier(jwt, verifier)
+    role: str = get_string_claim(decoded_payload, "role")
+    tenant: str = get_string_claim(decoded_payload, "tenant")
+    print(f"Verified role: {role}")
+    print(f"Verified tenant: {tenant}")

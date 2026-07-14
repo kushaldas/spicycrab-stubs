@@ -10,5 +10,5 @@ from spicycrab_config import Config
 def main() -> None:
     """Build a config with defaults."""
     builder = Config.builder()
-    cfg = builder.build_cloned()
+    _cfg = builder.build_cloned()
     print("Built config with defaults")

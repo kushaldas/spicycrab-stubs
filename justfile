@@ -10,15 +10,33 @@ default:
     @just --justfile "{{ repo_root }}/justfile" --list
 
 # Create a version tag for a stub package
-# Usage: just tag <crate> <version>
-# Example: just tag clap 4.5.0
-tag crate version:
+# Usage: just tag [-f] <crate> [version]
+# Examples: just tag clap; just tag clap 4.5.0
+# Force-recreate an existing local tag: just tag -f clap
+tag crate_or_force crate_or_version="" version="":
     #!/usr/bin/env bash
     set -euo pipefail
     cd "{{ repo_root }}"
 
-    TAG="{{ crate }}-{{ version }}"
-    STUB_DIR="stubs/{{ crate }}"
+    FORCE=false
+    if [ "{{ crate_or_force }}" = "-f" ]; then
+        FORCE=true
+        CRATE="{{ crate_or_version }}"
+        VERSION="{{ version }}"
+        if [ -z "$CRATE" ]; then
+            echo "Usage: just tag [-f] <crate> [version]" >&2
+            exit 1
+        fi
+    else
+        CRATE="{{ crate_or_force }}"
+        VERSION="{{ crate_or_version }}"
+        if [ -n "{{ version }}" ]; then
+            echo "Usage: just tag [-f] <crate> [version]" >&2
+            exit 1
+        fi
+    fi
+
+    STUB_DIR="stubs/$CRATE"
 
     # Verify the crate directory exists
     if [ ! -d "$STUB_DIR" ]; then
@@ -32,10 +50,18 @@ tag crate version:
         exit 1
     fi
 
-    # Check version in pyproject.toml matches
-    TOML_VERSION=$(grep -E '^[[:space:]]*version[[:space:]]*=' "$STUB_DIR/pyproject.toml" | head -1 | sed 's/.*"\(.*\)".*/\1/')
-    if [ "$TOML_VERSION" != "{{ version }}" ]; then
-        echo "Warning: pyproject.toml version ($TOML_VERSION) doesn't match tag version ({{ version }})"
+    # Read the stub version and use it when no version was provided.
+    TOML_VERSION=$(awk -F'"' '/^[[:space:]]*version[[:space:]]*=/{print $2; exit}' "$STUB_DIR/pyproject.toml")
+    if [ -z "$TOML_VERSION" ]; then
+        echo "Error: No version found in $STUB_DIR/pyproject.toml" >&2
+        exit 1
+    fi
+
+    if [ -z "$VERSION" ]; then
+        VERSION="$TOML_VERSION"
+        echo "Using version from $STUB_DIR/pyproject.toml: $VERSION"
+    elif [ "$TOML_VERSION" != "$VERSION" ]; then
+        echo "Warning: pyproject.toml version ($TOML_VERSION) doesn't match tag version ($VERSION)"
         read -p "Continue anyway? [y/N] " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -43,19 +69,26 @@ tag crate version:
         fi
     fi
 
+    TAG="$CRATE-$VERSION"
+
     # Check if tag already exists
     if git rev-parse --verify "refs/tags/$TAG" >/dev/null 2>&1; then
-        echo "Error: Tag '$TAG' already exists"
-        echo "To update, delete it first: git tag -d $TAG && git push origin :refs/tags/$TAG"
-        exit 1
+        if [ "$FORCE" = true ]; then
+            echo "Deleting existing local tag: $TAG"
+            git tag -d -- "$TAG"
+        else
+            echo "Error: Tag '$TAG' already exists"
+            echo "Recreate the local tag with: just tag -f $CRATE $VERSION"
+            exit 1
+        fi
     fi
 
-    # Create and push tag
+    # Commit this stub package and create the local tag
     echo "Creating tag: $TAG"
     git add -- "$STUB_DIR"
     # Commit only this stub package. Unrelated staged work remains staged.
-    git commit --only --allow-empty -m "{{ crate }}: version {{ version }}" -- "$STUB_DIR"
-    git tag -a "$TAG" -m "{{ crate }} version {{ version }}"
+    git commit --only --allow-empty -m "$CRATE: version $VERSION" -- "$STUB_DIR"
+    git tag -a "$TAG" -m "$CRATE version $VERSION"
 
     echo ""
     echo "Tag '$TAG' created locally."

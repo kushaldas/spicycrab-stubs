@@ -8,5 +8,5 @@ def main() -> None:
     print("Created TlsConnectorBuilder")
 
     # Build the connector (using default settings)
-    connector: TlsConnector = builder.build()
+    _connector: TlsConnector = builder.build()
     print("Built TlsConnector successfully")

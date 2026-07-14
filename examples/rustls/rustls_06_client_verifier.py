@@ -1,14 +1,9 @@
-"""Example 6: Check certificate store state."""
-from spicycrab_rustls import RootCertStore
+"""Example 6: Create a client-certificate verifier builder."""
+from spicycrab_rustls import ClientCertVerifierBuilder, RootCertStore, WebPkiClientVerifier
 
 
 def main() -> None:
-    # Create an empty root certificate store
-    store: RootCertStore = RootCertStore.empty()
-
-    # Check various properties
-    empty: bool = store.is_empty()
-    print(f"Store is empty: {empty}")
-
-    # The store can be used for TLS verification
-    print("RootCertStore ready for use with TLS configurations")
+    roots: RootCertStore = RootCertStore.empty()
+    _builder: ClientCertVerifierBuilder = WebPkiClientVerifier.builder_from_store(roots)
+    print("Created a WebPkiClientVerifier builder")
+    print("Add trusted client CAs before calling builder.build()")

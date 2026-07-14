@@ -4,7 +4,7 @@ Demonstrates chaining stderr output for errors.
 """
 
 from spicycrab_fern import Dispatch
-from spicycrab_log import LevelFilter
+from spicycrab_log import LevelFilter, error, warn
 import sys
 
 
@@ -18,4 +18,5 @@ def setup_logger() -> None:
 
 def main() -> None:
     setup_logger()
-    print("Error logger outputs to stderr!")
+    warn("This warning is filtered out")
+    error("Error record written to stderr")

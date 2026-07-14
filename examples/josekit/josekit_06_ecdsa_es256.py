@@ -34,5 +34,7 @@ def main() -> None:
 
     # Verify with public key
     verifier = ES256.verifier_from_jwk(key_pair.to_jwk_public_key())
-    decoded = decode_with_verifier(jwt, verifier)
-    print("ES256 JWT verified!")
+    decoded_payload, _decoded_header = decode_with_verifier(jwt, verifier)
+    subject = decoded_payload.subject()
+    if subject is not None:
+        print(f"Verified subject: {subject}")

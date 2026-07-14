@@ -6,22 +6,23 @@ Demonstrates:
 - Low-level request access in handlers
 """
 
-from spicycrab_actix_web import App, HttpServer, HttpResponse, get
+from spicycrab_actix_web import App, HttpRequest, HttpResponse, HttpServer, get
 
 
-async def request_info() -> HttpResponse:
+async def request_info(request: HttpRequest) -> HttpResponse:
     """Display basic request information."""
-    return HttpResponse.Ok().body("Request received successfully")
+    body: str = f"Method: {request.method()}\nPath: {request.path()}\nQuery: {request.query_string()}"
+    return HttpResponse.Ok().content_type("text/plain").body(body)
 
 
-async def echo_method() -> HttpResponse:
-    """Echo that the request was a GET."""
-    return HttpResponse.Ok().body("You used HTTP method: GET")
+async def echo_method(request: HttpRequest) -> HttpResponse:
+    """Echo the actual request method."""
+    return HttpResponse.Ok().body(f"You used HTTP method: {request.method()}")
 
 
-async def echo_path() -> HttpResponse:
-    """Echo the request path."""
-    return HttpResponse.Ok().body("Request path: /path")
+async def echo_path(request: HttpRequest) -> HttpResponse:
+    """Echo the actual request path."""
+    return HttpResponse.Ok().body(f"Request path: {request.path()}")
 
 
 async def main() -> None:
