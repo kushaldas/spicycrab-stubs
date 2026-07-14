@@ -828,6 +828,15 @@ class WebPkiServerVerifier:
     def builder(roots: object) -> ServerCertVerifierBuilder: ...
 
     @staticmethod
+    def builder_from_store(roots: RootCertStore) -> ServerCertVerifierBuilder:
+        """Create a verifier builder from an owned certificate store.
+
+        Rustls expects an ``Arc<RootCertStore>``.  This convenience bridge keeps
+        that Rust ownership detail out of spicycrab programs.
+        """
+        ...
+
+    @staticmethod
     def builder_with_provider(roots: object, provider: object) -> ServerCertVerifierBuilder: ...
 
     def verify_server_cert(self, end_entity: CertificateDer, intermediates: object, server_name: ServerName, ocsp_response: object, now: UnixTime) -> ServerCertVerified: ...
@@ -878,6 +887,11 @@ For more information, see the [`WebPkiClientVerifier`] documentation."""
     def enforce_revocation_expiration(self) -> Self: ...
 
     def build(self) -> object: ...
+
+class ClientCertVerifier:
+    """Owned handle to Rustls' client-certificate verifier trait object."""
+
+    pass
 
 class WebPkiClientVerifier:
     """A client certificate verifier that uses the `webpki` crate[^1] to perform client certificate
@@ -946,10 +960,15 @@ let client_verifier = WebPkiClientVerifier::builder(roots.into())
     def builder(roots: object) -> ClientCertVerifierBuilder: ...
 
     @staticmethod
+    def builder_from_store(roots: RootCertStore) -> ClientCertVerifierBuilder:
+        """Create a client-certificate verifier builder from an owned store."""
+        ...
+
+    @staticmethod
     def builder_with_provider(roots: object, provider: object) -> ClientCertVerifierBuilder: ...
 
     @staticmethod
-    def no_client_auth() -> object: ...
+    def no_client_auth() -> ClientCertVerifier: ...
 
     def offer_client_auth(self) -> bool: ...
 
@@ -1861,6 +1880,14 @@ You can verify the configuration at runtime by checking
     def get_default() -> object: ...
 
     def fips(self) -> bool: ...
+
+    def cipher_suite_count(self) -> int:
+        """Return the number of cipher suites supplied by this provider."""
+        ...
+
+    def kx_group_count(self) -> int:
+        """Return the number of key-exchange groups supplied by this provider."""
+        ...
 
 class CompletedKeyExchange:
     """The result from [`SupportedKxGroup::start_and_complete()`]."""

@@ -71,6 +71,7 @@ python = "config.Config.builder"
 rust_code = "config::Config::builder()"
 rust_imports = ["config::Config"]
 needs_result = false
+returns = "ConfigBuilder"
 
 [[mappings.functions]]
 python = "config.Config.try_from"

@@ -13,6 +13,11 @@ KEY_TARGET_ENTITYID: str
 KEY_ERROR_REDIRECT: str
 
 
+def derive_pairwise_id(salt: str, requester: str, subject_id: str) -> str:
+    """Derive Tunnelbana's scoped HMAC-SHA256 pairwise identifier."""
+    ...
+
+
 class Result(Generic[T, E]):
     @staticmethod
     def Ok(value: T) -> "Result[T, E]": ...

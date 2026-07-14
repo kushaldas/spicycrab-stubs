@@ -62,6 +62,26 @@ class HttpResponse:
         ...
 
     @staticmethod
+    def Found() -> "HttpResponseBuilder":
+        """Creates a 302 Found redirect response builder."""
+        ...
+
+    @staticmethod
+    def SeeOther() -> "HttpResponseBuilder":
+        """Creates a 303 See Other redirect response builder."""
+        ...
+
+    @staticmethod
+    def TemporaryRedirect() -> "HttpResponseBuilder":
+        """Creates a 307 Temporary Redirect response builder."""
+        ...
+
+    @staticmethod
+    def PermanentRedirect() -> "HttpResponseBuilder":
+        """Creates a 308 Permanent Redirect response builder."""
+        ...
+
+    @staticmethod
     def BadRequest() -> "HttpResponseBuilder":
         """Creates a 400 Bad Request response builder."""
         ...
@@ -1588,6 +1608,45 @@ class HttpResponse:
 
     @staticmethod
     def build(status: StatusCode) -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Ok() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Created() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Accepted() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def NoContent() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Found() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def SeeOther() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def TemporaryRedirect() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def PermanentRedirect() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def BadRequest() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Unauthorized() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def Forbidden() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def NotFound() -> HttpResponseBuilder: ...
+
+    @staticmethod
+    def InternalServerError() -> HttpResponseBuilder: ...
 
     @staticmethod
     def from_error(error: object) -> "HttpResponse": ...

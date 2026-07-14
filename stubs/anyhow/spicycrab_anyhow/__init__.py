@@ -27,6 +27,21 @@ class Result(Generic[T, E]):
         """Create an error result."""
         ...
 
+    @staticmethod
+    def is_ok(result: "Result[T, E]") -> bool:
+        """Return whether the result contains a successful value."""
+        ...
+
+    @staticmethod
+    def is_err(result: "Result[T, E]") -> bool:
+        """Return whether the result contains an error."""
+        ...
+
+    @staticmethod
+    def unwrap_or(result: "Result[T, E]", default: T) -> T:
+        """Return the successful value or the supplied default."""
+        ...
+
 class Adhoc:
 
     def new(self, message: M) -> Exception: ...

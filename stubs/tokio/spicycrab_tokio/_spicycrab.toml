@@ -88,12 +88,40 @@ rust_code = "std::sync::Arc::into_inner({arg0})"
 rust_imports = []
 needs_result = false
 
+# Arc<Mutex<i64>> helpers used to express guard dereferencing in Python.
+[[mappings.methods]]
+python = "Arc.increment_mutex_int"
+rust_code = "async { *{self}.lock().await += 1 }"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Arc.mutex_int_value"
+rust_code = "async { *{self}.lock().await }"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
 # Mutex constructor from std
 [[mappings.functions]]
 python = "tokio.Mutex.new"
 rust_code = "tokio::sync::Mutex::new({arg0})"
 rust_imports = []
 needs_result = false
+
+# Integer Mutex helpers used to express guard dereferencing in Python.
+[[mappings.methods]]
+python = "Mutex.increment_int"
+rust_code = "async { *{self}.lock().await += 1 }"
+rust_imports = []
+needs_result = false
+
+[[mappings.methods]]
+python = "Mutex.int_value"
+rust_code = "async { *{self}.lock().await }"
+rust_imports = []
+needs_result = false
+returns = "i64"
 
 # RwLock constructor from std
 [[mappings.functions]]

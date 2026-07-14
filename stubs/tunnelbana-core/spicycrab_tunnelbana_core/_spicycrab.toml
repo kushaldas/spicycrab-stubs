@@ -5,9 +5,20 @@ rust_version = "0.2.0"
 python_module = "spicycrab_tunnelbana_core"
 
 [cargo.dependencies]
-tunnelbana-core = { path = "/home/kdas/code/xml/tunnelbana/crates/tunnelbana-core" }
+tunnelbana-core = { git = "https://github.com/SUNET/tunnelbana", rev = "11f9300d4bce22ca1b27b02a329de2c281996297" }
 async-trait = "0.1"
 serde_json = "1"
+hmac = "0.12"
+sha2 = "0.10"
+hex = "0.4"
+
+[[mappings.functions]]
+python = "tunnelbana-core.derive_pairwise_id"
+rust_code = "{ let salt: String = {arg0}; let requester: String = {arg1}; let subject_id: String = {arg2}; let scope = subject_id.rsplit('@').next().unwrap_or(subject_id.as_str()); let mut mac = <hmac::Hmac<sha2::Sha256> as hmac::Mac>::new_from_slice(salt.as_bytes()).expect(\"HMAC accepts keys of any size\"); hmac::Mac::update(&mut mac, format!(\"{}-{}\", requester, subject_id).as_bytes()); let digest = hmac::Mac::finalize(mac).into_bytes(); format!(\"{}@{}\", hex::encode(digest), scope) }"
+rust_imports = []
+needs_result = false
+param_types = ["String", "String", "String"]
+returns = "String"
 
 [[mappings.functions]]
 python = "tunnelbana-core.Result.Ok"

@@ -38,6 +38,10 @@ class Sha256:
         """Finalize and return the hash."""
         ...
 
+    def finalize_hex(self) -> str:
+        """Finalize and return the lowercase hexadecimal digest."""
+        ...
+
 
 class Sha512:
     """SHA-512 hasher.
@@ -53,6 +57,18 @@ class Sha512:
     @staticmethod
     def new() -> "Sha512":
         """Create a new SHA-512 hasher."""
+        ...
+
+    def update(self, data: bytes) -> None:
+        """Update the hasher with data."""
+        ...
+
+    def finalize(self) -> bytes:
+        """Finalize and return the hash."""
+        ...
+
+    def finalize_hex(self) -> str:
+        """Finalize and return the lowercase hexadecimal digest."""
         ...
 
 

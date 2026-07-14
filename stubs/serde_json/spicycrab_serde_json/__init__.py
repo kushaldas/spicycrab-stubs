@@ -1650,6 +1650,6 @@ is correct but `T`'s implementation of `Deserialize` decides that something
 is wrong with the data, for example required struct fields are missing from
 the JSON map or some number is too big to fit in the expected primitive
 type."""
-def from_str(s: object) -> T: ...
+def from_str(s: str) -> T: ...
 
 __all__: list[str] = ["to_raw_value", "to_writer", "to_writer_pretty", "to_vec", "to_vec_pretty", "to_string", "to_string_pretty", "to_value", "from_value", "nonzero", "add", "iadd", "sub", "isub", "mul", "imul", "iadd_impl", "iadd", "isub_impl", "imul", "mul", "imul_pow5", "leading_zeros", "bit_length", "ishl_bits", "ishl_limbs", "ishl", "normalize", "compare", "less", "greater_equal", "iadd_impl", "iadd", "add", "isub", "karatsuba_split", "imul", "parse_concise_float", "parse_truncated_float", "from_reader", "from_slice", "from_str", "RawValue", "ReferenceFromString", "BoxedFromString", "OwnedRawDeserializer", "BorrowedRawDeserializer", "Number", "NumberFromString", "Serializer", "CompactFormatter", "PrettyFormatter", "Serializer", "SerializeVec", "SerializeTupleVariant", "SerializeStructVariant", "Error", "Map", "VacantEntry", "OccupiedEntry", "Iter", "IterMut", "IntoIter", "Keys", "Values", "ValuesMut", "IntoValues", "Deserializer", "StreamDeserializer", "LineColIterator", "Error", "Position", "IoRead", "SliceRead", "StrRead", "State", "Compound", "CharEscape", "Value", "SerializeMap", "ErrorKind", "Entry", "Category", "Reference"]

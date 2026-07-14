@@ -4750,6 +4750,23 @@ needs_result = false
 returns_self = true
 param_types = ["u64"]
 
+# Custom string claim bridge using josekit's serde_json::Value re-export.
+[[mappings.methods]]
+python = "JwtPayload.set_string_claim"
+rust_code = "{self}.set_claim({arg0}, Some(josekit::Value::String({arg1})))"
+rust_imports = []
+needs_result = true
+param_types = ["&str", "String"]
+
+# Typed claim accessor avoids losing the borrowed key type after tuple unpacking.
+[[mappings.functions]]
+python = "josekit.get_string_claim"
+rust_code = "({arg0}).claim({arg1}).and_then(|value| value.as_str()).unwrap_or_default().to_string()"
+rust_imports = []
+needs_result = false
+param_types = ["&JwtPayload", "&str"]
+returns = "String"
+
 # JwtPayload.claim hardcoded method
 [[mappings.methods]]
 python = "JwtPayload.claim"

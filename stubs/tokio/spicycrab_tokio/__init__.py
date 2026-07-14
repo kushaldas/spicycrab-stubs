@@ -199,6 +199,14 @@ class Arc(Generic[T]):
         """
         ...
 
+    async def increment_mutex_int(self) -> None:
+        """Lock an ``Arc[Mutex[int]]`` and increment its value by one."""
+        ...
+
+    async def mutex_int_value(self) -> int:
+        """Lock an ``Arc[Mutex[int]]`` and copy out its current value."""
+        ...
+
 
 class Mutex(Generic[T]):
     """An asynchronous mutual exclusion primitive.
@@ -239,6 +247,14 @@ class Mutex(Generic[T]):
         Returns:
             A guard that releases the lock when dropped.
         """
+        ...
+
+    async def increment_int(self) -> None:
+        """Lock an integer mutex and increment its value by one."""
+        ...
+
+    async def int_value(self) -> int:
+        """Lock an integer mutex and copy out its current value."""
         ...
 
     def try_lock(self) -> "MutexGuard[T] | None":
@@ -3465,7 +3481,11 @@ the data protected by the mutex in an inconsistent state.
     @staticmethod
     def const_new(t: T) -> "Mutex": ...
 
-    def lock(self) -> object: ...
+    async def lock(self) -> MutexGuard: ...
+
+    async def increment_int(self) -> None: ...
+
+    async def int_value(self) -> int: ...
 
     def blocking_lock(self) -> object: ...
 

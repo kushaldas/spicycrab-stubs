@@ -299,6 +299,7 @@ python = "chrono.DateTime.from_timestamp"
 rust_code = "chrono::DateTime::from_timestamp({arg0}, {arg1})"
 rust_imports = ["chrono::DateTime"]
 needs_result = false
+returns = "Option<DateTime<Utc>>"
 param_types = ["i64", "u32"]
 
 [[mappings.functions]]
@@ -1093,6 +1094,7 @@ python = "chrono.Local.now"
 rust_code = "chrono::Local::now()"
 rust_imports = ["chrono::Local"]
 needs_result = false
+returns = "DateTime<Local>"
 
 [[mappings.functions]]
 python = "chrono.Local.from_offset"
@@ -1173,12 +1175,14 @@ python = "chrono.Utc.now"
 rust_code = "chrono::Utc::now()"
 rust_imports = ["chrono::Utc"]
 needs_result = false
+returns = "DateTime<Utc>"
 
 [[mappings.functions]]
 python = "chrono.Utc.now"
 rust_code = "chrono::Utc::now()"
 rust_imports = ["chrono::Utc"]
 needs_result = false
+returns = "DateTime<Utc>"
 
 [[mappings.functions]]
 python = "chrono.Utc.from_offset"
@@ -3800,8 +3804,7 @@ python = "NaiveDate.checked_add_months"
 rust_code = "{self}.checked_add_months({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Self"
+returns = "Option<NaiveDate>"
 param_types = ["Months"]
 
 [[mappings.methods]]
@@ -3809,8 +3812,7 @@ python = "NaiveDate.checked_sub_months"
 rust_code = "{self}.checked_sub_months({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Self"
+returns = "Option<NaiveDate>"
 param_types = ["Months"]
 
 [[mappings.methods]]
@@ -3818,8 +3820,7 @@ python = "NaiveDate.checked_add_days"
 rust_code = "{self}.checked_add_days({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Self"
+returns = "Option<NaiveDate>"
 param_types = ["Days"]
 
 [[mappings.methods]]
@@ -3827,8 +3828,7 @@ python = "NaiveDate.checked_sub_days"
 rust_code = "{self}.checked_sub_days({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "Self"
+returns = "Option<NaiveDate>"
 param_types = ["Days"]
 
 [[mappings.methods]]
@@ -3836,7 +3836,6 @@ python = "NaiveDate.and_time"
 rust_code = "{self}.and_time({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
 returns = "NaiveDateTime"
 param_types = ["NaiveTime"]
 
@@ -3949,8 +3948,7 @@ python = "NaiveDate.checked_add_signed"
 rust_code = "{self}.checked_add_signed({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "NaiveDate"
+returns = "Option<NaiveDate>"
 param_types = ["TimeDelta"]
 
 [[mappings.methods]]
@@ -3958,8 +3956,7 @@ python = "NaiveDate.checked_sub_signed"
 rust_code = "{self}.checked_sub_signed({arg0})"
 rust_imports = []
 needs_result = false
-returns_self = true
-returns = "NaiveDate"
+returns = "Option<NaiveDate>"
 param_types = ["TimeDelta"]
 
 [[mappings.methods]]

@@ -847,7 +847,7 @@ name = 'Lisa'
 assert_eq!(config.title, "TOML Example");
 assert_eq!(config.owner.name, "Lisa");
 ```"""
-def from_str(s: object) -> T: ...
+def from_str(s: str) -> T: ...
 
 """Deserializes bytes into a type.
 

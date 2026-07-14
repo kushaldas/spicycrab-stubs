@@ -504,15 +504,23 @@ param_types = ["T"]
 
 [[mappings.functions]]
 python = "rustls.WebPkiServerVerifier.builder"
-rust_code = "rustls::WebPkiServerVerifier::builder({arg0})"
-rust_imports = ["rustls::WebPkiServerVerifier"]
+rust_code = "rustls::client::WebPkiServerVerifier::builder({arg0})"
+rust_imports = ["rustls::client::WebPkiServerVerifier"]
 needs_result = false
 param_types = ["Arc<RootCertStore>"]
 
 [[mappings.functions]]
+python = "rustls.WebPkiServerVerifier.builder_from_store"
+rust_code = "rustls::client::WebPkiServerVerifier::builder(std::sync::Arc::new({arg0}))"
+rust_imports = ["rustls::client::WebPkiServerVerifier"]
+needs_result = false
+param_types = ["RootCertStore"]
+returns = "ServerCertVerifierBuilder"
+
+[[mappings.functions]]
 python = "rustls.WebPkiServerVerifier.builder_with_provider"
-rust_code = "rustls::WebPkiServerVerifier::builder_with_provider({arg0}, {arg1})"
-rust_imports = ["rustls::WebPkiServerVerifier"]
+rust_code = "rustls::client::WebPkiServerVerifier::builder_with_provider({arg0}, {arg1})"
+rust_imports = ["rustls::client::WebPkiServerVerifier"]
 needs_result = false
 param_types = ["Arc<RootCertStore>", "Arc<CryptoProvider>"]
 
@@ -525,23 +533,32 @@ param_types = ["&'aCertificateDer<'a>"]
 
 [[mappings.functions]]
 python = "rustls.WebPkiClientVerifier.builder"
-rust_code = "rustls::WebPkiClientVerifier::builder({arg0})"
-rust_imports = ["rustls::WebPkiClientVerifier"]
+rust_code = "rustls::server::WebPkiClientVerifier::builder({arg0})"
+rust_imports = ["rustls::server::WebPkiClientVerifier"]
 needs_result = false
 param_types = ["Arc<RootCertStore>"]
 
 [[mappings.functions]]
+python = "rustls.WebPkiClientVerifier.builder_from_store"
+rust_code = "rustls::server::WebPkiClientVerifier::builder(std::sync::Arc::new({arg0}))"
+rust_imports = ["rustls::server::WebPkiClientVerifier"]
+needs_result = false
+param_types = ["RootCertStore"]
+returns = "ClientCertVerifierBuilder"
+
+[[mappings.functions]]
 python = "rustls.WebPkiClientVerifier.builder_with_provider"
-rust_code = "rustls::WebPkiClientVerifier::builder_with_provider({arg0}, {arg1})"
-rust_imports = ["rustls::WebPkiClientVerifier"]
+rust_code = "rustls::server::WebPkiClientVerifier::builder_with_provider({arg0}, {arg1})"
+rust_imports = ["rustls::server::WebPkiClientVerifier"]
 needs_result = false
 param_types = ["Arc<RootCertStore>", "Arc<CryptoProvider>"]
 
 [[mappings.functions]]
 python = "rustls.WebPkiClientVerifier.no_client_auth"
-rust_code = "rustls::WebPkiClientVerifier::no_client_auth()"
-rust_imports = ["rustls::WebPkiClientVerifier"]
+rust_code = "rustls::server::WebPkiClientVerifier::no_client_auth()"
+rust_imports = ["rustls::server::WebPkiClientVerifier"]
 needs_result = false
+returns = "ClientCertVerifier"
 
 [[mappings.functions]]
 python = "rustls.ServerSessionMemoryCache.new"
@@ -3449,6 +3466,20 @@ rust_imports = []
 needs_result = false
 
 [[mappings.methods]]
+python = "CryptoProvider.cipher_suite_count"
+rust_code = "{self}.cipher_suites.len() as i64"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
+python = "CryptoProvider.kx_group_count"
+rust_code = "{self}.kx_groups.len() as i64"
+rust_imports = []
+needs_result = false
+returns = "i64"
+
+[[mappings.methods]]
 python = "SharedSecret.secret_bytes"
 rust_code = "{self}.secret_bytes()"
 rust_imports = []
@@ -4411,11 +4442,11 @@ rust = "rustls::RootCertStore"
 
 [[mappings.types]]
 python = "ServerCertVerifierBuilder"
-rust = "rustls::webpki::server_verifier::ServerCertVerifierBuilder"
+rust = "rustls::client::ServerCertVerifierBuilder"
 
 [[mappings.types]]
 python = "WebPkiServerVerifier"
-rust = "rustls::WebPkiServerVerifier"
+rust = "rustls::client::WebPkiServerVerifier"
 
 [[mappings.types]]
 python = "WebPkiSupportedAlgorithms"
@@ -4423,15 +4454,19 @@ rust = "rustls::WebPkiSupportedAlgorithms"
 
 [[mappings.types]]
 python = "ParsedCertificate"
-rust = "rustls::ParsedCertificate"
+rust = "rustls::server::ParsedCertificate"
 
 [[mappings.types]]
 python = "ClientCertVerifierBuilder"
-rust = "rustls::webpki::client_verifier::ClientCertVerifierBuilder"
+rust = "rustls::server::ClientCertVerifierBuilder"
+
+[[mappings.types]]
+python = "ClientCertVerifier"
+rust = "std::sync::Arc<dyn rustls::server::danger::ClientCertVerifier>"
 
 [[mappings.types]]
 python = "WebPkiClientVerifier"
-rust = "rustls::WebPkiClientVerifier"
+rust = "rustls::server::WebPkiClientVerifier"
 
 [[mappings.types]]
 python = "ConfigBuilder"
