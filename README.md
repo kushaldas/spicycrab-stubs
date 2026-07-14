@@ -56,15 +56,15 @@ Pre-generated stubs in `stubs/` directory:
 
 ## Examples
 
-Working examples in `examples/` directory (170 total):
+Working examples in `examples/` directory (147 total):
 
 | Crate | Examples | Description |
 |-------|----------|-------------|
 | [actix-web](examples/actix-web) | 16 | Web server routes, handlers, middleware |
-| [anyhow](examples/anyhow) | 16 | Result/Error handling patterns |
+| [anyhow](examples/anyhow) | 8 | Result/Error handling patterns |
 | [base64](examples/base64) | 5 | Encoding/decoding operations |
 | [chrono](examples/chrono) | 10 | Date, time, timezone operations |
-| [clap](examples/clap) | 30 | CLI argument parsing patterns |
+| [clap](examples/clap) | 15 | CLI argument parsing patterns |
 | [config](examples/config) | 5 | Configuration loading |
 | [env_logger](examples/env_logger) | 5 | Environment-based logging |
 | [fern](examples/fern) | 10 | Logging configuration |
@@ -129,8 +129,10 @@ Runtime notes:
 Latest verification for this tree:
 
 - `cookcrab validate` passed for all 28 stub packages.
-- All 170 examples transpiled, `cargo check` passed, and `cargo build` passed.
-- Runtime smoke passed for the finite examples; the 16 `actix-web` examples were observed as long-running servers.
+- All 147 examples transpiled, `cargo check` passed, and `cargo build` passed.
+- Runtime smoke passed for all 127 finite executable examples, including 15 live HTTP client requests.
+- All 16 `actix-web` servers returned their expected status, body, and representative headers; the four
+  `tunnelbana-core` trait examples compiled and linked as libraries.
 
 ## Repository Structure
 
